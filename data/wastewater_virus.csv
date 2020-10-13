@@ -1,4 +1,4 @@
-sampleDate,locationID,locationName,sampleID,N1_PMMV_mean,N1_PMMV_sd,N2_PPMV_mean,N2_PPM_sd,PMMV_Ct
+sampleDate,locationID,locationName,sampleID,N1_PMMV_mean,N1_PMMV_sd,N2_PPMV_mean,N2_PPMV_sd,PMMV_Ct
 08-Apr,Ottawa-1,Ottawa-ROPEC,,0.00245,0.0009,0.00119,0.00041,
 24-Apr,Ottawa-1,Ottawa-ROPEC,,0.00145,0.00058,0.00019,0.00004,
 05-May,Ottawa-1,Ottawa-ROPEC,,0.00052,0.00021,0.00078,0.00071,
@@ -70,3 +70,6 @@ sampleDate,locationID,locationName,sampleID,N1_PMMV_mean,N1_PMMV_sd,N2_PPMV_mean
 05-Oct,Ottawa-1,Ottawa-ROPEC,,0.00404,0.00028,0.00459,0.00094,
 06-Oct,Ottawa-1,Ottawa-ROPEC,,0.00326,0.00051,0.00546,0.0002,
 07-Oct,Ottawa-1,Ottawa-ROPEC,,0.00331,0.00043,0.00552,0.00079,
+08-Oct,Ottawa-2,Ottawa-ROPEC,,0.0026,0.00049,0.00556,0.00026,
+09-Oct,Ottawa-3,Ottawa-ROPEC,,0.0041,0.00034,0.00587,0.00054,
+10-Oct,Ottawa-4,Ottawa-ROPEC,,0.00498,0.00046,0.01012,0.00218,
