@@ -41,4 +41,10 @@ This respoistory contains Ottawa covid-19 wastewater surveillance data. The meta
 
 Website content is published under a Creative Commons CC BY 4.0 license, which requires users to attribute the source and license type (CC BY 4.0) when sharing our data or website content.
 
+## Changelog
+
+2020-10-16
+
+- All Ottawa data points prior to Oct 2nd have been slightly modified to normalize data for a new centrifuge that is being used to collect wastewater samples at the Ottawa site.
+
 ## Acknowledgement
