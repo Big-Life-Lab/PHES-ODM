@@ -8,7 +8,7 @@ There are three databases that are described below. Data is stored in [data](dat
 
 For discussion: Is a database of assay information needed? Should assay methods be recorded and described, or does the site information suffice and remain unchanged?
 
-Entity Relationship Diagram [here](#erd)
+Entity Relationship Diagram [here](#erd).
 
 ### File naming convention
 - **date**: MM/DD/YYYY HH:mm:ss  (24 hour format, in UTC).
@@ -87,7 +87,7 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 ## Entity Relationship Diagram <span id="erd"><span>
 
-![](img/ERD.svg){width=75%}
+![](img/ERD.svg)
 
 Comment on the ERD in [Lucidcharts](https://lucid.app/invitations/accept/781822fc-6ac5-4aa7-9023-323fd4b6b04f)
 
