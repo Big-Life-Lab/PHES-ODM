@@ -2,9 +2,9 @@
 
 There are three databases that are described below. Data is stored in [data](data). 
 
-- [Wastewater sample results](#test_results) ([wastewater_covid-19.csv](data/wastewater_covid-19.csv))
-- [Wastewater site information](#site) (wastewater_site.csv) - TBA
-- [Wastewater laboratory information](#lab) (wastewater_lab.csv) - TBA
+- [Wastewater sample results](#test_results) ([wastewater_covid-19.csv](data/wastewater_virus.csv))
+- [Wastewater site information](#site) ([wastewater_site.csv](data/wastewater_site.csv)) 
+- [Wastewater laboratory information](#lab) (wastewater_lab.csv - **TBA**)
 
 For discussion: Is a database of assay information needed? Should assay methods be recorded and described, or does the site information suffice and remain unchanged?
 
