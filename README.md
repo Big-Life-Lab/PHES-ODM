@@ -1,41 +1,18 @@
-  # Ottawa Covid-19 Wastewater Dataset
+# Ottawa Covid-19 Wastewater Dataset
 
-This respoistory contains Ottawa covid-19 wastewater surveillance data. The metadata and reporting approach is evolving (see Collaborate).
+This respoistory contains Ottawa covid-19 wastewater surveillance data. Plots using this data can be found at: [613covid.ca]{https://613covid.ca/wastewater}.
 
-### File naming convention
-- **date**: MM/DD/YYYY HH:mm:ss  (24 hour format, in UTC).
-- **location** TBD
-
-## Wastewater signal results (wastewater_covid-19.csv)
-- **sampleDate**: Date wastewater sample collected. End date for continuous testing. Additional location information in `wastewater_site.csv`.
-- **locationID**: Identifier for location where wastewater sample was taken. 
-- **locationName**: Name corresponding to `locationName`: location name could be a treatment plant, campus, institution or sewer location, etc.
-- **sampleID**: Unique sample identifier; locationID appended with sampleDate.
-- **N1_PMMV_mean**:	mean SARS-CoV-2 N1 gene region standardized to Pepper mild mottle virus (PMMV) (mean SARV-CoV-2 copies per copies of PMMV).
-- **N1_PMMV_sd**:	standard deviation of `N1_PMMV_mean`.
-- **N2_PPMV_mean**:	mean SARS-CoV-2 N2 gene region standardized to Pepper mild mottle virus (PMMV) (mean SARV-CoV-2 copies per copies of PMMV).
-- **N2_PPM_sd**: standard deviation of `N2_PMMV_mean`.
-- **PMMV_Ct**: TBD
-
-## Wastewater site information (wastewater_site.csv)
-- **locationID**:	Identifier for location where wastewater sample was taken. `locationID` is the same in `wastewater_covid-19.csv`.
-- **locationName**:	Name corresponding to `locationName`: location name cojld be a treatment plant, campus, institution or sewer location, etc. Additional location information in `wastewater_site.csv`.
-- **sampleType**: Type of wastewater sample: 
-  - sludge - 
-- **catchmentPop**:	Number of people represented in the wastewater sample.
-- **assayMethod**: Method used to assay viral signals.
-- **creator**:	Person 
-- **creatorEmail**:	
-- **maintainer**:	
-- **description**:
-- **notes**:
-
-
-
+Data is stored in `/data`. See [metadat.md]() for variable names and definitions. We `metadata` branch for proposed future changes to data structure. 
 
 ## Collaborate to share wastewater data
 
+We welcome the addition of data from other sites. 
+
+SARS-CoV-2 Wastewater epidemiology and surveillance is rapidly evolving. We strive to adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) and there is benefit from a common data structure, including metadata and vocabulary. We are interested in colloborating to develop covid-19 wastewater data management and stewardship and suggest discussion at [Slack 2019-nCov WBE channel](https://2019-ncovwbe.slack.com) or welcome GH issues. 
+
 ## API
+
+Under discussion and development.
 
 ## Licence 
 
@@ -47,4 +24,10 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 - All Ottawa data points prior to Oct 2nd have been slightly modified to normalize data for a new centrifuge that is being used to collect wastewater samples at the Ottawa site.
 
+2020-10-09
+
+- V0.0.1 - Inital variable names and labels.
+
 ## Acknowledgement
+
+uOttawa – CHEO SARS-CoV-2 research group: Robert Delatolla, Alex MacKenzie, Patrick D’Aoust, Élisabeth Mercier, Antoine Cantin, Tyson Graber. Contact through GH Issues or uottawa.sars.cov.2@gmail.com
