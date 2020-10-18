@@ -6,8 +6,6 @@ Data is stored in `[/data](data)`. See [metadata](metadata.md) for variable name
 
 ## Collaborate to share wastewater data
 
-We welcome the addition of data from other sites. 
-
 SARS-CoV-2 Wastewater epidemiology and surveillance is rapidly evolving. We strive to adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) and there is benefit from a common data structure, including metadata and vocabulary. We are interested in colloborating to develop covid-19 wastewater data management and stewardship and suggest discussion at [Slack 2019-nCov WBE channel](https://2019-ncovwbe.slack.com) or [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues). 
 
 ## API
