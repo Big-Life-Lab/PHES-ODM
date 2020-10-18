@@ -2,7 +2,7 @@
 
 This respoistory contains Ottawa covid-19 wastewater surveillance data. Plots using this data can be found at: [613covid.ca](https://613covid.ca/wastewater).
 
-Data is stored in `[/data](data)`. See [metadata](metadata.md) for variable names and definitions. See `metadata` branch for proposed changes to data structure and metadata. 
+Data is stored in [`/data`](data/). See [metadata](metadata.md) for variable names and definitions. See `metadata` branch for proposed changes to data structure and metadata. 
 
 ## Collaborate to share wastewater data
 

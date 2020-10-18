@@ -2,7 +2,7 @@
 
 There are two databases that are described below. Data is stored in /data. 
 - Wastewater sample results (wastewater_covid-19.csv)
-- Wastewater site infomatoin (wastewater_site.csv)
+- Wastewater site information (wastewater_site.csv)
 
 ### File naming convention
 - **date**: MM/DD/YYYY HH:mm:ss  (24 hour format, in UTC).
