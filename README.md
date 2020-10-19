@@ -6,7 +6,7 @@ Data is stored in [`/data`](data/). See [metadata](metadata.md) for variable nam
 
 ## Collaborate to share wastewater data
 
-SARS-CoV-2 Wastewater epidemiology and surveillance is rapidly evolving. We strive to adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) and there is benefit from a common data structure, including metadata and vocabulary. We are interested in colloborating to develop covid-19 wastewater data management and stewardship and suggest discussion at [Slack 2019-nCov WBE channel](https://2019-ncovwbe.slack.com) or [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues). 
+SARS-CoV-2 Wastewater epidemiology and surveillance is rapidly evolving. We strive to adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) and there is benefit from a common data structure, including metadata and vocabulary. We are interested in colloborating to develop covid-19 wastewater data management and stewardship. Let's discussion at [Slack 2019-nCov WBE channel](https://2019-ncovwbe.slack.com), [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or contact us directly at uottawa.sars.cov.2@gmail.com. 
 
 ## API
 
@@ -28,4 +28,4 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 ## Acknowledgement
 
-uOttawa – CHEO SARS-CoV-2 research group: Robert Delatolla, Alex MacKenzie, Patrick D’Aoust, Élisabeth Mercier, Antoine Cantin, Tyson Graber. Contact through GH Issues or uottawa.sars.cov.2@gmail.com
+uOttawa – CHEO SARS-CoV-2 research group: Robert Delatolla, Alex MacKenzie, Patrick D’Aoust, Élisabeth Mercier, Antoine Cantin, Tyson Graber. Contact through GH Issues or uottawa.sars.cov.2@gmail.com.
