@@ -24,7 +24,7 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 2020-10-09
 
-- V0.0.1 - Inital variable names and labels.
+- V0.0.1 - Initial variable names and labels.
 
 ## Acknowledgement
 

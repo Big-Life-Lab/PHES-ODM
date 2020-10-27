@@ -1,4 +1,7 @@
 
 .DS_Store
-.Rproj.user
+
+# RStudio files
+.Rproj
+.Rproj.user/
 .html
