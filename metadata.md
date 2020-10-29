@@ -14,7 +14,7 @@ Entity Relationship Diagram [here](#erd).
 - **date**: MM/DD/YYYY HH:mm:ss  (24 hour format, in UTC).
 - **location** TBD
 
-## SARS-CoV-2 test results (wastewater_covid-19.csv) <span id="test_results"><span>
+## SARS-CoV-2 test results (wastewater_virus.csv) <span id="test_results"><span>
 
 Results for a single SARS-CoV-2 wastewater test.
 
@@ -35,10 +35,10 @@ Results for a single SARS-CoV-2 wastewater test.
   - `crA`:   Viral copies/copies crAssphage
   - `other`: Other measurement of viral copies. Also add `sampleUnitOther`.
 - **sampleUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `sampleUnit`.
-- **sampleMean**: Sample mean Ct/Cq.
-- **sampleVariance**: Sample variance Ct/Cq.
-- **sampleMeanNormal**: Sample mean normalizing Ct/Cq.
-- **sampleVarianceNormal**: Sample variance normalizing Ct/Cq.
+- **sampleMean**: Sample mean Ct/Cq. `NA` denotes invalid values (e.g. #DIV/0 error in Excel.)
+- **sampleVariance**: Sample variance Ct/Cq. `NA` denotes invalid values (e.g. #DIV/0 error in Excel.)
+- **sampleMeanNormal**: Sample mean normalizing Ct/Cq. `NA` denotes invalid values (e.g. #DIV/0 error in Excel.)
+- **sampleVarianceNormal**: Sample variance normalizing Ct/Cq. `NA` denotes invalid values (e.g. #DIV/0 error in Excel.)
 
 ## Site (wastewater_site.csv) <span id="site"><span>
 

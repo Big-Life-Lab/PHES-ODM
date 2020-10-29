@@ -18,7 +18,9 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 ## Changelog
 
-## Changelog
+2020-10-29
+
+- Replace invalid values (such as #DIV/0) with `NA`.
 
 2020-10-27
 
