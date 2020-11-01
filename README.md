@@ -40,5 +40,3 @@ V0.0.1 - Initial variable names and labels.
 ## Acknowledgement
 
 uOttawa – CHEO SARS-CoV-2 research group: Robert Delatolla, Alex MacKenzie, Patrick D’Aoust, Élisabeth Mercier, Antoine Cantin, Tyson Graber. Contact through GH Issues or uottawa.sars.cov.2@gmail.com.
-
-just test
