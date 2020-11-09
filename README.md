@@ -18,12 +18,18 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 ## Changelog
 
+
 #### 2020-11-09
 
 V0.1.0 - Breaking changes to metadata
 
 - Assay method database added
 - change test results to be represented as key:values. Each test result has a measurement type (`measureType`) with a corresponding value (`measureValue`). For example a measureType is `mean` and the corresponding `measureValue` has the mean value.
+
+#### 2020-10-29
+
+- Replace invalid values (such as #DIV/0) with `NA`.
+
 
 #### 2020-10-27
 

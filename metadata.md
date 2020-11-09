@@ -14,7 +14,7 @@ Entity Relationship Diagram [here](#erd).
 - **location**: TBD
 - **versioning**: [Samantic versioning](https://semver.org).
 
-## SARS-CoV-2 test results (wastewater_covid-19.csv) <span id="test_results"><span>
+## SARS-CoV-2 test results (wastewater_virus.csv) <span id="test_results"><span>
 
 Results for a single SARS-CoV-2 wastewater test.
 
@@ -42,6 +42,7 @@ Results for a single SARS-CoV-2 wastewater test.
   - `sampleSDNormal`: Sample standard deviation, normalized
   - `sampleOther`: Other measures
 - **measureValue**: Value of measureType. 
+
 
 ## Site (wastewater_site.csv) <span id="site"><span>
 
