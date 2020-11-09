@@ -18,20 +18,25 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 ## Changelog
 
-## Changelog
+#### 2020-11-09
 
-2020-10-27
+V0.1.0 - Breaking changes to metadata
+
+- Assay method database added
+- change test results to be represented as key:values. Each test result has a measurement type (`measureType`) with a corresponding value (`measureValue`). For example a measureType is `mean` and the corresponding `measureValue` has the mean value.
+
+#### 2020-10-27
 
 V0.0.2 - Breaking changes to metadata
 
 - change `locationID` to `siteID`. 
 - change `locationName` to `siteName`
 
-2020-10-16
+**2020-10-16**
 
 - All Ottawa data points prior to Oct 2nd have been slightly modified to normalize data for a new centrifuge that is being used to collect wastewater samples at the Ottawa site.
 
-2020-10-09
+**2020-10-09**
 
 V0.0.1 - Initial variable names and labels.
 

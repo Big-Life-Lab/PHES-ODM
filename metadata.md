@@ -2,17 +2,17 @@
 
 There are three databases that are described below. Data is stored in [data](data). 
 
-- [Wastewater sample results](#test_results) ([wastewater_covid-19.csv](data/wastewater_virus.csv))
-- [Wastewater site information](#site) ([wastewater_site.csv](data/wastewater_site.csv)) 
+- [Sample results](#test_results) ([wastewater_covid-19.csv](data/wastewater_virus.csv))
+- [Site information](#site) ([wastewater_site.csv](data/wastewater_site.csv))
+- [Assay methods](#assay_methods) (wastewater_assay.csv = **TBA**)
 - [Wastewater laboratory information](#lab) (wastewater_lab.csv - **TBA**)
-
-For discussion: Is a database of assay information needed? Should assay methods be recorded and described, or does the site information suffice and remain unchanged?
 
 Entity Relationship Diagram [here](#erd).
 
 ### File naming convention
 - **date**: MM/DD/YYYY HH:mm:ss  (24 hour format, in UTC).
-- **location** TBD
+- **location**: TBD
+- **versioning**: [Samantic versioning](https://semver.org).
 
 ## SARS-CoV-2 test results (wastewater_covid-19.csv) <span id="test_results"><span>
 
@@ -35,17 +35,20 @@ Results for a single SARS-CoV-2 wastewater test.
   - `crA`:   Viral copies/copies crAssphage
   - `other`: Other measurement of viral copies. Also add `sampleUnitOther`.
 - **sampleUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `sampleUnit`.
-- **sampleMean**: Sample mean Ct/Cq.
-- **sampleVariance**: Sample variance Ct/Cq.
-- **sampleMeanNormal**: Sample mean normalizing Ct/Cq.
-- **sampleVarianceNormal**: Sample variance normalizing Ct/Cq.
+- **measureType**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each measureType has a corresponding value (measureValue).
+  - `sampleMean`: Sample mean
+  - `sampleSD`: Sample standard deviation
+  - `sampleMeanNormal`: Sample mean, normalized
+  - `sampleSDNormal`: Sample standard deviation, normalized
+  - `sampleOther`: Other measures
+- **measureValue**: Value of measureType. 
 
 ## Site (wastewater_site.csv) <span id="site"><span>
 
-Site of SARS-CoV-2 wastewater sampling, including how the sample was collected and stored. Each SARS-CoV-2 test result corresponds to one site.
+The site of SARS-CoV-2 wastewater sampling, including how the sample was collected and stored. Each SARS-CoV-2 test result corresponds to one site.
 
-- **siteID**:	Unique identifier for the location where wastewater sample was taken. `locationID` is the same in `wastewater_covid-19.csv`. (Primary Key)
-- **siteName**:	Name corresponding to `siteID`. Location name could be a treatment plant, campus, institution or sewer location, etc. 
+- **siteID**:	(Primary Key) Unique identifier for the location where wastewater sample was taken. `locationID` is the same in `wastewater_covid-19.csv`. This identification can be linked to other covid-19 case information. 
+- **siteName**:	Name corresponding to `siteID`. Location name could be a treatment plant, campus, institution or sewer location, etc.
 - **siteDescription**: Description of wastewater site (city, building, street, etc., to identify location sampled).
 - **laboratoryID**: Unique identification of laboratory that is perform testing at the site.
 - **siteType**: Type of sample collected at site. 
@@ -70,8 +73,17 @@ Site of SARS-CoV-2 wastewater sampling, including how the sample was collected a
 - **contactName**: Person to contact about data collection at the site.
 - **contactEmail**: Email addrss for `contactName`.
 - **conatctPhone**: Phone number for `contactName`.
-- **catchmentPop**: Approximate population size of catchment area corresponding to site. The number of people resprested in the wastewater sample.
+- **catchmentPop**: Approximate population size of catchment area corresponding to site. The number of people represented in the wastewater sample.
 - **notes**: Any addtional notes.
+
+## Assay methods (wastewater_assay.csv) - **TBA**) <span id="assay_methods"><span>
+
+The assay method that was used to perform testing. This database will be developed in consultation with testing labs to identify key assay features that can affect SARS-CoV-2 results. 
+
+- **assayID** (Primary key) Unique identifier for the assay method. 
+- **version** Version of the assay. [Samantic versioning](https://semver.org) is recommended.
+- **assayDate** Date the assayMethod was created or updated (for version update).
+- **assayDesc** Description of assay.
 
 ## Laboratory (wastewater_lab.csv) <span id="lab"><span>
 
@@ -82,7 +94,7 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 - **contactName**: Contact person or group.
 - **contactEmail**: Contact e-mail address.
 - **contactPhone**: Contact phone number.
-- **date**: Date information was provided or updated.
+- **labDate**: Date information was provided or updated.
 
 
 ## Entity Relationship Diagram <span id="erd"><span>
@@ -90,10 +102,3 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 ![](img/ERD.svg)
 
 Comment on the ERD in [Lucidcharts](https://lucid.app/invitations/accept/781822fc-6ac5-4aa7-9023-323fd4b6b04f)
-
-## Changelog
-
-2020-10-18
-
-- change `locationID` to `siteID`. 
-- change `locationName` to `siteName`
