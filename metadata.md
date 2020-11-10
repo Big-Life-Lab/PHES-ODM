@@ -1,6 +1,6 @@
 # Metadata for files
 
-There are three databases that are described below. Data is stored in [data](data). 
+There are four databases that are described below. Data is stored in [data](data). 
 
 - [Sample results](#test_results) ([wastewater_covid-19.csv](data/wastewater_virus.csv))
 - [Site information](#site) ([wastewater_site.csv](data/wastewater_site.csv))
@@ -12,7 +12,7 @@ Entity Relationship Diagram [here](#erd).
 ### File naming convention
 - **date**: MM/DD/YYYY HH:mm:ss  (24 hour format, in UTC).
 - **location**: TBD
-- **versioning**: [Samantic versioning](https://semver.org).
+- **versioning**: [Semantic versioning](https://semver.org).
 
 ## SARS-CoV-2 test results (wastewater_virus.csv) <span id="test_results"><span>
 
@@ -82,7 +82,7 @@ The site of SARS-CoV-2 wastewater sampling, including how the sample was collect
 The assay method that was used to perform testing. This database will be developed in consultation with testing labs to identify key assay features that can affect SARS-CoV-2 results. 
 
 - **assayID** (Primary key) Unique identifier for the assay method. 
-- **version** Version of the assay. [Samantic versioning](https://semver.org) is recommended.
+- **version** Version of the assay. [Semantic versioning](https://semver.org) is recommended.
 - **assayDate** Date the assayMethod was created or updated (for version update).
 - **assayDesc** Description of assay.
 
