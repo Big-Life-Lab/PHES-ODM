@@ -27,22 +27,22 @@ Results for a single SARS-CoV-2 wastewater test.
   - `N3`
   - `E`
   - `RdRp`
-- **sampleUnit**: Unit of SARS-CoV-2 measurement.
+- **measureUnit**: Unit of SARS-CoV-2 measurement.
   - `PMMoV`: Viral copies/copies PMMoV
   - `ml`:    Viral copies/mL
   - `gms`:   Viral copies/gm solids
   - `l`:     Viral copies/L
   - `crA`:   Viral copies/copies crAssphage
   - `other`: Other measurement of viral copies. Also add `sampleUnitOther`.
-- **sampleUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `sampleUnit`.
+- **measureUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `measureUnit`.
 - **measureType**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each measureType has a corresponding value (measureValue).
   - `sampleMean`: Sample mean
   - `sampleSD`: Sample standard deviation
   - `sampleMeanNormal`: Sample mean, normalized
   - `sampleSDNormal`: Sample standard deviation, normalized
-  - `sampleOther`: Other measures
+  - `sampleOther`:  Other statistical measure. Also add `measureTypeOther`.
+- **measureTypeOther**: Description for other type of SARS-CoV-2 measurement unit. See `measureType`.
 - **measureValue**: Value of measureType. 
-
 
 ## Site (wastewater_site.csv) <span id="site"><span>
 
