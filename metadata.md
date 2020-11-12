@@ -26,9 +26,9 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-4
 
 
 
-## (Measurement.csv) <span id="Measurement"><span>
+## Measurement (Measurement.csv) <span id="Measurement"><span>
 
-Results for a measurement of a single property of SARS-CoV-2 wastewater test. 
+Results for a measurement of a single property of SARS-CoV-2 wastewater test, for either a viral region or wastewater treatment plant. 
 
 - **MeasurementID**: Unique identification for measurement (Primary Key)
 - **sampleID**: links with the identified sample  (foreign key)
@@ -39,7 +39,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test.
   - `liquid`: Liquid fraction
   - `solid`:  Solid fraction
   - `mixed`:  Mixed/homogenized sample- 
-- **measurementCategory**: Gene target region.
+- **measureCat**: Gene target region (`covid-`) or wastewater treatment plant parameter (`ww-param-`)
   - `covid-unspecified (default)`
   - `covid-N1`
   - `covid-N2`
@@ -49,8 +49,10 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test.
   - `covid-N1N2avg`
   - `ww-param-flow`
   - `ww-param-tss`
-  - `ww-param-Bod`
-- **measurementUnit**: Unit of SARS-CoV-2 measurement.
+  - `ww-param-bod`
+  - `catOther`
+- **measureCatOther**: Description for other target region (use prefix `covid-` or wastewater treatment plant parameter (use prefix `ww-param-`.  See `measureCat`.
+- **measureUnit**: Unit of SARS-CoV-2 measurement.
   - `PMMoV`: Viral copies/copies PMMoV
   - `ml`:    Viral copies/mL
   - `gms`:   Viral copies/gm solids
@@ -59,14 +61,14 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test.
   - `m3_s`: meters cubed per second
   - `mg_l`:  milligrams  per liter
   - `mgO_l`: milligrams of oxygen per liter
-  - `other`: Other measurement of viral copies. Also add `sampleUnitOther`.
-- **sampleUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `measurementUnit`.
+  - `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
+- **measureUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `measureUnit`.
 - **measureType**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each measureType has a corresponding value (measureValue).
   - `sampleMean`: Sample mean
   - `sampleSD`: Sample standard deviation
   - `sampleMeanNormal`: Sample mean, normalized
   - `sampleSDNormal`: Sample standard deviation, normalized
-  - `sampleOther`: Other measures
+  - `typeOther`: Other measures
 - **measureTypeOther**: Description for other type of measurement type. See `measurementUnit`.
 - **measureValue**: Value of measureType. 
 
