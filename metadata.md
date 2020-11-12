@@ -114,10 +114,10 @@ The site of wastewater sampling, including several *defaults* that can be used t
 - **siteDescription**: Description of wastewater site (city, building, street, etc., to identify location sampled).
 - **reporterID**: links with the reporter that is responsible for the data (foreign key) 
 - **siteType**: Type site where the sampling is taken. 
-  - `sewer access point - flowing water`
-  - `sewer access point - standing water`
-  - `treatment plant - influent`
-  - `treatment plant - effluent`
+  - `sewer_access point-flowing_water`
+  - `sewer_access point-standing_water`
+  - `treatment_plant-influent`
+  - `treatment_plant-effluent`
   -  `lagoon`
   -  `other`
 - **siteTypeOther**: Description of site where the site is other. See `siteType`
