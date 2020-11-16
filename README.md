@@ -18,6 +18,10 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 ## Changelog
 
+2020-11-16
+
+- Magnitude change of 10 to `wastewater_virus.csv` dataset to present data in line with other datasets.
+
 2020-10-29
 
 - Replace invalid values (such as #DIV/0) with `NA`.
