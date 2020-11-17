@@ -9,8 +9,8 @@ There are eight tables that are described below. example data is stored in [data
 - [Site](#Site) ([Site.csv](data/Site.csv))
 - [Reporter](#Reporter) ([Reporter.csv](data/Reporter.csv))
 - [Lab](#Lab) ([Lab.csv](data/Lab.csv))
-- [AssayMethod](#AssayMethod) (AssayMethod.csv = **TBA**)
-- [Polygon ](#Polygon ) (Polygon .csv - **TBA**)
+- [AssayMethod](#AssayMethod) (AssayMethod.csv - **TBA**)
+- [Polygon ](#Polygon ) (Polygon.csv - **TBA**)
 - [CovidPublicHealthData](#CovidPublicHealthData) (CovidPublicHealthData.csv - **TBA**)
 
 Entity Relationship Diagram [here](#erd).
@@ -154,7 +154,7 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 - **labID**: Unique identifier for the laboratory. (Primary Key)
 - **assayIDDefault**: Unique identifier for the assay normally performed by this lab, use to populate new `measurement` records .(foreign key)
-- **laboraotryName**: Name corresponding to lab.
+- **laboratoryName**: Name corresponding to lab.
 - **contactName**: Contact person or group, for the lab.
 - **contactEmail**: Contact e-mail address, for the lab.
 - **contactPhone**: Contact phone number, for the lab.
@@ -205,7 +205,7 @@ A long table would represent a test sample as the following:
 ```
 measureCat = covidN1
 measureUnit = PPMoV
-measureTyep = Mean
+measureType = Mean
 measureValue = 42
 ```
 
