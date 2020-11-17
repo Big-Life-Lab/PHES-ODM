@@ -20,7 +20,7 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 2020-11-16
 
-- Magnitude change of 10 to `wastewater_virus.csv` dataset to present data in line with other datasets.
+- `wastewater_virus.csv` dataset updated to remove adjustment for percent viral recovery from solids. The adjustment allign reporting with other laboratories. The adjustment reduces N1 and N2 values a maginitude of 10 (approximately). 
 
 2020-10-29
 
