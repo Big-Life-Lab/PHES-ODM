@@ -5,3 +5,6 @@
 .Rproj
 .Rproj.user/
 .html
+*.Rproj
+
+*.html
