@@ -63,6 +63,10 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 - **measureUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `measureUnit`.
 - **measureType**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each measureType has a corresponding value (measureValue).
   - `Mean`: Sample mean
+  - `GeoMean`: GeoMean of results 
+  - `Median`: Median of results 
+  - `RangeLowestValue`: Lowest value in a range of values
+  - `RangeHighestValue`: Highest value in a range of values
   - `SD`: Sample standard deviation
   - `MeanNormal`: Sample mean, normalized
   - `SDNormal`: Sample standard deviation, normalized
@@ -227,6 +231,7 @@ Saves some information about covid-19 in a given polygon.
  
 ## File naming convention
 - **variable and category names**: Both variables and variable categoties use camelCase with long tables. Wide tables use `_` to concatenate variables from long tables. 
+- **merging Tables **: when you merge tables concatenate column names with `.`. So `dateTime` from the `Sample` table becomes `Sample.dateTime`
 
 A long table would represent a test sample as the following:
 ```
@@ -236,7 +241,7 @@ measureType = Mean
 measureValue = 42
 ```
 
-A wide table would represent the same sample as:
+A wide table would represent the same measurement as:
 ```
 covidN1_PPMoV_Mean = 42
 ```
