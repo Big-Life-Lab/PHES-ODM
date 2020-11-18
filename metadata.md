@@ -26,16 +26,17 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-4
 
 Results for a measurement of a single property of SARS-CoV-2 wastewater test, for either a viral region or wastewater treatment plant. 
 
-- **MeasurementID**: Unique identification for measurement (Primary Key)
-- **sampleID**: links with the identified sample  (foreign key)
-- **labID**: links with the identified Lab that performed the analysis (foreign key)
-- **assayID**: links with the AssayMethod table used to perform the analysis  (foreign key)
-- **analysisDate**: Date the data was analysed in the lab
+- **MeasurementID**: Unique identification for measurement (Primary Key).
+- **sampleID**: Links with the identified sample  (foreign key).
+- **labID**: Links with the identified Lab that performed the analysis (foreign key).
+- **assayID**: Links with the AssayMethod table used to perform the analysis  (foreign key).
+- **analysisDate**: Date the data was analysed in the lab.
+- **reportDate**: Data the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the orginal `sampleID` but updated `measurementID`, `reportDate` and  `assayID` (if needed).
 - **sampleFraction**: Faction of the sample that is analyzed.
   - `liquid`: Liquid fraction
   - `solid`:  Solid fraction
-  - `mixed`:  Mixed/homogenized sample- 
-- **measureCat**: Gene target region (`covid-`) or wastewater treatment plant parameter (`ww-param-`)
+  - `mixed`:  Mixed/homogenized sample
+- **measureCat**: Gene target region (`covid-`) or wastewater treatment plant parameter (`ww-param-`).
   - `covidUnspecified (default)`
   - `covidN1`
   - `covidN2`
@@ -70,7 +71,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
 ## Sample (Sample.csv) <span id="Sample"><span>
 
-The sample is an amount of water taken from a site which is then analysed by a Lab
+The sample is an amount of water taken from a site which is then analysed by a lab.
 
 - **sampleID**: Unique identification for sample. Suggest siteID-date-sample, or siteID-. (Primary Key)
 - **siteID**: links with the site table. (foreign key)
@@ -97,8 +98,8 @@ The sample is an amount of water taken from a site which is then analysed by a L
   - `discOther`: Discrete other
   - `integratedOther`: Integrated other
 - **methodCollectionOther**: Description for other type of method when any option with `other` is selected `methodCollection`.
-- **sampleSizeL**: total volume of water or sludge sampled
-- **sampleStorageTempC**: temperature that the sample is stored at in Celsius.
+- **sampleSizeL**: Total volume of water or sludge sampled.
+- **sampleStorageTempC**: Temperature that the sample is stored at in Celsius.
 
 ## Site (Site.csv) <span id="Site"><span>
 
@@ -107,7 +108,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 - **siteID**:	(Primary Key) Unique identifier for the location where wastewater sample was taken. 
 - **siteName**:	Name corresponding to `siteID`. Location name could be a treatment plant, campus, institution or sewer location, etc.
 - **siteDescription**: Description of wastewater site (city, building, street, etc., to identify location sampled).
-- **reporterID**: links with the reporter that is responsible for the data (foreign key) 
+- **reporterID**: links with the reporter that is responsible for the data (foreign key).
 - **siteType**: Type site where the sampling is taken. 
   - `SAPFlowWater`: Sewer access point flowing water
   - `SAPStandingWater`: Sewer access point standing water
@@ -116,36 +117,36 @@ The site of wastewater sampling, including several *defaults* that can be used t
   -  `lagoon`: Lagoon
   -  `other`: Other
 - **siteTypeOther**: Description of site where the site is other. See `siteType`
-- **SampleTypeDefault**: used as default when new samples records are created see `SampleType` in `Sample` table
-- **SampleTypeOtherDefault**: used as default when new `Sample` records are created see `SampleTypeOther` in `Sample` table- 
-- **methodCollectionDefault**: used as default when new `Sample` records are created see `methodCollection` in `Sample` table
-- **methodCollectOtherDefault**: used as default when new `Sample` records are created see `methodCollectionOther` in `Sample` table
-- **sampleFractionDefault**: Used as the default when new `Measurement` records are created
+- **SampleTypeDefault**: Used as default when new samples records are created see `SampleType` in `Sample` table.
+- **SampleTypeOtherDefault**: Used as default when new `Sample` records are created see `SampleTypeOther` in `Sample` table.
+- **methodCollectionDefault**: Used as default when new `Sample` records are created see `methodCollection` in `Sample` table.
+- **methodCollectOtherDefault**: Used as default when new `Sample` records are created see `methodCollectionOther` in `Sample` table.
+- **sampleFractionDefault**: Used as the default when new `Measurement` records are created.
 - **sampleTempCdefault**: Used as the default when new `Sample` records are created
 - **geoLat**: Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
 - **geoLong**: Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)
 - **notes**: Any additional notes.
-- **sewerNetworkPolygonID**: Links with the Polygon table (foreign key) 
-- **sewerNetworkFileLink**: Link to a file that has any detailed information about the sewer network associated with the site (any format)
-- **sewerNetworkFileBLOB**: a file BLOB that has any detailed information about the sewer network associated with the site (any format)
+- **sewerNetworkPolygonID**: Links with the Polygon table.(foreign key) 
+- **sewerNetworkFileLink**: Link to a file that has any detailed information about the sewer network associated with the site (any format).
+- **sewerNetworkFileBLOB**: A file BLOB that has any detailed information about the sewer network associated with the site (any format).
 
 
 ## Reporter (Reporter.csv) <span id="Reporter"><span>
 
 The individual or organization that is reporting and responsible for the quality of the data.
 
-- **reporterID**:	(Primary Key) Unique identifier for the person or organization that is reporting the data
-- **siteIDDefault**:	Used as the default when new `Sample` records are created by this `reporter`
-- **labIDDefault**:	Used as the default when new `Sample` records are created by this `reporter`
- - **contactName**:	Full Name of the reporter, either an organization or individual
+- **reporterID**:	(Primary Key) Unique identifier for the person or organization that is reporting the data.
+- **siteIDDefault**:	Used as the default when new `Sample` records are created by this `reporter`.
+- **labIDDefault**:	Used as the default when new `Sample` records are created by this `reporter`.
+ - **contactName**:	Full Name of the reporter, either an organization or individual.
  - **contactEmail**: Contact e-mail address.
 - **contactPhone**: Contact phone number.
-- **confidentialRequirements**: how is this raw data allowed to be shared
+- **confidentialRequirements**: How is this raw data allowed to be shared.
   - `Public Access` : data can be shared freely and openly
   - `Internal Only` : shared internally 
   - `Internal and Partners`: shared internally and with partner organizations
   - `other`: specific sharing requirements 
-- **confidentialRequirementsOther**: details or specifics on confidentiality
+- **confidentialRequirementsOther**: Details or specifics on confidentiality.
 
 
 ## Lab (Lab.csv) <span id="Lab"><span>
@@ -164,39 +165,39 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 The assay method that was used to perform testing. This database will be developed in consultation with testing labs to identify key assay features that can affect SARS-CoV-2 results. 
 
-- **assayID**: (Primary key) Unique identifier for the assay method
-- **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended
-- **assayDate**: Date the assayMethod was created or updated (for version update)
-- **assayDesc**: Description of assay
+- **assayID**: (Primary key) Unique identifier for the assay method.
+- **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended.
+- **assayDate**: Date the assayMethod was created or updated (for version update).
+- **assayDesc**: Description of assay.
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
 
-a simple polygon that encloses an are on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area
+A simple polygon that encloses an are on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
 
-- **polygonID**: (Primary key) Unique identifier for the polygon 
-- **polygonName**: Name of the polygon (eg G.E. Booth catchment area, Ottawa Health Region)
-- **polygonPop**: Approximate population size of living inside a given polygon
+- **polygonID**: (Primary key) Unique identifier for the polygon. 
+- **polygonName**: Name of the polygon (eg G.E. Booth catchment area, Ottawa Health Region).
+- **polygonPop**: Approximate population size of living inside a given polygon.
 - **polygonType**: Type of polygon
   - `sewerNetwork` : Sewer network
   - `healthRegion` : Health region served by the sewer network
 - **polygonWKT** [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) of the polygon 
-- **polygonFile** file for storing the polygon BLOB format
-- **polygonLink** link to an external file that describes the geometry
+- **polygonFile** File for storing the polygon BLOB format.
+- **polygonLink** Link to an external file that describes the geometry.
 
 ## CovidPublicHealthData (CovidPublicHealthData.csv) <span id="CovidPublicHealthData"><span>
 
-Saves some information about covid-19 in a given polygon
+Saves some information about covid-19 in a given polygon.
 
-- **publicHealthID**: (Primary key) Unique identifier for the table 
-- **PolygonID**:  links with the `Polygon` table (foreign key) 
-- **date**: Date of covid-19 measure
-- **confirmed**: Number of confirmed cases
-- **active**:  Number of active cases
-- **tests**:  Number of tests
-- **positiveTests**: Number of positive tests
-- **percentPositivityRate**:  Percent postivity rate
-- **hospitalCensus**: Hospital census or the number of people admitted with covid-19
-- **hospitalAdmit**: Hospital admissions or patients newly admitted to hospital
+- **publicHealthID**: (Primary key) Unique identifier for the table.
+- **PolygonID**:  Links with the `Polygon` table (foreign key). 
+- **date**: Date of covid-19 measure.
+- **confirmed**: Number of confirmed cases.
+- **active**:  Number of active cases.
+- **tests**:  Number of tests.
+- **positiveTests**: Number of positive tests.
+- **percentPositivityRate**:  Percent postivity rate.
+- **hospitalCensus**: Hospital census or the number of people admitted with covid-19.
+- **hospitalAdmit**: Hospital admissions or patients newly admitted to hospital.
  
 ## File naming convention
 - **variable and category names**: Both variables and variable categoties use camelCase with long tables. Wide tables use `_` to concatenate variables from long tables. 
