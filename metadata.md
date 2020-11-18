@@ -64,6 +64,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 - **measureType**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each measureType has a corresponding value (measureValue).
   - `Mean`: Sample mean
   - `GeoMean`: GeoMean of results 
+  - `Singleton`: This value is not an aggregate measurement in any way, and thus is not a `mean`, `median`, `geomean` or other
   - `Median`: Median of results 
   - `RangeLowestValue`: Lowest value in a range of values
   - `RangeHighestValue`: Highest value in a range of values
