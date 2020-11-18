@@ -1,4 +1,4 @@
-sampleDate,siteID,siteName,sampleID,N1_PMMV_mean,N1_PMMV_sd,N2_PPMV_mean,N2_PPMV_sd,PMMV_Ct
+sampleDate,siteID,siteName,sampleID,covidN1_PMMV_meanNormal,covidN1_PMMV_SDNormal,covidN2_PMMV_meanNormal,covidN2_PMMV_SDNormal,Ct_mean
 08-Apr,Ottawa-1,Ottawa-ROPEC,,0.00026,0.0001,0.00013,0.00004,27.35
 24-Apr,Ottawa-1,Ottawa-ROPEC,,0.00015,0.00006,0.00002,0,26.3
 05-May,Ottawa-1,Ottawa-ROPEC,,0.00006,0.00002,0.00008,0.00008,27.04
