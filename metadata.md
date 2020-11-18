@@ -26,16 +26,17 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-4
 
 Results for a measurement of a single property of SARS-CoV-2 wastewater test, for either a viral region or wastewater treatment plant. 
 
-- **MeasurementID**: Unique identification for measurement (Primary Key)
-- **sampleID**: links with the identified sample  (foreign key)
-- **labID**: links with the identified Lab that performed the analysis (foreign key)
-- **assayID**: links with the AssayMethod table used to perform the analysis  (foreign key)
-- **analysisDate**: Date the data was analysed in the lab
+- **MeasurementID**: Unique identification for measurement (Primary Key).
+- **sampleID**: Links with the identified sample  (foreign key).
+- **labID**: Links with the identified Lab that performed the analysis (foreign key).
+- **assayID**: Links with the AssayMethod table used to perform the analysis  (foreign key)
+- **analysisDate**: Date the data was analysed in the lab.
+- **reportDate**: Data the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the orginal `sampleID` but updated `measurementID`, `reportDate` and  `assayID` (if needed).
 - **sampleFraction**: Faction of the sample that is analyzed.
   - `liquid`: Liquid fraction
   - `solid`:  Solid fraction
   - `mixed`:  Mixed/homogenized sample- 
-- **measureCat**: Gene target region (`covid-`) or wastewater treatment plant parameter (`ww-param-`)
+- **measureCat**: Gene target region (`covid-`) or wastewater treatment plant parameter (`ww-param-`).
   - `covidUnspecified (default)`
   - `covidN1`
   - `covidN2`
