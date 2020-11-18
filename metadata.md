@@ -49,20 +49,21 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
   - `catOther`
 - **measureCatOther**: Description for other target region (use prefix `covid-` or wastewater treatment plant parameter (use prefix `ww-param-`.  See `measureCat`.
 - **measureUnit**: Unit of SARS-CoV-2 measurement.
-  - `PMMoV`: Viral copies/copies PMMoV
+  - `PMMV`: Viral copies/copies PMMoV
   - `ml`:    Viral copies/mL
   - `gms`:   Viral copies/gm solids
   - `l`:     Viral copies/L
   - `crA`:   Viral copies/copies crAssphage
+  -  `Ct`: 
   - `m3s`: meters cubed per second
   - `mgl`:  milligrams  per liter
   - `mgOl`: milligrams of oxygen per liter
   - `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
 - **measureUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `measureUnit`.
 - **measureType**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each measureType has a corresponding value (measureValue).
-  - `Mean`: Sample mean
+  - `mean`: Sample mean
   - `SD`: Sample standard deviation
-  - `MeanNormal`: Sample mean, normalized
+  - `meanNormal`: Sample mean, normalized
   - `SDNormal`: Sample standard deviation, normalized
   - `typeOther`: Other measures
 - **measureTypeOther**: Description for other type of measurement type. See `measurementUnit`.
@@ -211,7 +212,7 @@ measureValue = 42
 
 A wide table would represent the same sample as:
 ```
-covidN1_PPMoV_Mean = 42
+covidN1_PPMV_mean = 42
 ```
 
 - **date**: MM/DD/YYYY HH:mm:ss  (24 hour format, in UTC)
