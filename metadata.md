@@ -1,5 +1,6 @@
 
 
+
 # Metadata
 
 There are eight tables that are described below. example data is stored in [data](data). 
@@ -68,6 +69,8 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
   - `typeOther`: Other measures
 - **measureTypeOther**: Description for other type of measurement type. See `measurementUnit`.
 - **measureValue**: Value of measureType. 
+- **measureValueDetected**: Boolean Value if True then Covid was detected. 
+- **notes**: Any additional notes.
 
 ## Sample (Sample.csv) <span id="Sample"><span>
 
@@ -100,6 +103,7 @@ The sample is an amount of water taken from a site which is then analysed by a l
 - **methodCollectionOther**: Description for other type of method when any option with `other` is selected `methodCollection`.
 - **sampleSizeL**: Total volume of water or sludge sampled.
 - **sampleStorageTempC**: Temperature that the sample is stored at in Celsius.
+- - **notes**: Any additional notes.
 
 ## Site (Site.csv) <span id="Site"><span>
 
@@ -141,13 +145,15 @@ The individual or organization that is reporting and responsible for the quality
  - **contactName**:	Full Name of the reporter, either an organization or individual.
  - **contactEmail**: Contact e-mail address.
 - **contactPhone**: Contact phone number.
-- **confidentialRequirements**: How is this raw data allowed to be shared.
-  - `Public Access` : data can be shared freely and openly
-  - `Internal Only` : shared internally 
-  - `Internal and Partners`: shared internally and with partner organizations
-  - `other`: specific sharing requirements 
-- **confidentialRequirementsOther**: Details or specifics on confidentiality.
-
+- **AllowAcceesToSelf**: If this is True the data will be shown on the portal when the data provider logs in
+- **AllowAcceesToFederalPublicHealthAuthorities**: If this is True the data will be available to employees of PHAC
+- **AllowAccessToLocalPublicHealthAuthorities**: If this is True the data will be available when local health Authorities log in.
+- **AllowAccessToProvincialPublicHealthAuthorities**:  If this is True the data will be available when provincial health Authorities log in.
+- **AllowAccessToOtherDataProviders**:   If this is True the data will be available when other data providers login.
+- **AllowAccessToAllOrganizations**: If this is True the data will be available when any partner organization logs into the system
+- **AllowAccessToPublic**:   If True the data will be avaliable to the public
+- **AllowAccessToSpec**: Details or specifics on confidentiality requirements
+- **notes**: Any additional notes.
 
 ## Lab (Lab.csv) <span id="Lab"><span>
 
@@ -167,7 +173,23 @@ The assay method that was used to perform testing. This database will be develop
 
 - **assayID**: (Primary key) Unique identifier for the assay method.
 - **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended.
+- **sampleSizeL**:size of the sample that is analysed in liters
+- **loq**:limit of Quantification for this method if one exists
+- **lod**:limit of detection for this method if one exists
+- **methodUnits**: units used by this method, that are applicable to the LOD or LOQ
+	-   `PMMoV`: Viral copies/copies PMMoV
+	-   `ml`: Viral copies/mL
+	-   `gms`: Viral copies/gm solids
+	-   `l`: Viral copies/L
+	-   `crA`: Viral copies/copies crAssphage
+	-   `m3s`: meters cubed per second
+	-   `mgl`: milligrams per liter
+	-   `mgOl`: milligrams of oxygen per liter
+	-   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add  `measureUnitOther`.- 
+- **methodUnitsOther**: units used by this method, that are applicable to the LOD or LOQ
 - **assayDate**: Date the assayMethod was created or updated (for version update).
+- **Inhibition**: Text decription of the inhibition 
+- **surrogateRecovery**: Text description of the Surrogate Recovery for this method
 - **assayDesc**: Description of assay.
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
@@ -191,6 +213,10 @@ Saves some information about covid-19 in a given polygon.
 - **publicHealthID**: (Primary key) Unique identifier for the table.
 - **PolygonID**:  Links with the `Polygon` table (foreign key). 
 - **date**: Date of covid-19 measure.
+- **dateType**: type of date used
+  - `episodeDate` : episode date is usually just the earliest of a list of dates available as not every case has every date
+  - `onsetDate` : earliest that symptoms were reported for this case
+  - `reportedDate` : date that the numbers were reported publicly
 - **confirmed**: Number of confirmed cases.
 - **active**:  Number of active cases.
 - **tests**:  Number of tests.
