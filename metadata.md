@@ -150,14 +150,14 @@ The individual or organization that is reporting and responsible for the quality
  - **contactName**:	Full Name of the reporter, either an organization or individual.
  - **contactEmail**: Contact e-mail address.
 - **contactPhone**: Contact phone number.
-- **AllowAcceesToSelf**: If this is True the data will be shown on the portal when the data provider logs in
-- **AllowAcceesToFederalPublicHealthAuthorities**: If this is True the data will be available to employees of PHAC
-- **AllowAccessToLocalPublicHealthAuthorities**: If this is True the data will be available when local health Authorities log in.
-- **AllowAccessToProvincialPublicHealthAuthorities**:  If this is True the data will be available when provincial health Authorities log in.
-- **AllowAccessToOtherDataProviders**:   If this is True the data will be available when other data providers login.
-- **AllowAccessToAllOrganizations**: If this is True the data will be available when any partner organization logs into the system
-- **AllowAccessToPublic**:   If True the data will be avaliable to the public
-- **AllowAccessToSpec**: Details or specifics on confidentiality requirements
+- **allowAcceesToSelf**: If this is True the data will be shown on the portal when the data provider logs in
+- **allowAcceesToFederalPublicHealthAuthorities**: If this is True the data will be available to employees of PHAC
+- **allowAccessToLocalPublicHealthAuthorities**: If this is True the data will be available when local health Authorities log in.
+- **allowAccessToProvincialPublicHealthAuthorities**:  If this is True the data will be available when provincial health Authorities log in.
+- **allowAccessToOtherDataProviders**:   If this is True the data will be available when other data providers login.
+- **allowAccessToAllOrganizations**: If this is True the data will be available when any partner organization logs into the system
+- **allowAccessToPublic**:   If True the data will be avaliable to the public
+- **allowAccessToSpec**: Details or specifics on confidentiality requirements
 - **notes**: Any additional notes.
 
 ## Lab (Lab.csv) <span id="Lab"><span>
