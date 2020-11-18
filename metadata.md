@@ -1,4 +1,4 @@
-
+ 
 
 
 # Metadata
@@ -108,7 +108,7 @@ The sample is an amount of water taken from a site which is then analysed by a l
 - **methodCollectionOther**: Description for other type of method when any option with `other` is selected `methodCollection`.
 - **sampleSizeL**: Total volume of water or sludge sampled.
 - **sampleStorageTempC**: Temperature that the sample is stored at in Celsius.
-- - **notes**: Any additional notes.
+- **notes**: Any additional notes.
 
 ## Site (Site.csv) <span id="Site"><span>
 
@@ -126,8 +126,8 @@ The site of wastewater sampling, including several *defaults* that can be used t
   -  `lagoon`: Lagoon
   -  `other`: Other
 - **siteTypeOther**: Description of site where the site is other. See `siteType`
-- **SampleTypeDefault**: Used as default when new samples records are created see `SampleType` in `Sample` table.
-- **SampleTypeOtherDefault**: Used as default when new `Sample` records are created see `SampleTypeOther` in `Sample` table.
+- **sampleTypeDefault**: Used as default when new samples records are created see `SampleType` in `Sample` table.
+- **sampleTypeOtherDefault**: Used as default when new `Sample` records are created see `SampleTypeOther` in `Sample` table.
 - **methodCollectionDefault**: Used as default when new `Sample` records are created see `methodCollection` in `Sample` table.
 - **methodCollectOtherDefault**: Used as default when new `Sample` records are created see `methodCollectionOther` in `Sample` table.
 - **sampleFractionDefault**: Used as the default when new `Measurement` records are created.
@@ -216,6 +216,7 @@ A simple polygon that encloses an are on the surface of the earth, normally thes
 Saves some information about covid-19 in a given polygon.
 
 - **publicHealthID**: (Primary key) Unique identifier for the table.
+- **ReporterID** ID of the reporter who gave this data
 - **PolygonID**:  Links with the `Polygon` table (foreign key). 
 - **date**: Date of covid-19 measure.
 - **dateType**: type of date used
