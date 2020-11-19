@@ -18,7 +18,7 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 ## Changelog
 
-## 2020-11-19
+#### 2020-11-19
 
 v0.1.1 - Additions to metadata. No breaking changes.
 
