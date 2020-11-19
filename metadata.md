@@ -1,6 +1,3 @@
- 
-
-
 # Metadata
 
 There are eight tables that are described below. example data is stored in [data](data). 
@@ -51,30 +48,31 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
   - `catOther`
 - **measureCatOther**: Description for other target region (use prefix `covid-` or wastewater treatment plant parameter (use prefix `ww-param-`.  See `measureCat`.
 - **measureUnit**: Unit of SARS-CoV-2 measurement.
-  - `PMMoV`: Viral copies/copies PMMoV
+  - `PMMV`: Viral copies/copies PMMoV
   - `ml`:    Viral copies/mL
   - `gms`:   Viral copies/gm solids
   - `l`:     Viral copies/L
   - `crA`:   Viral copies/copies crAssphage
+  -  `Ct`: 
   - `m3s`: meters cubed per second
   - `mgl`:  milligrams  per liter
   - `mgOl`: milligrams of oxygen per liter
   - `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
 - **measureUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `measureUnit`.
 - **measureType**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each measureType has a corresponding value (measureValue).
-  - `Mean`: Sample mean
-  - `GeoMean`: GeoMean of results 
-  - `Singleton`: This value is not an aggregate measurement in any way, and thus is not a `mean`, `median`, `geomean` or other
-  - `Median`: Median of results 
-  - `RangeLowestValue`: Lowest value in a range of values
-  - `RangeHighestValue`: Highest value in a range of values
+  - `geoMean`: GeoMean of results 
+  - `singleton`: This value is not an aggregate measurement in any way, and thus is not a `mean`, `median`, `geomean` or other
+  - `mean`: Sample mean
+  - `meanNormal`: Sample mean, normalized
+  - `median`: Median of results 
+  - `rangeLowestValue`: Lowest value in a range of values
+  - `rangeHighestValue`: Highest value in a range of values
   - `SD`: Sample standard deviation
-  - `MeanNormal`: Sample mean, normalized
   - `SDNormal`: Sample standard deviation, normalized
   - `typeOther`: Other measures
 - **measureTypeOther**: Description for other type of measurement type. See `measurementUnit`.
 - **measureValue**: Value of measureType. 
-- **measureValueDetected**: Boolean Value if True then Covid was detected. 
+- **measureValueDetected**: Boolean Value if True then covid-19 was detected. 
 - **notes**: Any additional notes.
 
 ## Sample (Sample.csv) <span id="Sample"><span>
@@ -147,8 +145,8 @@ The individual or organization that is reporting and responsible for the quality
 - **reporterID**:	(Primary Key) Unique identifier for the person or organization that is reporting the data.
 - **siteIDDefault**:	Used as the default when new `Sample` records are created by this `reporter`.
 - **labIDDefault**:	Used as the default when new `Sample` records are created by this `reporter`.
- - **contactName**:	Full Name of the reporter, either an organization or individual.
- - **contactEmail**: Contact e-mail address.
+- **contactName**:	Full Name of the reporter, either an organization or individual.
+- **contactEmail**: Contact e-mail address.
 - **contactPhone**: Contact phone number.
 - **allowAcceesToSelf**: If this is True the data will be shown on the portal when the data provider logs in
 - **allowAcceesToFederalPublicHealthAuthorities**: If this is True the data will be available to employees of PHAC
@@ -156,8 +154,8 @@ The individual or organization that is reporting and responsible for the quality
 - **allowAccessToProvincialPublicHealthAuthorities**:  If this is True the data will be available when provincial health Authorities log in.
 - **allowAccessToOtherDataProviders**:   If this is True the data will be available when other data providers login.
 - **allowAccessToAllOrganizations**: If this is True the data will be available when any partner organization logs into the system
-- **allowAccessToPublic**:   If True the data will be avaliable to the public
-- **allowAccessToSpec**: Details or specifics on confidentiality requirements
+- **allowAccessToPublic**:   If True the data will be avaliable to the public.
+- **allowAccessToSpec**: Details or specifics on confidentiality requirements.
 - **notes**: Any additional notes.
 
 ## Lab (Lab.csv) <span id="Lab"><span>
@@ -165,7 +163,7 @@ The individual or organization that is reporting and responsible for the quality
 Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 - **labID**: Unique identifier for the laboratory. (Primary Key)
-- **assayIDDefault**: Unique identifier for the assay normally performed by this lab, use to populate new `measurement` records .(foreign key)
+- **assayIDDefault**: Unique identifier for the assay normally performed by this lab, use to populate new `measurement` records. (foreign key)
 - **laboratoryName**: Name corresponding to lab.
 - **contactName**: Contact person or group, for the lab.
 - **contactEmail**: Contact e-mail address, for the lab.
@@ -178,10 +176,10 @@ The assay method that was used to perform testing. This database will be develop
 
 - **assayID**: (Primary key) Unique identifier for the assay method.
 - **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended.
-- **sampleSizeL**:size of the sample that is analysed in liters
-- **loq**:limit of Quantification for this method if one exists
-- **lod**:limit of detection for this method if one exists
-- **methodUnits**: units used by this method, that are applicable to the LOD or LOQ
+- **sampleSizeL**: Size of the sample that is analysed in liters.
+- **loq**: Limit of Quantification for this method if one exists.
+- **lod**: Limit of detection for this method if one exists.
+- **methodUnits**: Units used by this method, that are applicable to the LOD or LOQ.
 	-   `PMMoV`: Viral copies/copies PMMoV
 	-   `ml`: Viral copies/mL
 	-   `gms`: Viral copies/gm solids
@@ -190,11 +188,11 @@ The assay method that was used to perform testing. This database will be develop
 	-   `m3s`: meters cubed per second
 	-   `mgl`: milligrams per liter
 	-   `mgOl`: milligrams of oxygen per liter
-	-   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add  `measureUnitOther`.- 
-- **methodUnitsOther**: units used by this method, that are applicable to the LOD or LOQ
+	-   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add  `measureUnitOther`.
+- **methodUnitsOther**: Units used by this method, that are applicable to the LOD or LOQ.
 - **assayDate**: Date the assayMethod was created or updated (for version update).
-- **Inhibition**: Text decription of the inhibition 
-- **surrogateRecovery**: Text description of the Surrogate Recovery for this method
+- **inhibition**: Text decription of the inhibition.
+- **surrogateRecovery**: Text description of the Surrogate Recovery for this method.
 - **assayDesc**: Description of assay.
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
@@ -219,10 +217,10 @@ Saves some information about covid-19 in a given polygon.
 - **ReporterID** ID of the reporter who gave this data
 - **PolygonID**:  Links with the `Polygon` table (foreign key). 
 - **date**: Date of covid-19 measure.
-- **dateType**: type of date used
-  - `episodeDate` : episode date is usually just the earliest of a list of dates available as not every case has every date
-  - `onsetDate` : earliest that symptoms were reported for this case
-  - `reportedDate` : date that the numbers were reported publicly
+- **dateType**: Type of date used.
+  - `episodeDate` : Episode date is usually just the earliest of a list of dates available as not every case has every date
+  - `onsetDate`: Earliest that symptoms were reported for this case
+  - `reportedDate`: Date that the numbers were reported publicly
 - **confirmed**: Number of confirmed cases.
 - **active**:  Number of active cases.
 - **tests**:  Number of tests.
@@ -233,7 +231,7 @@ Saves some information about covid-19 in a given polygon.
  
 ## File naming convention
 - **variable and category names**: Both variables and variable categoties use camelCase with long tables. Wide tables use `_` to concatenate variables from long tables. 
-- **merging Tables **: when you merge tables concatenate column names with `.`. So `dateTime` from the `Sample` table becomes `Sample.dateTime`
+- **merging Tables **: when you merge tables concatenate column names with `.`. So `dateTime` from the `Sample` table becomes `Sample.dateTime`.
 
 A long table would represent a test sample as the following:
 ```
@@ -245,7 +243,7 @@ measureValue = 42
 
 A wide table would represent the same measurement as:
 ```
-covidN1_PPMoV_Mean = 42
+covidN1_PPMV_mean = 42
 ```
 
 - **date**: MM/DD/YYYY HH:mm:ss  (24 hour format, in UTC)

@@ -18,19 +18,34 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 ## Changelog
 
-### 2020-11-18
+## 2020-11-19
 
-v0.1.0
+v0.1.1 - Additions to metadata. No breaking changes.
 
-- Addition of `reportDate` to Measurement metadata and `wastewater_virus.csv`. Note use of `reportDate` when historic results are updated for new reporting standards.
-- Small corrections to metadata category labels.
+- Measurement metadata
+  - Add categories `measurementType`:
+    - `geoMean`: GeoMean of results 
+    - `rangeLowestValue`: Lowest value in a range of values
+    - `rangeHighestValue`: Highest value in a range of values
+    - `singleton`: This value is not an aggregate measurement in any way, and thus is not a `mean`, `median`, `geomean` or other
+  - Add `measureValueDetected`: Boolean Value if True then covid-19 was detected. 
+  - Add `reportDate`: Note use of `reportDate` when historic results are updated for new reporting standards.
+- AssayMethod metadata
+  - Add `sampleSizeL`: Size of the sample that is analysed in liters
+  - Add `loq`: Limit of Quantification for this method if one exists
+  - Add `lod`: Limit of detection for this method if one exists
+  - Add `inhibition`: Text decription of the inhibition 
+  - Add `surrogateRecovery`: Text description of the Surrogate Recovery for this method
+- Other small corrections to metadata category labels.
+- CovidPublicHealthData
+  - `dateType`: Type of date used.
 - Updated `wastewater_virus.csv` to reflect metadata v0.1.1.
 
 #### 2020-11-17
 
-v0.1.0 - Breaking changes to metadata
+v0.1.0 - Breaking changes to metadata.
 
-- Assay method database added
+- Assay method database added.
 - Change test results to be represented as key:values. Each test result has a measurement type (`measureType`) with a corresponding value (`measureValue`). For example a measureType is `mean` and the corresponding `measureValue` has the mean value.
 
 #### 2020-11-16
@@ -44,7 +59,7 @@ v0.1.0 - Breaking changes to metadata
 
 #### 2020-10-27
 
-V0.0.2 - Breaking changes to metadata
+V0.0.2 - Breaking changes to metadata.
 
 - Change `locationID` to `siteID`. 
 - Change `locationName` to `siteName`.
