@@ -51,25 +51,26 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
   - `catOther`
 - **measureCatOther**: Description for other target region (use prefix `covid-` or wastewater treatment plant parameter (use prefix `ww-param-`.  See `measureCat`.
 - **measureUnit**: Unit of SARS-CoV-2 measurement.
-  - `PMMoV`: Viral copies/copies PMMoV
+  - `PMMV`: Viral copies/copies PMMoV
   - `ml`:    Viral copies/mL
   - `gms`:   Viral copies/gm solids
   - `l`:     Viral copies/L
   - `crA`:   Viral copies/copies crAssphage
+  -  `Ct`: 
   - `m3s`: meters cubed per second
   - `mgl`:  milligrams  per liter
   - `mgOl`: milligrams of oxygen per liter
   - `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
 - **measureUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `measureUnit`.
 - **measureType**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each measureType has a corresponding value (measureValue).
-  - `Mean`: Sample mean
-  - `GeoMean`: GeoMean of results 
-  - `Singleton`: This value is not an aggregate measurement in any way, and thus is not a `mean`, `median`, `geomean` or other
-  - `Median`: Median of results 
-  - `RangeLowestValue`: Lowest value in a range of values
-  - `RangeHighestValue`: Highest value in a range of values
+  - `geoMean`: GeoMean of results 
+  - `singleton`: This value is not an aggregate measurement in any way, and thus is not a `mean`, `median`, `geomean` or other
+  - `mean`: Sample mean
+  - `meanNormal`: Sample mean, normalized
+  - `median`: Median of results 
+  - `rangeLowestValue`: Lowest value in a range of values
+  - `rangeHighestValue`: Highest value in a range of values
   - `SD`: Sample standard deviation
-  - `MeanNormal`: Sample mean, normalized
   - `SDNormal`: Sample standard deviation, normalized
   - `typeOther`: Other measures
 - **measureTypeOther**: Description for other type of measurement type. See `measurementUnit`.
@@ -147,8 +148,8 @@ The individual or organization that is reporting and responsible for the quality
 - **reporterID**:	(Primary Key) Unique identifier for the person or organization that is reporting the data.
 - **siteIDDefault**:	Used as the default when new `Sample` records are created by this `reporter`.
 - **labIDDefault**:	Used as the default when new `Sample` records are created by this `reporter`.
- - **contactName**:	Full Name of the reporter, either an organization or individual.
- - **contactEmail**: Contact e-mail address.
+- **contactName**:	Full Name of the reporter, either an organization or individual.
+- **contactEmail**: Contact e-mail address.
 - **contactPhone**: Contact phone number.
 - **allowAcceesToSelf**: If this is True the data will be shown on the portal when the data provider logs in
 - **allowAcceesToFederalPublicHealthAuthorities**: If this is True the data will be available to employees of PHAC
@@ -245,7 +246,7 @@ measureValue = 42
 
 A wide table would represent the same measurement as:
 ```
-covidN1_PPMoV_Mean = 42
+covidN1_PPMV_mean = 42
 ```
 
 - **date**: MM/DD/YYYY HH:mm:ss  (24 hour format, in UTC)
