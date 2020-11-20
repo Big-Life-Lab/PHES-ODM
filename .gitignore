@@ -6,5 +6,6 @@
 .Rproj.user/
 .html
 *.Rproj
+.Rhistory
 
 *.html
