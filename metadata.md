@@ -196,13 +196,13 @@ The individual or organization that is reporting and responsible for the quality
 -   **contactName**: Full Name of the reporter, either an organization or individual.
 -   **contactEmail**: Contact e-mail address.
 -   **contactPhone**: Contact phone number.
--   **allowAcceesToSelf**: If this is True the data will be shown on the portal when the data provider logs in
--   **allowAcceesToFederalPublicHealthAuthorities**: If this is True the data will be available to employees of PHAC
--   **allowAccessToLocalPublicHealthAuthorities**: If this is True the data will be available when local health Authorities log in.
--   **allowAccessToProvincialPublicHealthAuthorities**: If this is True the data will be available when provincial health Authorities log in.
--   **allowAccessToOtherDataProviders**: If this is True the data will be available when other data providers login.
--   **allowAccessToAllOrganizations**: If this is True the data will be available when any partner organization logs into the system
--   **allowAccessToPublic**: If True the data will be available to the public.
+-   **allowAcceesToSelf**: Default: True. If this is False the data will not be shown on the portal when the data provider logs in
+-   **allowAcceesToFederalPublicHealthAuthorities**: Default: True. If this is False the data will not be available to employees of PHAC
+-   **allowAccessToLocalPublicHealthAuthorities**: Default: True. If this is False data will not be available when local health Authorities log in.
+-   **allowAccessToProvincialPublicHealthAuthorities**: Default: True. If this is False data will not available when provincial health Authorities log in.
+-   **allowAccessToOtherDataProviders**: Default: True. If this is False data will not be available when other data providers login.
+-   **allowAccessToAllOrganizations**: Default: True. If this is False data will not be available when any partner organization logs into the system
+-   **allowAccessToPublic**: Default: True. If this is False data will not be available to the public.
 -   **allowAccessToSpec**: Details or specifics on confidentiality requirements.
 -   **notes**: Any additional notes.
 
