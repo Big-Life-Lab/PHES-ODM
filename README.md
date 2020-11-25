@@ -18,6 +18,11 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 ## Changelog
 
+#### 2020-11-25
+
+- Add script to make SQL table.
+- Minor edits to conform variables to style guide.
+
 #### 2020-11-19
 
 v0.1.1 - Additions to metadata. No breaking changes.
