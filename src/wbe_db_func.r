@@ -39,7 +39,7 @@ wbe_db_conn <- function(drv = RSQLite::SQLite(),
                         ...){
   #' returns a connection to a WBE database
   #' creates and emply db if needed
-  if(! file.exists(db_fn)){
+  if(!file.exists(db_fn)){
     wbe_db_create_db_from_script(db_fn = db_fn )
   }
   
@@ -142,39 +142,49 @@ wbe_db_xlsx_to_dfs <- function(full_fn,
   return(dfs)
 }
 
-wbe_db_append_lookups <- function(df, 
-                                 tbl_nm = "Lookups", 
-                                 conn = wbe_db_conn(),
-                                 table_name_cases = "upper_camel",
-                                 col_name_cases = "lower_camel",
-                                 value_name_cases = "snake",
-                                 desc_name_case = "sentence"){
+wbe_db_append_lookups <- function(df,
+                                  tbl_nm = "Lookups",
+                                  conn = wbe_db_conn(),
+                                  table_name_cases = "upper_camel",
+                                  col_name_cases = "lower_camel",
+                                  value_name_cases = "snake",
+                                  desc_name_case = "sentence") {
   #' fills a data base from from a single table
-  #' 
-  #' 
+  #'
+  #'
   #df <- dfs$Lookups
   
   
   df2 <- tibble(tmp_index = 1:nrow(df))
   
   tbl_format <- wbe_db_tbl_frmt(tbl_nm = tbl_nm, conn = conn)
-  for (col_nm in colnames(tbl_format)){
-    
+  for (col_nm in colnames(tbl_format)) {
     curr_case <- ""
-    if( col_nm == "tableName"){curr_case <- table_name_cases}
-    else if(col_nm == "columnName"){curr_case <- col_name_cases}
-    else if(col_nm == "value"){curr_case <- value_name_cases}
-    else{curr_case <- desc_name_case}
+    if (col_nm == "tableName") {
+      curr_case <- table_name_cases
+    }
+    else if (col_nm == "columnName") {
+      curr_case <- col_name_cases
+    }
+    else if (col_nm == "value") {
+      curr_case <- value_name_cases
+    }
+    else{
+      curr_case <- desc_name_case
+    }
     #correct casing in the DB
-    df2[[col_nm]] <- df[[col_nm]] %>% snakecase::to_any_case(case = curr_case)
+    df2[[col_nm]] <-
+      df[[col_nm]] %>% snakecase::to_any_case(case = curr_case)
     
   }
   df2$tmp_index <- NULL
-  wbe_db_append_from_df(df = df2,
-                        tbl_nm = tbl_nm, 
-                        conn = conn,
-                        col_name_cases = col_name_cases,
-                        value_name_cases = "")
+  wbe_db_append_from_df(
+    df = df2,
+    tbl_nm = tbl_nm,
+    conn = conn,
+    col_name_cases = col_name_cases,
+    value_name_cases = ""
+  )
   
 }
 
