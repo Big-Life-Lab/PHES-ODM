@@ -35,6 +35,8 @@ CREATE TABLE [Site] (
   [siteTypeOther] char,
   [sampleTypeDefault] char,
   [sampleTypeOtherDefault] char,
+  [primarySourceOfWastewater] char,
+  [primarySourceOfWastewaterOther] char,
   [methodCollectionDefault] char,
   [methodCollectOtherDefault] char,
   [sampleFractionDefault] char,
