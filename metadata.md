@@ -23,6 +23,13 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-4
 
 Results for a measurement of a single property of SARS-CoV-2 wastewater test, for either a viral region or wastewater treatment plant.
 
+  - `covidN1`: SARS-CoV-2 gene region N1
+  - `covidN2`: SARS-CoV-2 gene region N2
+  - `covidN3`: SARS-CoV-2 gene region N3
+  - `covidE`: SARS-CoV-2 gene region E
+  - `covidRdRp`: SARS-CoV-2 gene region RdRp
+  - `covidN1N2avg`: SARS-CoV-2 gene region average of N1 and N2
+  - `PPMV`: SARS-CoV-2 gene region N1
 -   **MeasurementID**: Unique identification for measurement (Primary Key).
 
 -   **sampleID**: Links with the identified sample (foreign key).
