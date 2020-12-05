@@ -121,11 +121,21 @@ The site of wastewater sampling, including several *defaults* that can be used t
   - `SAPStandingWater`: Sewer access point standing water
   - `treatPlantInfluent`: Treatment plant influent
   - `treatPlantEffluent`: Treatment plant effluent
-  -  `lagoon`: Lagoon
-  -  `other`: Other
+  - `lagoon`: Lagoon
+  - `building`: Building clean-out
+  - `other`: Other
 - **siteTypeOther**: Description of site where the site is other. See `siteType`
 - **sampleTypeDefault**: Used as default when new samples records are created see `SampleType` in `Sample` table.
 - **sampleTypeOtherDefault**: Used as default when new `Sample` records are created see `SampleTypeOther` in `Sample` table.
+- **primarySourceOfWastewater**: Setting where the sample was taken. {add to ESR diagram}
+  - `municipality`: Wastewater shed for a municipality such as city or town
+  - `LTCF`: Long-term care facility
+  - `postSecondaryResidence`: Post-secondary residence
+  - `business`: Business setting
+  - `sewageTruck`: Sewage truck
+  - `airlane`: Airplane
+  - `other`: Other setting. 
+- **primarySourceOfWastewaterOther**: Description for other setting where sample was taken. See `primarySourceOfWastewater`. Entries can be added to the category list for `primarySourceOfWastewater`. {add to ESR diagram}
 - **methodCollectionDefault**: Used as default when new `Sample` records are created see `methodCollection` in `Sample` table.
 - **methodCollectOtherDefault**: Used as default when new `Sample` records are created see `methodCollectionOther` in `Sample` table.
 - **sampleFractionDefault**: Used as the default when new `Measurement` records are created.
