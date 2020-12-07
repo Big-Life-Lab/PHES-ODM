@@ -34,27 +34,23 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
   - `liquid`: Liquid fraction
   - `solid`:  Solid fraction
   - `mixed`:  Mixed/homogenized sample
-- **measureCat**: Gene target region (`covid-`) or wastewater treatment plant parameter (`ww-param-`).
-  - `covidUnspecified (default)`
-  - `covidN1`: SARS-CoV-2 gene region N1
-  - `covidN2`: SARS-CoV-2 gene region N1
-  - `covidN3`: SARS-CoV-2 gene region N1
-  - `covidE`: SARS-CoV-2 gene region N1
-  - `covidRdRp`: SARS-CoV-2 gene region N1
-  - `covidN1N2avg`: SARS-CoV-2 gene region N1
-  - `PPMV`: SARS-CoV-2 gene region N1
-  - `wwParamFlow`
-  - `wwParamTss`
-  - `wwParamBod`
-  - `catOther`
+- **measureCat**: Gene target region or other measure.
+  - `UnspecifiedRegion (default)`
+  - `N1`: SARS-CoV-2 gene region N1
+  - `N2`: SARS-CoV-2 gene region N1
+  - `N3`: SARS-CoV-2 gene region N1
+  - `E`: SARS-CoV-2 gene region N1
+  - `RdRp`: SARS-CoV-2 gene region N1
+  - `PMMV`: Pepper mild mottled virus
+  - `crAss`: crAssphage (cross-assembly phage) 
+  - `catOther`: Other meaasaurement
 - **measureCatOther**: Description for other target region (use prefix `covid-` or wastewater treatment plant parameter (use prefix `ww-param-`.  See `measureCat`.
 - **measureUnit**: Unit of SARS-CoV-2 measurement.
-  - `PMMV`: Viral copies/copies PMMoV
-  - `ml`:    Viral copies/mL
-  - `gms`:   Viral copies/gm solids
-  - `l`:     Viral copies/L
-  - `crA`:   Viral copies/copies crAssphage
-  - `Ct`: 
+  - `ml`: Viral copies/mL
+  - `gms`: Viral copies/gm solids
+  - `l`:  Viral copies/L
+  - `crA`:  Viral copies/copies crAssphage
+  - `Ct`: Cycle Threshold Value
   - `m3s`: meters cubed per second
   - `mgl`:  milligrams  per liter
   - `mgOl`: milligrams of oxygen per liter
@@ -91,6 +87,10 @@ The sample is an amount of water taken from a site which is then analysed by a l
   - `rawPostGrit`: Raw wastewater (post-grit)
   - `other`: Other type of site. Add description to `sampleTypeOther`.
 - **sampleTypeOther**: Description for other type of sample type. See `sampleType`.
+- **sampleParam**: Characteristic of the wastewater sample.
+    - `wwFlow`
+    - `wwTss`
+    - `wwBod`
 - **methodCollection**: method used to collect the data.
   - `grab sample`: Sample was a simple grab sample 
   - `contFlowProp`: Continuous flow proportional
@@ -148,7 +148,6 @@ The site of wastewater sampling, including several *defaults* that can be used t
 - **sewerNetworkFileLink**: Link to a file that has any detailed information about the sewer network associated with the site (any format).
 - **sewerNetworkFileBLOB**: A file BLOB that has any detailed information about the sewer network associated with the site (any format).
 
-
 ## Reporter (Reporter.csv) <span id="Reporter"><span>
 
 The individual or organization that is reporting and responsible for the quality of the data.
@@ -191,11 +190,9 @@ The assay method that was used to perform testing. This database will be develop
 - **loq**: Limit of Quantification for this method if one exists.
 - **lod**: Limit of detection for this method if one exists.
 - **methodUnits**: Units used by this method, that are applicable to the LOD or LOQ.
-	-   `PMMoV`: Viral copies/copies PMMoV
 	-   `ml`: Viral copies/mL
 	-   `gms`: Viral copies/gm solids
 	-   `l`: Viral copies/L
-	-   `crA`: Viral copies/copies crAssphage
 	-   `m3s`: meters cubed per second
 	-   `mgl`: milligrams per liter
 	-   `mgOl`: milligrams of oxygen per liter
@@ -239,24 +236,71 @@ Saves some information about covid-19 in a given polygon.
 - **percentPositivityRate**:  Percent postivity rate.
 - **hospitalCensus**: Hospital census or the number of people admitted with covid-19.
 - **hospitalAdmit**: Hospital admissions or patients newly admitted to hospital.
- 
+
 ## File naming convention
 - **variable and category names**: Both variables and variable categoties use camelCase with long tables. Wide tables use `_` to concatenate variables from long tables. 
 - **merging Tables **: when you merge tables concatenate column names with `.`. So `dateTime` from the `Sample` table becomes `Sample.dateTime`.
 
 A long table would represent a test sample as the following:
 ```
-measureCat = covidN1
-measureUnit = PPMoV
+measureCat = N1
+measureUnit = ml
 measureType = Mean
 measureValue = 42
 ```
 
 A wide table would represent the same measurement as:
 ```
-covidN1_PPMV_mean = 42
+N1_ml_mean = 42
 ```
 
 - **date**: MM/DD/YYYY HH:mm:ss  (24 hour format, in UTC)
 - **location**: TBD
 - **versions**: [Semantic versioning](https://semver.org)
+
+## Derived measures
+
+Derived measures are common metrics that are generated from the eight main tables. These metrics represent common approaches to summarize variables. For example, it is common to report the mean viral load of SARS-CoV-2 regions. Including derived measures in the metadata allows a more consistent approach to report these common measures.
+
+  - Combined average metric for multiple gene regions. Include regions followed by the `measureUnit` and `measureType`. Example:
+    
+Mean of covidN1 and covidN2 would be describe as:
+```
+measureCat = N1
+measureUnit = ml
+measureType = mean
+measureValue = 42
+
+measureCat = N2
+measureUnit = ml
+measureType = mean
+measureValue = 40
+```
+Would be represented as:
+Long table:
+```
+deriveMeasure = N1_N2_ml_mean
+value = 41
+```
+
+or, Wide table:
+```
+N1_N2_ml_mean = 41
+```
+
+- Viral SARS-CoV-2 copies per reference copies. 
+
+Mean viral copies of mean value N1 and N2 per viral copies of PMMV 9wide table description):
+```
+N1_N2_ml_mean = 40
+PPMV_ml_mean = 20
+```
+
+Would be represented as:
+Wide table:
+```
+N1_N2_ml_mean-PPMV_ml_mean = 2
+```
+
+- Moving averages.
+....
