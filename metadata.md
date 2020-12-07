@@ -36,12 +36,13 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
   - `mixed`:  Mixed/homogenized sample
 - **measureCat**: Gene target region (`covid-`) or wastewater treatment plant parameter (`ww-param-`).
   - `covidUnspecified (default)`
-  - `covidN1`
-  - `covidN2`
-  - `covidN3`
-  - `covidE`
-  - `covidRdRp`
-  - `covidN1N2avg`
+  - `covidN1`: SARS-CoV-2 gene region N1
+  - `covidN2`: SARS-CoV-2 gene region N1
+  - `covidN3`: SARS-CoV-2 gene region N1
+  - `covidE`: SARS-CoV-2 gene region N1
+  - `covidRdRp`: SARS-CoV-2 gene region N1
+  - `covidN1N2avg`: SARS-CoV-2 gene region N1
+  - `PPMV`: SARS-CoV-2 gene region N1
   - `wwParamFlow`
   - `wwParamTss`
   - `wwParamBod`
@@ -53,7 +54,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
   - `gms`:   Viral copies/gm solids
   - `l`:     Viral copies/L
   - `crA`:   Viral copies/copies crAssphage
-  -  `Ct`: 
+  - `Ct`: 
   - `m3s`: meters cubed per second
   - `mgl`:  milligrams  per liter
   - `mgOl`: milligrams of oxygen per liter
