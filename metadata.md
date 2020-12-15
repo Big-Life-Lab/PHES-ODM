@@ -11,6 +11,7 @@ There are eight tables that are described below. example data is stored in [data
 -   [AssayMethod](#AssayMethod) (AssayMethod.csv - **TBA**)
 -   [Polygon](#Polygon) (Polygon.csv - **TBA**)
 -   [CovidPublicHealthData](#CovidPublicHealthData) (CovidPublicHealthData.csv - **TBA**)
+-   [Lookups](#Lookups) (Lookups.csv - **TBA**)
 
 Entity Relationship Diagram [here](#erd).
 
@@ -138,12 +139,12 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **methodCollectionOther**: Description for other type of method when any option with `other` is selected `methodCollection`.
 -   **methodCollectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes
- - **childSampleID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a coma seperated list of child samples.
- - **parentSampleID** : If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample
 -   **samplePreTreatment**: was the sample chemically treated in anyway with the addition of stabilizers or other (boolean)
 	- `True`
 	- `False` 
 -   **samplePreTreatmentDescription**: Describe the treatment that was performed
+ - **childSampleID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a coma seperated list of child samples.
+ - **parentSampleID** : If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample
 -   **sampleSizeL**: Total volume of water or sludge sampled.
 -   **sampleStorageTempC**: Temperature that the sample is stored at in Celsius.
 -   **qualityFlag**: Boolean Value True if the sample might have some quality control issue
@@ -321,6 +322,17 @@ Saves some information about covid-19 in a given polygon.
 -   **hospitalCensus**: Hospital census or the number of people admitted with covid-19.
 
 -   **hospitalAdmit**: Hospital admissions or patients newly admitted to hospital.
+
+
+## Lookups (Lookups.csv) <span id="Lookups"><span>
+
+Used for lookup values of all category based columns
+
+-   **tableName**: Name of the Table
+-   **columnName**: Name for the column
+-   **value**: Name of the value
+-   **description**: Name of the description
+
 
 ## File naming convention
 

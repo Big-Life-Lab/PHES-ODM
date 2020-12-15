@@ -60,11 +60,16 @@ CREATE TABLE  IF NOT EXISTS [Sample] (
   [sampleTypeOther] char,
   [methodCollection] char,
   [methodCollectionOther] char,
+  [samplePreTreatment] INTEGER,
+  [samplePreTreatmentDescription] char,
+  [childSampleID] char,
+  [parentSampleID] char,
   [sampleSizeL] float,
   [sampleStorageTempC] float,
+  [qualityFlag] INTEGER,
   [notes] char,
   FOREIGN KEY ([siteID]) REFERENCES Reporter(siteID) DEFERRABLE INITIALLY DEFERRED
-); 
+);
 
 CREATE TABLE  IF NOT EXISTS [AssayMethod] (
   [assayID] char NOT NULL PRIMARY KEY,
@@ -74,9 +79,13 @@ CREATE TABLE  IF NOT EXISTS [AssayMethod] (
   [lod] float,
   [methodUnits] char,
   [methodUnitsOther] char,
-  [assayDate] char,
+  [concentrationMethod] char,
+  [extractionMethod] char,
+  [pcrMethod] char,
+  [qualityAssuranceQC] char,
   [Inhibition] char,
   [surrogateRecovery] char,
+  [assayDate] char,
   [assayDesc] char
 );
 
@@ -113,7 +122,7 @@ CREATE TABLE  IF NOT EXISTS [CovidPublicHealthData] (
 CREATE TABLE  IF NOT EXISTS [Lookups](
   [tableName] char,
   [columnName] char,
-  [value] char, 
+  [value] char,
   [description] char
 );
 
@@ -131,9 +140,10 @@ CREATE TABLE  IF NOT EXISTS [Measurement] (
   [measureUnitOther] char,
   [measureType] char,
   [measureTypeOther] char,
-  [sampleIndex] char,
+  [measureIndex] char,
   [measureValue] float,
   [measureValueDetected] INTEGER,
+  [qualityFlag] INTEGER,
   [notes] char,
   FOREIGN KEY ([sampleID]) REFERENCES Sample(sampleID) DEFERRABLE INITIALLY DEFERRED,
   FOREIGN KEY ([labID]) REFERENCES Lab(labID) DEFERRABLE INITIALLY DEFERRED,
