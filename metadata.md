@@ -92,8 +92,8 @@ treatment plant parameter. Also add `measureUnitOther`.
     -   `typeOther`: Other measures
 
 -   **measureTypeOther**: Description for other type of measurement type. See `measurementUnit`.
- - **measureIndex**: index if the measurement was taken multiple times (int)
--   **measureValue**: Value of measureType.
+ - **measureIndex**: Index if the measurement was taken multiple times (int)
+-   **measureValue**: Value of `measureType`.
 
 -   **measureValueDetected**: Boolean Value if True then covid-19 was detected.
 -   **qualityFlag**: Boolean Value if True if the measurement might have some quality control issue
@@ -109,11 +109,11 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **dateTime**: for grab samples this is the date and time and timezone the sample was taken.
 
--   **dateTimeStart**: for integrated time average samples this is the date and time and timezone the sample was started being taken.
+-   **dateTimeStart**: For integrated time average samples this is the date and time and timezone the sample was started being taken.
 
--   **dateTimeEnd**: for integrated time average samples this is the date and time and timezone the sample was finished being taken.
+-   **dateTimeEnd**: For integrated time average samples this is the date and time and timezone the sample was finished being taken.
 
--   **sampleType**: type of sample.
+-   **sampleType**: Type of sample.
 
     -   `sludge`: Primary clarified sludge
     -   `rawCollector`: Raw wastewater (in collector system)
@@ -138,7 +138,7 @@ The sample is an amount of water taken from a site which is then analysed by a l
     -   `integratedOther`: Integrated other
 
 -   **methodCollectionOther**: Description for other type of method when any option with `other` is selected `methodCollection`.
--  **methodCollectionTriggerTime** time between sub-samples for `discTimeProp` numeric value given in minutes
+-   **methodCollectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes
 -   **samplePreTreatment**: was the sample chemically treated in anyway with the addition of stabilizers or other (boolean)
 	- `True`
 	- `False` 
@@ -260,7 +260,7 @@ The assay method that was used to perform testing. This database will be develop
 -   **concentrationMethod**: method used to concentrate the sample test based description 
 -   **extractionMethod**: method used to extract sample (text)
 -   **pcrMethod**: description of PCR method used (text)
--  **qualityAssuranceQC** : description of quality control steps taken (text)
+-   **qualityAssuranceQC** : description of quality control steps taken (text)
 -   **assayDate**: Date the assayMethod was created or updated (for version update).
 -   **inhibition**: Text description of the inhibition.
 -   **surrogateRecovery**: Text description of the Surrogate Recovery for this method.
