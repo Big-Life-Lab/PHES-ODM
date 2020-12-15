@@ -96,7 +96,7 @@ treatment plant parameter. Also add `measureUnitOther`.
 -   **measureValue**: Value of measureType.
 
 -   **measureValueDetected**: Boolean Value if True then covid-19 was detected.
--   **QualityFlag**: Boolean Value if True if the measurement might have some quality control issue
+-   **qualityFlag**: Boolean Value if True if the measurement might have some quality control issue
 -   **notes**: Any additional notes.
 
 ## Sample (Sample.csv) <span id="Sample"><span>
@@ -145,7 +145,7 @@ The sample is an amount of water taken from a site which is then analysed by a l
 -   **samplePreTreatmentDescription**: Describe the treatment that was performed
 -   **sampleSizeL**: Total volume of water or sludge sampled.
 -   **sampleStorageTempC**: Temperature that the sample is stored at in Celsius.
--   **QualityFlag**: Boolean Value True if the sample might have some quality control issue
+-   **qualityFlag**: Boolean Value True if the sample might have some quality control issue
 -   **notes**: Any additional notes.
 
 ## Site (Site.csv) <span id="Site"><span>
@@ -262,7 +262,7 @@ The assay method that was used to perform testing. This database will be develop
 -   **pcrMethod**: description of PCR method used (text)
 -  **qualityAssuranceQC** : description of quality control steps taken (text)
 -   **assayDate**: Date the assayMethod was created or updated (for version update).
--   **inhibition**: Text decription of the inhibition.
+-   **inhibition**: Text description of the inhibition.
 -   **surrogateRecovery**: Text description of the Surrogate Recovery for this method.
 
 -   **assayDesc**: Description of assay.
@@ -333,7 +333,7 @@ A long table would represent a test sample as the following:
     measureCat = covidN1
     measureUnit = PPMoV
     measureType = Mean
-    measureValue = 42
+    measureValue = 42 
 
 A wide table would represent the same measurement as:
 
