@@ -35,8 +35,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 -   **analysisDate**: Date the data was analysed in the lab.
 
 -   **reportDate**: Data the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original `sampleID` but updated `measurementID`, `reportDate` and `assayID` (if needed).
- - **childSampleID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a coma seperated list of child samples.
- - **parentSampleID** : If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample
+
 -   **sampleFraction**: Faction of the sample that is analyzed.
     -   `liquid`: Liquid fraction
     -   `solid`: Solid fraction
@@ -135,6 +134,8 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **methodCollectionOther**: Description for other type of method when any option with `other` is selected `methodCollection`.
 -   **methodCollectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes
+ - **childSampleID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a coma seperated list of child samples.
+ - **parentSampleID** : If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample
 -   **samplePreTreatment**: was the sample chemically treated in anyway with the addition of stabilizers or other (boolean)
 	- `True`
 	- `False` 
@@ -143,6 +144,7 @@ The sample is an amount of water taken from a site which is then analysed by a l
 -   **sampleStorageTempC**: Temperature that the sample is stored at in Celsius.
 -   **qualityFlag**: Boolean Value True if the sample might have some quality control issue
 -   **notes**: Any additional notes.
+
 
 ## Site (Site.csv) <span id="Site"><span>
 
@@ -256,7 +258,7 @@ The assay method that was used to perform testing. This database will be develop
 -   **concentrationMethod**: method used to concentrate the sample test based description 
 -   **extractionMethod**: method used to extract sample (text)
 -   **pcrMethod**: description of PCR method used (text)
--  **qualityAssuranceQC** : description of quality control steps taken (text)
+-   **qualityAssuranceQC** : description of quality control steps taken (text)
 -   **assayDate**: Date the assayMethod was created or updated (for version update).
 -   **inhibition**: Text description of the inhibition.
 -   **surrogateRecovery**: Text description of the Surrogate Recovery for this method.
