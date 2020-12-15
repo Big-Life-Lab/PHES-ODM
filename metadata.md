@@ -174,20 +174,21 @@ The site of wastewater sampling, including several *defaults* that can be used t
 -   **reporterID**: links with the reporter that is responsible for the data (foreign key).
 
 -   **siteType**: Type of site or institution where sample was taken.
-      -   `WWTP`: Wastewater treatment plant
-      -   `airplane`: 
-      -   `lagoon`: Lagoon
-      -   `longTermCareHome`: 
-      -   `sewageTruck`:
-      -   `longTerCareHome`:
-      -   `federalPrison`:
-      -   `elementraryScool`
-      -   `universityCampus`
-      -   `other`
-    
--   **siteTypeOther**: Description for other type of site when any option with `other` is selected `siteType`.
 
-- **accessType**: Where the sample was collected at the site.
+    -   `airplane`: Airplane
+    -   `correctionalFacility`: Federal or provincial correctional facility or jail
+    -   `elementraryScool`: Elementary school
+    -   `lagoon`: Lagoon
+    -   `longTermCareHome`: Long-term care home
+    -   `sewageTruck`: Sewage truck
+    -   `universityCampus`: University campus or resident
+    -   `WWTP`: Wastewater treatment plant
+    -   `other`: Other
+
+-   **siteTypeOther**: Description of site where the site is other. See `siteType`. If `institution` consider placing things like `meat plant' or description of institute, etc, If`airplane consider identifying the flight number.
+
+-   **accessType**: Access point or where the sample was collected at the site.
+
     -   `SAPFlowWater`: Sewer access point flowing water
     -   `SAPStandingWater`: Sewer access point standing water
     -   `treatPlantInfluent`: Treatment plant influent
@@ -195,23 +196,8 @@ The site of wastewater sampling, including several *defaults* that can be used t
     -   `treatPlantEffluent`: Treatment plant effluent
     -   `buildingCleanout`: Building cleanout
     -   `propertyLineCleanout`: Property line cleanout
-    
--   **accessTypeOther**: ...
 
--   **siteType**: Type site where the sampling is taken.
-
-    -   `SAPFlowWater`: Sewer access point flowing water
-    -   `SAPStandingWater`: Sewer access point standing water
-    -   `treatPlantInfluent`: Treatment plant influent
-    -   `treatPlantPrimarySludge`: Primary treatment sludge
-    -   `treatPlantEffluent`: Treatment plant effluent
-    -   `lagoon`: Lagoon
-    -   `institution` :\
-    -   `sewageTruck` :
-    -   `airplane` :\
-    -   `other`: Other
-
--   **siteTypeOther**: Description of site where the site is other. See `siteType`. If `institution` consider placing things like `longTerCareHome`, `federalPrison`, `elementraryScool`, `universityCampus`, etc, If `airplane` consider placing the flight number
+-   **accessTypeOther**: Description of access point where the access type is other is selected for `accessType`.
 
 -   **sampleTypeDefault**: Used as default when new samples records are created see `SampleType` in `Sample` table.
 
