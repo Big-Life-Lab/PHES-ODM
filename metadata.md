@@ -1,4 +1,3 @@
-
 # Metadata
 
 There are eight tables that are described below. example data is stored in [data](data).
@@ -38,29 +37,31 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 -   **reportDate**: Data the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original `sampleID` but updated `measurementID`, `reportDate` and `assayID` (if needed).
 
 -   **sampleFraction**: Faction of the sample that is analyzed.
+
     -   `liquid`: Liquid fraction
     -   `solid`: Solid fraction
     -   `mixed`: Mixed/homogenized sample
-  
+
 -   **measureCat**: Gene target region (`covid-`) or wastewater treatment plant parameter (`ww-param-`).
 
-    - `covidUnspecified (default)`: 
-    - `covidN1`: SARS-CoV-2 gene region N1
-    - `covidN2`: SARS-CoV-2 gene region N2
-    - `covidN3`: SARS-CoV-2 gene region N3
-    - `covidE`: SARS-CoV-2 gene region E
-    - `covidRdRp`: SARS-CoV-2 gene region RdRp
-    - `covidN1N2avg`: SARS-CoV-2 gene region average of N1 and N2
-    - `wwParamFlow`:  Flow rate of the waste water at point of sampling
-    - `wwParamTss`:  Total Suspended solids
-    - `wwParamBod`:  BOD or biological oxygen demand of the water
-    - `wwParamCod`:  COD or chemical oxygen demand of the water
-    - `wwParamPh`:   pH of the water sampled
-    - `catOther`: Other measurement category
+    -   `covidUnspecified (default)`:
+    -   `covidN1`: SARS-CoV-2 gene region N1
+    -   `covidN2`: SARS-CoV-2 gene region N2
+    -   `covidN3`: SARS-CoV-2 gene region N3
+    -   `covidE`: SARS-CoV-2 gene region E
+    -   `covidRdRp`: SARS-CoV-2 gene region RdRp
+    -   `covidN1N2avg`: SARS-CoV-2 gene region average of N1 and N2
+    -   `wwParamFlow`: Flow rate of the waste water at point of sampling
+    -   `wwParamTss`: Total Suspended solids
+    -   `wwParamBod`: BOD or biological oxygen demand of the water
+    -   `wwParamCod`: COD or chemical oxygen demand of the water
+    -   `wwParamPh`: pH of the water sampled
+    -   `catOther`: Other measurement category
 
 -   **measureCatOther**: Description for other target region (use prefix `covid` or wastewater treatment plant parameter (use prefix `wwParam`. See `measureCat`.
 
 -   **measureUnit**: Unit of SARS-CoV-2 measurement.
+
     -   `PMMoV`: Viral copies/copies PMMoV
     -   `ml`: Viral copies/mL
     -   `gms`: Viral copies/gm solids
@@ -69,9 +70,8 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
     -   `m3s`: meters cubed per second
     -   `mgl`: milligrams per liter
     -   `mgOl`: milligrams of oxygen per liter
-    -   `ph`: pH units (unitless) 
-    -   `measureOther`: Other measurement of viral copies or wastewater 
-treatment plant parameter. Also add `measureUnitOther`.
+    -   `ph`: pH units (unitless)
+    -   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
 
 -   **measureUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `measureUnit`.
 
@@ -89,10 +89,15 @@ treatment plant parameter. Also add `measureUnitOther`.
     -   `typeOther`: Other measures
 
 -   **measureTypeOther**: Description for other type of measurement type. See `measurementUnit`.
+
 -   **measureIndex**: Index if the measurement was taken multiple times (int)
+
 -   **measureValue**: Value of measureType.
+
 -   **measureValueDetected**: Boolean Value if True then covid-19 was detected.
+
 -   **qualityFlag**: Boolean Value if True if the measurement might have some quality control issue
+
 -   **notes**: Any additional notes.
 
 ## Sample (Sample.csv) <span id="Sample"><span>
@@ -134,18 +139,27 @@ The sample is an amount of water taken from a site which is then analysed by a l
     -   `integratedOther`: Integrated other
 
 -   **methodCollectionOther**: Description for other type of method when any option with `other` is selected `methodCollection`.
--   **methodCollectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes
--   **samplePreTreatment**: was the sample chemically treated in anyway with the addition of stabilizers or other (boolean)
-	- `True`
-	- `False` 
--   **samplePreTreatmentDescription**: Describe the treatment that was performed
- - **childSampleID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a coma seperated list of child samples.
- - **parentSampleID** : If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample
--   **sampleSizeL**: Total volume of water or sludge sampled.
--   **sampleStorageTempC**: Temperature that the sample is stored at in Celsius.
--   **qualityFlag**: Boolean Value True if the sample might have some quality control issue
--   **notes**: Any additional notes.
 
+-   **methodCollectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes
+
+-   **samplePreTreatment**: was the sample chemically treated in anyway with the addition of stabilizers or other (boolean)
+
+    -   `True`
+    -   `False`
+
+-   **samplePreTreatmentDescription**: Describe the treatment that was performed
+
+-   **childSampleID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a coma seperated list of child samples.
+
+-   **parentSampleID** : If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample
+
+-   **sampleSizeL**: Total volume of water or sludge sampled.
+
+-   **sampleStorageTempC**: Temperature that the sample is stored at in Celsius.
+
+-   **qualityFlag**: Boolean Value True if the sample might have some quality control issue
+
+-   **notes**: Any additional notes.
 
 ## Site (Site.csv) <span id="Site"><span>
 
@@ -159,6 +173,31 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **reporterID**: links with the reporter that is responsible for the data (foreign key).
 
+-   **siteType**: Type of site or institution where sample was taken.
+      -   `WWTP`: Wastewater treatment plant
+      -   `airplane`: 
+      -   `lagoon`: Lagoon
+      -   `longTermCareHome`: 
+      -   `sewageTruck`:
+      -   `longTerCareHome`:
+      -   `federalPrison`:
+      -   `elementraryScool`
+      -   `universityCampus`
+      -   `other`
+    
+-   **siteTypeOther**: Description for other type of site when any option with `other` is selected `siteType`.
+
+- **accessType**: Where the sample was collected at the site.
+    -   `SAPFlowWater`: Sewer access point flowing water
+    -   `SAPStandingWater`: Sewer access point standing water
+    -   `treatPlantInfluent`: Treatment plant influent
+    -   `treatPlantPrimarySludge`: Primary treatment sludge
+    -   `treatPlantEffluent`: Treatment plant effluent
+    -   `buildingCleanout`: Building cleanout
+    -   `propertyLineCleanout`: Property line cleanout
+    
+-   **accessTypeOther**: ...
+
 -   **siteType**: Type site where the sampling is taken.
 
     -   `SAPFlowWater`: Sewer access point flowing water
@@ -167,9 +206,9 @@ The site of wastewater sampling, including several *defaults* that can be used t
     -   `treatPlantPrimarySludge`: Primary treatment sludge
     -   `treatPlantEffluent`: Treatment plant effluent
     -   `lagoon`: Lagoon
-    -   `institution` :   
-    -   `sewageTruck` : 
-    -   `airplane` :      
+    -   `institution` :\
+    -   `sewageTruck` :
+    -   `airplane` :\
     -   `other`: Other
 
 -   **siteTypeOther**: Description of site where the site is other. See `siteType`. If `institution` consider placing things like `longTerCareHome`, `federalPrison`, `elementraryScool`, `universityCampus`, etc, If `airplane` consider placing the flight number
@@ -245,6 +284,7 @@ The assay method that was used to perform testing. This database will be develop
 -   **lod**: Limit of detection for this method if one exists.
 
 -   **methodUnits**: Units used by this method, that are applicable to the LOD or LOQ.
+
     -   `PMMoV`: Viral copies/copies PMMoV
     -   `ml`: Viral copies/mL
     -   `gms`: Viral copies/gm solids
@@ -256,12 +296,19 @@ The assay method that was used to perform testing. This database will be develop
     -   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
 
 -   **methodUnitsOther**: Units used by this method, that are applicable to the LOD or LOQ.
--   **concentrationMethod**: method used to concentrate the sample test based description 
+
+-   **concentrationMethod**: method used to concentrate the sample test based description
+
 -   **extractionMethod**: method used to extract sample (text)
+
 -   **pcrMethod**: description of PCR method used (text)
+
 -   **qualityAssuranceQC** : description of quality control steps taken (text)
+
 -   **assayDate**: Date the assayMethod was created or updated (for version update).
+
 -   **inhibition**: Text description of the inhibition.
+
 -   **surrogateRecovery**: Text description of the Surrogate Recovery for this method.
 
 -   **assayDesc**: Description of assay.
@@ -319,7 +366,6 @@ Saves some information about covid-19 in a given polygon.
 
 -   **hospitalAdmit**: Hospital admissions or patients newly admitted to hospital.
 
-
 ## Lookups (Lookups.csv) <span id="Lookups"><span>
 
 Used for lookup values of all category based columns
@@ -329,13 +375,12 @@ Used for lookup values of all category based columns
 -   **value**: Name of the value
 -   **description**: Name of the description
 
-
 ## File naming convention
 
-- **table names**: Table names use UpperCamelCase.
--   **variable and category names**: Both variables and variable categories use lowerCamelCase 
- - **variables in Wide tables**: Wide tables use `_` to concatenate variables from long tables.
- - **Variable order** if a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous, in this case. we would show a `analysisDate` followed by a series of measurements taken on that date ex(`temp_c_singleton`) then another  `covidN1_PPMV_mean` followed by more measurements ex(`covidN1_PPMV_mean`)
+-   **table names**: Table names use UpperCamelCase.
+-   **variable and category names**: Both variables and variable categories use lowerCamelCase
+-   **variables in Wide tables**: Wide tables use `_` to concatenate variables from long tables.
+-   **Variable order** if a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous, in this case. we would show a `analysisDate` followed by a series of measurements taken on that date ex(`temp_c_singleton`) then another `covidN1_PPMV_mean` followed by more measurements ex(`covidN1_PPMV_mean`)
 -   **merging Tables** : when you merge tables concatenate column names with `.` . So `dateTime` from the `Sample` table becomes `Sample.dateTime`.
 
 A long table would represent a test sample as the following:
