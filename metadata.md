@@ -25,8 +25,6 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-4
 
 Results for a measurement of a single property of SARS-CoV-2 wastewater test, for either a viral region or wastewater treatment plant.
 
-
-  - `PPMV`: SARS-CoV-2 gene region N1
 -   **MeasurementID**: Unique identification for measurement (Primary Key).
 
 -   **sampleID**: Links with the identified sample (foreign key).
@@ -53,13 +51,12 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
     - `covidE`: SARS-CoV-2 gene region E
     - `covidRdRp`: SARS-CoV-2 gene region RdRp
     - `covidN1N2avg`: SARS-CoV-2 gene region average of N1 and N2
-    -  `covidN1N2avg`: 
-    -  `wwParamFlow`:  Flow rate of the waste water at point of sampling
-    -  `wwParamTss`:  Total Suspended solids
-    -  `wwParamBod`:  BOD or biological oxygen demand of the water
-    -  `wwParamCod`:  COD or chemical oxygen demand of the water
-    -  `wwParamPh`:   pH of the water sampled
-    -  `catOther`: 
+    - `wwParamFlow`:  Flow rate of the waste water at point of sampling
+    - `wwParamTss`:  Total Suspended solids
+    - `wwParamBod`:  BOD or biological oxygen demand of the water
+    - `wwParamCod`:  COD or chemical oxygen demand of the water
+    - `wwParamPh`:   pH of the water sampled
+    - `catOther`: Other measurement category
 
 -   **measureCatOther**: Description for other target region (use prefix `covid` or wastewater treatment plant parameter (use prefix `wwParam`. See `measureCat`.
 
@@ -92,9 +89,8 @@ treatment plant parameter. Also add `measureUnitOther`.
     -   `typeOther`: Other measures
 
 -   **measureTypeOther**: Description for other type of measurement type. See `measurementUnit`.
- - **measureIndex**: Index if the measurement was taken multiple times (int)
--   **measureValue**: Value of `measureType`.
-
+-   **measureIndex**: Index if the measurement was taken multiple times (int)
+-   **measureValue**: Value of measureType.
 -   **measureValueDetected**: Boolean Value if True then covid-19 was detected.
 -   **qualityFlag**: Boolean Value if True if the measurement might have some quality control issue
 -   **notes**: Any additional notes.
@@ -105,9 +101,9 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **sampleID**: Unique identification for sample. Suggest siteID-date-sample, or siteID-. (Primary Key)
 
--   **siteID**: links with the site table. (foreign key)
+-   **siteID**: Links with the site table. (foreign key)
 
--   **dateTime**: for grab samples this is the date and time and timezone the sample was taken.
+-   **dateTime**: For grab samples this is the date and time and timezone the sample was taken.
 
 -   **dateTimeStart**: For integrated time average samples this is the date and time and timezone the sample was started being taken.
 
@@ -122,7 +118,7 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **sampleTypeOther**: Description for other type of sample type. See `sampleType`.
 
--   **methodCollection**: method used to collect the data.
+-   **methodCollection**: Method used to collect the data.
 
     -   `grab sample`: Sample was a simple grab sample
     -   `contFlowProp`: Continuous flow proportional
@@ -171,9 +167,9 @@ The site of wastewater sampling, including several *defaults* that can be used t
     -   `treatPlantPrimarySludge`: Primary treatment sludge
     -   `treatPlantEffluent`: Treatment plant effluent
     -   `lagoon`: Lagoon
-    -  `institution` :   
-    -  `sewageTruck` : 
-    -  `airplane` :      
+    -   `institution` :   
+    -   `sewageTruck` : 
+    -   `airplane` :      
     -   `other`: Other
 
 -   **siteTypeOther**: Description of site where the site is other. See `siteType`. If `institution` consider placing things like `longTerCareHome`, `federalPrison`, `elementraryScool`, `universityCampus`, etc, If `airplane` consider placing the flight number
