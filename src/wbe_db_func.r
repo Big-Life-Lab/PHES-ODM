@@ -20,7 +20,7 @@ library(magrittr)
 library(snakecase)
 library(docstring)
 library(anytime)
-
+library(tools)
 wbe_CONNS <- c()   # Keeps a list of connections to the db
 
 #########################
@@ -56,7 +56,7 @@ wbe_conn <- function(drv = RSQLite::SQLite(),
                      db_fn = wbe_default_fn(),
                      ...){
   #' returns a connection to a WBE database
-  #' creates and emply db if needed
+  #' creates and empty db if needed
   #'
   #'
   if(! file.exists(db_fn)){
@@ -87,7 +87,7 @@ wbe_disconnect_all <- function(){
 
 
 
-wbe_delete_whole_DB <- function(db_fn = wbe_default_fn()){
+wbe_delete_whole_db <- function(db_fn = wbe_default_fn()){
   #'
   #' removes all connections, then deletes the file
   #'
@@ -97,7 +97,7 @@ wbe_delete_whole_DB <- function(db_fn = wbe_default_fn()){
   file.remove(db_fn)
   message(glue("deleted {db_fn}"))
 }
-#wbe_delete_whole_DB
+#wbe_delete_whole_db
 
 
 wbe_create_db_from_script <- function(drv = RSQLite::SQLite(),
@@ -133,13 +133,96 @@ wbe_create_db_from_script <- function(drv = RSQLite::SQLite(),
 }
 
 
+wbe_excel_datetime_conv <-function(x, sec_in_day = 86400, origin = "1899-12-30", tz = "GMT"){
+  as.POSIXct(as.double(x)* sec_in_day, origin = origin, tz = tz)
+}
+
+wbe_excel_date_conv <-function(x, origin = "1899-12-30"){
+  as.Date(as.integer(x), origin = origin)
+}
+
+#dir = file.path("data", "db")
+wbe_file_to_df <- function(full_fn,
+                           read_func = read_csv,
+                           datetime_conv_func = wbe_excel_datetime_conv,
+                           date_conv_func = wbe_excel_date_conv,
+                           date_time_pattern = "dateTime",
+                           date_pattern = "^(?!.*dateTime).*Date.*$",#"analysisDate",
+                             ...){
+  #' reads in a list for
+  #' to will also change the case
+  #'
+  #' @param dir directory to read in
+  #' @param fn_pattern file names to read in
+  #' @param read_func function that reads a single file, must take a file name
+  #' @param datetime_conv_func converts something to a datetime
+  #' @param date_conv_func converts something to a date
+  #' @param col_name_cases converts something to a date
+  #' @param table_name_cases casing of table names
+  #' @param date_time_pattern matches all columns that need conversion to datetime
+  #' @param date_pattern matches all columns that need conversion to date
+  #' @param ... passed to read_func
+
+
+  #GET THE df FROM the list of dfs
+  df <-
+    read_func(full_fn, ...) %>%
+    mutate_at(vars(matches(date_time_pattern,  ignore.case = T, perl = T)),datetime_conv_func) %>%
+    mutate_at(vars(matches(date_pattern,  ignore.case = T, perl = T)), date_conv_func) %>%
+    as_tibble()
+}
+
+
+#dir = file.path("data", "db")
+wbe_files_to_dfs <- function(dir,
+                             fn_pattern = "*.csv",
+                             table_name_cases = "upper_camel",
+                            ...){
+
+  #' reads in a list for
+  #' to will also change the case
+  #'
+  #' @param dir directory to read in
+  #' @param fn_pattern file names to read in
+  #' @param table_name_cases casing of table names
+  #' ... passed to wbe_file_to_df
+
+  fns <- list.files(path = dir, pattern = fn_pattern, ignore.case = TRUE, full.names = TRUE)
+
+  to_add <- fns#intersect(tbls, sheets)
+
+  dfs <- list()
+  for (adding in to_add) {
+
+    #GET THE df FROM the list of dfs
+    df <-
+      wbe_file_to_df(full_fn = adding,
+                     ... = ...
+                     )
+
+    tbl_nm <-
+      adding %>%
+      file_path_sans_ext() %>%
+      basename() %>%
+      make_clean_names(case = table_name_cases)
+
+    dfs[[tbl_nm]] <- df
+  }
+
+  return(dfs)
+
+
+}
+
+
 
 
 
 wbe_xlsx_to_dfs <- function(full_fn,
                             col_name_cases = "lower_camel",
                             table_name_cases = "upper_camel",
-                            date_time_pattern = "dateTime"
+                            date_time_pattern = "dateTime",
+                            ...
 ){
   #' reads in an excel file into multiple dataframes
   #' ot will also change the case
@@ -147,42 +230,30 @@ wbe_xlsx_to_dfs <- function(full_fn,
   #' @param full_fn excel file name to read in
   #' @param col_name_cases case to use for the column names
   #' @param table_name_cases case to use for the tables ie the sheet names
+  #' @param ... passed to wbe_file_to_df
 
-  sheets <- file.path(full_fn) %>% readxl::excel_sheets()
-  #tbls <- dbListTables(conn)
 
-  to_add <- sheets#intersect(tbls, sheets)
+  to_add <- file.path(full_fn) %>% readxl::excel_sheets()
 
   dfs <- list()
-  for (sh in to_add) {
+  for (adding in to_add) {
 
     #GET THE df FROM the list of dfs
     df <-
-      readxl::read_xlsx(path = full_fn, sheet = sh , col_types = "text") %>%
-      mutate_at(vars(matches(date_time_pattern)), function(x, origin, tz){as.POSIXct(as.double(x)* (60*60*24), origin = origin, tz = tz)}, origin = "1899-12-30", tz="GMT") %>%
-      mutate_at(vars(matches("analysisDate")), function(x, origin){as.Date(as.integer(x), origin = origin)}, origin = "1899-12-30") %>%
+      wbe_file_to_df(full_fn = full_fn, read_func = read_xlsx, sheet = adding, col_types = "text",
+                     ... = ...
+                  )
+    tbl_nm <-
+      adding %>%
+      make_clean_names(case = table_name_cases)
 
-
-      #janitor::clean_names(case = col_name_cases) %>%
-      #mutate_if(is.character, snakecase::to_any_case, case = value_name_cases) %>%
-      as_tibble()
-
-    tbl_nm <- make_clean_names(string = sh , case = table_name_cases)
     dfs[[tbl_nm]] <- df
   }
 
   return(dfs)
+
 }
 
-
-
-wbe_folder_to_dfs <- function(dir,
-                              read_func = read_csv,
-                              col_name_cases = "lower_camel",
-                              table_name_cases = "upper_camel"){
-  #dir = file.path("data","priv","ottawa")
-  # TODO:
-}
 
 
 
@@ -244,7 +315,8 @@ wbe_append_lookups <- function(df,
 
 }
 
-
+#df <- to_add$Measurement
+#tbl_nm <- "Measurement"
 #wbe_append_from_df(df = dfs$Lookups, tbl_nm = "Lookups")
 wbe_append_from_df <- function(df,
                                tbl_nm,
@@ -265,7 +337,7 @@ wbe_append_from_df <- function(df,
 
   if(nrow(df) == 0)
   {
-    message(glue("wrote {nrow(df2)} rows to {tbl_nm}"))
+    message(glue("wrote {nrow(df)} rows to {tbl_nm}"))
     return(TRUE)
   }
 
@@ -293,12 +365,21 @@ wbe_append_from_df <- function(df,
     df_colNm <- wbe_find_df_col(df = df , col_nm = col_nm)
 
 
+
     if ( length(df_colNm) == 1 && cls != "blob" ){
       #make sure we have the correct type of column to add
       print(cls)
       print(df_colNm)
 
-      df2[[col_nm]] <- as(df[[df_colNm]], cls)
+
+      if ("Date" %in% class(df[[df_colNm]])){
+
+        df2[[col_nm]] <- as.POSIXct(df[[df_colNm]], origin="1970-01-01")
+
+      }else{
+        df2[[col_nm]] <- as(df[[df_colNm]], cls)
+      }
+
     }else if (cls == "blob"){
       message(glue("In {tbl_nm}, I don't know how to deal with 'blob' types yet, skipping and moving on."))
     }else{
@@ -307,7 +388,7 @@ wbe_append_from_df <- function(df,
 
   }
 
-  #delet the tmp ID
+  #delete the tmp ID
   df2$tmp_uuid <- NULL
 
   #correct casing in the DB
@@ -470,6 +551,55 @@ wbe_make_ID <-function(id_type, hints){
 }
 
 
+wbe_sampleIDs <-function(...){
+  #'
+  #' return the sample IDs from the sample table in the DB
+  #'
+  wbe_sample(...) %>% pull(sampleID)
+}
+
+
+wbe_sample <- function(siteids = NULL,
+                       conn = wbe_conn(),
+                       ...){
+  #'
+  #' return the sample table from the DB
+  #'
+  wbe_tbl("Sample", conn = conn, ... = ...) %>%
+    {if(is.null(siteids)) . else filter(., siteID %in% siteids)}
+}
+
+wbe_measurementIDs <- function(...){
+  #'
+  #' return the measurementID from the measurement table in the DB
+  #'
+  wbe_measurement(...) %>% pull(measurementID)
+}
+
+
+
+wbe_measurement <- function(sampleids = NULL,
+                            labids = NULL,
+                            assayids = NULL,
+                            siteids = NULL,
+                            conn = wbe_conn(),
+                            ...){
+  #'
+  #' return the measurement table in the db filtered by the relevent information
+  #'
+
+
+  #get sample IDs from the site
+  sampleids_from_site <- wbe_sampleIDs(siteids, conn = conn)
+
+  wbe_tbl("Measurement", conn = conn, ...) %>%
+    {if(is.null(sampleids)) . else filter(., sampleID %in% sampleids)} %>%
+    {if(is.null(labids)) . else filter(., labID %in% labids)} %>%
+    {if(is.null(assayids)) . else filter(.,  assayID %in% assayids)} %>%
+    {if(is.null(sampleids_from_site)) . else filter(.,  sampleID %in% sampleids_from_site)}
+}
+
+
 
 
 wbe_tbl <- function(tbl_nm,
@@ -487,10 +617,8 @@ wbe_tbl <- function(tbl_nm,
   dplyr::tbl(conn, tbl_nm) %>%
     {if(limit) head(., min(1,limit)) else . } %>%
     {if(collect_tbl) collect(.) else .} %>%
-    mutate_at(vars(matches("date")), anytime)
+    mutate_at(vars(matches("date")), anytime) # TODO: datetime conversion consistency
   #mutate_at(vars(matches("date"), ignore.case = T), as.integer)
-
-
 }
 
 
@@ -500,6 +628,8 @@ wbe_tbl_list <- function(conn = wbe_conn()){
   #' list tables in the db
   #'
   #' @param conn default connection to the db
+  #'
+
   dbListTables(conn)
 }
 
@@ -559,12 +689,12 @@ wbe_default_Id <- function(known_id,
                            tbl_nm ="Lab",
                            def_col_nm = "assayIDDefault",
                            conn = wbe_conn()){
-  #' finds the default ID,  is also vectorized
+  #' Finds the default ID,  is also vectorized
   #' So like when a measurement is taken by a given lab, that lab has a default assayId etc...
   #' returns known defaults
   #'
   #'
-  #' @param known_id the think we know
+  #' @param known_id the thing we know
   #' @param tbl_nm name of the table where the default is
   #' @param def_col_nm name of the column where the default we are looking for is.
   #' @param conn
@@ -612,9 +742,6 @@ wbe_labIDDefault <- function(reporter_id,
   #' @param conn
   #'
 
-
-
-
   wbe_default_Id(known_id = reporter_id,
                  tbl_nm =  "Reporter",
                  def_col_nm = "labIDDefault",
@@ -659,6 +786,10 @@ wbe_narrow_df <-function(df,
 
 wbe_ensure_measurement_id <- function(measure_df) {
   #' make sure the df have an ID
+  #'
+  #' @description takes a data frame the represents a measurement table, and makes sure it has an ID, that is unique to each measurement, returns a dataframe
+  #'
+  #' @param measure_df a dataframe
 
 
   #########################
@@ -679,12 +810,85 @@ wbe_ensure_measurement_id <- function(measure_df) {
 
 
 
+wbe_db_2_files <- function(conn = wbe_conn(),
+                           dir = dirname(conn@dbname),
+                           write_func = write_csv,
+                           fn_pattern = "{tbl_nm}.csv",
+                           ...){
+  #' Writes the db to a series of files, one per table.
+  #'
+  #' @param conn connection to the db
+  #' @param dir directory to save the files to
+  #' @param write_func function that does the writng defaults to write_csv
+  #' @param fn_pattern pattern for the file name, this should make sense with write_func
+  #' @param ... passed to write_func
+
+  tbl_nms <- dbListTables(conn)
+  for (tbl_nm in tbl_nms){
+    df <- wbe_tbl(tbl_nm = tbl_nm, conn = conn)
+
+
+    lapply(colnames(df), function(nm){
+      cls <- class(df[[nm]] )
+      if ("blob" %in% cls){
+        message(glue("In {tbl_nm}, I don't know how to deal with 'blob' types yet, skipping and moving on."))
+        df[[nm]] <- NULL
+        df[[nm]] <<- "blobs are not yet supported, in extract."
+      }
+    })
+
+
+    full_fn <- file.path(dir, glue(fn_pattern))
+
+
+    write_func(df, full_fn, ...)
+
+  }
+
+}
+
+
+
+wbe_sample_measurments_long_2_wide <- function(conn = wbe_conn(),
+                                               sample_df = wbe_sample(conn = conn),
+                                               measurement_df = wbe_measurement(conn = conn)){
+  #'
+  #' Takes two data frames sample and measurement, and combines them into a wide format then exports them as a single table
+  #'
+  #'
+
+  sample_df <-
+    sample_df %>%
+    rename_all(function(nm)(glue("Sample.{nm}")))
+
+  measurement_df_short <-
+    measurement_df %>%
+    unite(tmp_unified , c(measureCat, measureUnit, measureType, sampleIndex)) %>% #pull(tmp_unified)
+    select(-measurementID, -reportedDate) %>%
+    pivot_wider(names_from = tmp_unified, values_from = measureValue) %>%
+    arrange(sampleID)
+
+
+  sampleIDs <- measurement_df_short %>% distinct(sampleID, analysisDate) %>% arrange(sampleID, analysisDate)
+
+
+  f %>% group_by(cat) %>% mutate(id = row_number())
+
+
+  sampleIDs
+
+  rename_all(function(nm)(glue("Measurement.{nm}"))) %>%
+    full_join(sample_df, by = c("Measurement.sampleID" = "Sample.sampleID") ) %>%
+    relocate(matches("Sample\\.")) %>%
+    relocate(matches("\\.sampleID")) %>%
+    relocate(matches("\\.siteID")) %>%
+    arrange("Sample.siteID", "Sample.DateTime")
+}
 
 
 
 
-
-wbe_sample_measurments_wide_2_long<- function(df,
+wbe_sample_measurments_wide_2_long <- function(df,
                                               parent_reporter_id = NULL,
                                               parent_site_id = NULL,
                                               conn = wbe_conn()){
@@ -700,7 +904,7 @@ wbe_sample_measurments_wide_2_long<- function(df,
 
 
 
-  #wbe_delete_whole_DB()
+  #wbe_delete_whole_db()
   # dfsO <- wbe_xlsx_to_dfs(full_fn = file.path("data", "priv", "ottawa","www_ottawa_v0.1.1.xlsx"))
   # dfs <- wbe_xlsx_to_dfs(full_fn = file.path("data", "priv", "uw","www_uw_v0.1.1.xlsx"))
   # wbe_append_lookups(df = dfsO$Lookups)
@@ -751,7 +955,8 @@ wbe_sample_measurments_wide_2_long<- function(df,
 
   }
 
-  df <- df %>% distinct(sampleID, .keep_all = T)
+
+  df <- df %>% distinct(!!sym(sampleID_col_nm), .keep_all = T)
     #TODO:
   #df %>%  count(!!sym(sampleID_col_nm), sort = T) %>% filter(n > 1) %>%
   #  inner_join(df)
@@ -761,6 +966,7 @@ wbe_sample_measurments_wide_2_long<- function(df,
   #########################
   # Make labID if needed
   labID_col_nm <- wbe_find_df_col(df, "labID")
+
   if(is_null(labID_col_nm )){
     df[["Measurement.labID"]] <- wbe_labIDDefault(reporter_id = parent_reporter_id, conn = conn)
     labID_col_nm <- "Measurement.labID"
@@ -865,4 +1071,51 @@ wbe_sample_measurments_wide_2_long<- function(df,
 
 }
 
+
+
+
+
+wbe_read_mappers <- function(base_dir = file.path("src", "mappers"),
+                             mapper_pattern = "mapper.r"
+                             ){
+  #'
+  #' Reads in all the mapping codes makes a list of mappers and returns the object
+  #'
+  #' @param base_dir base directory finds all mappers that are sub mappers of this directory
+  #' @param mapper_pattern pattern of file to find
+  #'
+
+
+  list.files(path = base_dir, pattern = mapper_pattern, full.names = TRUE, recursive = TRUE) %>%
+    map(function(x) {
+
+      e <- parse(x)[[1]]
+      mapper <-eval(e)
+      mapper$mapcodefn <- basename(x)
+      #mapper$mapdir <- dirname(x)
+      mapper
+    }) %>% set_names(map(., ~.$nm))
+}
+
+
+
+
+wbe_read_and_map <- function(nm,
+                             mapper = get("mappers")[[nm]],
+                             full_fn =  file.path(mapper$mapdir, mapper$fn),
+                             read_func = mapper$reader,
+                             mapper_func = mapper$mapper
+){
+  #'
+  #'  master function that will call a given submitter  reader and mapper functions to read a raw list
+  #'
+  #' @param nm name of the submitter being mapped
+  #' @param full_fn full file name of the mapper
+  #' @param read_func function to read in the tables
+  #' @param mapper_func function to read in the tables
+  #'
+
+  dfs <- read_func(full_fn)
+  mapper_func(dfs)
+}
 
