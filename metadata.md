@@ -154,11 +154,11 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **preTreatmentDescription**: Describe the treatment that was performed
 
--   **childSampleID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a coma seperated list of child samples.
+-   **childID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a coma seperated list of child samples.
 
--   **parentSampleID** : If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample
+-   **parentID** : If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample
 
--   **sampleSizeL**: Total volume of water or sludge sampled.
+-   **sizeL**: Total volume of water or sludge sampled.
 
 -   **storageTempC**: Temperature that the sample is stored at in Celsius.
 
@@ -252,7 +252,7 @@ The individual or organization that is reporting and responsible for the quality
 
 Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
--   **lab.ID**: Unique identifier for the laboratory. (Primary Key)
+-   **ID**: Unique identifier for the laboratory. (Primary Key)
 -   **assay.IDDefault**: Unique identifier for the assay normally performed by this lab, use to populate new `measurement` records. (foreign key)
 -   **laboratoryName**: Name corresponding to lab.
 -   **contactName**: Contact person or group, for the lab.
@@ -296,13 +296,14 @@ The assay method that was used to perform testing. This database will be develop
 
 -   **qualityAssuranceQC** : description of quality control steps taken (text)
 
--   **assayDate**: Date the assayMethod was created or updated (for version update).
-
 -   **inhibition**: Text description of the inhibition.
 
 -   **surrogateRecovery**: Text description of the Surrogate Recovery for this method.
 
 -   **assayDesc**: Description of assay.
+
+-   **assayDate**: Date the assayMethod was created or updated (for version update).
+
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
 
@@ -314,7 +315,7 @@ A simple polygon that encloses an are on the surface of the earth, normally thes
 
 -   **pop**: Approximate population size of living inside a given polygon.
 
--   **polygonType**: Type of polygon
+-   **type**: Type of polygon
 
     -   `sewerNetwork` : Sewer network
     -   `healthRegion` : Health region served by the sewer network
