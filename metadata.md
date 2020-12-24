@@ -389,7 +389,7 @@ Used for lookup values of all category based columns
 -   **value**: Name of the value
 -   **description**: Name of the description
 
-## File naming convention
+## Naming conventions
 
 -   **table names**: Table names use UpperCamelCase.
 -   **variable and category names**: Both variables and variable categories use lowerCamelCase.
@@ -397,8 +397,12 @@ Used for lookup values of all category based columns
 -   **Variable order** if a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous. In this case, show a `analysisDate` followed by a series of measurements taken on that date ex(`temp_c_singleton`) then another `covidN1_PPMV_mean` followed by more measurements ex(`covidN1_PPMV_mean`)
 -   **merging Tables** : when you merge tables concatenate column names with `.` . So `dateTime` from the `Sample` table becomes `Sample.dateTime`.
 -   **Derived, summary or transformed measures**: Follows the same approach as naming variable and category names, except use a `_` when concatenating variable or category names. These three types measures are generated to summarize or transform one or more variables. An example is calculating the mean value of one or more SARS-CoV-2 regions. Normalization and standardization are other examples of a transformed measure.
+-   **date**: MM/DD/YYYY HH:mm:ss (24 hour format, in UTC)
+-   **location**: TBD
+-   **versions**: [Semantic versioning](https://semver.org)
 
-**Examples**
+
+## Examples of how to generate wide and long variable and cateogory names
 
 ### 1) Simple viral region report
 
@@ -412,10 +416,6 @@ A long table would represent a test viral measurement as:
 A wide table would represent the same measurement as:
 
     measurment.covidN1_PPMV_mean = 42
-
--   **date**: MM/DD/YYYY HH:mm:ss (24 hour format, in UTC)
--   **location**: TBD
--   **versions**: [Semantic versioning](https://semver.org)
 
 ### 2) Derived measure
 
