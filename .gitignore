@@ -7,7 +7,7 @@
 .html
 *.Rproj
 data/
-
+src/*junk*
 .Rhistory
 
 *.html
