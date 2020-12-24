@@ -1,36 +1,38 @@
-CREATE TABLE [Polygon] (
-  [polygonID] int NOT NULL PRIMARY KEY,
+
+
+CREATE TABLE  IF NOT EXISTS [Polygon] (
+  [polygonID] char NOT NULL PRIMARY KEY,
   [polygonName] char,
   [polygonPop] integer,
   [polygonType] char,
   [polygonWKT] char,
-  [polygonFile] VARBINARY(MAX),
+  [polygonFile] blob null default (x''),
   [polygonLink] char
 );
 
-CREATE TABLE [Reporter] (
-  [reporterID] int NOT NULL PRIMARY KEY,
-  [siteIDDefault] int,
-  [labIDDefault]  int,
+CREATE TABLE IF NOT EXISTS [Reporter] (
+  [reporterID] char NOT NULL PRIMARY KEY,
+  [siteIDDefault] char,
+  [labIDDefault]  char,
   [contactName] char,
   [contactEmail] char,
   [contactPhone] int,
-  [allowAccessToSelf] bit,
-  [allowAccessToFederalPublicHealthAuthorities] bit,
-  [allowAccessToLocalPublicHealthAuthorities] bit,
-  [allowAccessToProvinicialPublicHealthAuthorities] bit,
-  [allowAccessToOtherDataProviders] bit,
-  [allowAccessToAllOrganizations] bit,
-  [allowAccessToPublic] bit,
+  [allowAccessToSelf] INTEGER,
+  [allowAccessToFederalPublicHealthAuthorities] INTEGER,
+  [allowAccessToLocalPublicHealthAuthorities] INTEGER,
+  [allowAccessToProvinicialPublicHealthAuthorities] INTEGER,
+  [allowAccessToOtherDataProviders] INTEGER,
+  [allowAccessToAllOrganizations] INTEGER,
+  [allowAccessToPublic] INTEGER,
   [allowAccessToSpec] char,
   [notes] char
 );
 
-CREATE TABLE [Site] (
-  [siteID] int NOT NULL PRIMARY KEY,
+CREATE TABLE  IF NOT EXISTS [Site] (
+  [siteID] char NOT NULL PRIMARY KEY,
   [siteName] char,
   [siteDescription] char,
-  [reporterID]int FOREIGN KEY REFERENCES Reporter(reporterID),
+  [reporterID] char,
   [siteType] char,
   [siteTypeOther] char,
   [sampleTypeDefault] char,
@@ -46,26 +48,28 @@ CREATE TABLE [Site] (
   [notes] char,
   [sewerNetworkPolygonID] char,
   [sewerNetworkFileLink] char,
-  [sewerNetworkFileBlob] VARBINARY(MAX)
+  [sewerNetworkFileBlob]  blob null default (x''),
+  FOREIGN KEY ([reporterID]) REFERENCES Reporter(reporterID) DEFERRABLE INITIALLY DEFERRED
 );
 
-CREATE TABLE [Sample] (
-  [sampleID] int NOT NULL PRIMARY KEY,
-  [siteID] int FOREIGN KEY REFERENCES Site(siteID),
-  [sampleDateTime] dateTime,
-  [sampleDateTimeStart] dateTime,
-  [sampleDateTimeEnd] dateTime,
+CREATE TABLE  IF NOT EXISTS [Sample] (
+  [sampleID] char NOT NULL PRIMARY KEY,
+  [siteID] char,
+  [DateTime] dateTime,
+  [DateTimeStart] dateTime,
+  [DateTimeEnd] dateTime,
   [sampleType] char,
   [sampleTypeOther] char,
   [methodCollection] char,
   [methodCollectionOther] char,
   [sampleSizeL] float,
   [sampleStorageTempC] float,
-  [notes] char
+  [notes] char,
+  FOREIGN KEY ([siteID]) REFERENCES Reporter(siteID) DEFERRABLE INITIALLY DEFERRED
 );
 
-CREATE TABLE [AssayMethod] (
-  [assayID] int NOT NULL PRIMARY KEY,
+CREATE TABLE  IF NOT EXISTS [AssayMethod] (
+  [assayID] char NOT NULL PRIMARY KEY,
   [version] char,
   [sampleSizeL] float,
   [loq] float,
@@ -80,36 +84,46 @@ CREATE TABLE [AssayMethod] (
 
 
 
-CREATE TABLE [Lab] (
-  [labId] int NOT NULL PRIMARY KEY,
-  [assayID] int FOREIGN KEY REFERENCES AssayMethod(assayID),
+CREATE TABLE  IF NOT EXISTS [Lab] (
+  [labId] char NOT NULL PRIMARY KEY,
+  [assayIDDefault] char,
   [laboratoryName] char,
   [contactName] char,
   [contactEmail] char,
   [contactPhone] int,
-  [labUpdateDate] date
+  [labUpdateDate] date,
+  FOREIGN KEY ([assayIDDefault]) REFERENCES AssayMethod(assayID) DEFERRABLE INITIALLY DEFERRED
 );
 
-CREATE TABLE [CovidPublicHealthData] (
-  [publicHealthID] int NOT NULL PRIMARY KEY,
-  [reporterID]int FOREIGN KEY REFERENCES Reporter(reporterID),
-  [polygonID]int FOREIGN KEY REFERENCES Polygon(polygonID),
+CREATE TABLE  IF NOT EXISTS [CovidPublicHealthData] (
+  [publicHealthID] char NOT NULL PRIMARY KEY,
+  [reporterID]char,
+  [polygonID]char,
   [date] date,
   [dateType] char,
   [numberOfNewCases] float,
   [numberOfActiveCases] float,
   [numberOfTests] float,
   [numberOfPositiveTests] float,
-  [percentPositivityRate] float
+  [percentPositivityRate] float,
+  FOREIGN KEY ([reporterID]) REFERENCES Reporter(reporterID) DEFERRABLE INITIALLY DEFERRED,
+  FOREIGN KEY ([polygonID]) REFERENCES Polygon(polygonID) DEFERRABLE INITIALLY DEFERRED
+
 );
 
 
+CREATE TABLE  IF NOT EXISTS [Lookups](
+  [tableName] char,
+  [columnName] char,
+  [value] char,
+  [description] char
+);
 
-CREATE TABLE [Measurement] (
-  [measurementID] int NOT NULL PRIMARY KEY,
-  [sampleID] int FOREIGN KEY REFERENCES sample(sampleID),
-  [labID] int FOREIGN KEY REFERENCES Lab(labID),
-  [assayID] int FOREIGN KEY REFERENCES AssayMethod(assayID),
+CREATE TABLE  IF NOT EXISTS [Measurement] (
+  [measurementID] char NOT NULL PRIMARY KEY,
+  [sampleID] char,
+  [labID] char,
+  [assayID] char,
   [analysisDate] date,
   [reportedDate] date,
   [sampleFraction] char,
@@ -119,8 +133,11 @@ CREATE TABLE [Measurement] (
   [measureUnitOther] char,
   [measureType] char,
   [measureTypeOther] char,
+  [sampleIndex] char,
   [measureValue] float,
-  [measureValueDetected] bit,
-  [notes] char
-);
-
+  [measureValueDetected] INTEGER,
+  [notes] char,
+  FOREIGN KEY ([sampleID]) REFERENCES Sample(sampleID) DEFERRABLE INITIALLY DEFERRED,
+  FOREIGN KEY ([labID]) REFERENCES Lab(labID) DEFERRABLE INITIALLY DEFERRED,
+  FOREIGN KEY ([assayID]) REFERENCES AssayMethod(assayID) DEFERRABLE INITIALLY DEFERRED
+)
