@@ -97,9 +97,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
 -   **index**: Index if the measurement was taken multiple times (int)
 
--   **value**: Value of measureType.
-
--   **valueDetected**: Boolean Value if True then covid-19 was detected.
+-   **value**: Value of measureType, note if unit is a `bool` then value must be either 1 or zero(float).
 
 -   **qualityFlag**: Boolean Value if True if the measurement might have some quality control issue
 
@@ -160,7 +158,11 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **sizeL**: Total volume of water or sludge sampled.
 
+-   **samplingTempC**: Temperature that the sample is stored at while it is being sampled, this field is mainly relevant for coposite samples wich are typically kept at either ambiant temperature while sampling, or refrigerated to 4C.
+
 -   **storageTempC**: Temperature that the sample is stored at in Celsius.
+
+-   **mailedOnIce**: Boolean value Was the sample packed in ice before being sent to the lab.
 
 -   **qualityFlag**: Boolean Value True if the sample might have some quality control issue
 
