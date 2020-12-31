@@ -109,7 +109,47 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
 The sample is an amount of water taken from a site which is then analysed by a lab.
 
--   **ID**: Unique identification for sample. Suggest siteID-date-sample, or siteID-. (Primary Key)
+-   **sampleID**: Unique identification for sample. Suggest siteID-date-sample, or siteID-. (Primary Key)
+
+-   **siteID**: links with the site table. (foreign key)
+
+-   **dateTime**: for grab samples this is the date and time and timezone the sample was taken.
+
+-   **dateTimeStart**: for integrated time average samples this is the date and time and timezone the sample was started being taken.
+
+-   **dateTimeEnd**: for integrated time average samples this is the date and time and timezone the sample was finished being taken.
+
+-   **sampleType**: type of sample.
+
+    -   `sludge`: Primary clarified sludge
+    -   `rawCollector`: Raw wastewater (in collector system)
+    -   `rawPostGrit`: Raw wastewater (post-grit)
+    -   `other`: Other type of site. Add description to `sampleTypeOther`.
+
+-   **sampleTypeOther**: Description for other type of sample type. See `sampleType`.
+
+-   **methodCollection**: method used to collect the data.
+
+    -   `grab sample`: Sample was a simple grab sample
+    -   `contFlowProp`: Continuous flow proportional
+    -   `contConstant`: Continuous constant
+    -   `contOther`: Continuous other
+    -   `discTimeProp`: Discrete time proportional
+    -   `discTimeProp24hq1h`: Discrete time proportional 24-hour composite, every 1 hr
+    -   `discTimeProp24hq4h`: Discrete time proportional 24-hour composite, every 4 hr
+    -   `discTimeProp24hq6h`: Discrete time proportional 24-hour composite, every 6 hr
+    -   `discFlowProp`: Discrete flow proportional
+    -   `discVolumeProp`: Discrete volume proportional
+    -   `discOther`: Discrete other
+    -   `integratedOther`: Integrated other
+
+-   **methodCollectionOther**: Description for other type of method when any option with `other` is selected `methodCollection`.
+
+-   **sampleSizeL**: Total volume of water or sludge sampled.
+
+-   **sampleStorageTempC**: Temperature that the sample is stored at in Celsius.
+
+-   **notes**: Any additional notes.
 
 -   **site.ID**: Links with the site table. (foreign key)
 
@@ -287,43 +327,29 @@ The assay method that was used to perform testing. This database will be develop
     -   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
 
 -   **unitsOther**: Units used by this method, that are applicable to the LOD or LOQ.
-
 -   **concentrationMethod**: method used to concentrate the sample test based description
-
 -   **extractionMethod**: method used to extract sample (text)
-
 -   **pcrMethod**: description of PCR method used (text)
-
 -   **qualityAssuranceQC** : description of quality control steps taken (text)
-
 -   **inhibition**: Text description of the inhibition.
-
 -   **surrogateRecovery**: Text description of the Surrogate Recovery for this method.
-
 -   **assayDesc**: Description of assay.
-
 -   **assayDate**: Date the assayMethod was created or updated (for version update).
-
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
 
 A simple polygon that encloses an are on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
 
 -   **ID**: (Primary key) Unique identifier for the polygon.
-
 -   **name**: Name of the polygon (e.g. G.E. Booth catchment area, Ottawa Health Region).
-
 -   **pop**: Approximate population size of living inside a given polygon.
-
 -   **type**: Type of polygon
 
     -   `sewerNetwork` : Sewer network
     -   `healthRegion` : Health region served by the sewer network
 
 -   **wkt** [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) of the polygon
-
 -   **file** File for storing the polygon BLOB format.
-
 -   **link** Link to an external file that describes the geometry.
 
 ## CovidPublicHealthData (CovidPublicHealthData.csv) <span id="CovidPublicHealthData"><span>
@@ -331,13 +357,9 @@ A simple polygon that encloses an are on the surface of the earth, normally thes
 Saves some information about covid-19 in a given polygon.
 
 -   **ID**: (Primary key) Unique identifier for the table.
-
 -   **Reporter.ID** ID of the reporter who gave this data
-
 -   **Polygon.ID**: Links with the `Polygon` table (foreign key).
-
 -   **date**: Date of covid-19 measure.
-
 -   **dateType**: Type of date used.
 
     -   `episodeDate` : Episode date is usually just the earliest of a list of dates available as not every case has every date
@@ -354,12 +376,9 @@ Saves some information about covid-19 in a given polygon.
     -   `hospitalCensus` Hospital census or the number of people admitted with covid-19.
     -   `hospitalAdmit` Hospital admissions or patients newly admitted to hospital.
 
-
 -   **Value**:numeric
 
 -   **notes**: Any additional notes.
-
-
 
 ## Lookups (Lookups.csv) <span id="Lookups"><span>
 
@@ -370,15 +389,24 @@ Used for lookup values of all category based columns
 -   **value**: Name of the value
 -   **description**: Name of the description
 
-## File naming convention
+## Naming conventions
 
 -   **table names**: Table names use UpperCamelCase.
--   **variable and category names**: Both variables and variable categories use lowerCamelCase
+-   **variable and category names**: Both variables and variable categories use lowerCamelCase.
 -   **variables in Wide tables**: Wide tables use `_` to concatenate variables from long tables.
--   **Variable order** if a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous, in this case. we would show a `analysisDate` followed by a series of measurements taken on that date ex(`temp_c_singleton`) then another `covidN1_PPMV_mean` followed by more measurements ex(`covidN1_PPMV_mean`)
+-   **Variable order** if a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous. In this case, show a `analysisDate` followed by a series of measurements taken on that date ex(`temp_c_singleton`) then another `covidN1_PPMV_mean` followed by more measurements ex(`covidN1_PPMV_mean`)
 -   **merging Tables** : when you merge tables concatenate column names with `.` . So `dateTime` from the `Sample` table becomes `Sample.dateTime`.
+-   **Derived, summary or transformed measures**: Follows the same approach as naming variable and category names, except use a `_` when concatenating variable or category names. These three types measures are generated to summarize or transform one or more variables. An example is calculating the mean value of one or more SARS-CoV-2 regions. Normalization and standardization are other examples of a transformed measure.
+-   **date**: MM/DD/YYYY HH:mm:ss (24 hour format, in UTC)
+-   **location**: TBD
+-   **versions**: [Semantic versioning](https://semver.org)
 
-A long table would represent a test sample as the following:
+
+## Examples of how to generate wide and long variable and cateogory names
+
+### 1) Simple viral region report
+
+A long table would represent a test viral measurement as:
 
     category = covidN1
     unit = PPMoV
@@ -389,6 +417,51 @@ A wide table would represent the same measurement as:
 
     measurment.covidN1_PPMV_mean = 42
 
--   **date**: MM/DD/YYYY HH:mm:ss (24 hour format, in UTC)
--   **location**: TBD
--   **versions**: [Semantic versioning](https://semver.org)
+### 2) Derived measure
+
+To report a mean value of existing covidN1 and covidN2 measures:
+
+    measureCat = covidN1
+    measureUnit = ml
+    measureType = mean
+    measureValue = 42
+
+    measureCat = covidN2
+    measureUnit = ml
+    measureType = mean
+    measureValue = 40
+
+Represent the derived measure as: 
+
+long table format
+
+    measureCat = covidN1_covidN2
+    measureUnit = ml
+    measureType = mean
+    measureValue = 41
+
+or,
+
+wide table format
+
+    covidN1_covidN2_ml_mean = 41
+
+-   Viral SARS-CoV-2 copies per reference copies.
+
+### 3) Transformed measure 
+
+To report mean viral copies of mean value N1 and N2 per viral copies of PMMV:
+
+Represent the derived measure as:
+
+long table description
+
+    covidN1_covidN2 = 2
+    measureUnit = PPMV
+    measureType = meanNormal 
+
+or,
+
+wide table fromat
+
+    covidN1_covidN2-PPMV-meanNormal = 2
