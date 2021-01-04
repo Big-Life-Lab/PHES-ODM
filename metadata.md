@@ -327,14 +327,14 @@ The assay method that was used to perform testing. This database will be develop
     -   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
 
 -   **unitsOther**: Units used by this method, that are applicable to the LOD and LOQ.
--   **concentrationMethod**: method used to concentrate the sample test based description
--   **extractionMethod**: method used to extract sample (text)
--   **pcrMethod**: description of PCR method used (text)
--   **qualityAssuranceQC** : description of quality control steps taken (text)
--   **inhibition**: Text description of the inhibition.
--   **surrogateRecovery**: Text description of the Surrogate Recovery for this method.
--   **assayDesc**: Description of assay.
--   **assayDate**: Date the assayMethod was created or updated (for version update).
+-   **concentrationMethod**: Description of the method used to concentrate the sample
+-   **extractionMethod**: Description of the method used to extract the sample
+-   **pcrMethod**: Description of the PCR method used
+-   **qualityAssuranceQC** : Description of the quality control steps taken
+-   **inhibition**: Description of the inhibition parameters.
+-   **surrogateRecovery**: Description of the surrogate recovery for this method.
+-   **assayDesc**: Description of the assay.
+-   **assayDate**: Date on which the assayMethod was created or updated (for version update).
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
 
