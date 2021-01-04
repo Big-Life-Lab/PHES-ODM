@@ -24,15 +24,15 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-4
 
 Results for a measurement of a single property of SARS-CoV-2 wastewater test, for either a viral region or wastewater treatment plant.
 
--   **uID**: Unique identification for measurement table (Primary Key).
+-   **uID**: (Primary key) Unique identification for measurement table.
 
 -   **ID**: Unique identification for a given analysis, where analysis means you performed all steps needed to get the measurement, but measurements are not independent.
 
--   **sample.ID**: Links with the identified sample (foreign key).
+-   **sample.ID**: (Foreign key) Links with the identified sample.
 
--   **lab.ID**: Links with the identified Lab that performed the analysis (foreign key).
+-   **lab.ID**: (Foreign key) Links with the identified Lab that performed the analysis.
 
--   **assay.ID**: Links with the AssayMethod table used to perform the analysis (foreign key).
+-   **assay.ID**: (Foreign key) Links with the AssayMethod table used to perform the analysis.
 
 -   **analysisDate**: Date the data was analysed in the lab.
 
@@ -109,9 +109,9 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
 The sample is an amount of water taken from a site which is then analysed by a lab.
 
--   **sampleID**: Unique identification for sample. Suggest siteID-date-sample, or siteID-. (Primary Key)
+-   **sampleID**: (Primary Key) Unique identification for sample. Suggest siteID-date-sample, or siteID-.
 
--   **siteID**: links with the site table. (foreign key)
+-   **site.ID**: (Foreign key) Links with the site table.
 
 -   **dateTime**: for grab samples this is the date and time and timezone the sample was taken.
 
@@ -151,7 +151,7 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **notes**: Any additional notes.
 
--   **site.ID**: Links with the site table. (foreign key)
+-   **site.ID**: (Foreign key) Links with the site table.
 
 -   **dateTime**: For grab samples this is the date and time and timezone the sample was taken.
 
@@ -216,7 +216,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **description**: Description of wastewater site (city, building, street, etc., to identify location sampled).
 
--   **reporter.ID**: links with the reporter that is responsible for the data (foreign key).
+-   **reporter.ID**: (Foreign key) Links with the reporter that is responsible for the data.
 
 -   **type**: Type of site or institution where sample was taken.
 
@@ -262,7 +262,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **notes**: Any additional notes.
 
--   **Polygon.ID**: Links with the Polygon table, this should encumpase the area that typically drains into this site.(foreign key)
+-   **Polygon.ID**: (Foreign key) Links with the Polygon table, this should encumpase the area that typically drains into this site.
 
 -   **sewerNetworkFileLink**: Link to a file that has any detailed information about the sewer network associated with the site (any format).
 
@@ -273,13 +273,13 @@ The site of wastewater sampling, including several *defaults* that can be used t
 The individual or organization that is reporting and responsible for the quality of the data.
 
 -   **ID**: (Primary Key) Unique identifier for the person or organization that is reporting the data.
--   **site.IDDefault**: Used as the default when new `Sample` records are created by this `reporter`.
--   **lab.IDDefault**: Used as the default when new `Sample` records are created by this `reporter`.
+-   **site.IDDefault**: (Foreign key) Used as the default when new `Sample` records are created by this `reporter`.
+-   **lab.IDDefault**: (Foreign key) Used as the default when new `Sample` records are created by this `reporter`.
 -   **contactName**: Full Name of the reporter, either an organization or individual.
 -   **contactEmail**: Contact e-mail address.
 -   **contactPhone**: Contact phone number.
 -   **allowAcceesToSelf**: Default: True. If this is False the data will not be shown on the portal when the data provider logs in
--   **allowAcceesToFederalPublicHealthAuthorities**: Default: True. If this is False the data will not be available to employees of PHAC
+-   **allowAccessToFederalPublicHealthAuthorities**: Default: True. If this is False the data will not be available to employees of PHAC
 -   **allowAccessToLocalPublicHealthAuthorities**: Default: True. If this is False data will not be available when local health Authorities log in.
 -   **allowAccessToProvincialPublicHealthAuthorities**: Default: True. If this is False data will not available when provincial health Authorities log in.
 -   **allowAccessToOtherDataProviders**: Default: True. If this is False data will not be available when other data providers login.
@@ -292,8 +292,8 @@ The individual or organization that is reporting and responsible for the quality
 
 Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
--   **ID**: Unique identifier for the laboratory. (Primary Key)
--   **assay.IDDefault**: Unique identifier for the assay normally performed by this lab, use to populate new `measurement` records. (foreign key)
+-   **ID**: (Primary key) Unique identifier for the laboratory.
+-   **assay.IDDefault**: (Foreign key) Unique identifier for the assay normally performed by this lab, use to populate new `measurement` records.
 -   **laboratoryName**: Name corresponding to lab.
 -   **contactName**: Contact person or group, for the lab.
 -   **contactEmail**: Contact e-mail address, for the lab.
@@ -304,7 +304,7 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 The assay method that was used to perform testing. This database will be developed in consultation with testing labs to identify key assay features that can affect SARS-CoV-2 results.
 
--   **assay.ID**: (Primary key) Unique identifier for the assay method.
+-   **ID**: (Primary key) Unique identifier for the assay method.
 
 -   **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended.
 
@@ -357,8 +357,8 @@ A simple polygon that encloses an are on the surface of the earth, normally thes
 Saves some information about covid-19 in a given polygon.
 
 -   **ID**: (Primary key) Unique identifier for the table.
--   **Reporter.ID** ID of the reporter who gave this data
--   **Polygon.ID**: Links with the `Polygon` table (foreign key).
+-   **Reporter.ID**: (Foreign key) ID of the reporter who gave this data.
+-   **Polygon.ID**: (Foreign key) Links with the `Polygon` table.
 -   **date**: Date of covid-19 measure.
 -   **dateType**: Type of date used.
 
@@ -411,7 +411,7 @@ A long table would represent a test viral measurement as:
     category = covidN1
     unit = PPMoV
     aggregation = Mean
-    value = 42 
+    value = 42
 
 A wide table would represent the same measurement as:
 
@@ -431,7 +431,7 @@ To report a mean value of existing covidN1 and covidN2 measures:
     measureType = mean
     measureValue = 40
 
-Represent the derived measure as: 
+Represent the derived measure as:
 
 long table format
 
@@ -448,7 +448,7 @@ wide table format
 
 -   Viral SARS-CoV-2 copies per reference copies.
 
-### 3) Transformed measure 
+### 3) Transformed measure
 
 To report mean viral copies of mean value N1 and N2 per viral copies of PMMV:
 
@@ -458,7 +458,7 @@ long table description
 
     covidN1_covidN2 = 2
     measureUnit = PPMV
-    measureType = meanNormal 
+    measureType = meanNormal
 
 or,
 
