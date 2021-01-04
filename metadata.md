@@ -310,11 +310,11 @@ The assay method that was used to perform testing. This database will be develop
 
 -   **sampleSizeL**: Size of the sample that is analysed in liters.
 
--   **loq**: Limit of Quantification for this method if one exists.
+-   **loq**: Limit of quantification (LOQ) for this method if one exists.
 
--   **lod**: Limit of detection for this method if one exists.
+-   **lod**: Limit of detection (LOD) for this method if one exists.
 
--   **units**: Units used by this method, that are applicable to the LOD or LOQ.
+-   **units**: Units used by this method, that are applicable to the LOD and LOQ.
 
     -   `PMMoV`: Viral copies/copies PMMoV
     -   `ml`: Viral copies/mL
@@ -326,7 +326,7 @@ The assay method that was used to perform testing. This database will be develop
     -   `mgOl`: milligrams of oxygen per liter
     -   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
 
--   **unitsOther**: Units used by this method, that are applicable to the LOD or LOQ.
+-   **unitsOther**: Units used by this method, that are applicable to the LOD and LOQ.
 -   **concentrationMethod**: method used to concentrate the sample test based description
 -   **extractionMethod**: method used to extract sample (text)
 -   **pcrMethod**: description of PCR method used (text)
