@@ -38,7 +38,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
 -   **reportDate**: Data the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original `sampleID` but updated `measurementID`, `reportDate` and `assayID` (if needed).
 
--   **fractionAnalysed**: Faction of the sample that is analyzed.
+-   **fractionAnalyzed**: Faction of the sample that is analyzed.
 
     -   `liquid`: Liquid fraction
     -   `solid`: Solid fraction
@@ -252,7 +252,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **sample.collectOtherDefault**: Used as default when new `Sample` records are created see `methodCollectionOther` in `Sample` table.
 
--   **measurement.fractionAnalysedDefault**: Used as the default when new `Measurement` records are created.
+-   **measurement.fractionAnalyzedDefault**: Used as the default when new `Measurement` records are created.
 
 -   **sample.tempCdefault**: Used as the default when new `Sample` records are created
 
