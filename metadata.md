@@ -34,7 +34,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
 -   **assay.ID**: (Foreign key) Links with the AssayMethod table used to perform the analysis.
 
--   **analysisDate**: Date the data was analysed in the lab.
+-   **analysisDate**: Date the data was analyzed in the lab.
 
 -   **reportDate**: Data the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original `sampleID` but updated `measurementID`, `reportDate` and `assayID` (if needed).
 
@@ -107,7 +107,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
 ## Sample (Sample.csv) <span id="Sample"><span>
 
-The sample is an amount of water taken from a site which is then analysed by a lab.
+The sample is an amount of water taken from a site which is then analyzed by a lab.
 
 -   **sampleID**: (Primary Key) Unique identification for sample. Suggest siteID-date-sample, or siteID-.
 
@@ -194,7 +194,7 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **preTreatmentDescription**: Describe the treatment that was performed
 
--   **childID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a coma seperated list of child samples.
+-   **childID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a coma separated list of child samples.
 
 -   **parentID** : If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample
 
@@ -239,8 +239,8 @@ The site of wastewater sampling, including several *defaults* that can be used t
     -   `treatPlantInfluent`: Treatment plant influent
     -   `treatPlantPrimarySludge`: Primary treatment sludge
     -   `treatPlantEffluent`: Treatment plant effluent
-    -   `buildingCleanout`: Building cleanout
-    -   `propertyLineCleanout`: Property line cleanout
+    -   `buildingCleanout`: Building clean out
+    -   `propertyLineCleanout`: Property line clean out
 
 -   **accessTypeOther**: Description of access point where the access type is other is selected for `accessType`.
 
@@ -262,7 +262,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **notes**: Any additional notes.
 
--   **Polygon.ID**: (Foreign key) Links with the Polygon table, this should encumpase the area that typically drains into this site.
+-   **Polygon.ID**: (Foreign key) Links with the Polygon table, this should encompass the area that typically drains into this site.
 
 -   **sewerNetworkFileLink**: Link to a file that has any detailed information about the sewer network associated with the site (any format).
 
@@ -308,7 +308,7 @@ The assay method that was used to perform testing. This database will be develop
 
 -   **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended.
 
--   **sampleSizeL**: Size of the sample that is analysed in liters.
+-   **sampleSizeL**: Size of the sample that is analyzed in liters.
 
 -   **loq**: Limit of quantification (LOQ) for this method if one exists.
 
@@ -402,7 +402,7 @@ Used for lookup values of all category based columns
 -   **versions**: [Semantic versioning](https://semver.org)
 
 
-## Examples of how to generate wide and long variable and cateogory names
+## Examples of how to generate wide and long variable and category names
 
 ### 1) Simple viral region report
 
@@ -415,7 +415,7 @@ A long table would represent a test viral measurement as:
 
 A wide table would represent the same measurement as:
 
-    measurment.covidN1_PPMV_mean = 42
+    measurement.covidN1_PPMV_mean = 42
 
 ### 2) Derived measure
 
@@ -462,6 +462,6 @@ long table description
 
 or,
 
-wide table fromat
+wide table format
 
     covidN1_covidN2-PPMV-meanNormal = 2
