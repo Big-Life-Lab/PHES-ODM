@@ -368,13 +368,13 @@ Saves some information about covid-19 in a given polygon.
 
 -   **valueType**: Type of date used.
 
-    -   `confirmed` : Number of confirmed cases.
-    -   `active`:Number of active cases.
-    -   `tests`:Number Number of tests.
+    -   `confirmed`: Number of confirmed cases.
+    -   `active`: Number of active cases.
+    -   `tests`: Number of tests.
     -   `positiveTests`: Number of positive tests.
-    -   `percentPositivityRate` Percent positivity rate.
-    -   `hospitalCensus` Hospital census or the number of people admitted with covid-19.
-    -   `hospitalAdmit` Hospital admissions or patients newly admitted to hospital.
+    -   `percentPositivityRate`: Percent positivity rate.
+    -   `hospitalCensus`: Hospital census or the number of people admitted with covid-19.
+    -   `hospitalAdmit`: Hospital admissions or patients newly admitted to hospital.
 
 -   **Value**:numeric
 
