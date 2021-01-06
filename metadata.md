@@ -370,13 +370,13 @@ Saves some information about covid-19 in a given polygon.
 
     -   `confirmed`: Number of confirmed cases.
     -   `active`: Number of active cases.
-    -   `tests`: Number of tests.
+    -   `tests`: Number of tests performed.
     -   `positiveTests`: Number of positive tests.
     -   `percentPositivityRate`: Percent positivity rate.
     -   `hospitalCensus`: Hospital census or the number of people admitted with covid-19.
     -   `hospitalAdmit`: Hospital admissions or patients newly admitted to hospital.
 
--   **Value**:numeric
+-   **Value**: The numeric value that is being reported.
 
 -   **notes**: Any additional notes.
 
