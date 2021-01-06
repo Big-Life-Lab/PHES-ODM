@@ -223,8 +223,9 @@ The site of wastewater sampling, including several *defaults* that can be used t
     -   `airplane`: Airplane
     -   `correctionalFacility`: Federal or provincial correctional facility or jail
     -   `elementrarySchool`: Elementary school
+    -   `hospital`: Hospital
     -   `lagoon`: Lagoon
-    -   `longTermCareHome`: Long-term care home
+    -   `longTermCareFacility`: Long-term care facility
     -   `sewageTruck`: Sewage truck
     -   `universityCampus`: University campus or resident
     -   `WWTP`: Wastewater treatment plant
