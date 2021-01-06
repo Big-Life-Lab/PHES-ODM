@@ -376,7 +376,7 @@ Saves some information about covid-19 in a given polygon.
     -   `hospitalCensus`: Hospital census or the number of people admitted with covid-19.
     -   `hospitalAdmit`: Hospital admissions or patients newly admitted to hospital.
 
--   **Value**: The numeric value that is being reported.
+-   **value**: The numeric value that is being reported.
 
 -   **notes**: Any additional notes.
 
