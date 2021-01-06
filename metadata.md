@@ -107,17 +107,17 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
 ## Sample (Sample.csv) <span id="Sample"><span>
 
-The sample is an amount of water taken from a site which is then analyzed by a lab.
+The sample is an amount of wastewater taken from a site which is then analyzed by a lab.
 
--   **sampleID**: (Primary Key) Unique identification for sample. Suggest siteID-date-sample, or siteID-.
+-   **sampleID**: (Primary Key) Unique identification for sample. Suggest *siteID-date-sample*, or *siteID-*.
 
--   **site.ID**: (Foreign key) Links with the site table.
+-   **site.ID**: (Foreign key) Links with the Site table to describe the location of sampling.
 
--   **dateTime**: for grab samples this is the date and time and timezone the sample was taken.
+-   **dateTime**: For grab samples this is the *date, time and timezone* the sample was taken.
 
--   **dateTimeStart**: for integrated time average samples this is the date and time and timezone the sample was started being taken.
+-   **dateTimeStart**: for integrated time averaged samples this is the *date, time and timezone* the sample was started being taken.
 
--   **dateTimeEnd**: for integrated time average samples this is the date and time and timezone the sample was finished being taken.
+-   **dateTimeEnd**: for integrated time average samples this is the *date, time and timezone* the sample was finished being taken.
 
 -   **sampleType**: type of sample.
 
