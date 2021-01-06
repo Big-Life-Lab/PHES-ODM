@@ -338,19 +338,19 @@ The assay method that was used to perform testing. This database will be develop
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
 
-A simple polygon that encloses an are on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
+A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
 
 -   **ID**: (Primary key) Unique identifier for the polygon.
--   **name**: Name of the polygon (e.g. G.E. Booth catchment area, Ottawa Health Region).
--   **pop**: Approximate population size of living inside a given polygon.
--   **type**: Type of polygon
+-   **name**: Descriptive name of the polygon.
+-   **pop**: Approximate population size of people living inside the polygon.
+-   **type**: Type of polygon.
 
-    -   `sewerNetwork` : Sewer network
-    -   `healthRegion` : Health region served by the sewer network
+    -   `sewerNetwork`: Sewer network
+    -   `healthRegion`: Health region served by the sewer network
 
--   **wkt** [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) of the polygon
--   **file** File for storing the polygon BLOB format.
--   **link** Link to an external file that describes the geometry.
+-   **wkt**: [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) of the polygon
+-   **file**: File containing the geometry of the polygon, BLOB format.
+-   **link**: Link to an external reference that describes the geometry of the polygon.
 
 ## CovidPublicHealthData (CovidPublicHealthData.csv) <span id="CovidPublicHealthData"><span>
 
