@@ -121,9 +121,9 @@ The sample is an amount of wastewater taken from a site which is then analyzed b
 
 -   **sampleType**: type of sample.
 
-    -   `sludge`: Primary clarified sludge
+    -   `primarySludge`: Sludge produced by primary clarifiers
     -   `rawCollector`: Raw wastewater (in collector system)
-    -   `rawPostGrit`: Raw wastewater (post-grit)
+    -   `rawPostGrit`: Raw wastewater after the treatment plant's headworks (post-grit)
     -   `other`: Other type of site. Add description to `sampleTypeOther`.
 
 -   **sampleTypeOther**: Description for other type of sample type. See `sampleType`.
@@ -222,7 +222,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
     -   `airplane`: Airplane
     -   `correctionalFacility`: Federal or provincial correctional facility or jail
-    -   `elementraryScool`: Elementary school
+    -   `elementrarySchool`: Elementary school
     -   `lagoon`: Lagoon
     -   `longTermCareHome`: Long-term care home
     -   `sewageTruck`: Sewage truck
