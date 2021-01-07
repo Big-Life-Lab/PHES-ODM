@@ -22,21 +22,21 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-4
 
 ## Measurement (Measurement.csv) <span id="Measurement"><span>
 
-Results for a measurement of a single property of SARS-CoV-2 wastewater test, for either a viral region or wastewater treatment plant.
+Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wastewater sample.
 
--   **uID**: (Primary key) Unique identification for measurement table.
+-   **uID**: (Primary key) Unique identifier within the measurement table.
 
--   **ID**: Unique identification for a given analysis, where analysis means you performed all steps needed to get the measurement, but measurements are not independent.
+-   **ID**: Unique identifier for a given analysis, where analysis means you performed all steps needed to get the measurement, but measurements are not independent.
 
--   **sample.ID**: (Foreign key) Links with the identified sample.
+-   **sample.ID**: (Foreign key) Links with the identified Sample.
 
 -   **lab.ID**: (Foreign key) Links with the identified Lab that performed the analysis.
 
--   **assay.ID**: (Foreign key) Links with the AssayMethod table used to perform the analysis.
+-   **assay.ID**: (Foreign key) Links with the AssayMethod used to perform the analysis.
 
--   **analysisDate**: Date the data was analyzed in the lab.
+-   **analysisDate**: Date the measurement was performed in the lab.
 
--   **reportDate**: Data the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original `sampleID` but updated `measurementID`, `reportDate` and `assayID` (if needed).
+-   **reportDate**: Date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original `sampleID` but updated `measurementID`, `reportDate` and `assayID` (if needed).
 
 -   **fractionAnalyzed**: Faction of the sample that is analyzed.
 
@@ -44,7 +44,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
     -   `solid`: Solid fraction
     -   `mixed`: Mixed/homogenized sample
 
--   **category**: Gene target region (`covid-`) or wastewater treatment plant parameter (`ww-param-`).
+-   **category**: The variable that is being measured, e.g. gene target region (`covid`), water quality parameter (`wqParam`), wastewater treatment plant parameter (`wwParam`).
 
     -   `covidUnspecified (default)`:
     -   `covidN1`: SARS-CoV-2 gene region N1
@@ -56,15 +56,15 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
     -   `PMMoV`: pepper virus is being measured
     -   `crA`: crAssphage is being measured
     -   `wwParamFlow`: Flow rate of the waste water at point of sampling
-    -   `wwParamTss`: Total Suspended solids
-    -   `wwParamBod`: BOD or biological oxygen demand of the water
-    -   `wwParamCod`: COD or chemical oxygen demand of the water
-    -   `wwParamPh`: pH of the water sampled
+    -   `wqParamTss`: Total Suspended solids
+    -   `wqParamBod`: BOD or biological oxygen demand of the water
+    -   `wqParamCod`: COD or chemical oxygen demand of the water
+    -   `wqParamPh`: pH of the water sampled
     -   `catOther`: Other measurement category
 
--   **categoryOther**: Description for other target region (use prefix `covid` or wastewater treatment plant parameter (use prefix `wwParam`. See `measureCat`.
+-   **categoryOther**: Description for an other variable not listed in `category`.
 
--   **unit**: Unit of SARS-CoV-2 measurement.
+-   **unit**: Unit of the measurement.
 
     -   `PMMoV`: Viral copies/copies PMMoV
     -   `ml`: Viral copies/mL
@@ -78,9 +78,9 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
     -   `bool`: unit is a pass fail value like if covid is detected or not, or sample is frozen or not.
     -   `other`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `UnitOther`.
 
--   **unitOther**: Description for other type of SARS-CoV-2 measurement unit. See `measureUnit`.
+-   **unitOther**: Description for other measurement unit not listed in `unit`.
 
--   **aggregation**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value (Value).
+-   **aggregation**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value.
 
     -   `geoMean`: GeoMean of results
     -   `single`: This value is not an aggregate measurement in any way, and thus is not a `mean`, `median`, `geomean` or other
@@ -93,15 +93,15 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
     -   `SDNormal`: Sample standard deviation, normalized
     -   `typeOther`: Other measures
 
--   **aggregationeOther**: Description for other type of measurement type. See `measurementUnit`.
+-   **aggregationeOther**: Description for other type of aggregation not listed in `aggregation`.
 
--   **index**: Index if the measurement was taken multiple times (int)
+-   **index**: Index number in case the measurement was taken multiple times.
 
--   **value**: Value of measureType.
+-   **value**: The actual measurement value that was obtained through analysis.
 
--   **valueDetected**: Boolean Value if True then covid-19 was detected.
+-   **valueDetected**: Was covid-19 detected? (Boolean)
 
--   **qualityFlag**: Boolean Value if True if the measurement might have some quality control issue
+-   **qualityFlag**: Does the reporter suspect the measurement having some quality issues? (Boolean)
 
 -   **notes**: Any additional notes.
 
