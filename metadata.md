@@ -143,26 +143,23 @@ The sample is an amount of wastewater taken from a site which is then analyzed b
     -   `discOther`: Discrete other
     -   `integratedOther`: Integrated other
 
--   **collectionOther**: Description for other type of method when any option with `other` is selected `methodCollection`.
+-   **collectionOther**: Description for other type of method when any option with `other` is selected `collection`.
 
--   **collectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes
+-   **collectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes.
 
--   **preTreatment**: was the sample chemically treated in anyway with the addition of stabilizers or other (boolean)
+-   **preTreatment**: Was the sample chemically treated in anyway with the addition of stabilizers or other? (Boolean)
 
-    -   `True`
-    -   `False`
+-   **preTreatmentDescription**: If `preTreatment` then describe the treatment that was performed.
 
--   **preTreatmentDescription**: Describe the treatment that was performed
+-   **childID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates *a coma separated list of child sampleIDs*.
 
--   **childID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a coma separated list of child samples.
-
--   **parentID** : If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample
+-   **parentID** : If this sample has been pooled into one big sample for analysis this indicates the *sampleID of the larger pooled sample*.
 
 -   **sizeL**: Total volume of water or sludge sampled.
 
--   **storageTempC**: Temperature that the sample is stored at in Celsius.
+-   **storageTempC**: Temperature that the sample is stored at in degrees Celsius.
 
--   **qualityFlag**: Boolean Value True if the sample might have some quality control issue
+-   **qualityFlag**: Does the reporter suspect the sample having some quality issues? (Boolean)
 
 -   **notes**: Any additional notes.
 
