@@ -158,7 +158,7 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **sizeL**: Total volume of water or sludge sampled.
 
--   **samplingTempC**: Temperature that the sample is stored at while it is being sampled, this field is mainly relevant for coposite samples wich are typically kept at either ambiant temperature while sampling, or refrigerated to 4C.
+-   **samplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples wich are either kept at ambient temperature or refrigerated while being sampled.
 
 -   **mailedOnIce**: Was the sample kept cool while being sent to the lab? (Boolean)
 
