@@ -128,47 +128,7 @@ The sample is an amount of wastewater taken from a site which is then analyzed b
 
 -   **sampleTypeOther**: Description for other type of sample type. See `sampleType`.
 
--   **methodCollection**: method used to collect the data.
-
-    -   `grab sample`: Sample was a simple grab sample
-    -   `contFlowProp`: Continuous flow proportional
-    -   `contConstant`: Continuous constant
-    -   `contOther`: Continuous other
-    -   `discTimeProp`: Discrete time proportional
-    -   `discTimeProp24hq1h`: Discrete time proportional 24-hour composite, every 1 hr
-    -   `discTimeProp24hq4h`: Discrete time proportional 24-hour composite, every 4 hr
-    -   `discTimeProp24hq6h`: Discrete time proportional 24-hour composite, every 6 hr
-    -   `discFlowProp`: Discrete flow proportional
-    -   `discVolumeProp`: Discrete volume proportional
-    -   `discOther`: Discrete other
-    -   `integratedOther`: Integrated other
-
--   **methodCollectionOther**: Description for other type of method when any option with `other` is selected `methodCollection`.
-
--   **sampleSizeL**: Total volume of water or sludge sampled.
-
--   **sampleStorageTempC**: Temperature that the sample is stored at in Celsius.
-
--   **notes**: Any additional notes.
-
--   **site.ID**: (Foreign key) Links with the site table.
-
--   **dateTime**: For grab samples this is the date and time and timezone the sample was taken.
-
--   **dateTimeStart**: For integrated time average samples this is the date and time and timezone the sample was started being taken.
-
--   **dateTimeEnd**: For integrated time average samples this is the date and time and timezone the sample was finished being taken.
-
--   **type**: Type of sample.
-
-    -   `sludge`: Primary clarified sludge
-    -   `rawCollector`: Raw wastewater (in collector system)
-    -   `rawPostGrit`: Raw wastewater (post-grit)
-    -   `other`: Other type of site. Add description to `sampleTypeOther`.
-
--   **typeOther**: Description for other type of sample type. See `sampleType`.
-
--   **collection**: Method used to collect the data.
+-   **collection**: method used to collect the data.
 
     -   `grab sample`: Sample was a simple grab sample
     -   `contFlowProp`: Continuous flow proportional
