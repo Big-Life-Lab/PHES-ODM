@@ -109,7 +109,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
 The sample is an amount of wastewater taken from a site which is then analyzed by a lab.
 
--   **sampleID**: (Primary Key) Unique identification for sample. Suggest *siteID-date-sample*, or *siteID-*.
+-   **ID**: (Primary Key) Unique identification for sample. Suggest *siteID-date-sample*, or *siteID-*.
 
 -   **site.ID**: (Foreign key) Links with the Site table to describe the location of sampling.
 
