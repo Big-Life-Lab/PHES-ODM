@@ -160,9 +160,9 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **samplingTempC**: Temperature that the sample is stored at while it is being sampled, this field is mainly relevant for coposite samples wich are typically kept at either ambiant temperature while sampling, or refrigerated to 4C.
 
--   **storageTempC**: Temperature that the sample is stored at in Celsius.
+-   **mailedOnIce**: Was the sample kept cool while being sent to the lab? (Boolean)
 
--   **mailedOnIce**: Boolean value Was the sample packed in ice before being sent to the lab.
+-   **storageTempC**: Temperature that the sample is stored at in Celsius.
 
 -   **qualityFlag**: Boolean Value True if the sample might have some quality control issue
 
@@ -385,7 +385,7 @@ A long table would represent a test sample as the following:
     category = covidN1
     unit = PPMoV
     aggregation = Mean
-    value = 42 
+    value = 42
 
 A wide table would represent the same measurement as:
 
