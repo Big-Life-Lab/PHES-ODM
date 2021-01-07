@@ -76,7 +76,7 @@ Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wa
     -   `mgOl`: milligrams of oxygen per liter
     -   `ph`: pH units (unitless)
     -   `bool`: unit is a pass fail value like if covid is detected or not, or sample is frozen or not.
-    -   `other`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `UnitOther`.
+    -   `other`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to `UnitOther`.
 
 -   **unitOther**: Description for other measurement unit not listed in `unit`.
 
@@ -91,7 +91,7 @@ Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wa
     -   `rangeHighestValue`: Highest value in a range of values
     -   `SD`: Sample standard deviation
     -   `SDNormal`: Sample standard deviation, normalized
-    -   `typeOther`: Other measures
+    -   `other`: Other aggregation method. Add description to `aggregationOther`
 
 -   **aggregationeOther**: Description for other type of aggregation not listed in `aggregation`.
 
@@ -109,26 +109,26 @@ Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wa
 
 The sample is an amount of wastewater taken from a site which is then analyzed by a lab.
 
--   **ID**: (Primary Key) Unique identification for sample. Suggest *siteID-date-sample*, or *siteID-*.
+-   **ID**: (Primary Key) Unique identification for sample. Suggestions: *siteID-date-index*.
 
 -   **site.ID**: (Foreign key) Links with the Site table to describe the location of sampling.
 
 -   **dateTime**: For grab samples this is the *date, time and timezone* the sample was taken.
 
--   **dateTimeStart**: for integrated time averaged samples this is the *date, time and timezone* the sample was started being taken.
+-   **dateTimeStart**: For integrated time averaged samples this is the *date, time and timezone* the sample was started being taken.
 
--   **dateTimeEnd**: for integrated time average samples this is the *date, time and timezone* the sample was finished being taken.
+-   **dateTimeEnd**: For integrated time average samples this is the *date, time and timezone* the sample was finished being taken.
 
--   **sampleType**: type of sample.
+-   **type**: Type of sample.
 
     -   `primarySludge`: Sludge produced by primary clarifiers
     -   `rawCollector`: Raw wastewater (in collector system)
     -   `rawPostGrit`: Raw wastewater after the treatment plant's headworks (post-grit)
-    -   `other`: Other type of site. Add description to `sampleTypeOther`.
+    -   `other`: Other type of site. Add description to `typeOther`.
 
--   **sampleTypeOther**: Description for other type of sample type. See `sampleType`.
+-   **typeOther**: Description for other type of sample not listed in `type`.
 
--   **collection**: method used to collect the data.
+-   **collection**: Method used to collect the data.
 
     -   `grab sample`: Sample was a simple grab sample
     -   `contFlowProp`: Continuous flow proportional
@@ -141,9 +141,9 @@ The sample is an amount of wastewater taken from a site which is then analyzed b
     -   `discFlowProp`: Discrete flow proportional
     -   `discVolumeProp`: Discrete volume proportional
     -   `discOther`: Discrete other
-    -   `integratedOther`: Integrated other
+    -   `other`: Other type of collection method. Add description to `collectionOther`.
 
--   **collectionOther**: Description for other type of method when any option with `other` is selected `collection`.
+-   **collectionOther**: Description for other type of method not listed in `collection`.
 
 -   **collectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes.
 
@@ -165,13 +165,13 @@ The sample is an amount of wastewater taken from a site which is then analyzed b
 
 ## Site (Site.csv) <span id="Site"><span>
 
-The site of wastewater sampling, including several *defaults* that can be used to populate new samples.
+The site of wastewater sampling, including several *defaults* that can be used to populate new samples upon creation.
 
 -   **ID**: (Primary Key) Unique identifier for the location where wastewater sample was taken.
 
--   **name**: Name corresponding to `siteID`. Location name could be a treatment plant, campus, institution or sewer location, etc.
+-   **name**: Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.
 
--   **description**: Description of wastewater site (city, building, street, etc., to identify location sampled).
+-   **description**: Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.
 
 -   **reporter.ID**: (Foreign key) Links with the reporter that is responsible for the data.
 
@@ -199,20 +199,21 @@ The site of wastewater sampling, including several *defaults* that can be used t
     -   `treatPlantEffluent`: Treatment plant effluent
     -   `buildingCleanout`: Building clean out
     -   `propertyLineCleanout`: Property line clean out
+    -   `other`: An other type of access point. Add description to `accessTypeOther`.
 
--   **accessTypeOther**: Description of access point where the access type is other is selected for `accessType`.
+-   **accessTypeOther**: Description of an access point not listed in `accessType`.
 
--   **sample.typeDefault**: Used as default when new samples records are created see `SampleType` in `Sample` table.
+-   **sample.typeDefault**: Used as default when a new sample is created for this site. See `type` in `Sample` table.
 
--   **sample.typeOtherDefault**: Used as default when new `Sample` records are created see `SampleTypeOther` in `Sample` table.
+-   **sample.typeOtherDefault**: Used as default when a new sample is created for this site. See `typeOther` in `Sample` table.
 
--   **sample.collectionDefault**: Used as default when new `Sample` records are created see `methodCollection` in `Sample` table.
+-   **sample.collectionDefault**: Used as default when a new sample is created for this site. See `collection` in `Sample` table.
 
--   **sample.collectOtherDefault**: Used as default when new `Sample` records are created see `methodCollectionOther` in `Sample` table.
+-   **sample.collectOtherDefault**: Used as default when a new sample is created for this site. See `collectionOther` in `Sample` table.
 
--   **measurement.fractionAnalyzedDefault**: Used as the default when new `Measurement` records are created.
+-   **sample.storageTempCDefault**: Used as default when a new sample is created for this site. See `storageTempC` in `Sample` table.
 
--   **sample.tempCdefault**: Used as the default when new `Sample` records are created
+-   **measurement.fractionAnalyzedDefault**: Used as default when a new measurement is created for this site. See `fractionAnalyzed` in `Measurement` table.
 
 -   **geoLat**: Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
 
@@ -231,19 +232,33 @@ The site of wastewater sampling, including several *defaults* that can be used t
 The individual or organization that is reporting and responsible for the quality of the data.
 
 -   **ID**: (Primary Key) Unique identifier for the person or organization that is reporting the data.
--   **site.IDDefault**: (Foreign key) Used as the default when new `Sample` records are created by this `reporter`.
--   **lab.IDDefault**: (Foreign key) Used as the default when new `Sample` records are created by this `reporter`.
+
+-   **site.IDDefault**: (Foreign Key) Used as default when a new sample is created by this reporter. See `ID` in `Site` table.
+
+-   **lab.IDDefault**: (Foreign Key) Used as default when a new sample is created by this reporter. See `ID` in `Lab` table.
+
 -   **contactName**: Full Name of the reporter, either an organization or individual.
+
 -   **contactEmail**: Contact e-mail address.
+
 -   **contactPhone**: Contact phone number.
+
 -   **allowAcceesToSelf**: Default: True. If this is False the data will not be shown on the portal when the data provider logs in
+
 -   **allowAccessToFederalPublicHealthAuthorities**: Default: True. If this is False the data will not be available to employees of PHAC
+
 -   **allowAccessToLocalPublicHealthAuthorities**: Default: True. If this is False data will not be available when local health Authorities log in.
+
 -   **allowAccessToProvincialPublicHealthAuthorities**: Default: True. If this is False data will not available when provincial health Authorities log in.
+
 -   **allowAccessToOtherDataProviders**: Default: True. If this is False data will not be available when other data providers login.
+
 -   **allowAccessToAllOrganizations**: Default: True. If this is False data will not be available when any partner organization logs into the system
+
 -   **allowAccessToPublic**: Default: True. If this is False data will not be available to the public.
+
 -   **allowAccessToSpec**: Details or specifics on confidentiality requirements.
+
 -   **notes**: Any additional notes.
 
 ## Lab (Lab.csv) <span id="Lab"><span>
@@ -251,7 +266,9 @@ The individual or organization that is reporting and responsible for the quality
 Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 -   **ID**: (Primary key) Unique identifier for the laboratory.
--   **assay.IDDefault**: (Foreign key) Unique identifier for the assay normally performed by this lab, use to populate new `measurement` records.
+
+-   **assay.IDDefault**: (Foreign key) Used as default when a new measurement is created for this lab. See `ID` in `AssayMethod` table.
+
 -   **laboratoryName**: Name corresponding to lab.
 -   **contactName**: Contact person or group, for the lab.
 -   **contactEmail**: Contact e-mail address, for the lab.
@@ -282,7 +299,7 @@ The assay method that was used to perform testing. This database will be develop
     -   `m3s`: meters cubed per second
     -   `mgl`: milligrams per liter
     -   `mgOl`: milligrams of oxygen per liter
-    -   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
+  -   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to `measureUnitOther`.
 
 -   **unitsOther**: Units used by this method, that are applicable to the LOD and LOQ.
 -   **methodConcentration**: Description of the method used to concentrate the sample
