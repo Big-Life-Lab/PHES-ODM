@@ -274,11 +274,15 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 -   **assay.IDDefault**: (Foreign key) Used as default when a new measurement is created for this lab. See `ID` in `AssayMethod` table.
 
--   **laboratoryName**: Name corresponding to lab.
+-   **name**: Name corresponding to lab.
+
 -   **contactName**: Contact person or group, for the lab.
+
 -   **contactEmail**: Contact e-mail address, for the lab.
+
 -   **contactPhone**: Contact phone number, for the lab.
--   **labUpdateDate**: Date information was provided or updated.
+
+-   **updateDate**: Date information was provided or updated.
 
 ## AssayMethod (AssayMethod.csv) <span id="AssayMethod"><span>
 
@@ -307,31 +311,44 @@ The assay method that was used to perform testing. This database will be develop
   -   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to `measureUnitOther`.
 
 -   **unitsOther**: Units used by this method, that are applicable to the LOD and LOQ.
--   **methodConcentration**: Description of the method used to concentrate the sample
--   **methodExtraction**: Description of the method used to extract the sample
--   **methodPcr**: Description of the PCR method used
--   **qualityAssuranceQC** : Description of the quality control steps taken
--   **inhibition**: Description of the inhibition parameters.
--   **surrogateRecovery**: Description of the surrogate recovery for this method.
--   **assayDesc**: Description of the assay.
--   **assayDate**: Date on which the assayMethod was created or updated (for version update).
 
--   **assayReferenceLink**: Link to standard operating procedure (assay reference method)
+-   **methodConcentration**: Description of the method used to concentrate the sample
+
+-   **methodExtraction**: Description of the method used to extract the sample
+
+-   **methodPcr**: Description of the PCR method used
+
+-   **qualityAssuranceQC** : Description of the quality control steps taken
+
+-   **inhibition**: Description of the inhibition parameters.
+
+-   **surrogateRecovery**: Description of the surrogate recovery for this method.
+
+-   **description**: Description of the assay.
+
+-   **date**: Date on which the assayMethod was created or updated (for version update).
+
+-   **referenceLink**: Link to standard operating procedure (assay reference method)
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
 
 A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
 
 -   **ID**: (Primary key) Unique identifier for the polygon.
+
 -   **name**: Descriptive name of the polygon.
+
 -   **pop**: Approximate population size of people living inside the polygon.
+
 -   **type**: Type of polygon.
 
     -   `sewerNetwork`: Sewer network
     -   `healthRegion`: Health region served by the sewer network
 
 -   **wkt**: [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) of the polygon
+
 -   **file**: File containing the geometry of the polygon, BLOB format.
+
 -   **link**: Link to an external reference that describes the geometry of the polygon.
 
 ## CovidPublicHealthData (CovidPublicHealthData.csv) <span id="CovidPublicHealthData"><span>
@@ -339,9 +356,13 @@ A simple polygon that encloses an area on the surface of the earth, normally the
 Saves some information about covid-19 in a given polygon.
 
 -   **ID**: (Primary key) Unique identifier for the table.
+
 -   **Reporter.ID**: (Foreign key) ID of the reporter who gave this data.
+
 -   **Polygon.ID**: (Foreign key) Links with the `Polygon` table.
+
 -   **date**: Date of covid-19 measure.
+
 -   **dateType**: Type of date used.
 
     -   `episodeDate` : Episode date is usually just the earliest of a list of dates available as not every case has every date
@@ -367,8 +388,11 @@ Saves some information about covid-19 in a given polygon.
 Used for lookup values of all category based columns
 
 -   **tableName**: Name of the Table
+
 -   **columnName**: Name for the column
+
 -   **value**: Name of the value
+
 -   **description**: Name of the description
 
 ## Naming conventions
