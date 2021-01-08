@@ -309,7 +309,7 @@ The assay method that was used to perform testing. This database will be develop
     -   `m3s`: meters cubed per second
     -   `mgl`: milligrams per liter
     -   `mgOl`: milligrams of oxygen per liter
-  -   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to `measureUnitOther`.
+    -   `other`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to `unitOther`.
 
 -   **unitsOther**: Units used by this method, that are applicable to the LOD and LOQ.
 
