@@ -97,9 +97,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
 -   **index**: Index if the measurement was taken multiple times (int)
 
--   **value**: Value of measureType.
-
--   **valueDetected**: Boolean Value if True then covid-19 was detected.
+-   **value**: Value of measureType, note if unit is a `bool` then value must be either 1 or zero(float).
 
 -   **qualityFlag**: Boolean Value if True if the measurement might have some quality control issue
 
@@ -199,6 +197,10 @@ The sample is an amount of water taken from a site which is then analysed by a l
 -   **parentID** : If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample
 
 -   **sizeL**: Total volume of water or sludge sampled.
+
+-   **samplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples wich are either kept at ambient temperature or refrigerated while being sampled.
+
+-   **mailedOnIce**: Was the sample kept cool while being sent to the lab? (Boolean)
 
 -   **storageTempC**: Temperature that the sample is stored at in Celsius.
 
@@ -411,7 +413,7 @@ A long table would represent a test viral measurement as:
     category = covidN1
     unit = PPMoV
     aggregation = Mean
-    value = 42 
+    value = 42
 
 A wide table would represent the same measurement as:
 
