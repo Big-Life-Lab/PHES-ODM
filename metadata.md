@@ -68,9 +68,10 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
     -   `PMMoV`: Viral copies/copies PMMoV
     -   `ml`: Viral copies/mL
-    -   `gms`: Viral copies/gm solids
+    -   `gms`: Viral copies/gm solids (dry weight)
     -   `l`: Viral copies/L
     -   `crA`: Viral copies/copies crAssphage
+    -   `Ct`: Cycle threshold
     -   `m3s`: meters cubed per second
     -   `mgl`: milligrams per liter
     -   `mgOl`: milligrams of oxygen per liter
@@ -89,8 +90,8 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
     -   `median`: Median of results
     -   `rangeLowestValue`: Lowest value in a range of values
     -   `rangeHighestValue`: Highest value in a range of values
-    -   `SD`: Sample standard deviation
-    -   `SDNormal`: Sample standard deviation, normalized
+    -   `SD`: Sample standard deviation of the mean
+    -   `SDNormal`: Sample standard deviation of the mean, normalized
     -   `typeOther`: Other measures
 
 -   **aggregationeOther**: Description for other type of measurement type. See `measurementUnit`.
@@ -105,7 +106,7 @@ Results for a measurement of a single property of SARS-CoV-2 wastewater test, fo
 
 ## Sample (Sample.csv) <span id="Sample"><span>
 
-The sample is an amount of water taken from a site which is then analysed by a lab.
+The sample is a representative volume of wastewater taken from a sampling site which is then analysed by a lab.
 
 -   **sampleID**: Unique identification for sample. Suggest siteID-date-sample, or siteID-. (Primary Key)
 
@@ -119,16 +120,16 @@ The sample is an amount of water taken from a site which is then analysed by a l
 
 -   **sampleType**: type of sample.
 
-    -   `sludge`: Primary clarified sludge
-    -   `rawCollector`: Raw wastewater (in collector system)
-    -   `rawPostGrit`: Raw wastewater (post-grit)
+    -   `sludge`: Primary sludge collected following primary sedimantion process
+    -   `rawCollector`: Raw wastewater collected in the sewer collection system (maintainance access shaft, pumping station)
+    -   `rawPostGrit`: Raw wastewater collected following grit removal at the wastewater treatment plant site
     -   `other`: Other type of site. Add description to `sampleTypeOther`.
 
 -   **sampleTypeOther**: Description for other type of sample type. See `sampleType`.
 
 -   **methodCollection**: method used to collect the data.
 
-    -   `grab sample`: Sample was a simple grab sample
+    -   `grabSample`: Wastewater was collected as a simple or composite grab sample
     -   `contFlowProp`: Continuous flow proportional
     -   `contConstant`: Continuous constant
     -   `contOther`: Continuous other
@@ -236,13 +237,14 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **accessType**: Access point or where the sample was collected at the site.
 
-    -   `SAPFlowWater`: Sewer access point flowing water
-    -   `SAPStandingWater`: Sewer access point standing water
-    -   `treatPlantInfluent`: Treatment plant influent
-    -   `treatPlantPrimarySludge`: Primary treatment sludge
-    -   `treatPlantEffluent`: Treatment plant effluent
-    -   `buildingCleanout`: Building cleanout
-    -   `propertyLineCleanout`: Property line cleanout
+    -   `SAPFlowWater`: Sewer access point with flowing wastewater
+    -   `SAPStandingWater`: Sewer access point with standing wastewater
+    -   `treatPlantInfluent`: Wastewater treatment plant influent
+    -   `treatPlantEffluent`: Wastewater treatment plant effluent
+    -   `treatPlantSludge`: Wastewater treatment plant primary sludge
+    -   `lagoonInfluent`: Wastewater treatment lagoon influent
+    -   `lagoonEffluent`: Wastewater tretment lagoon effluent
+    -   `other`: Other
 
 -   **accessTypeOther**: Description of access point where the access type is other is selected for `accessType`.
 
@@ -337,6 +339,8 @@ The assay method that was used to perform testing. This database will be develop
 -   **surrogateRecovery**: Text description of the Surrogate Recovery for this method.
 -   **assayDesc**: Description of assay.
 -   **assayDate**: Date the assayMethod was created or updated (for version update).
+
+-   **assayReferenceLink**: Link to standard operating procedure (assay reference method)
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
 
