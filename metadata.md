@@ -83,15 +83,16 @@ Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wa
 
 -   **aggregation**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value.
 
-    -   `geoMean`: GeoMean of results
-    -   `single`: This value is not an aggregate measurement in any way, and thus is not a `mean`, `median`, `geomean` or other
-    -   `mean`: Sample mean
-    -   `meanNormal`: Sample mean, normalized
-    -   `median`: Median of results
+    -   `single`: This value is not an aggregate measurement in any way (ie. not a `mean`, `median`, `geoMean` or any other).
+    -   `mean`: Arithmetic mean
+    -   `meanNormal`: Arithmetic mean, normalized
+    -   `geoMean`: Geometric mean
+    -   `geoMeanNormal`: Geometric mean, normalized
+    -   `median`: Median
     -   `rangeLowestValue`: Lowest value in a range of values
     -   `rangeHighestValue`: Highest value in a range of values
-    -   `SD`: Sample standard deviation
-    -   `SDNormal`: Sample standard deviation, normalized
+    -   `sd`: Standard deviation
+    -   `sdNormal`: Standard deviation, normalized
     -   `other`: Other aggregation method. Add description to `aggregationOther`
 
 -   **aggregationeOther**: Description for other type of aggregation not listed in `aggregation`.
