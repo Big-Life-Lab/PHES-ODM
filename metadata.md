@@ -68,9 +68,10 @@ Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wa
 
     -   `PMMoV`: Viral copies/copies PMMoV
     -   `ml`: Viral copies/mL
-    -   `gms`: Viral copies/gm solids
+    -   `gms`: Viral copies/gm solids (dry weight)
     -   `l`: Viral copies/L
     -   `crA`: Viral copies/copies crAssphage
+    -   `Ct`: Cycle threshold
     -   `m3s`: meters cubed per second
     -   `mgl`: milligrams per liter
     -   `mgOl`: milligrams of oxygen per liter
@@ -99,15 +100,13 @@ Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wa
 
 -   **value**: The actual measurement value that was obtained through analysis.
 
--   **valueDetected**: Was covid-19 detected? (Boolean)
-
 -   **qualityFlag**: Does the reporter suspect the measurement having some quality issues? (Boolean)
 
 -   **notes**: Any additional notes.
 
 ## Sample (Sample.csv) <span id="Sample"><span>
 
-The sample is an amount of wastewater taken from a site which is then analyzed by a lab.
+The sample is a representative volume of wastewater taken from a site which is then analysed by a lab.
 
 -   **ID**: (Primary Key) Unique identification for sample. Suggestions: *siteID-date-index*.
 
@@ -157,7 +156,11 @@ The sample is an amount of wastewater taken from a site which is then analyzed b
 
 -   **sizeL**: Total volume of water or sludge sampled.
 
--   **storageTempC**: Temperature that the sample is stored at in degrees Celsius.
+-   **samplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples wich are either kept at ambient temperature or refrigerated while being sampled.
+
+-   **mailedOnIce**: Was the sample kept cool while being sent to the lab? (Boolean)
+
+-   **storageTempC**: Temperature that the sample is stored at in Celsius.
 
 -   **qualityFlag**: Does the reporter suspect the sample having some quality issues? (Boolean)
 
@@ -199,6 +202,8 @@ The site of wastewater sampling, including several *defaults* that can be used t
     -   `treatPlantEffluent`: Treatment plant effluent
     -   `buildingCleanout`: Building clean out
     -   `propertyLineCleanout`: Property line clean out
+    -   `lagoonInfluent`: Wastewater treatment lagoon influent
+    -   `lagoonEffluent`: Wastewater tretment lagoon effluent
     -   `other`: An other type of access point. Add description to `accessTypeOther`.
 
 -   **accessTypeOther**: Description of an access point not listed in `accessType`.
@@ -310,6 +315,8 @@ The assay method that was used to perform testing. This database will be develop
 -   **surrogateRecovery**: Description of the surrogate recovery for this method.
 -   **assayDesc**: Description of the assay.
 -   **assayDate**: Date on which the assayMethod was created or updated (for version update).
+
+-   **assayReferenceLink**: Link to standard operating procedure (assay reference method)
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
 
