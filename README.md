@@ -6,7 +6,7 @@ See [Metadata](metadata.md) for variable names and definitions.
 
 ## Collaborate
 
-The OWD strives to improve wastewater surveillance through the development of a common data structure, including metadata and vocabulary. Also included are templates (under development) to collect and share data. Templates include versions of Excel spreadsheets from different jurisdictions that are based on the OWD. A SQL database structure is available, as well as code to clean data and create tables.
+The ODM strives to improve wastewater surveillance through the development of a common data structure, including metadata and vocabulary. Also included are templates (under development) to collect and share data. Templates include versions of Excel spreadsheets from different jurisdictions that are based on the OWD. A SQL database structure is available, as well as code to clean data and create tables.
 
 We strive to adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) with recognition of benefit from a common data structure, including metadata and vocabulary.
 
