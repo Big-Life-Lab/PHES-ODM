@@ -8,9 +8,13 @@ Data is stored in [`/data`](data/). See [metadata](metadata.md) for variable nam
 
 SARS-CoV-2 Wastewater epidemiology and surveillance is rapidly evolving. We strive to adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) and there is benefit from a common data structure, including metadata and vocabulary. We are interested in collaborating to develop covid-19 wastewater data management and stewardship. Let's discussion at [Slack 2019-nCov WBE channel](https://2019-ncovwbe.slack.com), [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or contact us directly at [uottawa.sars.cov.2\@gmail.com](mailto:uottawa.sars.cov.2@gmail.com).
 
-## API
+We adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) with recognition of benefit from a common data structure, including metadata and vocabulary.
 
-Under discussion and development.
+ODM is a collaborative effort from many people within the wastewater surveillance community in Canada and beyond. See [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [dmanuel\@ohri.ca](mailto:dmanuel@ohri.ca), [howard.swerdfeger\@canada.ca](mailto:howard.swerdfeger@canada.ca).
+
+Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
+
+See [Collaborate](collaborate.md) for more information.
 
 ## License
 
@@ -89,7 +93,3 @@ V0.0.2 - Breaking changes to metadata.
 #### 2020-10-09
 
 V0.0.1 - Initial variable names and labels.
-
-## Acknowledgement
-
-uOttawa -- CHEO SARS-CoV-2 research group: Robert Delatolla, Alex MacKenzie, Patrick D'Aoust, Élisabeth Mercier, Antoine Cantin, Tyson Graber. Contact through GH Issues or [uottawa.sars.cov.2\@gmail.com](mailto:uottawa.sars.cov.2@gmail.com).
