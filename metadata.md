@@ -95,7 +95,7 @@ Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wa
     -   `sdNormal`: Standard deviation, normalized
     -   `other`: Other aggregation method. Add description to `aggregationOther`
 
--   **aggregationeOther**: Description for other type of aggregation not listed in `aggregation`.
+-   **aggregationOther**: Description for other type of aggregation not listed in `aggregation`.
 
 -   **index**: Index number in case the measurement was taken multiple times.
 
