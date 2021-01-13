@@ -4,6 +4,7 @@ There are eight tables that are described below. example data is stored in [data
 
 -   [Measurement](#Measurement) ([Measurements.csv](data/Measurements.csv))
 -   [Sample](#Sample) ([Sample.csv](data/Sample.csv))
+-   [ContextualMeasurement](#ContextualMeasurement) ([ContextualMeasurement](data/ContextualMeasurement.csv))
 -   [Site](#Site) ([Site.csv](data/Site.csv))
 -   [Reporter](#Reporter) ([Reporter.csv](data/Reporter.csv))
 -   [Lab](#Lab) ([Lab.csv](data/Lab.csv))
@@ -22,7 +23,7 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-4
 
 ## Measurement (Measurement.csv) <span id="Measurement"><span>
 
-Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wastewater sample.
+Measurement result (ie. single variable) obtained by analyzing a potentially positive SARS-CoV-2 wastewater sample.
 
 -   **uID**: (Primary key) Unique identifier within the measurement table.
 
@@ -44,7 +45,7 @@ Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wa
     -   `solid`: Solid fraction
     -   `mixed`: Mixed/homogenized sample
 
--   **category**: The variable that is being measured, e.g. gene target region (`covid`), water quality parameter (`wqParam`), wastewater treatment plant parameter (`wwParam`).
+-   **category**: The variable that is being measured on the sample, e.g. gene target region (`covid`) or water quality parameter (`wqParam`).
 
     -   `covidUnspecified (default)`:
     -   `covidN1`: SARS-CoV-2 gene region N1
@@ -53,14 +54,16 @@ Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wa
     -   `covidE`: SARS-CoV-2 gene region E
     -   `covidRdRp`: SARS-CoV-2 gene region RdRp
     -   `covidN1N2avg`: SARS-CoV-2 gene region average of N1 and N2
-    -   `PMMoV`: pepper virus is being measured
-    -   `crA`: crAssphage is being measured
-    -   `wwParamFlow`: Flow rate of the waste water at point of sampling
-    -   `wqParamTss`: Total Suspended solids
-    -   `wqParamBod`: BOD or biological oxygen demand of the water
-    -   `wqParamCod`: COD or chemical oxygen demand of the water
-    -   `wqParamPh`: pH of the water sampled
-    -   `catOther`: Other measurement category
+    -   `PMMoV`: Pepper mild mottle virus
+    -   `crA`: cross-assembly phage
+    -   `wqParamTS`: Total solids concentration.
+    -   `wqParamTSS`: Total suspended solids concentration.
+    -   `wqParamVSS`: Volatile suspended solids concentration.
+    -   `wqParamCOD`: Chemical oxygen demand.
+    -   `wqParamOrthoP`: Ortho-phosphate concentration.
+    -   `wqParamNH4N`: Ammonium nitrogen concentration.
+    -   `wqParamTN`: Total nitrogen concentration.
+    -   `other`: Other measurement category. Add description to `categoryOther`.
 
 -   **categoryOther**: Description for an other variable not listed in `category`.
 
@@ -72,7 +75,6 @@ Measurement result (ie. single variable) of a potentially positive SARS-CoV-2 wa
     -   `l`: Viral copies/L
     -   `crA`: Viral copies/copies crAssphage
     -   `Ct`: Cycle threshold
-    -   `m3s`: meters cubed per second
     -   `mgl`: milligrams per liter
     -   `mgOl`: milligrams of oxygen per liter
     -   `ph`: pH units (unitless)
@@ -164,6 +166,73 @@ The sample is a representative volume of wastewater taken from a site which is t
 -   **storageTempC**: Temperature that the sample is stored at in Celsius.
 
 -   **qualityFlag**: Does the reporter suspect the sample having some quality issues? (Boolean)
+
+-   **notes**: Any additional notes.
+
+## ContextualMeasurement (ContextualMeasurement.csv) <span id="ContextualMeasurement"><span>
+
+All sorts of measurements that are not performed on the wastewater sample but might provide additional context necessary for the interpretation of the results. 
+
+-   **ID**: (Primary Key) Unique identifier for each contextual measurement.
+
+-   **Site.ID**: (Foreign Key) Links with the Site table to describe the location of measurement.
+
+-   **dateTime**: The date and time the measurement was performed.
+
+-   **type**: The type of measurement that was performed	
+
+    -   `envTemperature`: Environmental temperature.
+    -   `envRainfall`: Amount of precipitation in the form of rain.
+    -   `envSnowFall`: Amount of precipitation in the form of snow.
+    -   `envSnowDepth`: Total depth of snow on the ground.
+    -   `wwFlow`: Flow of wastewater.
+    -   `wwTemp`: Temperature of the wastewater.
+    -   `wwpH`: pH of the wastewater.
+    -   `wwConductivity`: Conductivity of the wastewater.
+    -   `wwTurbidity`: Turbidity of the wastewater.
+    -   `wwTSS`: Total suspended solids concentration of the wastewater.
+    -   `wwCOD`: Chemical oxygen demand of the wastewater.
+    -   `other`: An other type of measurement. Add description to `typeOther`.
+    
+-   **typeOther**: Description of the measurement in case it is not listed in `type`.
+
+-   **typeDescription**: Additional information on the performed measurement.
+
+-   **instrumentName**:	Name of the instrument used to perform the measurement.
+
+-   **instrumentType**:	Type of instrument used to perform the measurement.
+
+    -   `online`: An online sensor.
+    -   `lab`: Offline laboratory analysis.
+    -   `handheld`: A handheld measurement analyzer.
+    -   `atlineAnalyzer`: An atline analyzer with sampler.
+    -   `other`: An other type of measurement instrument. Add description to `instrumentTypeOther`.
+
+-   **instrumentTypeOther**: Description of the instrument in case it is not listed in `instrumentType`.
+
+-   **aggregation**: When reporting an aggregate measurement, this field describes the method used.
+
+    -   `single`: This value is not an aggregate measurement in any way (ie. not a `mean`, `median`, `geoMean` or any other).
+    -   `mean`: Arithmetic mean
+    -   `meanNormal`: Arithmetic mean, normalized
+    -   `geoMean`: Geometric mean
+    -   `geoMeanNormal`: Geometric mean, normalized
+    -   `median`: Median
+    -   `rangeLowestValue`: Lowest value in a range of values
+    -   `rangeHighestValue`: Highest value in a range of values
+    -   `sd`: Standard deviation
+    -   `sdNormal`: Standard deviation, normalized
+    -   `other`: Other aggregation method. Add description to `aggregationOther`
+
+-   **aggregationOther**: Description for other type of aggregation not listed in `aggregation`.
+
+-   **aggregationDescription**:	Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
+
+-   **value**: The actual value that is being reported for this measurement.
+
+-   **unit**: The engineering unit of the measurement.
+
+-   **qualityFlag**: Does the reporter suspect quality issues with the value of this measurement? (Boolean)
 
 -   **notes**: Any additional notes.
 
