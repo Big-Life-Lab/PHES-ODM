@@ -157,7 +157,7 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **sizeL**: Total volume of water or sludge sampled.
 
--   **samplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples wich are either kept at ambient temperature or refrigerated while being sampled.
+-   **samplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
 
 -   **mailedOnIce**: Was the sample kept cool while being sent to the lab? (Boolean)
 
@@ -183,7 +183,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
     -   `airplane`: Airplane
     -   `correctionalFacility`: Federal or provincial correctional facility or jail
-    -   `elementrarySchool`: Elementary school
+    -   `elementarySchool`: Elementary school
     -   `hospital`: Hospital
     -   `lagoon`: Lagoon
     -   `longTermCareFacility`: Long-term care facility
@@ -204,7 +204,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
     -   `buildingCleanout`: Building clean out
     -   `propertyLineCleanout`: Property line clean out
     -   `lagoonInfluent`: Wastewater treatment lagoon influent
-    -   `lagoonEffluent`: Wastewater tretment lagoon effluent
+    -   `lagoonEffluent`: Wastewater treatment lagoon effluent
     -   `other`: An other type of access point. Add description to `accessTypeOther`.
 
 -   **accessTypeOther**: Description of an access point not listed in `accessType`.
@@ -249,7 +249,7 @@ The individual or organization that is reporting and responsible for the quality
 
 -   **contactPhone**: Contact phone number.
 
--   **allowAcceesToSelf**: Default: True. If this is False the data will not be shown on the portal when the data provider logs in
+-   **allowAccessToSelf**: Default: True. If this is False the data will not be shown on the portal when the data provider logs in
 
 -   **allowAccessToFederalPublicHealthAuthorities**: Default: True. If this is False the data will not be available to employees of PHAC
 
