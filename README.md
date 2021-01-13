@@ -1,12 +1,12 @@
-# Ottawa Covid-19 Wastewater Dataset
+# Ottawa wastewater surveillance data model (Ottawa Data Model (ODM))
 
-This repository contains Ottawa covid-19 wastewater surveillance data. Plots using this data can be found at: [613covid.ca](https://613covid.ca/wastewater).
+This repository contains Ottawa wastewater surveillance data model. Also included are Ottawa wastewater data - other data are welcomed. Plots using this data can be found at: [613covid.ca](https://613covid.ca/wastewater).
 
-Data is stored in [`/data`](data/). See [metadata](metadata.md) for variable names and definitions. See `metadata` branch for proposed changes to data structure and metadata.
+See [Metadata](metadata.md) for variable names and definitions.
 
-## Collaborate to share wastewater data
+## Collaborate
 
-SARS-CoV-2 Wastewater epidemiology and surveillance is rapidly evolving. We strive to adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) and there is benefit from a common data structure, including metadata and vocabulary. We are interested in collaborating to develop covid-19 wastewater data management and stewardship. Let's discussion at [Slack 2019-nCov WBE channel](https://2019-ncovwbe.slack.com), [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or contact us directly at [uottawa.sars.cov.2\@gmail.com](mailto:uottawa.sars.cov.2@gmail.com).
+The ODM strives to improve wastewater surveillance through the development of a common data structure, including metadata and vocabulary. Also included are templates (under development) to collect and share data. Templates include versions of Excel spreadsheets from different jurisdictions that are based on the ODM. A SQL database structure is available, as well as code to clean data and create tables.
 
 We adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) with recognition of benefit from a common data structure, including metadata and vocabulary.
 
@@ -28,10 +28,9 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 #### 2020-11-25
 
--   Add script to make SQL table.
--   Minor edits to conform variables to style guide.
+-   Change date formatting on `wastewater_virus.csv` to YYYY-MM-DD.
 
-#### 2020-11-19
+#### 2020-11-25
 
 v0.1.1 - Additions to metadata. No breaking changes.
 
@@ -53,7 +52,7 @@ v0.1.1 - Additions to metadata. No breaking changes.
     -   Add `sampleSizeL`: Size of the sample that is analysed in liters
     -   Add `loq`: Limit of Quantification for this method if one exists
     -   Add `lod`: Limit of detection for this method if one exists
-    -   Add `inhibition`: Text description of the inhibition
+    -   Add `inhibition`: Text decription of the inhibition
     -   Add `surrogateRecovery`: Text description of the Surrogate Recovery for this method
 
 -   Other small corrections to metadata category labels.
@@ -73,7 +72,7 @@ v0.1.0 - Breaking changes to metadata.
 
 #### 2020-11-16
 
--   `wastewater_virus.csv` dataset updated to remove adjustment for percent viral recovery from solids. The adjustment align reporting with other laboratories. The adjustment reduces N1 and N2 values a magnitude of 10 (approximately).
+-   `wastewater_virus.csv` dataset updated to remove adjustment for percent viral recovery from solids. The adjustment allign reporting with other laboratories. The adjustment reduces N1 and N2 values a maginitude of 10 (approximately).
 
 #### 2020-10-29
 
