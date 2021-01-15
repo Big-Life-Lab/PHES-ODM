@@ -21,6 +21,68 @@ Entity Relationship Diagram [here](#erd).
 
 Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-41be-bc2d-d96425f3c68f/edit?page=0_0#?folder_id=home&browser=icon)
 
+## Sample (Sample.csv) <span id="Sample"><span>
+
+The sample is a representative volume of wastewater taken from a site which is then analysed by a lab.
+
+-   **ID**: (Primary Key) Unique identification for sample. Suggestions: *siteID-date-index*.
+
+-   **site.ID**: (Foreign key) Links with the Site table to describe the location of sampling.
+
+-   **dateTime**: For grab samples this is the *date, time and timezone* the sample was taken.
+
+-   **dateTimeStart**: For integrated time averaged samples this is the *date, time and timezone* the sample was started being taken.
+
+-   **dateTimeEnd**: For integrated time average samples this is the *date, time and timezone* the sample was finished being taken.
+
+-   **type**: Type of sample.
+
+    -   `primarySludge`: Sludge produced by primary clarifiers
+    -   `rawCollector`: Raw wastewater (in collector system)
+    -   `rawPostGrit`: Raw wastewater after the treatment plant's headworks (post-grit)
+    -   `other`: Other type of site. Add description to `typeOther`.
+
+-   **typeOther**: Description for other type of sample not listed in `type`.
+
+-   **collection**: Method used to collect the data.
+
+    -   `grab sample`: Sample was a simple grab sample
+    -   `contFlowProp`: Continuous flow proportional
+    -   `contConstant`: Continuous constant
+    -   `contOther`: Continuous other
+    -   `discTimeProp`: Discrete time proportional
+    -   `discTimeProp24hq1h`: Discrete time proportional 24-hour composite, every 1 hr
+    -   `discTimeProp24hq4h`: Discrete time proportional 24-hour composite, every 4 hr
+    -   `discTimeProp24hq6h`: Discrete time proportional 24-hour composite, every 6 hr
+    -   `discFlowProp`: Discrete flow proportional
+    -   `discVolumeProp`: Discrete volume proportional
+    -   `discOther`: Discrete other
+    -   `other`: Other type of collection method. Add description to `collectionOther`.
+
+-   **collectionOther**: Description for other type of method not listed in `collection`.
+
+-   **collectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes.
+
+-   **preTreatment**: Was the sample chemically treated in anyway with the addition of stabilizers or other? (Boolean)
+
+-   **preTreatmentDescription**: If `preTreatment` then describe the treatment that was performed.
+
+-   **childID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates *a coma separated list of child sampleIDs*.
+
+-   **parentID** : If this sample has been pooled into one big sample for analysis this indicates the *sampleID of the larger pooled sample*.
+
+-   **sizeL**: Total volume of water or sludge sampled.
+
+-   **samplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
+
+-   **mailedOnIce**: Was the sample kept cool while being sent to the lab? (Boolean)
+
+-   **storageTempC**: Temperature that the sample is stored at in Celsius.
+
+-   **qualityFlag**: Does the reporter suspect the sample having some quality issues? (Boolean)
+
+-   **notes**: Any additional notes.
+
 ## WWMeasure (Measure.csv) <span id="WWMeasure"><span>
 
 Measurement result (ie. single variable) obtained by analyzing a potentially positive SARS-CoV-2 wastewater sample.
@@ -104,68 +166,6 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 -   **value**: The actual measurement value that was obtained through analysis.
 
 -   **qualityFlag**: Does the reporter suspect the measurement having some quality issues? (Boolean)
-
--   **notes**: Any additional notes.
-
-## Sample (Sample.csv) <span id="Sample"><span>
-
-The sample is a representative volume of wastewater taken from a site which is then analysed by a lab.
-
--   **ID**: (Primary Key) Unique identification for sample. Suggestions: *siteID-date-index*.
-
--   **site.ID**: (Foreign key) Links with the Site table to describe the location of sampling.
-
--   **dateTime**: For grab samples this is the *date, time and timezone* the sample was taken.
-
--   **dateTimeStart**: For integrated time averaged samples this is the *date, time and timezone* the sample was started being taken.
-
--   **dateTimeEnd**: For integrated time average samples this is the *date, time and timezone* the sample was finished being taken.
-
--   **type**: Type of sample.
-
-    -   `primarySludge`: Sludge produced by primary clarifiers
-    -   `rawCollector`: Raw wastewater (in collector system)
-    -   `rawPostGrit`: Raw wastewater after the treatment plant's headworks (post-grit)
-    -   `other`: Other type of site. Add description to `typeOther`.
-
--   **typeOther**: Description for other type of sample not listed in `type`.
-
--   **collection**: Method used to collect the data.
-
-    -   `grab sample`: Sample was a simple grab sample
-    -   `contFlowProp`: Continuous flow proportional
-    -   `contConstant`: Continuous constant
-    -   `contOther`: Continuous other
-    -   `discTimeProp`: Discrete time proportional
-    -   `discTimeProp24hq1h`: Discrete time proportional 24-hour composite, every 1 hr
-    -   `discTimeProp24hq4h`: Discrete time proportional 24-hour composite, every 4 hr
-    -   `discTimeProp24hq6h`: Discrete time proportional 24-hour composite, every 6 hr
-    -   `discFlowProp`: Discrete flow proportional
-    -   `discVolumeProp`: Discrete volume proportional
-    -   `discOther`: Discrete other
-    -   `other`: Other type of collection method. Add description to `collectionOther`.
-
--   **collectionOther**: Description for other type of method not listed in `collection`.
-
--   **collectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes.
-
--   **preTreatment**: Was the sample chemically treated in anyway with the addition of stabilizers or other? (Boolean)
-
--   **preTreatmentDescription**: If `preTreatment` then describe the treatment that was performed.
-
--   **childID**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates *a coma separated list of child sampleIDs*.
-
--   **parentID** : If this sample has been pooled into one big sample for analysis this indicates the *sampleID of the larger pooled sample*.
-
--   **sizeL**: Total volume of water or sludge sampled.
-
--   **samplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
-
--   **mailedOnIce**: Was the sample kept cool while being sent to the lab? (Boolean)
-
--   **storageTempC**: Temperature that the sample is stored at in Celsius.
-
--   **qualityFlag**: Does the reporter suspect the sample having some quality issues? (Boolean)
 
 -   **notes**: Any additional notes.
 
