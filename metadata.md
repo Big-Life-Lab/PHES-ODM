@@ -68,7 +68,7 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 -   **categoryOther**: Description for an other variable not listed in `category`.
 
 -   **unit**: Unit of the measurement.
-    
+
     -   `vcPMMoV`: Viral copies/copies PMMoV
     -   `vcMl`: Viral copies/millilitres
     -   `vcGms`: Viral copies/grams solids
@@ -169,6 +169,73 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **notes**: Any additional notes.
 
+## Site (Site.csv) <span id="Site"><span>
+
+The site of wastewater sampling, including several *defaults* that can be used to populate new samples upon creation.
+
+-   **ID**: (Primary Key) Unique identifier for the location where wastewater sample was taken.
+
+-   **name**: Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.
+
+-   **description**: Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.
+
+-   **reporter.ID**: (Foreign key) Links with the reporter that is responsible for the data.
+
+-   **type**: Type of site or institution where sample was taken.
+
+    -   `airplane`: Airplane
+    -   `correctionalFacility`: Federal or provincial correctional facility or jail
+    -   `elementarySchool`: Elementary school
+    -   `hospital`: Hospital
+    -   `lagoon`: Lagoon
+    -   `longTermCareFacility`: Long-term care facility
+    -   `sewageTruck`: Sewage truck
+    -   `universityCampus`: University campus or resident
+    -   `WWTP`: Wastewater treatment plant
+    -   `other`: Other
+
+-   **typeOther**: Description of site where the site is other. See `siteType`. If `institution` consider placing things like `meat plant' or description of institute, etc, If`airplane consider identifying the flight number.
+
+-   **accessType**: Access point or where the sample was collected at the site.
+
+    -   `SAPFlowWater`: Sewer access point flowing water
+    -   `SAPStandingWater`: Sewer access point standing water
+    -   `treatPlantInfluent`: Treatment plant influent
+    -   `treatPlantPrimarySludge`: Primary treatment sludge
+    -   `treatPlantEffluent`: Treatment plant effluent
+    -   `buildingCleanout`: Building clean out
+    -   `propertyLineCleanout`: Property line clean out
+    -   `lagoonInfluent`: Wastewater treatment lagoon influent
+    -   `lagoonEffluent`: Wastewater treatment lagoon effluent
+    -   `other`: An other type of access point. Add description to `accessTypeOther`.
+
+-   **accessTypeOther**: Description of an access point not listed in `accessType`.
+
+-   **sample.typeDefault**: Used as default when a new sample is created for this site. See `type` in `Sample` table.
+
+-   **sample.typeOtherDefault**: Used as default when a new sample is created for this site. See `typeOther` in `Sample` table.
+
+-   **sample.collectionDefault**: Used as default when a new sample is created for this site. See `collection` in `Sample` table.
+
+-   **sample.collectOtherDefault**: Used as default when a new sample is created for this site. See `collectionOther` in `Sample` table.
+
+-   **sample.storageTempCDefault**: Used as default when a new sample is created for this site. See `storageTempC` in `Sample` table.
+
+-   **measurement.fractionAnalyzedDefault**: Used as default when a new measurement is created for this site. See `fractionAnalyzed` in `Measurement` table.
+
+-   **geoLat**: Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
+
+-   **geoLong**: Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)
+
+-   **notes**: Any additional notes.
+
+-   **Polygon.ID**: (Foreign key) Links with the Polygon table, this should encompass the area that typically drains into this site.
+
+-   **sewerNetworkFileLink**: Link to a file that has any detailed information about the sewer network associated with the site (any format).
+
+-   **sewerNetworkFileBLOB**: A file BLOB that has any detailed information about the sewer network associated with the site (any format).
+
+
 ## siteMeasure (siteMeasure.csv) <span id="siteMeasure"><span>
 
 Measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
@@ -235,72 +302,6 @@ Measures that are not performed on the wastewater sample but provide additional 
 -   **qualityFlag**: Does the reporter suspect quality issues with the value of this measurement? (Boolean)
 
 -   **notes**: Any additional notes.
-
-## Site (Site.csv) <span id="Site"><span>
-
-The site of wastewater sampling, including several *defaults* that can be used to populate new samples upon creation.
-
--   **ID**: (Primary Key) Unique identifier for the location where wastewater sample was taken.
-
--   **name**: Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.
-
--   **description**: Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.
-
--   **reporter.ID**: (Foreign key) Links with the reporter that is responsible for the data.
-
--   **type**: Type of site or institution where sample was taken.
-
-    -   `airplane`: Airplane
-    -   `correctionalFacility`: Federal or provincial correctional facility or jail
-    -   `elementarySchool`: Elementary school
-    -   `hospital`: Hospital
-    -   `lagoon`: Lagoon
-    -   `longTermCareFacility`: Long-term care facility
-    -   `sewageTruck`: Sewage truck
-    -   `universityCampus`: University campus or resident
-    -   `WWTP`: Wastewater treatment plant
-    -   `other`: Other
-
--   **typeOther**: Description of site where the site is other. See `siteType`. If `institution` consider placing things like `meat plant' or description of institute, etc, If`airplane consider identifying the flight number.
-
--   **accessType**: Access point or where the sample was collected at the site.
-
-    -   `SAPFlowWater`: Sewer access point flowing water
-    -   `SAPStandingWater`: Sewer access point standing water
-    -   `treatPlantInfluent`: Treatment plant influent
-    -   `treatPlantPrimarySludge`: Primary treatment sludge
-    -   `treatPlantEffluent`: Treatment plant effluent
-    -   `buildingCleanout`: Building clean out
-    -   `propertyLineCleanout`: Property line clean out
-    -   `lagoonInfluent`: Wastewater treatment lagoon influent
-    -   `lagoonEffluent`: Wastewater treatment lagoon effluent
-    -   `other`: An other type of access point. Add description to `accessTypeOther`.
-
--   **accessTypeOther**: Description of an access point not listed in `accessType`.
-
--   **sample.typeDefault**: Used as default when a new sample is created for this site. See `type` in `Sample` table.
-
--   **sample.typeOtherDefault**: Used as default when a new sample is created for this site. See `typeOther` in `Sample` table.
-
--   **sample.collectionDefault**: Used as default when a new sample is created for this site. See `collection` in `Sample` table.
-
--   **sample.collectOtherDefault**: Used as default when a new sample is created for this site. See `collectionOther` in `Sample` table.
-
--   **sample.storageTempCDefault**: Used as default when a new sample is created for this site. See `storageTempC` in `Sample` table.
-
--   **measurement.fractionAnalyzedDefault**: Used as default when a new measurement is created for this site. See `fractionAnalyzed` in `Measurement` table.
-
--   **geoLat**: Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
-
--   **geoLong**: Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)
-
--   **notes**: Any additional notes.
-
--   **Polygon.ID**: (Foreign key) Links with the Polygon table, this should encompass the area that typically drains into this site.
-
--   **sewerNetworkFileLink**: Link to a file that has any detailed information about the sewer network associated with the site (any format).
-
--   **sewerNetworkFileBLOB**: A file BLOB that has any detailed information about the sewer network associated with the site (any format).
 
 ## Reporter (Reporter.csv) <span id="Reporter"><span>
 
@@ -403,7 +404,6 @@ The assay method that was used to perform testing. Create a new record if there 
 -   **inhibition**: Description of the inhibition parameters.
 
 -   **surrogateRecovery**: Description of the surrogate recovery for this method.
-
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
 
