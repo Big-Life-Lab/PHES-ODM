@@ -356,11 +356,21 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 ## AssayMethod (AssayMethod.csv) <span id="AssayMethod"><span>
 
-The assay method that was used to perform testing. This database will be developed in consultation with testing labs to identify key assay features that can affect SARS-CoV-2 results.
+The assay method that was used to perform testing. Create a new record if there are changes (improvements) to an existing assay method. Keep the same `ID` and use an updated `version`. A new record for a new version can include only the fields that changed, however, we recommend duplicating existing fields to allow each record to clearly describe all steps. Add a current `date` when recording a new version to an assay.
 
 -   **ID**: (Primary key) Unique identifier for the assay method.
 
+-   **name**: Name of the assay method.
+
 -   **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended.
+
+-   **description**: Description of the assay.
+
+-   **date**: Date on which the assayMethod was created or updated (for version update).
+
+-   **referenceLink**: Link to standard operating procedure (assay reference method).
+
+-   **alaisID**: ID of an assay that is the same or similar. *a coma separated list*.
 
 -   **sampleSizeL**: Size of the sample that is analyzed in liters.
 
@@ -394,11 +404,6 @@ The assay method that was used to perform testing. This database will be develop
 
 -   **surrogateRecovery**: Description of the surrogate recovery for this method.
 
--   **description**: Description of the assay.
-
--   **date**: Date on which the assayMethod was created or updated (for version update).
-
--   **referenceLink**: Link to standard operating procedure (assay reference method)
 
 ## Polygon (Polygon.csv) <span id="Polygon"><span>
 
