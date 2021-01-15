@@ -439,7 +439,7 @@ Saves some information about covid-19 in a given polygon.
     -   `onsetDate`: Earliest that symptoms were reported for this case
     -   `reportedDate`: Date that the numbers were reported publicly
 
--   **valueType**: Type of date used.
+-   **valueType**: Type of data.
 
     -   `confirmed`: Number of confirmed cases.
     -   `active`: Number of active cases.
