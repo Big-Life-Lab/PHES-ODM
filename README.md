@@ -22,6 +22,57 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 ## Changelog
 
+#### 2021-01-15
+
+- Naming conventions were further developed.
+
+- Examples are provided on how to generate wide and long variables and category names.
+
+- Names of variables were updated according to the extended naming conventions. Note that these changes are NOT listed here!
+
+- Information on how to collaborate is updated.
+
+- Measurement metadata
+	- `aggregation` - Following the existing options, one more option was added to the list `geoMeanNormal`.
+
+- SiteMeasures metadata: A new table was added  that covers all kinds of measurement data that  are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
+	- `ID`: (NEW) Unique identifier for each contextual measurement.
+	- `Site.ID`: (NEW) Links with the Site table to describe the location of measurement.
+	- `dateTime`: (NEW) The date and time the measurement was performed.
+	- `type`: (NEW) The type of measurement that was performed. 
+	- `typeOther`: (NEW) Description of the measurement in case it is not listed in type.
+	- `typeDescription`: (NEW) Additional information on the performed measurement.
+	- `instrumentName`: (NEW) Name of the instrument used to perform the measurement.
+	- `instrumentType`: (NEW) Type of instrument used to perform the measurement.
+	- `instrumentTypeOther`: (NEW) Description of the instrument in case it is not listed in instrumentType.
+	- `aggregation`: (NEW) When reporting an aggregate measurement, this field describes the method used.
+	- `aggregationOther`: (NEW) Description for other type of aggregation not listed in aggregation.
+	- `aggregationDescription`: (NEW) Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
+	- `value`: (NEW) The actual value that is being reported for this measurement.
+	- `unit`: (NEW) The engineering unit of the measurement.
+	- `qualityFlag`: (NEW) Does the reporter suspect quality issues with the value of this measurement? (Boolean)
+	- `notes`: (NEW) Any additional notes.
+- Sample metadata
+	- `samplingTempC`: (NEW) Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
+	- `mailedOnIce`: (NEW) Was the sample kept cool while being sent to the lab? (Boolean)
+	- `category` - A distinction is now made between SARS-CoV-2 gene measurements `covid` and the measurement of water quality parameters on the sample `wq`.
+- Site metadata
+	- `type` - Additional site types were added `airplane`, `correctionalFacility`, `elementarySchool`, `hospital`, `longTermCareFacility`, `sewageTruck`, `universityCampus`, `WWTP`
+	- `accessType`: (NEW) Access point of where the sample was collected at the site.
+	- `measurement.fractionAnalyzedDefault`: (NEW) Used as default when a new measurement is created for this site. See `fractionAnalyzed` in `Measurement` table.
+- AssayMethod: New variables were introduced to replace `assayDesc`, those are
+	- `methodConcentration`: (NEW) Description of the method used to concentrate the sample
+	- `methodExtraction`: (NEW) Description of the method used to extract the sample
+	- `methodPcr`: (NEW) Description of the PCR method used
+	- `qualityAssuranceQC`: (NEW) Description of the quality control steps taken
+	- `inhibition`: (NEW) Description of the inhibition parameters.
+	- `surrogateRecovery`: (NEW) Description of the surrogate recovery for this method.
+	- `description`: (NEW) Description of the assay.
+	- `referenceLink`: (NEW) Link to standard operating procedure (assay reference method)
+- CovidPublicHealthData
+	- `valueType`: (NEW) A categorical variable that replaces the individual variables, instead it provides listed options: `confirmed`, `active`, `tests`, `positiveTests`, `percentPositivityRate`, `hospitalCensus`, `hospitalAdmit` 
+- Lookups metadata: A new table that is used as a reference for categorical variables
+
 #### 2021-01-08
 
 -   All variable names were updated according to the name convention. 
