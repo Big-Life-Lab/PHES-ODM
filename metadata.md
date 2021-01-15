@@ -2,9 +2,9 @@
 
 There are eight tables that are described below. example data is stored in [data](data).
 
--   [Measurement](#Measurement) ([Measurements.csv](data/Measurements.csv))
+-   [WWMeasure](#wwMeasure) ([WWMeasure.csv](data/WWMeasurements.csv))
 -   [Sample](#Sample) ([Sample.csv](data/Sample.csv))
--   [ContextualMeasurement](#ContextualMeasurement) ([ContextualMeasurement](data/ContextualMeasurement.csv))
+-   [siteMeasure](#siteMeasure) ([siteMeasure](data/siteMeasure.csv))
 -   [Site](#Site) ([Site.csv](data/Site.csv))
 -   [Reporter](#Reporter) ([Reporter.csv](data/Reporter.csv))
 -   [Lab](#Lab) ([Lab.csv](data/Lab.csv))
@@ -21,7 +21,7 @@ Entity Relationship Diagram [here](#erd).
 
 Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-41be-bc2d-d96425f3c68f/edit?page=0_0#?folder_id=home&browser=icon)
 
-## Measurement (Measurement.csv) <span id="Measurement"><span>
+## WWMeasure (Measure.csv) <span id="WWMeasure"><span>
 
 Measurement result (ie. single variable) obtained by analyzing a potentially positive SARS-CoV-2 wastewater sample.
 
@@ -37,7 +37,7 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **analysisDate**: Date the measurement was performed in the lab.
 
--   **reportDate**: Date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original `sampleID` but updated `measurementID`, `reportDate` and `assayID` (if needed).
+-   **reportDate**: Date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original `sampleID` but updated `MeasureID`, `reportDate` and `assayID` (if needed).
 
 -   **fractionAnalyzed**: Faction of the sample that is analyzed.
 
@@ -68,12 +68,12 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 -   **categoryOther**: Description for an other variable not listed in `category`.
 
 -   **unit**: Unit of the measurement.
-
-    -   `PMMoV`: Viral copies/copies PMMoV
-    -   `ml`: Viral copies/mL
-    -   `gms`: Viral copies/gm solids (dry weight)
-    -   `l`: Viral copies/L
-    -   `crA`: Viral copies/copies crAssphage
+    
+    -   `vcPMMoV`: Viral copies/copies PMMoV
+    -   `vcMl`: Viral copies/millilitres
+    -   `vcGms`: Viral copies/grams solids
+    -   `vcL`: Viral copies/L
+    -   `vcCrA`: Viral copies/copies crAssphage
     -   `Ct`: Cycle threshold
     -   `mgl`: milligrams per liter
     -   `mgOl`: milligrams of oxygen per liter
@@ -169,9 +169,9 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **notes**: Any additional notes.
 
-## ContextualMeasurement (ContextualMeasurement.csv) <span id="ContextualMeasurement"><span>
+## siteMeasure (siteMeasure.csv) <span id="siteMeasure"><span>
 
-All sorts of measurements that are not performed on the wastewater sample but might provide additional context necessary for the interpretation of the results. 
+Measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
 
 -   **ID**: (Primary Key) Unique identifier for each contextual measurement.
 
@@ -179,7 +179,7 @@ All sorts of measurements that are not performed on the wastewater sample but mi
 
 -   **dateTime**: The date and time the measurement was performed.
 
--   **type**: The type of measurement that was performed	
+-   **type**: The type of measurement that was performed
 
     -   `envTemperature`: Environmental temperature.
     -   `envRainfall`: Amount of precipitation in the form of rain.
@@ -193,14 +193,14 @@ All sorts of measurements that are not performed on the wastewater sample but mi
     -   `wwTSS`: Total suspended solids concentration of the wastewater.
     -   `wwCOD`: Chemical oxygen demand of the wastewater.
     -   `other`: An other type of measurement. Add description to `typeOther`.
-    
+
 -   **typeOther**: Description of the measurement in case it is not listed in `type`.
 
 -   **typeDescription**: Additional information on the performed measurement.
 
--   **instrumentName**:	Name of the instrument used to perform the measurement.
+-   **instrumentName**: Name of the instrument used to perform the measurement.
 
--   **instrumentType**:	Type of instrument used to perform the measurement.
+-   **instrumentType**: Type of instrument used to perform the measurement.
 
     -   `online`: An online sensor.
     -   `lab`: Offline laboratory analysis.
@@ -226,7 +226,7 @@ All sorts of measurements that are not performed on the wastewater sample but mi
 
 -   **aggregationOther**: Description for other type of aggregation not listed in `aggregation`.
 
--   **aggregationDescription**:	Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
+-   **aggregationDescription**: Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
 
 -   **value**: The actual value that is being reported for this measurement.
 
@@ -370,11 +370,11 @@ The assay method that was used to perform testing. This database will be develop
 
 -   **units**: Units used by this method, that are applicable to the LOD and LOQ.
 
-    -   `PMMoV`: Viral copies/copies PMMoV
-    -   `ml`: Viral copies/mL
-    -   `gms`: Viral copies/gm solids
-    -   `l`: Viral copies/L
-    -   `crA`: Viral copies/copies crAssphage
+    -   `vcPMMoV`: Viral copies/copies PMMoV
+    -   `vcMl`: Viral copies/millilitres
+    -   `vcGms`: Viral copies/grams solids
+    -   `vcL`: Viral copies/L
+    -   `vcCrA`: Viral copies/copies crAssphage
     -   `m3s`: meters cubed per second
     -   `mgl`: milligrams per liter
     -   `mgOl`: milligrams of oxygen per liter
@@ -476,7 +476,6 @@ Used for lookup values of all category based columns
 -   **date**: MM/DD/YYYY HH:mm:ss (24 hour format, in UTC)
 -   **location**: TBD
 -   **versions**: [Semantic versioning](https://semver.org)
-
 
 ## Examples of how to generate wide and long variable and category names
 
