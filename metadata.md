@@ -2,10 +2,10 @@
 
 There are eight tables that are described below. example data is stored in [data](data).
 
--   [WWMeasure](#wwMeasure) ([WWMeasure.csv](data/WWMeasurements.csv))
 -   [Sample](#Sample) ([Sample.csv](data/Sample.csv))
--   [siteMeasure](#siteMeasure) ([siteMeasure](data/siteMeasure.csv))
+-   [WWMeasure](#wwMeasure) ([WWMeasure.csv](data/WWMeasurements.csv))
 -   [Site](#Site) ([Site.csv](data/Site.csv))
+-   [siteMeasure](#siteMeasure) ([siteMeasure](data/siteMeasure.csv))
 -   [Reporter](#Reporter) ([Reporter.csv](data/Reporter.csv))
 -   [Lab](#Lab) ([Lab.csv](data/Lab.csv))
 -   [AssayMethod](#AssayMethod) (AssayMethod.csv - **TBA**)
@@ -107,7 +107,7 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
     -   `solid`: Solid fraction
     -   `mixed`: Mixed/homogenized sample
 
--   **category**: The variable that is being measured on the sample, e.g. gene target region (`covid`) or water quality parameter (`wqParam`).
+-   **category**: The variable that is being measured on the sample, e.g. gene target region (`covid`) or water quality parameter (`wq`).
 
     -   `covidUnspecified (default)`:
     -   `covidN1`: SARS-CoV-2 gene region N1
@@ -118,13 +118,13 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
     -   `covidN1N2avg`: SARS-CoV-2 gene region average of N1 and N2
     -   `PMMoV`: Pepper mild mottle virus
     -   `crA`: cross-assembly phage
-    -   `wqParamTS`: Total solids concentration.
-    -   `wqParamTSS`: Total suspended solids concentration.
-    -   `wqParamVSS`: Volatile suspended solids concentration.
-    -   `wqParamCOD`: Chemical oxygen demand.
-    -   `wqParamOrthoP`: Ortho-phosphate concentration.
-    -   `wqParamNH4N`: Ammonium nitrogen concentration.
-    -   `wqParamTN`: Total nitrogen concentration.
+    -   `wqTS`: Total solids concentration.
+    -   `wqTSS`: Total suspended solids concentration.
+    -   `wqVSS`: Volatile suspended solids concentration.
+    -   `wqCOD`: Chemical oxygen demand.
+    -   `wqOrthoP`: Ortho-phosphate concentration.
+    -   `wqNH4N`: Ammonium nitrogen concentration.
+    -   `wqTN`: Total nitrogen concentration.
     -   `other`: Other measurement category. Add description to `categoryOther`.
 
 -   **categoryOther**: Description for an other variable not listed in `category`.
@@ -235,7 +235,6 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **sewerNetworkFileBLOB**: A file BLOB that has any detailed information about the sewer network associated with the site (any format).
 
-
 ## siteMeasure (siteMeasure.csv) <span id="siteMeasure"><span>
 
 Measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
@@ -279,7 +278,7 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **aggregation**: When reporting an aggregate measurement, this field describes the method used.
 
-    -   `single`: This value is not an aggregate measurement in any way (ie. not a `mean`, `median`, `geoMean` or any other).
+    -   `single`: This value is not an aggregate measurement in any way (i.e. not a `mean`, `median`, `geoMean` or any other).
     -   `mean`: Arithmetic mean
     -   `meanNormal`: Arithmetic mean, normalized
     -   `geoMean`: Geometric mean
