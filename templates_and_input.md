@@ -6,7 +6,7 @@ Templates are in the [template folder](template).
 
 Available templates:
 
--   [`covid_wwtp_template.xlsx`](template/covid_wwtp_template.xlsx) - (do not use - an early example). This template does not adhere to the current version of the ODM. Stay tuned for an updated version.
+-   [`covid_wwtp_data_template.xlsx`](template/covid_wwtp_data_template.xlsx) - (do not use - an early example). This template does not adhere to the current version of the ODM. Stay tuned for an updated version.
 
 ## Database templates
 
@@ -22,7 +22,7 @@ Input forms correspond to the tables described in metadata. Survey Monkey forms 
 
 ## Example of wide and long variable formats
 
-The [metadata](metadata.md) and [Entity Relationship Diagram](../blob/dev/metadata.md#entity-relationship-diagram-) are long table formats. 
+The [metadata](metadata.md) and [Entity Relationship Diagram](../dev/metadata.md#entity-relationship-diagram-) are long table formats. 
 
 ### Example of reporting two viral regions (N1 and N2) on the same sample
 
