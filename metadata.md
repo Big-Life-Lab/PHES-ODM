@@ -516,12 +516,12 @@ A wide table would represent the same measurement as:
 
 ``` {.markdown}
     WWMeasure.covidN1_PPMV_mean = 40
-    WWMeasure.covidN1_PPMV_mean = 42
+    WWMeasure.covidN2_PPMV_mean = 42
 ```
 
 In a wide table as:
 
-|date      |WWMeasure.covidN1_vcPPMoV_mean|WWMeasure.covidN1_vcPPMoV_mean|
+|date      |WWMeasure.covidN1_vcPPMoV_mean|WWMeasure.covidN2_vcPPMoV_mean|
 |----------|------------------------------|------------------------------|
 |2021-01-15|40                            |42                            |
 
@@ -530,48 +530,69 @@ In a wide table as:
 
 To report a mean value of existing covidN1 and covidN2 measures:
 
-    measureCat = covidN1
-    measureUnit = ml
-    measureType = mean
-    measureValue = 42
 
+``` {.markdown}
+    date = 2021-01-15
+    type = covidN1
+    unit = ml
+    aggregation = mean
+    value = 42
+```
 
-    measureCat = covidN2
-    measureUnit = ml
-    measureType = mean
-    measureValue = 40
+``` {.markdown}
+    date = 2021-01-15
+    type = covidN2
+    unit = ml
+    aggregation = mean
+    value = 40
+```
 
 Represent the derived measure as:
 
 long table format
 
-    measureCat = covidN1_covidN2
-    measureUnit = ml
-    measureType = mean
-    measureValue = 41
+``` {.markdown}
+    date = 2021-01-15
+    type = covidN1-covidN2
+    unit = ml
+    aggreation = mean
+    value = 41
+```
+
+| date       | type | unit  | aggregation | value |
+|------------|----------|-------|-------------|-------|
+| 2021-01-15 | covidN1-covidN2  | ml | mean        | 41    |
 
 or,
 
 wide table format
 
-    covidN1_covidN2_ml_mean = 41
+``` {.markdown}
+    date = 2021-01-15
+    covidN1-covidN2_ml_mean = 41
+```
 
 -   Viral SARS-CoV-2 copies per reference copies.
 
 ### 3) Transformed measure
 
-To report mean viral copies of mean value N1 and N2 per viral copies of PMMV:
+To report mean viral copies of mean value N1 and N2 per viral copies of PMMoV:
 
 Represent the derived measure as:
 
 long table description
 
-    covidN1_covidN2 = 2
+``` {.markdown}
+    date = 2021-01-15
+    covidN1-covidN2 = 2
     measureUnit = PPMV
     measureType = meanNormal
+```
 
 or,
 
 wide table format
 
-    covidN1_covidN2-PPMV-meanNormal = 2
+``` {.markdown}
+    covidN1-covidN2_PPMV_meanNormal = 2
+```

@@ -2,6 +2,12 @@
 
 Several database templates and input forms are underdevelopment to help labs and other partners enter data.
 
+Templates are in the [template folder](template).
+
+Available templates:
+
+-   [`covid_wwtp_template.xlsx`](template/covid_wwtp_template.xlsx) - (do not use - an early example). This template does not adhere to the current version of the ODM. Stay tuned for an updated version.
+
 ## Database templates
 
 Database templates are flat file templates (i.e. Excel or CSV file format) that are used to summarize wastewater SARS-CoV-2 measurements. There are two formats - 'wide' and 'long' that are based on the underlying primary databases that are described in Metadata.
@@ -13,3 +19,16 @@ Database templates are flat file templates (i.e. Excel or CSV file format) that 
 ## Input forms
 
 Input forms correspond to the tables described in metadata. Survey Monkey forms are available for earlier versions of the ODM, but these are current not supported in the most recent version. We are aware of several initiatives to generate Microsoft PowerApp and ArcGIS Survey123. Updates will be provided here as those initiatives develop.
+
+## Example of wide and long variable formats
+
+The [metadata](metadata.md) and [Entity Relationship Diagram](../blob/dev/metadata.md#entity-relationship-diagram-) are long table formats. 
+
+### Example of reporting two viral regions (N1 and N3) on the same sample
+
+Long table format
+
+|date      |category|unit|aggregation|value|
+|----------|--------|----|-----------|-----|
+|2021-01-15|covidN1 |ml  |mean       |41   |
+|2021-01-15|covidN2 |ml  |mean       |42   |
