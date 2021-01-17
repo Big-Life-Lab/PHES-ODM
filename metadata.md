@@ -2,16 +2,16 @@
 
 There are eight tables that are described below. example data is stored in [data](data).
 
--   [Sample](#Sample) ([Sample.csv](data/Sample.csv))
--   [WWMeasure](#wwMeasure) ([WWMeasure.csv](data/WWMeasurements.csv))
--   [Site](#Site) ([Site.csv](data/Site.csv))
--   [siteMeasure](#siteMeasure) ([siteMeasure](data/siteMeasure.csv))
--   [Reporter](#Reporter) ([Reporter.csv](data/Reporter.csv))
--   [Lab](#Lab) ([Lab.csv](data/Lab.csv))
--   [AssayMethod](#AssayMethod) (AssayMethod.csv - **TBA**)
--   [Polygon](#Polygon) (Polygon.csv - **TBA**)
--   [CovidPublicHealthData](#CovidPublicHealthData) (CovidPublicHealthData.csv - **TBA**)
--   [Lookups](#Lookups) (Lookups.csv - **TBA**)
+-   [Sample](#sample)
+-   [WWMeasure](#wwMeasure)
+-   [Site](#Site)
+-   [siteMeasure](#siteMeasure)
+-   [Reporter](#Reporter)
+-   [Lab](#Lab)
+-   [AssayMethod](#AssayMethod)
+-   [Polygon](#Polygon)
+-   [CovidPublicHealthData]
+-   [Lookups](#Lookups)
 
 Entity Relationship Diagram [here](#erd).
 
@@ -21,7 +21,7 @@ Entity Relationship Diagram [here](#erd).
 
 Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-41be-bc2d-d96425f3c68f/edit?page=0_0#?folder_id=home&browser=icon)
 
-## Sample (Sample.csv) <span id="Sample"><span>
+## Sample 
 
 The sample is a representative volume of wastewater taken from a site which is then analysed by a lab.
 
