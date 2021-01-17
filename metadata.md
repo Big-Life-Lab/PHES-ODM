@@ -427,7 +427,7 @@ A simple polygon that encloses an area on the surface of the earth, normally the
 
 ## CovidPublicHealthData
 
-Covid-19 patient data in a given polygon. Note that data can be presented as wide data format, see [examples](#wide). 
+Covid-19 patient data in a given polygon. Note that data can be presented as wide data format, see [examples](#wide).
 
 -   **ID**: (Primary key) Unique identifier for the table.
 
@@ -446,13 +446,13 @@ Covid-19 patient data in a given polygon. Note that data can be presented as wid
     -   `percentPositivityRate`: Percent positivity rate.
     -   `hospitalCensus`: Hospital census or the number of people admitted with covid-19.
     -   `hospitalAdmit`: Hospital admissions or patients newly admitted to hospital.
-    
+
 -   **dateType**: Type of date used for `confirmed` cases. Typically `reported` or `episode` are reported. `onset` and `test` date is not usually reported within aggregate data.
 
-    -   `episode` : Episode date is  the earliest of onset, test or reported date. 
-    -   `onset`: Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, `episode` is used. 
-    -   `reported`: Date that the numbers were reported publicly. Typically, `reported` data and this measure is most commonly reported and used. 
-    -   `test`: Date that the covid-19 test was performed. 
+    -   `episode` : Episode date is the earliest of onset, test or reported date.
+    -   `onset`: Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, `episode` is used.
+    -   `reported`: Date that the numbers were reported publicly. Typically, `reported` data and this measure is most commonly reported and used.
+    -   `test`: Date that the covid-19 test was performed.
 
 -   **value**: The numeric value that is being reported.
 
@@ -486,62 +486,113 @@ Used for lookup values of all category based columns
 
 ### 1) Simple viral region report
 
-A long table would represent a test viral measurement as:
+A long table would represent viral measures of:
 
-    category = covidN1
-    unit = PPMoV
-    aggregation = Mean
-    value = 42
+``` {.markdown}
+date = 2021-01-15
+type = covidN1
+unit = vcPMMoV
+aggregation = Mean
+value = 40
+```
+
+``` {.markdown}
+date = 2021-01-15
+type = covidN2
+unit = vcPMMoV
+aggregation = Mean
+value = 42
+```
+
+In a long table as:
+
+| date       | type | unit  | aggregation | value |
+|------------|----------|-------|-------------|-------|
+| 2021-01-15 | covidN1  | vcPPMoV | mean        | 40    |
+| 2021-01-15 | covidN2  | vcPPMoV | mean        | 42    |
+
 
 A wide table would represent the same measurement as:
 
-    measurement.covidN1_PPMV_mean = 42
+``` {.markdown}
+    WWMeasure.covidN1_PPMV_mean = 40
+    WWMeasure.covidN2_PPMV_mean = 42
+```
+
+In a wide table as:
+
+|date      |WWMeasure.covidN1_vcPPMoV_mean|WWMeasure.covidN2_vcPPMoV_mean|
+|----------|------------------------------|------------------------------|
+|2021-01-15|40                            |42                            |
+
 
 ### 2) Derived measure
 
 To report a mean value of existing covidN1 and covidN2 measures:
 
-    measureCat = covidN1
-    measureUnit = ml
-    measureType = mean
-    measureValue = 42
 
-    measureCat = covidN2
-    measureUnit = ml
-    measureType = mean
-    measureValue = 40
+``` {.markdown}
+    date = 2021-01-15
+    type = covidN1
+    unit = ml
+    aggregation = mean
+    value = 42
+```
+
+``` {.markdown}
+    date = 2021-01-15
+    type = covidN2
+    unit = ml
+    aggregation = mean
+    value = 40
+```
 
 Represent the derived measure as:
 
 long table format
 
-    measureCat = covidN1_covidN2
-    measureUnit = ml
-    measureType = mean
-    measureValue = 41
+``` {.markdown}
+    date = 2021-01-15
+    type = covidN1-covidN2
+    unit = ml
+    aggreation = mean
+    value = 41
+```
+
+| date       | type | unit  | aggregation | value |
+|------------|----------|-------|-------------|-------|
+| 2021-01-15 | covidN1-covidN2  | ml | mean        | 41    |
 
 or,
 
 wide table format
 
-    covidN1_covidN2_ml_mean = 41
+``` {.markdown}
+    date = 2021-01-15
+    covidN1-covidN2_ml_mean = 41
+```
 
 -   Viral SARS-CoV-2 copies per reference copies.
 
 ### 3) Transformed measure
 
-To report mean viral copies of mean value N1 and N2 per viral copies of PMMV:
+To report mean viral copies of mean value N1 and N2 per viral copies of PMMoV:
 
 Represent the derived measure as:
 
 long table description
 
-    covidN1_covidN2 = 2
+``` {.markdown}
+    date = 2021-01-15
+    covidN1-covidN2 = 2
     measureUnit = PPMV
     measureType = meanNormal
+```
 
 or,
 
 wide table format
 
-    covidN1_covidN2-PPMV-meanNormal = 2
+``` {.markdown}
+    covidN1-covidN2_PPMV_meanNormal = 2
+```
