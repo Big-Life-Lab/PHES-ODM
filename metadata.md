@@ -9,19 +9,20 @@ There are eight tables that are described below. example data is stored in [data
 -   [Reporter](#reporter)
 -   [Lab](#lab)
 -   [AssayMethod](#assaymethod)
+-   [Instrument](#instrument)
 -   [Polygon](#polygon)
 -   [CovidPublicHealthData](#covidpublicHealthdata)
 -   [Lookups](#lookups)
 
 Entity Relationship Diagram [here](#entity-relationship-diagram).
 
-## Entity Relationship Diagram {#entity-relationship-diagram}
+## Entity Relationship Diagram
 
 ![](img/ERD.svg)
 
 Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-41be-bc2d-d96425f3c68f/edit?page=0_0#?folder_id=home&browser=icon)
 
-## Sample {#sample}
+## Sample
 
 The sample is a representative volume of wastewater taken from a site which is then analysed by a lab.
 
@@ -83,7 +84,7 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **notes**: Any additional notes.
 
-## WWMeasure {#wwmeasure}
+## WWMeasure
 
 Measurement result (ie. single variable) obtained by analyzing a potentially positive SARS-CoV-2 wastewater sample.
 
@@ -95,7 +96,9 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **lab.ID**: (Foreign key) Links with the identified Lab that performed the analysis.
 
--   **assay.ID**: (Foreign key) Links with the AssayMethod used to perform the analysis.
+-   **assay.ID**: (Foreign key) Links with the `AssayMethod` used to perform the analysis. Use `instrument.ID** for measures that are not viral measures.
+
+-   **instrument.ID**: (Foreign key) Links with the `Instrument` used to perform the analysis. Use `assay.ID** for viral measures.
 
 -   **analysisDate**: Date the measurement was performed in the lab.
 
@@ -107,7 +110,7 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
     -   `solid`: Solid fraction
     -   `mixed`: Mixed/homogenized sample
 
--   **category**: The variable that is being measured on the sample, e.g. gene target region (`covid`) or water quality parameter (`wq`).
+-   **type**: The variable that is being measured on the sample, e.g. gene target region (`covid`) or water quality parameter (`wq`).
 
     -   `covidUnspecified (default)`:
     -   `covidN1`: SARS-CoV-2 gene region N1
@@ -127,7 +130,7 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
     -   `wqTN`: Total nitrogen concentration.
     -   `other`: Other measurement category. Add description to `categoryOther`.
 
--   **categoryOther**: Description for an other variable not listed in `category`.
+-   **typeOther**: Description for an other variable not listed in `category`.
 
 -   **unit**: Unit of the measurement.
 
@@ -169,7 +172,7 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **notes**: Any additional notes.
 
-## Site {#site}
+## Site
 
 The site of wastewater sampling, including several *defaults* that can be used to populate new samples upon creation.
 
@@ -235,13 +238,15 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **sewerNetworkFileBLOB**: A file BLOB that has any detailed information about the sewer network associated with the site (any format).
 
-## SiteMeasure {#sitemeasure}
+## SiteMeasure
 
 Measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
 
 -   **ID**: (Primary Key) Unique identifier for each contextual measurement.
 
 -   **Site.ID**: (Foreign Key) Links with the Site table to describe the location of measurement.
+
+-   **Instrument.ID**: (Foreign Key) Links with the `Instrument` table to describe instrument used for the measurement.
 
 -   **dateTime**: The date and time the measurement was performed.
 
@@ -263,18 +268,6 @@ Measures that are not performed on the wastewater sample but provide additional 
 -   **typeOther**: Description of the measurement in case it is not listed in `type`.
 
 -   **typeDescription**: Additional information on the performed measurement.
-
--   **instrumentName**: Name of the instrument used to perform the measurement.
-
--   **instrumentType**: Type of instrument used to perform the measurement.
-
-    -   `online`: An online sensor.
-    -   `lab`: Offline laboratory analysis.
-    -   `handheld`: A handheld measurement analyzer.
-    -   `atlineAnalyzer`: An atline analyzer with sampler.
-    -   `other`: An other type of measurement instrument. Add description to `instrumentTypeOther`.
-
--   **instrumentTypeOther**: Description of the instrument in case it is not listed in `instrumentType`.
 
 -   **aggregation**: When reporting an aggregate measurement, this field describes the method used.
 
@@ -302,7 +295,7 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **notes**: Any additional notes.
 
-## Reporter {#reporter}
+## Reporter
 
 The individual or organization that is reporting and responsible for the quality of the data.
 
@@ -336,7 +329,7 @@ The individual or organization that is reporting and responsible for the quality
 
 -   **notes**: Any additional notes.
 
-## Lab {#lab}
+## Lab
 
 Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
@@ -354,11 +347,13 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 -   **updateDate**: Date information was provided or updated.
 
-## AssayMethod {#assaymethod}
+## AssayMethod
 
 The assay method that was used to perform testing. Create a new record if there are changes (improvements) to an existing assay method. Keep the same `ID` and use an updated `version`. A new record for a new version can include only the fields that changed, however, we recommend duplicating existing fields to allow each record to clearly describe all steps. Add a current `date` when recording a new version to an assay.
 
 -   **ID**: (Primary key) Unique identifier for the assay method.
+
+-   **InstrumentList**: (Foreign Key) Links with the `Instrument` table to describe instruments used for the measurement. A comma separated list of `Instrument.ID`s. 
 
 -   **name**: Name of the assay method.
 
@@ -398,13 +393,39 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **methodPcr**: Description of the PCR method used
 
--   **qualityAssuranceQC** : Description of the quality control steps taken
+-   **qualityAssuranceQC**: Description of the quality control steps taken
 
 -   **inhibition**: Description of the inhibition parameters.
 
 -   **surrogateRecovery**: Description of the surrogate recovery for this method.
 
-## Polygon {#polygon}
+## Instrument 
+
+Instruments that are used for measures in `WWMeaure` and `SiteMeasure`. The assay method for viral measurement are described in `AssayMethod`.
+
+-   **ID**: (Primary key) Unique identifier for the assay method.
+
+-   **name**: Name of the instrument used to perform the measurement.
+
+-   **version** Version or model nummber of the instrument.
+
+-   **description** Description of the instrument.
+
+-   **alaisID**: ID of an assay that is the same or similar. A coma separated list.
+
+-   **referenceLink**: Link to reference for the instrutment.
+
+-   **type**: Type of instrument used to perform the measurement.
+
+    - `online`: An online sensor
+    - `lab`: Offline laboratory analysis
+    - `handheld`: A handheld measurement analyzer.
+    - `atlineAnalyzer`: An atline analyzer with sampler.
+    - `other:` An other type of measurement instrument. Add description to instrumentTypeOther.
+
+-   **typeOther**: Description of the instrument in case it is not listed in instrumentType.
+
+## Polygon 
 
 A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
 
@@ -425,7 +446,7 @@ A simple polygon that encloses an area on the surface of the earth, normally the
 
 -   **link**: Link to an external reference that describes the geometry of the polygon.
 
-## CovidPublicHealthData {#covidpublichealthdata}
+## CovidPublicHealthData
 
 Covid-19 patient data in a given polygon. Note that data can be presented as wide data format, see [examples](#wide).
 
@@ -458,7 +479,7 @@ Covid-19 patient data in a given polygon. Note that data can be presented as wid
 
 -   **notes**: Any additional notes.
 
-## Lookups {#lookups}
+## Lookups
 
 Used for lookup values of all category based columns
 
@@ -482,7 +503,7 @@ Used for lookup values of all category based columns
 -   **location**: TBD
 -   **versions**: [Semantic versioning](https://semver.org)
 
-## Examples of how to generate wide variable and category names (\#wide)
+## Examples of how to generate wide variable and category names
 
 ### 1) Simple viral region report
 
@@ -560,7 +581,7 @@ long table format
 |------------|-----------------|------|-------------|-------|
 | 2021-01-15 | covidN1-covidN2 | ml   | mean        | 41    |
 
-or, wide table format
+or, gitwide table format
 
 ``` {.markdown}
     date = 2021-01-15
