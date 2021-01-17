@@ -491,24 +491,26 @@ A long table would represent viral measures of:
 ``` {.markdown}
 date = 2021-01-15
 type = covidN1
-unit = PPMoV
+unit = vcPMMoV
 aggregation = Mean
 value = 40
 ```
 
 ``` {.markdown}
 date = 2021-01-15
-type = covidN1
-unit = PPMoV
+type = covidN2
+unit = vcPMMoV
 aggregation = Mean
 value = 42
 ```
-in a table as:
+
+In a long table as:
 
 | date       | type | unit  | aggregation | value |
 |------------|----------|-------|-------------|-------|
-| 2021-01-15 | covidN1  | PPMoV | mean        | 40    |
-| 2021-01-15 | covidN2  | PPMoV | mean        | 42    |
+| 2021-01-15 | covidN1  | vcPPMoV | mean        | 40    |
+| 2021-01-15 | covidN2  | vcPPMoV | mean        | 42    |
+
 
 A wide table would represent the same measurement as:
 
@@ -516,7 +518,13 @@ A wide table would represent the same measurement as:
     WWMeasure.covidN1_PPMV_mean = 40
     WWMeasure.covidN1_PPMV_mean = 42
 ```
-    
+
+In a wide table as:
+
+|date      |WWMeasure.covidN1_vcPPMoV_mean|WWMeasure.covidN1_vcPPMoV_mean|
+|----------|------------------------------|------------------------------|
+|2021-01-15|40                            |42                            |
+
 
 ### 2) Derived measure
 
