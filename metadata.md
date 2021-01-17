@@ -488,10 +488,17 @@ Used for lookup values of all category based columns
 
 A long table would represent a test viral measurement as:
 
+    date = 2021-01-15
     category = covidN1
     unit = PPMoV
     aggregation = Mean
     value = 42
+    
+Long table
+
+|date      |category  |unit  |aggregation  |value  |
+|----------|----------|------|-------------|-------|
+|2021-01-15|covidN1   |PPMoV |mean         |42     |
 
 A wide table would represent the same measurement as:
 
