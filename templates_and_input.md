@@ -22,7 +22,7 @@ Input forms correspond to the tables described in metadata. Survey Monkey forms 
 
 ## Example of wide and long variable formats
 
-The [metadata](metadata.md) and [Entity Relationship Diagram](../dev/metadata.md#entity-relationship-diagram-) are long table formats. 
+The [metadata](metadata.md) and [Entity Relationship Diagram](metadata.md#entity-relationship-diagram-) are long table formats. 
 
 ### Example of reporting two viral regions (N1 and N2) on the same sample
 
