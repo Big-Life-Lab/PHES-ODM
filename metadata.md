@@ -3,19 +3,19 @@
 There are eight tables that are described below. example data is stored in [data](data).
 
 -   [Sample](#sample)
--   [WWMeasure](#wwMeasure)
+-   [WWMeasure](#wwmeasure)
 -   [Site](#Site)
--   [siteMeasure](#siteMeasure)
--   [Reporter](#Reporter)
--   [Lab](#Lab)
--   [AssayMethod](#AssayMethod)
--   [Polygon](#Polygon)
--   [CovidPublicHealthData]
--   [Lookups](#Lookups)
+-   [siteMeasure](#sitemeasure)
+-   [Reporter](#reporter)
+-   [Lab](#lab)
+-   [AssayMethod](#assaymethod)
+-   [Polygon](#polygon)
+-   [CovidPublicHealthData](#covidpublicHealthdata)
+-   [Lookups](#lookups)
 
-Entity Relationship Diagram [here](#erd).
+Entity Relationship Diagram [here](#entity-relationship-diagram).
 
-## Entity Relationship Diagram <span id="erd"><span>
+## Entity Relationship Diagram
 
 ![](img/ERD.svg)
 
@@ -83,7 +83,7 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **notes**: Any additional notes.
 
-## WWMeasure (Measure.csv) <span id="WWMeasure"><span>
+## WWMeasure
 
 Measurement result (ie. single variable) obtained by analyzing a potentially positive SARS-CoV-2 wastewater sample.
 
@@ -169,7 +169,7 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **notes**: Any additional notes.
 
-## Site (Site.csv) <span id="Site"><span>
+## Site
 
 The site of wastewater sampling, including several *defaults* that can be used to populate new samples upon creation.
 
@@ -235,7 +235,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **sewerNetworkFileBLOB**: A file BLOB that has any detailed information about the sewer network associated with the site (any format).
 
-## siteMeasure (siteMeasure.csv) <span id="siteMeasure"><span>
+## SiteMeasure
 
 Measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
 
@@ -302,7 +302,7 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **notes**: Any additional notes.
 
-## Reporter (Reporter.csv) <span id="Reporter"><span>
+## Reporter
 
 The individual or organization that is reporting and responsible for the quality of the data.
 
@@ -336,7 +336,7 @@ The individual or organization that is reporting and responsible for the quality
 
 -   **notes**: Any additional notes.
 
-## Lab (Lab.csv) <span id="Lab"><span>
+## Lab
 
 Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
@@ -354,7 +354,7 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 -   **updateDate**: Date information was provided or updated.
 
-## AssayMethod (AssayMethod.csv) <span id="AssayMethod"><span>
+## AssayMethod
 
 The assay method that was used to perform testing. Create a new record if there are changes (improvements) to an existing assay method. Keep the same `ID` and use an updated `version`. A new record for a new version can include only the fields that changed, however, we recommend duplicating existing fields to allow each record to clearly describe all steps. Add a current `date` when recording a new version to an assay.
 
@@ -404,7 +404,7 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **surrogateRecovery**: Description of the surrogate recovery for this method.
 
-## Polygon (Polygon.csv) <span id="Polygon"><span>
+## Polygon
 
 A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
 
@@ -425,7 +425,7 @@ A simple polygon that encloses an area on the surface of the earth, normally the
 
 -   **link**: Link to an external reference that describes the geometry of the polygon.
 
-## CovidPublicHealthData (CovidPublicHealthData.csv) <span id="CovidPublicHealthData"><span>
+## CovidPublicHealthData
 
 Covid-19 patient data in a given polygon. Note that data can be presented as wide data format, see [examples](#wide). 
 
@@ -458,7 +458,7 @@ Covid-19 patient data in a given polygon. Note that data can be presented as wid
 
 -   **notes**: Any additional notes.
 
-## Lookups (Lookups.csv) <span id="Lookups"><span>
+## Lookups
 
 Used for lookup values of all category based columns
 
@@ -482,7 +482,7 @@ Used for lookup values of all category based columns
 -   **location**: TBD
 -   **versions**: [Semantic versioning](https://semver.org)
 
-## Examples of how to generate wide variable and category names <span id="wide"><span>
+## Examples of how to generate wide variable and category names (#wide)
 
 ### 1) Simple viral region report
 
