@@ -24,11 +24,17 @@ Input forms correspond to the tables described in metadata. Survey Monkey forms 
 
 The [metadata](metadata.md) and [Entity Relationship Diagram](../blob/dev/metadata.md#entity-relationship-diagram-) are long table formats. 
 
-### Example of reporting two viral regions (N1 and N3) on the same sample
+### Example of reporting two viral regions (N1 and N2) on the same sample
 
 Long table format
 
-|date      |category|unit|aggregation|value|
+|date      |type|unit|aggregation|value|
 |----------|--------|----|-----------|-----|
-|2021-01-15|covidN1 |ml  |mean       |41   |
-|2021-01-15|covidN2 |ml  |mean       |42   |
+|2021-01-15|covidN1 |vcPPMoV  |mean       |40   |
+|2021-01-15|covidN2 |vcPPMov  |mean       |42   |
+
+Wide table format
+
+|date      |WWMeasure.covidN1_vcPPMoV_mean|WWMeasure.covidN2_vcPPMoV_mean|
+|----------|------------------------------|------------------------------|
+|2021-01-15|40                            |42                            |
