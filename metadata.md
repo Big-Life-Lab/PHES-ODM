@@ -15,13 +15,13 @@ There are eight tables that are described below. example data is stored in [data
 
 Entity Relationship Diagram [here](#entity-relationship-diagram).
 
-## Entity Relationship Diagram
+## Entity Relationship Diagram {#entity-relationship-diagram}
 
 ![](img/ERD.svg)
 
 Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-41be-bc2d-d96425f3c68f/edit?page=0_0#?folder_id=home&browser=icon)
 
-## Sample 
+## Sample {#sample}
 
 The sample is a representative volume of wastewater taken from a site which is then analysed by a lab.
 
@@ -83,7 +83,7 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **notes**: Any additional notes.
 
-## WWMeasure
+## WWMeasure {#wwmeasure}
 
 Measurement result (ie. single variable) obtained by analyzing a potentially positive SARS-CoV-2 wastewater sample.
 
@@ -169,7 +169,7 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **notes**: Any additional notes.
 
-## Site
+## Site {#site}
 
 The site of wastewater sampling, including several *defaults* that can be used to populate new samples upon creation.
 
@@ -235,7 +235,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **sewerNetworkFileBLOB**: A file BLOB that has any detailed information about the sewer network associated with the site (any format).
 
-## SiteMeasure
+## SiteMeasure {#sitemeasure}
 
 Measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
 
@@ -302,7 +302,7 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **notes**: Any additional notes.
 
-## Reporter
+## Reporter {#reporter}
 
 The individual or organization that is reporting and responsible for the quality of the data.
 
@@ -336,7 +336,7 @@ The individual or organization that is reporting and responsible for the quality
 
 -   **notes**: Any additional notes.
 
-## Lab
+## Lab {#lab}
 
 Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
@@ -354,7 +354,7 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 -   **updateDate**: Date information was provided or updated.
 
-## AssayMethod
+## AssayMethod {#assaymethod}
 
 The assay method that was used to perform testing. Create a new record if there are changes (improvements) to an existing assay method. Keep the same `ID` and use an updated `version`. A new record for a new version can include only the fields that changed, however, we recommend duplicating existing fields to allow each record to clearly describe all steps. Add a current `date` when recording a new version to an assay.
 
@@ -404,7 +404,7 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **surrogateRecovery**: Description of the surrogate recovery for this method.
 
-## Polygon
+## Polygon {#polygon}
 
 A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
 
@@ -425,7 +425,7 @@ A simple polygon that encloses an area on the surface of the earth, normally the
 
 -   **link**: Link to an external reference that describes the geometry of the polygon.
 
-## CovidPublicHealthData
+## CovidPublicHealthData {#covidpublichealthdata}
 
 Covid-19 patient data in a given polygon. Note that data can be presented as wide data format, see [examples](#wide).
 
@@ -458,7 +458,7 @@ Covid-19 patient data in a given polygon. Note that data can be presented as wid
 
 -   **notes**: Any additional notes.
 
-## Lookups
+## Lookups {#lookups}
 
 Used for lookup values of all category based columns
 
@@ -482,7 +482,7 @@ Used for lookup values of all category based columns
 -   **location**: TBD
 -   **versions**: [Semantic versioning](https://semver.org)
 
-## Examples of how to generate wide variable and category names (#wide)
+## Examples of how to generate wide variable and category names (\#wide)
 
 ### 1) Simple viral region report
 
@@ -506,11 +506,10 @@ value = 42
 
 In a long table as:
 
-| date       | type | unit  | aggregation | value |
-|------------|----------|-------|-------------|-------|
-| 2021-01-15 | covidN1  | vcPPMoV | mean        | 40    |
-| 2021-01-15 | covidN2  | vcPPMoV | mean        | 42    |
-
+| date       | type    | unit    | aggregation | value |
+|------------|---------|---------|-------------|-------|
+| 2021-01-15 | covidN1 | vcPPMoV | mean        | 40    |
+| 2021-01-15 | covidN2 | vcPPMoV | mean        | 42    |
 
 A wide table would represent the same measurement as:
 
@@ -521,15 +520,13 @@ A wide table would represent the same measurement as:
 
 In a wide table as:
 
-|date      |WWMeasure.covidN1_vcPPMoV_mean|WWMeasure.covidN2_vcPPMoV_mean|
-|----------|------------------------------|------------------------------|
-|2021-01-15|40                            |42                            |
-
+| date       | WWMeasure.covidN1\_vcPPMoV\_mean | WWMeasure.covidN2\_vcPPMoV\_mean |
+|------------|----------------------------------|----------------------------------|
+| 2021-01-15 | 40                               | 42                               |
 
 ### 2) Derived measure
 
 To report a mean value of existing covidN1 and covidN2 measures:
-
 
 ``` {.markdown}
     date = 2021-01-15
@@ -559,13 +556,11 @@ long table format
     value = 41
 ```
 
-| date       | type | unit  | aggregation | value |
-|------------|----------|-------|-------------|-------|
-| 2021-01-15 | covidN1-covidN2  | ml | mean        | 41    |
+| date       | type            | unit | aggregation | value |
+|------------|-----------------|------|-------------|-------|
+| 2021-01-15 | covidN1-covidN2 | ml   | mean        | 41    |
 
-or,
-
-wide table format
+or, wide table format
 
 ``` {.markdown}
     date = 2021-01-15
