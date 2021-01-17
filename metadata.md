@@ -5,7 +5,7 @@ There are eight tables that are described below. example data is stored in [data
 -   [Sample](#sample)
 -   [WWMeasure](#wwmeasure)
 -   [Site](#Site)
--   [siteMeasure](#sitemeasure)
+-   [SiteMeasure](#sitemeasure)
 -   [Reporter](#reporter)
 -   [Lab](#lab)
 -   [AssayMethod](#assaymethod)
