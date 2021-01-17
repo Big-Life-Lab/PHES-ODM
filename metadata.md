@@ -427,7 +427,7 @@ A simple polygon that encloses an area on the surface of the earth, normally the
 
 ## CovidPublicHealthData (CovidPublicHealthData.csv) <span id="CovidPublicHealthData"><span>
 
-Covid-19 patient data in a given polygon. Note that data can be presented as wide data format, see [examples](#wide). 
+Covid-19 patient data in a given polygon. Note that data can be presented as wide data format, see [examples](#wide).
 
 -   **ID**: (Primary key) Unique identifier for the table.
 
@@ -446,13 +446,13 @@ Covid-19 patient data in a given polygon. Note that data can be presented as wid
     -   `percentPositivityRate`: Percent positivity rate.
     -   `hospitalCensus`: Hospital census or the number of people admitted with covid-19.
     -   `hospitalAdmit`: Hospital admissions or patients newly admitted to hospital.
-    
+
 -   **dateType**: Type of date used for `confirmed` cases. Typically `reported` or `episode` are reported. `onset` and `test` date is not usually reported within aggregate data.
 
-    -   `episode` : Episode date is  the earliest of onset, test or reported date. 
-    -   `onset`: Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, `episode` is used. 
-    -   `reported`: Date that the numbers were reported publicly. Typically, `reported` data and this measure is most commonly reported and used. 
-    -   `test`: Date that the covid-19 test was performed. 
+    -   `episode` : Episode date is the earliest of onset, test or reported date.
+    -   `onset`: Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, `episode` is used.
+    -   `reported`: Date that the numbers were reported publicly. Typically, `reported` data and this measure is most commonly reported and used.
+    -   `test`: Date that the covid-19 test was performed.
 
 -   **value**: The numeric value that is being reported.
 
@@ -486,23 +486,37 @@ Used for lookup values of all category based columns
 
 ### 1) Simple viral region report
 
-A long table would represent a test viral measurement as:
+A long table would represent viral measures of:
 
-    date = 2021-01-15
-    category = covidN1
-    unit = PPMoV
-    aggregation = Mean
-    value = 42
-    
-Long table
+``` {.markdown}
+date = 2021-01-15
+type = covidN1
+unit = PPMoV
+aggregation = Mean
+value = 40
+```
 
-|date      |category  |unit  |aggregation  |value  |
-|----------|----------|------|-------------|-------|
-|2021-01-15|covidN1   |PPMoV |mean         |42     |
+``` {.markdown}
+date = 2021-01-15
+type = covidN1
+unit = PPMoV
+aggregation = Mean
+value = 42
+```
+in a table as:
+
+| date       | type | unit  | aggregation | value |
+|------------|----------|-------|-------------|-------|
+| 2021-01-15 | covidN1  | PPMoV | mean        | 40    |
+| 2021-01-15 | covidN2  | PPMoV | mean        | 42    |
 
 A wide table would represent the same measurement as:
 
-    measurement.covidN1_PPMV_mean = 42
+``` {.markdown}
+    WWMeasure.covidN1_PPMV_mean = 40
+    WWMeasure.covidN1_PPMV_mean = 42
+```
+    
 
 ### 2) Derived measure
 
@@ -512,6 +526,7 @@ To report a mean value of existing covidN1 and covidN2 measures:
     measureUnit = ml
     measureType = mean
     measureValue = 42
+
 
     measureCat = covidN2
     measureUnit = ml
