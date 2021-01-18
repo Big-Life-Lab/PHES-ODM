@@ -411,7 +411,7 @@ Instruments that are used for measures in `WWMeaure` and `SiteMeasure`. The assa
 
 -   **description** Description of the instrument.
 
--   **alaisID**: ID of an assay that is the same or similar. A coma separated list.
+-   **aliasID**: ID of an assay that is the same or similar. A coma separated list.
 
 -   **referenceLink**: Link to reference for the instrutment.
 
