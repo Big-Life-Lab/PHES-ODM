@@ -365,7 +365,7 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **referenceLink**: Link to standard operating procedure (assay reference method).
 
--   **alaisID**: ID of an assay that is the same or similar. *a coma separated list*.
+-   **aliasID**: ID of an assay that is the same or similar. *a coma separated list*.
 
 -   **sampleSizeL**: Size of the sample that is analyzed in liters.
 
@@ -373,7 +373,7 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **lod**: Limit of detection (LOD) for this method if one exists.
 
--   **units**: Units used by this method, that are applicable to the LOD and LOQ.
+-   **unit**: Unit used by this method, that are applicable to the LOD and LOQ.
 
     -   `vcPMMoV`: Viral copies/copies PMMoV
     -   `vcMl`: Viral copies/millilitres
@@ -385,7 +385,7 @@ The assay method that was used to perform testing. Create a new record if there 
     -   `mgOl`: milligrams of oxygen per liter
     -   `other`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to `unitOther`.
 
--   **unitsOther**: Units used by this method, that are applicable to the LOD and LOQ.
+-   **unitOther**: Unit used by this method, that are applicable to the LOD and LOQ.
 
 -   **methodConcentration**: Description of the method used to concentrate the sample
 
