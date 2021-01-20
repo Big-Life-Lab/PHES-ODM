@@ -172,6 +172,22 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **qualityFlag**: Does the reporter suspect the measurement having some quality issues? (Boolean)
 
+-   **denyAccessToPublic**: If this is True, this data will not be available to the public. (Boolean)
+
+-   **denyAccessToAllOrganizations**: If this is True, this data will not be available to any partner organization. (Boolean)
+
+-   **denyAccessToSelf**: If this is True, this data will not be shown on the portal when this reporter logs in. (Boolean)
+
+-   **denyAccessToFederalPublicHealthAuthorities**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. (Boolean)
+
+-   **denyAccessToLocalPublicHealthAuthorities**: If this is True the, data will not be available to local health authorities. (Boolean)
+
+-   **denyAccessToProvincialPublicHealthAuthorities**: If this is True, this data will not be available to provincial health authorities. (Boolean)
+
+-   **denyAccessToOtherDataProviders**: If this is True, this data will not be available to other data providers not listed before. (Boolean)
+
+-   **denyAccessToDetails**: More details on the existing confidentiality requirements of this measurement.  
+
 -   **notes**: Any additional notes.
 
 ## Site
@@ -295,6 +311,22 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **qualityFlag**: Does the reporter suspect quality issues with the value of this measurement? (Boolean)
 
+-   **denyAccessToPublic**: If this is True, this data will not be available to the public. (Boolean)
+
+-   **denyAccessToAllOrganizations**: If this is True, this data will not be available to any partner organization. (Boolean)
+
+-   **denyAccessToSelf**: If this is True, this data will not be shown on the portal when this reporter logs in. (Boolean)
+
+-   **denyAccessToFederalPublicHealthAuthorities**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. (Boolean)
+
+-   **denyAccessToLocalPublicHealthAuthorities**: If this is True the, data will not be available to local health authorities. (Boolean)
+
+-   **denyAccessToProvincialPublicHealthAuthorities**: If this is True, this data will not be available to provincial health authorities. (Boolean)
+
+-   **denyAccessToOtherDataProviders**: If this is True, this data will not be available to other data providers not listed before. (Boolean)
+
+-   **denyAccessToDetails**: More details on the existing confidentiality requirements of this measurement.  
+
 -   **notes**: Any additional notes.
 
 ## Reporter
@@ -312,22 +344,6 @@ The individual or organization that is reporting and responsible for the quality
 -   **contactEmail**: Contact e-mail address.
 
 -   **contactPhone**: Contact phone number.
-
--   **allowAccessToSelf**: Default: True. If this is False the data will not be shown on the portal when the data provider logs in
-
--   **allowAccessToFederalPublicHealthAuthorities**: Default: True. If this is False the data will not be available to employees of PHAC
-
--   **allowAccessToLocalPublicHealthAuthorities**: Default: True. If this is False data will not be available when local health Authorities log in.
-
--   **allowAccessToProvincialPublicHealthAuthorities**: Default: True. If this is False data will not available when provincial health Authorities log in.
-
--   **allowAccessToOtherDataProviders**: Default: True. If this is False data will not be available when other data providers login.
-
--   **allowAccessToAllOrganizations**: Default: True. If this is False data will not be available when any partner organization logs into the system
-
--   **allowAccessToPublic**: Default: True. If this is False data will not be available to the public.
-
--   **allowAccessToSpec**: Details or specifics on confidentiality requirements.
 
 -   **notes**: Any additional notes.
 
@@ -450,7 +466,7 @@ A simple polygon that encloses an area on the surface of the earth, normally the
 
 ## CovidPublicHealthData
 
-Covid-19 patient data in a given polygon. Note that data can be presented as wide data format, see [examples](#wide).
+Covid-19 patient data for a specified polygon.
 
 -   **ID**: (Primary key) Unique identifier for the table.
 
