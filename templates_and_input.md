@@ -6,7 +6,11 @@ Templates are in the [template folder](template).
 
 Available templates:
 
+*Database templates*
+
+-   [Ontario_Template_ODM_1.0.xlsx](template/Ontario_Template_ODM_1.0.xlsx) - Ontario Ministry of Environment, Conservation and Parks (MECP). Used in Ontario-funded provincial program. A wide template format with tabs that represent each table.
 -   [`covid_wwtp_data_template.xlsx`](template/covid_wwtp_data_template.xlsx) - (do not use - an early example). This template does not adhere to the current version of the ODM. Stay tuned for an updated version.
+-   [wbe_create_tables.sql](src/wbe_create_tables.sql) - Code to generate a SQL database.
 
 ## Database templates
 
