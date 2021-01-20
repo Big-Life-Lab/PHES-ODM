@@ -96,9 +96,11 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **lab.ID**: (Foreign key) Links with the identified Lab that performed the analysis.
 
--   **assay.ID**: (Foreign key) Links with the `AssayMethod` used to perform the analysis. Use `instrument.ID** for measures that are not viral measures.
+-   **assay.ID**: (Foreign key) Links with the `AssayMethod` used to perform the analysis. Use `instrument.ID` for measures that are not viral measures.
 
--   **instrument.ID**: (Foreign key) Links with the `Instrument` used to perform the analysis. Use `assay.ID** for viral measures.
+-   **instrument.ID**: (Foreign key) Links with the `Instrument` used to perform the analysis. Use `assay.ID` for viral measures.
+
+-   **reporter.ID**: (Foreign key) Links with the reporter that is responsible for the data.
 
 -   **analysisDate**: Date the measurement was performed in the lab.
 
@@ -182,8 +184,6 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **description**: Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.
 
--   **reporter.ID**: (Foreign key) Links with the reporter that is responsible for the data.
-
 -   **type**: Type of site or institution where sample was taken.
 
     -   `airplane`: Airplane
@@ -247,6 +247,8 @@ Measures that are not performed on the wastewater sample but provide additional 
 -   **Site.ID**: (Foreign Key) Links with the Site table to describe the location of measurement.
 
 -   **Instrument.ID**: (Foreign Key) Links with the `Instrument` table to describe instrument used for the measurement.
+
+-   **reporter.ID**: (Foreign key) Links with the reporter that is responsible for the data.
 
 -   **dateTime**: The date and time the measurement was performed.
 
