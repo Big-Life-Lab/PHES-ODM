@@ -38,9 +38,15 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **type**: Type of sample.
 
-    -   `primarySludge`: Sludge produced by primary clarifiers
-    -   `rawCollector`: Raw wastewater (in collector system)
-    -   `rawPostGrit`: Raw wastewater after the treatment plant's headworks (post-grit)
+    -   `rawWastewater`: Raw wastewater.
+    -   `sewerSediment`: Sediments obtained in sewer.
+    -   `wwPostGrit`: Raw wastewater after a treatment plant's headworks. 
+    -   `primarySludge`: Sludge produced by primary clarifiers.
+    -   `primaryEffluent`: Effluent obtained after primary clarifiers.
+    -   `secondarySludge`: Sludge produced by secondary clarifiers.
+    -   `secondaryEffluent`: Effluent obtained after secondary clarifiers.
+    -   `water`: Non-wastewater, coming from any kind of water body.
+    -   `faeces`: Fecal matter.
     -   `other`: Other type of site. Add description to `typeOther`.
 
 -   **typeOther**: Description for other type of sample not listed in `type`.
@@ -197,33 +203,30 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **type**: Type of site or institution where sample was taken.
 
-    -   `airplane`: Airplane
-    -   `correctionalFacility`: Federal or provincial correctional facility or jail
-    -   `elementarySchool`: Elementary school
-    -   `hospital`: Hospital
-    -   `lagoon`: Lagoon
-    -   `longTermCareFacility`: Long-term care facility
-    -   `sewageTruck`: Sewage truck
-    -   `universityCampus`: University campus or resident
-    -   `WWTP`: Wastewater treatment plant
-    -   `other`: Other
+    -   `airplane`
+    -   `correctionalFacility`
+    -   `elementarySchool`
+    -   `hospital`
+    -   `longTermCareFacility`
+    -   `sewageTruck`
+    -   `universityCampus`
+    -   `majorSewerPipeline`
+    -   `pumpingStation`
+    -   `holdTank`
+    -   `retentionPond`
+    -   `wwtpSanitaryMunicipal`
+    -   `wwtpCombinedMunicipal`
+    -   `wwtpIndustrial`
+    -   `lagoon`
+    -   `septicTank`
+    -   `river`
+    -   `lake`
+    -   `estuary`
+    -   `sea`
+    -   `ocean`
+    -   `other`: Other site type. Add description to `typeOther`.
 
--   **typeOther**: Description of site where the site is other. See `siteType`. If `institution` consider placing things like `meat plant' or description of institute, etc, If`airplane consider identifying the flight number.
-
--   **accessType**: Access point or where the sample was collected at the site.
-
-    -   `SAPFlowWater`: Sewer access point flowing water
-    -   `SAPStandingWater`: Sewer access point standing water
-    -   `treatPlantInfluent`: Treatment plant influent
-    -   `treatPlantPrimarySludge`: Primary treatment sludge
-    -   `treatPlantEffluent`: Treatment plant effluent
-    -   `buildingCleanout`: Building clean out
-    -   `propertyLineCleanout`: Property line clean out
-    -   `lagoonInfluent`: Wastewater treatment lagoon influent
-    -   `lagoonEffluent`: Wastewater treatment lagoon effluent
-    -   `other`: An other type of access point. Add description to `accessTypeOther`.
-
--   **accessTypeOther**: Description of an access point not listed in `accessType`.
+-   **typeOther**: Description of the site when the site is not listed. See `siteType`.
 
 -   **sample.typeDefault**: Used as default when a new sample is created for this site. See `type` in `Sample` table.
 
