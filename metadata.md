@@ -47,17 +47,12 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **collection**: Method used to collect the data.
 
-    -   `grab sample`: Sample was a simple grab sample
-    -   `contFlowProp`: Continuous flow proportional
-    -   `contConstant`: Continuous constant
-    -   `contOther`: Continuous other
-    -   `discTimeProp`: Discrete time proportional
-    -   `discTimeProp24hq1h`: Discrete time proportional 24-hour composite, every 1 hr
-    -   `discTimeProp24hq4h`: Discrete time proportional 24-hour composite, every 4 hr
-    -   `discTimeProp24hq6h`: Discrete time proportional 24-hour composite, every 6 hr
-    -   `discFlowProp`: Discrete flow proportional
-    -   `discVolumeProp`: Discrete volume proportional
-    -   `discOther`: Discrete other
+    - `compTimeProp24h`: A time proportional 24-hour composite sample generally collected by an autosampler.
+    - `compFlowProp24h`: A flow proportional 24-hour composite sample generally collected by an autosampler.
+    - `grabSample`: A single large representative grab sample.
+    - `grabComp8h`: An 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.
+    - `grabComp3h`: A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.
+    - `grabCompSample3`: A grab-composite sample composed of 3 separate grab samples.
     -   `other`: Other type of collection method. Add description to `collectionOther`.
 
 -   **collectionOther**: Description for other type of method not listed in `collection`.
