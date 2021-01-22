@@ -39,6 +39,6 @@ Long table format
 
 Wide table format
 
-|date      |WWMeasure.covidN1_vcPPMoV_mean|WWMeasure.covidN2_vcPPMoV_mean|
+|date      |WWMeasure__covidN1_vcPPMoV_mean|WWMeasure__covidN2_vcPPMoV_mean|
 |----------|------------------------------|------------------------------|
 |2021-01-15|40                            |42                            |
