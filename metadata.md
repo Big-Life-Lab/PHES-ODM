@@ -20,7 +20,7 @@ Entity Relationship Diagram [here](#entity-relationship-diagram).
 
 ![](img/ERD.svg)
 
-Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-41be-bc2d-d96425f3c68f/edit?page=0_0#?folder_id=home&browser=icon)
+Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/invitations/accept/adc1784b-e237-4a2f-947e-4503544d4510)
 
 ## Sample {#sample}
 
