@@ -57,6 +57,7 @@ The sample is a representative volume of wastewater taken from a site which is t
     -   `discTimeProp24hq6h`: Discrete time proportional 24-hour composite, every 6 hr
     -   `discFlowProp`: Discrete flow proportional
     -   `discVolumeProp`: Discrete volume proportional
+    -   `moreSwab`: Moore swab passive sampler
     -   `discOther`: Discrete other
     -   `other`: Other type of collection method. Add description to `collectionOther`.
 
