@@ -47,7 +47,7 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **collection**: Method used to collect the data.
 
-    -   `grab sample`: Sample was a simple grab sample
+    -   `grabSample`: Sample was a simple grab sample
     -   `contFlowProp`: Continuous flow proportional
     -   `contConstant`: Continuous constant
     -   `contOther`: Continuous other
@@ -75,9 +75,9 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **sizeL**: Total volume of water or sludge sampled.
 
--   **samplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
+-   **fieldSamplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
 
--   **mailedOnIce**: Was the sample kept cool while being sent to the lab? (Boolean)
+-   **shippedOnIce**: Was the sample kept cool while being shipped to the lab? (Boolean)
 
 -   **storageTempC**: Temperature that the sample is stored at in Celsius.
 
@@ -154,7 +154,7 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **aggregation**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value.
 
-    -   `single`: This value is not an aggregate measurement in any way (ie. not a `mean`, `median`, `geoMean` or any other).
+    -   `single`: This value is not an aggregate measurement in any way (ie. not a `mean`, `median`, `geoMean` or any other) and can be a replicate value.
     -   `mean`: Arithmetic mean
     -   `meanNormal`: Arithmetic mean, normalized
     -   `geoMean`: Geometric mean
@@ -170,7 +170,7 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **index**: Index number in case the measurement was taken multiple times.
 
--   **value**: The actual measurement value that was obtained through analysis.
+-   **value**: The actual measurement value that was obtained through analysis. With Moore swabs can be percent positive.
 
 -   **qualityFlag**: Does the reporter suspect the measurement having some quality issues? (Boolean)
 
@@ -380,6 +380,7 @@ The assay method that was used to perform testing. Create a new record if there 
 -   **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended.
 
 -   **description**: Description of the assay.
+-   **assayReferenceMethodLink**: Link to pdf file of standard operating procedure
 
 -   **date**: Date on which the assayMethod was created or updated (for version update).
 
