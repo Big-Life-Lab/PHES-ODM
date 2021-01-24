@@ -1,3 +1,10 @@
+---
+title: "Ottawa Wastewater Data Model Metadata Description"
+editor_options:
+  markdown:
+    mode: gfm
+---
+
 # Metadata
 
 There are eight tables that are described below. example data is stored in [data](data).
@@ -355,7 +362,7 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 -   **laboratoryID**: (Primary key) Unique identifier for the laboratory.
 
--   **assay__IDDefault**: (Foreign key) Used as default when a new measurement is created for this lab. See `ID` in `AssayMethod` table.
+-   \*\*assay\_\_IDDefault\*\*: (Foreign key) Used as default when a new measurement is created for this lab. See `ID` in `AssayMethod` table.
 
 -   **name**: Name corresponding to lab.
 
