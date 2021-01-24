@@ -16,19 +16,19 @@ There are eight tables that are described below. example data is stored in [data
 
 Entity Relationship Diagram [here](#entity-relationship-diagram).
 
-## Entity Relationship Diagram {#entity-relationship-diagram}
+## Entity Relationship Diagram
 
 ![](img/ERD.svg)
 
 Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/invitations/accept/adc1784b-e237-4a2f-947e-4503544d4510)
 
-## Sample {#sample}
+## Sample
 
 The sample is a representative volume of wastewater taken from a site which is then analysed by a lab.
 
--   **ID**: (Primary Key) Unique identification for sample. Suggestions: *siteID-date-index*.
+-   **sampleID**: (Primary Key) Unique identification for sample. Suggestions: *siteID-date-index*.
 
--   **site.ID**: (Foreign key) Links with the Site table to describe the location of sampling.
+-   **siteID**: (Foreign key) Links with the Site table to describe the location of sampling.
 
 -   **dateTime**: For grab samples this is the *date, time and timezone* the sample was taken.
 
@@ -85,23 +85,23 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **notes**: Any additional notes.
 
-## WWMeasure {#wwmeasure}
+## WWMeasure
 
 Measurement result (ie. single variable) obtained by analyzing a potentially positive SARS-CoV-2 wastewater sample.
 
 -   **uID**: (Primary key) Unique identifier within the measurement table.
 
--   **ID**: Unique identifier for a given analysis, where analysis means you performed all steps needed to get the measurement, but measurements are not independent.
+-   **wwmeasureID**: Unique identifier for a given analysis, where analysis means you performed all steps needed to get the measurement, but measurements are not independent.
 
--   **Sample\_\_ID**: (Foreign key) Links with the identified Sample.
+-   **sampleID**: (Foreign key) Links with the identified Sample.
 
--   **Lab\_\_ID**: (Foreign key) Links with the identified Lab that performed the analysis.
+-   **labID**: (Foreign key) Links with the identified Lab that performed the analysis.
 
--   **Assay\_\_ID**: (Foreign key) Links with the `AssayMethod` used to perform the analysis. Use `instrument.ID` for measures that are not viral measures.
+-   **assayID**: (Foreign key) Links with the `AssayMethod` used to perform the analysis. Use `instrument.ID` for measures that are not viral measures.
 
--   **Instrument\_\_ID**: (Foreign key) Links with the `Instrument` used to perform the analysis. Use `assay.ID` for viral measures.
+-   **instrumentID**: (Foreign key) Links with the `Instrument` used to perform the analysis. Use `assay.ID` for viral measures.
 
--   **Reporter\_\_ID**: (Foreign key) Links with the reporter that is responsible for the data.
+-   **reporterID**: (Foreign key) Links with the reporter that is responsible for the data.
 
 -   **analysisDate**: Date the measurement was performed in the lab.
 
@@ -192,11 +192,11 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **notes**: Any additional notes.
 
-## Site {#site}
+## Site
 
 The site of wastewater sampling, including several *defaults* that can be used to populate new samples upon creation.
 
--   **ID**: (Primary Key) Unique identifier for the location where wastewater sample was taken.
+-   **siteID**: (Primary Key) Unique identifier for the location where wastewater sample was taken.
 
 -   **name**: Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.
 
@@ -256,17 +256,17 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **sewerNetworkFileBLOB**: A file BLOB that has any detailed information about the sewer network associated with the site (any format).
 
-## SiteMeasure {#sitemeasure}
+## SiteMeasure
 
 Measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
 
--   **ID**: (Primary Key) Unique identifier for each contextual measurement.
+-   **siteMeasureID**: (Primary Key) Unique identifier for each contextual measurement.
 
--   **Site\_\_ID**: (Foreign Key) Links with the Site table to describe the location of measurement.
+-   **siteID**: (Foreign Key) Links with the Site table to describe the location of measurement.
 
--   **Instrument\_\_ID**: (Foreign Key) Links with the `Instrument` table to describe instrument used for the measurement.
+-   **instrumentID**: (Foreign Key) Links with the `Instrument` table to describe instrument used for the measurement.
 
--   **Reporter\_\_ID**: (Foreign key) Links with the reporter that is responsible for the data.
+-   **reporterID**: (Foreign key) Links with the reporter that is responsible for the data.
 
 -   **dateTime**: The date and time the measurement was performed.
 
@@ -331,11 +331,11 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **notes**: Any additional notes.
 
-## Reporter {#reporter}
+## Reporter
 
 The individual or organization that is reporting and responsible for the quality of the data.
 
--   **ID**: (Primary Key) Unique identifier for the person or organization that is reporting the data.
+-   **reporterID**: (Primary Key) Unique identifier for the person or organization that is reporting the data.
 
 -   **Site\_\_IDDefault**: (Foreign Key) Used as default when a new sample is created by this reporter. See `ID` in `Site` table.
 
@@ -349,13 +349,13 @@ The individual or organization that is reporting and responsible for the quality
 
 -   **notes**: Any additional notes.
 
-## Lab {#lab}
+## Lab
 
 Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
--   **ID**: (Primary key) Unique identifier for the laboratory.
+-   **laboratoryID**: (Primary key) Unique identifier for the laboratory.
 
--   **assay.IDDefault**: (Foreign key) Used as default when a new measurement is created for this lab. See `ID` in `AssayMethod` table.
+-   **assay__IDDefault**: (Foreign key) Used as default when a new measurement is created for this lab. See `ID` in `AssayMethod` table.
 
 -   **name**: Name corresponding to lab.
 
@@ -367,13 +367,13 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 -   **updateDate**: Date information was provided or updated.
 
-## AssayMethod {#assaymethod}
+## AssayMethod
 
 The assay method that was used to perform testing. Create a new record if there are changes (improvements) to an existing assay method. Keep the same `ID` and use an updated `version`. A new record for a new version can include only the fields that changed, however, we recommend duplicating existing fields to allow each record to clearly describe all steps. Add a current `date` when recording a new version to an assay.
 
--   **ID**: (Primary key) Unique identifier for the assay method.
+-   **assayMethodID**: (Primary key) Unique identifier for the assay method.
 
--   **Instrument_ID**: (Foreign Key) Links with the `Instrument` table to describe instruments used for the measurement.
+-   **instrumentID**: (Foreign Key) Links with the `Instrument` table to describe instruments used for the measurement.
 
 -   **name**: Name of the assay method.
 
@@ -419,11 +419,11 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **surrogateRecovery**: Description of the surrogate recovery for this method.
 
-## Instrument {#instrument}
+## Instrument
 
 Instruments that are used for measures in `WWMeaure` and `SiteMeasure`. The assay method for viral measurement are described in `AssayMethod`.
 
--   **ID**: (Primary key) Unique identifier for the assay method.
+-   **instrumentID**: (Primary key) Unique identifier for the assay method.
 
 -   **name**: Name of the instrument used to perform the measurement.
 
@@ -445,11 +445,11 @@ Instruments that are used for measures in `WWMeaure` and `SiteMeasure`. The assa
 
 -   **typeOther**: Description of the instrument in case it is not listed in instrumentType.
 
-## Polygon {#polygon}
+## Polygon
 
 A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
 
--   **ID**: (Primary key) Unique identifier for the polygon.
+-   **polygonID**: (Primary key) Unique identifier for the polygon.
 
 -   **name**: Descriptive name of the polygon.
 
@@ -466,11 +466,11 @@ A simple polygon that encloses an area on the surface of the earth, normally the
 
 -   **link**: Link to an external reference that describes the geometry of the polygon.
 
-## CovidPublicHealthData {#covidpublichealthdata}
+## CovidPublicHealthData
 
 Covid-19 patient data for a specified polygon.
 
--   **ID**: (Primary key) Unique identifier for the table.
+-   **covidPublicHealthDatID**: (Primary key) Unique identifier for the table.
 
 -   \*\*Reporter\_\_ID\*\*: (Foreign key) ID of the reporter who gave this data.
 
@@ -499,7 +499,7 @@ Covid-19 patient data for a specified polygon.
 
 -   **notes**: Any additional notes.
 
-## Lookups {#lookups}
+## Lookup
 
 Used for lookup values of all category based columns
 

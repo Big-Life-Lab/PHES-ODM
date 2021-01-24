@@ -11,3 +11,6 @@ src/*junk*
 .Rhistory
 
 *.html
+
+template/attributesDetails.xlsx
+template/~$attributesDetails.xlsx
