@@ -1,4 +1,4 @@
-# Collaborate
+# Contributing
 
 Contributions are welcomed. 
 
