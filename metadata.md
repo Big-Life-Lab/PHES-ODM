@@ -58,7 +58,7 @@ The sample is a representative volume of wastewater taken from a site which is t
     - `grabComp8h`: An 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.
     - `grabComp3h`: A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.
     - `grabCompSample3`: A grab-composite sample composed of 3 separate grab samples.    
-    - `moreSwab`: Moore swab passive sample.
+    - `mooreSwab`: Moore swab passive sample.
     - `other`: Other type of collection method. Add description to `collectionOther`.
 
 -   **collectionOther**: Description for other type of method not listed in `collection`.
