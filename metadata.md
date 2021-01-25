@@ -28,7 +28,7 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **ID**: (Primary Key) Unique identification for sample. Suggestions: *siteID-date-index*.
 
--   **site.ID**: (Foreign key) Links with the Site table to describe the location of sampling.
+-   **site\_\_ID**: (Foreign key) Links with the Site table to describe the location of sampling.
 
 -   **dateTime**: For grab samples this is the *date, time and timezone* the sample was taken.
 
@@ -93,15 +93,15 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **ID**: Unique identifier for a given analysis, where analysis means you performed all steps needed to get the measurement, but measurements are not independent.
 
--   **sample.ID**: (Foreign key) Links with the identified Sample.
+-   **sample\_\_ID**: (Foreign key) Links with the identified Sample.
 
--   **lab.ID**: (Foreign key) Links with the identified Lab that performed the analysis.
+-   **lab\_\_ID**: (Foreign key) Links with the identified Lab that performed the analysis.
 
--   **assay.ID**: (Foreign key) Links with the `AssayMethod` used to perform the analysis. Use `instrument.ID` for measures that are not viral measures.
+-   **assay\_\_ID**: (Foreign key) Links with the `AssayMethod` used to perform the analysis. Use `instrument__ID` for measures that are not viral measures.
 
--   **instrument.ID**: (Foreign key) Links with the `Instrument` used to perform the analysis. Use `assay.ID` for viral measures.
+-   **instrument\_\_ID**: (Foreign key) Links with the `Instrument` used to perform the analysis. Use `assay__ID` for viral measures.
 
--   **reporter.ID**: (Foreign key) Links with the reporter that is responsible for the data.
+-   **reporter\_\_ID**: (Foreign key) Links with the reporter that is responsible for the data.
 
 -   **analysisDate**: Date the measurement was performed in the lab.
 
@@ -187,7 +187,7 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **denyAccessToOtherDataProviders**: If this is True, this data will not be available to other data providers not listed before. (Boolean)
 
--   **denyAccessToDetails**: More details on the existing confidentiality requirements of this measurement.  
+-   **denyAccessToDetails**: More details on the existing confidentiality requirements of this measurement.
 
 -   **notes**: Any additional notes.
 
@@ -246,7 +246,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **notes**: Any additional notes.
 
--   **Polygon.ID**: (Foreign key) Links with the Polygon table, this should encompass the area that typically drains into this site.
+-   **Polygon\_\_ID**: (Foreign key) Links with the Polygon table, this should encompass the area that typically drains into this site.
 
 -   **sewerNetworkFileLink**: Link to a file that has any detailed information about the sewer network associated with the site (any format).
 
@@ -258,11 +258,11 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **ID**: (Primary Key) Unique identifier for each contextual measurement.
 
--   **Site.ID**: (Foreign Key) Links with the Site table to describe the location of measurement.
+-   **Site\_\_ID**: (Foreign Key) Links with the Site table to describe the location of measurement.
 
--   **Instrument.ID**: (Foreign Key) Links with the `Instrument` table to describe instrument used for the measurement.
+-   **Instrument\_\_ID**: (Foreign Key) Links with the `Instrument` table to describe instrument used for the measurement.
 
--   **reporter.ID**: (Foreign key) Links with the reporter that is responsible for the data.
+-   **reporter\_\_ID**: (Foreign key) Links with the reporter that is responsible for the data.
 
 -   **dateTime**: The date and time the measurement was performed.
 
@@ -323,7 +323,7 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **denyAccessToOtherDataProviders**: If this is True, this data will not be available to other data providers not listed before. (Boolean)
 
--   **denyAccessToDetails**: More details on the existing confidentiality requirements of this measurement.  
+-   **denyAccessToDetails**: More details on the existing confidentiality requirements of this measurement.
 
 -   **notes**: Any additional notes.
 
@@ -333,9 +333,9 @@ The individual or organization that is reporting and responsible for the quality
 
 -   **ID**: (Primary Key) Unique identifier for the person or organization that is reporting the data.
 
--   **site.IDDefault**: (Foreign Key) Used as default when a new sample is created by this reporter. See `ID` in `Site` table.
+-   **siteIDDefault**: (Foreign Key) Used as default when a new sample is created by this reporter. See `ID` in `Site` table.
 
--   **lab.IDDefault**: (Foreign Key) Used as default when a new sample is created by this reporter. See `ID` in `Lab` table.
+-   **labIDDefault**: (Foreign Key) Used as default when a new sample is created by this reporter. See `ID` in `Lab` table.
 
 -   **contactName**: Full Name of the reporter, either an organization or individual.
 
@@ -351,7 +351,7 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 -   **ID**: (Primary key) Unique identifier for the laboratory.
 
--   **assay.IDDefault**: (Foreign key) Used as default when a new measurement is created for this lab. See `ID` in `AssayMethod` table.
+-   **assayIDDefault**: (Foreign key) Used as default when a new measurement is created for this lab. See `ID` in `AssayMethod` table.
 
 -   **name**: Name corresponding to lab.
 
@@ -369,7 +369,7 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **ID**: (Primary key) Unique identifier for the assay method.
 
--   **Instrument.ID**: (Foreign Key) Links with the `Instrument` table to describe instruments used for the measurement. 
+-   **Instrument\_\_ID**: (Foreign Key) Links with the `Instrument` table to describe instruments used for the measurement. 
 
 -   **name**: Name of the assay method.
 
@@ -468,9 +468,9 @@ Covid-19 patient data for a specified polygon.
 
 -   **ID**: (Primary key) Unique identifier for the table.
 
--   **Reporter.ID**: (Foreign key) ID of the reporter who gave this data.
+-   **Reporter\_\_ID**: (Foreign key) ID of the reporter who gave this data.
 
--   **Polygon.ID**: (Foreign key) Links with the `Polygon` table.
+-   **Polygon\_\_ID**: (Foreign key) Links with the `Polygon` table.
 
 -   **date**: Date of reporting for covid-19 measure.
 
@@ -509,15 +509,15 @@ Used for lookup values of all category based columns
 
 ## Naming conventions
 
--   **table names**: Table names use UpperCamelCase.
--   **variable and category names**: Both variables and variable categories use lowerCamelCase. Do not use special characters (only uppercase, lowercase letters and numbers). Reason: variable and category names can be combined to generate derived variables. Using special characters will generate non-allowable characters - see below.
--   **variables in Wide tables**: Wide tables use `_` to concatenate variables from long tables.
--   **variable order** if a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous. In this case, show a `analysisDate` followed by a series of measurements taken on that date ex(`temp_c_singleton`) then another `covidN1_PPMV_mean` followed by more measurements ex(`covidN1_PPMV_mean`)
--   **merging Tables** : when you merge tables concatenate column names with `.` . So `dateTime` from the `Sample` table becomes `Sample.dateTime`.
--   **Derived, summary or transformed measures**: Follows the same approach as naming variable and category names, except use a `_` when concatenating variable or category names. These three types measures are generated to summarize or transform one or more variables. An example is calculating the mean value of one or more SARS-CoV-2 regions. Normalization and standardization are other examples of a transformed measure.
--   **date**: YYYY-MM-DD HH:mm:ss (24 hour format, in UTC)
--   **location**: [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) for polygon.
--   **versions**: [Semantic versioning](https://semver.org)
+-   **Table names**: Table names use UpperCamelCase.
+-   **Variable and category names**: Both variables and variable categories use lowerCamelCase. Do not use special characters (only uppercase, lowercase letters and numbers). Reason: variable and category names can be combined to generate derived variables. Using special characters will generate non-allowable characters - see below.
+-   **Variables in wide tables**: Wide tables use `_` to concatenate variables from long tables.
+-   **Variable order** if a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous. In this case, show a `analysisDate` followed by a series of measurements taken on that date ex(`temp_c_singleton`) then another `covidN1_PPMV_mean` followed by more measurements ex(`covidN1_PPMV_mean`)
+-   **Merging tables** : when you merge tables concatenate column names with `__`. So `dateTime` from the `Sample` table becomes `Sample__dateTime`.
+-   **Derived, summary or transformed measure**: Follows the same approach as naming variable and category names, except use a `_` when concatenating variable or category names. These three types measures are generated to summarize or transform one or more variables. An example is calculating the mean value of one or more SARS-CoV-2 regions. Normalization and standardization are other examples of a transformed measure.
+-   **Date time**: YYYY-MM-DD HH:mm:ss (24 hour format, in UTC)
+-   **Location**: [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) for polygon.
+-   **Version**: [Semantic versioning](https://semver.org)
 
 ## Examples of how to generate wide variable and category names
 
