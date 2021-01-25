@@ -52,14 +52,14 @@ The sample is a representative volume of wastewater taken from a site which is t
 -   **typeOther**: Description for other type of sample not listed in `type`.
 
 -   **collection**: Method used to collect the data.
-
     - `compTimeProp24h`: A time proportional 24-hour composite sample generally collected by an autosampler.
     - `compFlowProp24h`: A flow proportional 24-hour composite sample generally collected by an autosampler.
     - `grabSample`: A single large representative grab sample.
     - `grabComp8h`: An 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.
     - `grabComp3h`: A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.
-    - `grabCompSample3`: A grab-composite sample composed of 3 separate grab samples.    - `moreSwab`: Moore swab passive sample.
-    -   `other`: Other type of collection method. Add description to `collectionOther`.
+    - `grabCompSample3`: A grab-composite sample composed of 3 separate grab samples.    
+    - `moreSwab`: Moore swab passive sample.
+    - `other`: Other type of collection method. Add description to `collectionOther`.
 
 -   **collectionOther**: Description for other type of method not listed in `collection`.
 
@@ -75,9 +75,9 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **sizeL**: Total volume of water or sludge sampled.
 
--   **samplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
+-   **fieldSamplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
 
--   **mailedOnIce**: Was the sample kept cool while being sent to the lab? (Boolean)
+-   **shippedOnIce**: Was the sample kept cool while being shipped to the lab? (Boolean)
 
 -   **storageTempC**: Temperature that the sample is stored at in Celsius.
 
@@ -146,14 +146,15 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
     -   `mgl`: milligrams per liter
     -   `mgOl`: milligrams of oxygen per liter
     -   `ph`: pH units
-    -   `pps`: percent primary sludge. For `wqTS` measurements.
+    -   `pp`: percent positive
+    -   `pps`: percent primary sludge
     -   `other`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to `UnitOther`.
 
 -   **unitOther**: Description for other measurement unit not listed in `unit`.
 
 -   **aggregation**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value.
 
-    -   `single`: This value is not an aggregate measurement in any way (ie. not a `mean`, `median`, `geoMean` or any other).
+    -   `single`: This value is not an aggregate measurement in any way (ie. not a `mean`, `median`, `geoMean` or any other) and can be a replicate value.
     -   `mean`: Arithmetic mean
     -   `meanNormal`: Arithmetic mean, normalized
     -   `geoMean`: Geometric mean
@@ -376,6 +377,7 @@ The assay method that was used to perform testing. Create a new record if there 
 -   **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended.
 
 -   **description**: Description of the assay.
+-   **assayReferenceMethodLink**: Link to pdf file of standard operating procedure
 
 -   **date**: Date on which the assayMethod was created or updated (for version update).
 
