@@ -38,13 +38,13 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **type**: Type of sample.
 
-    -   `rawWastewater`: Raw wastewater.
-    -   `sewerSediment`: Sediments obtained in sewer.
-    -   `wwPostGrit`: Raw wastewater after a treatment plant's headworks.
-    -   `primarySludge`: Sludge produced by primary clarifiers.
-    -   `primaryEffluent`: Effluent obtained after primary clarifiers.
-    -   `secondarySludge`: Sludge produced by secondary clarifiers.
-    -   `secondaryEffluent`: Effluent obtained after secondary clarifiers.
+    -   `rawWW`: Raw wastewater.
+    -   `swrSed`: Sediments obtained in sewer.
+    -   `pstGrit`: Raw wastewater after a treatment plant's headworks.
+    -   `pSludge`: Sludge produced by primary clarifiers.
+    -   `pEfflu`: Effluent obtained after primary clarifiers.
+    -   `sSludge`: Sludge produced by secondary clarifiers.
+    -   `sEfflu`: Effluent obtained after secondary clarifiers.
     -   `water`: Non-wastewater, coming from any kind of water body.
     -   `faeces`: Fecal matter.
     -   `other`: Other type of site. Add description to `typeOther`.
@@ -52,13 +52,13 @@ The sample is a representative volume of wastewater taken from a site which is t
 -   **typeOther**: Description for other type of sample not listed in `type`.
 
 -   **collection**: Method used to collect the data.
-    - `compTimeProp24h`: A time proportional 24-hour composite sample generally collected by an autosampler.
-    - `compFlowProp24h`: A flow proportional 24-hour composite sample generally collected by an autosampler.
-    - `grabSample`: A single large representative grab sample.
-    - `grabComp8h`: An 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.
-    - `grabComp3h`: A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.
-    - `grabCompSample3`: A grab-composite sample composed of 3 separate grab samples.    
-    - `mooreSwab`: Moore swab passive sample.
+    - `cpTP24h`: A time proportional 24-hour composite sample generally collected by an autosampler.
+    - `cpFP24h`: A flow proportional 24-hour composite sample generally collected by an autosampler.
+    - `grb`: A single large representative grab sample.
+    - `grbCp8h`: An 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.
+    - `grbCp3h`: A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.
+    - `grbCp3`: A grab-composite sample composed of 3 separate grab samples.    
+    - `mooreSw`: Moore swab passive sample.
     - `other`: Other type of collection method. Add description to `collectionOther`.
 
 -   **collectionOther**: Description for other type of method not listed in `collection`.
@@ -113,57 +113,57 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
     -   `solid`: Solid fraction
     -   `mixed`: Mixed/homogenized sample
 
--   **type**: The variable that is being measured on the sample, e.g. gene target region (`covid`) or water quality parameter (`wq`).
-
-    -   `covidUnspecified (default)`:
-    -   `covidN1`: SARS-CoV-2 gene region N1
-    -   `covidN2`: SARS-CoV-2 gene region N2
-    -   `covidN3`: SARS-CoV-2 gene region N3
-    -   `covidE`: SARS-CoV-2 gene region E
-    -   `covidRdRp`: SARS-CoV-2 gene region RdRp
-    -   `covidN1N2avg`: SARS-CoV-2 gene region average of N1 and N2
-    -   `PMMoV`: Pepper mild mottle virus
-    -   `crA`: cross-assembly phage
+-   **type**: The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (`cov`), a biomarker for normalisation (`n`) or a  water quality parameter (`wq`).
+    -   `covN1`: SARS-CoV-2 nucleocapsid gene N1
+    -   `covN2`: SARS-CoV-2 nucleocapsid gene N2
+    -   `covN3`: SARS-like coronaviruses nucleocapsid gene N3
+    -   `covE`: SARS-CoV-2 gene region E
+    -   `covRdRp`: SARS-CoV-2 gene region RdRp
+    -   `covN1N2avg`: SARS-CoV-2 gene region average of N1 and N2
+    -   `nPMMoV`: Pepper mild mottle virus
+    -   `ncrA`: cross-assembly phage
     -   `wqTS`: Total solids concentration.
     -   `wqTSS`: Total suspended solids concentration.
     -   `wqVSS`: Volatile suspended solids concentration.
     -   `wqCOD`: Chemical oxygen demand.
-    -   `wqOrthoP`: Ortho-phosphate concentration.
-    -   `wqNH4N`: Ammonium nitrogen concentration.
-    -   `wqTN`: Total nitrogen concentration.
+    -   `wqOPhos`: Ortho-phosphate concentration.
+    -   `wqNH4N`: Ammonium nitrogen concentration, as N.
+    -   `wqTN`: Total nitrogen concentration, as N.
+    -   `wqPh`: pH.
+    -   `wqCond`: Conductivity.
     -   `other`: Other measurement category. Add description to `categoryOther`.
 
 -   **typeOther**: Description for an other variable not listed in `category`.
 
 -   **unit**: Unit of the measurement.
 
-    -   `vcPMMoV`: Viral copies/copies PMMoV
-    -   `vcMl`: Viral copies/millilitres
-    -   `vcGms`: Viral copies/grams solids
-    -   `vcL`: Viral copies/L
-    -   `vcCrA`: Viral copies/copies crAssphage
-    -   `Ct`: Cycle threshold
-    -   `mgl`: milligrams per liter
-    -   `mgOl`: milligrams of oxygen per liter
+    -   `gcPMMoV`: Gene copies per copy of PMMoV.
+    -   `gcMl`: Gene copies per milliliter.
+    -   `gcGs`: Gene copies per gram solids.
+    -   `gcL`: Gene copies per liter.
+    -   `gcCrA`: Gene copies per copy of crAssphage.
+    -   `Ct`: Cycle threshold.
+    -   `mgL`: Milligrams per liter.
     -   `ph`: pH units
-    -   `pp`: percent positive
-    -   `pps`: percent primary sludge
+    -   `uScm`: Micro-siemens per centimeter.
+    -   `pp`: Percent positive, for Moore swab.
+    -   `pps`: Percent primary sludge, for total solids.
     -   `other`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to `UnitOther`.
 
 -   **unitOther**: Description for other measurement unit not listed in `unit`.
 
 -   **aggregation**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value.
 
-    -   `single`: This value is not an aggregate measurement in any way (ie. not a `mean`, `median`, `geoMean` or any other) and can be a replicate value.
+    -   `single`: This value is not an aggregate measurement in any way (ie. not a `mean`, `median`, `max` or any other) and can be a replicate value.
     -   `mean`: Arithmetic mean
-    -   `meanNormal`: Arithmetic mean, normalized
-    -   `geoMean`: Geometric mean
-    -   `geoMeanNormal`: Geometric mean, normalized
+    -   `meanNr`: Arithmetic mean, normalized
+    -   `geoMn`: Geometric mean
+    -   `geoMnNr`: Geometric mean, normalized
     -   `median`: Median
-    -   `rangeLowestValue`: Lowest value in a range of values
-    -   `rangeHighestValue`: Highest value in a range of values
+    -   `min`: Lowest value in a range of values
+    -   `max`: Highest value in a range of values
     -   `sd`: Standard deviation
-    -   `sdNormal`: Standard deviation, normalized
+    -   `sdNr`: Standard deviation, normalized
     -   `other`: Other aggregation method. Add description to `aggregationOther`
 
 -   **aggregationOther**: Description for other type of aggregation not listed in `aggregation`.
@@ -204,27 +204,27 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **type**: Type of site or institution where sample was taken.
 
-    -   `airplane`
-    -   `correctionalFacility`
-    -   `elementarySchool`
-    -   `hospital`
-    -   `longTermCareFacility`
-    -   `sewageTruck`
-    -   `universityCampus`
-    -   `majorSewerPipeline`
-    -   `pumpingStation`
-    -   `holdTank`
-    -   `retentionPond`
-    -   `wwtpSanitaryMunicipal`
-    -   `wwtpCombinedMunicipal`
-    -   `wwtpIndustrial`
-    -   `lagoon`
-    -   `septicTank`
-    -   `river`
-    -   `lake`
-    -   `estuary`
-    -   `sea`
-    -   `ocean`
+    -   `airPln`: Airplane.
+    -   `corFcil`: Correctional facility.
+    -   `school`: School.
+    -   `hosptl`: Hospital.
+    -   `ltcf`: Long-term care facility.
+    -   `swgTrck`: Sewage truck.
+    -   `uCampus`: University campus.
+    -   `mSwrPpl`: Major sewer pipeline.
+    -   `pStat`: Pumping station.
+    -   `holdTnk`: Hold tank.
+    -   `retPond`: Retention pond.
+    -   `wwtpMuC`: Municipal wastewater treatment plant for combined sewage.
+    -   `wwtpMuS`: Municipal wastewater treatment plant for sanitary sewage only.
+    -   `wwtpInd`: Industrial wastewater treatment plant.
+    -   `lagoon`: Logoon system for extensive wastewater treatment.
+    -   `septTnk`: Septic tank.
+    -   `river`: River, natural water body.
+    -   `lake`: Lake, natural water body.
+    -   `estuary`: Estuary, natural water body
+    -   `sea`: Sea, natural water body.
+    -   `ocean`: Ocean, natural water body.
     -   `other`: Other site type. Add description to `typeOther`.
 
 -   **typeOther**: Description of the site when the site is not listed. See `siteType`.
@@ -267,19 +267,22 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **dateTime**: The date and time the measurement was performed.
 
--   **type**: The type of measurement that was performed
+-   **type**: The type of measurement that was performed. The prefix `env` is used for environmental variables, whereas `ww` indicates a measurement on wastewater.
 
-    -   `envTemperature`: Environmental temperature.
-    -   `envRainfall`: Amount of precipitation in the form of rain.
-    -   `envSnowFall`: Amount of precipitation in the form of snow.
-    -   `envSnowDepth`: Total depth of snow on the ground.
+    -   `envTemp`: Environmental temperature.
+    -   `envRnF`: Rain fall, i.e. amount of precipitation in the form of rain.
+    -   `envSnwF`: Snow fall, i.e. amount of precipitation in the form of snow.
+    -   `envSnwD`: Total depth of snow on the ground.
     -   `wwFlow`: Flow of wastewater.
     -   `wwTemp`: Temperature of the wastewater.
-    -   `wwpH`: pH of the wastewater.
-    -   `wwConductivity`: Conductivity of the wastewater.
-    -   `wwTurbidity`: Turbidity of the wastewater.
     -   `wwTSS`: Total suspended solids concentration of the wastewater.
     -   `wwCOD`: Chemical oxygen demand of the wastewater.
+    -   `wwTurb`: Turbidity of the wastewater.
+    -   `wwOPhos`: Ortho-phosphate concentration.
+    -   `wwNH4N`: Ammonium nitrogen concentration, as N.
+    -   `wwTN`: Total nitrogen concentration, as N.
+    -   `wwpH`: pH of the wastewater.
+    -   `wwCond`: Conductivity of the wastewater.
     -   `other`: An other type of measurement. Add description to `typeOther`.
 
 -   **typeOther**: Description of the measurement in case it is not listed in `type`.
@@ -288,16 +291,16 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **aggregation**: When reporting an aggregate measurement, this field describes the method used.
 
-    -   `single`: This value is not an aggregate measurement in any way (i.e. not a `mean`, `median`, `geoMean` or any other).
+    -   `single`: This value is not an aggregate measurement in any way (ie. not a `mean`, `median`, `max` or any other) and can be a replicate value.
     -   `mean`: Arithmetic mean
-    -   `meanNormal`: Arithmetic mean, normalized
-    -   `geoMean`: Geometric mean
-    -   `geoMeanNormal`: Geometric mean, normalized
+    -   `meanNr`: Arithmetic mean, normalized
+    -   `geoMn`: Geometric mean
+    -   `geoMnNr`: Geometric mean, normalized
     -   `median`: Median
-    -   `rangeLowestValue`: Lowest value in a range of values
-    -   `rangeHighestValue`: Highest value in a range of values
+    -   `min`: Lowest value in a range of values
+    -   `max`: Highest value in a range of values
     -   `sd`: Standard deviation
-    -   `sdNormal`: Standard deviation, normalized
+    -   `sdNr`: Standard deviation, normalized
     -   `other`: Other aggregation method. Add description to `aggregationOther`
 
 -   **aggregationOther**: Description for other type of aggregation not listed in `aggregation`.
@@ -390,17 +393,14 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **lod**: Limit of detection (LOD) for this method if one exists.
 
--   **unit**: Unit used by this method, that are applicable to the LOD and LOQ.
+-   **unit**: Unit used by this method, and applicable to the LOD and LOQ.
 
-    -   `vcPMMoV`: Viral copies/copies PMMoV
-    -   `vcMl`: Viral copies/millilitres
-    -   `vcGms`: Viral copies/grams solids
-    -   `vcL`: Viral copies/L
-    -   `vcCrA`: Viral copies/copies crAssphage
-    -   `m3s`: meters cubed per second
-    -   `mgl`: milligrams per liter
-    -   `mgOl`: milligrams of oxygen per liter
-    -   `other`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to `unitOther`.
+    -   `gcPMMoV`: Gene copies per copy of PMMoV.
+    -   `gcMl`: Gene copies per milliliter.
+    -   `gcGms`: Gene copies per gram solids.
+    -   `gcL`: Gene copies per liter.
+    -   `gcCrA`: Gene copies per copy of crAssphage.
+    -   `other`: Other measurement of viral copies. Add description to `unitOther`.
 
 -   **unitOther**: Unit used by this method, that are applicable to the LOD and LOQ.
 
@@ -418,7 +418,7 @@ The assay method that was used to perform testing. Create a new record if there 
 
 ## Instrument
 
-Instruments that are used for measures in `WWMeaure` and `SiteMeasure`. The assay method for viral measurement are described in `AssayMethod`.
+Instruments that are used for measures in `WWMeasure` and `SiteMeasure`. The assay method for viral measurement are described in `AssayMethod`.
 
 -   **instrumentID**: (Primary key) Unique identifier for the assay method.
 
@@ -436,8 +436,8 @@ Instruments that are used for measures in `WWMeaure` and `SiteMeasure`. The assa
 
     - `online`: An online sensor
     - `lab`: Offline laboratory analysis
-    - `handheld`: A handheld measurement analyzer.
-    - `atlineAnalyzer`: An atline analyzer with sampler.
+    - `hand`: A handheld measurement analyzer.
+    - `atline`: An atline analyzer with sampler.
     - `other:` An other type of measurement instrument. Add description to instrumentTypeOther.
 
 -   **typeOther**: Description of the instrument in case it is not listed in instrumentType.
@@ -454,8 +454,8 @@ A simple polygon that encloses an area on the surface of the earth, normally the
 
 -   **type**: Type of polygon.
 
-    -   `sewerNetwork`: Sewer network
-    -   `healthRegion`: Health region served by the sewer network
+    -   `swrCat`: Sewer catchment area.
+    -   `hlthReg`: Health region served by the sewer network
 
 -   **wkt**: [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) of the polygon
 
@@ -477,19 +477,19 @@ Covid-19 patient data for a specified polygon.
 
 -   **type**: Type of covid-19 patient data.
 
-    -   `confirmed`: Number of confirmed cases. This measure should be accompanied by `dateTyep`.
+    -   `conf`: Number of confirmed cases. This measure should be accompanied by `dateTyep`.
     -   `active`: Number of active cases.
-    -   `tests`: Number of tests performed.
-    -   `positiveTests`: Number of positive tests.
-    -   `percentPositivityRate`: Percent positivity rate.
-    -   `hospitalCensus`: Hospital census or the number of people admitted with covid-19.
-    -   `hospitalAdmit`: Hospital admissions or patients newly admitted to hospital.
+    -   `test`: Number of tests performed.
+    -   `posTest`: Number of positive tests.
+    -   `pPosRt`: Percent positivity rate.
+    -   `hospCen`: Hospital census or the number of people admitted with covid-19.
+    -   `hospAdm`: Hospital admissions or patients newly admitted to hospital.
 
 -   **dateType**: Type of date used for `confirmed` cases. Typically `reported` or `episode` are reported. `onset` and `test` date is not usually reported within aggregate data.
 
     -   `episode` : Episode date is the earliest of onset, test or reported date.
     -   `onset`: Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, `episode` is used.
-    -   `reported`: Date that the numbers were reported publicly. Typically, `reported` data and this measure is most commonly reported and used.
+    -   `report`: Date that the numbers were reported publicly. Typically, `reported` data and this measure is most commonly reported and used.
     -   `test`: Date that the covid-19 test was performed.
 
 -   **value**: The numeric value that is being reported.
