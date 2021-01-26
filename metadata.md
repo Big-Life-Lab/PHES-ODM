@@ -1,181 +1,253 @@
+---
+title: "Ottawa Wastewater Data Model Metadata Description"
+editor_options:
+  markdown:
+    mode: gfm
+---
+
 # Metadata
 
 There are eight tables that are described below. example data is stored in [data](data).
 
--   [Measurement](#Measurement) ([Measurements.csv](data/Measurements.csv))
--   [Sample](#Sample) ([Sample.csv](data/Sample.csv))
--   [Site](#Site) ([Site.csv](data/Site.csv))
--   [Reporter](#Reporter) ([Reporter.csv](data/Reporter.csv))
--   [Lab](#Lab) ([Lab.csv](data/Lab.csv))
--   [AssayMethod](#AssayMethod) (AssayMethod.csv - **TBA**)
--   [Polygon](#Polygon) (Polygon.csv - **TBA**)
--   [CovidPublicHealthData](#CovidPublicHealthData) (CovidPublicHealthData.csv - **TBA**)
+-   [Sample](#sample)
+-   [WWMeasure](#wwmeasure)
+-   [Site](#Site)
+-   [SiteMeasure](#sitemeasure)
+-   [Reporter](#reporter)
+-   [Lab](#lab)
+-   [AssayMethod](#assaymethod)
+-   [Instrument](#instrument)
+-   [Polygon](#polygon)
+-   [CovidPublicHealthData](#covidpublicHealthdata)
+-   [Lookups](#lookups)
 
-Entity Relationship Diagram [here](#erd).
+Entity Relationship Diagram [here](#entity-relationship-diagram).
 
-## Entity Relationship Diagram <span id="erd"><span>
+## Entity Relationship Diagram
 
 ![](img/ERD.svg)
 
-Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/023490f3-6cc5-41be-bc2d-d96425f3c68f/edit?page=0_0#?folder_id=home&browser=icon)
+Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/invitations/accept/adc1784b-e237-4a2f-947e-4503544d4510)
 
-## Measurement (Measurement.csv) <span id="Measurement"><span>
+## Sample
 
-Results for a measurement of a single property of SARS-CoV-2 wastewater test, for either a viral region or wastewater treatment plant.
+The sample is a representative volume of wastewater taken from a site which is then analysed by a lab.
 
+-   **sampleID**: (Primary Key) Unique identification for sample. Suggestions: *siteID-date-index*.
 
-  - `PPMV`: SARS-CoV-2 gene region N1
--   **MeasurementID**: Unique identification for measurement (Primary Key).
+-   **siteID**: (Foreign key) Links with the Site table to describe the location of sampling.
 
--   **sampleID**: Links with the identified sample (foreign key).
+-   **dateTime**: For grab samples this is the *date, time and timezone* the sample was taken.
 
--   **labID**: Links with the identified Lab that performed the analysis (foreign key).
+-   **dateTimeStart**: For integrated time averaged samples this is the *date, time and timezone* the sample was started being taken.
 
--   **assayID**: Links with the AssayMethod table used to perform the analysis (foreign key).
+-   **dateTimeEnd**: For integrated time average samples this is the *date, time and timezone* the sample was finished being taken.
 
--   **analysisDate**: Date the data was analysed in the lab.
+-   **type**: Type of sample.
 
--   **reportDate**: Data the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original `sampleID` but updated `measurementID`, `reportDate` and `assayID` (if needed).
+    -   `rawWastewater`: Raw wastewater.
+    -   `sewerSediment`: Sediments obtained in sewer.
+    -   `wwPostGrit`: Raw wastewater after a treatment plant's headworks.
+    -   `primarySludge`: Sludge produced by primary clarifiers.
+    -   `primaryEffluent`: Effluent obtained after primary clarifiers.
+    -   `secondarySludge`: Sludge produced by secondary clarifiers.
+    -   `secondaryEffluent`: Effluent obtained after secondary clarifiers.
+    -   `water`: Non-wastewater, coming from any kind of water body.
+    -   `faeces`: Fecal matter.
+    -   `other`: Other type of site. Add description to `typeOther`.
 
--   **sampleFraction**: Faction of the sample that is analyzed.
+-   **typeOther**: Description for other type of sample not listed in `type`.
+
+-   **collection**: Method used to collect the data.
+
+    -   `compTimeProp24h`: A time proportional 24-hour composite sample generally collected by an autosampler.
+    -   `compFlowProp24h`: A flow proportional 24-hour composite sample generally collected by an autosampler.
+    -   `grabSample`: A single large representative grab sample.
+    -   `grabComp8h`: An 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.
+    -   `grabComp3h`: A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.
+    -   `grabCompSample3`: A grab-composite sample composed of 3 separate grab samples.  
+    -   `mooreSwab`: Moore swab passive sample.
+    -   `other`: Other type of collection method. Add description to `collectionOther`.
+
+-   **collectionOther**: Description for other type of method not listed in `collection`.
+
+-   **collectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes.
+
+-   **preTreatment**: Was the sample chemically treated in anyway with the addition of stabilizers or other? (Boolean)
+
+-   **preTreatmentDescription**: If `preTreatment` then describe the treatment that was performed.
+
+-   **children**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates *a coma separated list of child sampleIDs*.
+
+-   **parent** : If this sample has been pooled into one big sample for analysis this indicates the *sampleID of the larger pooled sample*.
+
+-   **sizeL**: Total volume of water or sludge sampled.
+
+-   **fieldSamplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
+
+-   **shippedOnIce**: Was the sample kept cool while being shipped to the lab? (Boolean)
+
+-   **storageTempC**: Temperature that the sample is stored at in Celsius.
+
+-   **qualityFlag**: Does the reporter suspect the sample having some quality issues? (Boolean)
+
+-   **notes**: Any additional notes.
+
+## WWMeasure
+
+Measurement result (ie. single variable) obtained by analyzing a potentially positive SARS-CoV-2 wastewater sample.
+
+-   **uWwMeasureID**: (Primary key) Unique identifier within the measurement table.
+
+-   **wwMeasureID**: Unique identifier for a given analysis, where analysis means you performed all steps needed to get the measurement, but measurements are not independent.
+
+-   **sampleID**: (Foreign key) Links with the identified Sample.
+
+-   **labID**: (Foreign key) Links with the identified Lab that performed the analysis.
+
+-   **assayID**: (Foreign key) Links with the `AssayMethod` used to perform the analysis. Use `instrument.ID` for measures that are not viral measures.
+
+-   **instrumentID**: (Foreign key) Links with the `Instrument` used to perform the analysis. Use `assay.ID` for viral measures.
+
+-   **reporterID**: (Foreign key) Links with the reporter that is responsible for the data.
+
+-   **analysisDate**: Date the measurement was performed in the lab.
+
+-   **reportDate**: Date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original `sampleID` but updated `MeasureID`, `reportDate` and `assayID` (if needed).
+
+-   **fractionAnalyzed**: Faction of the sample that is analyzed.
 
     -   `liquid`: Liquid fraction
     -   `solid`: Solid fraction
     -   `mixed`: Mixed/homogenized sample
 
--   **measureCat**: Gene target region (`covid-`) or wastewater treatment plant parameter (`ww-param-`).
+-   **type**: The variable that is being measured on the sample, e.g. gene target region (`covid`) or water quality parameter (`wq`).
 
-    - `covidUnspecified (default)`: 
-    - `covidN1`: SARS-CoV-2 gene region N1
-    - `covidN2`: SARS-CoV-2 gene region N2
-    - `covidN3`: SARS-CoV-2 gene region N3
-    - `covidE`: SARS-CoV-2 gene region E
-    - `covidRdRp`: SARS-CoV-2 gene region RdRp
-    - `covidN1N2avg`: SARS-CoV-2 gene region average of N1 and N2
-    -   `covidN1N2avg`: 
-    -   `wwParamFlow`: 
-    -   `wwParamTss`: 
-    -   `wwParamBod`: 
-    -   `catOther`: 
+    -   `covidUnspecified (default)`:
+    -   `covidN1`: SARS-CoV-2 gene region N1
+    -   `covidN2`: SARS-CoV-2 gene region N2
+    -   `covidN3`: SARS-CoV-2 gene region N3
+    -   `covidE`: SARS-CoV-2 gene region E
+    -   `covidRdRp`: SARS-CoV-2 gene region RdRp
+    -   `covidN1N2avg`: SARS-CoV-2 gene region average of N1 and N2
+    -   `PMMoV`: Pepper mild mottle virus
+    -   `crA`: cross-assembly phage
+    -   `wqTS`: Total solids concentration.
+    -   `wqTSS`: Total suspended solids concentration.
+    -   `wqVSS`: Volatile suspended solids concentration.
+    -   `wqCOD`: Chemical oxygen demand.
+    -   `wqOrthoP`: Ortho-phosphate concentration.
+    -   `wqNH4N`: Ammonium nitrogen concentration.
+    -   `wqTN`: Total nitrogen concentration.
+    -   `other`: Other measurement category. Add description to `categoryOther`.
 
--   **measureCatOther**: Description for other target region (use prefix `covid-` or wastewater treatment plant parameter (use prefix `ww-param-`. See `measureCat`.
+-   **typeOther**: Description for an other variable not listed in `category`.
 
--   **measureUnit**: Unit of SARS-CoV-2 measurement.
+-   **unit**: Unit of the measurement.
 
-    -   `PMMV`: Viral copies/copies PMMoV
-    -   `ml`: Viral copies/mL
-    -   `gms`: Viral copies/gm solids
-    -   `l`: Viral copies/L
-    -   `crA`: Viral copies/copies crAssphage
-    -   `Ct`:
-    -   `m3s`: meters cubed per second
+    -   `vcPMMoV`: Viral copies/copies PMMoV
+    -   `vcMl`: Viral copies/millilitres
+    -   `vcGms`: Viral copies/grams solids
+    -   `vcL`: Viral copies/L
+    -   `vcCrA`: Viral copies/copies crAssphage
+    -   `Ct`: Cycle threshold
     -   `mgl`: milligrams per liter
     -   `mgOl`: milligrams of oxygen per liter
-    -   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
+    -   `ph`: pH units
+    -   `pp`: percent positive
+    -   `pps`: percent primary sludge
+    -   `other`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to `UnitOther`.
 
--   **measureUnitOther**: Description for other type of SARS-CoV-2 measurement unit. See `measureUnit`.
+-   **unitOther**: Description for other measurement unit not listed in `unit`.
 
--   **measureType**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each measureType has a corresponding value (measureValue).
+-   **aggregation**: Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value.
 
-    -   `geoMean`: GeoMean of results
-    -   `singleton`: This value is not an aggregate measurement in any way, and thus is not a `mean`, `median`, `geomean` or other
-    -   `mean`: Sample mean
-    -   `meanNormal`: Sample mean, normalized
-    -   `median`: Median of results
+    -   `single`: This value is not an aggregate measurement in any way (ie. not a `mean`, `median`, `geoMean` or any other) and can be a replicate value.
+    -   `mean`: Arithmetic mean
+    -   `meanNormal`: Arithmetic mean, normalized
+    -   `geoMean`: Geometric mean
+    -   `geoMeanNormal`: Geometric mean, normalized
+    -   `median`: Median
     -   `rangeLowestValue`: Lowest value in a range of values
     -   `rangeHighestValue`: Highest value in a range of values
-    -   `SD`: Sample standard deviation
-    -   `SDNormal`: Sample standard deviation, normalized
-    -   `typeOther`: Other measures
+    -   `sd`: Standard deviation
+    -   `sdNormal`: Standard deviation, normalized
+    -   `other`: Other aggregation method. Add description to `aggregationOther`
 
--   **measureTypeOther**: Description for other type of measurement type. See `measurementUnit`.
+-   **aggregationOther**: Description for other type of aggregation not listed in `aggregation`.
 
--   **measureValue**: Value of measureType.
+-   **index**: Index number in case the measurement was taken multiple times.
 
--   **measureValueDetected**: Boolean Value if True then covid-19 was detected.
+-   **value**: The actual measurement value that was obtained through analysis.
 
--   **notes**: Any additional notes.
+-   **qualityFlag**: Does the reporter suspect the measurement having some quality issues? (Boolean)
 
-## Sample (Sample.csv) <span id="Sample"><span>
+-   **denyAccessToPublic**: If this is True, this data will not be available to the public. (Boolean)
 
-The sample is an amount of water taken from a site which is then analysed by a lab.
+-   **denyAccessToAllOrganizations**: If this is True, this data will not be available to any partner organization. (Boolean)
 
--   **sampleID**: Unique identification for sample. Suggest siteID-date-sample, or siteID-. (Primary Key)
+-   **denyAccessToSelf**: If this is True, this data will not be shown on the portal when this reporter logs in. (Boolean)
 
--   **siteID**: links with the site table. (foreign key)
+-   **denyAccessToFederalPublicHealthAuthorities**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. (Boolean)
 
--   **dateTime**: for grab samples this is the date and time and timezone the sample was taken.
+-   **denyAccessToLocalPublicHealthAuthorities**: If this is True the, data will not be available to local health authorities. (Boolean)
 
--   **dateTimeStart**: for integrated time average samples this is the date and time and timezone the sample was started being taken.
+-   **denyAccessToProvincialPublicHealthAuthorities**: If this is True, this data will not be available to provincial health authorities. (Boolean)
 
--   **dateTimeEnd**: for integrated time average samples this is the date and time and timezone the sample was finished being taken.
+-   **denyAccessToOtherDataProviders**: If this is True, this data will not be available to other data providers not listed before. (Boolean)
 
--   **sampleType**: type of sample.
-
-    -   `sludge`: Primary clarified sludge
-    -   `rawCollector`: Raw wastewater (in collector system)
-    -   `rawPostGrit`: Raw wastewater (post-grit)
-    -   `other`: Other type of site. Add description to `sampleTypeOther`.
-
--   **sampleTypeOther**: Description for other type of sample type. See `sampleType`.
-
--   **methodCollection**: method used to collect the data.
-
-    -   `grab sample`: Sample was a simple grab sample
-    -   `contFlowProp`: Continuous flow proportional
-    -   `contConstant`: Continuous constant
-    -   `contOther`: Continuous other
-    -   `discTimeProp`: Discrete time proportional
-    -   `discTimeProp24hq1h`: Discrete time proportional 24-hour composite, every 1 hr
-    -   `discTimeProp24hq4h`: Discrete time proportional 24-hour composite, every 4 hr
-    -   `discTimeProp24hq6h`: Discrete time proportional 24-hour composite, every 6 hr
-    -   `discFlowProp`: Discrete flow proportional
-    -   `discVolumeProp`: Discrete volume proportional
-    -   `discOther`: Discrete other
-    -   `integratedOther`: Integrated other
-
--   **methodCollectionOther**: Description for other type of method when any option with `other` is selected `methodCollection`.
-
--   **sampleSizeL**: Total volume of water or sludge sampled.
-
--   **sampleStorageTempC**: Temperature that the sample is stored at in Celsius.
+-   **denyAccessToDetails**: More details on the existing confidentiality requirements of this measurement.
 
 -   **notes**: Any additional notes.
 
-## Site (Site.csv) <span id="Site"><span>
+## Site
 
-The site of wastewater sampling, including several *defaults* that can be used to populate new samples.
+The site of wastewater sampling, including several *defaults* that can be used to populate new samples upon creation.
 
 -   **siteID**: (Primary Key) Unique identifier for the location where wastewater sample was taken.
 
--   **siteName**: Name corresponding to `siteID`. Location name could be a treatment plant, campus, institution or sewer location, etc.
+-   **name**: Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.
 
--   **siteDescription**: Description of wastewater site (city, building, street, etc., to identify location sampled).
+-   **description**: Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.
 
--   **reporterID**: links with the reporter that is responsible for the data (foreign key).
+-   **type**: Type of site or institution where sample was taken.
 
--   **siteType**: Type site where the sampling is taken.
+    -   `airplane`
+    -   `correctionalFacility`
+    -   `elementarySchool`
+    -   `hospital`
+    -   `longTermCareFacility`
+    -   `sewageTruck`
+    -   `universityCampus`
+    -   `majorSewerPipeline`
+    -   `pumpingStation`
+    -   `holdTank`
+    -   `retentionPond`
+    -   `wwtpSanitaryMunicipal`
+    -   `wwtpCombinedMunicipal`
+    -   `wwtpIndustrial`
+    -   `lagoon`
+    -   `septicTank`
+    -   `river`
+    -   `lake`
+    -   `estuary`
+    -   `sea`
+    -   `ocean`
+    -   `other`: Other site type. Add description to `typeOther`.
 
-    -   `SAPFlowWater`: Sewer access point flowing water
-    -   `SAPStandingWater`: Sewer access point standing water
-    -   `treatPlantInfluent`: Treatment plant influent
-    -   `treatPlantEffluent`: Treatment plant effluent
-    -   `lagoon`: Lagoon
-    -   `other`: Other
+-   **typeOther**: Description of the site when the site is not listed. See `siteType`.
 
--   **siteTypeOther**: Description of site where the site is other. See `siteType`
+-   **typeDefault**: Used as default when a new sample is created for this site. See `type` in `Sample` table.
 
--   **sampleTypeDefault**: Used as default when new samples records are created see `SampleType` in `Sample` table.
+-   **typeOtherDefault**: Used as default when a new sample is created for this site. See `typeOther` in `Sample` table.
 
--   **sampleTypeOtherDefault**: Used as default when new `Sample` records are created see `SampleTypeOther` in `Sample` table.
+-   **collectionDefault**: Used as default when a new sample is created for this site. See `collection` in `Sample` table.
 
--   **methodCollectionDefault**: Used as default when new `Sample` records are created see `methodCollection` in `Sample` table.
+-   **collectOtherDefault**: Used as default when a new sample is created for this site. See `collectionOther` in `Sample` table.
 
--   **methodCollectOtherDefault**: Used as default when new `Sample` records are created see `methodCollectionOther` in `Sample` table.
+-   **storageTempCDefault**: Used as default when a new sample is created for this site. See `storageTempC` in `Sample` table.
 
--   **sampleFractionDefault**: Used as the default when new `Measurement` records are created.
-
--   **sampleTempCdefault**: Used as the default when new `Sample` records are created
+-   **fractionAnalyzedDefault**: Used as default when a new measurement is created for this site. See `fractionAnalyzed` in `Measurement` table.
 
 -   **geoLat**: Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
 
@@ -183,149 +255,389 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **notes**: Any additional notes.
 
--   **sewerNetworkPolygonID**: Links with the Polygon table.(foreign key)
+-   **PolygonID**: (Foreign key) Links with the Polygon table, this should encompass the area that typically drains into this site.
 
 -   **sewerNetworkFileLink**: Link to a file that has any detailed information about the sewer network associated with the site (any format).
 
 -   **sewerNetworkFileBLOB**: A file BLOB that has any detailed information about the sewer network associated with the site (any format).
 
-## Reporter (Reporter.csv) <span id="Reporter"><span>
+## SiteMeasure
+
+Measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
+
+-   **uSiteMeasureID**: (Primary Key) Unique identifier for each measurement at the wastewater site.
+
+-   **siteMeasureID**: Unique identifier for a given analysis, where analysis means you performed all steps needed to get the measurement, but measurements are not independent. See also `uWwMeasureID`.
+
+-   **siteID**: (Foreign Key) Links with the Site table to describe the location of measurement.
+
+-   **instrumentID**: (Foreign Key) Links with the `Instrument` table to describe instrument used for the measurement.
+
+-   **reporterID**: (Foreign key) Links with the reporter that is responsible for the data.
+
+-   **dateTime**: The date and time the measurement was performed.
+
+-   **type**: The type of measurement that was performed
+
+    -   `envTemperature`: Environmental temperature.
+    -   `envRainfall`: Amount of precipitation in the form of rain.
+    -   `envSnowFall`: Amount of precipitation in the form of snow.
+    -   `envSnowDepth`: Total depth of snow on the ground.
+    -   `wwFlow`: Flow of wastewater.
+    -   `wwTemp`: Temperature of the wastewater.
+    -   `wwpH`: pH of the wastewater.
+    -   `wwConductivity`: Conductivity of the wastewater.
+    -   `wwTurbidity`: Turbidity of the wastewater.
+    -   `wwTSS`: Total suspended solids concentration of the wastewater.
+    -   `wwCOD`: Chemical oxygen demand of the wastewater.
+    -   `other`: An other type of measurement. Add description to `typeOther`.
+
+-   **typeOther**: Description of the measurement in case it is not listed in `type`.
+
+-   **typeDescription**: Additional information on the performed measurement.
+
+-   **aggregation**: When reporting an aggregate measurement, this field describes the method used.
+
+    -   `single`: This value is not an aggregate measurement in any way (i.e. not a `mean`, `median`, `geoMean` or any other).
+    -   `mean`: Arithmetic mean
+    -   `meanNormal`: Arithmetic mean, normalized
+    -   `geoMean`: Geometric mean
+    -   `geoMeanNormal`: Geometric mean, normalized
+    -   `median`: Median
+    -   `rangeLowestValue`: Lowest value in a range of values
+    -   `rangeHighestValue`: Highest value in a range of values
+    -   `sd`: Standard deviation
+    -   `sdNormal`: Standard deviation, normalized
+    -   `other`: Other aggregation method. Add description to `aggregationOther`
+
+-   **aggregationOther**: Description for other type of aggregation not listed in `aggregation`.
+
+-   **aggregationDescription**: Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
+
+-   **value**: The actual value that is being reported for this measurement.
+
+-   **unit**: The engineering unit of the measurement.
+
+-   **qualityFlag**: Does the reporter suspect quality issues with the value of this measurement? (Boolean)
+
+-   **denyAccessToPublic**: If this is True, this data will not be available to the public. (Boolean)
+
+-   **denyAccessToAllOrganizations**: If this is True, this data will not be available to any partner organization. (Boolean)
+
+-   **denyAccessToSelf**: If this is True, this data will not be shown on the portal when this reporter logs in. (Boolean)
+
+-   **denyAccessToFederalPublicHealthAuthorities**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. (Boolean)
+
+-   **denyAccessToLocalPublicHealthAuthorities**: If this is True the, data will not be available to local health authorities. (Boolean)
+
+-   **denyAccessToProvincialPublicHealthAuthorities**: If this is True, this data will not be available to provincial health authorities. (Boolean)
+
+-   **denyAccessToOtherDataProviders**: If this is True, this data will not be available to other data providers not listed before. (Boolean)
+
+-   **denyAccessToDetails**: More details on the existing confidentiality requirements of this measurement.
+
+-   **notes**: Any additional notes.
+
+## Reporter
 
 The individual or organization that is reporting and responsible for the quality of the data.
 
 -   **reporterID**: (Primary Key) Unique identifier for the person or organization that is reporting the data.
--   **siteIDDefault**: Used as the default when new `Sample` records are created by this `reporter`.
--   **labIDDefault**: Used as the default when new `Sample` records are created by this `reporter`.
+
+-   **siteIDDefault**: (Foreign Key) Used as default when a new sample is created by this reporter. See `ID` in `Site` table.
+
+-   **labIDDefault**: (Foreign Key) Used as default when a new sample is created by this reporter. See `ID` in `Lab` table.
+
 -   **contactName**: Full Name of the reporter, either an organization or individual.
+
 -   **contactEmail**: Contact e-mail address.
+
 -   **contactPhone**: Contact phone number.
--   **allowAcceesToSelf**: Default: True. If this is False the data will not be shown on the portal when the data provider logs in
--   **allowAcceesToFederalPublicHealthAuthorities**: Default: True. If this is False the data will not be available to employees of PHAC
--   **allowAccessToLocalPublicHealthAuthorities**: Default: True. If this is False data will not be available when local health Authorities log in.
--   **allowAccessToProvincialPublicHealthAuthorities**: Default: True. If this is False data will not available when provincial health Authorities log in.
--   **allowAccessToOtherDataProviders**: Default: True. If this is False data will not be available when other data providers login.
--   **allowAccessToAllOrganizations**: Default: True. If this is False data will not be available when any partner organization logs into the system
--   **allowAccessToPublic**: Default: True. If this is False data will not be available to the public.
--   **allowAccessToSpec**: Details or specifics on confidentiality requirements.
+
 -   **notes**: Any additional notes.
 
-## Lab (Lab.csv) <span id="Lab"><span>
+## Lab
 
 Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
--   **labID**: Unique identifier for the laboratory. (Primary Key)
--   **assayIDDefault**: Unique identifier for the assay normally performed by this lab, use to populate new `measurement` records. (foreign key)
--   **laboratoryName**: Name corresponding to lab.
+-   **labID**: (Primary key) Unique identifier for the laboratory.
+
+-   **assayIDDefault**: (Foreign key) Used as default when a new measurement is created for this lab. See `ID` in `AssayMethod` table.
+
+-   **name**: Name corresponding to lab.
+
 -   **contactName**: Contact person or group, for the lab.
+
 -   **contactEmail**: Contact e-mail address, for the lab.
+
 -   **contactPhone**: Contact phone number, for the lab.
--   **labUpdateDate**: Date information was provided or updated.
 
-## AssayMethod (AssayMethod.csv) <span id="AssayMethod"><span>
+-   **updateDate**: Date information was provided or updated.
 
-The assay method that was used to perform testing. This database will be developed in consultation with testing labs to identify key assay features that can affect SARS-CoV-2 results.
+## AssayMethod
 
--   **assayID**: (Primary key) Unique identifier for the assay method.
+The assay method that was used to perform testing. Create a new record if there are changes (improvements) to an existing assay method. Keep the same `ID` and use an updated `version`. A new record for a new version can include only the fields that changed, however, we recommend duplicating existing fields to allow each record to clearly describe all steps. Add a current `date` when recording a new version to an assay.
+
+-   **assayMethodID**: (Primary key) Unique identifier for the assay method.
+
+-   **instrumentID**: (Foreign Key) Links with the `Instrument` table to describe instruments used for the measurement.
+
+-   **name**: Name of the assay method.
 
 -   **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended.
 
--   **sampleSizeL**: Size of the sample that is analysed in liters.
+-   **description**: Description of the assay.
 
--   **loq**: Limit of Quantification for this method if one exists.
+-   **date**: Date on which the assayMethod was created or updated (for version update).
 
--   **lod**: Limit of detection for this method if one exists.
+-   **referenceLink**: Link to standard operating procedure.
 
--   **methodUnits**: Units used by this method, that are applicable to the LOD or LOQ.
+-   **aliasID**: ID of an assay that is the same or similar. *a coma separated list*.
 
-    -   `PMMoV`: Viral copies/copies PMMoV
-    -   `ml`: Viral copies/mL
-    -   `gms`: Viral copies/gm solids
-    -   `l`: Viral copies/L
-    -   `crA`: Viral copies/copies crAssphage
+-   **sampleSizeL**: Size of the sample that is analyzed in liters.
+
+-   **loq**: Limit of quantification (LOQ) for this method if one exists.
+
+-   **lod**: Limit of detection (LOD) for this method if one exists.
+
+-   **unit**: Unit used by this method, that are applicable to the LOD and LOQ.
+
+    -   `vcPMMoV`: Viral copies/copies PMMoV
+    -   `vcMl`: Viral copies/millilitres
+    -   `vcGms`: Viral copies/grams solids
+    -   `vcL`: Viral copies/L
+    -   `vcCrA`: Viral copies/copies crAssphage
     -   `m3s`: meters cubed per second
     -   `mgl`: milligrams per liter
     -   `mgOl`: milligrams of oxygen per liter
-    -   `measureOther`: Other measurement of viral copies or wastewater treatment plant parameter. Also add `measureUnitOther`.
+    -   `other`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to `unitOther`.
 
--   **methodUnitsOther**: Units used by this method, that are applicable to the LOD or LOQ.
+-   **unitOther**: Unit used by this method, that are applicable to the LOD and LOQ.
 
--   **assayDate**: Date the assayMethod was created or updated (for version update).
+-   **methodConcentration**: Description of the method used to concentrate the sample
 
--   **inhibition**: Text decription of the inhibition.
+-   **methodExtraction**: Description of the method used to extract the sample
 
--   **surrogateRecovery**: Text description of the Surrogate Recovery for this method.
+-   **methodPcr**: Description of the PCR method used
 
--   **assayDesc**: Description of assay.
+-   **qualityAssuranceQC**: Description of the quality control steps taken
 
-## Polygon (Polygon.csv) <span id="Polygon"><span>
+-   **inhibition**: Description of the inhibition parameters.
 
-A simple polygon that encloses an are on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
+-   **surrogateRecovery**: Description of the surrogate recovery for this method.
+
+## Instrument
+
+Instruments that are used for measures in `WWMeaure` and `SiteMeasure`. The assay method for viral measurement are described in `AssayMethod`.
+
+-   **instrumentID**: (Primary key) Unique identifier for the assay method.
+
+-   **name**: Name of the instrument used to perform the measurement.
+
+-   **version** Version or model nummber of the instrument.
+
+-   **description** Description of the instrument.
+
+-   **alias**: ID of an assay that is the same or similar. A coma separated list.
+
+-   **referenceLink**: Link to reference for the instrutment.
+
+-   **type**: Type of instrument used to perform the measurement.
+
+    -   `online`: An online sensor
+    -   `lab`: Offline laboratory analysis
+    -   `handheld`: A handheld measurement analyzer.
+    -   `atlineAnalyzer`: An atline analyzer with sampler.
+    -   `other:` An other type of measurement instrument. Add description to instrumentTypeOther.
+
+-   **typeOther**: Description of the instrument in case it is not listed in instrumentType.
+
+## Polygon
+
+A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
 
 -   **polygonID**: (Primary key) Unique identifier for the polygon.
 
--   **polygonName**: Name of the polygon (e.g. G.E. Booth catchment area, Ottawa Health Region).
+-   **name**: Descriptive name of the polygon.
 
--   **polygonPop**: Approximate population size of living inside a given polygon.
+-   **pop**: Approximate population size of people living inside the polygon.
 
--   **polygonType**: Type of polygon
+-   **type**: Type of polygon.
 
-    -   `sewerNetwork` : Sewer network
-    -   `healthRegion` : Health region served by the sewer network
+    -   `sewerNetwork`: Sewer network
+    -   `healthRegion`: Health region served by the sewer network
 
--   **polygonWKT** [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) of the polygon
+-   **wkt**: [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) of the polygon
 
--   **polygonFile** File for storing the polygon BLOB format.
+-   **file**: File containing the geometry of the polygon, BLOB format.
 
--   **polygonLink** Link to an external file that describes the geometry.
+-   **link**: Link to an external reference that describes the geometry of the polygon.
 
-## CovidPublicHealthData (CovidPublicHealthData.csv) <span id="CovidPublicHealthData"><span>
+## CovidPublicHealthData
 
-Saves some information about covid-19 in a given polygon.
+Covid-19 patient data for a specified polygon.
 
--   **publicHealthID**: (Primary key) Unique identifier for the table.
+-   **cphdID**: (Primary key) Unique identifier for the table.
 
--   **ReporterID** ID of the reporter who gave this data
+-   **reporterID**: (Foreign key) ID of the reporter who gave this data.
 
--   **PolygonID**: Links with the `Polygon` table (foreign key).
+-   **polygonID**: (Foreign key) Links with the `Polygon` table.
 
--   **date**: Date of covid-19 measure.
+-   **date**: Date of reporting for covid-19 measure.
 
--   **dateType**: Type of date used.
+-   **type**: Type of covid-19 patient data.
 
-    -   `episodeDate` : Episode date is usually just the earliest of a list of dates available as not every case has every date
-    -   `onsetDate`: Earliest that symptoms were reported for this case
-    -   `reportedDate`: Date that the numbers were reported publicly
+    -   `confirmed`: Number of confirmed cases. This measure should be accompanied by `dateTyep`.
+    -   `active`: Number of active cases.
+    -   `tests`: Number of tests performed.
+    -   `positiveTests`: Number of positive tests.
+    -   `percentPositivityRate`: Percent positivity rate.
+    -   `hospitalCensus`: Hospital census or the number of people admitted with covid-19.
+    -   `hospitalAdmit`: Hospital admissions or patients newly admitted to hospital.
 
--   **confirmed**: Number of confirmed cases.
+-   **dateType**: Type of date used for `confirmed` cases. Typically `reported` or `episode` are reported. `onset` and `test` date is not usually reported within aggregate data.
 
--   **active**: Number of active cases.
+    -   `episode` : Episode date is the earliest of onset, test or reported date.
+    -   `onset`: Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, `episode` is used.
+    -   `reported`: Date that the numbers were reported publicly. Typically, `reported` data and this measure is most commonly reported and used.
+    -   `test`: Date that the covid-19 test was performed.
 
--   **tests**: Number of tests.
+-   **value**: The numeric value that is being reported.
 
--   **positiveTests**: Number of positive tests.
+-   **notes**: Any additional notes.
 
--   **percentPositivityRate**: Percent postivity rate.
+## Lookup
 
--   **hospitalCensus**: Hospital census or the number of people admitted with covid-19.
+Used for lookup values of all category based columns
 
--   **hospitalAdmit**: Hospital admissions or patients newly admitted to hospital.
+-   **tableName**: Name of the Table
 
-## File naming convention
+-   **columnName**: Name for the column
 
--   **variable and category names**: Both variables and variable categories use camelCase with long tables. Wide tables use `_` to concatenate variables from long tables.
--   **merging Tables** : when you merge tables concatenate column names with `.`. So `dateTime` from the `Sample` table becomes `Sample.dateTime`.
+-   **value**: Name of the value
 
-A long table would represent a test sample as the following:
+-   **description**: Name of the description
 
-    measureCat = covidN1
-    measureUnit = PPMoV
-    measureType = Mean
-    measureValue = 42
+## Naming conventions
+
+-   **Table names**: Table names use UpperCamelCase.
+-   **Variable and category names**: Both variables and variable categories use lowerCamelCase. Do not use special characters (only uppercase, lowercase letters and numbers). Reason: variable and category names can be combined to generate derived variables. Using special characters will generate non-allowable characters - see below.
+-   **Variables in wide tables**: Wide tables use `_` to concatenate variables from long tables.
+-   **Variable order** if a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous. In this case, show a `analysisDate` followed by a series of measurements taken on that date ex(`temp_c_singleton`) then another `covidN1_PPMV_mean` followed by more measurements ex(`covidN1_PPMV_mean`)
+-   **Merging tables** : Merging tables into a wide table requires additional steps for when a variable does not have an unique name. For example, variables such as `dateTime`, `notes`, `description`, `type`, `version` and `ID` variables such as `sampleID` are used in several tables. Use the following approach:
+    - Variable that are not unique (they are in more than one table): add the table name to the variable by concatenate column names with `_`. e.g. `dateTime` from the `Sample` table becomes `Sample_dateTime`.
+    - Variable that are unique (they in only one table in the entire OMD). No variable name changes are needed.
+-   **Derived, summary or transformed measure**: Follows the same approach as naming variable and category names, except use a `_` when concatenating variable or category names. These three types measures are generated to summarize or transform one or more variables. An example is calculating the mean value of one or more SARS-CoV-2 regions. Normalization and standardization are other examples of a transformed measure.
+-   **Date time**: YYYY-MM-DD HH:mm:ss (24 hour format, in UTC)
+-   **Location**: [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) for polygon.
+-   **Version**: [Semantic versioning](https://semver.org)
+
+## Examples of how to generate wide variable and category names
+
+### 1) Simple viral region report
+
+A long table would represent viral measures of:
+
+``` {.markdown}
+date = 2021-01-15
+type = covidN1
+unit = vcPMMoV
+aggregation = mean
+value = 40
+```
+
+``` {.markdown}
+date = 2021-01-15
+type = covidN2
+unit = vcPMMoV
+aggregation = mean
+value = 42
+```
+
+In a long table as:
+
+| date       | type    | unit    | aggregation | value |
+|------------|---------|---------|-------------|-------|
+| 2021-01-15 | covidN1 | vcPPMoV | mean        | 40    |
+| 2021-01-15 | covidN2 | vcPPMoV | mean        | 42    |
 
 A wide table would represent the same measurement as:
 
-    covidN1_PPMV_mean = 42
+``` {.markdown}
+    WWMeasure.covidN1_PPMV_mean = 40
+    WWMeasure.covidN2_PPMV_mean = 42
+```
 
--   **date**: MM/DD/YYYY HH:mm:ss (24 hour format, in UTC)
--   **location**: TBD
--   **versions**: [Semantic versioning](https://semver.org)
+In a wide table as:
+
+| date       | WWMeasure.covidN1_vcPPMoV_mean | WWMeasure.covidN2_vcPPMoV_mean |
+|------------|--------------------------------|--------------------------------|
+| 2021-01-15 | 40                             | 42                             |
+
+### 2) Derived measure
+
+To report a mean value of existing covidN1 and covidN2 measures:
+
+``` {.markdown}
+    date = 2021-01-15
+    type = covidN1
+    unit = ml
+    aggregation = mean
+    value = 42
+```
+
+``` {.markdown}
+    date = 2021-01-15
+    type = covidN2
+    unit = ml
+    aggregation = mean
+    value = 40
+```
+
+Represent the derived measure as:
+
+long table format
+
+``` {.markdown}
+    date = 2021-01-15
+    type = covidN1covidN2
+    unit = ml
+    aggreation = mean
+    value = 41
+```
+
+| date       | type           | unit | aggregation | value |
+|------------|----------------|------|-------------|-------|
+| 2021-01-15 | covidN1covidN2 | ml   | mean        | 41    |
+
+or, gitwide table format
+
+``` {.markdown}
+    date = 2021-01-15
+    covidN1covidN2_ml_mean = 41
+```
+
+-   Viral SARS-CoV-2 copies per reference copies.
+
+### 3) Transformed measure
+
+To report mean viral copies of mean value N1 and N2 per viral copies of PMMoV:
+
+Represent the derived measure as:
+
+long table description
+
+``` {.markdown}
+    date = 2021-01-15
+    covidN1covidN2 = 2
+    measureUnit = PPMV
+    measureType = meanNormal
+```
+
+or,
+
+wide table format
+
+``` {.markdown}
+    covidN1covidN2_PPMV_meanNormal = 2
+```
