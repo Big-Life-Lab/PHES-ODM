@@ -530,16 +530,16 @@ A long table would represent viral measures of:
 
 ``` {.markdown}
 date = 2021-01-15
-type = covidN1
-unit = vcPMMoV
+type = covN1
+unit = nPMMoV
 aggregation = mean
 value = 40
 ```
 
 ``` {.markdown}
 date = 2021-01-15
-type = covidN2
-unit = vcPMMoV
+type = covN2
+unit = nPMMoV
 aggregation = mean
 value = 42
 ```
@@ -554,13 +554,13 @@ In a long table as:
 A wide table would represent the same measurement as:
 
 ``` {.markdown}
-    WWMeasure.covidN1_PPMV_mean = 40
-    WWMeasure.covidN2_PPMV_mean = 42
+    covidN1_PPMV_mean = 40
+    covidN2_PPMV_mean = 42
 ```
 
 In a wide table as:
 
-| date       | WWMeasure.covidN1_vcPPMoV_mean | WWMeasure.covidN2_vcPPMoV_mean |
+| date       | covidN1_vcPPMoV_mean | covidN2_vcPPMoV_mean |
 |------------|--------------------------------|--------------------------------|
 | 2021-01-15 | 40                             | 42                             |
 
@@ -570,7 +570,7 @@ To report a mean value of existing covidN1 and covidN2 measures:
 
 ``` {.markdown}
     date = 2021-01-15
-    type = covidN1
+    type = covN1
     unit = ml
     aggregation = mean
     value = 42
@@ -578,7 +578,7 @@ To report a mean value of existing covidN1 and covidN2 measures:
 
 ``` {.markdown}
     date = 2021-01-15
-    type = covidN2
+    type = covN2
     unit = ml
     aggregation = mean
     value = 40
@@ -590,21 +590,21 @@ long table format
 
 ``` {.markdown}
     date = 2021-01-15
-    type = covidN1covidN2
+    type = covN1covN2
     unit = ml
     aggreation = mean
     value = 41
 ```
 
-| date       | type           | unit | aggregation | value |
-|------------|----------------|------|-------------|-------|
-| 2021-01-15 | covidN1covidN2 | ml   | mean        | 41    |
+| date       | type       | unit | aggregation | value |
+|------------|------------|------|-------------|-------|
+| 2021-01-15 | covN1covN2 | ml   | mean        | 41    |
 
-or, gitwide table format
+or, wide table format
 
 ``` {.markdown}
     date = 2021-01-15
-    covidN1covidN2_ml_mean = 41
+    covN1covN2_ml_mean = 41
 ```
 
 -   Viral SARS-CoV-2 copies per reference copies.
@@ -619,9 +619,9 @@ long table description
 
 ``` {.markdown}
     date = 2021-01-15
-    covidN1covidN2 = 2
-    measureUnit = PPMV
-    measureType = meanNormal
+    covN1covN2 = 2
+    unit = PPMV
+    type = meanNr
 ```
 
 or,
@@ -629,5 +629,5 @@ or,
 wide table format
 
 ``` {.markdown}
-    covidN1covidN2_PPMV_meanNormal = 2
+    covidN1covidN2_PPMV_meanNr = 2
 ```

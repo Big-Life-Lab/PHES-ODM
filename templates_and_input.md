@@ -33,12 +33,12 @@ The [metadata](metadata.md) and [Entity Relationship Diagram](metadata.md#entity
 Long table format
 
 |date      |type|unit|aggregation|value|
-|----------|--------|----|-----------|-----|
-|2021-01-15|covidN1 |vcPPMoV  |mean       |40   |
-|2021-01-15|covidN2 |vcPPMov  |mean       |42   |
+|----------|------|--------|-----------|-----|
+|2021-01-15|covN1 |nPPMoV  |mean       |40   |
+|2021-01-15|covN2 |nPPMov  |mean       |42   |
 
 Wide table format
 
-|date      |WWMeasure__covidN1_vcPPMoV_mean|WWMeasure__covidN2_vcPPMoV_mean|
-|----------|------------------------------|------------------------------|
-|2021-01-15|40                            |42                            |
+|date      |covN1_nPPMoV_mean|covN2_nPPMoV_mean|
+|----------|-----------------|-----------------|
+|2021-01-15|40               |42               |
