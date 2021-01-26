@@ -40,7 +40,7 @@ The sample is a representative volume of wastewater taken from a site which is t
 
     -   `rawWastewater`: Raw wastewater.
     -   `sewerSediment`: Sediments obtained in sewer.
-    -   `wwPostGrit`: Raw wastewater after a treatment plant's headworks. 
+    -   `wwPostGrit`: Raw wastewater after a treatment plant's headworks.
     -   `primarySludge`: Sludge produced by primary clarifiers.
     -   `primaryEffluent`: Effluent obtained after primary clarifiers.
     -   `secondarySludge`: Sludge produced by secondary clarifiers.
@@ -370,7 +370,7 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **assayMethodID**: (Primary key) Unique identifier for the assay method.
 
--   **instrumentID**: (Foreign Key) Links with the `Instrument` table to describe instruments used for the measurement. 
+-   **instrumentID**: (Foreign Key) Links with the `Instrument` table to describe instruments used for the measurement.
 
 -   **name**: Name of the assay method.
 
@@ -416,7 +416,7 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **surrogateRecovery**: Description of the surrogate recovery for this method.
 
-## Instrument 
+## Instrument
 
 Instruments that are used for measures in `WWMeaure` and `SiteMeasure`. The assay method for viral measurement are described in `AssayMethod`.
 
@@ -442,7 +442,7 @@ Instruments that are used for measures in `WWMeaure` and `SiteMeasure`. The assa
 
 -   **typeOther**: Description of the instrument in case it is not listed in instrumentType.
 
-## Polygon 
+## Polygon
 
 A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
 
@@ -514,7 +514,9 @@ Used for lookup values of all category based columns
 -   **Variable and category names**: Both variables and variable categories use lowerCamelCase. Do not use special characters (only uppercase, lowercase letters and numbers). Reason: variable and category names can be combined to generate derived variables. Using special characters will generate non-allowable characters - see below.
 -   **Variables in wide tables**: Wide tables use `_` to concatenate variables from long tables.
 -   **Variable order** if a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous. In this case, show a `analysisDate` followed by a series of measurements taken on that date ex(`temp_c_singleton`) then another `covidN1_PPMV_mean` followed by more measurements ex(`covidN1_PPMV_mean`)
--   **Merging tables** : when you merge tables concatenate column names with `.`. So `dateTime` from the `Sample` table becomes `Sample.dateTime`.
+-   **Merging tables** : Merging tables into a wide table requires additional steps for when a variable does not have an unique name. For example, variables such as `dateTime`, `notes`, `description`, `type`, `version` and `ID` variables such as `sampleID` are used in several tables. Use the following approach:
+    - Variable that are not unique (they are in more than one table): add the table name to the variable by concatenate column names with `_`. e.g. `dateTime` from the `Sample` table becomes `Sample_dateTime`.
+    - Variable that are unique (they in only one table in the entire OMD). No variable name changes are needed.
 -   **Derived, summary or transformed measure**: Follows the same approach as naming variable and category names, except use a `_` when concatenating variable or category names. These three types measures are generated to summarize or transform one or more variables. An example is calculating the mean value of one or more SARS-CoV-2 regions. Normalization and standardization are other examples of a transformed measure.
 -   **Date time**: YYYY-MM-DD HH:mm:ss (24 hour format, in UTC)
 -   **Location**: [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) for polygon.
@@ -558,9 +560,9 @@ A wide table would represent the same measurement as:
 
 In a wide table as:
 
-| date       | WWMeasure.covidN1\_vcPPMoV\_mean | WWMeasure.covidN2\_vcPPMoV\_mean |
-|------------|----------------------------------|----------------------------------|
-| 2021-01-15 | 40                               | 42                               |
+| date       | WWMeasure.covidN1_vcPPMoV_mean | WWMeasure.covidN2_vcPPMoV_mean |
+|------------|--------------------------------|--------------------------------|
+| 2021-01-15 | 40                             | 42                             |
 
 ### 2) Derived measure
 
