@@ -52,15 +52,15 @@ The sample is a volume of wastewater taken from a [Site](#Site) which is then an
 -   **typeOther**: Description for other type of sample not listed in `type`.
 
 -   **collection**: Method used to collect the data.
-    - `cpTP24h`: A time proportional 24-hour composite sample generally collected by an autosampler.
-    - `cpFP24h`: A flow proportional 24-hour composite sample generally collected by an autosampler.
-    - `grb`: A single large representative grab sample.
-    - `grbCp8h`: An 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.
-    - `grbCp3h`: A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.
-    - `grbCp3`: A grab-composite sample composed of 3 separate grab samples.    
-    - `mooreSw`: Moore swab passive sample.
-    - `other`: Other type of collection method. Add description to `collectionOther`.
 
+    -   `cpTP24h`: A time proportional 24-hour composite sample generally collected by an autosampler.
+    -   `cpFP24h`: A flow proportional 24-hour composite sample generally collected by an autosampler.
+    -   `grb`: A single large representative grab sample.
+    -   `grbCp8h`: An 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.
+    -   `grbCp3h`: A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.
+    -   `grbCp3`: A grab-composite sample composed of 3 separate grab samples.  
+    -   `mooreSw`: Moore swab passive sample.
+    -   `other`: Other type of collection method. Add description to `collectionOther`.
 
 -   **collectionOther**: Description for other type of method not listed in `collection`.
 
@@ -88,7 +88,7 @@ The sample is a volume of wastewater taken from a [Site](#Site) which is then an
 
 ## WWMeasure
 
-Measurement result (ie. single variable) obtained by analyzing a potentially positive SARS-CoV-2 wastewater sample.
+Measurement result (ie. single variable) from a wastewater sample. `WWMeaasure` includes data that is commonly collected by staff at wastewater laboratories where measurement is performed using an assay method (see [AssayMethod](#assaymethod)), but can also be performed using specific instruments (see [Instruments](#instrument). Measures performed at the site of the wastewater sample are reported in `SiteMeasure`.
 
 -   **uWwMeasureID**: (Primary key) Unique identifier a measurement within the measurement table.
 
@@ -256,7 +256,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 ## SiteMeasure
 
-Measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
+Measurement result (ie. single variable) obtained by at the site of wastewater sample.`SiteMeasure` includes data that is commonly collected by staff at wastewater treatment facilities and field sample locations. These measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results. Measures performed on the wastewater sample are reported in `WWMeasure`.
 
 -   **uSiteMeasureID**: (Primary Key) Unique identifier for each measurement for a site.
 
@@ -437,11 +437,11 @@ Instruments that are used for measures in `WWMeasure` and `SiteMeasure`. The ass
 
 -   **type**: Type of instrument used to perform the measurement.
 
-    - `online`: An online sensor
-    - `lab`: Offline laboratory analysis
-    - `hand`: A handheld measurement analyzer.
-    - `atline`: An atline analyzer with sampler.
-    - `other:` An other type of measurement instrument. Add description to instrumentTypeOther.
+    -   `online`: An online sensor
+    -   `lab`: Offline laboratory analysis
+    -   `hand`: A handheld measurement analyzer.
+    -   `atline`: An atline analyzer with sampler.
+    -   `other:` An other type of measurement instrument. Add description to instrumentTypeOther.
 
 -   **typeOther**: Description of the instrument in case it is not listed in instrumentType.
 
@@ -522,8 +522,8 @@ Used for lookup values of all category based columns
 -   **Variable order** if a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous. In this case, show a `analysisDate` followed by a series of measurements taken on that date ex(`temp_c_singleton`) then another `covidN1_PPMV_mean` followed by more measurements ex(`covidN1_PPMV_mean`)
 
 -   **Merging tables** : Merging tables into a wide table requires additional steps for when a variable does not have an unique name. For example, variables such as `dateTime`, `notes`, `description`, `type`, `version` and `ID` variables such as `sampleID` are used in several tables. Use the following approach:
-    - Variable that are not unique (they are in more than one table): add the table name to the variable by concatenate column names with `_`. e.g. `dateTime` from the `Sample` table becomes `Sample_dateTime`.
-    - Variable that are unique (they in only one table in the entire OMD). No variable name changes are needed.
+
+    -   Variable that are not unique (they are in more than one table): add the table name to the variable by concatenate column names with `_`. e.g. `dateTime` from the `Sample` table becomes `Sample_dateTime`.
     -   Variable that are unique (they in only one table in the entire OMD). No variable name changes are needed.
 
 -   **Derived, summary or transformed measure**: Follows the same approach as naming variable and category names, except use a `_` when concatenating variable or category names. These three types measures are generated to summarize or transform one or more variables. An example is calculating the mean value of one or more SARS-CoV-2 regions. Normalization and standardization are other examples of a transformed measure.
