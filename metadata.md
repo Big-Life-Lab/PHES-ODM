@@ -89,9 +89,9 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 Measurement result (ie. single variable) obtained by analyzing a potentially positive SARS-CoV-2 wastewater sample.
 
--   **wwMeasureID**: (Primary key) Unique identifier within the measurement table.
+-   **uWwMeasureID**: (Primary key) Unique identifier a measurement within the measurement table.
 
--   **ID**: Unique identifier for a given analysis, where analysis means you performed all steps needed to get the measurement, but measurements are not independent.
+-   **wwMeasureID**: Unique identifier for wide table only. Use when all measures are performed on a single sample.
 
 -   **sampleID**: (Foreign key) Links with the identified Sample.
 
@@ -119,7 +119,6 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
     -   `covN3`: SARS-like coronaviruses nucleocapsid gene N3
     -   `covE`: SARS-CoV-2 gene region E
     -   `covRdRp`: SARS-CoV-2 gene region RdRp
-    -   `covN1N2avg`: SARS-CoV-2 gene region average of N1 and N2
     -   `nPMMoV`: Pepper mild mottle virus
     -   `ncrA`: cross-assembly phage
     -   `wqTS`: Total solids concentration.
@@ -229,17 +228,17 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **typeOther**: Description of the site when the site is not listed. See `siteType`.
 
--   **sample.typeDefault**: Used as default when a new sample is created for this site. See `type` in `Sample` table.
+-   **typeDefault**: Used as default when a new sample is created for this site. See `type` in `Sample` table.
 
--   **sample.typeOtherDefault**: Used as default when a new sample is created for this site. See `typeOther` in `Sample` table.
+-   **typeOtherDefault**: Used as default when a new sample is created for this site. See `typeOther` in `Sample` table.
 
--   **sample.collectionDefault**: Used as default when a new sample is created for this site. See `collection` in `Sample` table.
+-   **collectionDefault**: Used as default when a new sample is created for this site. See `collection` in `Sample` table.
 
--   **sample.collectOtherDefault**: Used as default when a new sample is created for this site. See `collectionOther` in `Sample` table.
+-   **collectOtherDefault**: Used as default when a new sample is created for this site. See `collectionOther` in `Sample` table.
 
--   **sample.storageTempCDefault**: Used as default when a new sample is created for this site. See `storageTempC` in `Sample` table.
+-   **storageTempCDefault**: Used as default when a new sample is created for this site. See `storageTempC` in `Sample` table.
 
--   **measurement.fractionAnalyzedDefault**: Used as default when a new measurement is created for this site. See `fractionAnalyzed` in `Measurement` table.
+-   **fractionAnalyzedDefault**: Used as default when a new measurement is created for this site. See `fractionAnalyzed` in `Measurement` table.
 
 -   **geoLat**: Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
 
@@ -257,7 +256,10 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 Measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
 
--   **siteMeasureID**: (Primary Key) Unique identifier for each contextual measurement.
+
+-   **uSiteMeasureID**: (Primary Key) Unique identifier for each measurement for a site.
+
+-   **siteMeasureID**: Unique identifier for wide table only. Use when all measures are performed on a single sample.
 
 -   **siteID**: (Foreign Key) Links with the Site table to describe the location of measurement.
 
