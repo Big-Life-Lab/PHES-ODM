@@ -24,7 +24,7 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/invitations/acc
 
 ## Sample
 
-The sample is a representative volume of wastewater taken from a site which is then analysed by a lab.
+The sample is a volume of wastewater taken from a [Site](#Site) which is then analysed by a lab.
 
 -   **sampleID**: (Primary Key) Unique identification for sample. Suggestions: *siteID-date-index*.
 
@@ -61,6 +61,7 @@ The sample is a representative volume of wastewater taken from a site which is t
     - `mooreSw`: Moore swab passive sample.
     - `other`: Other type of collection method. Add description to `collectionOther`.
 
+
 -   **collectionOther**: Description for other type of method not listed in `collection`.
 
 -   **collectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes.
@@ -75,7 +76,7 @@ The sample is a representative volume of wastewater taken from a site which is t
 
 -   **sizeL**: Total volume of water or sludge sampled.
 
--   **fieldSamplingTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
+-   **fieldSampleTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
 
 -   **shippedOnIce**: Was the sample kept cool while being shipped to the lab? (Boolean)
 
@@ -113,7 +114,8 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
     -   `solid`: Solid fraction
     -   `mixed`: Mixed/homogenized sample
 
--   **type**: The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (`cov`), a biomarker for normalisation (`n`) or a  water quality parameter (`wq`).
+-   **type**: The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (`cov`), a biomarker for normalisation (`n`) or a water quality parameter (`wq`).
+
     -   `covN1`: SARS-CoV-2 nucleocapsid gene N1
     -   `covN2`: SARS-CoV-2 nucleocapsid gene N2
     -   `covN3`: SARS-like coronaviruses nucleocapsid gene N3
@@ -171,23 +173,23 @@ Measurement result (ie. single variable) obtained by analyzing a potentially pos
 
 -   **value**: The actual measurement value that was obtained through analysis.
 
--   **qualityFlag**: Does the reporter suspect the measurement having some quality issues? (Boolean)
+-   **qualityFlag**: Does the reporter suspect the measurement having some quality issues?
 
--   **denyAccessToPublic**: If this is True, this data will not be available to the public. (Boolean)
+-   **noAccessToPublic**: If this is True, this data will not be available to the public. If missing, data will be available to the public.
 
--   **denyAccessToAllOrganizations**: If this is True, this data will not be available to any partner organization. (Boolean)
+-   **noAccessToAllOrg**: If this is True, this data will not be available to any partner organization. If missing, data will be available to the all organizations.
 
--   **denyAccessToSelf**: If this is True, this data will not be shown on the portal when this reporter logs in. (Boolean)
+-   **noAccessToSelf**: If this is True, this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
 
--   **denyAccessToFederalPublicHealthAuthorities**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. (Boolean)
+-   **noAccessToPHAC**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.
 
--   **denyAccessToLocalPublicHealthAuthorities**: If this is True the, data will not be available to local health authorities. (Boolean)
+-   **noAccessToLocalHA**: If this is True the, data will not be available to local health authorities. If missing, data will be available to local health authorities.
 
--   **denyAccessToProvincialPublicHealthAuthorities**: If this is True, this data will not be available to provincial health authorities. (Boolean)
+-   **noAccessToProvHA**: If this is True, this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
 
--   **denyAccessToOtherDataProviders**: If this is True, this data will not be available to other data providers not listed before. (Boolean)
+-   **noAccessToOtherProv**: If this is True, this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before
 
--   **denyAccessToDetails**: More details on the existing confidentiality requirements of this measurement.
+-   **noAccessToDetails**: More details on the existing confidentiality requirements of this measurement.
 
 -   **notes**: Any additional notes.
 
@@ -256,7 +258,6 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 Measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results.
 
-
 -   **uSiteMeasureID**: (Primary Key) Unique identifier for each measurement for a site.
 
 -   **siteMeasureID**: Unique identifier for wide table only. Use when all measures are performed on a single sample.
@@ -307,7 +308,7 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **aggregationOther**: Description for other type of aggregation not listed in `aggregation`.
 
--   **aggregationDescription**: Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
+-   **aggregationDesc**: Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
 
 -   **value**: The actual value that is being reported for this measurement.
 
@@ -315,21 +316,21 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **qualityFlag**: Does the reporter suspect quality issues with the value of this measurement? (Boolean)
 
--   **denyAccessToPublic**: If this is True, this data will not be available to the public. (Boolean)
+-   **noAccessToPublic**: If this is True, this data will not be available to the public. If missing, data will be available to the public.
 
--   **denyAccessToAllOrganizations**: If this is True, this data will not be available to any partner organization. (Boolean)
+-   **noAccessToAllOrg**: If this is True, this data will not be available to any partner organization. If missing, data will be available to the all organizations.
 
--   **denyAccessToSelf**: If this is True, this data will not be shown on the portal when this reporter logs in. (Boolean)
+-   **noAccessToSelf**: If this is True, this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
 
--   **denyAccessToFederalPublicHealthAuthorities**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. (Boolean)
+-   **noAccessToPHAC**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.
 
--   **denyAccessToLocalPublicHealthAuthorities**: If this is True the, data will not be available to local health authorities. (Boolean)
+-   **noAccessToLocalHA**: If this is True the, data will not be available to local health authorities. If missing, data will be available to local health authorities.
 
--   **denyAccessToProvincialPublicHealthAuthorities**: If this is True, this data will not be available to provincial health authorities. (Boolean)
+-   **noAccessToProvHA**: If this is True, this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
 
--   **denyAccessToOtherDataProviders**: If this is True, this data will not be available to other data providers not listed before. (Boolean)
+-   **noAccessToOtherProv**: If this is True, this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before
 
--   **denyAccessToDetails**: More details on the existing confidentiality requirements of this measurement.
+-   **noAccessToDetails**: More details on the existing confidentiality requirements of this measurement.
 
 -   **notes**: Any additional notes.
 
@@ -406,9 +407,9 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **unitOther**: Unit used by this method, that are applicable to the LOD and LOQ.
 
--   **methodConcentration**: Description of the method used to concentrate the sample
+-   **methodConc**: Description of the method used to concentrate the sample
 
--   **methodExtraction**: Description of the method used to extract the sample
+-   **methodExtract**: Description of the method used to extract the sample
 
 -   **methodPcr**: Description of the PCR method used
 
@@ -513,15 +514,24 @@ Used for lookup values of all category based columns
 ## Naming conventions
 
 -   **Table names**: Table names use UpperCamelCase.
+
 -   **Variable and category names**: Both variables and variable categories use lowerCamelCase. Do not use special characters (only uppercase, lowercase letters and numbers). Reason: variable and category names can be combined to generate derived variables. Using special characters will generate non-allowable characters - see below.
+
 -   **Variables in wide tables**: Wide tables use `_` to concatenate variables from long tables.
+
 -   **Variable order** if a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous. In this case, show a `analysisDate` followed by a series of measurements taken on that date ex(`temp_c_singleton`) then another `covidN1_PPMV_mean` followed by more measurements ex(`covidN1_PPMV_mean`)
+
 -   **Merging tables** : Merging tables into a wide table requires additional steps for when a variable does not have an unique name. For example, variables such as `dateTime`, `notes`, `description`, `type`, `version` and `ID` variables such as `sampleID` are used in several tables. Use the following approach:
     - Variable that are not unique (they are in more than one table): add the table name to the variable by concatenate column names with `_`. e.g. `dateTime` from the `Sample` table becomes `Sample_dateTime`.
     - Variable that are unique (they in only one table in the entire OMD). No variable name changes are needed.
+    -   Variable that are unique (they in only one table in the entire OMD). No variable name changes are needed.
+
 -   **Derived, summary or transformed measure**: Follows the same approach as naming variable and category names, except use a `_` when concatenating variable or category names. These three types measures are generated to summarize or transform one or more variables. An example is calculating the mean value of one or more SARS-CoV-2 regions. Normalization and standardization are other examples of a transformed measure.
+
 -   **Date time**: YYYY-MM-DD HH:mm:ss (24 hour format, in UTC)
+
 -   **Location**: [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) for polygon.
+
 -   **Version**: [Semantic versioning](https://semver.org)
 
 ## Examples of how to generate wide variable and category names
@@ -548,10 +558,10 @@ value = 42
 
 In a long table as:
 
-| date       | type    | unit    | aggregation | value |
-|------------|---------|---------|-------------|-------|
-| 2021-01-15 | covidN1 | vcPPMoV | mean        | 40    |
-| 2021-01-15 | covidN2 | vcPPMoV | mean        | 42    |
+| date       | type  | unit   | aggregation | value |
+|------------|-------|--------|-------------|-------|
+| 2021-01-15 | covN1 | nPPMoV | mean        | 40    |
+| 2021-01-15 | covN2 | nPPMoV | mean        | 42    |
 
 A wide table would represent the same measurement as:
 
@@ -562,9 +572,9 @@ A wide table would represent the same measurement as:
 
 In a wide table as:
 
-| date       | covidN1_vcPPMoV_mean | covidN2_vcPPMoV_mean |
-|------------|--------------------------------|--------------------------------|
-| 2021-01-15 | 40                             | 42                             |
+| date       | covN1_nPPMoV_mean | covN2_nPPMoV_mean |
+|------------|-------------------|-------------------|
+| 2021-01-15 | 40                | 42                |
 
 ### 2) Derived measure
 
