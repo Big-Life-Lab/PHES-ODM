@@ -1,10 +1,3 @@
----
-title: "Ottawa Wastewater Data Model Metadata Description"
-editor_options:
-  markdown:
-    mode: gfm
----
-
 # Metadata
 
 There are eight tables that are described below. example data is stored in [data](data).
