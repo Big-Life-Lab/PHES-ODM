@@ -24,9 +24,9 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/invitations/acc
 
 ## Sample
 
-The sample is a volume of wastewater taken from a [Site](#Site) which is then analysed by a lab.
+The sample is a representative volume of wastewater taken from a [Site](#Site) which is then analysed by a lab.
 
--   **sampleID**: (Primary Key) Unique identification for sample. Suggestions: *siteID-date-index*.
+-   **sampleID**: (Primary Key) Unique identification for sample. Suggestion: *siteID-date-index*.
 
 -   **siteID**: (Foreign key) Links with the Site table to describe the location of sampling.
 
@@ -92,7 +92,7 @@ Measurement result (ie. single variable) from a wastewater sample. `WWMeaasure` 
 
 -   **uWwMeasureID**: (Primary key) Unique identifier a measurement within the measurement table.
 
--   **wwMeasureID**: Unique identifier for wide table only. Use when all measures are performed on a single sample.
+-   **wwMeasureID**: Unique identifier for wide table only. Use when all measures are performed on a single sample at the same time and same laboratory. Suggestion: _siteID_sampleID_LabID_reportDate_ID_.
 
 -   **sampleID**: (Foreign key) Links with the identified Sample.
 
@@ -248,7 +248,7 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **notes**: Any additional notes.
 
--   **PolygonID**: (Foreign key) Links with the Polygon table, this should encompass the area that typically drains into this site.
+-   **polygonID**: (Foreign key) Links with the Polygon table, this should encompass the area that typically drains into this site.
 
 -   **sewerNetworkFileLink**: Link to a file that has any detailed information about the sewer network associated with the site (any format).
 
