@@ -492,7 +492,7 @@ Covid-19 patient data for a specified polygon.
 
 -   **type**: Type of covid-19 patient data.
 
-    -   `conf`: Number of confirmed cases. This measure should be accompanied by `dateTyep`.
+    -   `conf`: Number of confirmed cases. This measure should be accompanied by `dateType`.
     -   `active`: Number of active cases.
     -   `test`: Number of tests performed.
     -   `posTest`: Number of positive tests.
@@ -500,7 +500,7 @@ Covid-19 patient data for a specified polygon.
     -   `hospCen`: Hospital census or the number of people admitted with covid-19.
     -   `hospAdm`: Hospital admissions or patients newly admitted to hospital.
 
--   **dateType**: Type of date used for `confirmed` cases. Typically `reported` or `episode` are reported. `onset` and `test` date is not usually reported within aggregate data.
+-   **dateType**: Type of date used for `conf` cases. Typically `report` or `episode` are reported. `onset` and `test` date is not usually reported within aggregate data.
 
     -   `episode` : Episode date is the earliest of onset, test or reported date.
     -   `onset`: Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, `episode` is used.
