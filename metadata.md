@@ -394,11 +394,11 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended.
 
--   **description**: Description of the assay.
-
--   **date**: Date on which the assayMethod was created or updated (for version update).
+-   **summary**: Short description of the assay and how it is different from the other assay methods.
 
 -   **referenceLink**: Link to standard operating procedure.
+
+-   **date**: Date on which the assayMethod was created or updated (for version update).
 
 -   **aliasID**: ID of an assay that is the same or similar. *a comma separated list*.
 
