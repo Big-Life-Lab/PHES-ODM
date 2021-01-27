@@ -82,7 +82,7 @@ The sample is a representative volume of wastewater taken from a [Site](#Site) w
 
 -   **preTreatmentDescription**: If `preTreatment` then describe the treatment that was performed.
 
--   **children**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates *a coma separated list of child sampleIDs*.
+-   **children**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates *a comma separated list of child sampleIDs*.
 
 -   **parent** : If this sample has been pooled into one big sample for analysis this indicates the *sampleID of the larger pooled sample*.
 
@@ -400,7 +400,7 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **referenceLink**: Link to standard operating procedure.
 
--   **aliasID**: ID of an assay that is the same or similar. *a coma separated list*.
+-   **aliasID**: ID of an assay that is the same or similar. *a comma separated list*.
 
 -   **sampleSizeL**: Size of the sample that is analyzed in liters.
 
@@ -439,13 +439,13 @@ Instruments that are used for measures in `WWMeasure` and `SiteMeasure`. The ass
 
 -   **name**: Name of the instrument used to perform the measurement.
 
--   **version** Version or model nummber of the instrument.
+-   **model** Model number or version of the instrument.
 
 -   **description** Description of the instrument.
 
--   **alias**: ID of an assay that is the same or similar. A coma separated list.
+-   **alias**: ID of an assay that is the same or similar. A comma separated list.
 
--   **referenceLink**: Link to reference for the instrutment.
+-   **referenceLink**: Link to reference for the instrument.
 
 -   **type**: Type of instrument used to perform the measurement.
 
