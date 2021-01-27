@@ -52,8 +52,8 @@ Because of the multiple relationships between the tables composing the data mode
 
 - **Step 2**: `Site`, `AssayMethod`
 
-- **Step 3**: `Reporter`
+- **Step 3**: `Lab`
 
-- **Step 4**: `Lab`
+- **Step 4**: `Reporter`
 
 - **Step 5**: `Sample`+`WWMeasure` OR `SiteMeasure` OR `CovidPublicHealthData`
