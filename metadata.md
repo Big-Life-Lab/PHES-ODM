@@ -14,9 +14,21 @@ There are eight tables that are described below. example data is stored in [data
 -   [CovidPublicHealthData](#covidpublicHealthdata)
 -   [Lookups](#lookups)
 
-Entity Relationship Diagram [here](#entity-relationship-diagram).
-
 ## Entity Relationship Diagram
+
+Use Entity Relationship Diagram to identify variable type.
+
+- **BLOB**: The ASCII-encoded string in lower case representing the media type of the Blob. More [details](https://w3c.github.io/FileAPI/#dfn-type)
+- **bool**: boolean, TRUE, FALSE
+- **char**: ASCII-encoded string
+- **cat**: categorical defined using ASCII-encoded string as defined for the variable
+- **dateTime**: YYYY-MM-DD HH:mm:ss (24 hour format, in UTC)
+- **email**: email address
+- **float**: float-point numerical value
+- **int**: integer
+- **phone**: phone number, either ###-###-#### or #-###-###-####
+
+- **url**: Uniform Resource Identifier
 
 ![](img/ERD.svg)
 
@@ -66,7 +78,7 @@ The sample is a representative volume of wastewater taken from a [Site](#Site) w
 
 -   **collectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes.
 
--   **preTreatment**: Was the sample chemically treated in anyway with the addition of stabilizers or other? (Boolean)
+-   **preTreatment**: Was the sample chemically treated in anyway with the addition of stabilizers or other?
 
 -   **preTreatmentDescription**: If `preTreatment` then describe the treatment that was performed.
 
@@ -78,11 +90,11 @@ The sample is a representative volume of wastewater taken from a [Site](#Site) w
 
 -   **fieldSampleTempC**: Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
 
--   **shippedOnIce**: Was the sample kept cool while being shipped to the lab? (Boolean)
+-   **shippedOnIce**: Was the sample kept cool while being shipped to the lab?
 
 -   **storageTempC**: Temperature that the sample is stored at in Celsius.
 
--   **qualityFlag**: Does the reporter suspect the sample having some quality issues? (Boolean)
+-   **qualityFlag**: Does the reporter suspect the sample having some quality issues?
 
 -   **notes**: Any additional notes.
 
@@ -314,7 +326,7 @@ Measurement result (ie. single variable) obtained by at the site of wastewater s
 
 -   **unit**: The engineering unit of the measurement.
 
--   **qualityFlag**: Does the reporter suspect quality issues with the value of this measurement? (Boolean)
+-   **qualityFlag**: Does the reporter suspect quality issues with the value of this measurement?
 
 -   **noAccessToPublic**: If this is True, this data will not be available to the public. If missing, data will be available to the public.
 
