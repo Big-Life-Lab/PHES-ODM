@@ -135,6 +135,7 @@ Measurement result (ie. single variable) from a wastewater sample. `WWMeaasure` 
     -   `covRdRp`: SARS-CoV-2 gene region RdRp
     -   `nPMMoV`: Pepper mild mottle virus
     -   `ncrA`: cross-assembly phage
+    -   `nbrsv`: bovine respiratory syncytial virus
     -   `wqTS`: Total solids concentration.
     -   `wqTSS`: Total suspended solids concentration.
     -   `wqVSS`: Volatile suspended solids concentration.
