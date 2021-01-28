@@ -76,13 +76,13 @@ The sample is a representative volume of wastewater taken from a [Site](#Site) w
 
 -   **collectionOther**: Description for other type of method not listed in `collection`.
 
--   **collectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes.
-
 -   **preTreatment**: Was the sample chemically treated in anyway with the addition of stabilizers or other?
 
 -   **preTreatmentDescription**: If `preTreatment` then describe the treatment that was performed.
 
--   **children**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates *a coma separated list of child sampleIDs*.
+-   **pooled**: Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites? (Boolean)
+
+-   **children**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates *a comma separated list of child sampleID's*.
 
 -   **parent** : If this sample has been pooled into one big sample for analysis this indicates the *sampleID of the larger pooled sample*.
 
@@ -135,6 +135,7 @@ Measurement result (ie. single variable) from a wastewater sample. `WWMeaasure` 
     -   `covRdRp`: SARS-CoV-2 gene region RdRp
     -   `nPMMoV`: Pepper mild mottle virus
     -   `ncrA`: cross-assembly phage
+    -   `nbrsv`: bovine respiratory syncytial virus
     -   `wqTS`: Total solids concentration.
     -   `wqTSS`: Total suspended solids concentration.
     -   `wqVSS`: Volatile suspended solids concentration.
@@ -394,13 +395,13 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **version**: Version of the assay. [Semantic versioning](https://semver.org) is recommended.
 
--   **description**: Description of the assay.
-
--   **date**: Date on which the assayMethod was created or updated (for version update).
+-   **summary**: Short description of the assay and how it is different from the other assay methods.
 
 -   **referenceLink**: Link to standard operating procedure.
 
--   **aliasID**: ID of an assay that is the same or similar. *a coma separated list*.
+-   **date**: Date on which the assayMethod was created or updated (for version update).
+
+-   **aliasID**: ID of an assay that is the same or similar. *a comma separated list*.
 
 -   **sampleSizeL**: Size of the sample that is analyzed in liters.
 
@@ -439,13 +440,13 @@ Instruments that are used for measures in `WWMeasure` and `SiteMeasure`. The ass
 
 -   **name**: Name of the instrument used to perform the measurement.
 
--   **version** Version or model nummber of the instrument.
+-   **model** Model number or version of the instrument.
 
 -   **description** Description of the instrument.
 
--   **alias**: ID of an assay that is the same or similar. A coma separated list.
+-   **alias**: ID of an assay that is the same or similar. A comma separated list.
 
--   **referenceLink**: Link to reference for the instrutment.
+-   **referenceLink**: Link to reference for the instrument.
 
 -   **type**: Type of instrument used to perform the measurement.
 
@@ -492,7 +493,7 @@ Covid-19 patient data for a specified polygon.
 
 -   **type**: Type of covid-19 patient data.
 
-    -   `conf`: Number of confirmed cases. This measure should be accompanied by `dateTyep`.
+    -   `conf`: Number of confirmed cases. This measure should be accompanied by `dateType`.
     -   `active`: Number of active cases.
     -   `test`: Number of tests performed.
     -   `posTest`: Number of positive tests.
@@ -500,7 +501,7 @@ Covid-19 patient data for a specified polygon.
     -   `hospCen`: Hospital census or the number of people admitted with covid-19.
     -   `hospAdm`: Hospital admissions or patients newly admitted to hospital.
 
--   **dateType**: Type of date used for `confirmed` cases. Typically `reported` or `episode` are reported. `onset` and `test` date is not usually reported within aggregate data.
+-   **dateType**: Type of date used for `conf` cases. Typically `report` or `episode` are reported. `onset` and `test` date is not usually reported within aggregate data.
 
     -   `episode` : Episode date is the earliest of onset, test or reported date.
     -   `onset`: Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, `episode` is used.

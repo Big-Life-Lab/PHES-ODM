@@ -42,3 +42,18 @@ Wide table format
 |date      |covN1_nPPMoV_mean|covN2_nPPMoV_mean|
 |----------|-----------------|-----------------|
 |2021-01-15|40               |42               |
+
+
+## Order of completion
+
+Because of the multiple relationships between the tables composing the data model, it is important that some tables are completed before others can be. The following order of completion should be respected in order to ensure that the datasets are complete:
+
+- **Step 1**: `Instrument`, `Polygon`
+
+- **Step 2**: `Site`, `AssayMethod`
+
+- **Step 3**: `Lab`
+
+- **Step 4**: `Reporter`
+
+- **Step 5**: `Sample`+`WWMeasure` OR `SiteMeasure` OR `CovidPublicHealthData`
