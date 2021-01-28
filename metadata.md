@@ -187,21 +187,21 @@ Measurement result (ie. single variable) from a wastewater sample. `WWMeaasure` 
 
 -   **qualityFlag**: Does the reporter suspect the measurement having some quality issues?
 
--   **noAccessToPublic**: If this is True, this data will not be available to the public. If missing, data will be available to the public.
+-   **accessToPublic**: If this is 'no', this data will not be available to the public. If missing, data will be available to the public.
 
--   **noAccessToAllOrg**: If this is True, this data will not be available to any partner organization. If missing, data will be available to the all organizations.
+-   **accessToAllOrg**: If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.
 
--   **noAccessToSelf**: If this is True, this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
+-   **accessToSelf**: If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
 
--   **noAccessToPHAC**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.
+-   **accessToPHAC**: If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.
 
--   **noAccessToLocalHA**: If this is True the, data will not be available to local health authorities. If missing, data will be available to local health authorities.
+-   **accessToLocalHA**: If this is True the, data will not be available to local health authorities. If missing, data will be available to local health authorities.
 
--   **noAccessToProvHA**: If this is True, this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
+-   **accessToProvHA**: If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
 
--   **noAccessToOtherProv**: If this is True, this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before
+-   **accessToOtherProv**: If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before
 
--   **noAccessToDetails**: More details on the existing confidentiality requirements of this measurement.
+-   **accessToDetails**: More details on the existing confidentiality requirements of this measurement.
 
 -   **notes**: Any additional notes.
 
@@ -328,19 +328,19 @@ Measurement result (ie. single variable) obtained by at the site of wastewater s
 
 -   **qualityFlag**: Does the reporter suspect quality issues with the value of this measurement?
 
--   **noAccessToPublic**: If this is True, this data will not be available to the public. If missing, data will be available to the public.
+-   **noAccessToPublic**: If this is 'no', this data will not be available to the public. If missing, data will be available to the public.
 
--   **noAccessToAllOrg**: If this is True, this data will not be available to any partner organization. If missing, data will be available to the all organizations.
+-   **noAccessToAllOrg**: If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.
 
--   **noAccessToSelf**: If this is True, this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
+-   **noAccessToSelf**: If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
 
--   **noAccessToPHAC**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.
+-   **noAccessToPHAC**: If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.
 
 -   **noAccessToLocalHA**: If this is True the, data will not be available to local health authorities. If missing, data will be available to local health authorities.
 
--   **noAccessToProvHA**: If this is True, this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
+-   **noAccessToProvHA**: If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
 
--   **noAccessToOtherProv**: If this is True, this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before
+-   **noAccessToOtherProv**: If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before
 
 -   **noAccessToDetails**: More details on the existing confidentiality requirements of this measurement.
 
