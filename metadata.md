@@ -82,7 +82,9 @@ The sample is a representative volume of wastewater taken from a [Site](#Site) w
 
 -   **preTreatmentDescription**: If `preTreatment` then describe the treatment that was performed.
 
--   **children**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates *a comma separated list of child sampleIDs*.
+-   **pooled**: Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites? (Boolean)
+
+-   **children**: If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates *a comma separated list of child sampleID's*.
 
 -   **parent** : If this sample has been pooled into one big sample for analysis this indicates the *sampleID of the larger pooled sample*.
 
