@@ -76,8 +76,6 @@ The sample is a representative volume of wastewater taken from a [Site](#Site) w
 
 -   **collectionOther**: Description for other type of method not listed in `collection`.
 
--   **collectionTriggerTime** Time between sub-samples for `discTimeProp` numeric value given in minutes.
-
 -   **preTreatment**: Was the sample chemically treated in anyway with the addition of stabilizers or other?
 
 -   **preTreatmentDescription**: If `preTreatment` then describe the treatment that was performed.
