@@ -195,7 +195,7 @@ Measurement result (ie. single variable) from a wastewater sample. `WWMeaasure` 
 
 -   **accessToPHAC**: If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.
 
--   **accessToLocalHA**: If this is True the, data will not be available to local health authorities. If missing, data will be available to local health authorities.
+-   **accessToLocalHA**: If this is 'no', the, data will not be available to local health authorities. If missing, data will be available to local health authorities.
 
 -   **accessToProvHA**: If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
 
@@ -242,17 +242,17 @@ The site of wastewater sampling, including several *defaults* that can be used t
 
 -   **typeOther**: Description of the site when the site is not listed. See `siteType`.
 
--   **typeDefault**: Used as default when a new sample is created for this site. See `type` in `Sample` table.
+-   **SampleTypeDefault**: Used as default when a new sample is created for this site. See `type` in `Sample` table.
 
--   **typeOtherDefault**: Used as default when a new sample is created for this site. See `typeOther` in `Sample` table.
+-   **SampleTypeOtherDefault**: Used as default when a new sample is created for this site. See `typeOther` in `Sample` table.
 
--   **collectionDefault**: Used as default when a new sample is created for this site. See `collection` in `Sample` table.
+-   **SampleCollectionDefault**: Used as default when a new sample is created for this site. See `collection` in `Sample` table.
 
--   **collectOtherDefault**: Used as default when a new sample is created for this site. See `collectionOther` in `Sample` table.
+-   **SampleCollectOtherDefault**: Used as default when a new sample is created for this site. See `collectionOther` in `Sample` table.
 
--   **storageTempCDefault**: Used as default when a new sample is created for this site. See `storageTempC` in `Sample` table.
+-   **SampleStorageTempCDefault**: Used as default when a new sample is created for this site. See `storageTempC` in `Sample` table.
 
--   **fractionAnalyzedDefault**: Used as default when a new measurement is created for this site. See `fractionAnalyzed` in `Measurement` table.
+-   **MeasureFractionAnalyzedDefault**: Used as default when a new measurement is created for this site. See `fractionAnalyzed` in `Measurement` table.
 
 -   **geoLat**: Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
 
