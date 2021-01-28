@@ -287,7 +287,7 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **typeOther**: Description of the measurement in case it is not listed in `type`.
 
--   **typeDescription**: Additional information on the performed measurement.
+-   **typeDescr**: Additional information on the performed measurement.
 
 -   **aggregation**: When reporting an aggregate measurement, this field describes the method used.
 
@@ -305,7 +305,7 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **aggregationOther**: Description for other type of aggregation not listed in `aggregation`.
 
--   **aggregationDescription**: Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
+-   **aggregationDescr**: Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
 
 -   **value**: The actual value that is being reported for this measurement.
 
@@ -315,17 +315,17 @@ Measures that are not performed on the wastewater sample but provide additional 
 
 -   **denyAccessToPublic**: If this is True, this data will not be available to the public. (Boolean)
 
--   **denyAccessToAllOrganizations**: If this is True, this data will not be available to any partner organization. (Boolean)
+-   **denyAccessToAllOrgs**: If this is True, this data will not be available to any partner organization. (Boolean)
 
 -   **denyAccessToSelf**: If this is True, this data will not be shown on the portal when this reporter logs in. (Boolean)
 
--   **denyAccessToFederalPublicHealthAuthorities**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. (Boolean)
+-   **denyAccessToFedPHA**: If this is True, the data will not be available to employees of the Public Health Agency of Canada - PHAC. (Boolean)
 
--   **denyAccessToLocalPublicHealthAuthorities**: If this is True the, data will not be available to local health authorities. (Boolean)
+-   **denyAccessToLocalPHA**: If this is True the, data will not be available to local health authorities. (Boolean)
 
--   **denyAccessToProvincialPublicHealthAuthorities**: If this is True, this data will not be available to provincial health authorities. (Boolean)
+-   **denyAccessToProvPHAs**: If this is True, this data will not be available to provincial health authorities. (Boolean)
 
--   **denyAccessToOtherDataProviders**: If this is True, this data will not be available to other data providers not listed before. (Boolean)
+-   **denyAccessToOther**: If this is True, this data will not be available to other data providers not listed before. (Boolean)
 
 -   **denyAccessToDetails**: More details on the existing confidentiality requirements of this measurement.
 
