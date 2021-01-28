@@ -331,7 +331,7 @@ Measurement result (ie. single variable) obtained by at the site of wastewater s
 
 -   **accessToPublic**: If this is 'no', this data will not be available to the public. If missing, data will be available to the public.
 
--   **accessToAllOrg**: If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.
+-   **accessToAllOrgs**: If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.
 
 -   **accessToSelf**: If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
 
@@ -426,7 +426,7 @@ The assay method that was used to perform testing. Create a new record if there 
 
 -   **methodPcr**: Description of the PCR method used
 
--   **qualityAssuranceQC**: Description of the quality control steps taken
+-   **qualityAssQC**: Description of the quality control steps taken
 
 -   **inhibition**: Description of the inhibition parameters.
 
