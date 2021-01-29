@@ -371,7 +371,7 @@ Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
 -   **labID**: (Primary key) Unique identifier for the laboratory.
 
--   **assayIDDefault**: (Foreign key) Used as default when a new measurement is created for this lab. See `ID` in `AssayMethod` table.
+-   **assayMethodIDDefault**: (Foreign key) Used as default when a new measurement is created for this lab. See `ID` in `AssayMethod` table.
 
 -   **name**: Name corresponding to lab.
 
