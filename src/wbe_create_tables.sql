@@ -37,6 +37,8 @@ CREATE TABLE  IF NOT EXISTS [Site] (
   [siteTypeOther] char,
   [sampleTypeDefault] char,
   [sampleTypeOtherDefault] char,
+  [primarySourceOfWastewater] char,
+  [primarySourceOfWastewaterOther] char,
   [methodCollectionDefault] char,
   [methodCollectOtherDefault] char,
   [sampleFractionDefault] char,
@@ -53,9 +55,9 @@ CREATE TABLE  IF NOT EXISTS [Site] (
 CREATE TABLE  IF NOT EXISTS [Sample] (
   [sampleID] char NOT NULL PRIMARY KEY,
   [siteID] char,
-  [sampleDateTime] dateTime,
-  [sampleDateTimeStart] dateTime,
-  [sampleDateTimeEnd] dateTime,
+  [DateTime] dateTime,
+  [DateTimeStart] dateTime,
+  [DateTimeEnd] dateTime,
   [sampleType] char,
   [sampleTypeOther] char,
   [methodCollection] char,
@@ -64,7 +66,7 @@ CREATE TABLE  IF NOT EXISTS [Sample] (
   [sampleStorageTempC] float,
   [notes] char,
   FOREIGN KEY ([siteID]) REFERENCES Reporter(siteID) DEFERRABLE INITIALLY DEFERRED
-); 
+);
 
 CREATE TABLE  IF NOT EXISTS [AssayMethod] (
   [assayID] char NOT NULL PRIMARY KEY,
@@ -113,7 +115,7 @@ CREATE TABLE  IF NOT EXISTS [CovidPublicHealthData] (
 CREATE TABLE  IF NOT EXISTS [Lookups](
   [tableName] char,
   [columnName] char,
-  [value] char, 
+  [value] char,
   [description] char
 );
 
