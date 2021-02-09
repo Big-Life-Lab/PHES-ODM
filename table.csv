@@ -1,0 +1,12 @@
+tableName,tableDesc
+Sample,The sample is a representative volume of wastewater taken from aÿSiteÿwhich is then analysed by a lab.
+WWMeasure,"Measurement result (ie. single variable) from a wastewater sample.ÿWWMeaasureÿincludes data that is commonly collected by staff at wastewater laboratories where measurement is performed using an assay method (seeÿAssayMethod), but can also be performed using specific instruments (seeÿInstruments. Measures performed at the site of the wastewater sample are reported inÿSiteMeasure."
+Site,"The site of wastewater sampling, including severalÿdefaultsÿthat can be used to populate new samples upon creation."
+SiteMeasure,Measurement result (ie. single variable) obtained by at the site of wastewater sample.SiteMeasureÿincludes data that is commonly collected by staff at wastewater treatment facilities and field sample locations. These measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results. Measures performed on the wastewater sample are reported inÿWWMeasure.
+Reporter,The individual or organization that is reporting and responsible for the quality of the data.
+Lab,Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
+AssayMethod,"The assay method that was used to perform testing. Create a new record if there are changes (improvements) to an existing assay method. Keep the sameÿIDÿand use an updatedÿversion. A new record for a new version can include only the fields that changed, however, we recommend duplicating existing fields to allow each record to clearly describe all steps. Add a currentÿdateÿwhen recording a new version to an assay."
+Instrument,Instruments that are used for measures inÿWWMeasureÿandÿSiteMeasure. The assay method for viral measurement are described inÿAssayMethod.
+Polygon,"A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area."
+CovidPublicHealthData,Covid-19 patient data for a specified polygon.
+Lookup,Used for lookup values of all category based columns
