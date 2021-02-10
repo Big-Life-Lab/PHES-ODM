@@ -100,7 +100,12 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd()){
                     })%>% unlist() %>%
                         paste0(collapse = "\n")
 
-                glue::glue("CREATE TABLE IF NOT EXISTS [{curr_tbl}] (\n{sql_tbl_create}\n)")
+                tbldesc <-
+                    tbls %>%
+                    filter(tableName == curr_tbl) %>%
+                    pull(tableDesc)
+
+                glue::glue("CREATE TABLE IF NOT EXISTS [{curr_tbl}] (\n/*{tbldesc}*/\n{sql_tbl_create}\n)")
         }) %>% unlist() %>%
         paste0(collapse = ";\n\n")
 

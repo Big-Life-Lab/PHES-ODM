@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS [Sample] (
+/*The sample is a representative volume of wastewater taken from a Site which is then analysed by a lab.*/
 	[sampleID] char NOT NULL PRIMARY KEY, --Unique identification for sample. Suggestion:siteID-date-index.
 	[siteID] char, --Links with the Site table to describe the location of sampling.
 	[dateTime] integer, --for grab samples this is the date, time and timezone the sample was taken.
@@ -22,6 +23,7 @@ CREATE TABLE IF NOT EXISTS [Sample] (
 );
 
 CREATE TABLE IF NOT EXISTS [WWMeasure] (
+/*Measurement result (ie. single variable) from a wastewater sample. WWMeaasure includes data that is commonly collected by staff at wastewater laboratories where measurement is performed using an assay method (see AssayMethod), but can also be performed using specific instruments (see Instruments. Measures performed at the site of the wastewater sample are reported in SiteMeasure.*/
 	[uWwMeasureID] char NOT NULL PRIMARY KEY, --Unique identifier a measurement within the measurement table.
 	[wwMeasureID] char, --Unique identifier for wide table only. Use when all measures are performed on a single sample at the same time and same laboratory. Suggestion: siteID_sampleID_LabID_reportDate_ID.
 	[sampleID] char, --Links with the identified Sample
@@ -53,6 +55,7 @@ CREATE TABLE IF NOT EXISTS [WWMeasure] (
 );
 
 CREATE TABLE IF NOT EXISTS [Site] (
+/*The site of wastewater sampling, including several defaults that can be used to populate new samples upon creation.*/
 	[siteID] char NOT NULL PRIMARY KEY, --Unique identifier for the location where wastewater sample was taken.
 	[name] char, --Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.
 	[description] char, --Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.
@@ -73,6 +76,7 @@ CREATE TABLE IF NOT EXISTS [Site] (
 );
 
 CREATE TABLE IF NOT EXISTS [SiteMeasure] (
+/*Measurement result (ie. single variable) obtained by at the site of wastewater sample.SiteMeasure includes data that is commonly collected by staff at wastewater treatment facilities and field sample locations. These measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results. Measures performed on the wastewater sample are reported in WWMeasure.*/
 	[uSiteMeasureID] char NOT NULL PRIMARY KEY, --Unique identifier for each measurement for a site.
 	[siteMeasureID] char, --Unique identifier for wide table only. Use when all measures are performed on a single sample.
 	[siteID] char, --Links with the Site table to describe the location of measurement.
@@ -100,10 +104,12 @@ CREATE TABLE IF NOT EXISTS [SiteMeasure] (
 );
 
 CREATE TABLE IF NOT EXISTS [Reporter] (
+/*The individual or organization that is reporting and responsible for the quality of the data.*/
 	[reporterID] char NOT NULL PRIMARY KEY --Unique identifier for the person or organization that is reporting the data.
 );
 
 CREATE TABLE IF NOT EXISTS [Lab] (
+/*Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.*/
 	[labID] char NOT NULL PRIMARY KEY, --Unique identifier for the laboratory.
 	[assayMethodIDDefault] char, --Used as default when a new measurement is created for this lab. See ID in AssayMethod table.
 	[name] char, --Name corresponding to lab.
@@ -114,6 +120,7 @@ CREATE TABLE IF NOT EXISTS [Lab] (
 );
 
 CREATE TABLE IF NOT EXISTS [AssayMethod] (
+/*The assay method that was used to perform testing. Create a new record if there are changes (improvements) to an existing assay method. Keep the same ID and use an updated version. A new record for a new version can include only the fields that changed, however, we recommend duplicating existing fields to allow each record to clearly describe all steps. Add a current date when recording a new version to an assay.*/
 	[assayMethodID] char NOT NULL PRIMARY KEY, --Unique identifier for the assay method.
 	[instrumentID] char, --Links with the Instrument table to describe instruments used for the measurement.
 	[name] char, --Name of the assay method.
@@ -136,6 +143,7 @@ CREATE TABLE IF NOT EXISTS [AssayMethod] (
 );
 
 CREATE TABLE IF NOT EXISTS [Instrument] (
+/*Instruments that are used for measures in WWMeasure and SiteMeasure. The assay method for viral measurement are described in AssayMethod.*/
 	[instrumentID] char NOT NULL PRIMARY KEY, --Unique identifier for the assay method.
 	[name] char, --Name of the instrument used to perform the measurement.
 	[model] char, --Model number or version of the instrument.
@@ -147,6 +155,7 @@ CREATE TABLE IF NOT EXISTS [Instrument] (
 );
 
 CREATE TABLE IF NOT EXISTS [Polygon] (
+/*A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.*/
 	[polygonID] char NOT NULL PRIMARY KEY, --Unique identifier for the polygon.
 	[name] char, --Descriptive name of the polygon.
 	[pop] integer, --Approximate population size of people living inside the polygon.
@@ -157,6 +166,7 @@ CREATE TABLE IF NOT EXISTS [Polygon] (
 );
 
 CREATE TABLE IF NOT EXISTS [CovidPublicHealthData] (
+/*Covid-19 patient data for a specified polygon.*/
 	[cphdID] char NOT NULL PRIMARY KEY, --Unique identifier for the table.
 	[reporterID] char, --ID of the reporter who gave this data.
 	[polygonID] char, --Links with the Polygon table.
@@ -168,6 +178,7 @@ CREATE TABLE IF NOT EXISTS [CovidPublicHealthData] (
 );
 
 CREATE TABLE IF NOT EXISTS [Lookup] (
+/*Used for lookup values of all category based columns*/
 	[tableName] char, --Name of the Table
 	[columnName] char, --Name for the column
 	[value] char, --Name of the value
