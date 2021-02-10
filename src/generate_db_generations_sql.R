@@ -161,7 +161,7 @@ wbe_create_db_from_script <- function(drv = RSQLite::SQLite(),
     #' @param ... passed to dbConnect
 
 
-    conn <- dbConnect(drv = drv, db_fn, ...)
+    `conn` <- dbConnect(drv = drv, db_fn, ...)
     wbe_CONNS <<- c(wbe_CONNS, conn)
 
     sql_str <- readChar(con = full_fn,

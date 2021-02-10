@@ -4,29 +4,29 @@ Sample,type,swrSed,Sediments obtained in sewer.
 Sample,type,pstGrit,Raw wastewater after a treatment plant's headworks.
 Sample,type,pSludge,Sludge produced by primary clarifiers.
 Sample,type,pEfflu,Effluent obtained after primary clarifiers.
-Sample,type,sSludge,ÿSludge produced by secondary clarifiers.
+Sample,type,sSludge,Sludge produced by secondary clarifiers.
 Sample,type,sEfflu,Effluent obtained after secondary clarifiers.
 Sample,type,water,"Non-wastewater, coming from any kind of water body."
 Sample,type,faeces,Fecal matter.
-Sample,type,other,Other type of site. Add description toÿtypeOther.
+Sample,type,other,Other type of site. Add description to typeOther.
 Sample,collection,cpTP24h,A time proportional 24-hour composite sample generally collected by an autosampler.
 Sample,collection,cpFP24h,A flow proportional 24-hour composite sample generally collected by an autosampler.
 Sample,collection,grb,A single large representative grab sample.
-Sample,collection,grbCp8h,"ÿAn 8-hour composite with 8 grab samples each taken once per hour, generally manually performed."
-Sample,collection,grbCp3h,"ÿA 3-hour composite with 3 grab samples each taken once per hour, generally manually performed."
+Sample,collection,grbCp8h,"A 8-hour composite with 8 grab samples each taken once per hour, generally manually performed."
+Sample,collection,grbCp3h,"A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed."
 Sample,collection,grbCp3,A grab-composite sample composed of 3 separate grab samples.
 Sample,collection,mooreSw,Moore swab passive sample.
-Sample,collection,other,Other type of collection method. Add description toÿcollectionOther.
+Sample,collection,other,Other type of collection method. Add description to collectionOther.
 WWMeasure,fractionAnalyzed,liquid,Liquid fraction
 WWMeasure,fractionAnalyzed,solid,Solid fraction
 WWMeasure,fractionAnalyzed,mixed,Mixed/homogenized sample
-WWMeasure,type,covN1,ÿSARS-CoV-2 nucleocapsid gene N1
+WWMeasure,type,covN1,SARS-CoV-2 nucleocapsid gene N1
 WWMeasure,type,covN2,SARS-CoV-2 nucleocapsid gene N2
 WWMeasure,type,covN3,SARS-like coronaviruses nucleocapsid gene N3
-WWMeasure,type,covE,ÿSARS-CoV-2 gene region E
+WWMeasure,type,covE,SARS-CoV-2 gene region E
 WWMeasure,type,covRdRp,SARS-CoV-2 gene region RdRp
 WWMeasure,type,nPMMoV,Pepper mild mottle virus
-WWMeasure,type,ncrA,ÿcross-assembly phage
+WWMeasure,type,ncrA,cross-assembly phage
 WWMeasure,type,nbrsv,bovine respiratory syncytial virus
 WWMeasure,type,wqTS,Total solids concentration.
 WWMeasure,type,wqTSS,Total suspended solids concentration.
@@ -37,8 +37,8 @@ WWMeasure,type,wqNH4N,"Ammonium nitrogen concentration, as N."
 WWMeasure,type,wqTN,"Total nitrogen concentration, as N."
 WWMeasure,type,wqPh,pH
 WWMeasure,type,wqCond,Conductivity
-WWMeasure,type,other,Other measurement category. Add description toÿcategoryOther.
-WWMeasure,unit,gcPMMoV,ÿGene copies per copy of PMMoV.
+WWMeasure,type,other,Other measurement category. Add description to categoryOther.
+WWMeasure,unit,gcPMMoV,Gene copies per copy of PMMoV.
 WWMeasure,unit,gcMl,Gene copies per milliliter.
 WWMeasure,unit,gcGs,Gene copies per gram solids.
 WWMeasure,unit,gcL,Gene copies per liter.
@@ -49,9 +49,9 @@ WWMeasure,unit,ph,pH units
 WWMeasure,unit,uScm,Micro-siemens per centimeter.
 WWMeasure,unit,pp,"Percent positive, for Moore swab."
 WWMeasure,unit,pps,"Percent primary sludge, for total solids."
-WWMeasure,unit,other,Other measurement of viral copies or wastewater treatment plant parameter. Add description toÿUnitOther.
-WWMeasure,aggregation,single,"This value is not an aggregate measurement in any way (ie. not aÿmean,ÿmedian,ÿmaxÿor any other) and can be a replicate value."
-WWMeasure,aggregation,mean,ÿArithmetic mean
+WWMeasure,unit,other,Other measurement of viral copies or wastewater treatment plant parameter. Add description to UnitOther.
+WWMeasure,aggregation,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value."
+WWMeasure,aggregation,mean, Arithmetic mean
 WWMeasure,aggregation,meanNr,"Arithmetic mean, normalized"
 WWMeasure,aggregation,geoMn,Geometric mean
 WWMeasure,aggregation,geoMnNr,"Geometric mean, normalized"
@@ -60,7 +60,7 @@ WWMeasure,aggregation,min,Lowest value in a range of values
 WWMeasure,aggregation,max,Highest value in a range of values
 WWMeasure,aggregation,sd,Standard deviation
 WWMeasure,aggregation,sdNr,"Standard deviation, normalized"
-WWMeasure,aggregation,other,Other aggregation method. Add description toÿaggregationOther
+WWMeasure,aggregation,other,Other aggregation method. Add description to aggregationOther
 Site,type,airPln,Airplane.
 Site,type,corFcil,Correctional facility.
 Site,type,school,School
@@ -70,86 +70,86 @@ Site,type,swgTrck,Sewage truck.
 Site,type,uCampus,University campus.
 Site,type,mSwrPpl,Major sewer pipeline.
 Site,type,pStat,Pumping station.
-Site,type,holdTnk,ÿHold tank.
+Site,type,holdTnk,Hold tank.
 Site,type,retPond,Retention pond.
 Site,type,wwtpMuC,Municipal wastewater treatment plant for combined sewage.
 Site,type,wwtpMuS,Municipal wastewater treatment plant for sanitary sewage only.
-Site,type,wwtpInd,ÿIndustrial wastewater treatment plant.
+Site,type,wwtpInd,Industrial wastewater treatment plant.
 Site,type,lagoon,Logoon system for extensive wastewater treatment.
-Site,type,septTnk,ÿSeptic tank.
-Site,type,river,"ÿRiver, natural water body."
-Site,type,lake,"ÿLake, natural water body."
+Site,type,septTnk,Septic tank.
+Site,type,river,"River, natural water body."
+Site,type,lake,"Lake, natural water body."
 Site,type,estuary,"Estuary, natural water body"
-Site,type,sea,"ÿSea, natural water body."
+Site,type,sea,"Sea, natural water body."
 Site,type,ocean,"Ocean, natural water body."
-Site,type,other,Other site type. Add description toÿtypeOther.
+Site,type,other,Other site type. Add description to typeOther.
 Site,SampleTypeDefault,rawWW,Raw wastewater.
 Site,SampleTypeDefault,swrSed,Sediments obtained in sewer.
 Site,SampleTypeDefault,pstGrit,Raw wastewater after a treatment plant's headworks.
 Site,SampleTypeDefault,pSludge,Sludge produced by primary clarifiers.
 Site,SampleTypeDefault,pEfflu,Effluent obtained after primary clarifiers.
-Site,SampleTypeDefault,sSludge,ÿSludge produced by secondary clarifiers.
+Site,SampleTypeDefault,sSludge, Sludge produced by secondary clarifiers.
 Site,SampleTypeDefault,sEfflu,Effluent obtained after secondary clarifiers.
 Site,SampleTypeDefault,water,"Non-wastewater, coming from any kind of water body."
 Site,SampleTypeDefault,faeces,Fecal matter.
-Site,SampleTypeDefault,other,Other type of site. Add description toÿtypeOther.
+Site,SampleTypeDefault,other,Other type of site. Add description to typeOther.
 Site,SampleCollectionDefault,cpTP24h,A time proportional 24-hour composite sample generally collected by an autosampler.
 Site,SampleCollectionDefault,cpFP24h,A flow proportional 24-hour composite sample generally collected by an autosampler.
 Site,SampleCollectionDefault,grb,A single large representative grab sample.
-Site,SampleCollectionDefault,grbCp8h,"ÿAn 8-hour composite with 8 grab samples each taken once per hour, generally manually performed."
-Site,SampleCollectionDefault,grbCp3h,"ÿA 3-hour composite with 3 grab samples each taken once per hour, generally manually performed."
+Site,SampleCollectionDefault,grbCp8h,"An 8-hour composite with 8 grab samples each taken once per hour, generally manually performed."
+Site,SampleCollectionDefault,grbCp3h,"A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed."
 Site,SampleCollectionDefault,grbCp3,A grab-composite sample composed of 3 separate grab samples.
 Site,SampleCollectionDefault,mooreSw,Moore swab passive sample.
-Site,SampleCollectionDefault,other,Other type of collection method. Add description toÿcollectionOther.
+Site,SampleCollectionDefault,other,Other type of collection method. Add description to collectionOther.
 Site,MeasureFractionAnalyzedDefault,liquid,Liquid fraction
 Site,MeasureFractionAnalyzedDefault,solid,Solid fraction
 Site,MeasureFractionAnalyzedDefault,mixed,Mixed/homogenized sample
 SiteMeasure,type,envTemp,Environmental temperature.
-SiteMeasure,type,envRnF,"ÿRain fall, i.e. amount of precipitation in the form of rain."
+SiteMeasure,type,envRnF,"Rain fall, i.e. amount of precipitation in the form of rain."
 SiteMeasure,type,envSnwF,"Snow fall, i.e. amount of precipitation in the form of snow."
 SiteMeasure,type,envSnwD,Total depth of snow on the ground.
 SiteMeasure,type,wwFlow,Flow of wastewater.
-SiteMeasure,type,wwTemp,ÿTemperature of the wastewater.
+SiteMeasure,type,wwTemp,Temperature of the wastewater.
 SiteMeasure,type,wwTSS,Total suspended solids concentration of the wastewater.
 SiteMeasure,type,wwCOD,Chemical oxygen demand of the wastewater.
 SiteMeasure,type,wwTurb,Turbidity of the wastewater.
 SiteMeasure,type,wwOPhos,Ortho-phosphate concentration.
-SiteMeasure,type,wwNH4N,"ÿAmmonium nitrogen concentration, as N."
+SiteMeasure,type,wwNH4N,"Ammonium nitrogen concentration, as N."
 SiteMeasure,type,wwTN,"Total nitrogen concentration, as N."
-SiteMeasure,type,wwpH,ÿpH of the wastewater.
+SiteMeasure,type,wwpH,pH of the wastewater.
 SiteMeasure,type,wwCond,Conductivity of the wastewater.
-SiteMeasure,aggregation,single,"This value is not an aggregate measurement in any way (ie. not aÿmean,ÿmedian,ÿmaxÿor any other) and can be a replicate value."
+SiteMeasure,aggregation,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value."
 SiteMeasure,aggregation,mean,Arithmetic mean
 SiteMeasure,aggregation,meanNr,"Arithmetic mean, normalized"
 SiteMeasure,aggregation,geoMn,Geometric mean
-SiteMeasure,aggregation,geoMnNr,"ÿGeometric mean, normalized"
+SiteMeasure,aggregation,geoMnNr,"Geometric mean, normalized"
 SiteMeasure,aggregation,median,Median
 SiteMeasure,aggregation,min,Lowest value in a range of values
 SiteMeasure,aggregation,max,Highest value in a range of values
-SiteMeasure,aggregation,sd,ÿStandard deviation
+SiteMeasure,aggregation,sd,Standard deviation
 SiteMeasure,aggregation,sdNr,"Standard deviation, normalized"
-SiteMeasure,aggregation,other,Other aggregation method. Add description toÿaggregationOther
+SiteMeasure,aggregation,other,Other aggregation method. Add description to aggregationOther
 AssayMethod,unit,gcPMMoV,Gene copies per copy of PMMoV.
 AssayMethod,unit,gcMl,Gene copies per milliliter.
 AssayMethod,unit,gcGms,Gene copies per gram solids.
 AssayMethod,unit,gcL,Gene copies per liter.
 AssayMethod,unit,gcCrA,Gene copies per copy of crAssphage.
-AssayMethod,unit,other,Other measurement of viral copies. Add description toÿunitOther.
-Instrument,type,online,ÿAn online sensor
+AssayMethod,unit,other,Other measurement of viral copies. Add description to unitOther.
+Instrument,type,online, An online sensor
 Instrument,type,lab,Offline laboratory analysis
 Instrument,type,hand,A handheld measurement analyzer.
 Instrument,type,atline,An atline analyzer with sampler.
 Instrument,type,other,An other type of measurement instrument. Add description to instrumentTypeOther.
 Polygon,type,swrCat,Sewer catchment area.
 Polygon,type,hlthReg,Health region served by the sewer network
-CovidPublicHealthData,type,conf,Number of confirmed cases. This measure should be accompanied byÿdateType.
+CovidPublicHealthData,type,conf,Number of confirmed cases. This measure should be accompanied by dateType.
 CovidPublicHealthData,type,active,Number of active cases.
 CovidPublicHealthData,type,test,Number of tests performed.
 CovidPublicHealthData,type,posTest,Number of positive tests.
 CovidPublicHealthData,type,pPosRt,Percent positivity rate.
 CovidPublicHealthData,type,hospCen,Hospital census or the number of people admitted with covid-19.
 CovidPublicHealthData,type,hospAdm,Hospital admissions or patients newly admitted to hospital.
-CovidPublicHealthData,dateType,episodeÿ,"Episode date is the earliest of onset, test or reported date."
-CovidPublicHealthData,dateType,onset,"Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu,ÿepisodeÿis used."
-CovidPublicHealthData,dateType,report,"Date that the numbers were reported publicly. Typically,ÿreportedÿdata and this measure is most commonly reported and used."
+CovidPublicHealthData,dateType,episode ,"Episode date is the earliest of onset, test or reported date."
+CovidPublicHealthData,dateType,onset,"Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, episode is used."
+CovidPublicHealthData,dateType,report,"Date that the numbers were reported publicly. Typically, reported data and this measure is most commonly reported and used."
 CovidPublicHealthData,dateType,test,Date that the covid-19 test was performed.

@@ -1,46 +1,46 @@
 CREATE TABLE IF NOT EXISTS [Sample] (
-	[sampleID] char NOT NULL PRIMARY KEY, --Unique identification for sample. Suggestion:?siteID-date-index.
+	[sampleID] char NOT NULL PRIMARY KEY, --Unique identification for sample. Suggestion:siteID-date-index.
 	[siteID] char, --Links with the Site table to describe the location of sampling.
-	[dateTime] integer, --for grab samples this is the?date, time and timezone?the sample was taken.
-	[dateTimeStart] integer, --For integrated time averaged samples this is the?date, time and timezone?the sample was started being taken.
-	[dateTimeEnd] integer, --For integrated time average samples this is the?date, time and timezone?the sample was finished being taken.
+	[dateTime] integer, --for grab samples this is the date, time and timezone the sample was taken.
+	[dateTimeStart] integer, --For integrated time averaged samples this is the date, time and timezone the sample was started being taken.
+	[dateTimeEnd] integer, --For integrated time average samples this is the date, time and timezone the sample was finished being taken.
 	[type] char, --Type of sample.
 	[typeOther] char, --Description for other type of sample not listed in
 	[collection] char, --Method used to collect the data.
-	[collectionOther] char, --Description for other type of method not listed in?collection.
-	[preTreatment] integer, --Was the sample chemically treated in anyway with the addition of stabilizers or other?
-	[preTreatmentDescription] char, --If?preTreatment?then describe the treatment that was performed.
-	[pooled] integer, --Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites?
-	[children] char, --If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates?a comma separated list of child sampleID's.
-	[parent] char, --If this sample has been pooled into one big sample for analysis this indicates the?sampleID of the larger pooled sample.
+	[collectionOther] char, --Description for other type of method not listed in collection.
+	[preTreatment] integer, --Was the sample chemically treated in anyway with the addition of stabilizers or other
+	[preTreatmentDescription] char, --If preTreatment then describe the treatment that was performed.
+	[pooled] integer, --Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites
+	[children] char, --If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.
+	[parent] char, --If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.
 	[sizeL] float, --Total volume of water or sludge sampled.
 	[fieldSampleTempC] float, --Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
-	[shippedOnIce] integer, --Was the sample kept cool while being shipped to the lab?
-	[storageTempC] float, --?Temperature that the sample is stored at in Celsius.
-	[qualityFlag] integer, --Does the reporter suspect the sample having some quality issues?
+	[shippedOnIce] integer, --Was the sample kept cool while being shipped to the lab
+	[storageTempC] float, --Temperature that the sample is stored at in Celsius.
+	[qualityFlag] integer, --Does the reporter suspect the sample having some quality issues
 	[notes] char --Any additional notes.
 );
 
 CREATE TABLE IF NOT EXISTS [WWMeasure] (
 	[uWwMeasureID] char NOT NULL PRIMARY KEY, --Unique identifier a measurement within the measurement table.
-	[wwMeasureID] char, --Unique identifier for wide table only. Use when all measures are performed on a single sample at the same time and same laboratory. Suggestion:?siteID_sampleID_LabID_reportDate_ID.
-	[sampleID] char, --?Links with the identified Sample
+	[wwMeasureID] char, --Unique identifier for wide table only. Use when all measures are performed on a single sample at the same time and same laboratory. Suggestion: siteID_sampleID_LabID_reportDate_ID.
+	[sampleID] char, --Links with the identified Sample
 	[labID] char, --Links with the identified Lab that performed the analysis.
-	[assayID] char, --?Links with the?AssayMethod?used to perform the analysis. Use?instrument.ID?for measures that are not viral measures.
-	[instrumentID] char, --inks with the?Instrument?used to perform the analysis. Use?assay.ID?for viral measures.
+	[assayID] char, --Links with the AssayMethod used to perform the analysis. Use instrument.ID for measures that are not viral measures.
+	[instrumentID] char, --inks with the Instrument used to perform the analysis. Use assay.ID for viral measures.
 	[reporterID] char, --Links with the reporter that is responsible for the data.
 	[analysisDate] integer, --date the measurement was performed in the lab.
-	[reportDate] integer, --date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original?sampleID?but updated?MeasureID,?reportDate?and?assayID?(if needed).
+	[reportDate] integer, --date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed).
 	[fractionAnalyzed] char, --Faction of the sample that is analyzed.
 	[type] char, --The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (cov), a biomarker for normalisation (n) or a water quality parameter (wq).
-	[typeOther] char, --Description for an other variable not listed in?category.
+	[typeOther] char, --Description for an other variable not listed in category.
 	[unit] char, --Unit of the measurement.
-	[unitOther] char, --Description for other measurement unit not listed in?unit.
+	[unitOther] char, --Description for other measurement unit not listed in unit.
 	[aggregation] char, --Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value.
-	[aggregationOther] char, --Description for other type of aggregation not listed in?aggregation.
+	[aggregationOther] char, --Description for other type of aggregation not listed in aggregation.
 	[index] integer, --Index number in case the measurement was taken multiple times.
 	[value] float, --The actual measurement value that was obtained through analysis.
-	[qualityFlag] integer, --Does the reporter suspect the measurement having some quality issues?
+	[qualityFlag] integer, --Does the reporter suspect the measurement having some quality issues
 	[accessToPublic] integer, --If this is 'no', this data will not be available to the public. If missing, data will be available to the public.
 	[accessToAllOrg] integer, --If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.
 	[accessToSelf] integer, --If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
@@ -57,37 +57,37 @@ CREATE TABLE IF NOT EXISTS [Site] (
 	[name] char, --Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.
 	[description] char, --Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.
 	[type] char, --Type of site or institution where sample was taken.
-	[typeOther] char, --Description of the site when the site is not listed. See?siteType.
-	[SampleTypeDefault] char, --Used as default when a new sample is created for this site. See?type?in?Sample?table.
-	[SampleTypeOtherDefault] char, --Used as default when a new sample is created for this site. See?typeOther?in?Sample?table.
-	[SampleCollectionDefault] char, --Used as default when a new sample is created for this site. See?collection?in?Sample?table.
-	[SampleCollectOtherDefault] char, --Used as default when a new sample is created for this site. See?collectionOther?in?Sample?table.
-	[SampleStorageTempCDefault] float, --Used as default when a new sample is created for this site. See?storageTempC?in?Sample?table.
-	[MeasureFractionAnalyzedDefault] char, --Used as default when a new measurement is created for this site. See?fractionAnalyzed?in?Measurement?table.
-	[geoLat] float, --?Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
-	[geoLong] float, --?Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)
+	[typeOther] char, --Description of the site when the site is not listed. See siteType.
+	[SampleTypeDefault] char, --Used as default when a new sample is created for this site. See type in Sample table.
+	[SampleTypeOtherDefault] char, --Used as default when a new sample is created for this site. See typeOther in Sample table.
+	[SampleCollectionDefault] char, --Used as default when a new sample is created for this site. See collection in Sample table.
+	[SampleCollectOtherDefault] char, --Used as default when a new sample is created for this site. See collectionOther in Sample table.
+	[SampleStorageTempCDefault] float, --Used as default when a new sample is created for this site. See storageTempC in Sample table.
+	[MeasureFractionAnalyzedDefault] char, --Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.
+	[geoLat] float, --Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
+	[geoLong] float, --Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)
 	[notes] char, --Any additional notes.
 	[polygonID] char, --Links with the Polygon table, this should encompass the area that typically drains into this site.
 	[sewerNetworkFileLink] char, --Link to a file that has any detailed information about the sewer network associated with the site (any format).
-	[sewerNetworkFileBLOB] integer --?A file blob that has any detailed information about the sewer network associated with the site (any format).
+	[sewerNetworkFileBLOB] integer --A file blob that has any detailed information about the sewer network associated with the site (any format).
 );
 
 CREATE TABLE IF NOT EXISTS [SiteMeasure] (
 	[uSiteMeasureID] char NOT NULL PRIMARY KEY, --Unique identifier for each measurement for a site.
 	[siteMeasureID] char, --Unique identifier for wide table only. Use when all measures are performed on a single sample.
-	[siteID] char, --?Links with the Site table to describe the location of measurement.
-	[instrumentID] char, --Links with the?Instrument?table to describe instrument used for the measurement.
+	[siteID] char, --Links with the Site table to describe the location of measurement.
+	[instrumentID] char, --Links with the Instrument table to describe instrument used for the measurement.
 	[reporterID] char, --Links with the reporter that is responsible for the data.
 	[dateTime] integer, --The date and time the measurement was performed.
-	[type] char, --The type of measurement that was performed. The prefix?env?is used for environmental variables, whereas?ww?indicates a measurement on wastewater.
-	[typeOther] char, --Description of the measurement in case it is not listed in?type.
+	[type] char, --The type of measurement that was performed. The prefix env is used for environmental variables, whereas ww indicates a measurement on wastewater.
+	[typeOther] char, --Description of the measurement in case it is not listed in type.
 	[typeDescription] char, --Additional information on the performed measurement.
 	[aggregation] char, --When reporting an aggregate measurement, this field describes the method used.
-	[aggregationOther] char, --Description for other type of aggregation not listed in?aggregation.
+	[aggregationOther] char, --Description for other type of aggregation not listed in aggregation.
 	[aggregationDesc] char, --Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
-	[value] float, --?The actual value that is being reported for this measurement.
-	[unit] char, --?The engineering unit of the measurement.
-	[qualityFlag] integer, --Does the reporter suspect quality issues with the value of this measurement?
+	[value] float, --The actual value that is being reported for this measurement.
+	[unit] char, --The engineering unit of the measurement.
+	[qualityFlag] integer, --Does the reporter suspect quality issues with the value of this measurement
 	[accessToPublic] integer, --If this is 'no', this data will not be available to the public. If missing, data will be available to the public.
 	[accessToAllOrgs] integer, --If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.
 	[accessToSelf] integer, --If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS [Reporter] (
 
 CREATE TABLE IF NOT EXISTS [Lab] (
 	[labID] char NOT NULL PRIMARY KEY, --Unique identifier for the laboratory.
-	[assayMethodIDDefault] char, --Used as default when a new measurement is created for this lab. See?ID?in?AssayMethod?table.
+	[assayMethodIDDefault] char, --Used as default when a new measurement is created for this lab. See ID in AssayMethod table.
 	[name] char, --Name corresponding to lab.
 	[contactName] char, --Contact person or group, for the lab.
 	[contactEmail] char, --Contact e-mail address, for the lab.
@@ -115,20 +115,20 @@ CREATE TABLE IF NOT EXISTS [Lab] (
 
 CREATE TABLE IF NOT EXISTS [AssayMethod] (
 	[assayMethodID] char NOT NULL PRIMARY KEY, --Unique identifier for the assay method.
-	[instrumentID] char, --Links with the?Instrument?table to describe instruments used for the measurement.
+	[instrumentID] char, --Links with the Instrument table to describe instruments used for the measurement.
 	[name] char, --Name of the assay method.
 	[version] char, --Version of the assay. Semantic versioning is recommended.
 	[summary] char, --Short description of the assay and how it is different from the other assay methods.
 	[referenceLink] char, --Link to standard operating procedure.
 	[date] integer, --date on which the assayMethod was created or updated (for version update).
-	[aliasID] char, --ID of an assay that is the same or similar.?a comma separated list.
+	[aliasID] char, --ID of an assay that is the same or similar. a comma separated list.
 	[sampleSizeL] float, --Size of the sample that is analyzed in liters.
 	[loq] float, --Limit of quantification (LOQ) for this method if one exists.
 	[lod] float, --Limit of detection (LOD) for this method if one exists.
 	[unit] char, --Unit used by this method, and applicable to the LOD and LOQ.
 	[unitOther] char, --Unit used by this method, that are applicable to the LOD and LOQ.
 	[methodConc] char, --Description of the method used to concentrate the sample
-	[methodExtract] char, --?Description of the method used to extract the sample
+	[methodExtract] char, --Description of the method used to extract the sample
 	[methodPcr] char, --Description of the PCR method used
 	[qualityAssQC] char, --Description of the quality control steps taken
 	[inhibition] char, --Description of the inhibition parameters.
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS [Instrument] (
 	[instrumentID] char NOT NULL PRIMARY KEY, --Unique identifier for the assay method.
 	[name] char, --Name of the instrument used to perform the measurement.
 	[model] char, --Model number or version of the instrument.
-	[description?] char, --Description of the instrument.
+	[description] char, --Description of the instrument.
 	[alias] char, --ID of an assay that is the same or similar. A comma separated list.
 	[referenceLink] char, --Link to reference for the instrument.
 	[type] char, --Type of instrument used to perform the measurement.
@@ -159,10 +159,10 @@ CREATE TABLE IF NOT EXISTS [Polygon] (
 CREATE TABLE IF NOT EXISTS [CovidPublicHealthData] (
 	[cphdID] char NOT NULL PRIMARY KEY, --Unique identifier for the table.
 	[reporterID] char, --ID of the reporter who gave this data.
-	[polygonID] char, --Links with the?Polygon?table.
+	[polygonID] char, --Links with the Polygon table.
 	[date] char, --date of reporting for covid-19 measure.
 	[type] char, --Type of covid-19 patient data.
-	[dateType] char, --Type of date used for?conf?cases. Typically?report?or?episode?are reported.?onset?and?test?date is not usually reported within aggregate data.
+	[dateType] char, --Type of date used for conf cases. Typically report or episode are reported. onset and test date is not usually reported within aggregate data.
 	[value] float, --The numeric value that is being reported.
 	[notes] char --Any additional notes.
 );
