@@ -111,7 +111,7 @@ CREATE TABLE  IF NOT EXISTS [CovidPublicHealthData] (
 
 );
 
-
+--sdfgasdf
 CREATE TABLE  IF NOT EXISTS [Lookups](
   [tableName] char,
   [columnName] char,
