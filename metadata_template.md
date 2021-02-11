@@ -29,112 +29,66 @@ FOR_REPLACE_LIST_OF_TABLES_DETAILS
 
 
 
-## Examples of how to generate wide variable and category names
 
-### 1) Simple viral region report
+# Database templates and input forms
 
-A long table would represent viral measures of:
+Several database templates and input forms are underdevelopment to help labs and other partners enter data.
 
-``` {.markdown}
-date = 2021-01-15
-type = covN1
-unit = nPMMoV
-aggregation = mean
-value = 40
-```
+Templates are in the [template folder](template).
 
-``` {.markdown}
-date = 2021-01-15
-type = covN2
-unit = nPMMoV
-aggregation = mean
-value = 42
-```
+Available templates:
 
-In a long table as:
+*Database templates*
 
-| date       | type  | unit   | aggregation | value |
-|------------|-------|--------|-------------|-------|
-| 2021-01-15 | covN1 | nPPMoV | mean        | 40    |
-| 2021-01-15 | covN2 | nPPMoV | mean        | 42    |
+-   [Ontario_Template_ODM_1.0.xlsx](template/Ontario_Template_ODM_1.0.xlsx) - Ontario Ministry of Environment, Conservation and Parks (MECP). Used in Ontario-funded provincial program. A wide template format with tabs that represent each table.
+-   [`covid_wwtp_data_template.xlsx`](template/covid_wwtp_data_template.xlsx) - (do not use - an early example). This template does not adhere to the current version of the ODM. Stay tuned for an updated version.
+-   [wbe_create_tables.sql](src/wbe_create_tables.sql) - Code to generate a SQL database.
 
-A wide table would represent the same measurement as:
+## Database templates
 
-``` {.markdown}
-    covidN1_PPMV_mean = 40
-    covidN2_PPMV_mean = 42
-```
+Database templates are flat file templates (i.e. Excel or CSV file format) that are used to summarize wastewater SARS-CoV-2 measurements. There are two formats - 'wide' and 'long' that are based on the underlying primary databases that are described in Metadata.
 
-In a wide table as:
+-   **'Wide'** format - The 'wide' form of data entry corresponds to how labs commonly hold their own data. This form usually has one *sample* per row. Each sample corresponds to test performed on a wastewater sample taken on a specific day. This means that each row corresponds to a single day. The main variables are from the 'measurement' table, but there are also variables from other tables. Alternatively, variables from other tables can be collected separately.
 
-| date       | covN1_nPPMoV_mean | covN2_nPPMoV_mean |
-|------------|-------------------|-------------------|
-| 2021-01-15 | 40                | 42                |
+-   **'Long'** format - This template has one *measurement* per row. The long format follows the ERD and data dictionary.
 
-### 2) Derived measure
+## Input forms
 
-To report a mean value of existing covidN1 and covidN2 measures:
+Input forms correspond to the tables described in metadata. Survey Monkey forms are available for earlier versions of the ODM, but these are current not supported in the most recent version. We are aware of several initiatives to generate Microsoft PowerApp and ArcGIS Survey123. Updates will be provided here as those initiatives develop.
 
-``` {.markdown}
-    date = 2021-01-15
-    type = covN1
-    unit = ml
-    aggregation = mean
-    value = 42
-```
+## Example of wide and long variable formats
 
-``` {.markdown}
-    date = 2021-01-15
-    type = covN2
-    unit = ml
-    aggregation = mean
-    value = 40
-```
+The [metadata](metadata.md) and [Entity Relationship Diagram](metadata.md#entity-relationship-diagram) are long table formats. 
 
-Represent the derived measure as:
+### Example of reporting two viral regions (N1 and N2) on the same sample
 
-long table format
+Long table format
 
-``` {.markdown}
-    date = 2021-01-15
-    type = covN1covN2
-    unit = ml
-    aggreation = mean
-    value = 41
-```
+|date      |type|unit|aggregation|value|
+|----------|------|--------|-----------|-----|
+|2021-01-15|covN1 |nPPMoV  |mean       |40   |
+|2021-01-15|covN2 |nPPMov  |mean       |42   |
 
-| date       | type       | unit | aggregation | value |
-|------------|------------|------|-------------|-------|
-| 2021-01-15 | covN1covN2 | ml   | mean        | 41    |
+Wide table format
 
-or, wide table format
+|date      |covN1_nPPMoV_mean|covN2_nPPMoV_mean|
+|----------|-----------------|-----------------|
+|2021-01-15|40               |42               |
 
-``` {.markdown}
-    date = 2021-01-15
-    covN1covN2_ml_mean = 41
-```
 
--   Viral SARS-CoV-2 copies per reference copies.
+## Order of completion
 
-### 3) Transformed measure
+Because of the multiple relationships between the tables composing the data model, it is important that some tables are completed before others can be. The following order of completion should be respected in order to ensure that the datasets are complete:
 
-To report mean viral copies of mean value N1 and N2 per viral copies of PMMoV:
+- **Step 1**: `Instrument`, `Polygon`
 
-Represent the derived measure as:
+- **Step 2**: `Site`, `AssayMethod`
 
-long table description
+- **Step 3**: `Lab`
 
-``` {.markdown}
-    date = 2021-01-15
-    covN1covN2 = 2
-    unit = PPMV
-    type = meanNr
-```
+- **Step 4**: `Reporter`
 
-or,
+- **Step 5**: `Sample`+`WWMeasure` OR `SiteMeasure` OR `CovidPublicHealthData`
 
-wide table format
 
-``` {.markdown}
-    covidN1covidN2_PPMV_meanNr = 2
-```
+

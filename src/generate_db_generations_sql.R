@@ -33,7 +33,7 @@ wbe_create_tables <- function(base_tbl, base_var, variableCat){
 
 
 
-wbe_metadata_generation <- function(){
+wbe_metadata_generation <- function(curr_wd = getwd()){
     tbls <- read_csv(file.path(curr_wd, "Tables.csv"))
     variables <- read_csv(file.path(curr_wd, "Variables.csv"))
     variableCat <- read_csv(file.path(curr_wd, "VariableCategory.csv"))
@@ -102,7 +102,7 @@ wbe_metadata_generation <- function(){
 #'
 #'
 #'
-wbe_metadata_generation_tbl_list <-function(){
+wbe_metadata_generation_tbl_list <-function(curr_wd = getwd()){
     tbls <- read_csv(file.path(curr_wd, "Tables.csv"))
     tbl_list <-
         tbls$tableName %>%
