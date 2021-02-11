@@ -2,17 +2,7 @@
 
 There are eight tables that are described below. example data is stored in [data](data).
 
--	[Sample](#Sample)
--	[WWMeasure](#WWMeasure)
--	[Site](#Site)
--	[SiteMeasure](#SiteMeasure)
--	[Reporter](#Reporter)
--	[Lab](#Lab)
--	[AssayMethod](#AssayMethod)
--	[Instrument](#Instrument)
--	[Polygon](#Polygon)
--	[CovidPublicHealthData](#CovidPublicHealthData)
--	[Lookup](#Lookup)
+FOR_REPLACE_LIST_OF_TABLES
 
 ## Entity Relationship Diagram
 
@@ -35,17 +25,7 @@ Use Entity Relationship Diagram to identify variable type.
 Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/invitations/accept/adc1784b-e237-4a2f-947e-4503544d4510)
 
 
--	[Sample](#Sample)
--	[WWMeasure](#WWMeasure)
--	[Site](#Site)
--	[SiteMeasure](#SiteMeasure)
--	[Reporter](#Reporter)
--	[Lab](#Lab)
--	[AssayMethod](#AssayMethod)
--	[Instrument](#Instrument)
--	[Polygon](#Polygon)
--	[CovidPublicHealthData](#CovidPublicHealthData)
--	[Lookup](#Lookup)_DETAILS
+FOR_REPLACE_LIST_OF_TABLES_DETAILS
 
 
 

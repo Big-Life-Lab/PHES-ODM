@@ -9,6 +9,7 @@ library(glue)
 # default location for the DB creation file
 wbe_CREATE_TABLES_SQL_FN <- file.path("src", "wbe_create_tables.sql")
 wbe_META_DATA <- file.path("metadata.md")
+wbe_META_DATA_TEMLATE <- file.path("metadata_template.md")
 
 
 WBE_DEFAULT_FN <- db_fn <- file.path("data", "db" ,"WBE.db")
@@ -90,24 +91,55 @@ wbe_metadata_generation <- function(){
             md_cols_all <- md_cols %>% paste0(collapse = "\n\n")
             glue("## {curr_tbl}\n\n{tbldesc}\n\n{md_cols_all}")
         })
+
+
+
     md_str %>% paste0(collapse = "\n")
+}
+
+########################################
+#'
+#'
+#'
+#'
+wbe_metadata_generation_tbl_list <-function(){
+    tbls <- read_csv(file.path(curr_wd, "Tables.csv"))
+    tbl_list <-
+        tbls$tableName %>%
+        unique() %>%
+        lapply(function(curr_tbl){
+            glue("-\t[{curr_tbl}](#{curr_tbl})")
+        }) %>% paste0(collapse = "\n")
+    tbl_list
 }
 
 
 ########################################
 #'
-#' Writes the SQL DB creation to a *.sql file
 #'
 #'
-wbe_metadata_write <- function(full_fn = wbe_META_DATA, ...){
+#'
+wbe_metadata_write <- function(full_fn = wbe_META_DATA, full_fn_template = wbe_META_DATA_TEMLATE, ...){
+
+    fileConn_tmp<-file(full_fn_template)
+    tmplt <- readLines(full_fn_template)
+    close(fileConn_tmp)
+
+
     md_str <- wbe_metadata_generation(...)
 
+    newstr <- gsub(pattern = "FOR_REPLACE_LIST_OF_TABLES_DETAILS", replacement = md_str, x = tmplt)
+
+
+    md_tbls <- wbe_metadata_generation_tbl_list()
+    newstr <- gsub(pattern = "FOR_REPLACE_LIST_OF_TABLES", replacement = md_tbls, x = tmplt)
+
+
+
     fileConn<-file(full_fn)
-    writeLines(c(md_str), fileConn)
+    writeLines(c(newstr), fileConn)
     close(fileConn)
 }
-
-
 
 ############################################
 #'
@@ -333,7 +365,7 @@ wbe_db_setup <- function(){
 }
 
 wbe_db_setup()
-
+wbe_metadata_write()
 
 
 
