@@ -8,6 +8,7 @@ library(glue)
 #########################
 # default location for the DB creation file
 wbe_CREATE_TABLES_SQL_FN <- file.path("src", "wbe_create_tables.sql")
+wbe_META_DATA <- file.path("metadata.md")
 
 
 WBE_DEFAULT_FN <- db_fn <- file.path("data", "db" ,"WBE.db")
@@ -27,6 +28,85 @@ wbe_create_tables <- function(base_tbl, base_var, variableCat){
         pull(variableValue)
 
 }
+
+
+
+
+wbe_metadata_generation <- function(){
+    tbls <- read_csv(file.path(curr_wd, "Tables.csv"))
+    variables <- read_csv(file.path(curr_wd, "Variables.csv"))
+    variableCat <- read_csv(file.path(curr_wd, "VariableCategory.csv"))
+
+    md_str <-
+        tbls$tableName %>%
+        unique() %>%
+        lapply(function(curr_tbl){
+
+            tbldesc <-
+                tbls %>%
+                filter(tableName == curr_tbl) %>%
+                pull(tableDesc)
+
+            cols <-
+                variables %>%
+                filter(tableName == curr_tbl) %>%
+                pull(variableName)
+
+            md_cols <-
+                cols %>%
+                lapply(function(curr_col){
+                    cur_col_details <-
+                        variables %>%
+                        filter(tableName == curr_tbl &
+                                variableName == curr_col)
+
+                    key_str <- if(is.na(cur_col_details$key) | nchar(cur_col_details$key) == 0){""}else{glue(" ({cur_col_details$key})")}
+
+                    type_str <- if(is.na(cur_col_details$variableType) | nchar(cur_col_details$variableType) == 0){""}else{glue(" [{cur_col_details$variableType}]")}
+
+                    vals_str <-
+                        if(cur_col_details$variableType == "category"){
+
+                            cats_det <-
+                                variableCat %>%
+                                filter(tableName == curr_tbl &
+                                           variableName == curr_col)
+
+
+                            cats_det$variableValue %>% unique() %>%
+                                lapply(function(curr_val){
+                                    curdesc <-
+                                        cats_det %>%
+                                        filter(variableValue == curr_val) %>%
+                                        pull(desc)
+                                    glue("\t-\t`{curr_val}`: {curdesc}")
+                                }) %>% paste0(collapse = "\n")
+
+                        } else{""}
+
+                    glue("-\t**{curr_col}**:{key_str}{type_str} {cur_col_details$variableDesc}\n{vals_str}")
+                })
+
+            md_cols_all <- md_cols %>% paste0(collapse = "\n\n")
+            glue("## {curr_tbl}\n\n{tbldesc}\n\n{md_cols_all}")
+        })
+    md_str %>% paste0(collapse = "\n")
+}
+
+
+########################################
+#'
+#' Writes the SQL DB creation to a *.sql file
+#'
+#'
+wbe_metadata_write <- function(full_fn = wbe_META_DATA, ...){
+    md_str <- wbe_metadata_generation(...)
+
+    fileConn<-file(full_fn)
+    writeLines(c(md_str), fileConn)
+    close(fileConn)
+}
+
 
 
 ############################################
