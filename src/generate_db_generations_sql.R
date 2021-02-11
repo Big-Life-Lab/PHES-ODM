@@ -15,6 +15,20 @@ WBE_DEFAULT_FN <- db_fn <- file.path("data", "db" ,"WBE.db")
 wbe_CONNS <- c()   # Keeps a list of connections to the db
 
 
+wbe_create_tables <- function(base_tbl, base_var, variableCat){
+    base_tbl = "Sample"
+    base_var = "type"
+
+
+    vals <-
+        variableCat %>%
+        filter(tableName == base_tbl &
+               variableName == base_var) %>%
+        pull(variableValue)
+
+}
+
+
 ############################################
 #'
 #' generates SQL string that will create a database.
@@ -27,12 +41,14 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd()){
 
     tbls <- read_csv(file.path(curr_wd, "Table.csv"))
     variables <- read_csv(file.path(curr_wd, "Variable.csv"))
-
+    variableCat <- read_csv(file.path(curr_wd, "VariableCategory.csv"))
 
     sql_str <-
         tbls$tableName %>%
             unique() %>%
             lapply(function(curr_tbl){
+
+                contraints_tbl <- c()
 
                 cols <-
                     variables %>%
@@ -42,10 +58,14 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd()){
                 sql_str <-
                     cols %>%
                     lapply(function(curr_col){
-                        curr_type   <- variables %>%
-                                filter(tableName == curr_tbl &
-                                        variableName == curr_col) %>%
-                                       pull(variableType) %>%  trimws() %>% tolower() %>%
+
+                        var_type <-
+                            variables %>%
+                            filter(tableName == curr_tbl &
+                                       variableName == curr_col) %>%
+                            pull(variableType) %>%  trimws() %>% tolower()
+
+                        curr_type   <- var_type %>%
                             switch("string" = "char",
                                    "boolean" = "integer",
                                    "category" = "char",
@@ -55,15 +75,40 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd()){
                                    "blob" = "integer",
                                    "integer" = "integer")
 
-                        pk <-
-                            variables %>%
+                        keyType <- variables %>%
                             filter(tableName == curr_tbl &
                                        variableName == curr_col) %>%
-                            pull(key) %>% trimws() %>% tolower() %>%
+                            pull(key) %>% trimws() %>% tolower()
+
+
+                        pk <-
+                            keyType %>%
                             switch("foreign key" = "",
                                    "primary key" = " NOT NULL PRIMARY KEY",
                                    ""
                                    )
+
+                        if((!is.na(keyType))  &keyType == "foreign key"){
+                            #print(keyType)
+                            ref_tabl <-
+                                variables %>%
+                                filter(tableName == curr_tbl &
+                                           variableName == curr_col) %>%
+                                pull(foreignKeyTable)
+
+                            ref_var <-
+                                variables %>%
+                                filter(tableName == curr_tbl &
+                                           variableName == curr_col) %>%
+                                pull(foreignKeyVariable)
+
+                            contraints_tbl <<- c(
+                                contraints_tbl,
+                                glue("\tFOREIGN KEY ([{curr_col}]) REFERENCES {ref_tabl}({ref_var}) DEFERRABLE INITIALLY DEFERRED")
+                            )
+                        }
+
+
 
 
                         comment  <-
@@ -85,6 +130,9 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd()){
                             pull(variableDesc)
                     }) %>% unlist()
 
+                contraints_tbl_all <- contraints_tbl %>% paste0(collapse = ",\n")
+
+
                 sql_tbl_create <-
                     1:length(sql_str) %>%
                     lapply(function(i_sql){
@@ -95,7 +143,15 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd()){
                             if (i_sql < length(sql_str)){
                                 glue("{curr_sql}, --{curr_comment}")
                             }else{
-                                glue("{curr_sql} --{curr_comment}")
+                                print(curr_tbl)
+                                print(nchar(contraints_tbl_all))
+                                print(contraints_tbl_all)
+                                print("---------")
+                                if (nchar(contraints_tbl_all) == 0){
+                                    glue("{curr_sql} --{curr_comment}")
+                                }else{
+                                    glue("{curr_sql}, --{curr_comment}\n{contraints_tbl_all}")
+                                }
                             }
                     })%>% unlist() %>%
                         paste0(collapse = "\n")
@@ -104,7 +160,6 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd()){
                     tbls %>%
                     filter(tableName == curr_tbl) %>%
                     pull(tableDesc)
-
                 glue::glue("CREATE TABLE IF NOT EXISTS [{curr_tbl}] (\n/*{tbldesc}*/\n{sql_tbl_create}\n)")
         }) %>% unlist() %>%
         paste0(collapse = ";\n\n")
@@ -166,7 +221,7 @@ wbe_create_db_from_script <- function(drv = RSQLite::SQLite(),
     #' @param ... passed to dbConnect
 
 
-    `conn` <- dbConnect(drv = drv, db_fn, ...)
+    conn <- dbConnect(drv = drv, db_fn, ...)
     wbe_CONNS <<- c(wbe_CONNS, conn)
 
     sql_str <- readChar(con = full_fn,
@@ -178,6 +233,9 @@ wbe_create_db_from_script <- function(drv = RSQLite::SQLite(),
 
 
     for (i in 1:length(queries3)) {
+        print(i)
+        cat(queries3[i])
+        print("---------------")
         dbExecute(conn, queries3[i])
     }
 

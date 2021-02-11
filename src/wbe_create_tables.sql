@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS [Sample] (
 	[shippedOnIce] integer, --Was the sample kept cool while being shipped to the lab
 	[storageTempC] float, --Temperature that the sample is stored at in Celsius.
 	[qualityFlag] integer, --Does the reporter suspect the sample having some quality issues
-	[notes] char --Any additional notes.
+	[notes] char, --Any additional notes.
+	FOREIGN KEY ([siteID]) REFERENCES Site(siteID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [WWMeasure] (
@@ -29,7 +30,7 @@ CREATE TABLE IF NOT EXISTS [WWMeasure] (
 	[sampleID] char, --Links with the identified Sample
 	[labID] char, --Links with the identified Lab that performed the analysis.
 	[assayID] char, --Links with the AssayMethod used to perform the analysis. Use instrument.ID for measures that are not viral measures.
-	[instrumentID] char, --inks with the Instrument used to perform the analysis. Use assay.ID for viral measures.
+	[instrumentID] char, --Links with the Instrument used to perform the analysis. Use assay.ID for viral measures.
 	[reporterID] char, --Links with the reporter that is responsible for the data.
 	[analysisDate] integer, --date the measurement was performed in the lab.
 	[reportDate] integer, --date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed).
@@ -51,7 +52,12 @@ CREATE TABLE IF NOT EXISTS [WWMeasure] (
 	[accessToProvHA] integer, --If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
 	[accessToOtherProv] integer, --If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before
 	[accessToDetails] integer, --More details on the existing confidentiality requirements of this measurement.
-	[notes] char --Any additional notes.
+	[notes] char, --Any additional notes.
+	FOREIGN KEY ([sampleID]) REFERENCES NA(NA) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY ([labID]) REFERENCES Lab(labID) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY ([assayID]) REFERENCES AssayMethod(assayID) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY ([instrumentID]) REFERENCES Instrument(instrumentID) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY ([reporterID]) REFERENCES reporter(reporterID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [Site] (
@@ -72,7 +78,8 @@ CREATE TABLE IF NOT EXISTS [Site] (
 	[notes] char, --Any additional notes.
 	[polygonID] char, --Links with the Polygon table, this should encompass the area that typically drains into this site.
 	[sewerNetworkFileLink] char, --Link to a file that has any detailed information about the sewer network associated with the site (any format).
-	[sewerNetworkFileBLOB] integer --A file blob that has any detailed information about the sewer network associated with the site (any format).
+	[sewerNetworkFileBLOB] integer, --A file blob that has any detailed information about the sewer network associated with the site (any format).
+	FOREIGN KEY ([polygonID]) REFERENCES NA(NA) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [SiteMeasure] (
@@ -100,12 +107,23 @@ CREATE TABLE IF NOT EXISTS [SiteMeasure] (
 	[accessToProvHA] integer, --If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
 	[accessToOtherProv] integer, --If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before.
 	[accessToDetails] integer, --More details on the existing confidentiality requirements of this measurement.
-	[notes] char --Any additional notes.
+	[notes] char, --Any additional notes.
+	FOREIGN KEY ([siteID]) REFERENCES Site(siteID) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY ([instrumentID]) REFERENCES Instrument(instrumentID) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY ([reporterID]) REFERENCES reporter(reporterID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [Reporter] (
 /*The individual or organization that is reporting and responsible for the quality of the data.*/
-	[reporterID] char NOT NULL PRIMARY KEY --Unique identifier for the person or organization that is reporting the data.
+	[reporterID] char NOT NULL PRIMARY KEY, --Unique identifier for the person or organization that is reporting the data.
+	[siteIDDefault] char, --Used as default when a new sample is created by this reporter. See ID in Site table.
+	[labIDDefault] char, --Used as default when a new sample is created by this reporter. See ID in Lab table.
+	[contactName] char, --Full Name of the reporter, either an organization or individual.
+	[contactEmail] char, --Contact e-mail address.
+	[contactPhone] char, --Contact phone number.
+	[notes] char, --Any additional notes.
+	FOREIGN KEY ([siteIDDefault]) REFERENCES Site(siteID) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY ([labIDDefault]) REFERENCES Lab(labID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [Lab] (
@@ -116,7 +134,8 @@ CREATE TABLE IF NOT EXISTS [Lab] (
 	[contactName] char, --Contact person or group, for the lab.
 	[contactEmail] char, --Contact e-mail address, for the lab.
 	[contactPhone] char, --Contact phone number, for the lab.
-	[updateDate] integer --date information was provided or updated.
+	[updateDate] integer, --date information was provided or updated.
+	FOREIGN KEY ([assayMethodIDDefault]) REFERENCES AssayMethod(assayMethodID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [AssayMethod] (
@@ -139,7 +158,8 @@ CREATE TABLE IF NOT EXISTS [AssayMethod] (
 	[methodPcr] char, --Description of the PCR method used
 	[qualityAssQC] char, --Description of the quality control steps taken
 	[inhibition] char, --Description of the inhibition parameters.
-	[surrogateRecovery] char --Description of the surrogate recovery for this method.
+	[surrogateRecovery] char, --Description of the surrogate recovery for this method.
+	FOREIGN KEY ([instrumentID]) REFERENCES Instrument(instrumentID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [Instrument] (
@@ -174,7 +194,9 @@ CREATE TABLE IF NOT EXISTS [CovidPublicHealthData] (
 	[type] char, --Type of covid-19 patient data.
 	[dateType] char, --Type of date used for conf cases. Typically report or episode are reported. onset and test date is not usually reported within aggregate data.
 	[value] float, --The numeric value that is being reported.
-	[notes] char --Any additional notes.
+	[notes] char, --Any additional notes.
+	FOREIGN KEY ([reporterID]) REFERENCES Reporter(reporterID) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY ([polygonID]) REFERENCES Polygon(polygonID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [Lookup] (
