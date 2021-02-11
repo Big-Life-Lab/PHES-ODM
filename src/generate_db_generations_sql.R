@@ -39,8 +39,8 @@ wbe_create_tables <- function(base_tbl, base_var, variableCat){
 #'
 wbe_sql_generate_db_creation <- function(curr_wd = getwd()){
 
-    tbls <- read_csv(file.path(curr_wd, "Table.csv"))
-    variables <- read_csv(file.path(curr_wd, "Variable.csv"))
+    tbls <- read_csv(file.path(curr_wd, "Tables.csv"))
+    variables <- read_csv(file.path(curr_wd, "Variables.csv"))
     variableCat <- read_csv(file.path(curr_wd, "VariableCategory.csv"))
 
     sql_str <-
