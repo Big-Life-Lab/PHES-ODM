@@ -25,6 +25,8 @@ Use Entity Relationship Diagram to identify variable type.
 Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/invitations/accept/adc1784b-e237-4a2f-947e-4503544d4510)
 
 
+
+
 FOR_REPLACE_LIST_OF_TABLES_DETAILS
 
 

@@ -132,7 +132,7 @@ wbe_metadata_write <- function(full_fn = wbe_META_DATA, full_fn_template = wbe_M
 
 
     md_tbls <- wbe_metadata_generation_tbl_list()
-    newstr <- gsub(pattern = "FOR_REPLACE_LIST_OF_TABLES", replacement = md_tbls, x = tmplt)
+    newstr <- gsub(pattern = "FOR_REPLACE_LIST_OF_TABLES", replacement = md_tbls, x = newstr)
 
 
 
