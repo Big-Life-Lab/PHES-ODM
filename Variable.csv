@@ -1,150 +1,150 @@
-tableName,variableName,key,foreignKeyTable,foreignKeyVariable,variableType,variableDesc
-Sample,sampleID,Primary Key,,,string,Unique identification for sample. Suggestion:siteID-date-index.
-Sample,siteID,Foreign key,Site,siteID,string,Links with the Site table to describe the location of sampling.
-Sample,dateTime,,,,datetime,"for grab samples this is the date, time and timezone the sample was taken."
-Sample,dateTimeStart,,,,datetime,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken."
-Sample,dateTimeEnd,,,,datetime,"For integrated time average samples this is the date, time and timezone the sample was finished being taken."
-Sample,type,,,,category,Type of sample.
-Sample,typeOther,,,,string,Description for other type of sample not listed in
-Sample,collection,,,,category,Method used to collect the data.
-Sample,collectionOther,,,,string,Description for other type of method not listed in collection.
-Sample,preTreatment,,,,boolean,Was the sample chemically treated in anyway with the addition of stabilizers or other 
-Sample,preTreatmentDescription,,,,string,If preTreatment then describe the treatment that was performed.
-Sample,pooled,,,,boolean,"Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites "
-Sample,children,,,,string,If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.
-Sample,parent,,,,string,If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.
-Sample,sizeL,,,,float,Total volume of water or sludge sampled.
-Sample,fieldSampleTempC,,,,float,Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
-Sample,shippedOnIce,,,,boolean,Was the sample kept cool while being shipped to the lab 
-Sample,storageTempC,,,,float, Temperature that the sample is stored at in Celsius.
-Sample,qualityFlag,,,,boolean,Does the reporter suspect the sample having some quality issues 
-Sample,notes,,,,string,Any additional notes.
-WWMeasure,uWwMeasureID,Primary Key,,,string,Unique identifier a measurement within the measurement table.
-WWMeasure,wwMeasureID,,,,string,Unique identifier for wide table only. Use when all measures are performed on a single sample at the same time and same laboratory. Suggestion: siteID_sampleID_LabID_reportDate_ID.
-WWMeasure,sampleID,Foreign key,,,string, Links with the identified Sample
-WWMeasure,labID,Foreign key,Lab,labID,string, Links with the identified Lab that performed the analysis.
-WWMeasure,assayID,Foreign key,AssayMethod,assayID,string, Links with the AssayMethod used to perform the analysis. Use instrument.ID for measures that are not viral measures.
-WWMeasure,instrumentID,Foreign key,Instrument,instrumentID,string,Links with the Instrument used to perform the analysis. Use assay.ID for viral measures.
-WWMeasure,reporterID,Foreign key,reporter,reporterID,string,Links with the reporter that is responsible for the data.
-WWMeasure,analysisDate,,,,date,date the measurement was performed in the lab.
-WWMeasure,reportDate,,,,date,"date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed)."
-WWMeasure,fractionAnalyzed,,,,category,Faction of the sample that is analyzed.
-WWMeasure,type,,,,category,"The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (cov), a biomarker for normalisation (n) or a water quality parameter (wq)."
-WWMeasure,typeOther,,,,string,Description for an other variable not listed in category.
-WWMeasure,unit,,,,category,Unit of the measurement.
-WWMeasure,unitOther,,,,string,Description for other measurement unit not listed in unit.
-WWMeasure,aggregation,,,,category,"Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value."
-WWMeasure,aggregationOther,,,,string,Description for other type of aggregation not listed in aggregation.
-WWMeasure,index,,,,integer,Index number in case the measurement was taken multiple times.
-WWMeasure,value,,,,float,The actual measurement value that was obtained through analysis.
-WWMeasure,qualityFlag,,,,boolean,Does the reporter suspect the measurement having some quality issues 
-WWMeasure,accessToPublic,,,,boolean,"If this is 'no', this data will not be available to the public. If missing, data will be available to the public."
-WWMeasure,accessToAllOrg,,,,boolean,"If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations."
-WWMeasure,accessToSelf,,,,boolean,"If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter."
-WWMeasure,accessToPHAC,,,,boolean,"If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC."
-WWMeasure,accessToLocalHA,,,,boolean,"If this is 'no', the, data will not be available to local health authorities. If missing, data will be available to local health authorities."
-WWMeasure,accessToProvHA,,,,boolean,"If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities."
-WWMeasure,accessToOtherProv,,,,boolean,"If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before"
-WWMeasure,accessToDetails,,,,boolean,More details on the existing confidentiality requirements of this measurement.
-WWMeasure,notes,,,,string,Any additional notes.
-Site,siteID,Primary Key,,,string,Unique identifier for the location where wastewater sample was taken.
-Site,name,,,,string,"Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc."
-Site,description,,,,string,"Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point."
-Site,type,,,,category,Type of site or institution where sample was taken.
-Site,typeOther,,,,string,Description of the site when the site is not listed. See siteType.
-Site,SampleTypeDefault,,,,category,Used as default when a new sample is created for this site. See type in Sample table.
-Site,SampleTypeOtherDefault,,,,string,Used as default when a new sample is created for this site. See typeOther in Sample table.
-Site,SampleCollectionDefault,,,,category,Used as default when a new sample is created for this site. See collection in Sample table.
-Site,SampleCollectOtherDefault,,,,string,Used as default when a new sample is created for this site. See collectionOther in Sample table.
-Site,SampleStorageTempCDefault,,,,float,Used as default when a new sample is created for this site. See storageTempC in Sample table.
-Site,MeasureFractionAnalyzedDefault,,,,category,Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.
-Site,geoLat,,,,float," Site geographical location, latitude in decimal coordinates, ie.: (45.424721)"
-Site,geoLong,,,,float," Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)"
-Site,notes,,,,string,Any additional notes.
-Site,polygonID,Foreign key,,,string,"Links with the Polygon table, this should encompass the area that typically drains into this site."
-Site,sewerNetworkFileLink,,,,string,Link to a file that has any detailed information about the sewer network associated with the site (any format).
-Site,sewerNetworkFileBLOB,,,,blob, A file blob that has any detailed information about the sewer network associated with the site (any format).
-SiteMeasure,uSiteMeasureID,Primary Key,,,string,Unique identifier for each measurement for a site.
-SiteMeasure,siteMeasureID,,,,string,Unique identifier for wide table only. Use when all measures are performed on a single sample.
-SiteMeasure,siteID,Foreign key,Site,siteID,string, Links with the Site table to describe the location of measurement.
-SiteMeasure,instrumentID,Foreign key,Instrument,instrumentID,string,Links with the Instrument table to describe instrument used for the measurement.
-SiteMeasure,reporterID,Foreign key,reporter,reporterID,string,Links with the reporter that is responsible for the data.
-SiteMeasure,dateTime,,,,date,The date and time the measurement was performed.
-SiteMeasure,type,,,,category,"The type of measurement that was performed. The prefix env is used for environmental variables, whereas ww indicates a measurement on wastewater."
-SiteMeasure,typeOther,,,,string,Description of the measurement in case it is not listed in type.
-SiteMeasure,typeDescription,,,,string,Additional information on the performed measurement.
-SiteMeasure,aggregation,,,,category,"When reporting an aggregate measurement, this field describes the method used."
-SiteMeasure,aggregationOther,,,,string,Description for other type of aggregation not listed in aggregation.
-SiteMeasure,aggregationDesc,,,,string,Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
-SiteMeasure,value,,,,float, The actual value that is being reported for this measurement.
-SiteMeasure,unit,,,,string, The engineering unit of the measurement.
-SiteMeasure,qualityFlag,,,,boolean,Does the reporter suspect quality issues with the value of this measurement 
-SiteMeasure,accessToPublic,,,,boolean,"If this is 'no', this data will not be available to the public. If missing, data will be available to the public."
-SiteMeasure,accessToAllOrgs,,,,boolean,"If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations."
-SiteMeasure,accessToSelf,,,,boolean,"If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter."
-SiteMeasure,accessToPHAC,,,,boolean,"If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC."
-SiteMeasure,accessToLocalHA,,,,boolean,"If this is 'no', data will not be available to local health authorities. If missing, data will be available to local health authorities."
-SiteMeasure,accessToProvHA,,,,boolean,"If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities."
-SiteMeasure,accessToOtherProv,,,,boolean,"If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before."
-SiteMeasure,accessToDetails,,,,boolean,More details on the existing confidentiality requirements of this measurement.
-SiteMeasure,notes,,,,string,Any additional notes.
-Reporter,reporterID,Primary Key,,,string,Unique identifier for the person or organization that is reporting the data.
-Reporter,siteIDDefault,Foreign key,Site,siteID,string,Used as default when a new sample is created by this reporter. See ID in Site table.
-Reporter,labIDDefault,Foreign key,Lab,labID,string,Used as default when a new sample is created by this reporter. See ID in Lab table.
-Reporter,contactName,,,,string,"Full Name of the reporter, either an organization or individual."
-Reporter,contactEmail,,,,string, Contact e-mail address.
-Reporter,contactPhone,,,,string,Contact phone number.
-Reporter,notes,,,,string,Any additional notes.
-Lab,labID,Primary Key,,,string,Unique identifier for the laboratory.
-Lab,assayMethodIDDefault,Foreign key,AssayMethod,assayMethodID,string,Used as default when a new measurement is created for this lab. See ID in AssayMethod table.
-Lab,name,,,,string,Name corresponding to lab.
-Lab,contactName,,,,string,"Contact person or group, for the lab."
-Lab,contactEmail,,,,string,"Contact e-mail address, for the lab."
-Lab,contactPhone,,,,string,"Contact phone number, for the lab."
-Lab,updateDate,,,,date,date information was provided or updated.
-AssayMethod,assayMethodID,Primary Key,,,string,Unique identifier for the assay method.
-AssayMethod,instrumentID,Foreign key,Instrument,instrumentID,string,Links with the Instrument table to describe instruments used for the measurement.
-AssayMethod,name,,,,string,Name of the assay method.
-AssayMethod,version,,,,string,Version of the assay. Semantic versioning is recommended.
-AssayMethod,summary,,,,string,Short description of the assay and how it is different from the other assay methods.
-AssayMethod,referenceLink,,,,string,Link to standard operating procedure.
-AssayMethod,date,,,,date,date on which the assayMethod was created or updated (for version update).
-AssayMethod,aliasID,,,,string,ID of an assay that is the same or similar. a comma separated list.
-AssayMethod,sampleSizeL,,,,float,Size of the sample that is analyzed in liters.
-AssayMethod,loq,,,,float,Limit of quantification (LOQ) for this method if one exists.
-AssayMethod,lod,,,,float,Limit of detection (LOD) for this method if one exists.
-AssayMethod,unit,,,,category,"Unit used by this method, and applicable to the LOD and LOQ."
-AssayMethod,unitOther,,,,string,"Unit used by this method, that are applicable to the LOD and LOQ."
-AssayMethod,methodConc,,,,string,Description of the method used to concentrate the sample
-AssayMethod,methodExtract,,,,string, Description of the method used to extract the sample
-AssayMethod,methodPcr,,,,string,Description of the PCR method used
-AssayMethod,qualityAssQC,,,,string,Description of the quality control steps taken
-AssayMethod,inhibition,,,,string,Description of the inhibition parameters.
-AssayMethod,surrogateRecovery,,,,string,Description of the surrogate recovery for this method.
-Instrument,instrumentID,Primary Key,,,string,Unique identifier for the assay method.
-Instrument,name,,,,string,Name of the instrument used to perform the measurement.
-Instrument,model,,,,string,Model number or version of the instrument.
-Instrument,description ,,,,string,Description of the instrument.
-Instrument,alias,,,,string,ID of an assay that is the same or similar. A comma separated list.
-Instrument,referenceLink,,,,string,Link to reference for the instrument.
-Instrument,type,,,,category,Type of instrument used to perform the measurement.
-Instrument,typeOther,,,,string,Description of the instrument in case it is not listed in instrumentType.
-Polygon,polygonID,Primary Key,,,string,Unique identifier for the polygon.
-Polygon,name,,,,string,Descriptive name of the polygon.
-Polygon,pop,,,,integer,Approximate population size of people living inside the polygon.
-Polygon,type,,,,category,Type of polygon.
-Polygon,wkt,,,,string,well known text of the polygon
-Polygon,file,,,,blob,"File containing the geometry of the polygon, blob format."
-Polygon,link,,,,string,Link to an external reference that describes the geometry of the polygon.
-CovidPublicHealthData,cphdID,Primary Key,,,string,Unique identifier for the table.
-CovidPublicHealthData,reporterID,Foreign key,Reporter,reporterID,string,ID of the reporter who gave this data.
-CovidPublicHealthData,polygonID,Foreign key,Polygon,polygonID,string,Links with the Polygon table.
-CovidPublicHealthData,date,,,,string,date of reporting for covid-19 measure.
-CovidPublicHealthData,type,,,,category,Type of covid-19 patient data.
-CovidPublicHealthData,dateType,,,,category,Type of date used for conf cases. Typically report or episode are reported. onset and test date is not usually reported within aggregate data.
-CovidPublicHealthData,value,,,,float,The numeric value that is being reported.
-CovidPublicHealthData,notes,,,,string,Any additional notes.
-Lookup,tableName,,,,string,Name of the Table
-Lookup,columnName,,,,string,Name for the column
-Lookup,value,,,,string,Name of the value
-Lookup,description,,,,string,Name of the description
+tableName,variableName,variableLabel_en,variableLabel_fr,key,foreignKeyTable,foreignKeyVariable,variableType,variableDesc
+Sample,sampleID,Sample id,Exemple d'identification,Primary Key,,,string,Unique identification for sample. Suggestion:siteID-date-index.
+Sample,siteID,Site id,Identifiant du site,Foreign key,Site,siteID,string,Links with the Site table to describe the location of sampling.
+Sample,dateTime,Date time,Date et heure,,,,datetime,"for grab samples this is the date, time and timezone the sample was taken."
+Sample,dateTimeStart,Date time start,Date et heure de début,,,,datetime,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken."
+Sample,dateTimeEnd,Date time end,Date et heure de fin,,,,datetime,"For integrated time average samples this is the date, time and timezone the sample was finished being taken."
+Sample,type,Type,Tapez,,,,category,Type of sample.
+Sample,typeOther,Type other,Type autre,,,,string,Description for other type of sample not listed in
+Sample,collection,Collection,Collection,,,,category,Method used to collect the data.
+Sample,collectionOther,Collection other,Collecte autre,,,,string,Description for other type of method not listed in collection.
+Sample,preTreatment,Pre treatment,Prétraitement,,,,boolean,Was the sample chemically treated in anyway with the addition of stabilizers or other
+Sample,preTreatmentDescription,Pre treatment description,Description du traitement préalable,,,,string,If preTreatment then describe the treatment that was performed.
+Sample,pooled,Pooled,Mise en commun,,,,boolean,"Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites"
+Sample,children,Children,Enfants,,,,string,If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.
+Sample,parent,Parent,Parent,,,,string,If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.
+Sample,sizeL,Size l,Taille l,,,,float,Total volume of water or sludge sampled.
+Sample,fieldSampleTempC,Field sample temp c,Température de l'échantillon de terrain c,,,,float,Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
+Sample,shippedOnIce,Shipped on ice,Expédié sur la glace,,,,boolean,Was the sample kept cool while being shipped to the lab
+Sample,storageTempC,Storage temp c,Température de stockage c,,,,float,Temperature that the sample is stored at in Celsius.
+Sample,qualityFlag,Quality flag,Drapeau de qualité,,,,boolean,Does the reporter suspect the sample having some quality issues
+Sample,notes,Notes,Notes,,,,string,Any additional notes.
+WWMeasure,uWwMeasureID,U ww measure id,U ww mesure id,Primary Key,,,string,Unique identifier a measurement within the measurement table.
+WWMeasure,wwMeasureID,Ww measure id,Ww mesure id,,,,string,Unique identifier for wide table only. Use when all measures are performed on a single sample at the same time and same laboratory. Suggestion: siteID_sampleID_LabID_reportDate_ID.
+WWMeasure,sampleID,Sample id,Exemple d'identification,Foreign key,,,string,Links with the identified Sample
+WWMeasure,labID,Lab id,Identifiant du laboratoire,Foreign key,Lab,labID,string,Links with the identified Lab that performed the analysis.
+WWMeasure,assayID,Assay id,Identification de l'essai,Foreign key,AssayMethod,assayID,string,Links with the AssayMethod used to perform the analysis. Use instrument.ID for measures that are not viral measures.
+WWMeasure,instrumentID,Instrument id,Identification de l'instrument,Foreign key,Instrument,instrumentID,string,Links with the Instrument used to perform the analysis. Use assay.ID for viral measures.
+WWMeasure,reporterID,Reporter id,Identité du journaliste,Foreign key,reporter,reporterID,string,Links with the reporter that is responsible for the data.
+WWMeasure,analysisDate,Analysis date,Date de l'analyse,,,,date,date the measurement was performed in the lab.
+WWMeasure,reportDate,Report date,Date du rapport,,,,date,"date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed)."
+WWMeasure,fractionAnalyzed,Fraction analyzed,Fraction analysée,,,,category,Faction of the sample that is analyzed.
+WWMeasure,type,Type,Tapez,,,,category,"The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (cov), a biomarker for normalisation (n) or a water quality parameter (wq)."
+WWMeasure,typeOther,Type other,Type autre,,,,string,Description for an other variable not listed in category.
+WWMeasure,unit,Unit,Unité,,,,category,Unit of the measurement.
+WWMeasure,unitOther,Unit other,Unité autre,,,,string,Description for other measurement unit not listed in unit.
+WWMeasure,aggregation,Aggregation,Agrégation,,,,category,"Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value."
+WWMeasure,aggregationOther,Aggregation other,Agrégation autre,,,,string,Description for other type of aggregation not listed in aggregation.
+WWMeasure,index,Index,Index,,,,integer,Index number in case the measurement was taken multiple times.
+WWMeasure,value,Value,Valeur,,,,float,The actual measurement value that was obtained through analysis.
+WWMeasure,qualityFlag,Quality flag,Drapeau de qualité,,,,boolean,Does the reporter suspect the measurement having some quality issues
+WWMeasure,accessToPublic,Access to public,Accès au public,,,,boolean,"If this is 'no', this data will not be available to the public. If missing, data will be available to the public."
+WWMeasure,accessToAllOrg,Access to all org,Accès à toutes les organisations,,,,boolean,"If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations."
+WWMeasure,accessToSelf,Access to self,Accès à l'autonomie,,,,boolean,"If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter."
+WWMeasure,accessToPHAC,Access to phac,Accès à la phac,,,,boolean,"If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC."
+WWMeasure,accessToLocalHA,Access to local ha,Accès à l'ha local,,,,boolean,"If this is 'no', the, data will not be available to local health authorities. If missing, data will be available to local health authorities."
+WWMeasure,accessToProvHA,Access to prov ha,Accès à la prov ha,,,,boolean,"If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities."
+WWMeasure,accessToOtherProv,Access to other prov,Accès aux autres prov,,,,boolean,"If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before"
+WWMeasure,accessToDetails,Access to details,Accès aux détails,,,,boolean,More details on the existing confidentiality requirements of this measurement.
+WWMeasure,notes,Notes,Notes,,,,string,Any additional notes.
+Site,siteID,Site id,Identifiant du site,Primary Key,,,string,Unique identifier for the location where wastewater sample was taken.
+Site,name,Name,Nom,,,,string,"Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc."
+Site,description,Description,Description,,,,string,"Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point."
+Site,type,Type,Tapez,,,,category,Type of site or institution where sample was taken.
+Site,typeOther,Type other,Type autre,,,,string,Description of the site when the site is not listed. See siteType.
+Site,SampleTypeDefault,Sample type default,Type d'échantillon par défaut,,,,category,Used as default when a new sample is created for this site. See type in Sample table.
+Site,SampleTypeOtherDefault,Sample type other default,Type d'échantillon autre défaut,,,,string,Used as default when a new sample is created for this site. See typeOther in Sample table.
+Site,SampleCollectionDefault,Sample collection default,Prélèvement d'échantillons par défaut,,,,category,Used as default when a new sample is created for this site. See collection in Sample table.
+Site,SampleCollectOtherDefault,Sample collect other default,Prélèvement d'un autre échantillon par défaut,,,,string,Used as default when a new sample is created for this site. See collectionOther in Sample table.
+Site,SampleStorageTempCDefault,Sample storage temp c default,Température de stockage de l'échantillon c par défaut,,,,float,Used as default when a new sample is created for this site. See storageTempC in Sample table.
+Site,MeasureFractionAnalyzedDefault,Measure fraction analyzed default,Fraction de mesure analysée par défaut,,,,category,Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.
+Site,geoLat,Geo lat,Geo lat,,,,float,"Site geographical location, latitude in decimal coordinates, ie.: (45.424721)"
+Site,geoLong,Geo long,Géo long,,,,float,"Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)"
+Site,notes,Notes,Notes,,,,string,Any additional notes.
+Site,polygonID,Polygon id,Identification du polygone,Foreign key,,,string,"Links with the Polygon table, this should encompass the area that typically drains into this site."
+Site,sewerNetworkFileLink,Sewer network file link,Lien vers le fichier du réseau d'égouts,,,,string,Link to a file that has any detailed information about the sewer network associated with the site (any format).
+Site,sewerNetworkFileBLOB,Sewer network file blob,Dossier sur les réseaux d'égouts,,,,blob,A file blob that has any detailed information about the sewer network associated with the site (any format).
+SiteMeasure,uSiteMeasureID,U site measure id,U site measure id,Primary Key,,,string,Unique identifier for each measurement for a site.
+SiteMeasure,siteMeasureID,Site measure id,ID de mesure du site,,,,string,Unique identifier for wide table only. Use when all measures are performed on a single sample.
+SiteMeasure,siteID,Site id,Identifiant du site,Foreign key,Site,siteID,string,Links with the Site table to describe the location of measurement.
+SiteMeasure,instrumentID,Instrument id,Identification de l'instrument,Foreign key,Instrument,instrumentID,string,Links with the Instrument table to describe instrument used for the measurement.
+SiteMeasure,reporterID,Reporter id,Identité du journaliste,Foreign key,reporter,reporterID,string,Links with the reporter that is responsible for the data.
+SiteMeasure,dateTime,Date time,Date et heure,,,,date,The date and time the measurement was performed.
+SiteMeasure,type,Type,Tapez,,,,category,"The type of measurement that was performed. The prefix env is used for environmental variables, whereas ww indicates a measurement on wastewater."
+SiteMeasure,typeOther,Type other,Type autre,,,,string,Description of the measurement in case it is not listed in type.
+SiteMeasure,typeDescription,Type description,Description du type,,,,string,Additional information on the performed measurement.
+SiteMeasure,aggregation,Aggregation,Agrégation,,,,category,"When reporting an aggregate measurement, this field describes the method used."
+SiteMeasure,aggregationOther,Aggregation other,Agrégation autre,,,,string,Description for other type of aggregation not listed in aggregation.
+SiteMeasure,aggregationDesc,Aggregation desc,Agrégation desc,,,,string,Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
+SiteMeasure,value,Value,Valeur,,,,float,The actual value that is being reported for this measurement.
+SiteMeasure,unit,Unit,Unité,,,,string,The engineering unit of the measurement.
+SiteMeasure,qualityFlag,Quality flag,Drapeau de qualité,,,,boolean,Does the reporter suspect quality issues with the value of this measurement
+SiteMeasure,accessToPublic,Access to public,Accès au public,,,,boolean,"If this is 'no', this data will not be available to the public. If missing, data will be available to the public."
+SiteMeasure,accessToAllOrgs,Access to all orgs,Accès à tous les orgs,,,,boolean,"If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations."
+SiteMeasure,accessToSelf,Access to self,Accès à l'autonomie,,,,boolean,"If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter."
+SiteMeasure,accessToPHAC,Access to phac,Accès à la phac,,,,boolean,"If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC."
+SiteMeasure,accessToLocalHA,Access to local ha,Accès à l'ha local,,,,boolean,"If this is 'no', data will not be available to local health authorities. If missing, data will be available to local health authorities."
+SiteMeasure,accessToProvHA,Access to prov ha,Accès à la prov ha,,,,boolean,"If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities."
+SiteMeasure,accessToOtherProv,Access to other prov,Accès aux autres prov,,,,boolean,"If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before."
+SiteMeasure,accessToDetails,Access to details,Accès aux détails,,,,boolean,More details on the existing confidentiality requirements of this measurement.
+SiteMeasure,notes,Notes,Notes,,,,string,Any additional notes.
+Reporter,reporterID,Reporter id,Identité du journaliste,Primary Key,,,string,Unique identifier for the person or organization that is reporting the data.
+Reporter,siteIDDefault,Site id default,Identifiant du site par défaut,Foreign key,Site,siteID,string,Used as default when a new sample is created by this reporter. See ID in Site table.
+Reporter,labIDDefault,Lab id default,ID de laboratoire par défaut,Foreign key,Lab,labID,string,Used as default when a new sample is created by this reporter. See ID in Lab table.
+Reporter,contactName,Contact name,Nom du contact,,,,string,"Full Name of the reporter, either an organization or individual."
+Reporter,contactEmail,Contact email,Adresse électronique de contact,,,,string,Contact e-mail address.
+Reporter,contactPhone,Contact phone,Téléphone de contact,,,,string,Contact phone number.
+Reporter,notes,Notes,Notes,,,,string,Any additional notes.
+Lab,labID,Lab id,Identifiant du laboratoire,Primary Key,,,string,Unique identifier for the laboratory.
+Lab,assayMethodIDDefault,Assay method id default,Méthode d'analyse id par défaut,Foreign key,AssayMethod,assayMethodID,string,Used as default when a new measurement is created for this lab. See ID in AssayMethod table.
+Lab,name,Name,Nom,,,,string,Name corresponding to lab.
+Lab,contactName,Contact name,Nom du contact,,,,string,"Contact person or group, for the lab."
+Lab,contactEmail,Contact email,Adresse électronique de contact,,,,string,"Contact e-mail address, for the lab."
+Lab,contactPhone,Contact phone,Téléphone de contact,,,,string,"Contact phone number, for the lab."
+Lab,updateDate,Update date,Date de mise à jour,,,,date,date information was provided or updated.
+AssayMethod,assayMethodID,Assay method id,Méthode d'analyse id,Primary Key,,,string,Unique identifier for the assay method.
+AssayMethod,instrumentID,Instrument id,Identification de l'instrument,Foreign key,Instrument,instrumentID,string,Links with the Instrument table to describe instruments used for the measurement.
+AssayMethod,name,Name,Nom,,,,string,Name of the assay method.
+AssayMethod,version,Version,Version,,,,string,Version of the assay. Semantic versioning is recommended.
+AssayMethod,summary,Summary,Résumé,,,,string,Short description of the assay and how it is different from the other assay methods.
+AssayMethod,referenceLink,Reference link,Lien de référence,,,,string,Link to standard operating procedure.
+AssayMethod,date,Date,Date,,,,date,date on which the assayMethod was created or updated (for version update).
+AssayMethod,aliasID,Alias id,Identifiant de l'alias,,,,string,ID of an assay that is the same or similar. a comma separated list.
+AssayMethod,sampleSizeL,Sample size l,Taille de l'échantillon l,,,,float,Size of the sample that is analyzed in liters.
+AssayMethod,loq,Loq,Loq,,,,float,Limit of quantification (LOQ) for this method if one exists.
+AssayMethod,lod,Lod,Lod,,,,float,Limit of detection (LOD) for this method if one exists.
+AssayMethod,unit,Unit,Unité,,,,category,"Unit used by this method, and applicable to the LOD and LOQ."
+AssayMethod,unitOther,Unit other,Unité autre,,,,string,"Unit used by this method, that are applicable to the LOD and LOQ."
+AssayMethod,methodConc,Method conc,Méthode conc,,,,string,Description of the method used to concentrate the sample
+AssayMethod,methodExtract,Method extract,Extrait de la méthode,,,,string,Description of the method used to extract the sample
+AssayMethod,methodPcr,Method pcr,Méthode pcr,,,,string,Description of the PCR method used
+AssayMethod,qualityAssQC,Quality ass qc,Qualité ass qc,,,,string,Description of the quality control steps taken
+AssayMethod,inhibition,Inhibition,Inhibition,,,,string,Description of the inhibition parameters.
+AssayMethod,surrogateRecovery,Surrogate recovery,Récupération par substitution,,,,string,Description of the surrogate recovery for this method.
+Instrument,instrumentID,Instrument id,Identification de l'instrument,Primary Key,,,string,Unique identifier for the assay method.
+Instrument,name,Name,Nom,,,,string,Name of the instrument used to perform the measurement.
+Instrument,model,Model,Modèle,,,,string,Model number or version of the instrument.
+Instrument,description,Description,Description,,,,string,Description of the instrument.
+Instrument,alias,Alias,Alias,,,,string,ID of an assay that is the same or similar. A comma separated list.
+Instrument,referenceLink,Reference link,Lien de référence,,,,string,Link to reference for the instrument.
+Instrument,type,Type,Tapez,,,,category,Type of instrument used to perform the measurement.
+Instrument,typeOther,Type other,Type autre,,,,string,Description of the instrument in case it is not listed in instrumentType.
+Polygon,polygonID,Polygon id,Identification du polygone,Primary Key,,,string,Unique identifier for the polygon.
+Polygon,name,Name,Nom,,,,string,Descriptive name of the polygon.
+Polygon,pop,Pop,Pop,,,,integer,Approximate population size of people living inside the polygon.
+Polygon,type,Type,Tapez,,,,category,Type of polygon.
+Polygon,wkt,Wkt,Wkt,,,,string,well known text of the polygon
+Polygon,file,File,Dossier,,,,blob,"File containing the geometry of the polygon, blob format."
+Polygon,link,Link,Lien,,,,string,Link to an external reference that describes the geometry of the polygon.
+CovidPublicHealthData,cphdID,Cphd id,Cphd id,Primary Key,,,string,Unique identifier for the table.
+CovidPublicHealthData,reporterID,Reporter id,Identité du journaliste,Foreign key,Reporter,reporterID,string,ID of the reporter who gave this data.
+CovidPublicHealthData,polygonID,Polygon id,Identification du polygone,Foreign key,Polygon,polygonID,string,Links with the Polygon table.
+CovidPublicHealthData,date,Date,Date,,,,string,date of reporting for covid-19 measure.
+CovidPublicHealthData,type,Type,Tapez,,,,category,Type of covid-19 patient data.
+CovidPublicHealthData,dateType,Date type,Type de date,,,,category,Type of date used for conf cases. Typically report or episode are reported. onset and test date is not usually reported within aggregate data.
+CovidPublicHealthData,value,Value,Valeur,,,,float,The numeric value that is being reported.
+CovidPublicHealthData,notes,Notes,Notes,,,,string,Any additional notes.
+Lookup,tableName,Table name,Nom de la table,,,,string,Name of the Table
+Lookup,columnName,Column name,Nom de la colonne,,,,string,Name for the column
+Lookup,value,Value,Valeur,,,,string,Name of the value
+Lookup,description,Description,Description,,,,string,Name of the description
