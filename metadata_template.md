@@ -1,3 +1,5 @@
+<!-- metadata.md is generated from metadata_template.md Please edit metadata_template.md file -->
+
 # Metadata
 
 There are eight tables that are described below. example data is stored in [data](data).
