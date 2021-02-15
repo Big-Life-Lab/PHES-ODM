@@ -24,6 +24,16 @@ See [license](LICENSE) for more information.
 
 ## Changelog
 
+#### 2021-02-15
+
+Metadata migrated to:
+
+- `Tables.csv`: List of all tables.
+- `Variables.csv`: List of all variables.
+- `VariableCategory.csv`: List of all cteogies within variables.
+
+Modify these tables for future additions and changes. `metadata.md` is automatically generated from `metadata_template.md`.
+
 #### 2021-01-26
 
 **v1.0.0 - Many additions and breaking changes. This version is recommended for widespread use.** 
