@@ -1,4 +1,5 @@
 <!-- metadata.md is generated from metadata_template.md Please edit metadata_template.md file -->
+<!-- create metadata.md with wbe_metadata_write() in generate_db_generation_sql.R -->
 
 # Metadata
 
