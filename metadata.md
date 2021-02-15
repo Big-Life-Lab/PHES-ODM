@@ -1,3 +1,5 @@
+<!-- metadata.md is generated from metadata_template.md Please edit metadata_template.md file -->
+
 # Metadata
 
 There are eight tables that are described below. example data is stored in [data](data).
@@ -668,7 +670,7 @@ Available templates:
 
 *Database templates*
 
--   [Ontario_Template_ODM_1.0.xlsx](template/Ontario_Template_ODM_1.0.xlsx) - Ontario Ministry of Environment, Conservation and Parks (MECP). Used in Ontario-funded provincial program. A wide template format with tabs that represent each table.
+
 -   [`covid_wwtp_data_template.xlsx`](template/covid_wwtp_data_template.xlsx) - (do not use - an early example). This template does not adhere to the current version of the ODM. Stay tuned for an updated version.
 -   [wbe_create_tables.sql](src/wbe_create_tables.sql) - Code to generate a SQL database.
 
@@ -719,4 +721,137 @@ Because of the multiple relationships between the tables composing the data mode
 - **Step 5**: `Sample`+`WWMeasure` OR `SiteMeasure` OR `CovidPublicHealthData`
 
 
+
+## Naming conventions
+
+-   **Table names**: Table names use UpperCamelCase.
+
+-   **Variable and category names**: Both variables and variable categories use lowerCamelCase. Do not use special characters (only uppercase, lowercase letters and numbers). Reason: variable and category names can be combined to generate derived variables. Using special characters will generate non-allowable characters - see below. Category names a maximum of 7 characters to allow concatenation of four categories into a single variaable to comply with ArcGIS 31 character maximum for variable names. 
+
+-   **Variables in wide tables**: Wide tables use `_` to concatenate variables from long tables.
+
+-   **Variable order** If a multiple measurement take place on different dates this has a natural form in the long table format, however in the pivot wider format this can be ambiguous. In this case, show a `reportDate` followed by a series of measurements taken on that date (e.g. `covN1_PPMV_mean`) followed by more measurements (e.g. `covN2_PPMV_mean`)
+
+-   **Merging tables** : Merging tables into a wide table requires additional steps when a variable does not have an unique name (when the variable name appears in more than one table). For example, variables such as `dateTime`, `notes`, `description`, `type`, `version` and `ID` variables such as `sampleID` are used in several tables. Use the following approach:
+
+    -   Variable that are not unique (they are in more than one table): add the table name to the variable by concatenate column names with `_`. e.g. `dateTime` from the `Sample` table becomes `Sample_dateTime`.
+    -   Variable that are unique (they in only one table in the entire OMD). No variable name changes are needed.
+
+-   **Derived, summary or transformed measure**: These measures are generated to summarize or transform one or more variables. Naming convention follows the same approach as naming variable and category names, except use a `_` when concatenating variable or category names.  Examples of derived measure the calculation of a mean mean value of one or more SARS-CoV-2 regions. Normalization and standardization are other examples of a transformed measure. Typically derived, summary or transform measures are not reported, rather the preferred reporting approach reporting the underlying measures. 
+
+-   **Date time**: YYYY-MM-DD HH:mm:ss (24 hour format, in UTC)
+
+-   **Location**: [well known text](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) for polygon.
+
+-   **Version**: [Semantic versioning](https://semver.org)
+
+## Examples of how to generate wide variable and category names
+
+### 1) Simple viral region report
+
+A long table would represent viral measures of:
+
+``` {.markdown}
+date = 2021-01-15
+type = covN1
+unit = nPMMoV
+aggregation = mean
+value = 40
+```
+
+``` {.markdown}
+date = 2021-01-15
+type = covN2
+unit = nPMMoV
+aggregation = mean
+value = 42
+```
+
+In a long table as:
+
+| date       | type  | unit   | aggregation | value |
+|------------|-------|--------|-------------|-------|
+| 2021-01-15 | covN1 | nPPMoV | mean        | 40    |
+| 2021-01-15 | covN2 | nPPMoV | mean        | 42    |
+
+A wide table would represent the same measurement as:
+
+``` {.markdown}
+    covidN1_PPMV_mean = 40
+    covidN2_PPMV_mean = 42
+```
+
+In a wide table as:
+
+| date       | covN1_nPPMoV_mean | covN2_nPPMoV_mean |
+|------------|-------------------|-------------------|
+| 2021-01-15 | 40                | 42                |
+
+### 2) Derived measure
+
+To report a mean value of existing covidN1 and covidN2 measures:
+
+``` {.markdown}
+    date = 2021-01-15
+    type = covN1
+    unit = ml
+    aggregation = mean
+    value = 42
+```
+
+``` {.markdown}
+    date = 2021-01-15
+    type = covN2
+    unit = ml
+    aggregation = mean
+    value = 40
+```
+
+Represent the derived measure as:
+
+long table format
+
+``` {.markdown}
+    date = 2021-01-15
+    type = covN1covN2
+    unit = ml
+    aggreation = mean
+    value = 41
+```
+
+| date       | type       | unit | aggregation | value |
+|------------|------------|------|-------------|-------|
+| 2021-01-15 | covN1covN2 | ml   | mean        | 41    |
+
+or, wide table format
+
+``` {.markdown}
+    date = 2021-01-15
+    covN1covN2_ml_mean = 41
+```
+
+-   Viral SARS-CoV-2 copies per reference copies.
+
+### 3) Transformed measure
+
+To report mean viral copies of mean value N1 and N2 per viral copies of PMMoV:
+
+Represent the derived measure as:
+
+long table description
+
+``` {.markdown}
+    date = 2021-01-15
+    covN1covN2 = 2
+    unit = PPMV
+    type = meanNr
+```
+
+or,
+
+wide table format
+
+``` {.markdown}
+    covidN1covidN2_PPMV_meanNr = 2
+```
 
