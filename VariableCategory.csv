@@ -24,6 +24,9 @@ WWMeasure,type,covN1,SARS-CoV-2 nucleocapsid gene N1
 WWMeasure,type,covN2,SARS-CoV-2 nucleocapsid gene N2
 WWMeasure,type,covN3,SARS-like coronaviruses nucleocapsid gene N3
 WWMeasure,type,covE,SARS-CoV-2 gene region E
+WWMeasure,type,varB117,Variant B.1.1.7
+WWMeasure,type,varB1351,Variant B.1.351
+WWMeasure,type,varP1,Variant P.1
 WWMeasure,type,covRdRp,SARS-CoV-2 gene region RdRp
 WWMeasure,type,nPMMoV,Pepper mild mottle virus
 WWMeasure,type,ncrA,cross-assembly phage
@@ -38,15 +41,16 @@ WWMeasure,type,wqTN,"Total nitrogen concentration, as N."
 WWMeasure,type,wqPh,pH
 WWMeasure,type,wqCond,Conductivity
 WWMeasure,type,other,Other measurement category. Add description to categoryOther.
-WWMeasure,unit,gcPMMoV,Gene copies per copy of PMMoV.
-WWMeasure,unit,gcMl,Gene copies per milliliter.
-WWMeasure,unit,gcGs,Gene copies per gram solids.
-WWMeasure,unit,gcL,Gene copies per liter.
-WWMeasure,unit,gcCrA,Gene copies per copy of crAssphage.
+WWMeasure,unit,gcPMMoV,Gene or variant copies per copy of PMMoV.
+WWMeasure,unit,gcMl,Gene or variant copies per milliliter.
+WWMeasure,unit,gcGs,Gene or variant copies per gram solids.
+WWMeasure,unit,gcL,Gene or variant copies per liter.
+WWMeasure,unit,gcCrA,Gene or variant copies per copy of crAssphage.
 WWMeasure,unit,Ct,Cycle threshold.
 WWMeasure,unit,mgL,Milligrams per liter.
 WWMeasure,unit,ph,pH units
 WWMeasure,unit,uScm,Micro-siemens per centimeter.
+WWMeasure,unit,detected,Gene copies or variant detected in the sampleGene or variant copiesDetected = 1Gene or variant copiesNot detected = 0.
 WWMeasure,unit,pp,"Percent positive, for Moore swab."
 WWMeasure,unit,pps,"Percent primary sludge, for total solids."
 WWMeasure,unit,other,Other measurement of viral copies or wastewater treatment plant parameter. Add description to UnitOther.
