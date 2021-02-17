@@ -51,6 +51,7 @@ WWMeasure,unit,mgL,Milligrams per liter.
 WWMeasure,unit,ph,pH units
 WWMeasure,unit,uScm,Micro-siemens per centimeter.
 WWMeasure,unit,detected,Gene copies or variant detected in the sampleGene or variant copiesDetected = 1Gene or variant copiesNot detected = 0.
+WWMeasure,unit,porpVar,Proportion of variant in sample
 WWMeasure,unit,pp,"Percent positive, for Moore swab."
 WWMeasure,unit,pps,"Percent primary sludge, for total solids."
 WWMeasure,unit,other,Other measurement of viral copies or wastewater treatment plant parameter. Add description to UnitOther.
