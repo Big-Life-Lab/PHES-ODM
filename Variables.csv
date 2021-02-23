@@ -94,6 +94,7 @@ Reporter,labIDDefault,Lab id default,ID de laboratoire par d�faut,Foreign key,
 Reporter,contactName,Contact name,Nom du contact,,,,string,"Full Name of the reporter, either an organization or individual."
 Reporter,contactEmail,Contact email,Adresse �lectronique de contact,,,,string,Contact e-mail address.
 Reporter,contactPhone,Contact phone,T�l�phone de contact,,,,string,Contact phone number.
+Reporter,organization,Organizatiion of reporter,organisation de l'enregistreur,,,,,
 Reporter,notes,Notes,Notes,,,,string,Any additional notes.
 Lab,labID,Lab id,Identifiant du laboratoire,Primary Key,,,string,Unique identifier for the laboratory.
 Lab,assayMethodIDDefault,Assay method id default,M�thode d'analyse id par d�faut,Foreign key,AssayMethod,assayMethodID,string,Used as default when a new measurement is created for this lab. See ID in AssayMethod table.

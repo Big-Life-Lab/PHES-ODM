@@ -37,6 +37,12 @@ See [license](LICENSE) for more information.
   - `sampleStorageTempCDefault`: Change from `SampleStorageTempCDefault`.
   - `measureFractionAnalyzedDefault`: Change from `MeasureFractionAnalyzedDefault`.
 
+- **New variables**
+
+- [Reporter](metadata.md#reporter) table
+
+  - `organization`: Organziation of reproter.
+
 - **New variable categories**
 
   - Categories added to allow variant reporting. See `WWMeasure` table, `type` variable:
