@@ -1,6 +1,7 @@
 tableName,variableName,variableLabel_en,variableLabel_fr,key,foreignKeyTable,foreignKeyVariable,variableType,variableDesc
 Sample,sampleID,Sample id,Exemple d'identification,Primary Key,,,string,Unique identification for sample. Suggestion:siteID-date-index.
 Sample,siteID,Site id,Identifiant du site,Foreign key,Site,siteID,string,Links with the Site table to describe the location of sampling.
+Sample,reporterID,Reporter id,Identit� du journaliste,,,,,
 Sample,dateTime,Date time,Date et heure,,,,datetime,"for grab samples this is the date, time and timezone the sample was taken."
 Sample,dateTimeStart,Date time start,Date et heure de d�but,,,,datetime,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken."
 Sample,dateTimeEnd,Date time end,Date et heure de fin,,,,datetime,"For integrated time average samples this is the date, time and timezone the sample was finished being taken."
@@ -94,7 +95,7 @@ Reporter,labIDDefault,Lab id default,ID de laboratoire par d�faut,Foreign key,
 Reporter,contactName,Contact name,Nom du contact,,,,string,"Full Name of the reporter, either an organization or individual."
 Reporter,contactEmail,Contact email,Adresse �lectronique de contact,,,,string,Contact e-mail address.
 Reporter,contactPhone,Contact phone,T�l�phone de contact,,,,string,Contact phone number.
-Reporter,organization,Organizatiion of reporter,organisation de l'enregistreur,,,,,
+Reporter,organization,Organizatiion of reporter,organisation de journaliste,,,,,
 Reporter,notes,Notes,Notes,,,,string,Any additional notes.
 Lab,labID,Lab id,Identifiant du laboratoire,Primary Key,,,string,Unique identifier for the laboratory.
 Lab,assayMethodIDDefault,Assay method id default,M�thode d'analyse id par d�faut,Foreign key,AssayMethod,assayMethodID,string,Used as default when a new measurement is created for this lab. See ID in AssayMethod table.
