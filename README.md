@@ -41,7 +41,11 @@ See [license](LICENSE) for more information.
 
 - [Reporter](metadata.md#reporter) table
 
-  - `organization`: Organziation of reproter.
+  - `organization`: Organziation of reproter. Issue [#97](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/97)
+
+- [Sample](metadata.md#sample) table
+
+  - `reporterID`: Reporter ID. Currently, reporterID is `WWmeasure` table but reporter for samples can be different. Issuse [#93](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/93)
 
 - **New variable categories**
 
