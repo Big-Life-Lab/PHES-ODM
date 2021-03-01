@@ -44,7 +44,7 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/invitations/acc
 
 The sample is a representative volume of wastewater taken from a Site which is then analysed by a lab.
 
--	**sampleID**: (Primary Key) [string] Unique identification for sample. Suggestion:siteID-date-index.
+-	**sampleID**: (Primary Key) [string] Unique identifier for sample. Suggestion:siteID-date-index.
 
 
 -	**siteID**: (Foreign key) [string] Links with the Site table to describe the location of sampling.
@@ -74,7 +74,7 @@ The sample is a representative volume of wastewater taken from a Site which is t
 -	**typeOther**: [string] Description for other type of sample not listed in
 
 
--	**collection**: [category] Method used to collect the data.
+-	**collection**: [category] Method used to collect the sample.
 	-	`cpTP24h`: A time proportional 24-hour composite sample generally collected by an autosampler.
 	-	`cpFP24h`: A flow proportional 24-hour composite sample generally collected by an autosampler.
 	-	`grb`: A single large representative grab sample.
@@ -150,7 +150,7 @@ Measurement result (ie. single variable) from a wastewater sample. WWMeaasure in
 -	**reportDate**: [date] date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed).
 
 
--	**fractionAnalyzed**: [category] Faction of the sample that is analyzed.
+-	**fractionAnalyzed**: [category] Fraction of the sample that is analyzed.
 	-	`liquid`: Liquid fraction
 	-	`solid`: Solid fraction
 	-	`mixed`: Mixed/homogenized sample
@@ -160,6 +160,9 @@ Measurement result (ie. single variable) from a wastewater sample. WWMeaasure in
 	-	`covN2`: SARS-CoV-2 nucleocapsid gene N2
 	-	`covN3`: SARS-like coronaviruses nucleocapsid gene N3
 	-	`covE`: SARS-CoV-2 gene region E
+	-	`varB117`: Variant B.1.1.7
+	-	`varB1351`: Variant B.1.351
+	-	`varP1`: Variant P.1
 	-	`covRdRp`: SARS-CoV-2 gene region RdRp
 	-	`nPMMoV`: Pepper mild mottle virus
 	-	`ncrA`: cross-assembly phage
@@ -179,15 +182,17 @@ Measurement result (ie. single variable) from a wastewater sample. WWMeaasure in
 
 
 -	**unit**: [category] Unit of the measurement.
-	-	`gcPMMoV`: Gene copies per copy of PMMoV.
-	-	`gcMl`: Gene copies per milliliter.
-	-	`gcGs`: Gene copies per gram solids.
-	-	`gcL`: Gene copies per liter.
-	-	`gcCrA`: Gene copies per copy of crAssphage.
+	-	`gcPMMoV`: Gene or variant copies per copy of PMMoV.
+	-	`gcMl`: Gene or variant copies per milliliter.
+	-	`gcGs`: Gene or variant copies per gram solids.
+	-	`gcL`: Gene or variant copies per liter.
+	-	`gcCrA`: Gene or variant copies per copy of crAssphage.
 	-	`Ct`: Cycle threshold.
 	-	`mgL`: Milligrams per liter.
 	-	`ph`: pH units
 	-	`uScm`: Micro-siemens per centimeter.
+	-	`detected`: Gene copies or variant detected in the sampleGene or variant copiesDetected = 1Gene or variant copiesNot detected = 0.
+	-	`porpVar`: Proportion of variant in sample
 	-	`pp`: Percent positive, for Moore swab.
 	-	`pps`: Percent primary sludge, for total solids.
 	-	`other`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to UnitOther.
@@ -286,41 +291,23 @@ The site of wastewater sampling, including several defaults that can be used to 
 -	**typeOther**: [string] Description of the site when the site is not listed. See siteType.
 
 
--	**SampleTypeDefault**: [category] Used as default when a new sample is created for this site. See type in Sample table.
-	-	`rawWW`: Raw wastewater.
-	-	`swrSed`: Sediments obtained in sewer.
-	-	`pstGrit`: Raw wastewater after a treatment plant's headworks.
-	-	`pSludge`: Sludge produced by primary clarifiers.
-	-	`pEfflu`: Effluent obtained after primary clarifiers.
-	-	`sSludge`: Sludge produced by secondary clarifiers.
-	-	`sEfflu`: Effluent obtained after secondary clarifiers.
-	-	`water`: Non-wastewater, coming from any kind of water body.
-	-	`faeces`: Fecal matter.
-	-	`other`: Other type of site. Add description to typeOther.
-
--	**SampleTypeOtherDefault**: [string] Used as default when a new sample is created for this site. See typeOther in Sample table.
+-	**sampleTypeDefault**: [category] Used as default when a new sample is created for this site. See type in Sample table.
 
 
--	**SampleCollectionDefault**: [category] Used as default when a new sample is created for this site. See collection in Sample table.
-	-	`cpTP24h`: A time proportional 24-hour composite sample generally collected by an autosampler.
-	-	`cpFP24h`: A flow proportional 24-hour composite sample generally collected by an autosampler.
-	-	`grb`: A single large representative grab sample.
-	-	`grbCp8h`: An 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.
-	-	`grbCp3h`: A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.
-	-	`grbCp3`: A grab-composite sample composed of 3 separate grab samples.
-	-	`mooreSw`: Moore swab passive sample.
-	-	`other`: Other type of collection method. Add description to collectionOther.
-
--	**SampleCollectOtherDefault**: [string] Used as default when a new sample is created for this site. See collectionOther in Sample table.
+-	**sampleTypeOtherDefault**: [string] Used as default when a new sample is created for this site. See typeOther in Sample table.
 
 
--	**SampleStorageTempCDefault**: [float] Used as default when a new sample is created for this site. See storageTempC in Sample table.
+-	**sampleCollectionDefault**: [category] Used as default when a new sample is created for this site. See collection in Sample table.
 
 
--	**MeasureFractionAnalyzedDefault**: [category] Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.
-	-	`liquid`: Liquid fraction
-	-	`solid`: Solid fraction
-	-	`mixed`: Mixed/homogenized sample
+-	**sampleCollectOtherDefault**: [string] Used as default when a new sample is created for this site. See collectionOther in Sample table.
+
+
+-	**sampleStorageTempCDefault**: [float] Used as default when a new sample is created for this site. See storageTempC in Sample table.
+
+
+-	**measureFractionAnalyzedDefault**: [category] Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.
+
 
 -	**geoLat**: [float] Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
 
@@ -554,7 +541,7 @@ The assay method that was used to perform testing. Create a new record if there 
 
 Instruments that are used for measures in WWMeasure and SiteMeasure. The assay method for viral measurement are described in AssayMethod.
 
--	**instrumentID**: (Primary Key) [string] Unique identifier for the assay method.
+-	**instrumentID**: (Primary Key) [string] Unique identifier for the instrument.
 
 
 -	**name**: [string] Name of the instrument used to perform the measurement.
@@ -736,9 +723,9 @@ Because of the multiple relationships between the tables composing the data mode
 -   **Merging tables** : Merging tables into a wide table requires additional steps when a variable does not have an unique name (when the variable name appears in more than one table). For example, variables such as `dateTime`, `notes`, `description`, `type`, `version` and `ID` variables such as `sampleID` are used in several tables. Use the following approach:
 
     -   Variable that are not unique (they are in more than one table): add the table name to the variable by concatenate column names with `_`. e.g. `dateTime` from the `Sample` table becomes `Sample_dateTime`.
-    -   Variable that are unique (they in only one table in the entire OMD). No variable name changes are needed.
+    -   Variable that are unique (they are in only one table in the entire OMD). No variable name changes are needed.
 
--   **Derived, summary or transformed measure**: These measures are generated to summarize or transform one or more variables. Naming convention follows the same approach as naming variable and category names, except use a `_` when concatenating variable or category names.  Examples of derived measure the calculation of a mean mean value of one or more SARS-CoV-2 regions. Normalization and standardization are other examples of a transformed measure. Typically derived, summary or transform measures are not reported, rather the preferred reporting approach reporting the underlying measures. 
+-   **Derived, summary or transformed measure**: These measures are generated to summarize or transform one or more variables. Naming convention follows the same approach as naming variable and category names, except use a `_` when concatenating variable or category names.  Examples of a derived measure is the calculation of a mean value of one or more SARS-CoV-2 regions. Normalization and standardization are other examples of a transformed measure. Typically derived, summary or transformed measures are not reported, rather the preferred reporting approach is reporting the underlying individual measures.
 
 -   **Date time**: YYYY-MM-DD HH:mm:ss (24 hour format, in UTC)
 

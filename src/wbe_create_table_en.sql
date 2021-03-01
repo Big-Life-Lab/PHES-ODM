@@ -1,13 +1,13 @@
 CREATE TABLE IF NOT EXISTS [Sample] (
 /*The sample is a representative volume of wastewater taken from a Site which is then analysed by a lab.*/
-	[sampleID] char NOT NULL PRIMARY KEY, --Unique identification for sample. Suggestion:siteID-date-index.
+	[sampleID] char NOT NULL PRIMARY KEY, --Unique identifier for sample. Suggestion:siteID-date-index.
 	[siteID] char, --Links with the Site table to describe the location of sampling.
 	[dateTime] integer, --for grab samples this is the date, time and timezone the sample was taken.
 	[dateTimeStart] integer, --For integrated time averaged samples this is the date, time and timezone the sample was started being taken.
 	[dateTimeEnd] integer, --For integrated time average samples this is the date, time and timezone the sample was finished being taken.
 	[type] char, --Type of sample.
 	[typeOther] char, --Description for other type of sample not listed in
-	[collection] char, --Method used to collect the data.
+	[collection] char, --Method used to collect the sample.
 	[collectionOther] char, --Description for other type of method not listed in collection.
 	[preTreatment] integer, --Was the sample chemically treated in anyway with the addition of stabilizers or other
 	[preTreatmentDescription] char, --If preTreatment then describe the treatment that was performed.
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS [WWMeasure] (
 	[reporterID] char, --Links with the reporter that is responsible for the data.
 	[analysisDate] integer, --date the measurement was performed in the lab.
 	[reportDate] integer, --date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed).
-	[fractionAnalyzed] char, --Faction of the sample that is analyzed.
+	[fractionAnalyzed] char, --Fraction of the sample that is analyzed.
 	[type] char, --The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (cov), a biomarker for normalisation (n) or a water quality parameter (wq).
 	[typeOther] char, --Description for an other variable not listed in category.
 	[unit] char, --Unit of the measurement.
@@ -67,12 +67,12 @@ CREATE TABLE IF NOT EXISTS [Site] (
 	[description] char, --Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.
 	[type] char, --Type of site or institution where sample was taken.
 	[typeOther] char, --Description of the site when the site is not listed. See siteType.
-	[SampleTypeDefault] char, --Used as default when a new sample is created for this site. See type in Sample table.
-	[SampleTypeOtherDefault] char, --Used as default when a new sample is created for this site. See typeOther in Sample table.
-	[SampleCollectionDefault] char, --Used as default when a new sample is created for this site. See collection in Sample table.
-	[SampleCollectOtherDefault] char, --Used as default when a new sample is created for this site. See collectionOther in Sample table.
-	[SampleStorageTempCDefault] float, --Used as default when a new sample is created for this site. See storageTempC in Sample table.
-	[MeasureFractionAnalyzedDefault] char, --Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.
+	[sampleTypeDefault] char, --Used as default when a new sample is created for this site. See type in Sample table.
+	[sampleTypeOtherDefault] char, --Used as default when a new sample is created for this site. See typeOther in Sample table.
+	[sampleCollectionDefault] char, --Used as default when a new sample is created for this site. See collection in Sample table.
+	[sampleCollectOtherDefault] char, --Used as default when a new sample is created for this site. See collectionOther in Sample table.
+	[sampleStorageTempCDefault] float, --Used as default when a new sample is created for this site. See storageTempC in Sample table.
+	[measureFractionAnalyzedDefault] char, --Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.
 	[geoLat] float, --Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
 	[geoLong] float, --Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)
 	[notes] char, --Any additional notes.
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS [AssayMethod] (
 
 CREATE TABLE IF NOT EXISTS [Instrument] (
 /*Instruments that are used for measures in WWMeasure and SiteMeasure. The assay method for viral measurement are described in AssayMethod.*/
-	[instrumentID] char NOT NULL PRIMARY KEY, --Unique identifier for the assay method.
+	[instrumentID] char NOT NULL PRIMARY KEY, --Unique identifier for the instrument.
 	[name] char, --Name of the instrument used to perform the measurement.
 	[model] char, --Model number or version of the instrument.
 	[description] char, --Description of the instrument.
