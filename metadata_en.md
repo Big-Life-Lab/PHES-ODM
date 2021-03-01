@@ -44,22 +44,22 @@ Comment on the ERD in [Lucidcharts](https://lucid.app/lucidchart/invitations/acc
 
 The sample is a representative volume of wastewater taken from a Site which is then analysed by a lab.
 
--	**sampleID**: (Primary Key) [string] Unique identifier for sample. Suggestion:siteID-date-index.
+-	**sampleID**:(Sample id): (Primary Key) [string] Unique identifier for sample. Suggestion:siteID-date-index.
 
 
--	**siteID**: (Foreign key) [string] Links with the Site table to describe the location of sampling.
+-	**siteID**:(Site id): (Foreign key) [string] Links with the Site table to describe the location of sampling.
 
 
--	**dateTime**: [datetime] for grab samples this is the date, time and timezone the sample was taken.
+-	**dateTime**:(Date time): [datetime] for grab samples this is the date, time and timezone the sample was taken.
 
 
--	**dateTimeStart**: [datetime] For integrated time averaged samples this is the date, time and timezone the sample was started being taken.
+-	**dateTimeStart**:(Date time start): [datetime] For integrated time averaged samples this is the date, time and timezone the sample was started being taken.
 
 
--	**dateTimeEnd**: [datetime] For integrated time average samples this is the date, time and timezone the sample was finished being taken.
+-	**dateTimeEnd**:(Date time end): [datetime] For integrated time average samples this is the date, time and timezone the sample was finished being taken.
 
 
--	**type**: [category] Type of sample.
+-	**type**:(Type): [category] Type of sample.
 	-	`rawWW`: Raw wastewater.
 	-	`swrSed`: Sediments obtained in sewer.
 	-	`pstGrit`: Raw wastewater after a treatment plant's headworks.
@@ -71,10 +71,10 @@ The sample is a representative volume of wastewater taken from a Site which is t
 	-	`faeces`: Fecal matter.
 	-	`other`: Other type of site. Add description to typeOther.
 
--	**typeOther**: [string] Description for other type of sample not listed in
+-	**typeOther**:(Type other): [string] Description for other type of sample not listed in
 
 
--	**collection**: [category] Method used to collect the sample.
+-	**collection**:(Collection): [category] Method used to collect the sample.
 	-	`cpTP24h`: A time proportional 24-hour composite sample generally collected by an autosampler.
 	-	`cpFP24h`: A flow proportional 24-hour composite sample generally collected by an autosampler.
 	-	`grb`: A single large representative grab sample.
@@ -84,78 +84,78 @@ The sample is a representative volume of wastewater taken from a Site which is t
 	-	`mooreSw`: Moore swab passive sample.
 	-	`other`: Other type of collection method. Add description to collectionOther.
 
--	**collectionOther**: [string] Description for other type of method not listed in collection.
+-	**collectionOther**:(Collection other): [string] Description for other type of method not listed in collection.
 
 
--	**preTreatment**: [boolean] Was the sample chemically treated in anyway with the addition of stabilizers or other
+-	**preTreatment**:(Pre treatment): [boolean] Was the sample chemically treated in anyway with the addition of stabilizers or other
 
 
--	**preTreatmentDescription**: [string] If preTreatment then describe the treatment that was performed.
+-	**preTreatmentDescription**:(Pre treatment description): [string] If preTreatment then describe the treatment that was performed.
 
 
--	**pooled**: [boolean] Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites
+-	**pooled**:(Pooled): [boolean] Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites
 
 
--	**children**: [string] If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.
+-	**children**:(Children): [string] If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.
 
 
--	**parent**: [string] If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.
+-	**parent**:(Parent): [string] If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.
 
 
--	**sizeL**: [float] Total volume of water or sludge sampled.
+-	**sizeL**:(Size l): [float] Total volume of water or sludge sampled.
 
 
--	**fieldSampleTempC**: [float] Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
+-	**fieldSampleTempC**:(Field sample temp c): [float] Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
 
 
--	**shippedOnIce**: [boolean] Was the sample kept cool while being shipped to the lab
+-	**shippedOnIce**:(Shipped on ice): [boolean] Was the sample kept cool while being shipped to the lab
 
 
--	**storageTempC**: [float] Temperature that the sample is stored at in Celsius.
+-	**storageTempC**:(Storage temp c): [float] Temperature that the sample is stored at in Celsius.
 
 
--	**qualityFlag**: [boolean] Does the reporter suspect the sample having some quality issues
+-	**qualityFlag**:(Quality flag): [boolean] Does the reporter suspect the sample having some quality issues
 
 
--	**notes**: [string] Any additional notes.
+-	**notes**:(Notes): [string] Any additional notes.
 
 ## WWMeasure
 
 Measurement result (ie. single variable) from a wastewater sample. WWMeaasure includes data that is commonly collected by staff at wastewater laboratories where measurement is performed using an assay method (see AssayMethod), but can also be performed using specific instruments (see Instruments. Measures performed at the site of the wastewater sample are reported in SiteMeasure.
 
--	**uWwMeasureID**: (Primary Key) [string] Unique identifier a measurement within the measurement table.
+-	**uWwMeasureID**:(U ww measure id): (Primary Key) [string] Unique identifier a measurement within the measurement table.
 
 
--	**wwMeasureID**: [string] Unique identifier for wide table only. Use when all measures are performed on a single sample at the same time and same laboratory. Suggestion: siteID_sampleID_LabID_reportDate_ID.
+-	**wwMeasureID**:(Ww measure id): [string] Unique identifier for wide table only. Use when all measures are performed on a single sample at the same time and same laboratory. Suggestion: siteID_sampleID_LabID_reportDate_ID.
 
 
--	**sampleID**: (Foreign key) [string] Links with the identified Sample
+-	**sampleID**:(Sample id): (Foreign key) [string] Links with the identified Sample
 
 
--	**labID**: (Foreign key) [string] Links with the identified Lab that performed the analysis.
+-	**labID**:(Lab id): (Foreign key) [string] Links with the identified Lab that performed the analysis.
 
 
--	**assayID**: (Foreign key) [string] Links with the AssayMethod used to perform the analysis. Use instrument.ID for measures that are not viral measures.
+-	**assayID**:(Assay id): (Foreign key) [string] Links with the AssayMethod used to perform the analysis. Use instrument.ID for measures that are not viral measures.
 
 
--	**instrumentID**: (Foreign key) [string] Links with the Instrument used to perform the analysis. Use assay.ID for viral measures.
+-	**instrumentID**:(Instrument id): (Foreign key) [string] Links with the Instrument used to perform the analysis. Use assay.ID for viral measures.
 
 
--	**reporterID**: (Foreign key) [string] Links with the reporter that is responsible for the data.
+-	**reporterID**:(Reporter id): (Foreign key) [string] Links with the reporter that is responsible for the data.
 
 
--	**analysisDate**: [date] date the measurement was performed in the lab.
+-	**analysisDate**:(Analysis date): [date] date the measurement was performed in the lab.
 
 
--	**reportDate**: [date] date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed).
+-	**reportDate**:(Report date): [date] date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed).
 
 
--	**fractionAnalyzed**: [category] Fraction of the sample that is analyzed.
+-	**fractionAnalyzed**:(Fraction analyzed): [category] Fraction of the sample that is analyzed.
 	-	`liquid`: Liquid fraction
 	-	`solid`: Solid fraction
 	-	`mixed`: Mixed/homogenized sample
 
--	**type**: [category] The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (cov), a biomarker for normalisation (n) or a water quality parameter (wq).
+-	**type**:(Type): [category] The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (cov), a biomarker for normalisation (n) or a water quality parameter (wq).
 	-	`covN1`: SARS-CoV-2 nucleocapsid gene N1
 	-	`covN2`: SARS-CoV-2 nucleocapsid gene N2
 	-	`covN3`: SARS-like coronaviruses nucleocapsid gene N3
@@ -178,10 +178,10 @@ Measurement result (ie. single variable) from a wastewater sample. WWMeaasure in
 	-	`wqCond`: Conductivity
 	-	`other`: Other measurement category. Add description to categoryOther.
 
--	**typeOther**: [string] Description for an other variable not listed in category.
+-	**typeOther**:(Type other): [string] Description for an other variable not listed in category.
 
 
--	**unit**: [category] Unit of the measurement.
+-	**unit**:(Unit): [category] Unit of the measurement.
 	-	`gcPMMoV`: Gene or variant copies per copy of PMMoV.
 	-	`gcMl`: Gene or variant copies per milliliter.
 	-	`gcGs`: Gene or variant copies per gram solids.
@@ -197,10 +197,10 @@ Measurement result (ie. single variable) from a wastewater sample. WWMeaasure in
 	-	`pps`: Percent primary sludge, for total solids.
 	-	`other`: Other measurement of viral copies or wastewater treatment plant parameter. Add description to UnitOther.
 
--	**unitOther**: [string] Description for other measurement unit not listed in unit.
+-	**unitOther**:(Unit other): [string] Description for other measurement unit not listed in unit.
 
 
--	**aggregation**: [category] Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value.
+-	**aggregation**:(Aggregation): [category] Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value.
 	-	`single`: This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.
 	-	`mean`: Arithmetic mean
 	-	`meanNr`: Arithmetic mean, normalized
@@ -213,58 +213,58 @@ Measurement result (ie. single variable) from a wastewater sample. WWMeaasure in
 	-	`sdNr`: Standard deviation, normalized
 	-	`other`: Other aggregation method. Add description to aggregationOther
 
--	**aggregationOther**: [string] Description for other type of aggregation not listed in aggregation.
+-	**aggregationOther**:(Aggregation other): [string] Description for other type of aggregation not listed in aggregation.
 
 
--	**index**: [integer] Index number in case the measurement was taken multiple times.
+-	**index**:(Index): [integer] Index number in case the measurement was taken multiple times.
 
 
--	**value**: [float] The actual measurement value that was obtained through analysis.
+-	**value**:(Value): [float] The actual measurement value that was obtained through analysis.
 
 
--	**qualityFlag**: [boolean] Does the reporter suspect the measurement having some quality issues
+-	**qualityFlag**:(Quality flag): [boolean] Does the reporter suspect the measurement having some quality issues
 
 
--	**accessToPublic**: [boolean] If this is 'no', this data will not be available to the public. If missing, data will be available to the public.
+-	**accessToPublic**:(Access to public): [boolean] If this is 'no', this data will not be available to the public. If missing, data will be available to the public.
 
 
--	**accessToAllOrg**: [boolean] If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.
+-	**accessToAllOrg**:(Access to all org): [boolean] If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.
 
 
--	**accessToSelf**: [boolean] If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
+-	**accessToSelf**:(Access to self): [boolean] If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
 
 
--	**accessToPHAC**: [boolean] If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.
+-	**accessToPHAC**:(Access to phac): [boolean] If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.
 
 
--	**accessToLocalHA**: [boolean] If this is 'no', the, data will not be available to local health authorities. If missing, data will be available to local health authorities.
+-	**accessToLocalHA**:(Access to local ha): [boolean] If this is 'no', the, data will not be available to local health authorities. If missing, data will be available to local health authorities.
 
 
--	**accessToProvHA**: [boolean] If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
+-	**accessToProvHA**:(Access to prov ha): [boolean] If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
 
 
--	**accessToOtherProv**: [boolean] If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before
+-	**accessToOtherProv**:(Access to other prov): [boolean] If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before
 
 
--	**accessToDetails**: [boolean] More details on the existing confidentiality requirements of this measurement.
+-	**accessToDetails**:(Access to details): [boolean] More details on the existing confidentiality requirements of this measurement.
 
 
--	**notes**: [string] Any additional notes.
+-	**notes**:(Notes): [string] Any additional notes.
 
 ## Site
 
 The site of wastewater sampling, including several defaults that can be used to populate new samples upon creation.
 
--	**siteID**: (Primary Key) [string] Unique identifier for the location where wastewater sample was taken.
+-	**siteID**:(Site id): (Primary Key) [string] Unique identifier for the location where wastewater sample was taken.
 
 
--	**name**: [string] Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.
+-	**name**:(Name): [string] Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.
 
 
--	**description**: [string] Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.
+-	**description**:(Description): [string] Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.
 
 
--	**type**: [category] Type of site or institution where sample was taken.
+-	**type**:(Type): [category] Type of site or institution where sample was taken.
 	-	`airPln`: Airplane.
 	-	`corFcil`: Correctional facility.
 	-	`school`: School
@@ -288,67 +288,67 @@ The site of wastewater sampling, including several defaults that can be used to 
 	-	`ocean`: Ocean, natural water body.
 	-	`other`: Other site type. Add description to typeOther.
 
--	**typeOther**: [string] Description of the site when the site is not listed. See siteType.
+-	**typeOther**:(Type other): [string] Description of the site when the site is not listed. See siteType.
 
 
--	**sampleTypeDefault**: [category] Used as default when a new sample is created for this site. See type in Sample table.
+-	**sampleTypeDefault**:(Sample type default): [category] Used as default when a new sample is created for this site. See type in Sample table.
 
 
--	**sampleTypeOtherDefault**: [string] Used as default when a new sample is created for this site. See typeOther in Sample table.
+-	**sampleTypeOtherDefault**:(Sample type other default): [string] Used as default when a new sample is created for this site. See typeOther in Sample table.
 
 
--	**sampleCollectionDefault**: [category] Used as default when a new sample is created for this site. See collection in Sample table.
+-	**sampleCollectionDefault**:(Sample collection default): [category] Used as default when a new sample is created for this site. See collection in Sample table.
 
 
--	**sampleCollectOtherDefault**: [string] Used as default when a new sample is created for this site. See collectionOther in Sample table.
+-	**sampleCollectOtherDefault**:(Sample collect other default): [string] Used as default when a new sample is created for this site. See collectionOther in Sample table.
 
 
--	**sampleStorageTempCDefault**: [float] Used as default when a new sample is created for this site. See storageTempC in Sample table.
+-	**sampleStorageTempCDefault**:(Sample storage temp c default): [float] Used as default when a new sample is created for this site. See storageTempC in Sample table.
 
 
--	**measureFractionAnalyzedDefault**: [category] Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.
+-	**measureFractionAnalyzedDefault**:(Measure fraction analyzed default): [category] Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.
 
 
--	**geoLat**: [float] Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
+-	**geoLat**:(Geo lat): [float] Site geographical location, latitude in decimal coordinates, ie.: (45.424721)
 
 
--	**geoLong**: [float] Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)
+-	**geoLong**:(Geo long): [float] Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)
 
 
--	**notes**: [string] Any additional notes.
+-	**notes**:(Notes): [string] Any additional notes.
 
 
--	**polygonID**: (Foreign key) [string] Links with the Polygon table, this should encompass the area that typically drains into this site.
+-	**polygonID**:(Polygon id): (Foreign key) [string] Links with the Polygon table, this should encompass the area that typically drains into this site.
 
 
--	**sewerNetworkFileLink**: [string] Link to a file that has any detailed information about the sewer network associated with the site (any format).
+-	**sewerNetworkFileLink**:(Sewer network file link): [string] Link to a file that has any detailed information about the sewer network associated with the site (any format).
 
 
--	**sewerNetworkFileBLOB**: [blob] A file blob that has any detailed information about the sewer network associated with the site (any format).
+-	**sewerNetworkFileBLOB**:(Sewer network file blob): [blob] A file blob that has any detailed information about the sewer network associated with the site (any format).
 
 ## SiteMeasure
 
 Measurement result (ie. single variable) obtained by at the site of wastewater sample.SiteMeasure includes data that is commonly collected by staff at wastewater treatment facilities and field sample locations. These measures that are not performed on the wastewater sample but provide additional context necessary for the interpretation of the results. Measures performed on the wastewater sample are reported in WWMeasure.
 
--	**uSiteMeasureID**: (Primary Key) [string] Unique identifier for each measurement for a site.
+-	**uSiteMeasureID**:(U site measure id): (Primary Key) [string] Unique identifier for each measurement for a site.
 
 
--	**siteMeasureID**: [string] Unique identifier for wide table only. Use when all measures are performed on a single sample.
+-	**siteMeasureID**:(Site measure id): [string] Unique identifier for wide table only. Use when all measures are performed on a single sample.
 
 
--	**siteID**: (Foreign key) [string] Links with the Site table to describe the location of measurement.
+-	**siteID**:(Site id): (Foreign key) [string] Links with the Site table to describe the location of measurement.
 
 
--	**instrumentID**: (Foreign key) [string] Links with the Instrument table to describe instrument used for the measurement.
+-	**instrumentID**:(Instrument id): (Foreign key) [string] Links with the Instrument table to describe instrument used for the measurement.
 
 
--	**reporterID**: (Foreign key) [string] Links with the reporter that is responsible for the data.
+-	**reporterID**:(Reporter id): (Foreign key) [string] Links with the reporter that is responsible for the data.
 
 
--	**dateTime**: [date] The date and time the measurement was performed.
+-	**dateTime**:(Date time): [date] The date and time the measurement was performed.
 
 
--	**type**: [category] The type of measurement that was performed. The prefix env is used for environmental variables, whereas ww indicates a measurement on wastewater.
+-	**type**:(Type): [category] The type of measurement that was performed. The prefix env is used for environmental variables, whereas ww indicates a measurement on wastewater.
 	-	`envTemp`: Environmental temperature.
 	-	`envRnF`: Rain fall, i.e. amount of precipitation in the form of rain.
 	-	`envSnwF`: Snow fall, i.e. amount of precipitation in the form of snow.
@@ -364,13 +364,13 @@ Measurement result (ie. single variable) obtained by at the site of wastewater s
 	-	`wwpH`: pH of the wastewater.
 	-	`wwCond`: Conductivity of the wastewater.
 
--	**typeOther**: [string] Description of the measurement in case it is not listed in type.
+-	**typeOther**:(Type other): [string] Description of the measurement in case it is not listed in type.
 
 
--	**typeDescription**: [string] Additional information on the performed measurement.
+-	**typeDescription**:(Type description): [string] Additional information on the performed measurement.
 
 
--	**aggregation**: [category] When reporting an aggregate measurement, this field describes the method used.
+-	**aggregation**:(Aggregation): [category] When reporting an aggregate measurement, this field describes the method used.
 	-	`single`: This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.
 	-	`mean`: Arithmetic mean
 	-	`meanNr`: Arithmetic mean, normalized
@@ -383,133 +383,133 @@ Measurement result (ie. single variable) obtained by at the site of wastewater s
 	-	`sdNr`: Standard deviation, normalized
 	-	`other`: Other aggregation method. Add description to aggregationOther
 
--	**aggregationOther**: [string] Description for other type of aggregation not listed in aggregation.
+-	**aggregationOther**:(Aggregation other): [string] Description for other type of aggregation not listed in aggregation.
 
 
--	**aggregationDesc**: [string] Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
+-	**aggregationDesc**:(Aggregation desc): [string] Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
 
 
--	**value**: [float] The actual value that is being reported for this measurement.
+-	**value**:(Value): [float] The actual value that is being reported for this measurement.
 
 
--	**unit**: [string] The engineering unit of the measurement.
+-	**unit**:(Unit): [string] The engineering unit of the measurement.
 
 
--	**qualityFlag**: [boolean] Does the reporter suspect quality issues with the value of this measurement
+-	**qualityFlag**:(Quality flag): [boolean] Does the reporter suspect quality issues with the value of this measurement
 
 
--	**accessToPublic**: [boolean] If this is 'no', this data will not be available to the public. If missing, data will be available to the public.
+-	**accessToPublic**:(Access to public): [boolean] If this is 'no', this data will not be available to the public. If missing, data will be available to the public.
 
 
--	**accessToAllOrgs**: [boolean] If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.
+-	**accessToAllOrgs**:(Access to all orgs): [boolean] If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.
 
 
--	**accessToSelf**: [boolean] If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
+-	**accessToSelf**:(Access to self): [boolean] If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.
 
 
--	**accessToPHAC**: [boolean] If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.
+-	**accessToPHAC**:(Access to phac): [boolean] If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.
 
 
--	**accessToLocalHA**: [boolean] If this is 'no', data will not be available to local health authorities. If missing, data will be available to local health authorities.
+-	**accessToLocalHA**:(Access to local ha): [boolean] If this is 'no', data will not be available to local health authorities. If missing, data will be available to local health authorities.
 
 
--	**accessToProvHA**: [boolean] If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
+-	**accessToProvHA**:(Access to prov ha): [boolean] If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.
 
 
--	**accessToOtherProv**: [boolean] If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before.
+-	**accessToOtherProv**:(Access to other prov): [boolean] If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before.
 
 
--	**accessToDetails**: [boolean] More details on the existing confidentiality requirements of this measurement.
+-	**accessToDetails**:(Access to details): [boolean] More details on the existing confidentiality requirements of this measurement.
 
 
--	**notes**: [string] Any additional notes.
+-	**notes**:(Notes): [string] Any additional notes.
 
 ## Reporter
 
 The individual or organization that is reporting and responsible for the quality of the data.
 
--	**reporterID**: (Primary Key) [string] Unique identifier for the person or organization that is reporting the data.
+-	**reporterID**:(Reporter id): (Primary Key) [string] Unique identifier for the person or organization that is reporting the data.
 
 
--	**siteIDDefault**: (Foreign key) [string] Used as default when a new sample is created by this reporter. See ID in Site table.
+-	**siteIDDefault**:(Site id default): (Foreign key) [string] Used as default when a new sample is created by this reporter. See ID in Site table.
 
 
--	**labIDDefault**: (Foreign key) [string] Used as default when a new sample is created by this reporter. See ID in Lab table.
+-	**labIDDefault**:(Lab id default): (Foreign key) [string] Used as default when a new sample is created by this reporter. See ID in Lab table.
 
 
--	**contactName**: [string] Full Name of the reporter, either an organization or individual.
+-	**contactName**:(Contact name): [string] Full Name of the reporter, either an organization or individual.
 
 
--	**contactEmail**: [string] Contact e-mail address.
+-	**contactEmail**:(Contact email): [string] Contact e-mail address.
 
 
--	**contactPhone**: [string] Contact phone number.
+-	**contactPhone**:(Contact phone): [string] Contact phone number.
 
 
--	**notes**: [string] Any additional notes.
+-	**notes**:(Notes): [string] Any additional notes.
 
 ## Lab
 
 Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
 
--	**labID**: (Primary Key) [string] Unique identifier for the laboratory.
+-	**labID**:(Lab id): (Primary Key) [string] Unique identifier for the laboratory.
 
 
--	**assayMethodIDDefault**: (Foreign key) [string] Used as default when a new measurement is created for this lab. See ID in AssayMethod table.
+-	**assayMethodIDDefault**:(Assay method id default): (Foreign key) [string] Used as default when a new measurement is created for this lab. See ID in AssayMethod table.
 
 
--	**name**: [string] Name corresponding to lab.
+-	**name**:(Name): [string] Name corresponding to lab.
 
 
--	**contactName**: [string] Contact person or group, for the lab.
+-	**contactName**:(Contact name): [string] Contact person or group, for the lab.
 
 
--	**contactEmail**: [string] Contact e-mail address, for the lab.
+-	**contactEmail**:(Contact email): [string] Contact e-mail address, for the lab.
 
 
--	**contactPhone**: [string] Contact phone number, for the lab.
+-	**contactPhone**:(Contact phone): [string] Contact phone number, for the lab.
 
 
--	**updateDate**: [date] date information was provided or updated.
+-	**updateDate**:(Update date): [date] date information was provided or updated.
 
 ## AssayMethod
 
 The assay method that was used to perform testing. Create a new record if there are changes (improvements) to an existing assay method. Keep the same ID and use an updated version. A new record for a new version can include only the fields that changed, however, we recommend duplicating existing fields to allow each record to clearly describe all steps. Add a current date when recording a new version to an assay.
 
--	**assayMethodID**: (Primary Key) [string] Unique identifier for the assay method.
+-	**assayMethodID**:(Assay method id): (Primary Key) [string] Unique identifier for the assay method.
 
 
--	**instrumentID**: (Foreign key) [string] Links with the Instrument table to describe instruments used for the measurement.
+-	**instrumentID**:(Instrument id): (Foreign key) [string] Links with the Instrument table to describe instruments used for the measurement.
 
 
--	**name**: [string] Name of the assay method.
+-	**name**:(Name): [string] Name of the assay method.
 
 
--	**version**: [string] Version of the assay. Semantic versioning is recommended.
+-	**version**:(Version): [string] Version of the assay. Semantic versioning is recommended.
 
 
--	**summary**: [string] Short description of the assay and how it is different from the other assay methods.
+-	**summary**:(Summary): [string] Short description of the assay and how it is different from the other assay methods.
 
 
--	**referenceLink**: [string] Link to standard operating procedure.
+-	**referenceLink**:(Reference link): [string] Link to standard operating procedure.
 
 
--	**date**: [date] date on which the assayMethod was created or updated (for version update).
+-	**date**:(Date): [date] date on which the assayMethod was created or updated (for version update).
 
 
--	**aliasID**: [string] ID of an assay that is the same or similar. a comma separated list.
+-	**aliasID**:(Alias id): [string] ID of an assay that is the same or similar. a comma separated list.
 
 
--	**sampleSizeL**: [float] Size of the sample that is analyzed in liters.
+-	**sampleSizeL**:(Sample size l): [float] Size of the sample that is analyzed in liters.
 
 
--	**loq**: [float] Limit of quantification (LOQ) for this method if one exists.
+-	**loq**:(Loq): [float] Limit of quantification (LOQ) for this method if one exists.
 
 
--	**lod**: [float] Limit of detection (LOD) for this method if one exists.
+-	**lod**:(Lod): [float] Limit of detection (LOD) for this method if one exists.
 
 
--	**unit**: [category] Unit used by this method, and applicable to the LOD and LOQ.
+-	**unit**:(Unit): [category] Unit used by this method, and applicable to the LOD and LOQ.
 	-	`gcPMMoV`: Gene copies per copy of PMMoV.
 	-	`gcMl`: Gene copies per milliliter.
 	-	`gcGms`: Gene copies per gram solids.
@@ -517,99 +517,99 @@ The assay method that was used to perform testing. Create a new record if there 
 	-	`gcCrA`: Gene copies per copy of crAssphage.
 	-	`other`: Other measurement of viral copies. Add description to unitOther.
 
--	**unitOther**: [string] Unit used by this method, that are applicable to the LOD and LOQ.
+-	**unitOther**:(Unit other): [string] Unit used by this method, that are applicable to the LOD and LOQ.
 
 
--	**methodConc**: [string] Description of the method used to concentrate the sample
+-	**methodConc**:(Method conc): [string] Description of the method used to concentrate the sample
 
 
--	**methodExtract**: [string] Description of the method used to extract the sample
+-	**methodExtract**:(Method extract): [string] Description of the method used to extract the sample
 
 
--	**methodPcr**: [string] Description of the PCR method used
+-	**methodPcr**:(Method pcr): [string] Description of the PCR method used
 
 
--	**qualityAssQC**: [string] Description of the quality control steps taken
+-	**qualityAssQC**:(Quality ass qc): [string] Description of the quality control steps taken
 
 
--	**inhibition**: [string] Description of the inhibition parameters.
+-	**inhibition**:(Inhibition): [string] Description of the inhibition parameters.
 
 
--	**surrogateRecovery**: [string] Description of the surrogate recovery for this method.
+-	**surrogateRecovery**:(Surrogate recovery): [string] Description of the surrogate recovery for this method.
 
 ## Instrument
 
 Instruments that are used for measures in WWMeasure and SiteMeasure. The assay method for viral measurement are described in AssayMethod.
 
--	**instrumentID**: (Primary Key) [string] Unique identifier for the instrument.
+-	**instrumentID**:(Instrument id): (Primary Key) [string] Unique identifier for the instrument.
 
 
--	**name**: [string] Name of the instrument used to perform the measurement.
+-	**name**:(Name): [string] Name of the instrument used to perform the measurement.
 
 
--	**model**: [string] Model number or version of the instrument.
+-	**model**:(Model): [string] Model number or version of the instrument.
 
 
--	**description**: [string] Description of the instrument.
+-	**description**:(Description): [string] Description of the instrument.
 
 
--	**alias**: [string] ID of an assay that is the same or similar. A comma separated list.
+-	**alias**:(Alias): [string] ID of an assay that is the same or similar. A comma separated list.
 
 
--	**referenceLink**: [string] Link to reference for the instrument.
+-	**referenceLink**:(Reference link): [string] Link to reference for the instrument.
 
 
--	**type**: [category] Type of instrument used to perform the measurement.
+-	**type**:(Type): [category] Type of instrument used to perform the measurement.
 	-	`online`: An online sensor
 	-	`lab`: Offline laboratory analysis
 	-	`hand`: A handheld measurement analyzer.
 	-	`atline`: An atline analyzer with sampler.
 	-	`other`: An other type of measurement instrument. Add description to instrumentTypeOther.
 
--	**typeOther**: [string] Description of the instrument in case it is not listed in instrumentType.
+-	**typeOther**:(Type other): [string] Description of the instrument in case it is not listed in instrumentType.
 
 ## Polygon
 
 A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.
 
--	**polygonID**: (Primary Key) [string] Unique identifier for the polygon.
+-	**polygonID**:(Polygon id): (Primary Key) [string] Unique identifier for the polygon.
 
 
--	**name**: [string] Descriptive name of the polygon.
+-	**name**:(Name): [string] Descriptive name of the polygon.
 
 
--	**pop**: [integer] Approximate population size of people living inside the polygon.
+-	**pop**:(Pop): [integer] Approximate population size of people living inside the polygon.
 
 
--	**type**: [category] Type of polygon.
+-	**type**:(Type): [category] Type of polygon.
 	-	`swrCat`: Sewer catchment area.
 	-	`hlthReg`: Health region served by the sewer network
 
--	**wkt**: [string] well known text of the polygon
+-	**wkt**:(Wkt): [string] well known text of the polygon
 
 
--	**file**: [blob] File containing the geometry of the polygon, blob format.
+-	**file**:(File): [blob] File containing the geometry of the polygon, blob format.
 
 
--	**link**: [string] Link to an external reference that describes the geometry of the polygon.
+-	**link**:(Link): [string] Link to an external reference that describes the geometry of the polygon.
 
 ## CovidPublicHealthData
 
 Covid-19 patient data for a specified polygon.
 
--	**cphdID**: (Primary Key) [string] Unique identifier for the table.
+-	**cphdID**:(Cphd id): (Primary Key) [string] Unique identifier for the table.
 
 
--	**reporterID**: (Foreign key) [string] ID of the reporter who gave this data.
+-	**reporterID**:(Reporter id): (Foreign key) [string] ID of the reporter who gave this data.
 
 
--	**polygonID**: (Foreign key) [string] Links with the Polygon table.
+-	**polygonID**:(Polygon id): (Foreign key) [string] Links with the Polygon table.
 
 
--	**date**: [string] date of reporting for covid-19 measure.
+-	**date**:(Date): [string] date of reporting for covid-19 measure.
 
 
--	**type**: [category] Type of covid-19 patient data.
+-	**type**:(Type): [category] Type of covid-19 patient data.
 	-	`conf`: Number of confirmed cases. This measure should be accompanied by dateType.
 	-	`active`: Number of active cases.
 	-	`test`: Number of tests performed.
@@ -618,31 +618,31 @@ Covid-19 patient data for a specified polygon.
 	-	`hospCen`: Hospital census or the number of people admitted with covid-19.
 	-	`hospAdm`: Hospital admissions or patients newly admitted to hospital.
 
--	**dateType**: [category] Type of date used for conf cases. Typically report or episode are reported. onset and test date is not usually reported within aggregate data.
+-	**dateType**:(Date type): [category] Type of date used for conf cases. Typically report or episode are reported. onset and test date is not usually reported within aggregate data.
 	-	`episode`: Episode date is the earliest of onset, test or reported date.
 	-	`onset`: Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, episode is used.
 	-	`report`: Date that the numbers were reported publicly. Typically, reported data and this measure is most commonly reported and used.
 	-	`test`: Date that the covid-19 test was performed.
 
--	**value**: [float] The numeric value that is being reported.
+-	**value**:(Value): [float] The numeric value that is being reported.
 
 
--	**notes**: [string] Any additional notes.
+-	**notes**:(Notes): [string] Any additional notes.
 
 ## Lookup
 
 Used for lookup values of all category based columns
 
--	**tableName**: [string] Name of the Table
+-	**tableName**:(Table name): [string] Name of the Table
 
 
--	**columnName**: [string] Name for the column
+-	**columnName**:(Column name): [string] Name for the column
 
 
--	**value**: [string] Name of the value
+-	**value**:(Value): [string] Name of the value
 
 
--	**description**: [string] Name of the description
+-	**description**:(Description): [string] Name of the description
 
 
 

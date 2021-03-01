@@ -77,6 +77,7 @@ wbe_metadata_generation <- function(curr_wd = getwd(), lang = "fr"){
     variableDesc_var_nm <- paste0("variableDesc", "_", lang)
     tableDesc_var_nm<- paste0("tableDesc", "_", lang)
     cats_desc_nm <- paste0("desc", "_", lang)
+    variableLabel_nm <- paste0("variableLabel", "_", lang)
 
     md_str <-
         tbls$tableName %>%
@@ -108,6 +109,8 @@ wbe_metadata_generation <- function(curr_wd = getwd(), lang = "fr"){
 
                     type_str <- if(is.na(cur_col_details$variableType) | nchar(cur_col_details$variableType) == 0){""}else{glue(" [{cur_col_details$variableType}]")}
 
+
+
                     vals_str <-
                         if(cur_col_details$variableType == "category"){
 
@@ -128,7 +131,11 @@ wbe_metadata_generation <- function(curr_wd = getwd(), lang = "fr"){
 
                         } else{""}
 
-                    glue("-\t**{curr_col}**:{key_str}{type_str} {cur_col_details[[variableDesc_var_nm]]}\n{vals_str}")
+                    #############################################
+                    #
+                    # This glue is important for the order and formating of the metadata file for variables
+                    #
+                    glue("-\t**{curr_col}**:({cur_col_details[[variableLabel_nm]]}):{key_str}{type_str} {cur_col_details[[variableDesc_var_nm]]}\n{vals_str}")
                 })
 
             md_cols_all <- md_cols %>% paste0(collapse = "\n\n")
@@ -439,12 +446,11 @@ wbe_db_setup <- function(lang = "en"){
     wbe_sql_write_db_creation(lang = lang)
     wbe_create_db_from_script(lang = lang)
 }
-#
-# wbe_db_setup("en")
-# wbe_metadata_write("en")
-# wbe_metadata_write("")
-langs <- c("en", "fr")
 
+
+########################################
+#' Do things for diffferent languages
+langs <- c("en", "fr")
 lapply(langs, wbe_db_setup)
 lapply(langs, wbe_metadata_write)
 
