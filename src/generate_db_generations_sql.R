@@ -403,7 +403,7 @@ wbe_sql_write_db_creation <- function(lang = "en",
 
 #############################################
 #'
-#'
+#' Writed the ERD file.
 #'
 #'
 wbe_generate_erd <- function(
@@ -497,7 +497,7 @@ wbe_generate_erd <- function(
                              node_attrs = "fontname = 'Arial'",
                              columnArrows = TRUE)
     g <- dm_render_graph(graph)
-    g
+    #g
     svg_str <- export_svg(g)
 
 
