@@ -53,11 +53,11 @@ CREATE TABLE IF NOT EXISTS [WWMeasure] (
 	[accessToOtherProv] integer, --If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before
 	[accessToDetails] integer, --More details on the existing confidentiality requirements of this measurement.
 	[notes] char, --Any additional notes.
-	FOREIGN KEY ([sampleID]) REFERENCES NA(NA) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY ([sampleID]) REFERENCES Sample(sampleID) DEFERRABLE INITIALLY DEFERRED,
 	FOREIGN KEY ([labID]) REFERENCES Lab(labID) DEFERRABLE INITIALLY DEFERRED,
 	FOREIGN KEY ([assayID]) REFERENCES AssayMethod(assayID) DEFERRABLE INITIALLY DEFERRED,
 	FOREIGN KEY ([instrumentID]) REFERENCES Instrument(instrumentID) DEFERRABLE INITIALLY DEFERRED,
-	FOREIGN KEY ([reporterID]) REFERENCES reporter(reporterID) DEFERRABLE INITIALLY DEFERRED
+	FOREIGN KEY ([reporterID]) REFERENCES Reporter(reporterID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [Site] (
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS [Site] (
 	[polygonID] char, --Links with the Polygon table, this should encompass the area that typically drains into this site.
 	[sewerNetworkFileLink] char, --Link to a file that has any detailed information about the sewer network associated with the site (any format).
 	[sewerNetworkFileBLOB] integer, --A file blob that has any detailed information about the sewer network associated with the site (any format).
-	FOREIGN KEY ([polygonID]) REFERENCES NA(NA) DEFERRABLE INITIALLY DEFERRED
+	FOREIGN KEY ([polygonID]) REFERENCES Polygon(polygonID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [SiteMeasure] (
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS [SiteMeasure] (
 	[notes] char, --Any additional notes.
 	FOREIGN KEY ([siteID]) REFERENCES Site(siteID) DEFERRABLE INITIALLY DEFERRED,
 	FOREIGN KEY ([instrumentID]) REFERENCES Instrument(instrumentID) DEFERRABLE INITIALLY DEFERRED,
-	FOREIGN KEY ([reporterID]) REFERENCES reporter(reporterID) DEFERRABLE INITIALLY DEFERRED
+	FOREIGN KEY ([reporterID]) REFERENCES Reporter(reporterID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [Reporter] (

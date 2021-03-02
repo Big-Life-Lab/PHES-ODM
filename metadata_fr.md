@@ -45,22 +45,22 @@ Commentaire sur l'ERD dans [Lucidcharts](https://lucid.app/lucidchart/invitation
 
 L'échantillon est un volume d'eau usée représentatif de l'eau présente sur un site, qui est ensuite analysé en laboratoire.
 
--	**sampleID**:(Identifiant de l'échantillon): (Primary Key) [string] Identifiant unique pour l'échantillon. Suggestion:siteID-date-index.
+-	**sampleID**:(Identifiant de l'<U+FFFD>chantillon): (Primary Key) [string] Identifiant unique pour l'<U+FFFD>chantillon. Suggestion:siteID-date-index.
 
 
--	**siteID**:(Identifiant du site): (Foreign key) [string] Crée un lien avec la table "Site" pour décrire le point d'échantillonage.
+-	**siteID**:(Identifiant du site): (Foreign key) [string] Cr<U+FFFD>e un lien avec la table "Site" pour d<U+FFFD>crire le point d'<U+FFFD>chantillonage.
 
 
--	**dateTime**:(Date et heure): [datetime] Date, heure et fuseau horaire de collecte d'un échantillon ponctuel.
+-	**dateTime**:(Date et heure): [datetime] Date, heure et fuseau horaire de collecte d'un <U+FFFD>chantillon ponctuel.
 
 
--	**dateTimeStart**:(Date et heure de début): [datetime] Date, heure et fuseau horaire de début de collecte d'un échantillon composite.
+-	**dateTimeStart**:(Date et heure de d<U+FFFD>but): [datetime] Date, heure et fuseau horaire de d<U+FFFD>but de collecte d'un <U+FFFD>chantillon composite.
 
 
--	**dateTimeEnd**:(Date et heure de fin): [datetime] Date, heure et fuseau horaire de fin de collecte d'un échantillon composite.
+-	**dateTimeEnd**:(Date et heure de fin): [datetime] Date, heure et fuseau horaire de fin de collecte d'un <U+FFFD>chantillon composite.
 
 
--	**type**:(Type): [category] Type d'échantillon.
+-	**type**:(Type): [category] Type d'<U+FFFD>chantillon.
 	-	`rawWW`: Eau usée brute
 	-	`swrSed`: Sédiments provenant des égouts.
 	-	`pstGrit`: Eau usée après dégrillage et dessablage.
@@ -72,10 +72,10 @@ L'échantillon est un volume d'eau usée représentatif de l'eau présente sur u
 	-	`faeces`: Matière fécale.
 	-	`other`: Autre type de site d'échantillonnage. Ajouter une description dans la colonne "typeOther"
 
--	**typeOther**:(Type autre): [string] Description d'un type d'échantillon ne faisant pas partie des options disponibles.
+-	**typeOther**:(Type autre): [string] Description d'un type d'<U+FFFD>chantillon ne faisant pas partie des options disponibles.
 
 
--	**collection**:(Méthode de collecte): [category] Méthode utilisée pour échantillonner.
+-	**collection**:(M<U+FFFD>thode de collecte): [category] M<U+FFFD>thode utilis<U+FFFD>e pour <U+FFFD>chantillonner.
 	-	`cpTP24h`: Un échantillon composite proportionnel au temps prélevé sur 24 heures, généralement prélevé par un auto-échantilonneur.
 	-	`cpFP24h`: Un échantillon composite proportionnel au débit prélevé sur 24 heures, généralement prélevé par un auto-échantilonneur.
 	-	`grb`: Un seul échantillon ponctuel représentatif.
@@ -85,37 +85,37 @@ L'échantillon est un volume d'eau usée représentatif de l'eau présente sur u
 	-	`mooreSw`: Un échantillon passif collecté par la méthode de Moore.
 	-	`other`: Autre méthode de collecte. Ajouter une description dans la colonne "descriptionOther"
 
--	**collectionOther**:(Méthode de collecte autre): [string] Description d'une méthode d'échantillonnage ne faisant pas partie des options disponibles.
+-	**collectionOther**:(M<U+FFFD>thode de collecte autre): [string] Description d'une m<U+FFFD>thode d'<U+FFFD>chantillonnage ne faisant pas partie des options disponibles.
 
 
--	**preTreatment**:(Pré-traitement): [boolean] L'échantillon a-t-il été chimiquement altéré par un ajout de stabilisant ou autre?
+-	**preTreatment**:(Pr<U+FFFD>-traitement): [boolean] L'<U+FFFD>chantillon a-t-il <U+FFFD>t<U+FFFD> chimiquement alt<U+FFFD>r<U+FFFD> par un ajout de stabilisant ou autre?
 
 
--	**preTreatmentDescription**:(Description du pré-traitment): [string] Description du pré-traitement le cas échéant.
+-	**preTreatmentDescription**:(Description du pr<U+FFFD>-traitment): [string] Description du pr<U+FFFD>-traitement le cas <U+FFFD>ch<U+FFFD>ant.
 
 
--	**pooled**:(Échantillon combiné): [boolean] S'il s'agit d'un échantillon combiné, c'est-à-dire s'il est composé de plusieurs échantillons "enfants"?
+-	**pooled**:(<U+FFFD>chantillon combin<U+FFFD>): [boolean] S'il s'agit d'un <U+FFFD>chantillon combin<U+FFFD>, c'est-<U+FFFD>-dire s'il est compos<U+FFFD> de plusieurs <U+FFFD>chantillons "enfants"?
 
 
--	**children**:(Enfants): [string] Si l'échantillon est liée à des sous-échantillons (soit parce qu'il s'agit d'un échantillon combiné ou parce que des sous-échantillons ont été prélevés dans cet échantillon), insérer les identifiant des échantillons enfants dans une liste séparée par des virgules.
+-	**children**:(Enfants): [string] Si l'<U+FFFD>chantillon est li<U+FFFD>e <U+FFFD> des sous-<U+FFFD>chantillons (soit parce qu'il s'agit d'un <U+FFFD>chantillon combin<U+FFFD> ou parce que des sous-<U+FFFD>chantillons ont <U+FFFD>t<U+FFFD> pr<U+FFFD>lev<U+FFFD>s dans cet <U+FFFD>chantillon), ins<U+FFFD>rer les identifiant des <U+FFFD>chantillons enfants dans une liste s<U+FFFD>par<U+FFFD>e par des virgules.
 
 
--	**parent**:(Parent): [string] Si l'échantillon a été combiné à un plus grand échantillon, indiquer l'identifiant du plus grand échantillon.
+-	**parent**:(Parent): [string] Si l'<U+FFFD>chantillon a <U+FFFD>t<U+FFFD> combin<U+FFFD> <U+FFFD> un plus grand <U+FFFD>chantillon, indiquer l'identifiant du plus grand <U+FFFD>chantillon.
 
 
--	**sizeL**:(Volume l): [float] Volume total d'eau ou de boue prélevée.
+-	**sizeL**:(Volume l): [float] Volume total d'eau ou de boue pr<U+FFFD>lev<U+FFFD>e.
 
 
--	**fieldSampleTempC**:(Température de l'échantillon de terrain c): [float] Temprature à laquelle l'échantillon était stocké pendant l'échantillonnage. Ce champ est principalement pertinent pour les échantillons composites, qui peuvent être stockées à température ambiante ou réfrigérés durant l'échantillonnage.
+-	**fieldSampleTempC**:(Temp<U+FFFD>rature de l'<U+FFFD>chantillon de terrain c): [float] Temprature <U+FFFD> laquelle l'<U+FFFD>chantillon <U+FFFD>tait stock<U+FFFD> pendant l'<U+FFFD>chantillonnage. Ce champ est principalement pertinent pour les <U+FFFD>chantillons composites, qui peuvent <U+FFFD>tre stock<U+FFFD>es <U+FFFD> temp<U+FFFD>rature ambiante ou r<U+FFFD>frig<U+FFFD>r<U+FFFD>s durant l'<U+FFFD>chantillonnage.
 
 
--	**shippedOnIce**:(Expédié sur glace): [boolean] L'échantillon a-t-il été gardé au froid lors du transport vers le laboratoire?
+-	**shippedOnIce**:(Exp<U+FFFD>di<U+FFFD> sur glace): [boolean] L'<U+FFFD>chantillon a-t-il <U+FFFD>t<U+FFFD> gard<U+FFFD> au froid lors du transport vers le laboratoire?
 
 
--	**storageTempC**:(Température de stockage c): [float] Température de stockage de l'échantillon en degrés Celsius
+-	**storageTempC**:(Temp<U+FFFD>rature de stockage c): [float] Temp<U+FFFD>rature de stockage de l'<U+FFFD>chantillon en degr<U+FFFD>s Celsius
 
 
--	**qualityFlag**:(Indicateur de mauvaise qualité): [boolean] Le reporteur a-t-il des doutes sur la qualité de l'échantillon?
+-	**qualityFlag**:(Indicateur de mauvaise qualit<U+FFFD>): [boolean] Le reporteur a-t-il des doutes sur la qualit<U+FFFD> de l'<U+FFFD>chantillon?
 
 
 -	**notes**:(Notes): [string] Ajouter toutes notes additionnelles.
@@ -124,39 +124,39 @@ L'échantillon est un volume d'eau usée représentatif de l'eau présente sur u
 
 Résultat de mesure (une seule variable à la fois) pour un échantillon d'eau usée. Cette table inclut des données typiquement collectées par les techniciens de laboratoires d'analyse des eaux usées. Ces mesures sont réalisées à l'aide d'une méthode d'analyse (voir la table "AssayMethod") ou encore à l'aide d'un instrument spécifique (voir la table "Instrument'). Les mesures réalise in-situ au site d'échantilonnage sont reportées dans la table "SiteMeasure".
 
--	**uWwMeasureID**:(id u mesure eaux usées): (Primary Key) [string] Identifiant unique pour la mesure pour la table "WWMeasurement"
+-	**uWwMeasureID**:(id u mesure eaux us<U+FFFD>es): (Primary Key) [string] Identifiant unique pour la mesure pour la table "WWMeasurement"
 
 
--	**wwMeasureID**:(id mesure eaux usées): [string] Identifiat unique utilisé dans la table horizontale seulement. Utiliser quand toutes les mesures effectuées sur un échantillon sont réalisées en même temps dans le même laboratoire. Suggestion: siteID_sampleID_LabID_reportDate_ID.
+-	**wwMeasureID**:(id mesure eaux us<U+FFFD>es): [string] Identifiat unique utilis<U+FFFD> dans la table horizontale seulement. Utiliser quand toutes les mesures effectu<U+FFFD>es sur un <U+FFFD>chantillon sont r<U+FFFD>alis<U+FFFD>es en m<U+FFFD>me temps dans le m<U+FFFD>me laboratoire. Suggestion: siteID_sampleID_LabID_reportDate_ID.
 
 
--	**sampleID**:(Identifiant de l'échantillon): (Foreign key) [string] Crée un lien avec la table "Sample" pour décrire l'échantillon mesuré.
+-	**sampleID**:(Identifiant de l'<U+FFFD>chantillon): (Foreign key) [string] Cr<U+FFFD>e un lien avec la table "Sample" pour d<U+FFFD>crire l'<U+FFFD>chantillon mesur<U+FFFD>.
 
 
--	**labID**:(Identifiant du laboratoire): (Foreign key) [string] Crée un lien avec la table "Lab" pour décrire le laboratoire effectuant la mesure.
+-	**labID**:(Identifiant du laboratoire): (Foreign key) [string] Cr<U+FFFD>e un lien avec la table "Lab" pour d<U+FFFD>crire le laboratoire effectuant la mesure.
 
 
--	**assayID**:(Identifiant de la méthode d'analyse): (Foreign key) [string] Crée un lien avec la table "AssayMethod" pour décrire la méthode employée pour effectuer la mesure. Utiliser l'identifiant de l'instrument pour des mesures non virales.
+-	**assayID**:(Identifiant de la m<U+FFFD>thode d'analyse): (Foreign key) [string] Cr<U+FFFD>e un lien avec la table "AssayMethod" pour d<U+FFFD>crire la m<U+FFFD>thode employ<U+FFFD>e pour effectuer la mesure. Utiliser l'identifiant de l'instrument pour des mesures non virales.
 
 
--	**instrumentID**:(Identifiant de l'instrument): (Foreign key) [string] Crée un lien avec la table "Instrument" l'appareil employé pour effectuer la mesure. Utiliser l'identifiant de la méthode d,analyse pour les mesures virales.
+-	**instrumentID**:(Identifiant de l'instrument): (Foreign key) [string] Cr<U+FFFD>e un lien avec la table "Instrument" l'appareil employ<U+FFFD> pour effectuer la mesure. Utiliser l'identifiant de la m<U+FFFD>thode d,analyse pour les mesures virales.
 
 
--	**reporterID**:(Identifiant du reporteur): (Foreign key) [string] Crée un lien avec les informations propres au reporteur associé à la mesure.
+-	**reporterID**:(Identifiant du reporteur): (Foreign key) [string] Cr<U+FFFD>e un lien avec les informations propres au reporteur associ<U+FFFD> <U+FFFD> la mesure.
 
 
--	**analysisDate**:(Date de l'analyse): [date] Date à laquelle la mesure a été réalisée en laboratoire.
+-	**analysisDate**:(Date de l'analyse): [date] Date <U+FFFD> laquelle la mesure a <U+FFFD>t<U+FFFD> r<U+FFFD>alis<U+FFFD>e en laboratoire.
 
 
--	**reportDate**:(Date de reportage de la donnée): [date] Date a laquelle la donnée a été reportée. Un échantillon pourrait avoir des mesures pour lesquelles la méthode d'analyse ou la méthode de reportage des données aurait changée. Dans ce cas, utiliser le même sampleID, mais créer une nouvelle entrée dans la table "WWMeasure avec un "MeasureID" différent, et la date de reportage de la donnée et l'identifiant de la méthode d'analyse appropriés.
+-	**reportDate**:(Date de reportage de la donn<U+FFFD>e): [date] Date a laquelle la donn<U+FFFD>e a <U+FFFD>t<U+FFFD> report<U+FFFD>e. Un <U+FFFD>chantillon pourrait avoir des mesures pour lesquelles la m<U+FFFD>thode d'analyse ou la m<U+FFFD>thode de reportage des donn<U+FFFD>es aurait chang<U+FFFD>e. Dans ce cas, utiliser le m<U+FFFD>me sampleID, mais cr<U+FFFD>er une nouvelle entr<U+FFFD>e dans la table "WWMeasure avec un "MeasureID" diff<U+FFFD>rent, et la date de reportage de la donn<U+FFFD>e et l'identifiant de la m<U+FFFD>thode d'analyse appropri<U+FFFD>s.
 
 
--	**fractionAnalyzed**:(Fraction analysée): [category] Fraction de l'échantillon employée pour la mesure.
+-	**fractionAnalyzed**:(Fraction analys<U+FFFD>e): [category] Fraction de l'<U+FFFD>chantillon employ<U+FFFD>e pour la mesure.
 	-	`liquid`: Fraction liquide.
 	-	`solid`: Fraction solide.
 	-	`mixed`: Échantillon homogénéisé/mélangé.
 
--	**type**:(Type): [category] Le paramètre mesuré avec cette analyse. Exemples: Une région de gène cible (cov), un biomarqueur (n) ou un indicateur de la qualité de l'eau (wq)
+-	**type**:(Type): [category] Le param<U+FFFD>tre mesur<U+FFFD> avec cette analyse. Exemples: Une r<U+FFFD>gion de g<U+FFFD>ne cible (cov), un biomarqueur (n) ou un indicateur de la qualit<U+FFFD> de l'eau (wq)
 	-	`covN1`: Gène nucleocapside N1 du SARS-CoV-2
 	-	`covN2`: Gène nucleocapside N2 du SARS-CoV-2
 	-	`covN3`: Gène nucleocapside N3 des virus similaires au SARS
@@ -179,10 +179,10 @@ Résultat de mesure (une seule variable à la fois) pour un échantillon d'eau u
 	-	`wqCond`: Conductivité
 	-	`other`: Autre catégorie de mesure. Ajouter une description de la catégorie dans la colonne "categoryOther".
 
--	**typeOther**:(Type autre): [string] Description d'un paramètre mesuré ne faisant pas partie des options disponibles.
+-	**typeOther**:(Type autre): [string] Description d'un param<U+FFFD>tre mesur<U+FFFD> ne faisant pas partie des options disponibles.
 
 
--	**unit**:(Unité): [category] Unité de mesure.
+-	**unit**:(Unit<U+FFFD>): [category] Unit<U+FFFD> de mesure.
 	-	`gcPMMoV`: Copies de gène ou de variant par copie de PMMoV
 	-	`gcMl`: Copies de gène ou de variant par millilitre.
 	-	`gcGs`: Copies de gène ou de variant par gramme de solides.
@@ -198,10 +198,10 @@ Résultat de mesure (une seule variable à la fois) pour un échantillon d'eau u
 	-	`pps`: Pourcentage de boues primaire (pour solides totaux)
 	-	`other`: Autre mesure de copies virales ou de qualité des eaux usées. Ajouter une description dans "unitOther"
 
--	**unitOther**:(Unité autre): [string] Description d'une unité de mesure ne faisant pas partie des options disponibles.
+-	**unitOther**:(Unit<U+FFFD> autre): [string] Description d'une unit<U+FFFD> de mesure ne faisant pas partie des options disponibles.
 
 
--	**aggregation**:(Agrégation): [category] Indicateur statistique utilisée pour rapporter la mesure effectuée. Chaque agrégation doit être reportée comme une mesure différente (avec un identifiant différent)
+-	**aggregation**:(Agr<U+FFFD>gation): [category] Indicateur statistique utilis<U+FFFD>e pour rapporter la mesure effectu<U+FFFD>e. Chaque agr<U+FFFD>gation doit <U+FFFD>tre report<U+FFFD>e comme une mesure diff<U+FFFD>rente (avec un identifiant diff<U+FFFD>rent)
 	-	`single`: La valeur n'a subi aucune agrégation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut être un réplica.
 	-	`mean`: Moyenne arithmétique.
 	-	`meanNr`: Moyenne arithmétique normalisée.
@@ -214,40 +214,40 @@ Résultat de mesure (une seule variable à la fois) pour un échantillon d'eau u
 	-	`sdNr`: L'écart type normalisé.
 	-	`other`: Autre méthode d'agrégation. Ajouter une description dans "aggregationOther".
 
--	**aggregationOther**:(Agrégation autre): [string] Description d'une agrégation ne faisant pas partie des options disponibles.
+-	**aggregationOther**:(Agr<U+FFFD>gation autre): [string] Description d'une agr<U+FFFD>gation ne faisant pas partie des options disponibles.
 
 
--	**index**:(Index): [integer] Index de la mesure dans le cas où la même mesure a été prise en replicata.
+-	**index**:(Index): [integer] Index de la mesure dans le cas o<U+FFFD> la m<U+FFFD>me mesure a <U+FFFD>t<U+FFFD> prise en replicata.
 
 
--	**value**:(Valeur): [float] La valeur numérique de la mesure effectuée.
+-	**value**:(Valeur): [float] La valeur num<U+FFFD>rique de la mesure effectu<U+FFFD>e.
 
 
--	**qualityFlag**:(Indicateur de mauvaise qualité): [boolean] Le reporteur de la mesure suspecte-t-il que la mesure est de mauvaise qualité?
+-	**qualityFlag**:(Indicateur de mauvaise qualit<U+FFFD>): [boolean] Le reporteur de la mesure suspecte-t-il que la mesure est de mauvaise qualit<U+FFFD>?
 
 
--	**accessToPublic**:(Accès au public): [boolean] Si "Non", la donnée ne sera pas accessible par le public. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToPublic**:(Acc<U+FFFD>s au public): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par le public. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToAllOrg**:(Accès à toutes les organisations): [boolean] Si "Non", la donnée ne sera pas accessible par toute organisation partenaire. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToAllOrg**:(Acc<U+FFFD>s <U+FFFD> toutes les organisations): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par toute organisation partenaire. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToSelf**:(Accès au reporteur lui-même): [boolean] Si "Non", la donnée ne sera pas accessible par le reporteur lui-même. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToSelf**:(Acc<U+FFFD>s au reporteur lui-m<U+FFFD>me): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par le reporteur lui-m<U+FFFD>me. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToPHAC**:(Accès à l'ASPC): [boolean] Si "Non", la donnée ne sera pas accessible par les employés de l'Agence de Santé Publique du Canada. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToPHAC**:(Acc<U+FFFD>s <U+FFFD> l'ASPC): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par les employ<U+FFFD>s de l'Agence de Sant<U+FFFD> Publique du Canada. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToLocalHA**:(Accès à l'autorité de santé publique locale): [boolean] Si "Non", la donnée ne sera pas accessible par les autorités de santé publique locales. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToLocalHA**:(Acc<U+FFFD>s <U+FFFD> l'autorit<U+FFFD> de sant<U+FFFD> publique locale): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par les autorit<U+FFFD>s de sant<U+FFFD> publique locales. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToProvHA**:(Accès à l'autorité de santé publique provinciale): [boolean] Si "Non", la donnée ne sera pas accessible par les autorités de santé publique provinciales. Si "Oui" ou laissé vide, la donnée sera accessible à l'autorité de santé publique de la province où l'échantillonnage a été réalisée.
+-	**accessToProvHA**:(Acc<U+FFFD>s <U+FFFD> l'autorit<U+FFFD> de sant<U+FFFD> publique provinciale): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par les autorit<U+FFFD>s de sant<U+FFFD> publique provinciales. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e sera accessible <U+FFFD> l'autorit<U+FFFD> de sant<U+FFFD> publique de la province o<U+FFFD> l'<U+FFFD>chantillonnage a <U+FFFD>t<U+FFFD> r<U+FFFD>alis<U+FFFD>e.
 
 
--	**accessToOtherProv**:(Accès aux autres prov): [boolean] Si "Non", la donnée ne sera pas accessible par les autorités de santé publique provinciales. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToOtherProv**:(Acc<U+FFFD>s aux autres prov): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par les autorit<U+FFFD>s de sant<U+FFFD> publique provinciales. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToDetails**:(Accès aux détails): [boolean] Indique si des informations supplémentaires sur la confidentialité de la mesure sont disponibles.
+-	**accessToDetails**:(Acc<U+FFFD>s aux d<U+FFFD>tails): [boolean] Indique si des informations suppl<U+FFFD>mentaires sur la confidentialit<U+FFFD> de la mesure sont disponibles.
 
 
 -	**notes**:(Notes): [string] Ajouter toutes notes additionnelles.
@@ -256,16 +256,16 @@ Résultat de mesure (une seule variable à la fois) pour un échantillon d'eau u
 
 Le site de collecte des échantilons d'eau usée. Cette table inclus plusieurs paramètres par défaut facilitant la création de nouvaux échantillons dans la table "Sample"
 
--	**siteID**:(Identifiant du site): (Primary Key) [string] Identifiant unique pour l'échantillon. Suggestion:siteID-date-index.
+-	**siteID**:(Identifiant du site): (Primary Key) [string] Identifiant unique pour l'<U+FFFD>chantillon. Suggestion:siteID-date-index.
 
 
--	**name**:(Nom): [string] Nom du site d'échantillonnage. Peut être le nom d'une station de traitement, d'une station de pompage, d'un campus, d'un regard d'égouts, etc.
+-	**name**:(Nom): [string] Nom du site d'<U+FFFD>chantillonnage. Peut <U+FFFD>tre le nom d'une station de traitement, d'une station de pompage, d'un campus, d'un regard d'<U+FFFD>gouts, etc.
 
 
--	**description**:(Description): [string] Description du site d'échantillonnage (ville, bâtiment, rue, etc.) pour mieux identifier le site d'échantillonnage.
+-	**description**:(Description): [string] Description du site d'<U+FFFD>chantillonnage (ville, b<U+FFFD>timent, rue, etc.) pour mieux identifier le site d'<U+FFFD>chantillonnage.
 
 
--	**type**:(Type): [category] Type de site ou d'institution du site d'échantillonnage.
+-	**type**:(Type): [category] Type de site ou d'institution du site d'<U+FFFD>chantillonnage.
 	-	`airPln`: Avion.
 	-	`corFcil`: Prison.
 	-	`school`: École.
@@ -289,67 +289,67 @@ Le site de collecte des échantilons d'eau usée. Cette table inclus plusieurs p
 	-	`ocean`: Océan, étendue d'eau naturelle.
 	-	`other`: Autre type de site. Ajouter une description dans "typeOther".
 
--	**typeOther**:(Type autre): [string] Description du site d'échantillonnage dans le cas où une description adéquate n'est pas disponible.
+-	**typeOther**:(Type autre): [string] Description du site d'<U+FFFD>chantillonnage dans le cas o<U+FFFD> une description ad<U+FFFD>quate n'est pas disponible.
 
 
--	**sampleTypeDefault**:(Type d'échantillon par défaut): [category] Type d'échantilon utilisé par défaut quand un nouvel échantillon est créé pour ce site. Se référer à la colonne "type" dans la table "Sample"
+-	**sampleTypeDefault**:(Type d'<U+FFFD>chantillon par d<U+FFFD>faut): [category] Type d'<U+FFFD>chantilon utilis<U+FFFD> par d<U+FFFD>faut quand un nouvel <U+FFFD>chantillon est cr<U+FFFD><U+FFFD> pour ce site. Se r<U+FFFD>f<U+FFFD>rer <U+FFFD> la colonne "type" dans la table "Sample"
 
 
--	**sampleTypeOtherDefault**:(Type d'échantillon autre défaut): [string] Type d'échantilon utilisé par défaut quand un nouvel échantillon est créé pour ce site. Se référer à la colonne "typeOther" dans la table "Sample"
+-	**sampleTypeOtherDefault**:(Type d'<U+FFFD>chantillon autre d<U+FFFD>faut): [string] Type d'<U+FFFD>chantilon utilis<U+FFFD> par d<U+FFFD>faut quand un nouvel <U+FFFD>chantillon est cr<U+FFFD><U+FFFD> pour ce site. Se r<U+FFFD>f<U+FFFD>rer <U+FFFD> la colonne "typeOther" dans la table "Sample"
 
 
--	**sampleCollectionDefault**:(Prélévement d'échantillons par défaut): [category] Méthode d'échantillonnage par défaut quand un nouvel échantillon est créé pour ce site. Se référer à la colonne "collection" dans la table "Sample"
+-	**sampleCollectionDefault**:(Pr<U+FFFD>l<U+FFFD>vement d'<U+FFFD>chantillons par d<U+FFFD>faut): [category] M<U+FFFD>thode d'<U+FFFD>chantillonnage par d<U+FFFD>faut quand un nouvel <U+FFFD>chantillon est cr<U+FFFD><U+FFFD> pour ce site. Se r<U+FFFD>f<U+FFFD>rer <U+FFFD> la colonne "collection" dans la table "Sample"
 
 
--	**sampleCollectOtherDefault**:(Prélévement d'un autre échantillon par défaut): [string] Méthode d'échantillonnage par défaut quand un nouvel échantillon est créé pour ce site. Se référer à la colonne "collectionOther" dans la table "Sample"
+-	**sampleCollectOtherDefault**:(Pr<U+FFFD>l<U+FFFD>vement d'un autre <U+FFFD>chantillon par d<U+FFFD>faut): [string] M<U+FFFD>thode d'<U+FFFD>chantillonnage par d<U+FFFD>faut quand un nouvel <U+FFFD>chantillon est cr<U+FFFD><U+FFFD> pour ce site. Se r<U+FFFD>f<U+FFFD>rer <U+FFFD> la colonne "collectionOther" dans la table "Sample"
 
 
--	**sampleStorageTempCDefault**:(Température de stockage de l'échantillon c par défaut): [float] Tempéraure de stockage par défaut quand un nouvel échantillon est créé pour ce site. Se référer à la colonne "storageTempC" dans la table "Sample"
+-	**sampleStorageTempCDefault**:(Temp<U+FFFD>rature de stockage de l'<U+FFFD>chantillon c par d<U+FFFD>faut): [float] Temp<U+FFFD>raure de stockage par d<U+FFFD>faut quand un nouvel <U+FFFD>chantillon est cr<U+FFFD><U+FFFD> pour ce site. Se r<U+FFFD>f<U+FFFD>rer <U+FFFD> la colonne "storageTempC" dans la table "Sample"
 
 
--	**measureFractionAnalyzedDefault**:(Fraction de mesure analysée par défaut): [category] Fraction par défaut quand une nouvelle mesure est créée pour cet échantillon. Se référer à la colonne "fracgtionAnalyzed" dans la table "WWMeasure"
+-	**measureFractionAnalyzedDefault**:(Fraction de mesure analys<U+FFFD>e par d<U+FFFD>faut): [category] Fraction par d<U+FFFD>faut quand une nouvelle mesure est cr<U+FFFD><U+FFFD>e pour cet <U+FFFD>chantillon. Se r<U+FFFD>f<U+FFFD>rer <U+FFFD> la colonne "fracgtionAnalyzed" dans la table "WWMeasure"
 
 
--	**geoLat**:(Géo lat): [float] Position géographique du site d'échantillonnage. Latitude exprimée en coordonnées décimales (ex. 45.424721)
+-	**geoLat**:(G<U+FFFD>o lat): [float] Position g<U+FFFD>ographique du site d'<U+FFFD>chantillonnage. Latitude exprim<U+FFFD>e en coordonn<U+FFFD>es d<U+FFFD>cimales (ex. 45.424721)
 
 
--	**geoLong**:(Géo long): [float] Position géographique du site d'échantillonnage. Longitude exprimée en coordonnées décimales (ex. -75.695000)
+-	**geoLong**:(G<U+FFFD>o long): [float] Position g<U+FFFD>ographique du site d'<U+FFFD>chantillonnage. Longitude exprim<U+FFFD>e en coordonn<U+FFFD>es d<U+FFFD>cimales (ex. -75.695000)
 
 
 -	**notes**:(Notes): [string] Ajouter toutes notes additionnelles.
 
 
--	**polygonID**:(Identifiant du polygone): (Foreign key) [string] Crée un lien vers la table "Polygon". Le polygon lié devrait englober la région qui se draine dans le site d'échantillonnage.
+-	**polygonID**:(Identifiant du polygone): (Foreign key) [string] Cr<U+FFFD>e un lien vers la table "Polygon". Le polygon li<U+FFFD> devrait englober la r<U+FFFD>gion qui se draine dans le site d'<U+FFFD>chantillonnage.
 
 
--	**sewerNetworkFileLink**:(Lien vers le fichier du réseau d'égouts): [string] Lien vers un fichier contenant toute information additionnelle au sujet du réseau d'égouts associé à ce site d'échantillonnage (tous les formats sont acceptés).
+-	**sewerNetworkFileLink**:(Lien vers le fichier du r<U+FFFD>seau d'<U+FFFD>gouts): [string] Lien vers un fichier contenant toute information additionnelle au sujet du r<U+FFFD>seau d'<U+FFFD>gouts associ<U+FFFD> <U+FFFD> ce site d'<U+FFFD>chantillonnage (tous les formats sont accept<U+FFFD>s).
 
 
--	**sewerNetworkFileBLOB**:(Fichier blob du réseau d'égouts): [blob] Un fichier contenant toute information additionnelle au sujet du réseau d'égouts associé à ce site d'échantillonnage (tous les formats sont acceptés).
+-	**sewerNetworkFileBLOB**:(Fichier blob du r<U+FFFD>seau d'<U+FFFD>gouts): [blob] Un fichier contenant toute information additionnelle au sujet du r<U+FFFD>seau d'<U+FFFD>gouts associ<U+FFFD> <U+FFFD> ce site d'<U+FFFD>chantillonnage (tous les formats sont accept<U+FFFD>s).
 
 ## SiteMeasure
 
 Résultat de mesure (une seule variable à la fois) pour un site d'échantillonnage. Cette table inclut des données typiquement collectées dans des stations de traitement des eaux usées et des sites d'échantillonnage de terrain. Ces mesures ne sont pas réalisées sur un échantillon, mais elles ajoutent des informations pertinentes pour l'analyse des résultats provenant des échantillons. Les mesures effectuées sur les échantilons eux-mêmes sont dans la table "WWMeasure".
 
--	**uSiteMeasureID**:(Identifiant unique de la mesure sur site): (Primary Key) [string] Identifiant unique pour le site d'échantillonnage.
+-	**uSiteMeasureID**:(Identifiant unique de la mesure sur site): (Primary Key) [string] Identifiant unique pour le site d'<U+FFFD>chantillonnage.
 
 
--	**siteMeasureID**:(Identifiant de la mesure sur site): [string] Identifiat unique utilisé dans la table horizontale seulement. Utiliser quand toutes les mesures effectuées sur le même échantillon.
+-	**siteMeasureID**:(Identifiant de la mesure sur site): [string] Identifiat unique utilis<U+FFFD> dans la table horizontale seulement. Utiliser quand toutes les mesures effectu<U+FFFD>es sur le m<U+FFFD>me <U+FFFD>chantillon.
 
 
--	**siteID**:(Identifiant du site): (Foreign key) [string] Crée un lien vers la table "Site" pour décrire le site d'échantillonnage.
+-	**siteID**:(Identifiant du site): (Foreign key) [string] Cr<U+FFFD>e un lien vers la table "Site" pour d<U+FFFD>crire le site d'<U+FFFD>chantillonnage.
 
 
--	**instrumentID**:(Identifiant de l'instrument): (Foreign key) [string] Crée un lien vers la table "Instrument" pour décrire l'appareil utilisé pour effectuer la mesure.
+-	**instrumentID**:(Identifiant de l'instrument): (Foreign key) [string] Cr<U+FFFD>e un lien vers la table "Instrument" pour d<U+FFFD>crire l'appareil utilis<U+FFFD> pour effectuer la mesure.
 
 
--	**reporterID**:(Identifiant du reporteur): (Foreign key) [string] Crée un lien avec les informations propres au reporteur associé à la mesure.
+-	**reporterID**:(Identifiant du reporteur): (Foreign key) [string] Cr<U+FFFD>e un lien avec les informations propres au reporteur associ<U+FFFD> <U+FFFD> la mesure.
 
 
--	**dateTime**:(Date et heure): [date] Date à laquelle la mesure a été réalisée.
+-	**dateTime**:(Date et heure): [date] Date <U+FFFD> laquelle la mesure a <U+FFFD>t<U+FFFD> r<U+FFFD>alis<U+FFFD>e.
 
 
--	**type**:(Type): [category] Type de mesure réalisée. Le préfixe "env" est utilisé pour une variable envioronnementale, alors que "ww" indique une mesure réalisée sur les eaux usées.
+-	**type**:(Type): [category] Type de mesure r<U+FFFD>alis<U+FFFD>e. Le pr<U+FFFD>fixe "env" est utilis<U+FFFD> pour une variable envioronnementale, alors que "ww" indique une mesure r<U+FFFD>alis<U+FFFD>e sur les eaux us<U+FFFD>es.
 	-	`envTemp`: Température ambiante.
 	-	`envRnF`: Pluie (toute précipitation sous forme liquide).
 	-	`envSnwF`: Neige (toute précipitations sous forme solide).
@@ -365,13 +365,13 @@ Résultat de mesure (une seule variable à la fois) pour un site d'échantillonn
 	-	`wwpH`: pH
 	-	`wwCond`: Conductivité
 
--	**typeOther**:(Type autre): [string] Description d'un paramètre mesuré ne faisant pas partie des options disponibles.
+-	**typeOther**:(Type autre): [string] Description d'un param<U+FFFD>tre mesur<U+FFFD> ne faisant pas partie des options disponibles.
 
 
--	**typeDescription**:(Description du type): [string] Ajouter toutes notes additionnelles en lien avec la mesure effectuée.
+-	**typeDescription**:(Description du type): [string] Ajouter toutes notes additionnelles en lien avec la mesure effectu<U+FFFD>e.
 
 
--	**aggregation**:(Agrégation): [category] Méthode d'agrégation utiliseée pour rapporter la mesure.
+-	**aggregation**:(Agr<U+FFFD>gation): [category] M<U+FFFD>thode d'agr<U+FFFD>gation utilise<U+FFFD>e pour rapporter la mesure.
 	-	`single`: La valeur n'a subi aucune agrégation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut être un réplica.
 	-	`mean`: Moyenne arithmétique.
 	-	`meanNr`: Moyenne arithmétique normalisée.
@@ -384,43 +384,43 @@ Résultat de mesure (une seule variable à la fois) pour un site d'échantillonn
 	-	`sdNr`: L'écart type normalisé.
 	-	`other`: Autre méthode d'agrégation. Ajouter une description dans "aggregationOther".
 
--	**aggregationOther**:(Agrégation autre): [string] Description d'une agrégation ne faisant pas partie des options disponibles.
+-	**aggregationOther**:(Agr<U+FFFD>gation autre): [string] Description d'une agr<U+FFFD>gation ne faisant pas partie des options disponibles.
 
 
--	**aggregationDesc**:(Agrégation desc): [string] Informations (ou référence) liée(s) à la méthode d'agrégation utilisée pour rapporter la mesure.
+-	**aggregationDesc**:(Agr<U+FFFD>gation desc): [string] Informations (ou r<U+FFFD>f<U+FFFD>rence) li<U+FFFD>e(s) <U+FFFD> la m<U+FFFD>thode d'agr<U+FFFD>gation utilis<U+FFFD>e pour rapporter la mesure.
 
 
--	**value**:(Valeur): [float] La valeur numérique de la mesure effectuée.
+-	**value**:(Valeur): [float] La valeur num<U+FFFD>rique de la mesure effectu<U+FFFD>e.
 
 
--	**unit**:(Unité): [string] L'unité de mesure
+-	**unit**:(Unit<U+FFFD>): [string] L'unit<U+FFFD> de mesure
 
 
--	**qualityFlag**:(Indicateur de mauvaise qualité): [boolean] Le reporteur de la mesure suspecte-t-il que la mesure est de mauvaise qualité?
+-	**qualityFlag**:(Indicateur de mauvaise qualit<U+FFFD>): [boolean] Le reporteur de la mesure suspecte-t-il que la mesure est de mauvaise qualit<U+FFFD>?
 
 
--	**accessToPublic**:(Accès au public): [boolean] Si "Non", la donnée ne sera pas accessible par le public. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToPublic**:(Acc<U+FFFD>s au public): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par le public. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToAllOrgs**:(Accès à toutes les organisations): [boolean] Si "Non", la donnée ne sera pas accessible par toute organisation partenaire. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToAllOrgs**:(Acc<U+FFFD>s <U+FFFD> toutes les organisations): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par toute organisation partenaire. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToSelf**:(Accès au reporteur lui-même): [boolean] Si "Non", la donnée ne sera pas accessible par le reporteur lui-même. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToSelf**:(Acc<U+FFFD>s au reporteur lui-m<U+FFFD>me): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par le reporteur lui-m<U+FFFD>me. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToPHAC**:(Accès à l'ASPC): [boolean] Si "Non", la donnée ne sera pas accessible par les employés de l'Agence de Santé Publique du Canada. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToPHAC**:(Acc<U+FFFD>s <U+FFFD> l'ASPC): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par les employ<U+FFFD>s de l'Agence de Sant<U+FFFD> Publique du Canada. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToLocalHA**:(Accès à l'autorité de santé publique locale): [boolean] Si "Non", la donnée ne sera pas accessible par les autorités de santé publique locales. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToLocalHA**:(Acc<U+FFFD>s <U+FFFD> l'autorit<U+FFFD> de sant<U+FFFD> publique locale): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par les autorit<U+FFFD>s de sant<U+FFFD> publique locales. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToProvHA**:(Accès à l'autorité de santé publique provinciale): [boolean] Si "Non", la donnée ne sera pas accessible par les autorités de santé publique provinciales. Si "Oui" ou laissé vide, la donnée sera accessible à l'autorité de santé publique de la province où l'échantillonnage a été réalisée.
+-	**accessToProvHA**:(Acc<U+FFFD>s <U+FFFD> l'autorit<U+FFFD> de sant<U+FFFD> publique provinciale): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par les autorit<U+FFFD>s de sant<U+FFFD> publique provinciales. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e sera accessible <U+FFFD> l'autorit<U+FFFD> de sant<U+FFFD> publique de la province o<U+FFFD> l'<U+FFFD>chantillonnage a <U+FFFD>t<U+FFFD> r<U+FFFD>alis<U+FFFD>e.
 
 
--	**accessToOtherProv**:(Accès aux autres provinces): [boolean] Si "Non", la donnée ne sera pas accessible par les autorités de santé publique provinciales. Si "Oui" ou laissé vide, la donnée leur sera accessible.
+-	**accessToOtherProv**:(Acc<U+FFFD>s aux autres provinces): [boolean] Si "Non", la donn<U+FFFD>e ne sera pas accessible par les autorit<U+FFFD>s de sant<U+FFFD> publique provinciales. Si "Oui" ou laiss<U+FFFD> vide, la donn<U+FFFD>e leur sera accessible.
 
 
--	**accessToDetails**:(Accès aux détails): [boolean] Indique si des informations supplémentaires sur la confidentialité de la mesure sont disponibles.
+-	**accessToDetails**:(Acc<U+FFFD>s aux d<U+FFFD>tails): [boolean] Indique si des informations suppl<U+FFFD>mentaires sur la confidentialit<U+FFFD> de la mesure sont disponibles.
 
 
 -	**notes**:(Notes): [string] Ajouter toutes notes additionnelles.
@@ -429,22 +429,22 @@ Résultat de mesure (une seule variable à la fois) pour un site d'échantillonn
 
 Le reporteur ou l'organisation responsable de la collecte de données ou responsable de la qualité des données reportées.
 
--	**reporterID**:(Identifiant du reporteur): (Primary Key) [string] Identifiant unique pour la personne ou l'organisation responsable des données rapportées.
+-	**reporterID**:(Identifiant du reporteur): (Primary Key) [string] Identifiant unique pour la personne ou l'organisation responsable des donn<U+FFFD>es rapport<U+FFFD>es.
 
 
--	**siteIDDefault**:(Identifiant du site par défaut): (Foreign key) [string] Identifiant de Site utilisé par défaut quand un nouvel échantillon est créé par ce reporteur. Se référer à la colonne "siteID" dans la table "Site"
+-	**siteIDDefault**:(Identifiant du site par d<U+FFFD>faut): (Foreign key) [string] Identifiant de Site utilis<U+FFFD> par d<U+FFFD>faut quand un nouvel <U+FFFD>chantillon est cr<U+FFFD><U+FFFD> par ce reporteur. Se r<U+FFFD>f<U+FFFD>rer <U+FFFD> la colonne "siteID" dans la table "Site"
 
 
--	**labIDDefault**:(Identifiant laboratoire par défaut): (Foreign key) [string] Identifiant de Lab utilisé par défaut quand un nouvel échantillon est créé par ce reporteur. Se référer à la colonne "labID" dans la table "Lab"
+-	**labIDDefault**:(Identifiant laboratoire par d<U+FFFD>faut): (Foreign key) [string] Identifiant de Lab utilis<U+FFFD> par d<U+FFFD>faut quand un nouvel <U+FFFD>chantillon est cr<U+FFFD><U+FFFD> par ce reporteur. Se r<U+FFFD>f<U+FFFD>rer <U+FFFD> la colonne "labID" dans la table "Lab"
 
 
 -	**contactName**:(Nom du contact): [string] Nom complet du reporter (personne ou organisation)
 
 
--	**contactEmail**:(Adresse électronique du contact): [string] Adresse courriel du contact.
+-	**contactEmail**:(Adresse <U+FFFD>lectronique du contact): [string] Adresse courriel du contact.
 
 
--	**contactPhone**:(Téléphone du contact): [string] Numéro de téléphone du contact.
+-	**contactPhone**:(T<U+FFFD>l<U+FFFD>phone du contact): [string] Num<U+FFFD>ro de t<U+FFFD>l<U+FFFD>phone du contact.
 
 
 -	**notes**:(Notes): [string] Ajouter toutes notes additionnelles.
@@ -456,7 +456,7 @@ Laboratoire effectuant des analyses d'échantillons d'eaux usées d'un ou plusie
 -	**labID**:(Identifiant du laboratoire): (Primary Key) [string] Identifiant unique pour le laboratoire.
 
 
--	**assayMethodIDDefault**:(Identifiant de la méthode d'analyse par défaut): (Foreign key) [string] Identifiant de la méthode d'analyse utilisée par défaut quand une nouvelle mesure est créé par ce laboratoire. Se référer à la colonne "assayMethodID" dans la table "AssayMethod"
+-	**assayMethodIDDefault**:(Identifiant de la m<U+FFFD>thode d'analyse par d<U+FFFD>faut): (Foreign key) [string] Identifiant de la m<U+FFFD>thode d'analyse utilis<U+FFFD>e par d<U+FFFD>faut quand une nouvelle mesure est cr<U+FFFD><U+FFFD> par ce laboratoire. Se r<U+FFFD>f<U+FFFD>rer <U+FFFD> la colonne "assayMethodID" dans la table "AssayMethod"
 
 
 -	**name**:(Nom): [string] Nom du laboratoire.
@@ -465,52 +465,52 @@ Laboratoire effectuant des analyses d'échantillons d'eaux usées d'un ou plusie
 -	**contactName**:(Nom du contact): [string] Personne contact de ce laboratoire.
 
 
--	**contactEmail**:(Adresse électronique du contact): [string] Adresse courriel du contact.
+-	**contactEmail**:(Adresse <U+FFFD>lectronique du contact): [string] Adresse courriel du contact.
 
 
--	**contactPhone**:(Téléphone du contact): [string] Numéro de téléphone du contact.
+-	**contactPhone**:(T<U+FFFD>l<U+FFFD>phone du contact): [string] Num<U+FFFD>ro de t<U+FFFD>l<U+FFFD>phone du contact.
 
 
--	**updateDate**:(Date de mise à jour): [date] Date où l'information a été reportée une première fois ou mise à jour.
+-	**updateDate**:(Date de mise <U+FFFD> jour): [date] Date o<U+FFFD> l'information a <U+FFFD>t<U+FFFD> report<U+FFFD>e une premi<U+FFFD>re fois ou mise <U+FFFD> jour.
 
 ## AssayMethod
 
 La méthode d'analyse utilisée pour réaliser les mesures. Crée une nouvelle rangée dans cette table si des changements (améliorations) sont apportées à une technique d'analyse existante. Garder le même identifiant et modifier le numéro de version. Une nouvelle rangée représentant une nouvelle version d'une méthode existante peut inclure des informations seulement dans les colonnes qui ont changé d'une version à l'autre, cependant, nous recommandons de remplir les autres colonnes avec les valeurs provenant de la version précédente afin de décrire clairement la méthode en entier. Ajouter la date courante lorsqu'une nouvelle rangée est créée.
 
--	**assayMethodID**:(Identifiant de la méthode d'analyse): (Primary Key) [string] Identifiant unique pour la méthode d'analyse.
+-	**assayMethodID**:(Identifiant de la m<U+FFFD>thode d'analyse): (Primary Key) [string] Identifiant unique pour la m<U+FFFD>thode d'analyse.
 
 
--	**instrumentID**:(Identifiant de l'instrument): (Foreign key) [string] Crée un lien vers la table "Instrument" pour décrire l'appareil utilisé pour effectuer la mesure.
+-	**instrumentID**:(Identifiant de l'instrument): (Foreign key) [string] Cr<U+FFFD>e un lien vers la table "Instrument" pour d<U+FFFD>crire l'appareil utilis<U+FFFD> pour effectuer la mesure.
 
 
--	**name**:(Nom): [string] Nom de la méthode d'analyse.
+-	**name**:(Nom): [string] Nom de la m<U+FFFD>thode d'analyse.
 
 
--	**version**:(Version): [string] Version de la méthode d'analyse. Un versionnement de type sémantique est recommandé.
+-	**version**:(Version): [string] Version de la m<U+FFFD>thode d'analyse. Un versionnement de type s<U+FFFD>mantique est recommand<U+FFFD>.
 
 
--	**summary**:(Résumé): [string] Brève description de la méthode d'analyse et de comment celle-ci diffère d'autres méthodes.
+-	**summary**:(R<U+FFFD>sum<U+FFFD>): [string] Br<U+FFFD>ve description de la m<U+FFFD>thode d'analyse et de comment celle-ci diff<U+FFFD>re d'autres m<U+FFFD>thodes.
 
 
--	**referenceLink**:(Lien vers référence): [string] Lien vers la procédure standard.
+-	**referenceLink**:(Lien vers r<U+FFFD>f<U+FFFD>rence): [string] Lien vers la proc<U+FFFD>dure standard.
 
 
--	**date**:(Date): [date] Date à laquelle la méthode d'analyse (ou une nouvelle version d'une méthode existante) a été crée.
+-	**date**:(Date): [date] Date <U+FFFD> laquelle la m<U+FFFD>thode d'analyse (ou une nouvelle version d'une m<U+FFFD>thode existante) a <U+FFFD>t<U+FFFD> cr<U+FFFD>e.
 
 
--	**aliasID**:(Identifiant de l'alias): [string] Identifiants d'autres méthodes d'analyse présentes dans la table qui sont similaires à la méthode courante. Insérer sous forme de liste séparée par des virgules.
+-	**aliasID**:(Identifiant de l'alias): [string] Identifiants d'autres m<U+FFFD>thodes d'analyse pr<U+FFFD>sentes dans la table qui sont similaires <U+FFFD> la m<U+FFFD>thode courante. Ins<U+FFFD>rer sous forme de liste s<U+FFFD>par<U+FFFD>e par des virgules.
 
 
--	**sampleSizeL**:(Volume de l'échantillon l): [float] Volume de l'échantillon analysé (en litres)
+-	**sampleSizeL**:(Volume de l'<U+FFFD>chantillon l): [float] Volume de l'<U+FFFD>chantillon analys<U+FFFD> (en litres)
 
 
--	**loq**:(Limite de quantification): [float] Limite de quantification pour cette méthode, le cas échéant.
+-	**loq**:(Limite de quantification): [float] Limite de quantification pour cette m<U+FFFD>thode, le cas <U+FFFD>ch<U+FFFD>ant.
 
 
--	**lod**:(Limite de détection): [float] Limite de détection pour cette méthode, le cas échéant.
+-	**lod**:(Limite de d<U+FFFD>tection): [float] Limite de d<U+FFFD>tection pour cette m<U+FFFD>thode, le cas <U+FFFD>ch<U+FFFD>ant.
 
 
--	**unit**:(Unité): [category] Unité de mesure utilisée par cette méthode et qui est applicable pour la limite de détection ou de quantification.
+-	**unit**:(Unit<U+FFFD>): [category] Unit<U+FFFD> de mesure utilis<U+FFFD>e par cette m<U+FFFD>thode et qui est applicable pour la limite de d<U+FFFD>tection ou de quantification.
 	-	`gcPMMoV`: Copies de gène ou de variant par copie de PMMoV
 	-	`gcMl`: Copies de gène ou de variant par millilitre.
 	-	`gcGms`: Copies de gène ou de variant par gramme de solides.
@@ -518,25 +518,25 @@ La méthode d'analyse utilisée pour réaliser les mesures. Crée une nouvelle r
 	-	`gcCrA`: Copies de gène ou de variant par copie de CrAssphage
 	-	`other`: Autre mesure de copies virales ou de qualité des eaux usées. Ajouter une description dans "unitOther"
 
--	**unitOther**:(Unité autre): [string] Unité de mesure utilisée par cette méthode et qui est applicable pour la limite de détection ou de quantification dans le cas où celle-ci n'est pas disponible.
+-	**unitOther**:(Unit<U+FFFD> autre): [string] Unit<U+FFFD> de mesure utilis<U+FFFD>e par cette m<U+FFFD>thode et qui est applicable pour la limite de d<U+FFFD>tection ou de quantification dans le cas o<U+FFFD> celle-ci n'est pas disponible.
 
 
--	**methodConc**:(Méthode de concentration): [string] Description de la méthode utilisée pour concentrer l'échantillon.
+-	**methodConc**:(M<U+FFFD>thode de concentration): [string] Description de la m<U+FFFD>thode utilis<U+FFFD>e pour concentrer l'<U+FFFD>chantillon.
 
 
--	**methodExtract**:(Méthode d'extraction): [string] Description de la méthode utilisée pour extraire l'échantillon.
+-	**methodExtract**:(M<U+FFFD>thode d'extraction): [string] Description de la m<U+FFFD>thode utilis<U+FFFD>e pour extraire l'<U+FFFD>chantillon.
 
 
--	**methodPcr**:(Méthode PCR): [string] Description de la m.éthode PCR utiisée.
+-	**methodPcr**:(M<U+FFFD>thode PCR): [string] Description de la m.<U+FFFD>thode PCR utiis<U+FFFD>e.
 
 
--	**qualityAssQC**:(Contrôle de qualité): [string] Description des étapes de contrôle de qualité mises en place dans la méthode.
+-	**qualityAssQC**:(Contr<U+FFFD>le de qualit<U+FFFD>): [string] Description des <U+FFFD>tapes de contr<U+FFFD>le de qualit<U+FFFD> mises en place dans la m<U+FFFD>thode.
 
 
--	**inhibition**:(Inhibition): [string] Description des paramètres d'inhibition liés à cette méthode.
+-	**inhibition**:(Inhibition): [string] Description des param<U+FFFD>tres d'inhibition li<U+FFFD>s <U+FFFD> cette m<U+FFFD>thode.
 
 
--	**surrogateRecovery**:(Récupération du virus substitut): [string] Description de la méthode de récupération du virus de substitution liée à cette méthode.
+-	**surrogateRecovery**:(R<U+FFFD>cup<U+FFFD>ration du virus substitut): [string] Description de la m<U+FFFD>thode de r<U+FFFD>cup<U+FFFD>ration du virus de substitution li<U+FFFD>e <U+FFFD> cette m<U+FFFD>thode.
 
 ## Instrument
 
@@ -548,16 +548,16 @@ L'instrument utilisé pour mesurer les échantillons et l'eau usée des sites d'
 -	**name**:(Nom): [string] Nom de l'instrument de mesure.
 
 
--	**model**:(Modèle): [string] Numéro de modèle et/ou de version de l'instrument de mesure.
+-	**model**:(Mod<U+FFFD>le): [string] Num<U+FFFD>ro de mod<U+FFFD>le et/ou de version de l'instrument de mesure.
 
 
 -	**description**:(Description): [string] Description de l'instrument.
 
 
--	**alias**:(Alias): [string] Identifiants d'autres instruments présents dans la table qui sont similaires à l'instrument courant. Insérer sous forme de liste séparée par des virgules.
+-	**alias**:(Alias): [string] Identifiants d'autres instruments pr<U+FFFD>sents dans la table qui sont similaires <U+FFFD> l'instrument courant. Ins<U+FFFD>rer sous forme de liste s<U+FFFD>par<U+FFFD>e par des virgules.
 
 
--	**referenceLink**:(Lien vers référence): [string] Lien vers un document de référence pour l'instrument de mesure.
+-	**referenceLink**:(Lien vers r<U+FFFD>f<U+FFFD>rence): [string] Lien vers un document de r<U+FFFD>f<U+FFFD>rence pour l'instrument de mesure.
 
 
 -	**type**:(Type): [category] Type de l'instrument de mesure.
@@ -567,7 +567,7 @@ L'instrument utilisé pour mesurer les échantillons et l'eau usée des sites d'
 	-	`atline`: Mesure à l'aide d'un échantillonneur.
 	-	`other`: Autre type d'appareil de mesure. Ajouter une description dans "instrumentTypeOther"
 
--	**typeOther**:(Type autre): [string] Description du type d'instrument dans le cas où il ne serait pas disponible.
+-	**typeOther**:(Type autre): [string] Description du type d'instrument dans le cas o<U+FFFD> il ne serait pas disponible.
 
 ## Polygon
 
@@ -576,10 +576,10 @@ Polygone englobant une région de la surface terrestre. Normalement, ces polygon
 -	**polygonID**:(Identifiant du polygone): (Primary Key) [string] Identifiant unique du polygone.
 
 
--	**name**:(Nom): [string] Nom du polygon (devrait être descriptif)
+-	**name**:(Nom): [string] Nom du polygon (devrait <U+FFFD>tre descriptif)
 
 
--	**pop**:(Population): [integer] Population approximative vivant dans la région représentée par le polygone.
+-	**pop**:(Population): [integer] Population approximative vivant dans la r<U+FFFD>gion repr<U+FFFD>sent<U+FFFD>e par le polygone.
 
 
 -	**type**:(Type): [category] Type de polygone.
@@ -589,28 +589,28 @@ Polygone englobant une région de la surface terrestre. Normalement, ces polygon
 -	**wkt**:(Wkt): [string] Description formelle du polygone (format Well-Known-Text (wkt))
 
 
--	**file**:(Fichier): [blob] Fichier représentant la géométrie du polygone (blob).
+-	**file**:(Fichier): [blob] Fichier repr<U+FFFD>sentant la g<U+FFFD>om<U+FFFD>trie du polygone (blob).
 
 
--	**link**:(Lien): [string] Lien vers une référence externe décrivant la géométrie du polygone.
+-	**link**:(Lien): [string] Lien vers une r<U+FFFD>f<U+FFFD>rence externe d<U+FFFD>crivant la g<U+FFFD>om<U+FFFD>trie du polygone.
 
 ## CovidPublicHealthData
 
 Données de patients pour la COVID-19 pour une région spécifiée par un polygone.
 
--	**cphdID**:(Identifiant de CPHD): (Primary Key) [string] Identifiant unique pour l'information de santé publique reportée.
+-	**cphdID**:(Identifiant de CPHD): (Primary Key) [string] Identifiant unique pour l'information de sant<U+FFFD> publique report<U+FFFD>e.
 
 
--	**reporterID**:(Identifiant du reporteur): (Foreign key) [string] Identifiant unique pour la personne ou l'organisation responsable des données rapportées.
+-	**reporterID**:(Identifiant du reporteur): (Foreign key) [string] Identifiant unique pour la personne ou l'organisation responsable des donn<U+FFFD>es rapport<U+FFFD>es.
 
 
--	**polygonID**:(Identifiant du polygone): (Foreign key) [string] Crée un lien vers la table "Polygon". Le polygon lié devrait englober la région représentée par les données consignées ici.
+-	**polygonID**:(Identifiant du polygone): (Foreign key) [string] Cr<U+FFFD>e un lien vers la table "Polygon". Le polygon li<U+FFFD> devrait englober la r<U+FFFD>gion repr<U+FFFD>sent<U+FFFD>e par les donn<U+FFFD>es consign<U+FFFD>es ici.
 
 
--	**date**:(Date): [string] Date de reportage des données de mesure de la COVID-19.
+-	**date**:(Date): [string] Date de reportage des donn<U+FFFD>es de mesure de la COVID-19.
 
 
--	**type**:(Type): [category] Type de donnée de mesure de la COVID-19.
+-	**type**:(Type): [category] Type de donn<U+FFFD>e de mesure de la COVID-19.
 	-	`conf`: Nombre de cas confirmés. La mesure devrait être accompagnée d'une valeur dans la colonne "dateType"
 	-	`active`: Nombre de cas actifs.
 	-	`test`: Nombre de tests effectués.
@@ -619,13 +619,13 @@ Données de patients pour la COVID-19 pour une région spécifiée par un polygo
 	-	`hospCen`: Rencensement des patients admis à un hôpital avec la COVID-19.
 	-	`hospAdm`: Nombre d'admissions ou nombre de patients admis à l'hôpital.
 
--	**dateType**:(Type de date): [category] Type de date utiisée pour reporter les données.
+-	**dateType**:(Type de date): [category] Type de date utiis<U+FFFD>e pour reporter les donn<U+FFFD>es.
 	-	`episode`: Date estimée à laquelle l'épisode de maladie s'est déclaré. Habituellement calculé en se basant sur la date des premiers symptômes, la date de test ou la date de reportage.
 	-	`onset`: Date à laquelle les premiers symptômes apparaissent. Cette donnée est souvent inconnue. La date d'épisode est alors communément utilisée.
 	-	`report`: Date à laquelle la donnée a été reportée à la santé publique. Cette mesure est communément utilisée.
 	-	`test`: Date à laquelle le test de COVID-19 a été effectué.
 
--	**value**:(Valeur): [float] La valeur numérique de la mesure reportée.
+-	**value**:(Valeur): [float] La valeur num<U+FFFD>rique de la mesure report<U+FFFD>e.
 
 
 -	**notes**:(Notes): [string] Ajouter toutes notes additionnelles.
