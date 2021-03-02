@@ -209,7 +209,7 @@ wbe_metadata_write <- function(lang = "fr",
     #Encoding(newstr)
 
     #Encoding(newstr[[32]])
-    md_tbls <- wbe_metadata_generation_tbl_list()
+    md_tbls <- wbe_metadata_generation_tbl_list(lang = lang)
     # newstr <- gsub(pattern = "FOR_REPLACE_LIST_OF_TABLES", replacement = md_tbls, x = newstr)
     #newstr <- str_replace( string = newstr, pattern = "FOR_REPLACE_LIST_OF_TABLES", replacement = md_tbls)
     tmplt2[tmplt2 ==  "FOR_REPLACE_LIST_OF_TABLES"] <- md_tbls
