@@ -16,10 +16,14 @@ Requirements for future tools and features:
 1. **Data mapping methods** - a collection of methods to:
    Read in data from templates into a database (SQLite supported).
    Conversion from "long" format to "wide" format.
+1. **data validation tool** - can validate a datafile and provide feedback of needed changes
+1. **data linking tools** - tools that will help ensure consistan summarization of Health data into summary results relevent for the WWTP
 1. **Data cleaning methods** - rules for cleaning raw ODM data. T
 1. **Visualization tools** - basic plots to visualize wastewater signals. Simple visualization tools can be part of vignettes to show how to analyze wastewater data.
 1. **Transformation functions** - functions to create derived variables and aggreagations. i.e. moving averages.
-1. **Open, public data examples within the repository** - Example data to build and test common tools and demonstrate ODM compliant data format.
+1. **Open, public data examples within the repository** - Example data to build
+and test common tools and demonstrate ODM compliant data format.
+
 
 ## Documentation
 
