@@ -409,6 +409,7 @@ wbe_sql_write_db_creation <- function(lang = "en",
 wbe_generate_erd <- function(
     lang = "fr",
     encoding = "UTF-8",
+    curr_wd = getwd(),
     tbls = read_csv(file.path(curr_wd, "Tables.csv")),
     variables = read_csv(file.path(curr_wd, "Variables.csv")),
     tableLabel_nm = paste0("tableLabel_", lang),
@@ -488,7 +489,13 @@ wbe_generate_erd <- function(
         )
     })
 
-    graph <- dm_create_graph(dm_f, rankdir = "LR", col_attr = c("column", "type"), view_type = "all")
+    graph <- dm_create_graph(dm_f,
+                             rankdir = "RL",
+                             col_attr = c("column", "type"),
+                             view_type = "all",
+                             edge_attrs = "dir = both, arrowtail = crow, arrowhead = odiamond",
+                             node_attrs = "fontname = 'Arial'",
+                             columnArrows = TRUE)
     g <- dm_render_graph(graph)
     g
     svg_str <- export_svg(g)
