@@ -26,8 +26,6 @@ Utilisez le diagramme des relations entre les entités pour identifier le type d
 
 ![](img/ERD.svg)
 
-Commentaire sur l'ERD dans [Lucidcharts](https://lucid.app/lucidchart/invitations/accept/adc1784b-e237-4a2f-947e-4503544d4510)
-
 
 
 
