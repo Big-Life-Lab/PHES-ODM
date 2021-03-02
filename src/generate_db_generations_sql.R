@@ -175,29 +175,48 @@ wbe_metadata_generation_tbl_list <-function(lang = "en", curr_wd = getwd()){
 #'
 #'
 #'
-#'
+#' wbe_metadata_write()
 wbe_metadata_write <- function(lang = "fr",
                                full_fn = wbe_meta_data(lang = lang),
                                full_fn_template = wbe_meta_data_template(lang = lang),
                                encoding = "UTF-8" , ...){
 
-    fileConn_tmp<-file(full_fn_template, encoding = encoding)
+    fileConn_tmp<-file(full_fn_template)#, encoding = encoding)
     tmplt <- readLines(full_fn_template, encoding = encoding)
     close(fileConn_tmp)
+    #Encoding(tmplt)
+    library(utf8)
+    #tmplt[[4]]
+    #tmplt[[1]]
+    #Encoding(tmplt[[32]])
 
 
+    tmplt2 <- tmplt #%>% paste0(collapse = "\n")
+
+
+
+
+    #Encoding(tmplt2)
+    #tmplt2 <- utf8_encode(tmplt2)
     md_str <- wbe_metadata_generation(lang = lang, ...)
 
+    tmplt2[tmplt2 ==  "FOR_REPLACE_LIST_OF_TABLES_DETAILS"] <- md_str
+    #tmplt2[[32]]
+    #Encoding(tmplt2[[32]])
+    #md_str <- utf8_encode(md_str)
     #newstr <- gsub(pattern = "FOR_REPLACE_LIST_OF_TABLES_DETAILS", replacement = md_str, x = tmplt)
-    newstr <- str_replace(string = tmplt, pattern = "FOR_REPLACE_LIST_OF_TABLES_DETAILS", replacement = md_str)
+    #newstr <- str_replace(string = tmplt2, pattern = "FOR_REPLACE_LIST_OF_TABLES_DETAILS", replacement = md_str)
+    #Encoding(newstr)
 
+    #Encoding(newstr[[32]])
     md_tbls <- wbe_metadata_generation_tbl_list()
     # newstr <- gsub(pattern = "FOR_REPLACE_LIST_OF_TABLES", replacement = md_tbls, x = newstr)
-    newstr <- str_replace( string = newstr, pattern = "FOR_REPLACE_LIST_OF_TABLES", replacement = md_tbls)
-
+    #newstr <- str_replace( string = newstr, pattern = "FOR_REPLACE_LIST_OF_TABLES", replacement = md_tbls)
+    tmplt2[tmplt2 ==  "FOR_REPLACE_LIST_OF_TABLES"] <- md_tbls
 
     fileConn<-file(full_fn, encoding = encoding)
-    writeLines(text = c(newstr), con = fileConn)
+    #writeLines(text = c(newstr), con = fileConn)
+    writeLines(text = c(tmplt2), con = fileConn)
     close(fileConn)
 }
 
