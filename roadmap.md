@@ -13,14 +13,15 @@ Requirements for future tools and features:
 
 ## Tools
 
+1. **Automatic updating tools** - scripts that can be used to automatically push the most recent updates of the data model to the necessary depending files (template, ERD, ...)
 1. **Data mapping methods** - a collection of methods to:
    Read in data from templates into a database (SQLite supported).
-   Conversion from "long" format to "wide" format.
-1. **data validation tool** - can validate a datafile and provide feedback of needed changes
-1. **data linking tools** - tools that will help ensure consistan summarization of Health data into summary results relevent for the WWTP
-1. **Data cleaning methods** - rules for cleaning raw ODM data. T
-1. **Visualization tools** - basic plots to visualize wastewater signals. Simple visualization tools can be part of vignettes to show how to analyze wastewater data.
-1. **Transformation functions** - functions to create derived variables and aggreagations. i.e. moving averages.
+   Conversion from "long" format to "wide" format needed for data analysis/ML. 
+1. **Data validation tool** - can validate a datafile in terms of formatting and context, and provides feedback of needed changes
+1. **Data linking tools** - tools that will help ensure consistan summarization of public health data into summary results relevent for the WWTP catchment area.
+1. **Data cleaning methods** - rules for cleaning raw ODM data. 
+1. **Visualization tools** - basic plots to visualize relevant signals. Simple visualization tools can be part of vignettes to show how to analyze wastewater data.
+1. **Transformation functions** - functions to create derived variables and aggreagations. i.e. moving averages, normalisation,...
 1. **Open, public data examples within the repository** - Example data to build
 and test common tools and demonstrate ODM compliant data format.
 
@@ -34,9 +35,9 @@ Documentation that including tutorials, how-to guides, technical references and 
 1. Explanation - understanding-oriented.
 1. Reference - information-oriented.
 
-- Several presentations have introduced the OMD. Let's make these available.
-- Peer-review description with DOI reference.
-- Consider a website that organizes document for a wide audience of users.
+- Several presentations have introduced the ODM. Let's make the recordings available as a first step. Next, create additional visual documentation for specific functionalities.
+- Peer-review description with a permalink/DOI reference which would facilitate sharing and referencing within the scientific community.
+- Consider a website that organizes documentation for a wider audience of users that not necessarily know how to work with GitHub. 
 
 ## Process
 
