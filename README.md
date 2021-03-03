@@ -45,6 +45,8 @@ See [license](LICENSE) for more information.
 - [Sample](metadata.md#sample) table
   - `reporterID`: Reporter ID. Currently, reporterID is `WWmeasure` table but reporter for samples can be different. Issue [#93](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/93)
   - `index`: Index number in case the sample was taken multiple times. Issue [#103](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/103) 
+  - `InstrumentID`: Links with the Instrument table to describe the instrument used for sampling. Issue [#104](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/104) 
+  
 
 - **New variable categories**
 
