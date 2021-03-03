@@ -43,8 +43,8 @@ See [license](LICENSE) for more information.
   - `organization`: Organziation of reproter. Issue [#97](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/97)
 
 - [Sample](metadata.md#sample) table
-  - `reporterID`: Reporter ID. Currently, reporterID is `WWmeasure` table but reporter for samples can be different. Issuse [#93](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/93)
-  - `index`: Index number in case the sample was taken multiple times. 
+  - `reporterID`: Reporter ID. Currently, reporterID is `WWmeasure` table but reporter for samples can be different. Issue [#93](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/93)
+  - `index`: Index number in case the sample was taken multiple times. Issue [#103](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/103) 
 
 - **New variable categories**
 
