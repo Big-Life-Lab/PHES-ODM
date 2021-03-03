@@ -117,13 +117,16 @@ SiteMeasure,type,wwFlow,Flow of wastewater.,Débit d'eau usée.
 SiteMeasure,type,wwTemp,Temperature of the wastewater.,Température de l'eau usée.
 SiteMeasure,type,wwTSS,Total suspended solids concentration of the wastewater.,Matières en suspension
 SiteMeasure,type,wwCOD,Chemical oxygen demand of the wastewater.,Demande chimique en oxygène
+SiteMeasure,type,wwBOD5c,5 day biochemical oxygen demand, carbonaceous.,Demande biochimique en oxygène de 5 jours, carbonée.
 SiteMeasure,type,wwTurb,Turbidity of the wastewater.,Turbidité
-SiteMeasure,type,wwOPhos,Ortho-phosphate concentration.,Concentration d'ortho-phosphates
+SiteMeasure,type,wwOPhos,Ortho-phosphate concentration.,Concentration d'ortho-phosphates.
+SiteMeasure,type,wwPtot,Total phosphates.,Phosphates totaux.
 SiteMeasure,type,wwNH4N,"Ammonium nitrogen concentration, as N.","Concentrsation d'azote ammoniacal, exprimé en N."
 SiteMeasure,type,wwTN,"Total nitrogen concentration, as N.","Azote total, exprimé en N"
 SiteMeasure,type,wwpH,pH of the wastewater.,pH
 SiteMeasure,type,wwCond,Conductivity of the wastewater.,Conductivité
 SiteMeasure,aggregation,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.","La valeur n'a subi aucune agrégation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut être un réplica."
+SiteMeasure,aggregation,dailyAvg,Average value taken over a 24h period,Valeur moyenne sur une période de 24 heures
 SiteMeasure,aggregation,mean,Arithmetic mean,Moyenne arithmétique.
 SiteMeasure,aggregation,meanNr,"Arithmetic mean, normalized",Moyenne arithmétique normalisée.
 SiteMeasure,aggregation,geoMn,Geometric mean,Moyenne géométrique.
@@ -134,6 +137,13 @@ SiteMeasure,aggregation,max,Highest value in a range of values,La valeur la plus
 SiteMeasure,aggregation,sd,Standard deviation,L'écart type.
 SiteMeasure,aggregation,sdNr,"Standard deviation, normalized",L'écart type normalisé.
 SiteMeasure,aggregation,other,Other aggregation method. Add description to aggregationOther,"Autre méthode d'agrégation. Ajouter une description dans ""aggregationOther""."
+SiteMeasure,unit,°C,Degrees Celcius,Degrés Celcius
+SiteMeasure,unit,mm,Millimeters,Milimètres
+SiteMeasure,unit,m3/h,Cubic meters an hour, Mètres cubes par heure
+SiteMeasure,unit,m3/d,Cubic meters a day, Mètres cubes par jour
+SiteMeasure,unit,mg/L,Milligrams per liter, Milligrammes par litre
+SiteMeasure,unit,pH,pH units,Unités de pH
+SiteMeasure,unit,uS/cm,Micro-siemens per centimeter,Micro-siemens par centimètre
 AssayMethod,unit,gcPMMoV,Gene copies per copy of PMMoV.,Copies de gène ou de variant par copie de PMMoV
 AssayMethod,unit,gcMl,Gene copies per milliliter.,Copies de gène ou de variant par millilitre.
 AssayMethod,unit,gcGms,Gene copies per gram solids.,Copies de gène ou de variant par gramme de solides.

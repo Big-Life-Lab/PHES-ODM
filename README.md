@@ -58,15 +58,33 @@ See [license](LICENSE) for more information.
   - Updated description of `WWMeasure` table, `unit` measure. These descriptions now reference gene or variant copies.
   - New `detected`: Gene copies or variant detected in the sampleGene or variant copies. Detected = 1. Gene or variant copiesNot detected = 0.
   - New `porpVar`: Proportion of variant in sample.
+  - `SiteMeasure` table, `type` variable
+    - `wwBOD5c`, 5 day biochemical oxygen demand
+    - `wwPtot`, Total phosphates
+  - New `dailyAvg`: Average value taken over a 24h period, in the `SiteMeasure` table, `aggregation` variable
+  - The `SiteMeasure` table now has a categorical `unit` variable with the following options
 
-- Migrate .md files for tables, variable and variable categories to CSV files. Please modify the appropriate CSV file for future updates. `metadata.md` is now automatically generated from the CSV files.
+    - `°C`, Degrees Celcius
+    - `mm`, Millimeters
+    - `m3/h`, Cubic meters an hour
+    - `m3/d`, Cubic meters a day
+    - `mg/L`, Milligrams per liter
+    - `pH`, pH units
+    - `uS/cm`, Micro-siemens per centimeter
+  
+ 
+- **Migrate .md files for tables**
+  
+  - Variable and variable categories to CSV files. Please modify the appropriate CSV file for future updates. `metadata.md` is now automatically generated from the CSV files.
 
-  - `Tables.csv`: list of tables.
-  - `Variables.csv`: list of variables.
-  - `VariableCategories`: list of categories for variables.
+    - `Tables.csv`: list of tables.
+    - `Variables.csv`: list of variables.
+    - `VariableCategories`: list of categories for variables.
 
-- SQL template updated to reflect v1.1.0 (and also v1.0.0). These files are now automatcially generated from the metadata tables (above). The SQL tables are in SQLite format.
-- Several small grammatical errors correted.
+- **Other**
+
+  - SQL template updated to reflect v1.1.0 (and also v1.0.0). These files are now automatically generated from the metadata tables (above). The SQL tables are in SQLite format.
+  - Several small grammatical errors corrected in the English variable descriptions.
 
 #### 2021-01-26
 
