@@ -2,77 +2,122 @@
 
 
 
+library(stringr)
+library(DiagrammeR)
+library(DiagrammeRsvg)
+library(datamodelr)
+library(htmltools)
 
+
+
+rm(list=ls())
+gc()
+
+source("src/wbe_db_func.r")
+#wbe_delete_whole_db()
 
 
 
 mappers <- wbe_read_mappers()
+mapper <- mappers$STATSCAN
+dfs <- mapper$reader(mapper$fn())
 
 
 
 
 
 
-wbe_read_data <- function(..., nm, .mappers = "mappers"){
-    #' master function that will call a given mappers reader function
-    get(.mappers)[[nm]]$reader(...)
+wbe_generate_erd <- function(
+                            lang = "fr",
+                            encoding = "UTF-8",
+                            tbls = read_csv(file.path(curr_wd, "Tables.csv")),
+                            variables = read_csv(file.path(curr_wd, "Variables.csv")),
+                            tableLabel_nm = paste0("tableLabel_", lang),
+                            erd_fn = file.path("IMG", "ERD.svg")
+                            ){
+
+    #Create blank tables
+    blank_tbls <-
+    tbls %>%
+        pull(tableName) %>%
+        unique() %>%
+        lapply(
+            function(curr_tbl){
+                cols <-
+                    variables %>%
+                    filter(tableName == curr_tbl) %>%
+                    pull(variableName) %>%
+                    unique()
+
+                new_tbl <- tibble()
+                lapply(cols, function(curr_col){
+
+                    colType <-
+                        variables %>%
+                        filter(tableName == curr_tbl) %>%
+                        filter(variableName == curr_col) %>%
+                        pull(variableType) %>%
+                        wbe_sql_dataType_2_ERD_type()
+                    new_tbl[curr_col] <<- colType
+                })
+                new_tbl
+            })
+
+    #put names on the tables
+    names(blank_tbls) <- tbls %>%
+        #mutate(tmp = paste0(tableName, " (" , !!sym(tableLabel_nm), ")")) %>%
+        mutate(tmp = tableName) %>%
+        pull(tmp) %>%
+        unique()
+
+
+
+    #create the data model
+    dm_f <- dm_from_data_frames(blank_tbls)
+
+
+
+    fk <-
+        variables %>%
+        filter(key == "Foreign key")
+
+    pk <-
+        variables %>%
+        filter(key == "Primary Key")
+
+    #make primary keys
+    walk(1:nrow(pk), function(i_row){
+        curr_pk <- pk %>% slice(i_row) #%>%
+        dm_f <<- dm_set_key(dm_f, curr_pk$tableName    , curr_pk$variableName)
+    })
+
+
+
+    #make links
+    walk(1:nrow(fk), function(i_row){
+
+        curr_fk <- fk %>% slice(i_row) #%>%
+            #mutate(tableName = stringr::str_to_title(tableName)) %>%
+            #mutate(foreignKeyTable = stringr::str_to_title(foreignKeyTable))
+        dm_f <<- dm_add_reference_(
+            dm_f,
+            curr_fk$tableName,
+            curr_fk$variableName,
+            curr_fk$foreignKeyTable,
+            curr_fk$foreignKeyVariable
+            #blank_tbls[[curr_fk$tableName]][[curr_fk$variableName]] == blank_tbls[[curr_fk$foreignKeyTable]][[curr_fk$foreignKeyVariable]]
+        )
+    })
+
+    graph <- dm_create_graph(dm_f, rankdir = "LR", col_attr = c("column", "type"), view_type = "all")
+    g <- dm_render_graph(graph)
+    g
+    svg_str <- export_svg(g)
+
+
+
+    fileConn<-file(erd_fn,  encoding = encoding)
+    writeLines(text = c(svg_str), con = fileConn)
+    close(fileConn)
+    svg_str
 }
-
-
-
-wbe_map_data <- function(..., nm, .mappers = "mappers"){
-    #' master function that will call a given mappers mapper function
-    get(.mappers)[[nm]]$mapper(...)
-}
-
-mappers <- wbe_read_mappers(){
-}
-
-
-
-
-mappers$UW$mapdir
-
-
-# read all config files
-mappers <-
-    file.path("data") %>%
-    list.files(pattern = "mapper.r", full.names = TRUE, recursive = TRUE) %>%
-        map(function(x) {
-            e <- parse(x)[[1]]
-            eval(e)
-        }) %>%
-        set_names(map(., ~.$name))
-
-
-
-dfs <- wbe_xlsx_to_dfs(full_fn = file.path("data", "NML", "NML_TEMPLATE_v0.1.2.xlsx"))
-dfs2 <- wbe_xlsx_to_dfs(full_fn = file.path("data", "Ottawa", "Ottawa_TEMPLATE_v0.1.2.xlsx"))
-dfs3 <- wbe_xlsx_to_dfs(full_fn = file.path("data", "UW", "u_w_wwtp_data_V2.xlsx"))
-
-
-
-
-dfs2 <- wbe_files_to_dfs(dir = file.path("data", "db"))
-
-
-wbe_append_lookups(df = dfs$Lookups)
-dfs$Lookups <- NULL
-wbe_append_from_dfs(dfs = dfs)
-
-
-to_add <- wbe_sample_measurments_wide_2_long(df = dfs$SmplMsr)
-
-wbe_append_from_dfs(dfs = to_add)
-
-
-
-to_add$Measurement %>% count(measurementID,sort = T)
-to_add$Sample %>% count(sampleID,sort = T)
-
-wbe_tbl("sample")
-
-
-wbe_tbl("Measurement") %>% count(measureCat,  measureUnit)
-
-wbe_create_db_from_script(db_fn = db_fn )
