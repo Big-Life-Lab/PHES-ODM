@@ -5,24 +5,28 @@
 
 
 NML <- list(
-    nm = "NML",
+    nm = "STATSCAN",
 
 
 
 
-    fn = function(dat_dir = file.path("data", "NML"),
-                  fn_pattern = c("national_export.*xlsx","2021-02-25_WW_mastersheet_V3.xlsx"),
+    fn = function(dat_dir = file.path("data", "statscan"),
+                  fn_pattern = c("NML_results.csv"),
                   decreasing = T,
                   full.names = T){
 
-        lapply(fn_pattern, function(p){
+        cities <- c("Edmonton", "Halifax", "MetroVancouver" , "Montreal", "Toronto")
+
+        fn_pattern_2 <-
+            expand_grid(cities, fn_pattern) %>%
+            mutate(tmp = paste0(cities, ".*", fn_pattern)) %>%
+            pull(tmp)
+        lapply(fn_pattern_2, function(p){
             list.files(path = dat_dir ,
                        pattern = p,
                        full.names = full.names) %>%
                 sort(decreasing = decreasing) %>%
                 extract2(1)
-
-
         }) %>% unlist()
 
 
@@ -36,7 +40,10 @@ NML <- list(
         #'   Returns a list of dataframes
         #'
         #'
-        lapply(full_fn, wbe_xlsx_to_dfs) %>% unlist(recursive=FALSE)
+        csv_files <- full_fn %>% grep(x = ., pattern = ".csv", value = T)
+        df <- map(csv_files, read_csv, col_types = cols(.default = "c")) %>% bind_rows()
+        dfs <- list(All = df)
+
     },
 
     validate = function(dfs){
@@ -55,6 +62,24 @@ NML <- list(
         #' the returned list should match exactly a subset of the database tables.
         #'
 
+        df <- dfs$All
+        df %>% count(Region)
+        df %>% count(Location)
+
+        renames <-read_csv(file.path("src", "mappers", "STATSCAN_Variables.csv"))
+
+
+        walk2(renames$fromColumn, renames$toColumn,   function(f,t){
+            df<<-
+                df %>%
+                {if (t == "NA") . else rename(., !!sym(t) := !!sym(f))}
+        })
+
+              , ...)
+        df %>%
+            rename_with()
+
+        dfs2 <- wbe_tbls_db_blank()
 
         #wbe_tbl_col_nms("AssayMethod")
         #wbe_tbl_list()

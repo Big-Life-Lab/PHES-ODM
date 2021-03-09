@@ -1,6 +1,7 @@
 tableName,variableName,variableLabel_en,variableLabel_fr,key,foreignKeyTable,foreignKeyVariable,variableType,variableDesc_en,variableDesc_fr
 Sample,sampleID,Sample id,Identifiant de l'échantillon,Primary Key,,,string,Unique identifier for sample. Suggestion:siteID-date-index.,Identifiant unique pour l'échantillon. Suggestion:siteID-date-index.
 Sample,siteID,Site id,Identifiant du site,Foreign key,Site,siteID,string,Links with the Site table to describe the location of sampling.,"Crée un lien avec la table ""Site"" pour décrire le point d'échantillonage."
+Sample,instrumentID,Instrument id,Identifiant de l'instrument,Foreign key,Instrument,InstrumentID,string,Links with the Instrument table to describe the instrument used for sampling.,"Crée un lien avec la table ""Instrument"" pour décrire l'instrument utilisé pour l'échantillonnage."
 Sample,dateTime,Date time,Date et heure,,,,datetime,"for grab samples this is the date, time and timezone the sample was taken.","Date, heure et fuseau horaire de collecte d'un échantillon ponctuel."
 Sample,dateTimeStart,Date time start,Date et heure de début,,,,datetime,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken.","Date, heure et fuseau horaire de début de collecte d'un échantillon composite."
 Sample,dateTimeEnd,Date time end,Date et heure de fin,,,,datetime,"For integrated time average samples this is the date, time and timezone the sample was finished being taken.","Date, heure et fuseau horaire de fin de collecte d'un échantillon composite."

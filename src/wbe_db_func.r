@@ -21,11 +21,13 @@ library(snakecase)
 library(docstring)
 library(anytime)
 library(tools)
+library(assertthat)
+
 wbe_CONNS <- c()   # Keeps a list of connections to the db
 
 #########################
 # default location for the DB creation file
-wbe_CREATE_TABLES_SQL_FN <- file.path("src", "wbe_create_tables.sql")
+wbe_CREATE_TABLES_SQL_FN <- file.path("src", "wbe_create_table_en.sql")
 
 
 
@@ -51,14 +53,15 @@ wbe_default_fn <- function(){
   return(WBE_DEFAULT_FN)
 }
 
-
+####################################
+#' returns a connection to a WBE database
+#' creates and empty db if needed
+#'
+#'
 wbe_conn <- function(drv = RSQLite::SQLite(),
                      db_fn = wbe_default_fn(),
                      ...){
-  #' returns a connection to a WBE database
-  #' creates and empty db if needed
-  #'
-  #'
+
   if(! file.exists(db_fn)){
     wbe_create_db_from_script(db_fn = db_fn )
   }
@@ -315,6 +318,9 @@ wbe_append_lookups <- function(df,
 
 }
 
+
+
+
 #df <- to_add$Measurement
 #tbl_nm <- "Measurement"
 #wbe_append_from_df(df = dfs$Lookups, tbl_nm = "Lookups")
@@ -335,8 +341,7 @@ wbe_append_from_df <- function(df,
   #' @param value_name_cases
   #' @param ... passed to dbWriteTable
 
-  if(nrow(df) == 0)
-  {
+  if(nrow(df) == 0){
     message(glue("wrote {nrow(df)} rows to {tbl_nm}"))
     return(TRUE)
   }
@@ -345,7 +350,8 @@ wbe_append_from_df <- function(df,
   #df <- df %>% clean_names(case = col_name_cases)
 
   # Get the columns and the fromat from the DB
-  tbl_format <- tbl(conn, tbl_nm) %>% head(1) %>% collect() %>% slice(0)
+  tbl_format <- wbe_tbl_frmt(tbl_nm = tbl_nm, conn = conn)
+    #tbl(conn, tbl_nm) %>% head(1) %>% collect() %>% slice(0)
 
 
   #init the tibble to append
@@ -353,7 +359,7 @@ wbe_append_from_df <- function(df,
 
   # Make sure we have compatible types and format from our DF
   for (col_nm in colnames(tbl_format)){
-
+    #col_nm <- colnames(tbl_format)[[1]]
 
     #get the class of the column in the table
     cls <- class(tbl_format[[col_nm]])
@@ -414,12 +420,17 @@ wbe_append_from_df <- function(df,
 
 
 
+
+
+
 wbe_append_from_dfs <- function(dfs,
+                                reporter_id = stringi::stri_rand_strings(n = 1, length = 25),
                                 conn = wbe_conn(),
                                 table_name_cases = "upper_camel",
                                 col_name_cases = "lower_camel",
                                 value_name_cases = "",
                                 append = T,
+
                                 ...
 ){
   #' fills a data base from from a list of data frames
@@ -433,8 +444,11 @@ wbe_append_from_dfs <- function(dfs,
   #' @param ... passed to wbe_append_from_df
 
 
+  #reporter_id = "NML"
+
   # get tables in db
-  tbl_nms <- dbListTables(conn)
+  tbl_nms <- dbListTables(conn) %>%
+    janitor::make_clean_names(case = table_name_cases)
 
   # get datafram names
   dfs_nm <- dfs %>%
@@ -444,11 +458,17 @@ wbe_append_from_dfs <- function(dfs,
   #which tables and dataframes are the same
   to_add <- intersect(tbl_nms, dfs_nm)
 
+
+
+
+
   dbBegin(conn = conn)
 
 
   # for every table in the db find a matching dataframe
   for (tbl_nm in tbl_nms){
+    #tbl_nm <- tbl_nms[[1]]
+
 
     message(glue("looking for df like {tbl_nm}"))
     #######################
@@ -464,6 +484,7 @@ wbe_append_from_dfs <- function(dfs,
       message(glue("found df for df like {tbl_nm}, {df_nm}"))
 
       df <- dfs[[df_nm]]
+
 
 
       #append the df
@@ -648,6 +669,12 @@ wbe_tbl_col_nms <- function(tbl_nm,
   wbe_tbl(tbl_nm = tbl_nm, conn = conn, collect_tbl = TRUE, limit = 1) %>% colnames()
 }
 
+#' Return the list of named tibbles  from the Db with the corrcect types, but all the tibbles are length zero
+#'
+wbe_tbls_db_blank <- function( conn = wbe_conn()){
+  wbe_tbl_list() %>%
+    lapply(wbe_tbl_frmt) %>% set_names(wbe_tbl_list())
+}
 
 
 wbe_tbl_frmt <- function(tbl_nm,
@@ -663,8 +690,53 @@ wbe_tbl_frmt <- function(tbl_nm,
 }
 
 
+#'
+#' ensures that all dataframes have a primary key
+#'
+wbe_ensure_primary_keys <- function(dfs, reporter_id){
+  dfs_new <-
+    lapply(names(dfs), function(tbl_nm){
+      #tbl_nm <- names(dfs)[[1]]
+      wbe_ensure_primary_key(df = dfs[[tbl_nm]], tbl_nm = tbl_nm, reporter_id = reporter_id)
+    }) %>%
+    setNames(names(dfs))
+  return(dfs_new)
+}
 
 
+
+###########################################
+#'
+#' returns df after making sure it has the correctly named primary key with values in it.
+#'
+wbe_ensure_primary_key <- function(df, tbl_nm, reporter_id){
+
+  pk_nm <- wbe_primary_key(tbl_nm)
+
+  df_pk_nm  <- wbe_find_df_col(df = df, col_nm = pk_nm)
+  if(!is.null(df_pk_nm)){
+    assertthat::assert_that(df %>% pull(df_pk_nm) %>% is.na() %>% sum() == 0)
+    return(df)
+  }
+
+
+  df %>%
+    mutate(., pk_nm = wbe_generate_key(., reporter_id = "NML")) %>%
+    rename(!!sym(pk_nm) := pk_nm)
+}
+
+###########################################
+#'
+#' Generates a unique key for the dataframe
+#'
+wbe_generate_key <- function(df, reporter_id){
+  # reporter_id = "NML"
+  # df <- dfs$AssayMethod
+  df %>% format_delim(delim = "_", col_names = F) %>% str_split(pattern = "\n", n = nrow(df)) %>% unlist() %>%
+    trimws() %>%
+    paste(reporter_id, .,sep = "_") %>%
+    digest_vect()
+}
 
 wbe_primary_key <-function(tbl_nm,
                            conn = wbe_conn(),
@@ -1102,7 +1174,7 @@ wbe_read_mappers <- function(base_dir = file.path("src", "mappers"),
 
 wbe_read_and_map <- function(nm,
                              mapper = get("mappers")[[nm]],
-                             full_fn =  file.path(mapper$mapdir, mapper$fn),
+                             full_fn =  mapper$fn(), #file.path(mapper$mapdir, mapper$fn),
                              read_func = mapper$reader,
                              mapper_func = mapper$mapper
 ){

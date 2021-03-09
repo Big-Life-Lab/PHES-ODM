@@ -23,16 +23,17 @@ library(htmltools)
 #########################
 # default location for the DB creation file
 #wbe_CREATE_TABLES_SQL_FN <- file.path("src", "wbe_create_tables.sql")
-#wbe_META_DATA <- file.path("metadata.md")
-#wbe_META_DATA_TEMLATE <- file.path("metadata_template.md")
 
 
 WBE_DEFAULT_FN <- db_fn <- file.path("template" ,"WBE.db")
 
 wbe_CONNS <- c()   # Keeps a list of connections to the db
 
+
+####################################
+#'
 wbe_meta_data_template <- function(lang = "en"){
-    paste0("metadata_template_", lang, ".md")
+    file.path("site", paste0("metadata_template_", lang, ".md"))
 }
 
 
@@ -44,8 +45,14 @@ wbe_meta_data <- function(lang = "en"){
 
 ####################################
 #'
-wbe_create_tables_sql_fn <- function(lang = "en"){
-    paste0("wbe_create_table_", lang, ".sql") %>%
+wbe_create_tables_sql_fn <- function(lang = "en", drv = RSQLite::SQLite()){
+
+    drv_nm <-
+    if(is(drv, "SQLiteDriver")) {"SQLITE"
+    }else if(is(drv, "PqDriver")){ "PostgreSQL"
+    }else {""}
+
+    paste0("wbe_create_table_", drv_nm, "_", lang, ".sql") %>%
         file.path("src", .)
 }
 
@@ -75,7 +82,8 @@ wbe_create_tables <- function(base_tbl, base_var, variableCat){
 #'
 #'
 #'
-wbe_metadata_generation <- function(curr_wd = getwd(), lang = "fr"){
+wbe_metadata_generation <- function(curr_wd = file.path(getwd(), "site"),
+                                    lang = "fr"){
     tbls <- read_csv(file.path(curr_wd, "Tables.csv"))
     variables <- read_csv(file.path(curr_wd, "Variables.csv"))
     variableCat <- read_csv(file.path(curr_wd, "VariableCategory.csv"))
@@ -116,7 +124,7 @@ wbe_metadata_generation <- function(curr_wd = getwd(), lang = "fr"){
 
                     type_str <- if(is.na(cur_col_details$variableType) | nchar(cur_col_details$variableType) == 0){""}else{glue(" [{cur_col_details$variableType}]")}
 
-
+                    #validation_str <- if(is.na(cur_col_details$validationCode) | nchar(cur_col_details$validationCode) == 0){""}else{glue(" ({cur_col_details$validationCode})")}
 
                     vals_str <-
                         if(cur_col_details$variableType == "category"){
@@ -142,6 +150,7 @@ wbe_metadata_generation <- function(curr_wd = getwd(), lang = "fr"){
                     #
                     # This glue is important for the order and formating of the metadata file for variables
                     #
+                    #glue("-\t**{curr_col}**:({cur_col_details[[variableLabel_nm]]}):{key_str}{type_str} {cur_col_details[[variableDesc_var_nm]]}\n{validation_str}\n{vals_str}")
                     glue("-\t**{curr_col}**:({cur_col_details[[variableLabel_nm]]}):{key_str}{type_str} {cur_col_details[[variableDesc_var_nm]]}\n{vals_str}")
                 })
 
@@ -159,7 +168,7 @@ wbe_metadata_generation <- function(curr_wd = getwd(), lang = "fr"){
 #'
 #'
 #'
-wbe_metadata_generation_tbl_list <-function(lang = "en", curr_wd = getwd()){
+wbe_metadata_generation_tbl_list <-function(lang = "en", curr_wd = file.path(getwd(), "site")){
     tbls <- read_csv(file.path(curr_wd, "Tables.csv"))
     tbl_list <-
         tbls$tableName %>%
@@ -226,9 +235,10 @@ wbe_metadata_write <- function(lang = "fr",
 #'
 #'
 #'
-wbe_sql_dataType_2_sql_type <- function(var_type){
-    var_type %>%
-        switch("string" = "char",
+wbe_sql_dataType_2_sql_type <- function(var_type, drv){
+        if (is(drv, "SQLiteDriver")){
+            var_type %>%
+            switch("string" = "char",
                "boolean" = "integer",
                "category" = "char",
                "float" = "float",
@@ -236,6 +246,17 @@ wbe_sql_dataType_2_sql_type <- function(var_type){
                "datetime" = "integer",
                "blob" = "integer",
                "integer" = "integer")
+        }else if(is(drv, "PqDriver")){
+            var_type %>%
+            switch("string" = "VARCHAR ( 255 )",
+                   "boolean" = "BOOLEAN",
+                   "category" = "VARCHAR ( 255 )",
+                   "float" = "double precision",
+                   "date" = "DATE ",
+                   "datetime" = "TIMESTAMP",
+                   "blob" = "INTEGER",
+                   "integer" = "INTEGER")
+        }else{""}
 }
 
 
@@ -267,7 +288,12 @@ wbe_sql_dataType_2_ERD_type <- function(var_type){
 #'
 #'
 #'
-wbe_sql_generate_db_creation <- function(curr_wd = getwd(), lang = "en"){
+wbe_sql_generate_db_creation <- function(curr_wd = file.path(getwd(), "site"),
+                                         lang = "en",
+                                         #drv =    RSQLite::SQLite()
+                                         drv = RPostgres::Postgres()
+
+                                         ){
 
     tbls <- read_csv(file.path(curr_wd, "Tables.csv"))
     variables <- read_csv(file.path(curr_wd, "Variables.csv"))
@@ -279,7 +305,7 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd(), lang = "en"){
         tbls$tableName %>%
             unique() %>%
             lapply(function(curr_tbl){
-
+                #curr_tbl = "Sample"
                 contraints_tbl <- c()
 
                 cols <-
@@ -290,7 +316,8 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd(), lang = "en"){
                 sql_str <-
                     cols %>%
                     lapply(function(curr_col){
-
+                        #print(curr_col)
+                        #curr_col = "dateTime"
                         var_type <-
                             variables %>%
                             filter(tableName == curr_tbl &
@@ -302,7 +329,7 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd(), lang = "en"){
 
                         ###########################################
                         # based on the variable type given in the table, this maps to a type in SQL
-                        curr_type <- wbe_sql_dataType_2_sql_type(var_type)
+                        curr_type <- wbe_sql_dataType_2_sql_type(var_type, drv)
 
 
                         keyType <- variables %>%
@@ -314,14 +341,24 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd(), lang = "en"){
                         ###########################################
                         # based on the key information select the pk info
                         pk <-
-                            keyType %>%
-                            switch("foreign key" = "",
-                                   "primary key" = " NOT NULL PRIMARY KEY",
-                                   ""
-                                   )
+                            if (!is.na(keyType) & keyType == "foreign key"){
+                                ""
+                            }else if (!is.na(keyType) & keyType == "primary key" & is(drv, "SQLiteDriver") ){
+                                " NOT NULL PRIMARY KEY"
+                            }else if (!is.na(keyType) & keyType == "primary key" & is(drv, "PqDriver") ){
+                                " PRIMARY KEY"
+                            }else{
+                                ""
+                            }
+                            #keyType %>%
+                            # switch("foreign key" = "",
+                            #        "primary key" = " NOT NULL PRIMARY KEY",
+                            #        ""
+                            #        )
 
-                        if((!is.na(keyType))  &keyType == "foreign key"){
+                        if((!is.na(keyType))  & keyType == "foreign key"){
                             #print(keyType)
+
                             ref_tabl <-
                                 variables %>%
                                 filter(tableName == curr_tbl &
@@ -334,20 +371,32 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd(), lang = "en"){
                                            variableName == curr_col) %>%
                                 pull(foreignKeyVariable)
 
-                            contraints_tbl <<- c(
-                                contraints_tbl,
-                                glue("\tFOREIGN KEY ([{curr_col}]) REFERENCES {ref_tabl}({ref_var}) DEFERRABLE INITIALLY DEFERRED")
-                            )
+                            contraints_tbl <<-
+                                if (is(drv, "SQLiteDriver")){
+                                        c(
+                                        contraints_tbl,
+                                        glue("\tFOREIGN KEY ([{curr_col}]) REFERENCES {ref_tabl}({ref_var}) DEFERRABLE INITIALLY DEFERRED")
+                                        )
+                                }else if (is(drv, "PqDriver")){
+                                    c(
+                                        contraints_tbl,
+                                        glue("\tFOREIGN KEY ([{curr_col}]) REFERENCES {ref_tabl}({ref_var})")
+                                    )
+                                }
                         }
 
 
+                        #######################################
+                        #REMOVE FRENCH COMMENTS CAUSE ACCENTS ARE HARD
+                        comment  <- rep("", nrow(variables))
+                            # variables %>%
+                            # filter(tableName == curr_tbl &
+                            #         variableName == curr_col) %>%
+                            # pull(!!sym(variableDesc_var_nm))
 
 
-                        comment  <-
-                            variables %>%
-                            filter(tableName == curr_tbl &
-                                    variableName == curr_col) %>%
-                            pull(!!sym(variableDesc_var_nm))
+
+
                         glue("\t[{curr_col}] {curr_type}{pk}")
 
                     }) %>%
@@ -355,18 +404,19 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd(), lang = "en"){
 
                 #get a list of comments from the description field
                 # this is language specific now
-                sql_str_comments <-
-                    cols %>%
-                    lapply(function(curr_col){
-                        variables %>%
-                            filter(tableName == curr_tbl &
-                                       variableName == curr_col) %>%
-                            pull(!!sym(variableDesc_var_nm))
-                    }) %>% unlist()
+                sql_str_comments <- rep("", nrow(variables))
+                    # cols %>%
+                    # lapply(function(curr_col){
+                    #     variables %>%
+                    #         filter(tableName == curr_tbl &
+                    #                    variableName == curr_col) %>%
+                    #         pull(!!sym(variableDesc_var_nm))
+                    # }) %>% unlist()
 
                 contraints_tbl_all <- contraints_tbl %>% paste0(collapse = ",\n")
 
-
+                ##########################
+                #houses the inner part of the SQL for the table
                 sql_tbl_create <-
                     1:length(sql_str) %>%
                     lapply(function(i_sql){
@@ -390,11 +440,18 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd(), lang = "en"){
                     })%>% unlist() %>%
                         paste0(collapse = "\n")
 
-                tbldesc <-
-                    tbls %>%
-                    filter(tableName == curr_tbl) %>%
-                    pull(tableDesc_var_nm)
-                glue::glue("CREATE TABLE IF NOT EXISTS [{curr_tbl}] (\n/*{tbldesc}*/\n{sql_tbl_create}\n)")
+                tbldesc <- ""
+                    # tbls %>%
+                    # filter(tableName == curr_tbl) %>%
+                    # pull(tableDesc_var_nm)
+
+                if (is(drv, "SQLiteDriver")){
+                    glue::glue("CREATE TABLE IF NOT EXISTS [{curr_tbl}] (\n/*{tbldesc}*/\n{sql_tbl_create}\n)")
+                }else if (is(drv, "PqDriver")){
+                    glue::glue("CREATE TABLE IF NOT EXISTS [{curr_tbl}] (\n/*{tbldesc}*/\n{sql_tbl_create}\n)")
+                }
+
+
         }) %>% unlist() %>%
         paste0(collapse = ";\n\n")
 
@@ -407,10 +464,11 @@ wbe_sql_generate_db_creation <- function(curr_wd = getwd(), lang = "en"){
 #'
 #'
 wbe_sql_write_db_creation <- function(lang = "en",
-                                      full_fn = wbe_create_tables_sql_fn(lang),
+                                      drv = RSQLite::SQLite(),
+                                      full_fn = wbe_create_tables_sql_fn(lang = lang, drv = drv),
                                       encoding = "UTF-8" ,
                                       ...){
-    sql_str <- wbe_sql_generate_db_creation(lang = lang, ...)
+    sql_str <- wbe_sql_generate_db_creation(lang = lang, drv = drv, ...)
 
     fileConn<-file(full_fn,  encoding = encoding)
     writeLines(text = c(sql_str), con = fileConn)
@@ -428,7 +486,7 @@ wbe_sql_write_db_creation <- function(lang = "en",
 wbe_generate_erd <- function(
     lang = "fr",
     encoding = "UTF-8",
-    curr_wd = getwd(),
+    curr_wd = file.path(getwd(), "site"),
     tbls = read_csv(file.path(curr_wd, "Tables.csv")),
     variables = read_csv(file.path(curr_wd, "Variables.csv")),
     tableLabel_nm = paste0("tableLabel_", lang),
@@ -511,7 +569,7 @@ wbe_generate_erd <- function(
     graph <- dm_create_graph(dm_f,
                              rankdir = "RL",
                              col_attr = c("column", "type"),
-                             view_type = "all",
+                             view_type = "keys_only",
                              edge_attrs = "dir = both, arrowtail = crow, arrowhead = odiamond",
                              node_attrs = "fontname = 'Arial'",
                              columnArrows = TRUE)
@@ -556,7 +614,7 @@ wbe_default_fn <- function(){
 #' create a db from an SQL script
 #'
 wbe_create_db_from_script <- function(lang = "en",
-                                    drv = RSQLite::SQLite(),
+                                      drv = RSQLite::SQLite(),
                                       full_fn = wbe_create_tables_sql_fn(lang = lang),
                                       db_fn = wbe_default_fn(),
                                       ...
@@ -599,18 +657,26 @@ wbe_create_db_from_script <- function(lang = "en",
 #'
 #' create a db from an SQL script
 #'
-wbe_db_setup <- function(lang = "en"){
-    wbe_sql_write_db_creation(lang = lang)
-    wbe_create_db_from_script(lang = lang)
+wbe_db_setup <- function(lang = "en", ...){
+    wbe_sql_write_db_creation(lang = lang, ...)
+    wbe_create_db_from_script(lang = lang, ...)
 }
 
 
 ########################################
 #' Do things for diffferent languages
-langs <- c("en", "fr")
-lapply(langs, wbe_db_setup)
+ langs <- c("en", "fr")
+# lapply(langs, wbe_db_setup, drv = RSQLite::SQLite())
+# lapply(langs, wbe_db_setup, drv = RPostgres::Postgres())
+
+
+wbe_db_setup(drv = RSQLite::SQLite())
+#wbe_db_setup(drv = RPostgres::Postgres())
 lapply(langs, wbe_metadata_write)
-wbe_generate_erd()
+#wbe_create_db_from_script(lang = "fr") ,drv = RSQLite::SQLite())
+
+
+ wbe_generate_erd()
 
 
 

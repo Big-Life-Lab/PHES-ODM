@@ -1,0 +1,44 @@
+fromTable,fromColumn,toColumn,
+All,Sample.ID,Sample_sampleID,1
+All,Location,Site_siteID,1
+All,Region,Site_description,1
+All,Date.sampled,Sample_dateTime,1
+All,Date.received,WWMeasure _analysisDate,3
+All,Arrival.temp,WWMeasure _temp_c_single,1
+All,SpotSee.Freeze,WWMeasure _frozen_bool_single,1
+All,SpotSee.Warm,WWMeasure _warm_bool_single,1
+All,Sample.Condition,WWMeasure _notes,2
+All,Water_qPCR_date,WWMeasure _analysisDate,3
+All,N1_1.cp.mL,WWMeasure _covN1_gcMl_single_1,1
+All,N1_2.cp.mL,WWMeasure _covN1_gcMl_single_2,1
+All,Avg_N1.cp.mL,NA,14
+All,N2_1.cp.mL,WWMeasure _covN2_gcMl_single_1,1
+All,N2_2.cp.mL,WWMeasure _covN2_gcMl_single_2,1
+All,Avg_N2.cp.mL,NA,14
+All,PMMV_1.cp.mL,WWMeasure _nPMMoV_gcMl_single_1,1
+All,PMMV_2.cp.mL,WWMeasure _nPMMoV_gcMl_single_2,1
+All,Avg_PMMV.cp.mL,NA,14
+All,Solids_qPCR_date,WWMeasure _analysisDate,3
+All,Solids_Measurement_Notes,WWMeasure _notes,2
+All,Solids_N1_1.cp.mL,WWMeasure _Solids_covN1_gcMl_single_1,1
+All,Solids_N1_2.cp.mL,WWMeasure _Solids_covN1_gcMl_single_2,1
+All,Avg_Solids_N1.cp.mL,NA,14
+All,Solids_N2_1.cp.mL,WWMeasure _Solids_covN2_gcMl_single_1,1
+All,Solids_N2_2.cp.mL,WWMeasure _Solids_covN2_gcMl_single_2,1
+All,Avg_Solids_N2.cp.mL,NA,14
+All,Avg_Solids_MHV.cp.mL,NA,14
+All,Solids_PMMV_1.cp.mL,WWMeasure _Solids_nPMMoV_gcMl_single_1,1
+All,Solids_PMMV_2.cp.mL,WWMeasure _Solids_nPMMoV_gcMl_single_2,1
+All,Avg_Solids_PMMV.cp.mL,NA,14
+All,muni,NA,14
+All,sample,NA,14
+All,col2frdg,NA,14
+All,coldate,NA,14
+All,comments,Sample_notes,1
+All,dinflvol,Sample_sizeL,1
+All,infltemp,SiteMeasure_wwTemp_single_c,1
+All,ph,SiteMeasure_wwpH_single_ph,1
+All,rain_t,NA,14
+All,rain_y,NA,14
+All,temp,NA,14
+All,tss,SiteMeasure_wwTSS_single_mgl,1

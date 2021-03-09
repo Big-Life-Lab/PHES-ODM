@@ -8,6 +8,25 @@ library(DiagrammeRsvg)
 library(datamodelr)
 library(htmltools)
 
+
+
+rm(list=ls())
+gc()
+
+source("src/wbe_db_func.r")
+#wbe_delete_whole_db()
+
+
+
+mappers <- wbe_read_mappers()
+mapper <- mappers$STATSCAN
+dfs <- mapper$reader(mapper$fn())
+
+
+
+
+
+
 wbe_generate_erd <- function(
                             lang = "fr",
                             encoding = "UTF-8",
