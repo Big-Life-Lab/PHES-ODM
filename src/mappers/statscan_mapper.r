@@ -94,8 +94,8 @@ NML <- list(
             lapply(`[[`, 1) %>% unlist() %>% unique()
 
         lapply(ld_tbl_nms, function(ld_tbl_nm){
-
-
+            df2 %>% select(starts_with(ld_tbl_nm))
+            wbe_find_df_col(df)
 
         })
 
