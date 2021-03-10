@@ -30,17 +30,19 @@ See [license](LICENSE) for more information.
 
 - **There are several small breaking changes to correct typos in variable names**
 
-  - `sampleTypeDefault`: Change from `SampleTypeDefault`. Now consistent use of lowercaase first letter.
+  - `extractionVolMl`: Change from `sampleSizeL`. Description of the variable was also changed.
+  - `sampleTypeDefault`: Change from `SampleTypeDefault`. Now consistent use of lowercase first letter.
   - `sampleTypeOtherDefault`: Change from `SampleTypeOtherDefault`.
   - `sampleCollectionDefault`: Change from `SampleCollectionDefault`.
   - `sampleCollectOtherDefault`: Change from `SampleCollectOtherDefault`.
   - `sampleStorageTempCDefault`: Change from `SampleStorageTempCDefault`.
   - `measureFractionAnalyzedDefault`: Change from `MeasureFractionAnalyzedDefault`.
 
+
 - **New variables**
 
 - [Reporter](metadata.md#reporter) table
-  - `organization`: Organziation of reproter. Issue [#97](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/97)
+  - `organization`: Organization of reporter. Issue [#97](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/97)
 
 - [Sample](metadata.md#sample) table
   - `reporterID`: Reporter ID. Currently, reporterID is `WWmeasure` table but reporter for samples can be different. Issue [#93](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/93)

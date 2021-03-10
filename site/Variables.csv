@@ -111,7 +111,7 @@ AssayMethod,summary,Summary,Résumé,,,,string,Short description of the assay and 
 AssayMethod,referenceLink,Reference link,Lien vers référence,,,,string,Link to standard operating procedure.,Lien vers la procédure standard.
 AssayMethod,date,Date,Date,,,,date,date on which the assayMethod was created or updated (for version update).,Date à laquelle la méthode d'analyse (ou une nouvelle version d'une méthode existante) a été crée.
 AssayMethod,aliasID,Alias id,Identifiant de l'alias,,,,string,ID of an assay that is the same or similar. a comma separated list.,Identifiants d'autres méthodes d'analyse présentes dans la table qui sont similaires à la méthode courante. Insérer sous forme de liste séparée par des virgules.
-AssayMethod,sampleSizeL,Sample size l,Volume de l'échantillon l,,,,float,Size of the sample that is analyzed in liters.,Volume de l'échantillon analysé (en litres)
+AssayMethod,extractionVolMl,Extraction volume in ml,Volume d'extraction ml,,,,float,Size of the sample that is analyzed in milliliters.,Volume de l'échantillon analysé (en millilitres)
 AssayMethod,loq,Loq,Limite de quantification,,,,float,Limit of quantification (LOQ) for this method if one exists.,"Limite de quantification pour cette méthode, le cas échéant."
 AssayMethod,lod,Lod,Limite de détection,,,,float,Limit of detection (LOD) for this method if one exists.,"Limite de détection pour cette méthode, le cas échéant."
 AssayMethod,unit,Unit,Unité,,,,category,"Unit used by this method, and applicable to the LOD and LOQ.",Unité de mesure utilisée par cette méthode et qui est applicable pour la limite de détection ou de quantification.
