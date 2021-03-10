@@ -28,7 +28,7 @@ See [license](LICENSE) for more information.
 
 **v1.1.0**
 
-- **There are several small breaking changes to correct typos in variable names**
+- **There are several small breaking changes in variable names**
 
   - `extractionVolMl`: Change from `sampleSizeL`. Description of the variable was also changed.
   - `sampleTypeDefault`: Change from `SampleTypeDefault`. Now consistent use of lowercase first letter.
@@ -41,13 +41,16 @@ See [license](LICENSE) for more information.
 
 - **New variables**
 
-- [Reporter](metadata.md#reporter) table
+- Reporter
   - `organization`: Organization of reporter. Issue [#97](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/97)
 
-- [Sample](metadata.md#sample) table
+- Sample
   - `reporterID`: Reporter ID. Currently, reporterID is `WWmeasure` table but reporter for samples can be different. Issue [#93](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/93)
   - `index`: Index number in case the sample was taken multiple times. Issue [#103](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/103) 
   - `InstrumentID`: Links with the Instrument table to describe the instrument used for sampling. Issue [#104](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/104) 
+
+- SiteMeasure
+  - `SampleID`: Makes sure that samples can easily be linked back to the site measurements, without the need for comparing dates. In case that multiple samples need to be linked to the same site measurement, create a comma separated list of sample IDs. 
   
 
 - **New variable categories**
