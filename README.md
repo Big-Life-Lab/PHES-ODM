@@ -88,7 +88,7 @@ See [license](LICENSE) for more information.
     - `VariableCategories`: list of categories for variables.
 
 - **Other**
-
+  - Missing values for the `value` field in the different tables should be reported using the following notation 'NA', and ideally follow with a note that explains why the value is missing. An example: Every day a daily average flow measurement is generated, yet because of fouling the instrument stopped functioning for one day which makes that this data is missing. 
   - SQL template updated to reflect v1.1.0 (and also v1.0.0). These files are now automatically generated from the metadata tables (above). The SQL tables are in SQLite format.
   - Several small grammatical errors corrected in the English variable descriptions.
 
