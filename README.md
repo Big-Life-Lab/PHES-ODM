@@ -28,7 +28,7 @@ See [license](LICENSE) for more information.
 
 **v1.1.0**
 
-- **There are several small breaking changes in variable names**
+- **Variable name changes (breaking changes :bangbang:)**
 
   - `extractionVolMl`: Change from `sampleSizeL`. Description of the variable was also changed.
   - `sampleTypeDefault`: Change from `SampleTypeDefault`. Now consistent use of lowercase first letter.
@@ -52,6 +52,11 @@ See [license](LICENSE) for more information.
 - SiteMeasure
   - `SampleID`: Makes sure that samples can easily be linked back to the site measurements, without the need for comparing dates. In case that multiple samples need to be linked to the same site measurement, create a comma separated list of sample IDs. 
   
+- **Deleted variable categories (breaking changes :bangbang:)**
+  - `SiteMeasure` table, `aggregation` variable, all of the options that included normalization
+    - `sdNr`,"Standard deviation, normalized",L'�cart type normalis�
+    - `geoMnNr`,"Geometric mean, normalized",Moyenne g�om�trique normalis�e.
+    - `meanNr`,"Arithmetic mean, normalized",Moyenne arithm�tique normalis�e.
 
 - **New variable categories**
 
