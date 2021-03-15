@@ -67,6 +67,8 @@ CREATE TABLE IF NOT EXISTS [Site] (
 	[siteID] char NOT NULL PRIMARY KEY, --
 	[name] char, --
 	[description] char, --
+	[publicHealthDepartment] char, --
+	[healthRegion] char, --
 	[type] char, --
 	[typeOther] char, --
 	[sampleTypeDefault] char, --
@@ -91,6 +93,7 @@ CREATE TABLE IF NOT EXISTS [SiteMeasure] (
 	[siteID] char, --
 	[instrumentID] char, --
 	[reporterID] char, --
+	[sampleID] char, --
 	[dateTime] integer, --
 	[type] char, --
 	[typeOther] char, --
@@ -112,7 +115,8 @@ CREATE TABLE IF NOT EXISTS [SiteMeasure] (
 	[notes] char, --
 	FOREIGN KEY ([siteID]) REFERENCES Site(siteID) DEFERRABLE INITIALLY DEFERRED,
 	FOREIGN KEY ([instrumentID]) REFERENCES Instrument(instrumentID) DEFERRABLE INITIALLY DEFERRED,
-	FOREIGN KEY ([reporterID]) REFERENCES Reporter(reporterID) DEFERRABLE INITIALLY DEFERRED
+	FOREIGN KEY ([reporterID]) REFERENCES Reporter(reporterID) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY ([sampleID]) REFERENCES Sample(sampleID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [Reporter] (
@@ -150,7 +154,7 @@ CREATE TABLE IF NOT EXISTS [AssayMethod] (
 	[referenceLink] char, --
 	[date] integer, --
 	[aliasID] char, --
-	[sampleSizeL] float, --
+	[extractionVolMl] float, --
 	[loq] float, --
 	[lod] float, --
 	[unit] char, --

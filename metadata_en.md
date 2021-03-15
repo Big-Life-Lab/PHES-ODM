@@ -196,7 +196,7 @@ Measurement result (ie. single variable) from a wastewater sample. WWMeaasure in
 	-	`ph`: pH units
 	-	`uScm`: Micro-siemens per centimeter.
 	-	`detected`: Gene copies or variant detected in the sampleGene or variant copiesDetected = 1Gene or variant copiesNot detected = 0.
-	-	`porpVar`: Proportion of variant in sample
+	-	`propVar`: Proportion of variant in sample
 	-	`pp`: Percent positive, for Moore swab.
 	-	`pps`: Percent primary sludge, for total solids.
 	-	`c`: temperature in celsius
@@ -225,7 +225,7 @@ Measurement result (ie. single variable) from a wastewater sample. WWMeaasure in
 -	**index**:(Index): [integer] Index number in case the measurement was taken multiple times.
 
 
--	**value**:(Value): [float] The actual measurement value that was obtained through analysis.
+-	**value**:(Value): [float] The actual value that is being reported for this measurement. Use "NA" for missing values and make sure to leave a note.
 
 
 -	**qualityFlag**:(Quality flag): [boolean] Does the reporter suspect the measurement having some quality issues
@@ -268,6 +268,12 @@ The site of wastewater sampling, including several defaults that can be used to 
 
 
 -	**description**:(Description): [string] Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.
+
+
+-	**publicHealthDepartment**:(Public health department or region): [string] The public health department or region where the site or institute is located. See also `healthRegion` if there is a separate regional health care delivery authority.
+
+
+-	**healthRegion**:(Health planning region): [string] The health planning authority where is site or insititute is located. See also `publicHealthDepartment`
 
 
 -	**type**:(Type): [category] Type of site or institution where sample was taken.
@@ -351,6 +357,9 @@ Measurement result (ie. single variable) obtained by at the site of wastewater s
 -	**reporterID**:(Reporter id): (Foreign key) [string] Links with the reporter that is responsible for the data.
 
 
+-	**sampleID**:(Sample id): (Foreign key) [string] Links with the identified Sample
+
+
 -	**dateTime**:(Date time): [date] The date and time the measurement was performed.
 
 
@@ -368,6 +377,10 @@ Measurement result (ie. single variable) obtained by at the site of wastewater s
 	-	`wwNH4N`: Ammonium nitrogen concentration, as N.
 	-	`wwTN`: Total nitrogen concentration, as N.
 	-	`wwpH`: pH of the wastewater.
+	-	`wwBOD5t`: 5 day total biochemical oxygen demand
+	-	`wwBOD5c`: 5 day carbonaceous biochemical oxygen demand
+	-	`wwPtot`: Total phosphates
+	-	`wwPP`: Total phosphorous
 	-	`wwCond`: Conductivity of the wastewater.
 
 -	**typeOther**:(Type other): [string] Description of the measurement in case it is not listed in type.
@@ -379,14 +392,11 @@ Measurement result (ie. single variable) obtained by at the site of wastewater s
 -	**aggregation**:(Aggregation): [category] When reporting an aggregate measurement, this field describes the method used.
 	-	`single`: This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.
 	-	`mean`: Arithmetic mean
-	-	`meanNr`: Arithmetic mean, normalized
 	-	`geoMn`: Geometric mean
-	-	`geoMnNr`: Geometric mean, normalized
 	-	`median`: Median
 	-	`min`: Lowest value in a range of values
 	-	`max`: Highest value in a range of values
 	-	`sd`: Standard deviation
-	-	`sdNr`: Standard deviation, normalized
 	-	`other`: Other aggregation method. Add description to aggregationOther
 
 -	**aggregationOther**:(Aggregation other): [string] Description for other type of aggregation not listed in aggregation.
@@ -395,11 +405,17 @@ Measurement result (ie. single variable) obtained by at the site of wastewater s
 -	**aggregationDesc**:(Aggregation desc): [string] Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
 
 
--	**value**:(Value): [float] The actual value that is being reported for this measurement.
+-	**value**:(Value): [float] The actual value that is being reported for this measurement. Use "NA" for missing values and make sure to leave a note.
 
 
--	**unit**:(Unit): [string] The engineering unit of the measurement.
-
+-	**unit**:(Unit): [category] The engineering unit of the measurement.
+	-	`c`: Degrees Celcius
+	-	`mm`: Millimeters
+	-	`m3H`: Cubic meters per hour
+	-	`m3D`: Cubic meters per day
+	-	`mgL`: Milligrams per liter
+	-	`pH`: pH units
+	-	`usCM`: Micro-siemens per centimeter
 
 -	**qualityFlag**:(Quality flag): [boolean] Does the reporter suspect quality issues with the value of this measurement
 
@@ -506,7 +522,7 @@ The assay method that was used to perform testing. Create a new record if there 
 -	**aliasID**:(Alias id): [string] ID of an assay that is the same or similar. a comma separated list.
 
 
--	**sampleSizeL**:(Sample size l): [float] Size of the sample that is analyzed in liters.
+-	**extractionVolMl**:(Extraction volume in ml): [float] Size of the sample that is analyzed in milliliters.
 
 
 -	**loq**:(Loq): [float] Limit of quantification (LOQ) for this method if one exists.
@@ -630,7 +646,7 @@ Covid-19 patient data for a specified polygon.
 	-	`report`: Date that the numbers were reported publicly. Typically, reported data and this measure is most commonly reported and used.
 	-	`test`: Date that the covid-19 test was performed.
 
--	**value**:(Value): [float] The numeric value that is being reported.
+-	**value**:(Value): [float] The actual value that is being reported for this measurement. Use "NA" for missing values and make sure to leave a note.
 
 
 -	**notes**:(Notes): [string] Any additional notes.
