@@ -28,7 +28,7 @@ See [license](LICENSE) for more information.
 
 **v1.1.0**
 
-Addresses issues: #59, #84, #90, #92, #93, #96, #97, #99, #102, #103, #104, #113, #114, #116.
+Addresses issues: #59, #84, #90, #92, #93, #96, #97, #99, #101, #102, #103, #104, #106, #112, #113, #114, #116.
 
 - **Variable name changes (breaking changes :bangbang:)**
 
