@@ -24,6 +24,7 @@ See [license](LICENSE) for more information.
 
 ## Changelog
 
+
 #### 2021-02-18
 
 **v1.1.0**
@@ -106,6 +107,17 @@ Addresses issues: #59, #84, #90, #92, #93, #96, #97, #99, #101, #102, #103, #104
   - Missing values for the `value` field in the different tables should be reported using the following notation 'NA', and ideally follow with a note that explains why the value is missing. An example: Every day a daily average flow measurement is generated, yet because of fouling the instrument stopped functioning for one day which makes that this data is missing.
   - SQL template updated to reflect v1.1.0 (and also v1.0.0). These files are now automatically generated from the metadata tables (above). The SQL tables are in SQLite format.
   - Several small grammatical errors corrected in the English variable descriptions.
+
+#### 2021-02-15
+
+Metadata migrated to:
+
+- `Tables.csv`: List of all tables.
+- `Variables.csv`: List of all variables.
+- `VariableCategory.csv`: List of all cteogies within variables.
+
+Modify these tables for future additions and changes. `metadata.md` is automatically generated from `metadata_template.md`.
+
 
 #### 2021-01-26
 
