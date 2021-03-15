@@ -28,6 +28,8 @@ See [license](LICENSE) for more information.
 
 **v1.1.0**
 
+Addresses issues: #59, #84, #90, #92, #93, #96, #97, #99, #102, #103, #104, #113, #114, #116.
+
 - **Variable name changes (breaking changes :bangbang:)**
 
   - `extractionVolMl`: Change from `sampleSizeL`. Description of the variable was also changed.
@@ -49,6 +51,11 @@ See [license](LICENSE) for more information.
   - `reporterID`: Reporter ID. Currently, reporterID is `WWmeasure` table but reporter for samples can be different. Issue [#93](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/93)
   - `index`: Index number in case the sample was taken multiple times. Issue [#103](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/103)
   - `InstrumentID`: Links with the Instrument table to describe the instrument used for sampling. Issue [#104](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/104)
+
+- Site
+
+  - `publicHealthDepartment`: Public health department or region. The public health department or region where the site or institute is located. See also `healthRegion` if there is a separate regional health care delivery authority. Issue [#116](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/116)
+  - `healthRegion`: Health planning region. The health planning authority where is site or insititute is located. See also `publicHealthDepartment`. Issue [#116](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/116)
 
 - SiteMeasure
   - `SampleID`: Makes sure that samples can easily be linked back to the site measurements, without the need for comparing dates. In case that multiple samples need to be linked to the same site measurement, create a comma separated list of sample IDs.
