@@ -78,8 +78,11 @@ Addresses issues: #59, #84, #90, #92, #93, #96, #97, #99, #102, #103, #104, #113
   - New `detected`: Gene copies or variant detected in the sampleGene or variant copies. Detected = 1. Gene or variant copiesNot detected = 0.
   - New `propVar`: Proportion of variant in sample.
   - `SiteMeasure` table, `type` variable
-    - `wwBOD5c`, 5 day biochemical oxygen demand
+    - `wwBOD5t`, 5 day total biochemical oxygen demand
+    - `wwBOD5c`, 5 day carbonaceous biochemical oxygen demand
     - `wwPtot`, Total phosphates
+    - `wwPP`, Total phosphorous
+    - ,
   - New `dailyAvg`: Average value taken over a 24h period, in the `SiteMeasure` table, `aggregation` variable
   - The `SiteMeasure` table now has a categorical `unit` variable with the following options
 
