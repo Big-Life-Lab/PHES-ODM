@@ -85,8 +85,8 @@ Addresses issues: #59, #84, #90, #92, #93, #96, #97, #99, #102, #103, #104, #113
 
     - `°C`, Degrees Celcius
     - `mm`, Millimeters
-    - `m3/h`, Cubic meters an hour
-    - `m3/d`, Cubic meters a day
+    - `m3/h`, Cubic meters per hour
+    - `m3/d`, Cubic meters per day
     - `mg/L`, Milligrams per liter
     - `pH`, pH units
     - `uS/cm`, Micro-siemens per centimeter
