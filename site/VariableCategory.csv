@@ -125,6 +125,10 @@ SiteMeasure,type,wwOPhos,Ortho-phosphate concentration.,Concentration d'ortho-ph
 SiteMeasure,type,wwNH4N,"Ammonium nitrogen concentration, as N.","Concentrsation d'azote ammoniacal, exprim� en N."
 SiteMeasure,type,wwTN,"Total nitrogen concentration, as N.","Azote total, exprim� en N"
 SiteMeasure,type,wwpH,pH of the wastewater.,pH
+SiteMeasure,type,wwBOD5t,5 day total biochemical oxygen demand,Demande biochimique totale en oxygene sur 5 jours
+SiteMeasure,type,wwBOD5c,5 day carbonaceous biochemical oxygen demand,Demande biochinique carbonnee en oxygene sur 5 jours
+SiteMeasure,type,wwPtot,Total phosphates,Phosphates totaux
+SiteMeasure,type,wwPP,Total phosphorous,Phosphore total
 SiteMeasure,type,wwCond,Conductivity of the wastewater.,Conductivit�
 SiteMeasure,aggregation,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.","La valeur n'a subi aucune agr�gation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut �tre un r�plica."
 SiteMeasure,aggregation,mean,Arithmetic mean,Moyenne arithm�tique.
