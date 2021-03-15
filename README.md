@@ -38,21 +38,22 @@ See [license](LICENSE) for more information.
   - `sampleStorageTempCDefault`: Change from `SampleStorageTempCDefault`.
   - `measureFractionAnalyzedDefault`: Change from `MeasureFractionAnalyzedDefault`.
 
-
 - **New variables**
 
 - Reporter
+
   - `organization`: Organization of reporter. Issue [#97](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/97)
 
 - Sample
+
   - `reporterID`: Reporter ID. Currently, reporterID is `WWmeasure` table but reporter for samples can be different. Issue [#93](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/93)
-  - `index`: Index number in case the sample was taken multiple times. Issue [#103](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/103) 
-  - `InstrumentID`: Links with the Instrument table to describe the instrument used for sampling. Issue [#104](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/104) 
+  - `index`: Index number in case the sample was taken multiple times. Issue [#103](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/103)
+  - `InstrumentID`: Links with the Instrument table to describe the instrument used for sampling. Issue [#104](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/104)
 
 - SiteMeasure
-  - `SampleID`: Makes sure that samples can easily be linked back to the site measurements, without the need for comparing dates. In case that multiple samples need to be linked to the same site measurement, create a comma separated list of sample IDs. 
-  
+  - `SampleID`: Makes sure that samples can easily be linked back to the site measurements, without the need for comparing dates. In case that multiple samples need to be linked to the same site measurement, create a comma separated list of sample IDs.
 - **Deleted variable categories (breaking changes :bangbang:)**
+
   - `SiteMeasure` table, `aggregation` variable, all of the options that included normalization
     - `sdNr`,"Standard deviation, normalized",L'�cart type normalis�
     - `geoMnNr`,"Geometric mean, normalized",Moyenne g�om�trique normalis�e.
@@ -82,10 +83,9 @@ See [license](LICENSE) for more information.
     - `mg/L`, Milligrams per liter
     - `pH`, pH units
     - `uS/cm`, Micro-siemens per centimeter
-  
- 
+
 - **Migrate .md files for tables**
-  
+
   - Variable and variable categories to CSV files. Please modify the appropriate CSV file for future updates. `metadata.md` is now automatically generated from the CSV files.
 
     - `Tables.csv`: list of tables.
@@ -93,7 +93,7 @@ See [license](LICENSE) for more information.
     - `VariableCategories`: list of categories for variables.
 
 - **Other**
-  - Missing values for the `value` field in the different tables should be reported using the following notation 'NA', and ideally follow with a note that explains why the value is missing. An example: Every day a daily average flow measurement is generated, yet because of fouling the instrument stopped functioning for one day which makes that this data is missing. 
+  - Missing values for the `value` field in the different tables should be reported using the following notation 'NA', and ideally follow with a note that explains why the value is missing. An example: Every day a daily average flow measurement is generated, yet because of fouling the instrument stopped functioning for one day which makes that this data is missing.
   - SQL template updated to reflect v1.1.0 (and also v1.0.0). These files are now automatically generated from the metadata tables (above). The SQL tables are in SQLite format.
   - Several small grammatical errors corrected in the English variable descriptions.
 
