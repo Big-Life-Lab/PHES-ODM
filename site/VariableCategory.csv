@@ -59,7 +59,7 @@ WWMeasure,unit,c,temperature in celsius,temp�ratures en degr�s Celsius
 WWMeasure,unit,bool,In cases where a boolean yes or no is required use bool,"Dans les cas o� un oui ou un non bool�en est requis, utilisez bool"
 WWMeasure,unit,other,Other measurement of viral copies or wastewater treatment plant parameter. Add description to UnitOther.,"Autre mesure de copies virales ou de qualit� des eaux us�es. Ajouter une description dans ""unitOther"""
 WWMeasure,aggregation,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.","La valeur n'a subi aucune agr�gation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut �tre un r�plica."
-WWMeasure,aggregation,mean, Arithmetic mean,Moyenne arithm�tique.
+WWMeasure,aggregation,mean," Arithmetic mean",Moyenne arithm�tique.
 WWMeasure,aggregation,meanNr,"Arithmetic mean, normalized",Moyenne arithm�tique normalis�e.
 WWMeasure,aggregation,geoMn,Geometric mean,Moyenne g�om�trique.
 WWMeasure,aggregation,geoMnNr,"Geometric mean, normalized",Moyenne g�om�trique normalis�e.
@@ -96,7 +96,7 @@ Site,SampleTypeDefault,swrSed,Sediments obtained in sewer.,S�diments provenant
 Site,SampleTypeDefault,pstGrit,Raw wastewater after a treatment plant's headworks.,Eau us�e apr�s d�grillage et dessablage.
 Site,SampleTypeDefault,pSludge,Sludge produced by primary clarifiers.,Boue provenant d'un d�canteur primaire.
 Site,SampleTypeDefault,pEfflu,Effluent obtained after primary clarifiers.,Effluent obtenu apr�s un d�canteur primaire.
-Site,SampleTypeDefault,sSludge, Sludge produced by secondary clarifiers.,Boue provenant d'un d�canteur secondaire.
+Site,SampleTypeDefault,sSludge," Sludge produced by secondary clarifiers.",Boue provenant d'un d�canteur secondaire.
 Site,SampleTypeDefault,sEfflu,Effluent obtained after secondary clarifiers.,Effluent obtenu apr�s un d�canteur secondaire.
 Site,SampleTypeDefault,water,"Non-wastewater, coming from any kind of water body.",Eau non-us�e provenant de toute �tendue d'eau.
 Site,SampleTypeDefault,faeces,Fecal matter.,Mati�re f�cale.
@@ -140,7 +140,7 @@ AssayMethod,unit,gcGms,Gene copies per gram solids.,Copies de g�ne ou de varia
 AssayMethod,unit,gcL,Gene copies per liter.,Copies de g�ne ou de variant par litre.
 AssayMethod,unit,gcCrA,Gene copies per copy of crAssphage.,Copies de g�ne ou de variant par copie de CrAssphage
 AssayMethod,unit,other,Other measurement of viral copies. Add description to unitOther.,"Autre mesure de copies virales ou de qualit� des eaux us�es. Ajouter une description dans ""unitOther"""
-Instrument,type,online, An online sensor,Capteur en ligne.
+Instrument,type,online," An online sensor",Capteur en ligne.
 Instrument,type,lab,Offline laboratory analysis,Analyse en laboratoire.
 Instrument,type,hand,A handheld measurement analyzer.,Mesure � l'aide d'un capteur manuel.
 Instrument,type,atline,An atline analyzer with sampler.,Mesure � l'aide d'un �chantillonneur.
@@ -154,7 +154,7 @@ CovidPublicHealthData,type,posTest,Number of positive tests.,Nombre de tests pos
 CovidPublicHealthData,type,pPosRt,Percent positivity rate.,Pourcentage de positivit� des tests.
 CovidPublicHealthData,type,hospCen,Hospital census or the number of people admitted with covid-19.,Rencensement des patients admis � un h�pital avec la COVID-19.
 CovidPublicHealthData,type,hospAdm,Hospital admissions or patients newly admitted to hospital.,Nombre d'admissions ou nombre de patients admis � l'h�pital.
-CovidPublicHealthData,dateType,episode ,"Episode date is the earliest of onset, test or reported date.","Date estim�e � laquelle l'�pisode de maladie s'est d�clar�. Habituellement calcul� en se basant sur la date des premiers sympt�mes, la date de test ou la date de reportage. "
+CovidPublicHealthData,dateType,"episode ","Episode date is the earliest of onset, test or reported date.","Date estim�e � laquelle l'�pisode de maladie s'est d�clar�. Habituellement calcul� en se basant sur la date des premiers sympt�mes, la date de test ou la date de reportage. "
 CovidPublicHealthData,dateType,onset,"Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, episode is used.",Date � laquelle les premiers sympt�mes apparaissent. Cette donn�e est souvent inconnue. La date d'�pisode est alors commun�ment utilis�e.
 CovidPublicHealthData,dateType,report,"Date that the numbers were reported publicly. Typically, reported data and this measure is most commonly reported and used.",Date � laquelle la donn�e a �t� report�e � la sant� publique. Cette mesure est commun�ment utilis�e.
 CovidPublicHealthData,dateType,test,Date that the covid-19 test was performed.,Date � laquelle le test de COVID-19 a �t� effectu�.

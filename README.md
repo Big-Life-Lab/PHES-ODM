@@ -76,7 +76,7 @@ Addresses issues: #59, #84, #90, #92, #93, #96, #97, #99, #102, #103, #104, #113
 
   - Updated description of `WWMeasure` table, `unit` measure. These descriptions now reference gene or variant copies.
   - New `detected`: Gene copies or variant detected in the sampleGene or variant copies. Detected = 1. Gene or variant copiesNot detected = 0.
-  - New `porpVar`: Proportion of variant in sample.
+  - New `propVar`: Proportion of variant in sample.
   - `SiteMeasure` table, `type` variable
     - `wwBOD5c`, 5 day biochemical oxygen demand
     - `wwPtot`, Total phosphates
