@@ -1,10 +1,10 @@
 
 
-library(stringi)
+
 #source("src/wbe_db_func.r")
 
 
-NML <- list(
+STATSCAN <- list(
     nm = "STATSCAN",
 
 
@@ -88,6 +88,8 @@ NML <- list(
             }
         })
         df2$tmp_id <-  NULL
+
+        #tables involved in the load
         ld_tbl_nms <-
             names(df2) %>%
             str_split(pattern = "_", n = 2) %>%
@@ -95,6 +97,7 @@ NML <- list(
 
         lapply(ld_tbl_nms, function(ld_tbl_nm){
             df2 %>% select(starts_with(ld_tbl_nm))
+
             wbe_find_df_col(df)
 
         })

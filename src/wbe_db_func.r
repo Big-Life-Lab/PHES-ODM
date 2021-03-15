@@ -22,6 +22,8 @@ library(docstring)
 library(anytime)
 library(tools)
 library(assertthat)
+library(stringi)
+
 
 wbe_CONNS <- c()   # Keeps a list of connections to the db
 
