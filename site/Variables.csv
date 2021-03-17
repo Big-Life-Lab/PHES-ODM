@@ -97,6 +97,7 @@ Reporter,siteIDDefault,Site id default,Identifiant du site par d�faut,Foreign 
 Reporter,labIDDefault,Lab id default,Identifiant laboratoire par d�faut,Foreign key,Lab,labID,string,Used as default when a new sample is created by this reporter. See ID in Lab table.,"Identifiant de Lab utilis� par d�faut quand un nouvel �chantillon est cr�� par ce reporteur. Se r�f�rer � la colonne ""labID"" dans la table ""Lab"""
 Reporter,contactName,Contact name,Nom du contact,,,,string,"Full Name of the reporter, either an organization or individual.",Nom complet du reporteur (personne ou organisation)
 Reporter,contactEmail,Contact email,Adresse �lectronique du contact,,,,string,Contact e-mail address.,Adresse courriel du contact.
+Reporter,organization,Organization,Organisation,,,,string,The organization to which the reporter is affiliated.,L'organisation à laquelle le reporteur est affilié.
 Reporter,contactPhone,Contact phone,T�l�phone du contact,,,,string,Contact phone number.,Num�ro de t�l�phone du contact.
 Reporter,notes,Notes,Notes,,,,string,Any additional notes.,Ajouter toutes notes additionnelles.
 Lab,labID,Lab id,Identifiant du laboratoire,Primary Key,,,string,Unique identifier for the laboratory.,Identifiant unique pour le laboratoire.
