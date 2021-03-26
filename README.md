@@ -6,7 +6,7 @@ See [Metadata](metadata.md) for variable names and definitions.
 
 ## Collaborate
 
-The ODM strives to improve wastewater surveillance through the development of a common data structure, including metadata and vocabulary. Also included are templates to collect and share data, along with tools clean, transform, visualize the data. Templates include versions of Excel spreadsheets from different jurisdictions that are based on the ODM. A SQL database structure is available, as well as code to clean data and create tables. See [roadmap]().
+The ODM strives to improve wastewater surveillance through the development of a common data structure, including metadata and vocabulary. Also included are templates to collect and share data, along with tools clean, transform, visualize the data. Templates include versions of Excel spreadsheets from different jurisdictions that are based on the ODM. A SQL database structure is available, as well as code to clean data and create tables. See [roadmap](roadmap.md).
 
 We adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) with recognition of benefit from a common data structure, including metadata and vocabulary.
 
