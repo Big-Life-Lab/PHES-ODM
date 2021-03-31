@@ -6,7 +6,6 @@
 .Rproj.user/
 .html
 *.Rproj
-data/
 src/*junk*
 .Rhistory
 
