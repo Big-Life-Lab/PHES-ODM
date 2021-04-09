@@ -53,6 +53,9 @@ The sample is a representative volume of wastewater taken from a Site which is t
 -	**instrumentID**:(Instrument id): (Foreign key) [string] Links with the Instrument table to describe the instrument used for sampling.
 
 
+-	**reporterID**:(reporter ID): (Foreign key) [string] Links with the reporter table to identify the reporter who collected the sample.
+
+
 -	**dateTime**:(Date time): [datetime] for grab samples this is the date, time and timezone the sample was taken.
 
 
@@ -463,6 +466,9 @@ The individual or organization that is reporting and responsible for the quality
 
 
 -	**contactEmail**:(Contact email): [string] Contact e-mail address.
+
+
+-	**organization**:(Organization): [string] The organization to which the reporter is affiliated.
 
 
 -	**contactPhone**:(Contact phone): [string] Contact phone number.

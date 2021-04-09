@@ -2,6 +2,7 @@ tableName,variableName,variableLabel_en,variableLabel_fr,key,foreignKeyTable,for
 Sample,sampleID,Sample id,Identifiant de l'�chantillon,Primary Key,,,string,Unique identifier for sample. Suggestion:siteID-date-index.,Identifiant unique pour l'�chantillon. Suggestion:siteID-date-index.
 Sample,siteID,Site id,Identifiant du site,Foreign key,Site,siteID,string,Links with the Site table to describe the location of sampling.,"Cr�e un lien avec la table ""Site"" pour d�crire le point d'�chantillonage."
 Sample,instrumentID,Instrument id,Identifiant de l'instrument,Foreign key,Instrument,InstrumentID,string,Links with the Instrument table to describe the instrument used for sampling.,"Cr�e un lien avec la table ""Instrument"" pour d�crire l'instrument utilis� pour l'�chantillonnage."
+Sample,reporterID,reporter ID,Identifiant du reporteur,Foreign key,Reporter,reporterID,string,"Links with the reporter table to identify the reporter who collected the sample.","Cr�e un lien avec la table ""Reporter"" pour identifier le reporteur ayant pr�lev� l'�chantillon."
 Sample,dateTime,Date time,Date et heure,,,,datetime,"for grab samples this is the date, time and timezone the sample was taken.","Date, heure et fuseau horaire de collecte d'un �chantillon ponctuel."
 Sample,dateTimeStart,Date time start,Date et heure de d�but,,,,datetime,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken.","Date, heure et fuseau horaire de d�but de collecte d'un �chantillon composite."
 Sample,dateTimeEnd,Date time end,Date et heure de fin,,,,datetime,"For integrated time average samples this is the date, time and timezone the sample was finished being taken.","Date, heure et fuseau horaire de fin de collecte d'un �chantillon composite."
@@ -97,6 +98,7 @@ Reporter,siteIDDefault,Site id default,Identifiant du site par d�faut,Foreign 
 Reporter,labIDDefault,Lab id default,Identifiant laboratoire par d�faut,Foreign key,Lab,labID,string,Used as default when a new sample is created by this reporter. See ID in Lab table.,"Identifiant de Lab utilis� par d�faut quand un nouvel �chantillon est cr�� par ce reporteur. Se r�f�rer � la colonne ""labID"" dans la table ""Lab"""
 Reporter,contactName,Contact name,Nom du contact,,,,string,"Full Name of the reporter, either an organization or individual.",Nom complet du reporteur (personne ou organisation)
 Reporter,contactEmail,Contact email,Adresse �lectronique du contact,,,,string,Contact e-mail address.,Adresse courriel du contact.
+Reporter,organization,Organization,Organisation,,,,string,The organization to which the reporter is affiliated.,L'organisation à laquelle le reporteur est affilié.
 Reporter,contactPhone,Contact phone,T�l�phone du contact,,,,string,Contact phone number.,Num�ro de t�l�phone du contact.
 Reporter,notes,Notes,Notes,,,,string,Any additional notes.,Ajouter toutes notes additionnelles.
 Lab,labID,Lab id,Identifiant du laboratoire,Primary Key,,,string,Unique identifier for the laboratory.,Identifiant unique pour le laboratoire.

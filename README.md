@@ -2,11 +2,11 @@
 
 This repository contains Ottawa Wastewater Surveillance Data Model (Ottawa Data Model (ODM)). Also included are Ottawa wastewater data - other data are welcomed. Plots using this data can be found at: [613covid.ca](https://613covid.ca/wastewater).
 
-See [Metadata](metadata.md) for variable names and definitions.
+See [metadata](metadata_en.md) for variable names and definitions. En france est [ici](metadata_fr.md).
 
 ## Collaborate
 
-The ODM strives to improve wastewater surveillance through the development of a common data structure, including metadata and vocabulary. Also included are templates (under development) to collect and share data. Templates include versions of Excel spreadsheets from different jurisdictions that are based on the ODM. A SQL database structure is available, as well as code to clean data and create tables.
+The ODM strives to improve wastewater surveillance through the development of a common data structure, including metadata and vocabulary. Also included are templates to collect and share data, along with tools clean, transform, visualize the data. Templates include versions of Excel spreadsheets from different jurisdictions that are based on the ODM. A SQL database structure is available, as well as code to clean data and create tables. See [roadmap](roadmap.md).
 
 We adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) with recognition of benefit from a common data structure, including metadata and vocabulary.
 

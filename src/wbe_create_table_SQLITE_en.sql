@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS [Sample] (
 	[sampleID] char NOT NULL PRIMARY KEY, --
 	[siteID] char, --
 	[instrumentID] char, --
+	[reporterID] char, --
 	[dateTime] integer, --
 	[dateTimeStart] integer, --
 	[dateTimeEnd] integer, --
@@ -22,7 +23,8 @@ CREATE TABLE IF NOT EXISTS [Sample] (
 	[qualityFlag] integer, --
 	[notes] char, --
 	FOREIGN KEY ([siteID]) REFERENCES Site(siteID) DEFERRABLE INITIALLY DEFERRED,
-	FOREIGN KEY ([instrumentID]) REFERENCES Instrument(InstrumentID) DEFERRABLE INITIALLY DEFERRED
+	FOREIGN KEY ([instrumentID]) REFERENCES Instrument(InstrumentID) DEFERRABLE INITIALLY DEFERRED,
+	FOREIGN KEY ([reporterID]) REFERENCES Reporter(reporterID) DEFERRABLE INITIALLY DEFERRED
 );
 
 CREATE TABLE IF NOT EXISTS [WWMeasure] (
@@ -126,6 +128,7 @@ CREATE TABLE IF NOT EXISTS [Reporter] (
 	[labIDDefault] char, --
 	[contactName] char, --
 	[contactEmail] char, --
+	[organization] char, --
 	[contactPhone] char, --
 	[notes] char, --
 	FOREIGN KEY ([siteIDDefault]) REFERENCES Site(siteID) DEFERRABLE INITIALLY DEFERRED,
