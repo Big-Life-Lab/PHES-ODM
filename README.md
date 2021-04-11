@@ -1,20 +1,42 @@
 # Ottawa Wastewater Surveillance Data Model (Ottawa Data Model (ODM))
 
-This repository contains Ottawa Wastewater Surveillance Data Model (Ottawa Data Model (ODM)). Also included are Ottawa wastewater data - other data are welcomed. Plots using this data can be found at: [613covid.ca](https://613covid.ca/wastewater).
+This repository contains Ottawa Wastewater Surveillance Data Model (Ottawa Data Model (ODM)).
+
+Plots using Ottawa data can be found at: [613covid.ca](https://613covid.ca/wastewater). Plots for other municipalities using the ODM include [London, Ontario](https://613covid.ca), [Kingston, Ontario](), [Montreal](), and [Québec City](). Programs that use the ODM include the Canada's National Microbology Laboratory, Ontario's Wastewater Intiative by the Ministry of Environment, Conservation, and Parks, and the CELO program.
+
+The ODM includes:
+
+- a data dictionary and metadata for 156 variables within eight tables. French and English supported;
+- docuementation describing how to use the model;
+- Excel templates for entering data;
+- database generation (SQLlite).
+
+Working group members maintain other repositories with tools that use the OMD, including:
+
+- [data visualization](https://github.com/Big-Life-Lab/Ottawa-COVID-Projection).
+- methods to convert Excel tables that are not in [ODM format into ODM data frame](https://github.com/jeandavidt/ODM-Import).
+
+Work-in-progress:
+
+- validation, data cleaning and data transformation;
+- data visualization;
+- data modelling.
+
+See [roadmap](roadmap.md) for future plans.
+
+# Metadata and data dictionary
 
 See [metadata](metadata_en.md) for variable names and definitions. En france est [ici](metadata_fr.md).
 
 ## Collaborate
 
-The ODM strives to improve wastewater surveillance through the development of a common data structure, including metadata and vocabulary. Also included are templates to collect and share data, along with tools clean, transform, visualize the data. Templates include versions of Excel spreadsheets from different jurisdictions that are based on the ODM. A SQL database structure is available, as well as code to clean data and create tables. See [roadmap](roadmap.md).
+The ODM strives to improve wastewater surveillance through the development of an open data structure, including metadata and vocabulary. OMD operates under the guidance of an international [steering committee](https://github.com/Big-Life-Lab/covid-19-wastewater/wiki). Working groups can be ongoing or created to address specific tasks and projects.
 
 We adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) with recognition of benefit from a common data structure, including metadata and vocabulary.
 
-ODM is a collaborative effort from many people within the wastewater surveillance community in Canada and beyond. See [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [dmanuel\@ohri.ca](mailto:dmanuel@ohri.ca), [howard.swerdfeger\@canada.ca](mailto:howard.swerdfeger@canada.ca).
+Issues, suggestions and pull requests are welcomed. See [contributing](CONTRIBUTING.md) for more information. See [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [dmanuel\@ohri.ca](mailto:dmanuel@ohri.ca), [howard.swerdfeger\@canada.ca](mailto:howard.swerdfeger@canada.ca).
 
 Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
-
-See [contributing](CONTRIBUTING.md) for more information.
 
 ## License
 
@@ -23,7 +45,6 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 See [license](LICENSE) for more information.
 
 ## Changelog
-
 
 #### 2021-02-18
 
@@ -117,7 +138,6 @@ Metadata migrated to:
 - `VariableCategory.csv`: List of all cteogies within variables.
 
 Modify these tables for future additions and changes. `metadata.md` is automatically generated from `metadata_template.md`.
-
 
 #### 2021-01-26
 
