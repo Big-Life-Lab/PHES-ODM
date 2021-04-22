@@ -26,7 +26,7 @@ See [roadmap](roadmap.md) for future plans.
 
 # Metadata and data dictionary
 
-See [metadata](metadata_en.md) for variable names and definitions. En france est [ici](metadata_fr.md).
+See [metadata](metadata_en.md) for variable names and definitions. Cliquez [ici](metadata_fr.md) pour la version française. 
 
 ## Collaborate
 
