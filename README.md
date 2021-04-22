@@ -1,42 +1,53 @@
-# Ottawa Wastewater Surveillance Data Model (Ottawa Data Model (ODM))
+# Ottawa Data Model (ODM) for Wastewater-Based Surveillance
 
-This repository contains Ottawa Wastewater Surveillance Data Model (Ottawa Data Model (ODM)).
+## Description
 
-Plots using Ottawa data can be found at: [613covid.ca](https://613covid.ca/wastewater). Plots for other municipalities using the ODM include [London, Ontario](https://613covid.ca), [Kingston, Ontario](), [Montreal](), and [Québec City](). Programs that use the ODM include the Canada's National Microbology Laboratory, Ontario's Wastewater Intiative by the Ministry of Environment, Conservation, and Parks, and the CELO program.
+This repository includes:
 
-The ODM includes:
+- A relational **dictionary** that captures wastewater based surveillance data and metadata. It consists of 150+ variables categorized in 8 tables. Both English and French versions are supported;
+- **Documentation** describing how to use the data model;
+- **Template files** that can be used to record data in the ODM format;
+- **Scripts** to set up a relational database according to the ODM schema.
 
-- a data dictionary and metadata for 156 variables within eight tables. French and English supported;
-- docuementation describing how to use the model;
-- Excel templates for entering data;
-- database generation (SQLlite).
+## Background
+Wastewater-based surveillance (WBS) of SARS-CoV-2 is developing and expanding rapidly during the current COVID-19 pandemic. WBS has demonstrated itself as valuable public health tool with an increasing number of municipalities that have identified new SARS-CoV-2 transmission using wastewater testing prior to clinical testing. Wastewater testing has also identified new surges and waves that has informed early public health response. Internationally, there are over 2000 testing sites in over 50 countries.
+
+WBS has a history informing public health action through its use to monitor health threats such as polio, antimicrobial resistance, as well as illicit drugs, among others. However, as a surveillance tool for pandemic purposes, the program is relatively new and there are implementation gaps. Currently, there is little to no controlled vocabulary on how WBS results should ideally be reported. Hence, the idea of a WBS data model that captures all relevant fields that should ideally be reported on when sharing WBS data.
+
+The ODM strives to improve wastewater surveillance through the development of an open data structure, including metadata and vocabulary. OMD operates under the guidance of an international [steering committee](https://github.com/Big-Life-Lab/covid-19-wastewater/wiki). Working groups can be ongoing or created to address specific tasks and projects. Note that we adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) with recognition of benefit from a common data structure, including metadata and vocabulary.
+
+## Data and metadata dictionary
+
+See [metadata](metadata_en.md) for variable names and definitions. Cliquez [ici](metadata_fr.md) pour la version française.
+
+## Collaborate
+
+Issues, suggestions and pull requests are welcomed. See [contributing](CONTRIBUTING.md) for more information. See [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [dmanuel\@ohri.ca](mailto:dmanuel@ohri.ca).
+
+Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
+
+
+## Application
+
+So far a number of Canadian institutes have adopted the ODM to structure SARS-CoV-2 WBS data. Programs that use the ODM include Canada's National Microbiology Laboratory (NML), Ontario's Wastewater Initiative by the Ministry of Environment, Conservation, and Parks (MECP), uOttawa, le Centre québécois de recherche sur la gestion de l'eau, Université Laval. 
+
+A dashboard using the Ottawa data can be found at: [613covid.ca](https://613covid.ca/wastewater). The [CentrEau](https://www.centreau.ulaval.ca/covid/) webpage host the dashboard for the province of Québec. 
+
+## Work-in-progress
+
+- data validation;
+- data cleaning and data transformation;
+- data visualization;
+- data modelling;
+
+See [roadmap](roadmap.md) for more details.
+
+## Additional tools
 
 Working group members maintain other repositories with tools that use the OMD, including:
 
 - [data visualization](https://github.com/Big-Life-Lab/Ottawa-COVID-Projection).
 - methods to convert Excel tables that are not in [ODM format into ODM data frame](https://github.com/jeandavidt/ODM-Import).
-
-Work-in-progress:
-
-- validation, data cleaning and data transformation;
-- data visualization;
-- data modelling.
-
-See [roadmap](roadmap.md) for future plans.
-
-# Metadata and data dictionary
-
-See [metadata](metadata_en.md) for variable names and definitions. Cliquez [ici](metadata_fr.md) pour la version française. 
-
-## Collaborate
-
-The ODM strives to improve wastewater surveillance through the development of an open data structure, including metadata and vocabulary. OMD operates under the guidance of an international [steering committee](https://github.com/Big-Life-Lab/covid-19-wastewater/wiki). Working groups can be ongoing or created to address specific tasks and projects.
-
-We adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) with recognition of benefit from a common data structure, including metadata and vocabulary.
-
-Issues, suggestions and pull requests are welcomed. See [contributing](CONTRIBUTING.md) for more information. See [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [dmanuel\@ohri.ca](mailto:dmanuel@ohri.ca), [howard.swerdfeger\@canada.ca](mailto:howard.swerdfeger@canada.ca).
-
-Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
 
 ## License
 
@@ -44,236 +55,17 @@ Website content is published under a Creative Commons CC BY 4.0 license, which r
 
 See [license](LICENSE) for more information.
 
-## Changelog
+## Acknowledgements
+
+Development and maintenance of the ODM is the result of a collaboration between researchers from multiple institutions:
+- uOttawa
+- The Ottawa Hospital
+- Ottawa Public Health
+- CHEO Research Institute
+- Université Laval
+- modelEAU
+- CentrEau - Centre québécois de recherche sur la gestion de l'eau
+- Public Health Agency Canada
+- Ministry of Environment, Conservation, and Parks - MECP Ontario
+- ...
 
-#### 2021-02-18
-
-**v1.1.0**
-
-Addresses issues: #59, #84, #90, #92, #93, #96, #97, #99, #101, #102, #103, #104, #106, #112, #113, #114, #116.
-
-- **Variable name changes (breaking changes :bangbang:)**
-
-  - `extractionVolMl`: Change from `sampleSizeL`. Description of the variable was also changed.
-  - `sampleTypeDefault`: Change from `SampleTypeDefault`. Now consistent use of lowercase first letter.
-  - `sampleTypeOtherDefault`: Change from `SampleTypeOtherDefault`.
-  - `sampleCollectionDefault`: Change from `SampleCollectionDefault`.
-  - `sampleCollectOtherDefault`: Change from `SampleCollectOtherDefault`.
-  - `sampleStorageTempCDefault`: Change from `SampleStorageTempCDefault`.
-  - `measureFractionAnalyzedDefault`: Change from `MeasureFractionAnalyzedDefault`.
-
-- **New variables**
-
-- Reporter
-
-  - `organization`: Organization of reporter. Issue [#97](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/97)
-
-- Sample
-
-  - `reporterID`: Reporter ID. Currently, reporterID is `WWmeasure` table but reporter for samples can be different. Issue [#93](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/93)
-  - `index`: Index number in case the sample was taken multiple times. Issue [#103](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/103)
-  - `InstrumentID`: Links with the Instrument table to describe the instrument used for sampling. Issue [#104](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/104)
-
-- Site
-
-  - `publicHealthDepartment`: Public health department or region. The public health department or region where the site or institute is located. See also `healthRegion` if there is a separate regional health care delivery authority. Issue [#116](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/116)
-  - `healthRegion`: Health planning region. The health planning authority where is site or insititute is located. See also `publicHealthDepartment`. Issue [#116](https://github.com/Big-Life-Lab/covid-19-wastewater/issues/116)
-
-- SiteMeasure
-  - `SampleID`: Makes sure that samples can easily be linked back to the site measurements, without the need for comparing dates. In case that multiple samples need to be linked to the same site measurement, create a comma separated list of sample IDs.
-- **Deleted variable categories (breaking changes :bangbang:)**
-
-  - `SiteMeasure` table, `aggregation` variable, all of the options that included normalization
-    - `sdNr`,"Standard deviation, normalized",L'�cart type normalis�
-    - `geoMnNr`,"Geometric mean, normalized",Moyenne g�om�trique normalis�e.
-    - `meanNr`,"Arithmetic mean, normalized",Moyenne arithm�tique normalis�e.
-
-- **New variable categories**
-
-  - Categories added to allow variant reporting. See `WWMeasure` table, `type` variable:
-
-    - `varB117`: Variant B.1.1.7
-    - `varB1351`: Variant B.1.351
-    - `varP1`: Variant P.1
-
-  - Updated description of `WWMeasure` table, `unit` measure. These descriptions now reference gene or variant copies.
-  - New `detected`: Gene copies or variant detected in the sampleGene or variant copies. Detected = 1. Gene or variant copiesNot detected = 0.
-  - New `propVar`: Proportion of variant in sample.
-  - `SiteMeasure` table, `type` variable
-    - `wwBOD5t`, 5 day total biochemical oxygen demand
-    - `wwBOD5c`, 5 day carbonaceous biochemical oxygen demand
-    - `wwPtot`, Total phosphates
-    - `wwPP`, Total phosphorous
-    - ,
-  - New `dailyAvg`: Average value taken over a 24h period, in the `SiteMeasure` table, `aggregation` variable
-  - The `SiteMeasure` table now has a categorical `unit` variable with the following options
-
-    - `°C`, Degrees Celcius
-    - `mm`, Millimeters
-    - `m3/h`, Cubic meters per hour
-    - `m3/d`, Cubic meters per day
-    - `mg/L`, Milligrams per liter
-    - `pH`, pH units
-    - `uS/cm`, Micro-siemens per centimeter
-
-- **Migrate .md files for tables**
-
-  - Variable and variable categories to CSV files. Please modify the appropriate CSV file for future updates. `metadata.md` is now automatically generated from the CSV files.
-
-    - `Tables.csv`: list of tables.
-    - `Variables.csv`: list of variables.
-    - `VariableCategories`: list of categories for variables.
-
-- **Other**
-  - Missing values for the `value` field in the different tables should be reported using the following notation 'NA', and ideally follow with a note that explains why the value is missing. An example: Every day a daily average flow measurement is generated, yet because of fouling the instrument stopped functioning for one day which makes that this data is missing.
-  - SQL template updated to reflect v1.1.0 (and also v1.0.0). These files are now automatically generated from the metadata tables (above). The SQL tables are in SQLite format.
-  - Several small grammatical errors corrected in the English variable descriptions.
-
-#### 2021-02-15
-
-Metadata migrated to:
-
-- `Tables.csv`: List of all tables.
-- `Variables.csv`: List of all variables.
-- `VariableCategory.csv`: List of all cteogies within variables.
-
-Modify these tables for future additions and changes. `metadata.md` is automatically generated from `metadata_template.md`.
-
-#### 2021-01-26
-
-**v1.0.0 - Many additions and breaking changes. This version is recommended for widespread use.**
-
-- Naming conventions were further developed. Category names shortened to 7 digits to allow wide variable names up to 31 characters.
-
-- Three NEW tables
-
-  - [SiteMeasure](metadata.md#sitemeasure): The site of wastewater sampling, including several defaults that can be used to populate new samples upon creation. SiteMeasure complements the [WWMeasure](metadata.md#wwmeasure) table. It includes measures that are commonly collected by staff at wastewater treatment facilities and field sample locations. Whereas WWMeasure includes measures that are commonly generated by wastewater testing laboratories.
-  - [Inststrument](metadata.md#instrument): Instruments that are used for measurements in SiteMeasure and WWMeasure. Note that the assay method itself for viral measurement is described in [AssayMethod](metadata.md#assaymethod).
-  - [Lookup](metadata.md#lookup): Reference for categorical variables.
-
-- Names of variables were updated according to the extended naming conventions. Note that these changes are NOT listed here!
-
-- Examples are provided on how to generate wide and long variables and category names.
-
-- Information on how to collaborate is updated.
-
-- Measurement metadata
-
-  - `aggregation` - Following the existing options, one more option was added to the list `geoMeanNormal`.
-
-- [SiteMeasure](metadata.md#sitemeasure) variables:
-
-  - `ID`: (NEW) Unique identifier for each contextual measurement.
-  - `SiteID`: (NEW) Links with the Site table to describe the location of measurement.
-  - `dateTime`: (NEW) The date and time the measurement was performed.
-  - `type`: (NEW) The type of measurement that was performed.
-  - `typeOther`: (NEW) Description of the measurement in case it is not listed in type.
-  - `typeDescription`: (NEW) Additional information on the performed measurement.
-  - `name`: (NEW) Name of the instrument used to perform the measurement.
-  - `type`: (NEW) Type of instrument used to perform the measurement.
-  - `typeOther`: (NEW) Description of the instrument in case it is not listed in instrumentType.
-  - `aggregation`: (NEW) When reporting an aggregate measurement, this field describes the method used.
-  - `aggregationOther`: (NEW) Description for other type of aggregation not listed in aggregation.
-  - `aggregationDescription`: (NEW) Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
-  - `value`: (NEW) The actual value that is being reported for this measurement.
-  - `unit`: (NEW) The engineering unit of the measurement.
-  - `qualityFlag`: (NEW) Does the reporter suspect quality issues with the value of this measurement? (Boolean)
-  - `notes`: (NEW) Any additional notes.
-
-- [Sample](metadata.md#sample) variables
-
-  - `samplingTempC`: (NEW) Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
-  - `mailedOnIce`: (NEW) Was the sample kept cool while being sent to the lab? (Boolean)
-  - `category` - A distinction is now made between SARS-CoV-2 gene measurements `covid` and the measurement of water quality parameters on the sample `wq`.
-
-- [Site](metadata.md#site) variables
-
-  - `type` - Additional site types were added `airplane`, `correctionalFacility`, `elementarySchool`, `hospital`, `longTermCareFacility`, `sewageTruck`, `universityCampus`, `WWTP`
-  - `accessType`: (NEW) Access point of where the sample was collected at the site.
-  - `measurement.fractionAnalyzedDefault`: (NEW) Used as default when a new measurement is created for this site. See `fractionAnalyzed` in `Measurement` table.
-
-- [AssayMethod](metadata.md#assaymethod): New variables were introduced to replace `assayDesc`, those are
-
-  - `methodConcentration`: (NEW) Description of the method used to concentrate the sample
-  - `methodExtraction`: (NEW) Description of the method used to extract the sample
-  - `methodPcr`: (NEW) Description of the PCR method used
-  - `qualityAssuranceQC`: (NEW) Description of the quality control steps taken
-  - `inhibition`: (NEW) Description of the inhibition parameters.
-  - `surrogateRecovery`: (NEW) Description of the surrogate recovery for this method.
-  - `description`: (NEW) Description of the assay.
-  - `referenceLink`: (NEW) Link to standard operating procedure (assay reference method)
-
-- [CovidPublicHealthData](metadata.md#covidpublichealthdata)
-
-  - `valueType`: (NEW) A categorical variable that replaces the individual variables, instead it provides listed options: `confirmed`, `active`, `tests`, `positiveTests`, `percentPositivityRate`, `hospitalCensus`, `hospitalAdmit`.
-
-#### 2021-01-08
-
-- All variable names were updated according to the name convention.
-
-#### 2020-11-25
-
-- Change date formatting on `wastewater_virus.csv` to YYYY-MM-DD.
-
-#### 2020-11-25
-
-**v0.1.1 - Additions to metadata. No breaking changes.**
-
-- Measurement metadata
-
-  - Add categories `measurementType`:
-
-    - `geoMean`: GeoMean of results
-    - `rangeLowestValue`: Lowest value in a range of values
-    - `rangeHighestValue`: Highest value in a range of values
-    - `singleton`: This value is not an aggregate measurement in any way, and thus is not a `mean`, `median`, `geomean` or other
-
-  - Add `measureValueDetected`: Boolean Value if True then covid-19 was detected.
-
-  - Add `reportDate`: Note use of `reportDate` when historic results are updated for new reporting standards.
-
-- AssayMethod metadata
-
-  - Add `sampleSizeL`: Size of the sample that is analysed in liters
-  - Add `loq`: Limit of Quantification for this method if one exists
-  - Add `lod`: Limit of detection for this method if one exists
-  - Add `inhibition`: Text decription of the inhibition
-  - Add `surrogateRecovery`: Text description of the Surrogate Recovery for this method
-
-- Other small corrections to metadata category labels.
-
-- CovidPublicHealthData
-
-  - `dateType`: Type of date used.
-
-- Updated `wastewater_virus.csv` to reflect metadata v0.1.1.
-
-#### 2020-11-17
-
-v0.1.0 - Breaking changes to metadata.
-
-- Assay method database added.
-- Change test results to be represented as key:values. Each test result has a measurement type (`measureType`) with a corresponding value (`measureValue`). For example a measureType is `mean` and the corresponding `measureValue` has the mean value.
-
-#### 2020-11-16
-
-- `wastewater_virus.csv` dataset updated to remove adjustment for percent viral recovery from solids. The adjustment allign reporting with other laboratories. The adjustment reduces N1 and N2 values a maginitude of 10 (approximately).
-
-#### 2020-10-29
-
-- Replace invalid values (such as \#DIV/0) with `NA`.
-
-#### 2020-10-27
-
-V0.0.2 - Breaking changes to metadata.
-
-- Change `locationID` to `siteID`.
-- Change `locationName` to `siteName`.
-
-#### 2020-10-16
-
-- All Ottawa data points prior to Oct 2nd have been slightly modified to normalize data for a new centrifuge that is being used to collect wastewater samples at the Ottawa site.
-
-#### 2020-10-09
-
-V0.0.1 - Initial variable names and labels.
