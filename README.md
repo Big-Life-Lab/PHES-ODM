@@ -4,7 +4,7 @@
 
 This repository includes:
 
-- A relational **dictionary** that captures wastewater based surveillance data and metadata. It consists of 150+ variables categorized in 8 tables. Both English and French versions are supported;
+- A relational **dictionary** that captures wastewater based surveillance data and metadata. It consists of 150+ variables categorized in 10 tables. Both English and French versions are supported;
 - **Documentation** describing how to use the data model;
 - **Template files** that can be used to record data in the ODM format;
 - **Scripts** to set up a relational database according to the ODM schema.
