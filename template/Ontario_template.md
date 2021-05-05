@@ -1,7 +1,5 @@
 # How to use Excel data templates
 
-Example of how to use git!
-
 The description below describes how to use the Ontario Data Model Excel
 Template, developed for the Ontario's Wastewater Testing Initiative by
 Vince Pileggi and Menglu Wang. The template is intended to record
