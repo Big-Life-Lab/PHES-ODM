@@ -29,7 +29,7 @@ Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev)
 
 ## Application
 
-So far a number of Canadian institutes have adopted the ODM to structure SARS-CoV-2 WBS data. Programs that use the ODM include Canada's National Microbiology Laboratory (NML), Ontario's Wastewater Initiative by the Ministry of Environment, Conservation, and Parks (MECP), uOttawa, le Centre québécois de recherche sur la gestion de l'eau, Université Laval. 
+So far a number of Canadian institutes have adopted the ODM to structure SARS-CoV-2 WBS data. Programs that use the ODM include Canada's National Microbiology Laboratory (NML), Ontario's Wastewater Initiative by the Ministry of Environment, Conservation, and Parks (MECP), uOttawa, le Centre québécois de recherche sur la gestion de l'eau, Université Laval, and [CETO Epidemiologic platform](https://ceto.ca).
 
 A dashboard using the Ottawa data can be found at: [613covid.ca](https://613covid.ca/wastewater). The [CentrEau](https://www.centreau.ulaval.ca/covid/) webpage host the dashboard for the province of Québec. 
 
