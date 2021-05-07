@@ -1,0 +1,170 @@
+
+Site Table:
+
+-	The siteID
+
+-	The Name of the Site
+
+-	Brief Description of the site
+
+-	Type of site
+
+- Additional variable: typeOther, if site is not in the listed drop down menu
+
+-	Health Region (of site)
+
+-	Public health department
+
+-	Geographic Latitude (geoLat)
+
+-	Geographic Longitude (geoLong)
+
+-	Additional Notes on the site
+
+
+Reporter Table:
+
+-	The ID of the reporter
+
+-	The reporter contact name 
+
+-	The reporter contact email
+
+-	The reporter contact phone
+
+-	The reporter contact phone extension (if needed)
+
+-	The update date of the data
+
+Instrument Table:
+
+-	The Instrument ID
+
+-	Name of the instrument
+
+-	Model of the instrument
+
+-	Description of the instrument
+
+-	Instrument Reference Link (url):
+
+-	Instrument Type
+
+-	Instrument typeOther (only used if not in the drop-down menu)
+
+Assay Method Table:
+
+-	Assay Method ID
+
+-	Name of the Assay
+
+-	Version of the Assay
+
+-	Summary of the Assay
+
+-	Assay Reference Link
+
+-	Date of Assay (Assuming when experiment was conducted)
+
+-	Sample Size of Assay (L)
+
+-	Assay Loq
+
+-	Assay Iod
+
+-	Unit of Assay
+
+-	Other unit of assay (not in drop down menu)
+
+
+
+Sample Table:
+
+-	Sample ID
+
+-	siteID (location)
+
+-	Sample Type
+
+-	Sample Collection
+
+-	Sample Date Time (When it was taken)
+
+-	Sample Start Time
+
+-	Sample End Time
+
+-	Size of Sample (L)
+
+-	Field Sample Temperature (Celcius)
+
+-	Was the sample shipped on Ice?
+
+-	Additional Sample Notes
+
+WW Measure Table:
+
+-	Measure ID for WW
+
+-	Sample ID for WW
+
+-	Lab ID for WW
+
+-	Assay Method ID for WW
+
+-	Instrument ID for WW
+
+-	Reporter ID for WW
+
+-	Analysis Date for WW
+
+-	Report Date for WW
+
+-	Fraction Analyzed for WW
+
+-	Type for WW
+
+-	Type Other for WW
+
+-	Unit for WW
+
+-	Unit Other for WW
+
+-	Index for WW
+
+-	Value for WW
+
+-	Quality Flag for WW
+
+-	Notes for WW
+
+Site Measure Table:
+
+-	Site Measure ID
+
+-	Site ID
+
+-	Sample ID
+
+-	Reporter ID
+
+-	Date + Time
+
+-	Type 
+
+-	Type other
+
+-	Type description
+
+-	Aggregation
+
+-	Aggregation other 
+
+-	Aggregation Description 
+
+-	Value (measure)
+
+-	Unit
+
+-	Notes
+
