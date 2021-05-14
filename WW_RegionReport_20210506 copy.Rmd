@@ -1,0 +1,277 @@
+---
+output: pdf_document
+
+header-includes:
+- \usepackage{pdflscape}
+- \newcommand{\blandscape}{\begin{landscape}}
+- \newcommand{\elandscape}{\end{landscape}}
+---
+
+```{r setup, include=FALSE}
+#SARS-CoV-2 Wastewater Epidemiology Lab Regional Report Generator
+#Robert Delatolla
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(readxl)
+library(lubridate)
+library(plyr)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+
+```{r sampleID}
+###### INSERT INFORMATION HERE:
+region <- "Ottawa"
+date <- Sys.Date() #Sys.Date() will give you today's date or use a date in quotes ex. "2021-02-01"
+comments <- NULL
+authorizedby <- "Robert Delatolla" #your name here inside "quotes"
+analysis <- "Solids" #Solids or Concentrate
+######
+```
+![](Logo_address.png)
+```{r Addresses}
+addresses.df <- read.csv("data/client_list.csv")
+address <- filter(addresses.df, Region == region)
+if(is.na(address$Name[1]) == TRUE)
+{
+  clientName <- NULL
+  clientTitle <- NULL
+  clientOffice <- NULL
+  clientAddress1 <- NULL
+  clientAddress2 <- NULL
+  clientAddress3 <- NULL
+  clientAddress4 <- NULL
+  clientAddress5 <- NULL
+  clientAddress6 <- NULL
+  clientAddress7 <- NULL
+  clientAddress8 <- NULL
+  clientAddress9 <- NULL
+  clientAddress10 <- NULL
+  clientAddress11 <- NULL
+  clientAddress12 <- NULL
+  clientAddress13 <- NULL
+  clientAddress14 <- NULL
+  clientAddress15 <- NULL
+} else 
+{
+  clientName <- address$Name[1]
+  clientTitle <- address$Title[1]
+  clientOffice <- address$Office_Institution[1]
+  clientAddress1 <- address$Address_line_1[1]
+  clientAddress2 <- address$Address_line_2[1]
+  clientAddress3 <- address$Address_line_3[1]
+  clientAddress4 <- address$Address_line_4[1]
+  clientAddress5 <- address$Address_line_5[1]
+  clientAddress6 <- address$Address_line_6[1]
+  clientAddress7 <- address$Address_line_7[1]
+  clientAddress8 <- address$Address_line_8[1]
+  clientAddress9 <- address$Address_line_9[1]
+  clientAddress10 <- address$Address_line_10[1]
+  clientAddress11 <- address$Address_line_11[1]
+  clientAddress12 <- address$Address_line_12[1]
+  clientAddress13 <- address$Address_line_13[1]
+  clientAddress14 <- address$Address_line_14[1]
+  clientAddress15 <- address$Address_line_15[1]
+}
+```
+`r clientName`  
+`r clientTitle`  
+`r clientOffice`  
+`r clientAddress1`  
+`r clientAddress2`  
+`r clientAddress3`
+`r clientAddress4`
+`r clientAddress5`
+`r clientAddress6`
+`r clientAddress7`
+`r clientAddress8`
+`r clientAddress9`
+`r clientAddress10`
+`r clientAddress11`
+`r clientAddress12`
+`r clientAddress13`
+`r clientAddress14`
+`r clientAddress15`
+
+
+# Wastewater Trend Analysis Report: SARS-CoV-2
+
+```{r variables}
+##read file and define variables for text portion of report
+data.df <- read_excel(file.choose(), guess_max = 10000)
+
+datetoday <- Sys.Date()
+
+```  
+Report Date: `r datetoday` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Authorized by: `r authorizedby`  
+Comments:  
+  
+\noindent\rule{16cm}{0.4pt}
+### Longitudinal data for 5 weeks ending `r date`
+### Method Type: `r analysis` RT-qPCR &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Region: `r region`
+
+## SARS-CoV-2 Detection in Wastewater by CDC N1 RT-qPCR
+
+``` {r plot}
+data.df$Date_sampled <- as.POSIXct(data.df$Date_sampled)
+enddate <- as.POSIXct(date)
+startdate <- as.POSIXct(enddate - days(35))
+#startdate <- as.POSIXct(ymd(enddate) - days(35))
+
+plotdata.df <- filter(data.df, Region == region, 
+                      Date_sampled <= enddate,
+                      Date_sampled >= startdate)
+
+if(analysis == "Concentrate")
+{
+  plotdata.df$N1_avg <- round(as.numeric(plotdata.df$C_N1_avg), digits = 1)
+  plotdata.df$N1_pos <- as.character(plotdata.df$C_N1_alleles)
+}
+
+if(analysis == "Solids")
+{
+  plotdata.df$N1_avg <- round(as.numeric(plotdata.df$S_N1_avg), digits = 1)
+  plotdata.df$N1_pos <- as.character(plotdata.df$S_N1_alleles)
+  }
+
+if(enddate-startdate < 15)
+{
+  xbreaks <- "1 day"
+}
+if(enddate-startdate > 14 | enddate-startdate < 57)
+{
+  xbreaks <- "1 week"
+}
+if(enddate-startdate > 56)
+{
+  xbreaks <- "1 month"
+}
+
+N1_plotdata <- filter(plotdata.df, !(is.na(plotdata.df$C_N1_1) & is.na(plotdata.df$S_N1_1)))
+variant_plotdata <- gather(plotdata.df, key = "allele", value = "percent", c(S_SN501Y_percent, S_Sdel_percent))
+variant_plotdata <- filter(variant_plotdata, !is.na(percent))
+
+#variant_plotdata$allelecount <- paste(variant_plotdata$S_SN501Y_WT_alleles, "-", variant_plotdata$S_SN501Y_Var_alleles, sep = "")
+
+N1ymax <- round_any(max(plotdata.df$N1_avg), 100, f = ceiling)
+
+theplot <- ggplot(data = N1_plotdata, aes(x = Date_sampled, y = N1_avg))+
+  theme_classic()+
+  geom_point(aes(shape = N1_pos, colour = N1_pos), size = 3.0)+
+  geom_line(stat = "identity", size = 1, color = "black")+
+  geom_hline(yintercept = 3, color = "darkorange2")+
+  scale_shape_manual(values = c("0" = 18, "1" = 16, "2" = 16),
+                     labels = c("0" = "Not Detected", "1" = "Low Confidence", "2" = "High Confidence"),
+                     name = "Confidence:")+
+  scale_color_manual(values = c("0" = "black", "1" = "lightcoral", "2" = "seagreen3"),
+                     labels = c("0" = "Not Detected", "1" = "Low Confidence", "2" = "High Confidence"),
+                     name = "Confidence:")+
+  scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day", 
+                   date_labels = "%Y %b %d")+
+  scale_y_continuous(trans = 'log10', limits = c(1, N1ymax))+
+  labs(x = "Date Sampled", y = "Viral Load (cp/mL)")+
+  facet_wrap(vars(Location_Full))+
+  theme(plot.title = element_text(size = 16, hjust = 0.5),
+        legend.position = "top", 
+        legend.direction = "horizontal",
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        panel.border = element_rect(colour = "black", fill = NA),
+        strip.background = element_blank())
+
+plot(theplot)
+```
+
+Low confidence: SARS-CoV-2 was detected in only one of two replicates.  
+High confidence: SARS-CoV-2 was detected in both replicates; presented as the average viral load.  
+Orange line represents the limit of quantification of the assay.  
+
+## Percentage of variants found in wastewater by S N501Y RT-qPCR
+```{r variant}
+variantplot <- ggplot(data = variant_plotdata, aes(x = Date_sampled, y = percent, group = allele, colour = allele))+
+  theme_classic()+
+  geom_point(size = 3.0)+
+  geom_line(stat = "identity", size = 1)+
+  scale_color_discrete(labels = c("S_SN501Y_percent" = "N501Y", "S_Sdel_percent" = "Sdel"), name = "Allele:")+
+  scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day", 
+                   date_labels = "%Y %b %d")+
+  scale_y_continuous(limits = c(0, 100))+
+  labs(x = "Date Sampled", y = "Percent Variant (%)")+
+  facet_wrap(vars(Location_Full))+
+  theme(plot.title = element_text(size = 16, hjust = 0.5),
+        legend.position = "top", 
+        legend.direction = "horizontal",
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        panel.border = element_rect(colour = "black", fill = NA),
+        strip.background = element_blank())
+
+plot(variantplot)
+
+```
+
+NOTE:  
+- This report is the only valid reference in case of differences with other transmitted documents.  
+- The analysis results refer only to what was provided for testing.  
+- The information provided in this report is for research use only.  
+
+See individual sample report for variances and limitations to sample analysis.  
+  
+&nbsp;  
+
+Robert Delatolla, Kamya Bhatnagar, Patrick M. D’Aoust, Élisabeth Mercier,
+Alex MacKenzie, and Tyson Graber
+
+Department of Civil Engineering, University of Ottawa & Children’s Hospital
+of Eastern Ontario – Research Institute
+
+\newpage
+
+```{r spreadsheet}
+if(analysis == "Concentrate")
+{
+  report.df <- select(N1_plotdata, Sample_ID, Submitted_ID, Location, Date_sampled, Date_received, 
+                      Arrival_temp, Sample_condition, C_qPCR_date, C_N1_avg)
+
+  report.df <- rename(report.df,
+                     "Sample ID" = Sample_ID,
+                     "Submitted ID" = Submitted_ID,
+                     "Date Sampled" = Date_sampled,
+                     "Date Received" = Date_received,
+                     "Arrival Temp" = Arrival_temp,
+                     "Sample Condition" = Sample_condition,
+                     "qPCR Date" = C_qPCR_date,
+                     "Average N1 Copies/mL" = C_N1_avg)
+}
+if(analysis == "Solids")
+{
+  report.df <- select(N1_plotdata, Sample_ID, Submitted_ID, Location, Date_sampled, Date_received, 
+                      Arrival_temp, Sample_condition, S_qPCR_date, S_N1_avg, S_Var_qPCR_date, S_SN501Y_percent)
+
+  report.df <- rename(report.df,
+                     "Sample ID" = Sample_ID,
+                     "Submitted ID" = Submitted_ID,
+                     "Date Sampled" = Date_sampled,
+                     "Date Received" = Date_received,
+                     "Arrival Temp" = Arrival_temp,
+                     "Sample Condition" = Sample_condition,
+                     "qPCR Date" = S_qPCR_date,
+                     "Average N1 Copies/mL" = S_N1_avg,
+                     "Variant qPCR Date" = S_Var_qPCR_date,
+                     "Variant N501Y Percent" = S_SN501Y_percent)
+}  
+report.df <- filter(report.df, `Date Sampled` >= startdate,
+                    `Date Sampled` <= enddate)   
+report.df <- arrange(report.df, Location, desc(`Date Sampled`)) 
+report.df$`Average N1 Copies/mL` <- round(report.df$`Average N1 Copies/mL`, 2)
+                                              
+kable(report.df, booktabs = T, align = "c") %>%
+kable_styling(latex_options = "scale_down") %>%
+#kableExtra::landscape() %>%
+row_spec(0, angle = 45)
+
+#16cm line for portrait, 23cm line for landscape
+```
+
+\noindent\rule{16cm}{0.4pt}  
+
+End of report  
