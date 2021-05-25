@@ -29,7 +29,7 @@ analysis <- "Solids"
 ######
 ```
 
-![](Logo_address.png)
+![](Logo_address.png) ![](cheologo.png)
 
 ```{r Addresses}
 addresses.df <- read_excel("data/Client List.xlsx")
@@ -72,6 +72,10 @@ data.df <- read.csv(file.path(getwd(), "data/wastewater_virus.csv"))
 
 datetoday <- Sys.Date()
 
+variant.df <- data.df %>%
+  mutate(sampleDate = as.Date(sampleDate)) %>%
+  filter(detectB117 == TRUE)
+
 ```  
 Report Date: `r datetoday` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Authorized by: `r authorizedby`  
 Comments:  
@@ -79,21 +83,26 @@ Comments:
 \noindent\rule{16cm}{0.4pt}
 ### Longitudinal data for 5 weeks ending `r date`
 ### Method Type: `r analysis` RT-qPCR &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Region: `r region`
+### B.1.1.7 variant: Detected on `r last(variant.df$sampleDate)`.
 
-## SARS-CoV-2 Detection in Wastewater by CDC N1 RT-qPCR
 
-``` {r plot}
+## SARS-CoV-2 Detection in Wastewater by CDC N1 & N2 RT-qPCR
+
+```{r plot}
 enddate <- as.Date(date)
 startdate <- as.Date(enddate - days(35))
 #startdate <- as.POSIXct(ymd(enddate) - days(35))
 
-data.df <- data.df[grep(region, data.df$siteID),]
+#data.df <- data.df[grep(region, data.df$siteID),]
 
 plotdata.df <- filter(data.df,
                       sampleDate <= as.Date(enddate) &
                       sampleDate >= as.Date(startdate))
 
-#plotdata.df$N1_avg <- round(as.numeric(plotdata.df$S_N1_avg), digits = 1)
+plotdata.df$N1_N2_avg <- (plotdata.df$covN1_nPMMoV_meanMnNr+
+                            plotdata.df$covN2_nPMMoV_meanMnNr)/2
+
+plotdata.df$N1_N2_avg_mL <- plotdata.df$N1_N2_avg_L/1000
 
 if(enddate-startdate < 15)
 {
@@ -108,11 +117,13 @@ if(enddate-startdate > 56)
   xbreaks <- "1 month"
 }
 
-N1_plotdata <- filter(plotdata.df, !(is.na(plotdata.df$covN1_nPMMoV_meanMnNr)))
+plotdata.df$confidence <- ifelse(
+  is.na(plotdata.df$viral_confidence), "0",
+  ifelse(plotdata.df$viral_confidence == FALSE, "1", "2"))
 
-N1_plotdata$N1_pos <- ifelse(N1_plotdata$qualityFlag == TRUE, "0", "1")
+N1_N2_plotdata <- filter(plotdata.df, !(is.na(plotdata.df$N1_N2_avg_mL)))
 
-N1_plotdata$sampleDate <- as.POSIXct(N1_plotdata$sampleDate)
+N1_N2_plotdata$sampleDate <- as.POSIXct(N1_N2_plotdata$sampleDate)
 
 variant_plotdata <- plotdata.df %>%
   filter(!(is.na(plotdata.df$fractionB117))) %>%
@@ -124,17 +135,33 @@ variant_plotdata$sampleDate <- as.POSIXct(variant_plotdata$sampleDate)
 
 #N1ymax <- round_any(max(plotdata.df$covN1_nPMMoV_meanMnNr), 100, f = ceiling)
 
-theplot <- ggplot(data = N1_plotdata, aes(x = sampleDate, y = covN1_nPMMoV_meanMnNr))+
+viralload_plot <- ggplot(data = N1_N2_plotdata, aes(x = sampleDate, y = N1_N2_avg_mL))+
   theme_classic()+
-  geom_point(aes(shape = N1_pos, colour = N1_pos), size = 3.0)+
+  geom_point(aes(shape = confidence, colour = confidence), size = 3.0)+
   geom_line(aes(group = 1), stat = "identity", size = 1, color = "black")+
-  #geom_hline(yintercept = 3, color = "darkorange2")+
-  scale_shape_manual(values = c("0" = 18, "1" = 16),
-                     labels = c("0" = "Outlier", "1" = "Non-outlier"),
-                     name = "Outlier:")+
-  scale_color_manual(values = c("0" = "lightcoral", "1" = "black"),
-                     labels = c("0" = "Outlier", "1" = "Non-outlier"),
-                     name = "Outlier:")+
+  geom_hline(yintercept = 3, color = "darkorange2")+
+  scale_shape_manual(values = c("0" = 18, "1" = 16, "2" = 16),
+                     labels = c("0" = "Low confidence", "1" = "High confidence", "2" = "High Confidence"),
+                     name = "Confidence:")+
+  scale_color_manual(values = c("0" = "lightcoral", "1" = "black", "2" = "seagreen3"),
+                     labels = c("0" = "Low confidence", "1" = "High confidence", "2" = "High Confidence"),
+                     name = "Confidence:")+
+  scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day", 
+                   date_labels = "%Y %b %d")+
+  #scale_y_continuous(trans = 'log10', limits = c(1, N1ymax))+
+  labs(x = "Date Sampled", y = "Viral Load (cp/mL)")+
+  facet_wrap(vars(siteID))+
+  theme(plot.title = element_text(size = 16, hjust = 0.5),
+        legend.position = "top", 
+        legend.direction = "horizontal",
+        axis.text.x = element_text(angle = 90, hjust = 1),
+        panel.border = element_rect(colour = "black", fill = NA),
+        strip.background = element_blank())
+
+nrm_copies_plot <- ggplot(data = N1_N2_plotdata, aes(x = sampleDate, y = N1_N2_avg))+
+  theme_classic()+
+  geom_point(aes(), size = 3.0)+
+  geom_line(aes(group = 1), stat = "identity", size = 1, color = "black")+
   scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day", 
                    date_labels = "%Y %b %d")+
   #scale_y_continuous(trans = 'log10', limits = c(1, N1ymax))+
@@ -147,14 +174,19 @@ theplot <- ggplot(data = N1_plotdata, aes(x = sampleDate, y = covN1_nPMMoV_meanM
         panel.border = element_rect(colour = "black", fill = NA),
         strip.background = element_blank())
 
-plot(theplot)
+plot(viralload_plot)
 ```
 
-Outlier: Signal was flagged by researchers with potential data concerns.
+Low confidence: SARS-CoV-2 signal was detected below the method’s limit of detection.
 
-Non-outlier: No data concerns with signal.  
+High confidence: SARS-CoV-2 signal was detected and meets QA/QC requirements. 
 
-## Percentage of variants found in wastewater by RT-qPCR
+Orange line represents the limit of quantification of the assay
+
+```{r}
+plot(nrm_copies_plot)
+```
+
 ```{r variant}
 variantplot <- ggplot(data = variant_plotdata, aes(x = sampleDate, y = pctB117))+
   theme_classic()+
@@ -173,7 +205,7 @@ variantplot <- ggplot(data = variant_plotdata, aes(x = sampleDate, y = pctB117))
         panel.border = element_rect(colour = "black", fill = NA),
         strip.background = element_blank())
 
-plot(variantplot)
+#plot(variantplot)
 
 ```
 
@@ -195,22 +227,47 @@ of Eastern Ontario – Research Institute
 \newpage
 
 ```{r spreadsheet}
+library(googledrive)
 
-report.df <- select(N1_plotdata, siteID, sampleDate, 
-                      reportDate, covN1_nPMMoV_meanMnNr, fractionB117)
+# Upload ww_reports
+drive_download(as_id("157D3pWH0r47xx4-rNua_Djbc606r_9vM"), path = "data/ww_reports.xlsx", overwrite = TRUE)
 
-report.df <- mutate(report.df, pctB117 = fractionB117*100)
+ww_reports <- read_excel(path = "data/ww_reports.xlsx", sheet = "7 - WWMeasure") %>%
+  filter(!is.na(uWwMeasureID), !is.na(value)) %>%
+  select(sampleID, labID, analysisDate, reportDate, type, value) %>%
+  filter(type == "covN1" | type == "covN2") %>%
+  group_by(sampleID) %>%
+  mutate(mean = mean(value)) %>%
+  select(-type, -value) %>%
+  distinct() %>%
+  mutate(viral_cp_mL = mean/1000) %>%
+  select(-mean)
 
-report.df <- rename(report.df,
-                     "Site ID" = siteID,
-                     "Date Sampled" = sampleDate,
-                     "Date Reported" = reportDate,
-                     "Normalized viral N1 copies" = covN1_nPMMoV_meanMnNr,
-                     "Variant B117 Percent" = pctB117)
+ww_reports$submitted_id <- NA
+ww_reports$arr_tmp <- NA
+ww_reports$condition <- NA
+ww_reports$pcr_date <- NA
+
+report.df <- rename(ww_reports,
+                     "Sample ID" = sampleID,
+                     "Submitted ID" = submitted_id,
+                     "Location" = labID,
+                     "Date Sampled" = analysisDate,
+                     "Date Received" = reportDate,
+                     "Arrival Temp" = arr_tmp,
+                     "Sample Condition" = condition,
+                     "qPCR Date" = pcr_date,
+                     "Average N1 & N2 Copies/mL" = viral_cp_mL)
+
+col_order <- c("Sample ID", "Submitted ID", "Location", "Date Sampled",
+               "Date Received", "Arrival Temp", "Sample Condition", "qPCR Date",
+               "Average N1 & N2 Copies/mL")
+
+report.df <- report.df[,col_order]
 
 report.df <- filter(report.df, as.Date(`Date Sampled`) >= as.Date(startdate),
                     as.Date(`Date Sampled`) <= as.Date(enddate))   
-report.df <- arrange(report.df, `Site ID`, desc(`Date Sampled`)) 
+report.df <- arrange(report.df, `Sample ID`, desc(`Date Sampled`)) 
 #report.df$`Average N1 Copies/mL` <- round(report.df$`Average N1 Copies/mL`, 2)
                                               
 kable(report.df, booktabs = T, align = "c") %>%
