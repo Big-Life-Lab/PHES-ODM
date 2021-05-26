@@ -22,6 +22,9 @@ library(kableExtra)
 ```{r sampleID}
 ###### INSERT INFORMATION HERE:
 region <- "Ottawa"
+sites <- c("BMI","MH")
+site_labels <- c("Bath and Millhaven Combined", "Millhaven")
+names(site_labels) <- sites
 date <- Sys.Date() #Sys.Date() will give you today's date or use a date in quotes ex. "2021-02-01"
 comments <- NULL
 authorizedby <- "Robert Delatolla" #your name here inside "quotes"
@@ -93,7 +96,7 @@ enddate <- as.Date(date)
 startdate <- as.Date(enddate - days(35))
 #startdate <- as.POSIXct(ymd(enddate) - days(35))
 
-#data.df <- data.df[grep(region, data.df$siteID),]
+data.df <- filter(data.df, grepl(paste(sites, collapse = "|"), siteID))
 
 plotdata.df <- filter(data.df,
                       sampleDate <= as.Date(enddate) &
@@ -121,6 +124,16 @@ plotdata.df$confidence <- ifelse(
   is.na(plotdata.df$viral_confidence), "0",
   ifelse(plotdata.df$viral_confidence == FALSE, "1", "2"))
 
+plotdata.df$norm_confidence <- ifelse(
+  (is.na(plotdata.df$N1_N2_avg)) & (plotdata.df$qualityFlag == FALSE), "0",
+  ifelse(
+      ((plotdata.df$N1_N2_avg == 0) & (plotdata.df$qualityFlag == FALSE)), "0",
+  ifelse(
+    (plotdata.df$qualityFlag == TRUE), "1",
+    "2")
+  )
+  )
+
 N1_N2_plotdata <- filter(plotdata.df, !(is.na(plotdata.df$N1_N2_avg_mL)))
 
 N1_N2_plotdata$sampleDate <- as.POSIXct(N1_N2_plotdata$sampleDate)
@@ -133,24 +146,24 @@ variant_plotdata$sampleDate <- as.POSIXct(variant_plotdata$sampleDate)
 
 #variant_plotdata$allelecount <- paste(variant_plotdata$S_SN501Y_WT_alleles, "-", variant_plotdata$S_SN501Y_Var_alleles, sep = "")
 
-#N1ymax <- round_any(max(plotdata.df$covN1_nPMMoV_meanMnNr), 100, f = ceiling)
+N1ymax <- round_any(max(N1_N2_plotdata$N1_N2_avg_mL), 100, f = ceiling)
 
 viralload_plot <- ggplot(data = N1_N2_plotdata, aes(x = sampleDate, y = N1_N2_avg_mL))+
   theme_classic()+
   geom_point(aes(shape = confidence, colour = confidence), size = 3.0)+
   geom_line(aes(group = 1), stat = "identity", size = 1, color = "black")+
-  geom_hline(yintercept = 3, color = "darkorange2")+
+  geom_hline(yintercept = 1, color = "darkorange2")+
   scale_shape_manual(values = c("0" = 18, "1" = 16, "2" = 16),
-                     labels = c("0" = "Low confidence", "1" = "High confidence", "2" = "High Confidence"),
+                     labels = c("0" = "Non detection", "1" = "Low confidence", "2" = "High Confidence"),
                      name = "Confidence:")+
   scale_color_manual(values = c("0" = "lightcoral", "1" = "black", "2" = "seagreen3"),
-                     labels = c("0" = "Low confidence", "1" = "High confidence", "2" = "High Confidence"),
+                     labels = c("0" = "Non detection", "1" = "Low confidence", "2" = "High Confidence"),
                      name = "Confidence:")+
   scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day", 
                    date_labels = "%Y %b %d")+
-  #scale_y_continuous(trans = 'log10', limits = c(1, N1ymax))+
+  scale_y_continuous(trans = 'log10', limits = c(1, N1ymax))+
   labs(x = "Date Sampled", y = "Viral Load (cp/mL)")+
-  facet_wrap(vars(siteID))+
+  facet_wrap(vars(siteID), labeller = labeller(siteID = site_labels))+
   theme(plot.title = element_text(size = 16, hjust = 0.5),
         legend.position = "top", 
         legend.direction = "horizontal",
@@ -160,13 +173,19 @@ viralload_plot <- ggplot(data = N1_N2_plotdata, aes(x = sampleDate, y = N1_N2_av
 
 nrm_copies_plot <- ggplot(data = N1_N2_plotdata, aes(x = sampleDate, y = N1_N2_avg))+
   theme_classic()+
-  geom_point(aes(), size = 3.0)+
+  geom_point(aes(shape = norm_confidence, colour = norm_confidence), size = 3.0)+
   geom_line(aes(group = 1), stat = "identity", size = 1, color = "black")+
+  scale_shape_manual(values = c("0" = 18, "1" = 16, "2" = 16),
+                     labels = c("0" = "Non detection", "1" = "Low confidence", "2" = "High Confidence"),
+                     name = "Confidence:")+
+  scale_color_manual(values = c("0" = "lightcoral", "1" = "black", "2" = "seagreen3"),
+                     labels = c("0" = "Non detection", "1" = "Low confidence", "2" = "High Confidence"),
+                     name = "Confidence:") +
   scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day", 
                    date_labels = "%Y %b %d")+
   #scale_y_continuous(trans = 'log10', limits = c(1, N1ymax))+
   labs(x = "Date Sampled", y = "Normalized viral copies")+
-  facet_wrap(vars(siteID))+
+  facet_wrap(vars(siteID), labeller = labeller(siteID = site_labels))+
   theme(plot.title = element_text(size = 16, hjust = 0.5),
         legend.position = "top", 
         legend.direction = "horizontal",
@@ -177,7 +196,7 @@ nrm_copies_plot <- ggplot(data = N1_N2_plotdata, aes(x = sampleDate, y = N1_N2_a
 plot(viralload_plot)
 ```
 
-Low confidence: SARS-CoV-2 signal was detected below the method’s limit of detection.
+Low confidence: SARS-CoV-2 signal was detected below the method’s limit of quantification.
 
 High confidence: SARS-CoV-2 signal was detected and meets QA/QC requirements. 
 
@@ -233,6 +252,7 @@ library(googledrive)
 drive_download(as_id("157D3pWH0r47xx4-rNua_Djbc606r_9vM"), path = "data/ww_reports.xlsx", overwrite = TRUE)
 
 ww_reports <- read_excel(path = "data/ww_reports.xlsx", sheet = "7 - WWMeasure") %>%
+  filter(grepl(paste(sites, collapse = "|"), sampleID)) %>%
   filter(!is.na(uWwMeasureID), !is.na(value)) %>%
   select(sampleID, labID, analysisDate, reportDate, type, value) %>%
   filter(type == "covN1" | type == "covN2") %>%
