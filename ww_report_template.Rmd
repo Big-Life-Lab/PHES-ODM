@@ -21,7 +21,7 @@ library(kableExtra)
 
 ```{r sampleID}
 ###### INSERT INFORMATION HERE:
-region <- "Ottawa"
+region <- "CSC"
 sites <- c("BMI","MH")
 site_labels <- c("Bath and Millhaven Combined", "Millhaven")
 names(site_labels) <- sites
@@ -63,8 +63,6 @@ for(i in address_counter){
 `r clientTitle`  
 `r clientOffice`  
 `r clientAddress1`  
-`r clientAddress2`  
-`r clientAddress3`
 
 
 # Wastewater Trend Analysis Report: SARS-CoV-2
@@ -77,7 +75,10 @@ datetoday <- Sys.Date()
 
 variant.df <- data.df %>%
   mutate(sampleDate = as.Date(sampleDate)) %>%
-  filter(detectB117 == TRUE)
+  filter(grepl(paste(sites, collapse = "|"), siteID),
+         testB117 == TRUE)
+
+detection <- ifelse(last(variant.df$detectB117 == TRUE), "Detected", "Not detected")
 
 ```  
 Report Date: `r datetoday` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Authorized by: `r authorizedby`  
@@ -86,7 +87,7 @@ Comments:
 \noindent\rule{16cm}{0.4pt}
 ### Longitudinal data for 5 weeks ending `r date`
 ### Method Type: `r analysis` RT-qPCR &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Region: `r region`
-### B.1.1.7 variant: Detected on `r last(variant.df$sampleDate)`.
+### B.1.1.7 variant: `r detection` on `r last(variant.df$sampleDate)`.
 
 
 ## SARS-CoV-2 Detection in Wastewater by CDC N1 & N2 RT-qPCR
@@ -144,6 +145,8 @@ N1_N2_plotdata$N1_N2_avg <- ifelse(is.na(N1_N2_plotdata$N1_N2_avg), 0,
 
 N1_N2_plotdata$sampleDate <- as.POSIXct(N1_N2_plotdata$sampleDate)
 
+N1_N2_plotdata <- arrange(N1_N2_plotdata, siteID, sampleDate)
+
 variant_plotdata <- plotdata.df %>%
   filter(!(is.na(plotdata.df$fractionB117))) %>%
   mutate(pctB117 = fractionB117*100)
@@ -152,7 +155,7 @@ variant_plotdata$sampleDate <- as.POSIXct(variant_plotdata$sampleDate)
 
 #variant_plotdata$allelecount <- paste(variant_plotdata$S_SN501Y_WT_alleles, "-", variant_plotdata$S_SN501Y_Var_alleles, sep = "")
 
-N1ymax <- round_any(max(N1_N2_plotdata$N1_N2_avg_mL), 100, f = ceiling)
+N1ymax <- round_any(max(N1_N2_plotdata$N1_N2_avg_mL), 10000, f = ceiling)
 
 viralload_plot <- ggplot(data = N1_N2_plotdata, aes(x = sampleDate, y = N1_N2_avg_mL))+
   theme_classic()+
