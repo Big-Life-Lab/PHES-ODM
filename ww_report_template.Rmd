@@ -1,4 +1,13 @@
 ---
+knit: (function(input, ...) {
+    rmarkdown::render(
+      input,
+      output_file = paste0("ww_report", '_', Sys.Date(), '.pdf'
+      ),
+      envir = globalenv()
+    )
+  })
+
 output: pdf_document
 
 header-includes:
@@ -16,6 +25,7 @@ library(plyr)
 library(tidyverse)
 library(knitr)
 library(kableExtra)
+library(googledrive)
 ```
 
 
@@ -32,7 +42,7 @@ analysis <- "Solids"
 ######
 ```
 
-![](Logo_address.png) ![](cheologo.png)
+![](img/Logo_address.png) ![](img/cheologo.png)
 
 ```{r Addresses}
 addresses.df <- read_excel("data/Client List.xlsx")
@@ -62,14 +72,18 @@ for(i in address_counter){
 `r clientName`  
 `r clientTitle`  
 `r clientOffice`  
-`r clientAddress1`  
+`r clientAddress1`
+`r clientAddress2`
+`r clientAddress3`
 
 
 # Wastewater Trend Analysis Report: SARS-CoV-2
 
 ```{r variables}
 ##read file and define variables for text portion of report
-data.df <- read.csv(file.path(getwd(), "data/wastewater_virus.csv"))
+drive_download(as_id("1bJzYQ_V63of4Ym15RsiSlT9uA7R9OSth"), path = "data/report_data.csv", overwrite = TRUE)
+
+data.df <- read.csv(file.path(getwd(), "data/report_data.csv"))
 
 datetoday <- Sys.Date()
 
@@ -255,8 +269,6 @@ of Eastern Ontario – Research Institute
 \newpage
 
 ```{r spreadsheet}
-library(googledrive)
-
 # Upload ww_reports
 drive_download(as_id("157D3pWH0r47xx4-rNua_Djbc606r_9vM"), path = "data/ww_reports.xlsx", overwrite = TRUE)
 
