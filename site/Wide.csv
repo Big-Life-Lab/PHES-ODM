@@ -6,6 +6,6 @@
 ,Lab,LAB,,,,,,
 ,Reporter,REP,,,,,,
 ,AssayMethod,ASM,,,,,,
-WW,Polygon,POLY,$ALL,,,$tableSubject-$tableName_column,,
+WW,Polygon,POLY,$ALL,,,$tableSubject-$tableName_column,,left(SIT_polygonID -> POLY_polygonID)
 CPHD,Polygon,POLY,$ALL,,,$tableSubject-$tableName_column,,
 ,CovidPublicHealthData,CPHD,"cphdID, reporterID, polygonID, date","value, notes",$tableName_type_dateType_column,$tableName_column,date,outer(CPHD_timestamp -> SMP_timestamp)
