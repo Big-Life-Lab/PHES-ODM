@@ -1,8 +1,8 @@
 ﻿tableSubject,tableName,tableNickname,descColumns,valueColumns,valueColumnFormula,descColumnFormula,timestampFormula,joinFormula
 ,WWMeasure,WWM,"wwMeasureID, sampleID, dateTime, dateTimeStart, dateTimeEnd","analysisDate, reportDate, qualityFlag, value, notes",$tableName_type_unit_(index OR((aggregation OR aggregationOther) OR $customAggregation))_column,$tableName_column,,left(SMP_sampleID -> WWM_sampleID)
-,Sample,SMP,$ALL,,,$tableName_column,"if(type==""grab""), dateTime, (dateTimeStart+dateTimeEnd)/2)",
+,Sample,SMP,$ALL,,,$tableName_column,"if(type==""grb""), dateTime, (dateTimeStart+dateTimeEnd)/2)",
 ,Site,SIT,$ALL,,,$tableName_column,,left(SMP_siteID -> SIT_siteID)
-,SiteMeasure,STM,"siteMeasureID, siteID, sampleID, dateTime","value, qualityFlag, notes",$tableName_(type OR typeOther)_unit_((aggregation OR aggregationOther) OR $customAggregation)_column,$tableName_column,dateTime,outer(STM_timestamp -> SMP_timestamp)
+,SiteMeasure,STM,"siteMeasureID, siteID, sampleID, dateTime","value, qualityFlag, notes",$tableName_(type OR typeOther)_unit_((aggregation OR aggregationOther) OR $customAggregation)_column,$tableName_column,dateTime,outer(SMP_timestamp -> STM_timestamp)
 ,Lab,LAB,,,,,,
 ,Reporter,REP,,,,,,
 ,AssayMethod,ASM,,,,,,
