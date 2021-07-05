@@ -59,7 +59,7 @@ WWMeasure,unit,c,temperature in celsius,tempï¿½ratures en degrï¿½s Celsius
 WWMeasure,unit,bool,In cases where a boolean yes or no is required use bool,"Dans les cas oï¿½ un oui ou un non boolï¿½en est requis, utilisez bool"
 WWMeasure,unit,other,Other measurement of viral copies or wastewater treatment plant parameter. Add description to UnitOther.,"Autre mesure de copies virales ou de qualitï¿½ des eaux usï¿½es. Ajouter une description dans ""unitOther"""
 WWMeasure,aggregation,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.","La valeur n'a subi aucune agrï¿½gation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut ï¿½tre un rï¿½plica."
-WWMeasure,aggregation,mean, Arithmetic mean,Moyenne arithmï¿½tique.
+WWMeasure,aggregation,mean,Arithmetic mean,Moyenne arithmï¿½tique.
 WWMeasure,aggregation,meanNr,"Arithmetic mean, normalized",Moyenne arithmï¿½tique normalisï¿½e.
 WWMeasure,aggregation,geoMn,Geometric mean,Moyenne gï¿½omï¿½trique.
 WWMeasure,aggregation,geoMnNr,"Geometric mean, normalized",Moyenne gï¿½omï¿½trique normalisï¿½e.
@@ -96,7 +96,7 @@ Site,SampleTypeDefault,swrSed,Sediments obtained in sewer.,Sï¿½diments provenant
 Site,SampleTypeDefault,pstGrit,Raw wastewater after a treatment plant's headworks.,Eau usï¿½e aprï¿½s dï¿½grillage et dessablage.
 Site,SampleTypeDefault,pSludge,Sludge produced by primary clarifiers.,Boue provenant d'un dï¿½canteur primaire.
 Site,SampleTypeDefault,pEfflu,Effluent obtained after primary clarifiers.,Effluent obtenu aprï¿½s un dï¿½canteur primaire.
-Site,SampleTypeDefault,sSludge, Sludge produced by secondary clarifiers.,Boue provenant d'un dï¿½canteur secondaire.
+Site,SampleTypeDefault,sSludge,Sludge produced by secondary clarifiers.,Boue provenant d'un dï¿½canteur secondaire.
 Site,SampleTypeDefault,sEfflu,Effluent obtained after secondary clarifiers.,Effluent obtenu aprï¿½s un dï¿½canteur secondaire.
 Site,SampleTypeDefault,water,"Non-wastewater, coming from any kind of water body.",Eau non-usï¿½e provenant de toute ï¿½tendue d'eau.
 Site,SampleTypeDefault,faeces,Fecal matter.,Matiï¿½re fï¿½cale.
@@ -130,13 +130,13 @@ SiteMeasure,type,wwBOD5c,5 day carbonaceous biochemical oxygen demand,Demande bi
 SiteMeasure,type,wwPtot,Total phosphates,Phosphates totaux
 SiteMeasure,type,wwPP,Total phosphorous,Phosphore total
 SiteMeasure,type,wwCond,Conductivity of the wastewater.,Conductivitï¿½
-SiteMeasure,unit,c,Degrees Celcius,Degrés Celcius
-SiteMeasure,unit,mm,Millimeters,Millimètres
-SiteMeasure,unit,m3H,Cubic meters per hour,Mètres cubes par heure
-SiteMeasure,unit,m3D,Cubic meters per day,Mètres cubes par jour
+SiteMeasure,unit,c,Degrees Celcius,Degrï¿½s Celcius
+SiteMeasure,unit,mm,Millimeters,Millimï¿½tres
+SiteMeasure,unit,m3H,Cubic meters per hour,Mï¿½tres cubes par heure
+SiteMeasure,unit,m3D,Cubic meters per day,Mï¿½tres cubes par jour
 SiteMeasure,unit,mgL,Milligrams per liter,Milligrammes par litre
-SiteMeasure,unit,pH,pH units,Unités de pH
-SiteMeasure,unit,usCM,Micro-siemens per centimeter,Micro-siemens par centimètre
+SiteMeasure,unit,pH,pH units,Unitï¿½s de pH
+SiteMeasure,unit,usCM,Micro-siemens per centimeter,Micro-siemens par centimï¿½tre
 SiteMeasure,aggregation,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.","La valeur n'a subi aucune agrï¿½gation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut ï¿½tre un rï¿½plica."
 SiteMeasure,aggregation,mean,Arithmetic mean,Moyenne arithmï¿½tique.
 SiteMeasure,aggregation,geoMn,Geometric mean,Moyenne gï¿½omï¿½trique.
@@ -151,7 +151,7 @@ AssayMethod,unit,gcGms,Gene copies per gram solids.,Copies de gï¿½ne ou de varia
 AssayMethod,unit,gcL,Gene copies per liter.,Copies de gï¿½ne ou de variant par litre.
 AssayMethod,unit,gcCrA,Gene copies per copy of crAssphage.,Copies de gï¿½ne ou de variant par copie de CrAssphage
 AssayMethod,unit,other,Other measurement of viral copies. Add description to unitOther.,"Autre mesure de copies virales ou de qualitï¿½ des eaux usï¿½es. Ajouter une description dans ""unitOther"""
-Instrument,type,online, An online sensor,Capteur en ligne.
+Instrument,type,online,An online sensor,Capteur en ligne.
 Instrument,type,lab,Offline laboratory analysis,Analyse en laboratoire.
 Instrument,type,hand,A handheld measurement analyzer.,Mesure ï¿½ l'aide d'un capteur manuel.
 Instrument,type,atline,An atline analyzer with sampler.,Mesure ï¿½ l'aide d'un ï¿½chantillonneur.
@@ -165,7 +165,9 @@ CovidPublicHealthData,type,posTest,Number of positive tests.,Nombre de tests pos
 CovidPublicHealthData,type,pPosRt,Percent positivity rate.,Pourcentage de positivitï¿½ des tests.
 CovidPublicHealthData,type,hospCen,Hospital census or the number of people admitted with covid-19.,Rencensement des patients admis ï¿½ un hï¿½pital avec la COVID-19.
 CovidPublicHealthData,type,hospAdm,Hospital admissions or patients newly admitted to hospital.,Nombre d'admissions ou nombre de patients admis ï¿½ l'hï¿½pital.
-CovidPublicHealthData,dateType,episode ,"Episode date is the earliest of onset, test or reported date.","Date estimï¿½e ï¿½ laquelle l'ï¿½pisode de maladie s'est dï¿½clarï¿½. Habituellement calculï¿½ en se basant sur la date des premiers symptï¿½mes, la date de test ou la date de reportage. "
+CovidPublicHealthData,type,vaccineDose1,People having received a first dose of a COVID-19 vaccine.,Nombre de personnes ayant reÃ§u une premiÃ¨re dose d'un vaccin contre la COVID-19.
+CovidPublicHealthData,type,vaccineDose2,People having received a second dose of a COVID-19 vaccine (full vaccination).,Nombre de personnes ayant reÃ§u une deuxiÃ¨me dose d'un vaccin contre la COVID-19 (vaccination complÃ¨te).
+CovidPublicHealthData,dateType,episode,"Episode date is the earliest of onset, test or reported date.","Date estimï¿½e ï¿½ laquelle l'ï¿½pisode de maladie s'est dï¿½clarï¿½. Habituellement calculï¿½ en se basant sur la date des premiers symptï¿½mes, la date de test ou la date de reportage. "
 CovidPublicHealthData,dateType,onset,"Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, episode is used.",Date ï¿½ laquelle les premiers symptï¿½mes apparaissent. Cette donnï¿½e est souvent inconnue. La date d'ï¿½pisode est alors communï¿½ment utilisï¿½e.
 CovidPublicHealthData,dateType,report,"Date that the numbers were reported publicly. Typically, reported data and this measure is most commonly reported and used.",Date ï¿½ laquelle la donnï¿½e a ï¿½tï¿½ reportï¿½e ï¿½ la santï¿½ publique. Cette mesure est communï¿½ment utilisï¿½e.
 CovidPublicHealthData,dateType,test,Date that the covid-19 test was performed.,Date ï¿½ laquelle le test de COVID-19 a ï¿½tï¿½ effectuï¿½.
