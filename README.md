@@ -69,3 +69,5 @@ Development and maintenance of the ODM is the result of a collaboration between 
 - Ministry of Environment, Conservation, and Parks - MECP Ontario
 - ...
 
+## References
+Nicolaï N., Therrien J.-D., Maere. T, Pileggi V., Swerdfeger H., Vanrolleghem P.A., Manuel D. (2021) Open Data Model for collecting, quality-ensuring and sharing of SARS-CoV-2 data and metadata, EU4S Sewage Sentinel System for SARS CoV-2 - 5th Town Hall Meeting, e-poster, https://api.ltb.io/show/ABCWX
