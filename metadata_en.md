@@ -3,7 +3,7 @@
 
 # Metadata
 
-There are eight tables that are described below. example data is stored in [data](data).
+The ODM is comprised of ten primary tables and one lookup table. All of them are described below. Example data is stored in [data](data).
 
 -	[Sample](#Sample)
 -	[WWMeasure](#WWMeasure)
