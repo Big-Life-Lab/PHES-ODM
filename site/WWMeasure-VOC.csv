@@ -1,4 +1,4 @@
-﻿receivedDate,dateTime,reportDate,Sample_siteID,Site_muncipal,Site_provState,type,subTypeAllele,subTypeNexclade,subTypePangolin,subTypeMutation,subTypeQC,ASM_name,ASM_instrumentID,unit,aggregation,replicateIndex,subTypeIndex,value,interpretNote,clincialNote
+﻿receivedDate,dateTime,reportDate,Sample_siteID,Site_muncipal,Site_provState,type,subtypeAllele,subtypeNexclade,subtypePangolin,subtypeMutation,subtypeQC,ASM_name,ASM_instrumentID,unit,aggregation,replicateIndex,subTypeIndex,value,interpretNote,clincialNote
 2021-04-30,,13-May-21,21-OTT17-Ott,Ottawa,ON,varAllele,N1,,,,,,,ct,single,,,,,
 2021-04-30,,13-May-21,21-OTT17-Ott,Ottawa,ON,varAllele,N2,,,,,,,ct,single,,,,,
 2021-04-30,,13-May-21,21-OTT17-Ott,Ottawa,ON,varConsensus,,20I/501Y.V1,B.1.1.7,,,ArticV3,Illumina,coverage,percent,,,92.66,,
