@@ -1,6 +1,6 @@
 # Roadmap
 
-The ODM Steering Group or Working Groups have identified the following features and tools for development.
+The [ODM Steering Group](https://github.com/Big-Life-Lab/covid-19-wastewater/wiki#canadian-wastewater-based-epidemiology-data-steering-group) or Working Groups have identified the following features and tools for development.
 
 See the [Roadmap](https://github.com/Big-Life-Lab/covid-19-wastewater/projects/3?add_cards_query=is%3Aopen) project for progress on the roadmap. Add new items or discuss on the discussion [thread](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions/108). Issues with "future" tag are discussed for addition to the roadmap.
 
