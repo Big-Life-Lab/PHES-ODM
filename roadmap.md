@@ -5,8 +5,8 @@ The [ODM Steering Group](https://github.com/Big-Life-Lab/covid-19-wastewater/wik
 See the [Roadmap](https://github.com/Big-Life-Lab/covid-19-wastewater/projects/3?add_cards_query=is%3Aopen) project for progress on the roadmap. Add new items or discuss on the discussion [thread](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions/108). Issues with "future" tag are discussed for addition to the roadmap.
 
 There are two scoping documents that support the development of the roadmap. Feel free to made suggestions to these documents.
-- [Project Scope Statement for the ODM](https://docs.google.com/document/d/1QPSTi3zdY5eUQ62eOxSDMVyJBiKa2HEzKHEAnBzpRYA/edit)
-- [Project Scope Statement for the COWSD](https://docs.google.com/document/d/1O9qUaF8bEp-ME2_RV7Qqpvt4SmGGP99VIgCoL3HnFvM/edit) - a proposed open database with funding support from [CoVaRRNet](https://covarrnet.ca).
+- [Project Scope Statement for the ODM](https://docs.google.com/document/d/1QPSTi3zdY5eUQ62eOxSDMVyJBiKa2HEzKHEAnBzpRYA/edit) - Work has begun on the inital milestones.
+- [Project Scope Statement for the COWSD](https://docs.google.com/document/d/1O9qUaF8bEp-ME2_RV7Qqpvt4SmGGP99VIgCoL3HnFvM/edit) - A proposed open database with funding support from [CoVaRRNet](https://covarrnet.ca).
 
 
 ## Requirements
