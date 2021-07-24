@@ -59,15 +59,15 @@ See [license](LICENSE) for more information.
 
 Development and maintenance of the ODM is the result of a collaboration between researchers from multiple institutions:
 - uOttawa
+- Université Laval
 - The Ottawa Hospital
 - Ottawa Public Health
 - CHEO Research Institute
-- Université Laval
 - modelEAU
 - CentrEau - Centre québécois de recherche sur la gestion de l'eau
 - Public Health Agency Canada
 - Ministry of Environment, Conservation, and Parks - MECP Ontario
-- ...
+- [Coronavirus Variants Rapid Response Network](https://covarrnet.ca)
 
 ## References
 Nicolaï N., Therrien J.-D., Maere. T, Pileggi V., Swerdfeger H., Vanrolleghem P.A., Manuel D. (2021) Open Data Model for collecting, quality-ensuring and sharing of SARS-CoV-2 data and metadata, EU4S Sewage Sentinel System for SARS CoV-2 - 5th Town Hall Meeting, e-poster, https://api.ltb.io/show/ABCWX
