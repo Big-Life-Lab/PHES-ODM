@@ -1,4 +1,4 @@
-# <img src="img/ODM-logo.png" align="right" alt="" width="180"/> Ottawa Data Model (ODM) for Wastewater-Based Surveillance
+# <img src="img/ODM-logo.png" align="right" alt="" width="180"/> Open Data Model (ODM) for Wastewater-Based Surveillance
 
 <!-- badges: start -->
 [![Lifecycle:
