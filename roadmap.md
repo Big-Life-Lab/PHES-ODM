@@ -18,7 +18,7 @@ Requirements for future tools and features:
 
 ## Tools
 
-1. **Automatic updating tools** - scripts that can be used to automatically push the most recent updates of the data model to the necessary depending files (template, ERD, ...)
+1. **Automatic updating tools** - scripts that can be used to automatically push the most recent updates of the data model to the necessary depending files (input, template, ERD)
 1. **Data mapping methods** - a collection of methods to:
    Read in data from templates into a database (SQLite supported).
    Conversion from "long" format to "wide" format needed for data analysis/ML. 
