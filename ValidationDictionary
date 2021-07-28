@@ -1,0 +1,173 @@
+schema = { 
+'siteSiteID': {'type': 'string', 'required': True}, 
+
+'siteName': {'type': 'string', 'minlength': 0, 'maxlength': 100, 'required': True},
+
+'siteDescription': {'type': 'string', 'minlength': 0, 'maxlength': 255, 'required': True},
+
+'siteType': {'type': 'string', 'allowed': ['airPln', 'corFcil', 'school', 'hosptl', 'Itcf', 'swgTrck', 'uCampus', 'mSwrPpl', 'pStat',
+'holdTnk', 'retPond', 'wwtpMuC', 'wwtpMus', 'wwtpInd', 'lagoon', 'septTnk', 'other'] , 'required': True}, 
+
+'siteTypeOther': {'type': 'string', 'minlength': 0, 'maxlength': 100, required: False},
+
+'siteHealthRegion': {'type': 'string', 'allowed': ['Central', 'Central East', 'Central West', 'Champlain', 'Erie St.Clair', 'Hamilton Niagara Haldimand Brandt', 'Missisauga Halton', 'North East', 'North Simcoe Muskoka', 'North West', 'South East', 'South West', 'Toronto Central', 'Waterloo Wellington'], 'required': True},
+
+'sitePublicHealthDepartment': {'type': 'string', 'allowed': ['Algoma Public Health', 'Brant County Health Unit', 'Chatham-Kent Public Health', 'City of Hamilton Public Health Services', 'Durham Region Health Department', 'Eastern Ontario Health Unit', 'Grey Bruce Health Unit', 'Haldimand Norfolk Health Unit', 'Haliburton, Kawartha, Pine Ridge, District Health Unit', 'Halton Region Public Health', 'Hastings Prince Edward Public Health', 'Huron Perth Health Unit', 'Kingston, Frontenac and Lennox & Addington Public Health', 'Lambton Public Health', 'Leeds, Grenville & Lanark District Health Unit', 'Middlesex-London Health Unit', 'Niagara Region Public Health', 'North Bay Parry Sound District Health Unit', 'Northwestern Health Unit', 'Ottawa Public Health', 'Peel Public Health', 'Peterborough Public Health', 'Porcupine Health Unit', 'Public Health Sudbury & Districts', 'Region of Waterloo Public Health and Emergency Services', 'Renfrew County and District Health Unit', 'Simcoe Muskoka District Health Unit', 'Southwestern Public Health', 'Thunder Bay District Health Unit', 'Timiskaming Health Unit', 'Toronto Public Health', 'Wellington-Dufferin-Guelph Public Health', 'Windsor-Essex County Health Unit', 'York Region Public Health'], 'required': True},
+
+'siteGeoLat': {'type': 'float', 'min': 41.676551, 'max': 56.8593651, 'required': True},
+
+'siteGeoLong': {'type': 'float', 'min': -95.1560871, 'max': -74.3201081, 'required': True},
+
+'siteNotes': {'type': 'string', 'minlength': 0, 'maxlength': 255, 'required': False},
+
+'reporterReporterID': {'type': 'string', 'required': True},
+
+'reporterContactName': {'type': 'string', 'minlength': 0, 'maxlength': 255, 'required': True},
+
+'reporterContactEmail': {'type': 'string', 'regex': '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', 'required': True},
+
+'reporterContactPhone': {'type': 'string', 'minlength': 10, 'maxlength': 12, 'required': True}, 
+
+'reporterContactPhoneExt': {'type': 'string', 'minlength': 0, 'maxlength': 50, 'required': False},
+
+'reporterNotes': {'type': 'string', 'minlength': 0, 'maxlength': 255, 'required': False},
+
+'labLabID': {'type': 'string', 'required': True},
+
+'labName': {'type': 'string','minlength': 0, 'maxlength': 100, 'required': True}, 
+
+'labContactName': {'type': 'string', 'minlength': 0, 'maxlength': 100,'required': True},
+
+'labContactEmail': {'type': 'string', 'regex': '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$', 'required:' True},
+
+'labContactPhone': {'type': 'string', 'minlength': 10, 'maxlength': 12,'required': True},
+
+'labContactPhoneExt': {'type': 'string', 'minlength': 0, 'maxlength': 50,'required': False},
+
+'labUpdateDate': {'type': 'string', 'coerce': 'coerceDate'},
+
+'instrumentInstrumentID': {'type': 'string', 'required': True},
+
+'instrumentName': {'type': 'string', 'minlength': 0, 'maxlength': 100,'required': True},
+
+'instrumentModel': {'type': 'string', 'minlength': 0, 'maxlength': 100,'required': True},
+
+'instrumentDescription': {'type': 'string', 'minlength': 0, 'maxlength': 100,'required': True},
+
+'instrumentReferenceLink': {'type': 'string', 'minlength': 0, 'maxlength': 255,'required': True},
+
+'instrumentType': {'type': string, 'allowed': ['online', 'lab', 'hand', 'atline', 'other'], 'required': True},
+
+'instrumentTypeOther': {'type': 'string', 'minlength': 0, 'maxlength': 100,'required': True},
+
+'assayMethodAssayMethodID': {'type': 'string', 'required': True},
+
+'assayMethodInstrumentID': {'type': 'string', 'required': True},
+
+'assayMethodName': {'type': 'string', 'minlength': 0, 'maxlength': 100,'required': True},
+
+'assayMethodVersion': {'type': 'string', 'minlength': 0, 'maxlength': 50,'required': True},
+
+'assayMethodSummary': {'type': 'string', 'minlength': 0, 'maxlength': 255,'required': True},
+
+'assayMethodReferenceLink': {'type': 'string', 'minlength': 0, 'maxlength': 255,'required': True},
+
+'assayMethodDate': {'type': 'string', 'coerce': 'coerceDate', 'required': True},
+
+'assayMethodSampleSizeL': {'type': 'float', 'min': 0, 'required': True},
+
+'assayMethodLoq': {'type': 'float', 'min': 0, 'required': True},
+
+'assayMethodIod': {'type': 'float', 'min': 0, 'required': True},
+
+'assayMethodUnit': {'type': 'string', 'required': True},
+
+'assayMethodUnitOther': {'type': 'string', 'minlength': 0, 'maxlength': 100, 'required': True},
+
+'sampleSampleID': {'type': 'string', 'required': True},
+
+'sampleSiteID': {'type': 'string', 'required': True},
+
+'sampleType': {'type': 'string', 'allowed': ['rawWW', 'pstGrit', 'pSludge'], 'required': True},
+
+'sampleCollection': {'type': 'string', 'allowed': ['cp', 'cpgrb', 'cptp24h', 'cpfp24h', 'grb', 'grbCp8h', 'grbCp3h', 'grbCp3', 'mooreSw'], 'required': True},
+
+'sampleDateTime': {'type': 'string', 'required': True},
+
+'sampleDateTimeStart': {'type': 'string', 'required': True},
+
+'sampleDateTimeEnd': {'type': 'string', 'required': True},
+
+'sampleSizeL': {'type': 'float', 'min': -500, 'max': 500, 'required': True},
+
+'sampleFieldSampleTempC': {'type': 'float', 'min': -500, 'max': 500, 'required': True},
+
+'sampleShippedOnIce': {'type': 'float', 'allowed': ['yes', 'no'], 'required': True},
+
+'sampleNotes':{'type': 'string', 'minlength': 0, 'maxlength': 255, 'required': True},
+
+'wwMeasureUwwMeasureID': {'type': 'string', 'minlength': 0, 'maxlength': 100, 'required': True},
+
+'wwMeasureSampleID': {'type': 'string','required': True},
+
+'wwMeasureLabID': {'type': 'string','required': True},
+
+'wwMeasureAssayMethodID': {'type': 'string','required': True},
+
+'wwMeasureInstrumentID': {'type': 'string','required': True},
+
+'wwMeasureReporterID': {'type': 'string','required': True},
+
+'wwMeasureAnalysisDate': {'type': 'string', 'required': True},
+
+'wwMeasureReportDate': {'type': 'string', 'required': True},
+
+'wwMeasureFractionAnalyzed': {'type': 'string', 'allowed': ['liquid', 'solid', 'mixed'], 'required': True},
+
+'wwMeasureType': {'type': 'string', 'allowed': ['covN1', 'covN2', 'covN3', 'covE', 'covRdRp', 'nPMMoV', 'ncrA', 'nbrsv', 'wqTS', 'wqTSS', 'wqVSS', 'wqCOD', 'wqOPhos', 'wqNH4N', 'wqTN', 'wqPh', 'wqCond', 'other'], 'required': True},
+
+'wwMeasureTypeOther': {'type': 'string', 'required': True},
+
+'wwMeasureUnit': {'type': 'string, 'allowed': ['gcPMMoV', 'gcMI', 'gcGs', 'gcL', 'gcCrA', 'Ct', 'mgL', 'ph', 'uScm', 'tnms', 'ppms', 'pps', 'other'], 'required': True},
+
+'wwMeasureUnitOther': {'type': 'string', 'required': True},
+
+'wwMeasureIndex': {'type': 'integer', 'min': 1, 'max': 10, 'required': True},
+
+'wwMeasureValue:' {'type': 'integer', 'min': 0, 'required': True},
+
+'wwMeasureQualityFlag': {'type': 'string', 'allowed': ['yes'], 'required': 'True'},
+
+'wwMeasureNotes': {'type': 'string', 'minlength': 0, 'maxlength': 255, 'required': False},
+
+'siteMeasureSiteMeasureID': {'type': 'string', 'required': 'True'},
+
+'siteMeasureSiteID': {'type': 'string', 'required': 'True'},
+
+'siteMeasureSampleID': {'type': 'string', 'required': 'True'},
+
+'siteMeasureReporterID': {'type': 'string', 'required': 'True'},
+
+'siteMeasureDateTime': {'type': 'string', 'required': True},
+
+'siteMeasureType': {'type': 'string', 'allowed': ['airPln', 'corFcil', 'school', 'hosptl', 'Itcf', 'swgTrck', 'uCampus', 'mSwrPpl', 'pStat', 'holdTnk', 'retPond', 'wwtpMuC', 'wwtpMuS', 'wwtpInd', 'lagoon', 'sepTnk', 'other'], 'required': True},
+
+'siteMeasureTypeOther': {'type': 'string', 'minlength': 0, 'maxlength': 100, 'required': False},
+
+'siteMeasureTypeDescription': {'type': 'string', 'minlength': 0, 'maxlength': 255, 'required': True},
+
+'siteMeasureAggregation': {'type': 'string', 'allowed': ['single', 'mean', 'meanNr', 'geoMn', 'geoMnNr', 'median', 'min', 'max', 'sd', 'sdNr', 'other'], required': True},
+
+'siteMeasureAggregationOther': {'type': 'string','minlength': 0, 'maxlength': 100, required': False},
+
+'siteMeasureAggregationDesc': {'type': 'string','minlength': 0, 'maxlength': 255, required': True},
+
+'siteMeasureValue': {'type': 'float', 'required': True},
+
+'siteMeasureUnit': {'type': 'string', 'allowed': ['MG/D', 'ML/D', 'L/s', 'm3/d', 'm3/h', 'mg/L', 'C'], 'required': True},
+
+'siteMeasureNotes': {'type': 'string','minlength': 0, 'maxlength': 255, required': True}}
+
+
+
+
