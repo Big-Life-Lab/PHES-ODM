@@ -36,7 +36,7 @@ This section will go over the high level features that will need to be implement
 
 - The data custodian will be returned a report at the end which will provide details about how many rows were filtered from the data or the individuals and the reasons why they were removed.
 
-- ### The image below defines these relationships.
+- The implementation should take into account the relationship between the different tables as defined in the ODM. For example, removing a row with siteID 1 from the site table, should also remove all samples with siteID 1 from the samples table. All nested relationships should also be taken care of. An image showing these relationships is linked below:
 
 ![table relations](table_relations.jpg)
 
