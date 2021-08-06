@@ -1,14 +1,16 @@
 # Aim/ Objective:
 
+The purpose of the ODM is to support wastewater-based surveillance and epidemiology by facilitating the collection, standardization, and transparency of data by providing a more harmonized ODM data format to share data between different data curators and data repositories. 
+
 The end objective of data sharing is to have a function that can take in the user inputs in the form of CSV schema with predefined rules and the user data and filter the data based on the rules in the CSV schema and output back an excel spreadsheet to the user with filtered data that is ready to be used with specific organizations that user wants to share their data with. This is implement using python code.
 
-# Sharing Specifications:
+## Sharing Specifications:
 
-# Milestones
+## Milestones
 
 This section will go over the high level features that will need to be implemented
 
-1. ### **List of features that will be part of the sharing functionality:**
+### List of features that will be part of the sharing functionality:
 
 - The data custodian can request to share data with only certain groups of people or organizations. Such a feature can be implemented through the use of different access groups defined within the csv schema. There will be a function that selectively allows sharing data with only specific access groups.
 
@@ -40,7 +42,7 @@ This section will go over the high level features that will need to be implement
 
 ![table relations](table_relations.jpg)
 
-2. ### How the features will be implemented?
+### How the features will be implemented?
 
 The ODM emphasizes open and FAIR data (Findable, Accessible, Interoperable, and Re-usable). 
 
@@ -54,7 +56,7 @@ The ODM emphasizes open and FAIR data (Findable, Accessible, Interoperable, and 
 
 - Data sharing will take place once the data is in the ODM compliant format after it has gone through the validation process and has been cleaned.
 
-# Sharing processes:
+### Sharing processes:
 
 - **items -** There are several different items such as tables, variable names that will have different sharing properties or rules applied to them to selectively choose what the custodian might want to share with a particular data repository.
 
@@ -66,7 +68,7 @@ The ODM emphasizes open and FAIR data (Findable, Accessible, Interoperable, and 
 
 - **extensible -** Since the waste water surveilance is rapidly developing, it will be necessary to make the sharing process more adaptable and extensible for growing changes and processes that allows users to add more variables and rules in the schema for sharing.
 
-# Sharing schema and rules
+### Sharing schema and rules
 
 - The sharing schema defines the rules that will be used to selectively filter the data for the data custodians who want to share only specific part of their data with a specific data repository. The ODM will create the main schema in the **shared_data.csv** file which will be updated in each version. However, the ODM users will be able to extend or develop the schemas for their own specific applications.
 
