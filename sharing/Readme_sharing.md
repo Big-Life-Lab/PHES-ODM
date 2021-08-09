@@ -1,48 +1,30 @@
-# Aim/ Objective:
+# Aim/Objective:
 
 The purpose of the ODM is to support wastewater-based surveillance and epidemiology by facilitating the collection, standardization, and transparency of data by providing a more harmonized ODM data format to share data between different data curators and data repositories. 
 
-The end objective of data sharing is to have a function that can take in the user inputs in the form of CSV schema with predefined rules and the user data and filter the data based on the rules in the CSV schema and output back an excel spreadsheet to the user with filtered data that is ready to be used with specific organizations that user wants to share their data with. This is implement using python code.
+The end objective of data sharing is to have a function that can take in the user inputs in the form of a schema with predefined rules and the user data and filter the data based on the rules in the schema and output back the data to the user which is filtered and is ready to be used with specific organizations that user wants to share their data with. This is implement using python code.
 
-## Sharing Specifications:
-
-## Milestones
+# Features
 
 This section will go over the high level features that will need to be implemented
 
-### List of features that will be part of the sharing functionality:
+* The data custodian should be able to define all the sharing rules in a CSV file. A standard schema for defining the rules will be developed.
+* The schema should allow the data custodians to define the organizations that each rule pertains to. For example, a certain rule may be applicable only to the Public Health Agency of Canada (PHAC) while another rule may be applicable to not only the PHAC but also to Ottawa Public Health.
+* The schema should allow the data custodians to define rules for filtering entire tables. For example, the data custodian may decide that they do not want the data from the Polygon table to be shared.
+* The schema should allow the data custodians to define rules for filtering variables from certain tables. For example, a rule could be defined for removing the `contactName` and `contactEmail` variables from the `Reporter` table.
+* The schema should allow the data custodians to define rules for filtering out rows that contains variables values that should not be shared with organizations. For example, a rule could be defined to remove all rows from the `WWMeasure` table whose `analysisData` is older than a defined date.
+* The data custodian will be able to define the inclusion and exclusion rules.
 
-- The data custodian can request to share data with only certain groups of people or organizations. Such a feature can be implemented through the use of different access groups defined within the csv schema. There will be a function that selectively allows sharing data with only specific access groups.
+* The data custodian can filter multiple variables for specific values or multiple values for same variables in the dataset which is same as using 'AND' clause to filter data.
 
-- The data custodian can also request to share only certain information with certain groups of people or with everyone that is they can selectively choose to share only certain variables with the certain access groups or with every one in general.  An example of this could be that the data custodian does not wish to share their name, email, and phone information. They will be able to exclude these variables from the final dataframe that will be shared. A function that has that filtration capability will be able to select variables that users chooses to share through the rules defined in csv schema.
+* The data custodian will be returned a report at the end which will provide details about how many rows were filtered from the data or the individuals and the reasons why they were removed.
 
-- The data custodian can request to share only a specific range of values with different organizations or with public. These ranges can be specified for different variables in the table. It is not necessary to specify the range for each and every variable. The data custodian can specify the range in the csv schema file for specific variables only and the python function will be able to filter the data based on the range provided for the particular variable or variables.
+* The data custodian will be able to define licenses on how the data can be used by specific users. In many jurisdictions, this is defined in a detailed data-sharing agreement (DSA). DSA can be short simply referencing a license type, or they can be many pages identifying specifically who can use the data and for what purpose and what will be the data destruction protocols, etc. The license feature or sharing rule will be a free text field and the text field may reference a longer document.
 
-- The data custodian can also selectively choose only the data from a table where only specific values for a variable are allowed or may not be allowed in the final dataframe. This is also achieved by providing the values for setting the filters in csv sharing schema.
+* The implementation should take into account the relationship between the different tables as defined in the ODM. For example, removing a row with siteID 1 from the site table, should also remove all samples with siteID 1 from the samples table. All nested relationships should also be taken care of. An image showing these relationships is linked below:
+![table relations](table_relations.jpg)
+* A python function that implements these rules should be built.
 
-- An important part about sharing the data will be to ensure that the primary key and foreign key relationships between certain tables are maintained. The data filtered in one of the tables that has a primary key- foreign key relation with another table should also be filtered in the other tables.
-
-- An example of above dependency on primary and foreign key relationship will be Sample table and Waste water measure table (WWmeasure) where the sample id in the sample table must match the sample id in the WWmeasure table. Any sample that is not present in the sample table should not exist in the WWmeasure table as well in the final output data. 
-
-- These dependencies can further be nested down to other tables. An example will be sample table and site table. The site id in site table must match site id in sample table. After making an inner join on the site and sample table, a further dependency is matched between sample and WWmeasure table as above based on sample id. This basically helps to filter out results in WWmeasure table that has a site id attached to it.
-
-- The data custodian should be able to define all the sharing rules in a CSV file. A standard schema for defining the rules will be developed.
-
-- The schema should allow the data custodians to define the organizations that each rule pertains to. For example, a certain rule may be applicable only to the Public Health Agency of Canada (PHAC) while another rule may be applicable to not only the PHAC but also to Ottawa Public Health.
-
-- The schema should allow the data custodians to define rules for filtering entire tables. For example, the data custodian may decide that they do not want the data from the Polygon table to be shared. 
-
-- The schema should allow the data custodians to define rules for filtering variables from certain tables. For example, a rule could be defined for removing the `contactName` and `contactEmail` variables from the `Reporter` table.
-
-- The schema should allow the data custodians to define rules for filtering out rows that contains variables values that should not be shared with organizations. For example, a rule could be defined to remove all rows from the `WWMeasure` table whose `analysisData` is older than a defined date. This criteria for filteration will be met by the range sharing property which is part of the schema.
-
-- The data custodian will be able to define the inclusion and exclusion rules.
-
-- The data custodian can filter multiple variables for specific values or multiple values for same variables in the dataset which is same as using 'AND' clause to filter data.
-
-- The data custodian will be returned a report at the end which will provide details about how many rows were filtered from the data or the individuals and the reasons why they were removed.
-
-- The implementation should take into account the relationship between the different tables as defined in the ODM. For example, removing a row with siteID 1 from the site table, should also remove all samples with siteID 1 from the samples table. All nested relationships should also be taken care of. An image showing these relationships is linked below:
 
 ![table relations](table_relations.jpg)
 
@@ -56,7 +38,7 @@ The ODM emphasizes open and FAIR data (Findable, Accessible, Interoperable, and 
 
 - Data custodians work with their data on different platforms. The goal is to proivde them a tool that can help them share their data based on the platform they use to store their data. Most data custodians use Excel to store data. Some are also using ArcGIS and Tableau. Using a python script that can accept data based on different platforms that data custodians might use to enter the data can provide a tool and common platform to share ODM data. Alternatively, the data custodians may choose to implement the sharing rules in their own data system and not use the ODM method.
 
-- Data will be shared by the data custodian using a web application tool where the data custodian can enter in their data and the CSV schema with their own predefined rules set for different data repositories or access groups. The back end python script will allow them to filter the data based on their provided csv schema and output back the final dataset that is ready to be shared. Pandas library in python is used for the filtration of selective variables and conditional rules that the data custodian provides. The data custodian will have the option to provide the values of tables that they wish to filter data for and receive as an output and the python script will automatically filter data for those tables based on the rules defined for them. The data custodian will also have to provide the names of the access groups in the form which must be part of the sharing property or rule for the particular access group in **shared_data.csv** file. An example will be Public Health Agency (PHAC) has the sharing property **sharing_with_PHAC** in the CSV schema file. The data custodian will need to ensure that the access group name they enter into the form contains the last part of the name of the sharing property. Therefore, in this case they might use **PHAC** as the access group name that they wish to get the data filtered for. The data custodian will have the option to provide multiple access groups in the form to fetch data for if they are fetching the same tables for all of the access groups by filling the form only once. If they want to filter different datasets/ tables for different access groups, then they will need to enter the information separately for each access groups by filling the same form multiple times on the web application tool.
+- Data will be shared by the data custodian using a web application tool where the data custodian can enter in their data and the CSV schema with their own predefined rules set for different data repositories or access groups. The back end python script will allow them to filter the data based on their provided csv schema and output back the final dataset that is ready to be shared. Pandas library in python is used for the filtration of selective variables and conditional rules that the data custodian provides. The data custodian will have the option to provide the values of tables that they wish to filter data for and receive as an output and the python script will automatically filter data for those tables based on the rules defined for them. The data custodian will also have to provide the names of the access groups in the form which must be part of the sharing property or rule for the particular access group in **shared_data.csv** file. An example will be Public Health Agency (PHAC) has the sharing property **sharing_with_PHAC** in the CSV schema file. The data custodian will need to ensure that the access group name they enter into the form contains the last part of the name of the sharing property. Therefore, in this case they might use **PHAC** as the access group name that they wish to get the data filtered for. Another example can be Local health authorities for which the data custodian can provide a sharing rule such as **sharing_with_Local** and they will need to enter the last part of the sharing rule name such as **Local** in the web application form. This rule can be defined as **sharing_with_** + **label** where the label is the name of the place or person the data custodian is sharing their data with. The data custodian will have the option to provide multiple access groups in the form to fetch data for if they are fetching the same tables for all of the access groups by filling the form only once. If they want to filter different datasets/ tables for different access groups, then they will need to enter the information separately for each access groups by filling the same form multiple times on the web application tool.
 
 - Data sharing will take place once the data is in the ODM compliant format after it has gone through the validation process and has been cleaned.
 
@@ -90,7 +72,7 @@ Following are the rules in the version v1.2 that are part of **shared_data.csv**
 
 **shared_with_Local:** This rule will allow the user to exclude any variable or table that the user does not want to share with all the Local health authorities which will be specified using the True/ False conditions in the sharing schema.
 
-**shared_with_Prov:** This rule will allow the user to exclude any variable or table that the user does not intend to share with the Provincial health authorities based on True/ False values that the user provides in the sharing schema.
+**shared_with_Provincial:** This rule will allow the user to exclude any variable or table that the user does not intend to share with the Provincial health authorities based on True/ False values that the user provides in the sharing schema.
 
 **shared_with_Quebec:** This rule will filter data or select variables that data custodian wants to share with the Quebec site based on True/ False values.
 
