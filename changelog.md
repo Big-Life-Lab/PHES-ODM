@@ -1,5 +1,13 @@
 # Changelog
 
+## 2021-08-09 (update this date when merging to main)
+
+\*\*v1....
+
+**Variable changes (non-breaking changes)**
+
+- `index`: Change type from integer to string. Allows greter flexiblity for naming indexes.
+
 ## 2021-02-18
 
 **v1.1.0**
