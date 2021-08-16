@@ -1,85 +1,23 @@
-﻿item,versionStart,versionEnd,tableName,variableName,is_excluded,shared_with_Public,shared_with_PHAC,shared_with_Local,shared_with_Provincial,shared_with_Quebec,shared_with_OntarioWSI,shared_with_CanadianWasteWaterDatabase,lower_range_Public,upper_range_Public,lower_range_PHAC,upper_range_PHAC,lower_range_Local,upper_range_Local,lower_range_Provincial,upper_range_Provincial,lower_range_Quebec,upper_range_Quebec,lower_range_OntarioWSI,upper_range_OntarioWSI,lower_range_CanadianWasteWaterDatabase,upper_range_CanadianWasteWaterDatabase,filter_value_Public,filter_value_PHAC,filter_value_Local,filter_value_Provincial,filter_value_Quebec,filter_value_OntarioWSI,filter_value_CanadianWasteWaterDatabase,description_Public,description_PHAC,description_Local,description_Provincial,description_OntarioWSI,description_CanadianWasteWaterDatabase
-variables,1.1,1.2,Site,siteID,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Site,name,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Site,description,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Site,type,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Site,typeOther,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Site,healthRegion,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Site,publicHealthDepartment ,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Site,geoLat,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Site,geoLong,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Site,notes,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Reporter,reporterID,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Reporter,contactName,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Reporter,contactEmail,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Reporter,contactPhone,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Reporter,contactPhoneExt,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Reporter,notes,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Lab,labID,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Lab,name,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Lab,contactName,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Lab,contactEmail,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Lab,contactPhone,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Lab,contactPhoneExt,TRUE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Lab,updateDate,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Instrument,instrumentID,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Instrument,name,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Instrument,model,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Instrument,description,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Instrument,referenceLink,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Instrument,type,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Instrument,typeOther,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,assayMethodID,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,instrumentID,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,name,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,version,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,summary,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,referenceLink,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,date,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,sampleSizeL,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,loq,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,lod,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,unit,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,AssayMethod,unitOther,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Sample,sampleID,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Sample,siteID,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Sample,type,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Sample,collection,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Sample,dateTime,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Sample,dateTimeStart,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Sample,dateTimeEnd,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Sample,sizeL,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,[2.0],[2.0],[2.0],[2.0],[2.0],[2.0],[2.0],[2.0],[2.0],[2.0],[2.0],[2.0],[2.0],[2.0],,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Sample,fieldSampleTempC,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,[15.0],[15.0],[15.0],[15.0],[15.0],[15.0],[15.0],[15.0],[15.0],[15.0],[15.0],[15.0],[15.0],[15.0],,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Sample,shippedOnIce,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,Sample,notes,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,uWwMeasureID,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,sampleID,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,labID,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,assayMethodID,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,instrumentID,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,reporterID,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,analysisDate,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,"['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']",,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,reportDate,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,"['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']","['2021-01-25', '2021-01-26']",,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,fractionAnalyzed,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,type,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,typeOther,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,unit,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,unitOther,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,index,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,value,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,"[15000, 72000] ","[17000, 85000]","[15000, 72000] ","[17000, 85000]","[15000, 72000] ","[17000, 85000]","[15000, 72000] ","[17000, 85000]","[15000, 72000] ","[17000, 85000]","[15000, 72000] ","[17000, 85000]",[72000] ,[85000],,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,qualityFlag,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,WWMeasure,notes,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,uSiteMeasureID,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,siteID,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,sampleID,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,reporterID,FALSE,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,dateTime,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,"['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']","['2021-01-25', '2021-01-27']",,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,type,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,typeOther,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,typeDescription,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,aggregation,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,aggregationOther,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,aggregationDesc,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,value,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,unit,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
-variables,1.1,1.2,SiteMeasure,notes,FALSE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,,,,,,,,,,,,,,,,,,,,,,null,null,null,null,null,null
+﻿item,versionStart,versionEnd,tableName,variableName,shared_with,filter_values,description_license
+variables,1.1,1.2,ALL,sampleID,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"S01','S02'",null
+variables,1.1,1.2,WWMeasure,analysisDate,Public,"['2021-01-25', '2021-01-26'); ('2021-01-26','2021-01-31']",null
+variables,1.1,1.2,WWMeasure,analysisDate,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"2021-01-20'; ('2021-01-25', infinity]",null
+variables,1.1,1.2,ALL,siteID,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,siteT101';'siteT102',null
+variables,1.1,1.2,ALL,contactName,Public;Local,ALL,null
+variables,1.1,1.2,ALL,contactEmail,Public;Local,ALL,null
+variables,1.1,1.2,ALL,contactPhone,Public;Local,ALL,null
+variables,1.1,1.2,ALL,contactPhoneExt,Public;Local,ALL,null
+variables,1.1,1.2,ALL,labID,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,ALL,null
+variables,1.1,1.2,Lab,name,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,ALL,null
+variables,1.1,1.2,Instrument,ALL,Public,,null
+variables,1.1,1.2,Sample,dateTime,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"['2021-01-25', '2021-01-26'); ('2021-01-26','2021-01-31']",null
+variables,1.1,1.2,Sample,dateTimeStart,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"['2021-01-25', '2021-01-26'); ('2021-01-26','2021-01-31']",null
+variables,1.1,1.2,Sample,dateTimeEnd,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"['2021-01-25', '2021-01-26'); ('2021-01-26','2021-01-31']",null
+variables,1.1,1.2,Sample,sizeL,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"(1.0, 5.0];[8.0, 10.0]",null
+variables,1.1,1.2,WWMeasure,reportDate,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,['2021-01-25'],null
+variables,1.1,1.2,WWMeasure,reportDate,Public,"['2021-01-25', '2021-01-27');('2021-01-28','2021-02-01']",null
+variables,1.1,1.2,WWMeasure,value,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"[12000, 15000] ",null
+variables,1.1,1.2,SiteMeasure,uSiteMeasureID,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,1';'2',null
+variables,1.1,1.2,SiteMeasure,dateTime,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"['2021-01-25', '2021-01-27']",null
+variables,1.1,1.2,ALL,typeOther,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,,null
+variables,1.1,1.2,SiteMeasure,value,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,,null
