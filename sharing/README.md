@@ -26,8 +26,6 @@ High level features include:
 - The implementation should take into account the relationship between the different tables as defined in the ODM. For example, removing a row with siteID 1 from the site table, should also remove all samples with siteID 1 from the samples table. All nested relationships should also be taken care of. The relationships between the tables can be seen [here](https://github.com/Big-Life-Lab/ODM/blob/main/metadata_en.md).
 - A python function that implements these rules should be built.
 
-![table relations](table_relations.jpg)
-
 ### How the features will be implemented?
 
 The ODM emphasizes open and FAIR data (Findable, Accessible, Interoperable, and Re-usable). 
