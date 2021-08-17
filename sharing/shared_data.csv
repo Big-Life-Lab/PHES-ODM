@@ -1,5 +1,5 @@
 ﻿item,versionStart,versionEnd,tableName,variableName,shared_with,filter_values,description_license
-variables,1.1,1.2,ALL,sampleID,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"S01','S02'",null
+variables,1.1,1.2,ALL,sampleID,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"S101','S102'",null
 variables,1.1,1.2,WWMeasure,analysisDate,Public,"['2021-01-25', '2021-01-26'); ('2021-01-26','2021-01-31']",null
 variables,1.1,1.2,WWMeasure,analysisDate,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"2021-01-20'; ('2021-01-25', infinity]",null
 variables,1.1,1.2,ALL,siteID,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,siteT101';'siteT102',null
