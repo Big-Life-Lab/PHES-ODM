@@ -28,9 +28,7 @@ High level features include:
 
 # Sharing CSV Schema
 
-The ODM emphasizes open and FAIR data (Findable, Accessible, Interoperable, and Re-usable).
-
-### Introduction
+## Introduction
 
 The data sharing takes place between the different d ata custodians that generate waste water surveillance data and the different organizations. The data custodian can share only specific information with the specific data repositories by providing the rules in shared_data.csv file. In the schema file, each row pertains to a specific rule that will be applied to filter the data. The columns in the schema represents the sharing property or the name of the sharing rule. The data is filtered using a three step process which will allow selective sharing with different access groups and will either filter an entity which is an entire table or an entire variable or it will filter selected rows using a 'filter_values' sharing property. 
 
@@ -38,19 +36,19 @@ Data will be shared using a web application tool where the data custodian can en
 
 Below are three sections that lists three main steps of sharing process:
 
-### 1. Entity filter:
+## 1. Entity filter:
 There are several different items such as tables, variable names that will have different sharing properties or rules applied to them to selectively choose what the custodian might want to share with a particular data repository.
 
-### 2. Organization filter:
+## 2. Organization filter:
 The sharing property or the rule can identify who the data is intended for. Different data repositories or organizations or public or a person can have different access level to the data as per the requirements of the data custodian. The different access groups will be identified through these rules, **shared_with** that will be part of the schema in the **shared_data.csv** file. When the data custodian logs onto the web portal to use ODM tool for data sharing, they will have options to enter the names of access groups and the tables they wish to share the data with. The names entered into web application tool must match the names entered in the CSV schema.
 
-### 3. Row filter:
+## 3. Row filter:
 The filter can be used as a data sharing property or sharing rule that allows data custodian to selectively choose range of data values or specific values to filter from specific variables in their data before sharing their data. 
 
-### Additional sharing property:
+## Additional sharing property:
 There will be a description for each sharing property or rule that will specify the license or permissions on how the data or specific data elements shared with a specific recipient can or can not be used.
 
-### Below are some examples of sharing process: 
+## Below are some examples of sharing process: 
 - The data custodian can filter specific entities such as the entire table or just an entire variable. The python script will automatically filter data for those tables or variables based on the rules defined for them. The **shared_data.csv** schema provides columns for table name (tableName) and variable name (variableName). The data custodian can mention the name of the table that they wish to exclude under the **tableName** column and if they wish to exclude all the variables from the table then they will need to write **ALL** under the **variableName** column for the particular table name.  
 <img src="filter_img_1.jpg" width= "750" height="50">
 An example is shown above where they can selectively choose to not share the entire table named instrument with all the variables with the Public.
@@ -73,7 +71,7 @@ The example in figure above illustrates how the data for Lab table can be select
 - Infinity is accepted as a value. It will simply mean that the lowest or highest limit is the minimum or maximum for that variable in the data.
 - Data sharing will take place once the data is in the ODM compliant format after it has gone through the validation process and has been cleaned.
 
-### Sharing schema and rules
+## Sharing schema and rules
 
 Following are the rules in the version v1.2 that are part of **shared_data.csv** file:
 
