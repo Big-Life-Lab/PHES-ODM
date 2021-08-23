@@ -88,3 +88,4 @@ Following are the rules in the version v1.2 that are part of **shared_data.csv**
 **description_license:** This rule will be free text column that allows user to enter the details about data sharing agreement and how the data will be used by different access groups with the permissions that each group may have for usage of data and specific variables or tables.
 
 The data, filtered out using the above schema rules and the python script in back end that runs the Pandas package, is returned back to the user in an Excel spreadsheet along with the report that will list the number of rows removed, variables removed from each table and the reason for that.
+
