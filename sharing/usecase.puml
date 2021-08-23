@@ -1,0 +1,24 @@
+@startuml usecasediagram
+left to right direction
+actor "DataCustodian" as user
+actor "Server" as backend
+rectangle WebApp {
+usecase "Input list of table names" as UC1
+usecase "Input data to filter" as UC2
+usecase "Input list of organizations" as UC3
+usecase "Input schema file" as UC4
+usecase "Return filtered data" as UC5
+usecase "Return a text document" as UC6
+}
+user --> UC1
+user --> UC2
+user --> UC3
+user --> UC4
+UC1 --> backend
+UC2 --> backend
+UC3 --> backend
+UC4 --> backend
+backend --> UC5
+backend --> UC6
+@enduml
+

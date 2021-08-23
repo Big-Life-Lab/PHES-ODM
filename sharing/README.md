@@ -26,66 +26,224 @@ High level features include:
 - The implementation should take into account the relationship between the different tables as defined in the ODM. For example, removing a row with siteID 1 from the site table, should also remove all samples with siteID 1 from the samples table. All nested relationships should also be taken care of. The relationships between the tables can be seen [here](https://github.com/Big-Life-Lab/ODM/blob/main/metadata_en.md).
 - A python function that implements these rules should be built.
 
-# Sharing CSV Schema
+# Sharing CSV
 
-The ODM emphasizes open and FAIR data (Findable, Accessible, Interoperable, and Re-usable).
+## Introduction
 
-### Introduction
+The sharing CSV file provides the different wastewater labs a standardized and code-agnostic method to define rules for sharing their data with different organizations. Each row in the CSV file defines one rule which combined defines all the sharing rules for one wasterwater lab. The headers of the CSV file define the different parts of the rule. The following four sections outline these different parts along with providing a step-by-step guide for defining a rule.
 
-The data sharing takes place between the different d ata custodians that generate waste water surveillance data and the different organizations. The data custodian can share only specific information with the specific data repositories by providing the rules in shared_data.csv file. In the schema file, each row pertains to a specific rule that will be applied to filter the data. The columns in the schema represents the sharing property or the name of the sharing rule. The data is filtered using a three step process which will allow selective sharing with different access groups and will either filter an entity which is an entire table or an entire variable or it will filter selected rows using a 'filter_values' sharing property. 
+### 1. Selecting an Organization
 
-Data will be shared using a web application tool where the data custodian can enter in their data and the CSV schema with their own predefined rules set for different data repositories or access groups. The back end python script that used Pandas library will allow them to filter the data and output back the final dataset that is ready to be shared. 
+The first step involves deciding which organizations a rule applies to. This is done using the `sharedWith` column. A unique identifier for each organization should be used and reused throughout the entire document. The different organizations that a rule pertains to should be seperated by a ";". For example, if a rule applies to the **Public Health Agency of Canada** (PHAC) as well as **Ottawa Public Health** (OPH) the value of the `sharedWith` cell in the row for that rule would be `PHAC;OPH`. The example assumes that PHAC and OPH are the agreed upon identifiers to represent these organizations.
 
-Below are three sections that lists three main steps of sharing process:
+### 2. Selecting an Entity
 
-### 1. Entity filter:
-There are several different items such as tables, variable names that will have different sharing properties or rules applied to them to selectively choose what the custodian might want to share with a particular data repository.
+The second step involves selecting the parts of the ODM data model or entities that the rule applies to. The entities that can be selected are:
 
-### 2. Organization filter:
-The sharing property or the rule can identify who the data is intended for. Different data repositories or organizations or public or a person can have different access level to the data as per the requirements of the data custodian. The different access groups will be identified through these rules, **shared_with** that will be part of the schema in the **shared_data.csv** file. When the data custodian logs onto the web portal to use ODM tool for data sharing, they will have options to enter the names of access groups and the tables they wish to share the data with. The names entered into web application tool must match the names entered in the CSV schema.
+* Data contained in a table
+* Data contained in column(s) of table(s)
 
-### 3. Row filter:
-The filter can be used as a data sharing property or sharing rule that allows data custodian to selectively choose range of data values or specific values to filter from specific variables in their data before sharing their data. 
+This step uses two columns, `tableName` and `variableName`. The `tableName` column can specify the name(s) of the table this rules applies to and the `variableName` column can specify the name(s) of the columns this rule applies to.
 
-### Additional sharing property:
-There will be a description for each sharing property or rule that will specify the license or permissions on how the data or specific data elements shared with a specific recipient can or can not be used.
+Some examples are given below:
 
-### Below are some examples of sharing process: 
-- The data custodian can filter specific entities such as the entire table or just an entire variable. The python script will automatically filter data for those tables or variables based on the rules defined for them. The **shared_data.csv** schema provides columns for table name (tableName) and variable name (variableName). The data custodian can mention the name of the table that they wish to exclude under the **tableName** column and if they wish to exclude all the variables from the table then they will need to write **ALL** under the **variableName** column for the particular table name.  
-<img src="filter_img_1.jpg" width= "750" height="50">
-An example is shown above where they can selectively choose to not share the entire table named instrument with all the variables with the Public.
-- To filter only specific variables from the data, the data custodian will provide the value for the variable name under the **variableName** column and corresponding table name under the **tableName** column. To filter the entire variable, the data custodian will write “ALL” under the **filter_value** column of the schema. 
-<img src="filter_img_2.jpg" width= "750" height="50">
-The example in figure above illustrates how the data for Lab table can be selectively filtered to exclude all of ‘LabID’ and ‘name’ variables in the data. To exclude the entire variable, value of “ALL” is specified under the ‘filter_value’ sharing property.
-- The data custodian will be able to exclude a particular variable from all the tables that  contain that variable name. An example will be ‘contactName’ in Reporter table and Lab table. If data custodian wishes to exclude variable ‘contactName’ from all the tables that contains it, then they will simply provide the name of the variable under **variableName** column in the schema and write “ALL” under the **tableName** column. This will exclude it from all the tables. To ensure that the entire variable is removed from all the tables, the value of “ALL” is also specified under the ‘filter_value’ column. An example is illustrated below: 
-<img src="filter_img_3.jpg" width= "850" height="100">
-- Alternatively, they can also choose to filter all the tables with a common variable name for only specific values of that variable. In example below, all the tables that contain variable name ‘SampleID’ will be filtered to exclude all the values of SampleID equal to **S01** and **S02**. The two different SampleID will be specified under the **filter_value** column separated by a ‘;’. 
-<img src="filter_img_6.jpg" width= "850" height="50">
-- The data custodian can selectively choose who they don’t wish to share data with. They can exclude certain variables or specific values of a variable or the entire table from only certain access groups. They will have to provide the name of the access group they wish to exclude under the **shared_with** column in the **shared_data.csv** schema. The **shared_with** sharing property allows user to exclude specific access groups when sharing specific information. As shown in figure above the data for Reporter and Lab tables has been filtered to exclude ‘contactName’, ‘contactEmail’ variables for only the Public and Local access groups. The other access groups will still contain these variables in the final output data.
-- The web application tool will provide a form to the data custodian when requesting to share data that will accept values for the names of all the access groups (could be any organization, agency or their friend) they want to share data with and the list of tables they wish to fetch data for and will be providing in as input to the form. When the data custodian wants to exclude certain information from a certain access group, then they will use the **shared_with** sharing property in the schema and enter the names of the access groups that they want to exclude data from. The name of the access group under the ‘shared_with’ column must match the name provided in the form.
-- The data custodian can also selectively choose to filter out specific rows instead of columns from the data. If they wish to exclude data where the variables have a specific value or a specific range, then they will be able to use the **filter_value** sharing property in the schema to do that. 
-- An example of using filter_value rule will be to filter data by a specific value of a variable. If the data custodian wants to exclude siteID data that has value of **siteT101** or **siteT102** from all the access groups, then they would need to provide those values for SiteID variable under the filter_value column separated by ‘;’. The semicolon is used to separate two separate values or ranges. 
-<img src="filter_img_4.jpg" width= "850" height="75">
-- Another example will be of a range of values that they wish to filter the data. In ‘WWMeasure’ table, they can filter the ‘analysisDate’ variable for different range of date values. For range, they will provide values under the **filter_value** column again. However, the range will be provided inside mathematical notations of brackets specifying the lower and upper bounds of the limit. 
-- To filter ‘analysisDate’ by excluding all the date value within the range of 25th January to 31st January but including 26th January, they will use the following notation with two ranges again separated by a ‘;’: [‘2021-01-25’, ‘2021-01-26’); (‘2021-01-26’,‘2021-01-31’]. The bracket ‘[’ and ’]’ will include the lower bound and upper bound limit in the data whereas bracket ‘(’ and ‘)’ will exclude the lower bound or the upper bound limit from the data in the two separate range specified. Data custodian can specify as many range as they want separated by a semicolon. **Whenever specifying a datetime value inside the brackets, it must be provided inside single quotes such as (‘2021-01-26’). Any datetime value outside of brackets do not need a quote as shown in figure below.**
-<img src="filter_img_5.jpg" width= "850" height="75">
-- Data custodian will be allowed to selectively choose different range or filter values for different access groups. In the above example, the data custodian chooses to filter ‘analysisDate’ column by two different ranges only for Public. However, for the remaining groups the ‘analysisDate’ column is filtered by a value and a range as illustrated in figure above. It is allowed to filter values of a variable both by a range and by a specific value. In above figure, the date value of 20th January and range between 25th January to the maximum date value is filtered or excluded from the data for all the other groups except Public, but allows 25th January due to ‘(’ sign. 
-- Infinity is accepted as a value. It will simply mean that the lowest or highest limit is the minimum or maximum for that variable in the data.
-- Data sharing will take place once the data is in the ODM compliant format after it has gone through the validation process and has been cleaned.
+1. Selecting the `type` column in the `Sample` table
 
-### Sharing schema and rules
+    | tableName | variableName |
+    |-----------|--------------|
+    | Sample    | type         |
 
-Following are the rules in the version v1.2 that are part of **shared_data.csv** file:
+2. Selecting the `qualityFlag` and the `type` column in the `WWMeasure` table
 
-**tableName:** This rule will allow the user to enter the name of the table that they wish to exclude or filter the data for. If a data custodian wants to exclude a particular variable from all the tables that contains that variable name, then they can enter the value ‘ALL’ for this property and the specific variable name under the ‘variableName’ column.
+    | tableName        | variableName        |
+    |------------------|---------------------|
+    | WWMeasure        | qualityFlag;type    |
 
-**variableName**: This rule will allow the user to enter the name of variables they want to filter data for or exclude from the table. If they wish to remove all the variables for a particular table in the data, then they can enter the value of ‘ALL’ for this property and the specific table name under the ‘tableName’ column.
+3. Selecting all the columns in the `WWMeasure` table
 
-**shared_with:** This rule allows data custodian to enter the names of the access groups that they do not want to share specific portions of their data with. In the web application form, the data custodian will provide names of all the access groups that they want to share data with. In the schema, they can selectively choose to exclude specific portions of the data with specific groups by providing their names under the ‘shared_with’ column.
+    | tableName        | variableName |
+    |------------------|--------------|
+    | WWMeasure        | all          |
 
-**filter_value:** This rule allows user to filter data with specific values of a variable or a specific range of values. This property can allow user to remove specific rows in the data based on a certain condition or can also remove an entire variable. To remove all the rows corresponding to an entire variable in the data, the user will need to enter ‘ALL’ value for this property. If a user wishes to remove selective rows that corresponds to specific values of a variable in the data, then they can enter those values for the particular variable name under this property. If there is more than one value it must be separated by a semicolon. An example will be siteT101;siteT102 for the siteID variable. Apart from specific values, ranges are also allowed and provided within brackets where ‘[’ and ’]’ indicates including the lower and upper bound limits whereas ‘(’ and ‘)’ indicates excluding the lower and upper bound limits. More than one range can be excluded and they must be separated by a semicolon. Datetime values mentioned inside the brackets as a range are always written inside quotes. The datetime values outside of the bracket as a single value is not written inside quotes. The integers and other string characters whether inside brackets or **not** are not written inside quotes.
+4. Selecting a the `type` column in the `WWmeasure` and the `Sample` table
 
-**description_license:** This rule will be free text column that allows user to enter the details about data sharing agreement and how the data will be used by different access groups with the permissions that each group may have for usage of data and specific variables or tables.
+    | tableName               | variableName  |
+    |-------------------------|---------------|
+    | WWMeasure;Sample        | type          |
 
-The data, filtered out using the above schema rules and the python script in back end that runs the Pandas package, is returned back to the user in an Excel spreadsheet along with the report that will list the number of rows removed, variables removed from each table and the reason for that.
+5. Selecting the `type` column in all tables
 
+    | tableName               | variableName  |
+    |-------------------------|---------------|
+    | all                     | type          |
+
+Some things to note:
+
+* In examples 2 and 4 where multiple columns and tables were selected respectively, a **;** was used to seperate the values. The same symbol was used to seperate multiple organizations in the previous step. In fact, throughout the entire document when multiple values need to put into a cell, the **;** symbol should be used to seperate them.
+* In examples 3 and 5 where all the columns in a table and all the tables were selected respectively, the keyword **all** was used. Similar to the **;** symbol, the keyword **all** may be used in a cell to mean everything.
+
+### 3. Selecting the Direction of the Rule
+
+The third step involves selecting the direction in which the rule should be applied. If we imagine all the ODM data as a set of spreadhseets, with each sheet containing the data for a table, then there are two ways in which a rule can be applied:
+
+1. It can applied by going through each column in the spreadsheet and filtering out those columns that meets the rule's specification
+2. It can be applied by going through each row in the spreadsheet and filtering out those rows that meets the rule's specification
+
+This step uses the `direction` column which accepts one of two values, `column` to apply the rule column by column or `row` to apply the rule row by row.
+
+### 4. Selecting the Values to Filter Out
+
+The final step involves inputting the values of the selected entities to filter out. This step uses the `filterValue` column whose values depends on the data type (boolean, numeric etc.) and the statistical type (continuous or categorical) of the variable.
+
+For the statistical type:
+
+* **Continuous Type**: For continuous entities, this column can either specify an interval with a lower and upper limit, a specific value, or a combination of the two. We use the mathematical notation to define an [interval](https://en.wikipedia.org/wiki/Interval_(mathematics)). Examples are:
+    * [1, 2]: All values between 1 and 2, inclusive of 1 and 2 will be filtered out
+    * (1, 2]: All values between 1 and 2, only inclusive of 2 will be filtered out
+    * [1, 2): All values between 1 and 2, only inclusive of 1 will be filtered out
+    * (1, 2): All values between 1 and 2, excluding 1 and 2 will be filtered out
+    * [Inf, 1]: All values between negative infinity and 1, including 1 will be filtered out
+    * [1, Inf]: All values between 1 and positive infinity, including 1 will be filtered out
+
+    The **Inf** keyword can be used to specify infinity either as the lower or upper bound. Combination of values within this column can be entered in by using the **;** symbol again. For example, [1, 2]; (7, 8); 9
+* **Categorical Type**: For categorical entities, this column should specify the category values to filter out seperated one again by the **;** symbol
+
+Users can also use the **all** keyword to filter our all values in an entity.
+
+For the data type, please refer to the [ODM metadata](https://github.com/Big-Life-Lab/ODM/blob/main/metadata_en.md#entity-relationship-diagram) on the allowable value for each one.
+
+Some examples are given below,
+
+1. Exclude values of `rawWW` or `swrSed`
+
+    | filterValue             |
+    |-------------------------|
+    | rawWW;swrSed            |
+
+2. Exclude values between March 1st 2021 and December 1st 2021 including the endpoints
+
+    | filterValue             |
+    |-------------------------|
+    | [2021-03-01,2021-12-01] |
+
+## Example Scenarios
+
+In this section we will be working with some data, providing an example scenario for a rule and showing what the rule looks like
+
+The data we will be working with has two tables from the ODM, **Sample** and **Site**. It does not include all the columns present in these tables. The rows in the Sample and Site table respectively are shown below:
+
+| sampleID | siteID | dateTime   | type    | sizeL | notes  | 
+|----------|--------|------------|---------|-------|--------|
+| 1        | 1      | 2021-08-19 | rawWW   | 5     | Note 1 |
+| 2        | 1      | 2021-08-18 | sweSed  | 3     | Note 2 |
+| 3        | 2      | 2021-08-17 | pstGrit | 15    | Note 3 |
+| 4        | 2      | 2020-01-10 | water   | 45    | Note 4 |
+
+| siteID | name                 | publicHealthDepartment | type   |
+|--------|----------------------|------------------------|--------|
+| 1      | University of Ottawa | Ottawa Public Health   | school |
+| 1      | University of Laval  | Laval Public Health    | school |
+
+
+1. Remove rows whose site ID in the Sample table is 2 for Ottawa Public Health (OPH)
+
+    | sharedWith | tableName | variableName | direction | filterValue |
+    |------------|-----------|--------------|-----------|-------------|
+    | OPH        | Sample    | siteID       | row       | 1           |
+
+2. Remove rows from the Sample table whose type is `rawWW` or `sweSed` for the Public Health Agency of Canada (PHAC)
+
+    | sharedWith | tableName | variableName | direction | filterValue  |
+    |------------|-----------|--------------|-----------|--------------|
+    | PHAC       | Sample    | type         | row       | rawWW;sweSed |
+
+3. Remove the type column from all tables for Laval Public Health (LPH)
+
+    | sharedWith | tableName | variableName | direction | filterValue  |
+    |------------|-----------|--------------|-----------|--------------|
+    | LPH        | all       | type         | column    | all          |
+
+4. Remove samples taken in the year 2021 and those whose volume is less than 5 for OPH and PHAC
+
+    | sharedWith | tableName | variableName | direction | filterValue             |
+    |------------|-----------|--------------|-----------|-------------------------|
+    | OPH;PHAC   | Sample    | dateTime     | row       | [2021-01-01,2021-12-01] |
+    | OPH;PHAC   | Sample    | sizeL        | row       | [Inf,5]                 |
+
+5. Remove the notes column from the Sample table and rows from the Site table that belong to the University of Ottawa for LPH
+
+    | sharedWith | tableName | variableName           | direction | filterValue             |
+    |------------|-----------|------------------------|-----------|-------------------------|
+    | LPH        | Site      | notes                  | column    | all                     |
+    | LPH        | Sample    | publicHealthDepartment | row       | Ottawa Public Health    |
+
+## Sharing CSV Columns
+
+This section summarizes all the columns part of the file
+
+**sharedWith**: The name(s) of the organizations for this rule. Multiple organizations can be seperated by a **;**
+
+**tableName**: The name(s) of the tables for this rule. Allowable values are names of the tables seperated by a **;** or **all** to select all tables.
+
+**variableName**: The name(s) of the columns for this rule. Allowable values are names of the columns seperated by a **;** or **all** to select all columns.
+
+**direction**: The direction to apply the filtering. Allowable values are **row** or **column**.
+
+**filterValue**: The values of the selected entities to exclude. These can include an interval, single values or a combination of both. Multiple values can be seperated using the **;** symbol. **all** can also be used. For intervals, the mathematical notation for it is used.
+
+**description**: Optional description explaining this rule
+
+**license**: The shortform identifier of a license for this data.
+
+# Feature implementation
+
+### How the features will be implemented?
+The features that data custodian will request to filter the data through the rules defined in the schema will be implemented using python script that uses `Pandas` library to perform the task. The use case of the ODM conductor for sharing is given in figure below. 
+<img src="usecasediagram.png" width= "850" height="550">
+The data custodian will use the web application tool to input in a list of table names separated by comma. It will be entered in a list structure. An example is ['WWMeasure', 'Sample', 'SiteMeasure', 'Lab']. The data custodian will enter in a list of organizations to share data with which is again separated by comma. An example is ['Public', 'PHAC', 'Local']. All the names inside the lists will be written inside quotes. The data custodian will also provide the data that they want to filter and the schema file that defines the rules to filter the data. All the inputs from the data custodian will be received by the backend server that will run the python script and use `Pandas` to filter the data and return the modified data back to the data custodian. The backend server will also return a text document that provides details about what columns/ rows were filtered from the data and the reasons to filter along with any license information associated with the data.
+
+A sequence flow diagram further demonstrates the flow of process: 
+<img src="sequencediagram.png" width= "950" height="850">
+
+Below is a diagram of how the classes will be implemented in python to perform the backend tasks to filter the data:
+<img src="classdiagram.png" width= "1550" height="450">
+
+The python script will use a main class `UserData` and four interface classes named `SetEntityRelations`, `CreateSchemaDictionary`, `FilterEntities`, and `FilterRows`. The main attributes of the `UserData` class are `table_names` and `org_list` which accepts in the values of the table names and organization list entered in by the data custodian. 
+UserData class has two of it's own main methods:
+- **load_data(database, list)** which accepts in the data and the list of table names that data custodian provides. It returns a dictionary of Pandas dataframes where each key is for each table requested and the value specifies the dataframe that corresponds to that table.
+- **load_schema(database)** which accepts in the schema file and will then output a Pandas dataframe of that schema.
+- **filter_data()** This method basically implements all the other methods from interface classes and then output back the list of filtered dataframes for each organization in nested lists called `filtered_list`.
+- **create_document(List)** which accepts lists that specifies the rows or variables removed and the reasons for removal with filter condition. The license associated with the particular table or variables for specific groups is also provided. It outputs a text file that contains all these information.
+
+The `UserData` class implements the four interface class and is therefore, a realization of these interface classes. The interface `SetEntityRelations` class provides two main functions:
+- **get_pri_foreign_key(database)** will accept the dataframe created using variable.csv file and the list of table names data custodian provides as the input data and returns two lists for both primary keys and foreign keys for each table requested in a sequence within nested lists inside the main lists.
+- **set_entity_filter_between_tables** will accept the dictionary of dataframes returned from the load_data method, the list of table names, the primary and foreign key lists entered returned by the above method. It will return the dictionary of dataframes which is filtered for any primary key and foreign key constraints.
+- **create_data_list(database)** will accept list of dataframes filtered by the method above and then output back the list of dataframes for each organization requested by user. Each organization will be a nested list inside the main list that contains the dataframes for requested tables. The output list is called `access_list`.
+
+The `UserData` class will then implement the `CreateSchemaDictionary` class which will create a json like dictionary for the schema. The interface provides three main methods:
+- **create_wide_table_org_groups(database)** will accept the dataframe created by load_schema function and then output back a dataframe with wide table structure. It contains separate sharing property for each organization which allows to filter the data effectively such as `shared_with_label` where label = name of organization. 
+- **create_wide_table_filter_groups(database)** will accept the dataframe created by above method and will output back a dataframe with wide table structure. In this method, the filter sharing properties are created for each organization for ease of filtering. An example will be `filter_with_label` where label = name of organization.
+- **create_dictionary_schema(database)** will accept the dataframe created by above method and then output a list of dictionaries called `schema_list`. Here, each dictionary is a rule that will filter either a specific column or a row of the dataset.
+
+The next interface class that gets implemented is `FilterEntities` which provides the methods to filter columns/ variables in the dataset. The class provides two main methods:
+- **fetch_variables_for_org** will accept three lists: list of dictionaries, `schema_list`, the list of organizations, and the list of table names requested by user. The output will be the list called `keep_var` that contains variables for each organization and table inside nested lists based on schema specified rules.
+- **filter_columns_for_org** will accept the list `keep_var`, the list of table names, the list of organizations, and the list of dataframes outputed by the `access_list` method. The method filters for the variables/ columns in the dataset. It will then output a list of dataframes filtered by the keep_var lists of variables. Each nested list inside the main list will correspond to a specific organization group. The dataframes inside the nested lists will only contain the variables that can be accessed by those organizations. 
+
+The last interface implemented by `UserData` class is `FilterRows` class which will implement `filter_rows_for_org(list)` method. This method takes in the input of list of dataframes created above called `access_list`, it takes in the list of tables names, the list of organizations, and the list of schema dictionary `schema_list`. The function filters the rows of the dataset based on schema defined rules for each organization specified in the `filter_label` sharing property created in the wide table structure. It finally outputs a list of dataframes called `filtered_list` which contains nested lists for each organization. The filtered list returned will contain only those rows for each organization and table that are allowed as per the schema rules.
+
+Below is the figure that demonstrates the flow of actions in an activity diagram:
+<img src="activitydiagram.png" width= "1550" height="750">
+
+First a list of table names that user specifies is stored into a variable named `table_names`. Next a list of organizations that user specifies is stored into a variable named `org_list`. The data is loaded into a dictionary of dataframes called `data`. The data is then filtered using primary and foreign key constraints into a dictionary of dataframes called `new_df_dict`. The data is then stored into a list `access_list` that consists of the dataframes for the requested tables within nested lists. Each nested list corresponds to the organizations requested by the user in org_list.
+
+The user schema file is loaded into a pandas dataframe. The schema is converted into a wide table format for ease of coding with Pandas to filter the data. The `shared_with` property with multiple organizations in one row is converted into wide table format where each organization has it's own column for sharing property. Examples include `shared_with_PHAC` or `shared_with_Local`, etc. The wide format for each organization is applied to filter sharing property with extra columns created such as `filter_PHAC`, `filter_Provincial`, etc.
+
+The data is then filtered based on schema specified rules in the filter_data method of the main class `UserData`. If the `direction` sharing rule is equal to columns, then the columns or variables are filtered from the data. Else, if the `direction` sharing property is rows, then specific rows are removed based on specific information provided in the filter_value sharing property.
+
+In both the cases we loop over the table_names and org_list to selectively filter each table for each organization based on the filter property that has been set. If the value of organization specific sharing property in the schema dictionary for the current table and organization in itteration is set to `False` such as `shared_with_label` = False and the filter sharing property `filter_label` = "ALL" then the variable is removed from the dataframe for the specific organization. If the schema sharing property `variableName` is set to "ALL" for specific organization with `shared_with_label` set to False, then the entire table is removed for the particular organization. Else, the variable is kept in the dataframe.
+
+In case of row filteration, if the value of filter property for specific organization in current itteration such as `filter_label` = [a,b] then the range between and inclusive of both a and b is filtered. If the `filter_label`= (a,b] then the range between a and b is filtered inclusive of b and excluding a. Else, if the `filter_label`= [a,b) then the range between a and b is filtered inclusive of a and excluding b. The `filter_label` = (a,b) excludes both a and b when filtering the interval from the dataframe.
+
+The final output is the `filtered_list` that contains data for each table and organization which will be returned to the data custodian in their requested file format. The other output will be the text file that will provide details about the columns and rows filtered along with description of the rules used to filter them and the license associated with the data usage.
+
+The .puml files contains the code for plantuml diagrams.

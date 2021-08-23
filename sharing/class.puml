@@ -1,0 +1,48 @@
+@startuml classdiagram
+
+Class UserData{
+    table_names: List
+    org_list: List
+    load_data(database, List): dictionary of dataframes
+    load_schema(database): database
+    filter_data(): List of dataframe
+    get_pri_foreign_key(database, List):List
+    set_relationship_filter_between_tables(database, List): dictionary of dataframes
+    create_data_list(database): List of dataframes
+    create_wide_table_org_groups(database): database
+    create_wide_table_filter_groups(database): database
+    create_dictionary_schema(database): List
+    fetch_variables_for_org(List):List
+    filter_columns_for_org(List, dictionary): List of dataframes
+    filter_rows_for_org(List): List of dataframes
+    create_document(List): Text file
+}
+
+interface SetEntityRelations{
+    get_pri_foreign_key(database, List):List
+    set_relationship_filter_between_tables(database, List): dictionary of dataframes
+    create_data_list(database): List of dataframes
+}
+
+interface CreateSchemaDictionary{
+    create_wide_table_org_groups(database): database
+    create_wide_table_filter_groups(database): database
+    create_dictionary_schema(database): List
+}
+
+interface FilterEntities{
+    fetch_variables_for_org(List):List
+    filter_columns_for_org(List, dictionary): List of dataframes
+
+}
+
+interface FilterRows{
+    filter_rows_for_org(List): List of dataframes
+}
+
+SetEntityRelations <|.. UserData
+CreateSchemaDictionary <|.. UserData
+FilterEntities <|.. UserData
+FilterRows <|.. UserData
+
+@enduml

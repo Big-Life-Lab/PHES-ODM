@@ -1,0 +1,49 @@
+@startuml activitydiagram
+
+start
+:Create list of tables: "table_names";
+:Create list of access groups : "org_list";
+:Load user data and Create dictionary of pandas dataframes : "data";
+:Filter "data" using primary and foreign key constraints into new dictionary of dataframes : "new_df_dict";
+:Create a list of dataframes: "access_list";
+:Load user schema into a Pandas dataframe;
+:Convert schema dataframe into wide table structure;
+:Create columns for sharing properties for organizations : "shared_with_label" where label = "name of organization" with True/ False values;
+:Create columns for sharing properties for organizations : "filter_label" where label = "name of organization with True/ False values";
+:Create a list of dictionaries from the schema dataframe specifying rules to filter;
+:Filter data based on schema;
+if () then (schema['direction'] = 'column')
+:Filter columns/ variables for each organization;
+:Create a list keep_var that contains lists of variables to keep for each table within nested lists for each organization;
+:Loop over each organization in "org_list";
+:Loop over each tables in "table_names" list;
+:Create an temporary list for each table consisting of it's variables;
+if () then ("share_with_label" = True)
+:Keep the variable in the nested list inside keep_var list for the current table in itteration;
+elseif () then ("shared_with_label" = False and schema['filter_label'] = 'ALL' and direction = 'column')
+:Remove the variable from the nested list inside keep_var list for the current table in itteration;
+else () then ("shared_with_label" = False and schema['variableName'] = 'ALL')
+:Remove all the variable from the nested list inside keep_var list for the current table in itteration;
+endif;
+:Loop over the nested lists for each organization inside "access_list";
+:Filter dataframes in `access_list` with keep_var variables that corresponds to each dataframe;
+else () then (schema['direction'] = 'row')
+:Filter rows in the data for each organization;
+:Loop over each organization in "org_list";
+:Loop over the nested lists for each organization inside "access_list";
+:Loop over each tables in "table_names" list;
+:Loop over the dataframes inside the nested lists in "access_list";
+if () then ("filter_label"= [a,b])
+:Remove the all the values for the variable within the range between a and b including both a and b;
+elseif () then ("filter_label" = (a,b])
+:Remove the all the values for the variable within the range between a and b excluding a and including b;
+elseif () then ("filter_label" = [a,b))
+:Remove the all the values for the variable within the range between a and b including a and excluding b;
+elseif () then ("filter_label" = (a,b))
+:Remove the all the values for the variable within the range between a and b excluding both a and b;
+endif
+endif;
+:Return list of filtered dataframes for each organization: "filtered_list";
+:Return a text document with description;
+stop
+@enduml
