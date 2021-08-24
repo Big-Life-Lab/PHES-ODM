@@ -198,52 +198,80 @@ This section summarizes all the columns part of the file
 # Feature implementation
 
 ### How the features will be implemented?
-The features that data custodian will request to filter the data through the rules defined in the schema will be implemented using python script that uses `Pandas` library to perform the task. The use case of the ODM conductor for sharing is given in figure below. 
-<img src="usecasediagram.png" width= "850" height="550">
-The data custodian will use the web application tool to input in a list of table names separated by comma. It will be entered in a list structure. An example is ['WWMeasure', 'Sample', 'SiteMeasure', 'Lab']. The data custodian will enter in a list of organizations to share data with which is again separated by comma. An example is ['Public', 'PHAC', 'Local']. All the names inside the lists will be written inside quotes. The data custodian will also provide the data that they want to filter and the schema file that defines the rules to filter the data. All the inputs from the data custodian will be received by the backend server that will run the python script and use `Pandas` to filter the data and return the modified data back to the data custodian. The backend server will also return a text document that provides details about what columns/ rows were filtered from the data and the reasons to filter along with any license information associated with the data.
 
-A sequence flow diagram further demonstrates the flow of process: 
-<img src="sequencediagram.png" width= "950" height="850">
+The features that data custodian will request to filter the data through the rules defined in the schema will be implemented using python script that uses `Pandas` library to perform the task. There will be one main function called `create_filtered_dataset(table_names, org_list, data, schema)` that will take in 4 arguments. The table_names, org_list and schema will be of list type. The data argument is of dictionary type. These arguments are provided by the data custodian through web application.
 
-Below is a diagram of how the classes will be implemented in python to perform the backend tasks to filter the data:
-<img src="classdiagram.png" width= "1550" height="450">
+The data custodian will input in a list of table names separated by comma. It will be entered in a list structure. An example is ['WWMeasure', 'Sample', 'SiteMeasure', 'Lab']. The data custodian will enter in a list of organizations to share data with which is again separated by comma. An example is ['Public', 'PHAC', 'Local']. All the names inside the lists will be written inside quotes. 
 
-The python script will use a main class `UserData` and four interface classes named `SetEntityRelations`, `CreateSchemaDictionary`, `FilterEntities`, and `FilterRows`. The main attributes of the `UserData` class are `table_names` and `org_list` which accepts in the values of the table names and organization list entered in by the data custodian. 
-UserData class has two of it's own main methods:
-- **load_data(database, list)** which accepts in the data and the list of table names that data custodian provides. It returns a dictionary of Pandas dataframes where each key is for each table requested and the value specifies the dataframe that corresponds to that table.
-- **load_schema(database)** which accepts in the schema file and will then output a Pandas dataframe of that schema.
-- **filter_data()** This method basically implements all the other methods from interface classes and then output back the list of filtered dataframes for each organization in nested lists called `filtered_list`.
-- **create_document(List)** which accepts lists that specifies the rows or variables removed and the reasons for removal with filter condition. The license associated with the particular table or variables for specific groups is also provided. It outputs a text file that contains all these information.
+The data custodian will also provide the data that they want to filter. The data will be a dictionary with keys referencing the table name and values will be list of dictionaries. Each nested dictionary inside the list will correspond to a single row of the table and will only contain one value per key. An example will be:
 
-The `UserData` class implements the four interface class and is therefore, a realization of these interface classes. The interface `SetEntityRelations` class provides two main functions:
-- **get_pri_foreign_key(database)** will accept the dataframe created using variable.csv file and the list of table names data custodian provides as the input data and returns two lists for both primary keys and foreign keys for each table requested in a sequence within nested lists inside the main lists.
-- **set_entity_filter_between_tables** will accept the dictionary of dataframes returned from the load_data method, the list of table names, the primary and foreign key lists entered returned by the above method. It will return the dictionary of dataframes which is filtered for any primary key and foreign key constraints.
-- **create_data_list(database)** will accept list of dataframes filtered by the method above and then output back the list of dataframes for each organization requested by user. Each organization will be a nested list inside the main list that contains the dataframes for requested tables. The output list is called `access_list`.
 
-The `UserData` class will then implement the `CreateSchemaDictionary` class which will create a json like dictionary for the schema. The interface provides three main methods:
-- **create_wide_table_org_groups(database)** will accept the dataframe created by load_schema function and then output back a dataframe with wide table structure. It contains separate sharing property for each organization which allows to filter the data effectively such as `shared_with_label` where label = name of organization. 
-- **create_wide_table_filter_groups(database)** will accept the dataframe created by above method and will output back a dataframe with wide table structure. In this method, the filter sharing properties are created for each organization for ease of filtering. An example will be `filter_with_label` where label = name of organization.
-- **create_dictionary_schema(database)** will accept the dataframe created by above method and then output a list of dictionaries called `schema_list`. Here, each dictionary is a rule that will filter either a specific column or a row of the dataset.
+{
 
-The next interface class that gets implemented is `FilterEntities` which provides the methods to filter columns/ variables in the dataset. The class provides two main methods:
-- **fetch_variables_for_org** will accept three lists: list of dictionaries, `schema_list`, the list of organizations, and the list of table names requested by user. The output will be the list called `keep_var` that contains variables for each organization and table inside nested lists based on schema specified rules.
-- **filter_columns_for_org** will accept the list `keep_var`, the list of table names, the list of organizations, and the list of dataframes outputed by the `access_list` method. The method filters for the variables/ columns in the dataset. It will then output a list of dataframes filtered by the keep_var lists of variables. Each nested list inside the main list will correspond to a specific organization group. The dataframes inside the nested lists will only contain the variables that can be accessed by those organizations. 
+'WWMeasure': [{'uWwMeasureID':'Measure WW100', 'SampleID':'Sample S100', 'type':'covN1','value':20000},
+{'uWwMeasureID':'Measure WW101', 'SampleID':'Sample S101', 'type':'covN1','value':15000},], 
 
-The last interface implemented by `UserData` class is `FilterRows` class which will implement `filter_rows_for_org(list)` method. This method takes in the input of list of dataframes created above called `access_list`, it takes in the list of tables names, the list of organizations, and the list of schema dictionary `schema_list`. The function filters the rows of the dataset based on schema defined rules for each organization specified in the `filter_label` sharing property created in the wide table structure. It finally outputs a list of dataframes called `filtered_list` which contains nested lists for each organization. The filtered list returned will contain only those rows for each organization and table that are allowed as per the schema rules.
+'Sample': [{'SampleID':'Sample S100','siteID':'Site T100', 'datetime':'2021-02-01  9:00:00 PM', 'type':'RawWW'},
+{'SampleID':'Sample S101','siteID':'Site T101', 'datetime':'2021-02-01  9:00:00 PM', 'type':'RawWW'},
+{'SampleID':'Sample S102','siteID':'Site T102', 'datetime':'2021-02-01  9:00:00 PM', 'type':'RawWW'}], 
 
+'Lab': [{'labID':'Lab L100', 'assayMethodIDDefault':'Assay Y100', 'name':'University L100 Lab'},
+{'labID':'Lab L101', 'assayMethodIDDefault':'Assay Y101', 'name':'University L100 Lab'}]
+
+}
+
+Above example of data provides two rows for three different tables 'WWMeasure', 'Sample', and 'Lab'. "WWMeasure" table is represented by a key in the main dictionary. The value is a list of dictionaries. Each dictionary is a row within the `WWMeasure` table. In above example there are two rows. The "Sample" table is another key in main dictionary and it's value is again a list of dictionaries which are the rows in the table. There are 3 dictionaries or rows in the `Sample` list or table. The `Lab` table again has 2 rows or dictionaries within the list.  
+
+
+The data custodian will provide schema with predefined rules to filter the data. This schema is a list of dictionaries. An example of how schema might look is following:
+
+[
+
+{'filter_values': 'S101;S102',
+  'shared_with': 'Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
+  'tableName': 'ALL',
+  'variableName': 'sampleID'
+  'direction': 'row'},
+
+ {'filter_values': '["2021-01-25", "2021-01-26"); ("2021-01-26","2021-01-31"]',
+  'shared_with': 'Public',
+  'tableName': 'WWMeasure',
+  'variableName': 'analysisDate',
+  'direction': 'row'},
+
+ {'filter_values': '2021-01-20; ("2021-01-25", "infinity"]',
+  'shared_with': 'PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
+  'tableName': 'WWMeasure',
+  'variableName': 'analysisDate',
+  'direction': 'row'},
+
+ {'filter_values': 'siteT101;siteT102',
+  'shared_with': 'Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
+  'tableName': 'ALL',
+  'variableName': 'siteID',
+  'direction': 'column'},
+
+ {'filter_values': 'ALL',
+  'shared_with': 'Public;Local',
+  'tableName': 'ALL',
+  'variableName': 'contactName';'contactEmail';'contactPhone';'contactPhoneExt',
+  'direction': 'column'}
+
+  ]
+
+In above schema there are 5 rules as each dictionary pertains to a single rule. The first rule filters the rows of all tables that have variable name 'sampleID'. The rows filtered are the one that have the value of `sampleID` column set to `S101` and `S102`. The rows are only for the organizations that are mentioned in the `shared_with` property.
+
+The second rule inside the second dictionary filters all the `analysisDate` values in `WWMeasure` table between 2021-01-25 to 2021-01-31 excluding the date 2021-01-26. The rows are only removed for the data shared with `Public`. The first and second rule removes rows from the table, therefore, the `direction` property is set to 'row'.
+
+The last or the fifth rule removes all the variables in the `variableName` sharing property which are 'contactName','contactEmail','contactPhone', and 'contactPhoneExt' from all the tables only for `Public` and `Local` organizations. In this rule, the column is filtered, therefore, the `direction` property is set to 'column'.
+
+The `create_filtered_dataset()` function returns back two things: 
+1. The filtered dataset for all the requested tables and the organizations.
+2. The text document that provides details about what rows and columns were filtered and the reasons as well as license associated with the data.
+
+The function does use several sub functions to carry out the filter process. 
 Below is the figure that demonstrates the flow of actions in an activity diagram:
-<img src="activitydiagram.png" width= "1550" height="750">
 
-First a list of table names that user specifies is stored into a variable named `table_names`. Next a list of organizations that user specifies is stored into a variable named `org_list`. The data is loaded into a dictionary of dataframes called `data`. The data is then filtered using primary and foreign key constraints into a dictionary of dataframes called `new_df_dict`. The data is then stored into a list `access_list` that consists of the dataframes for the requested tables within nested lists. Each nested list corresponds to the organizations requested by the user in org_list.
-
-The user schema file is loaded into a pandas dataframe. The schema is converted into a wide table format for ease of coding with Pandas to filter the data. The `shared_with` property with multiple organizations in one row is converted into wide table format where each organization has it's own column for sharing property. Examples include `shared_with_PHAC` or `shared_with_Local`, etc. The wide format for each organization is applied to filter sharing property with extra columns created such as `filter_PHAC`, `filter_Provincial`, etc.
-
-The data is then filtered based on schema specified rules in the filter_data method of the main class `UserData`. If the `direction` sharing rule is equal to columns, then the columns or variables are filtered from the data. Else, if the `direction` sharing property is rows, then specific rows are removed based on specific information provided in the filter_value sharing property.
-
-In both the cases we loop over the table_names and org_list to selectively filter each table for each organization based on the filter property that has been set. If the value of organization specific sharing property in the schema dictionary for the current table and organization in itteration is set to `False` such as `shared_with_label` = False and the filter sharing property `filter_label` = "ALL" then the variable is removed from the dataframe for the specific organization. If the schema sharing property `variableName` is set to "ALL" for specific organization with `shared_with_label` set to False, then the entire table is removed for the particular organization. Else, the variable is kept in the dataframe.
-
-In case of row filteration, if the value of filter property for specific organization in current itteration such as `filter_label` = [a,b] then the range between and inclusive of both a and b is filtered. If the `filter_label`= (a,b] then the range between a and b is filtered inclusive of b and excluding a. Else, if the `filter_label`= [a,b) then the range between a and b is filtered inclusive of a and excluding b. The `filter_label` = (a,b) excludes both a and b when filtering the interval from the dataframe.
-
-The final output is the `filtered_list` that contains data for each table and organization which will be returned to the data custodian in their requested file format. The other output will be the text file that will provide details about the columns and rows filtered along with description of the rules used to filter them and the license associated with the data usage.
+<img src="activitydiagram.svg">
 
 The .puml files contains the code for plantuml diagrams.
