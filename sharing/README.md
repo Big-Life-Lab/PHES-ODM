@@ -227,49 +227,54 @@ The data custodian will provide schema with predefined rules to filter the data.
 
 [
 
-{'filter_values': 'S101;S102',
-  'shared_with': 'Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
-  'tableName': 'ALL',
-  'variableName': 'sampleID'
-  'direction': 'row'},
+{'filterValue': 'S101;S102',
+  'sharedWith': 'Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
+  'table': 'ALL',
+  'variable': 'sampleID'
+  'direction': 'row',
+  'ruleID': 1},
 
- {'filter_values': '["2021-01-25", "2021-01-26"); ("2021-01-26","2021-01-31"]',
-  'shared_with': 'Public',
+ {'filterValue': '["2021-01-25", "2021-01-26"); ("2021-01-26","2021-01-31"]',
+  'sharedWith': 'Public',
+  'table': 'WWMeasure',
+  'variable': 'analysisDate',
+  'direction': 'row',
+  'ruleID': 2},
+
+ {'filterValue': '2021-01-20; ("2021-01-25", "infinity"]',
+  'sharedWith': 'PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
   'tableName': 'WWMeasure',
   'variableName': 'analysisDate',
-  'direction': 'row'},
+  'direction': 'row',
+  'ruleID': 3},
 
- {'filter_values': '2021-01-20; ("2021-01-25", "infinity"]',
-  'shared_with': 'PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
-  'tableName': 'WWMeasure',
-  'variableName': 'analysisDate',
-  'direction': 'row'},
-
- {'filter_values': 'siteT101;siteT102',
-  'shared_with': 'Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
+ {'filterValue': 'siteT101;siteT102',
+  'sharedWith': 'Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
   'tableName': 'ALL',
-  'variableName': 'siteID',
-  'direction': 'column'},
+  'variable': 'siteID',
+  'direction': 'column',
+  'ruleID': 4},
 
- {'filter_values': 'ALL',
-  'shared_with': 'Public;Local',
-  'tableName': 'ALL',
-  'variableName': 'contactName';'contactEmail';'contactPhone';'contactPhoneExt',
-  'direction': 'column'}
+ {'filterValue': 'ALL',
+  'sharedWith': 'Public;Local',
+  'table': 'ALL',
+  'variable': 'contactName';'contactEmail';'contactPhone';'contactPhoneExt',
+  'direction': 'column',
+  'ruleID': 5}
 
   ]
 
-In above schema there are 5 rules as each dictionary pertains to a single rule. The first rule filters the rows of all tables that have variable name 'sampleID'. The rows filtered are the one that have the value of `sampleID` column set to `S101` and `S102`. The rows are only for the organizations that are mentioned in the `shared_with` property.
+In above schema there are 5 rules as each dictionary pertains to a single rule. The first rule filters the rows of all tables that have variable name 'sampleID'. The rows filtered are the one that have the value of `sampleID` column set to `S101` 'OR' `S102`. The rows are removed only for the organizations that are mentioned in the `sharedWith` property.
 
-The second rule inside the second dictionary filters all the `analysisDate` values in `WWMeasure` table between 2021-01-25 to 2021-01-31 excluding the date 2021-01-26. The rows are only removed for the data shared with `Public`. The first and second rule removes rows from the table, therefore, the `direction` property is set to 'row'.
+The second rule inside the second dictionary filters all the `analysisDate` values in `WWMeasure` table on 2021-01-25 or between 2021-01-26 to 2021-01-31 excluding the date 2021-01-26. The rows are only removed for the data shared with `Public`. The first and second rule removes rows from the table, therefore, the `direction` property is set to 'row'.
 
-The last or the fifth rule removes all the variables in the `variableName` sharing property which are 'contactName','contactEmail','contactPhone', and 'contactPhoneExt' from all the tables only for `Public` and `Local` organizations. In this rule, the column is filtered, therefore, the `direction` property is set to 'column'.
+The last or the fifth rule removes all the variables in the `variable` sharing property which are 'contactName','contactEmail','contactPhone', and 'contactPhoneExt' from all the tables only for `Public` and `Local` organizations as mentioned in `sharedWith` property. In this rule, the column is filtered, therefore, the `direction` property is set to 'column'.
 
 The `create_filtered_dataset()` function returns back two things: 
 1. The filtered dataset for all the requested tables and the organizations.
 2. The text document that provides details about what rows and columns were filtered and the reasons as well as license associated with the data.
 
-The function does use several sub functions to carry out the filter process. 
+The function does use several sub functions to carry out the filter process using Pandas library . 
 Below is the figure that demonstrates the flow of actions in an activity diagram:
 
 <img src="activitydiagram.svg">
