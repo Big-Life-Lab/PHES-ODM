@@ -43,45 +43,46 @@ The second step involves selecting the parts of the ODM data model or entities t
 * Data contained in a table
 * Data contained in column(s) of table(s)
 
-This step uses two columns, `tableName` and `variableName`. The `tableName` column can specify the name(s) of the table this rules applies to and the `variableName` column can specify the name(s) of the columns this rule applies to.
+This step uses two columns, `table` and `variable`. The `table` column can specify the name(s) of the table this rules applies to and the `variable` column can specify the name(s) of the columns this rule applies to.
 
 Some examples are given below:
 
 1. Selecting the `type` column in the `Sample` table
 
-    | tableName | variableName |
-    |-----------|--------------|
-    | Sample    | type         |
+    | ruleId | table     | variable     |
+    |--------|-----------|--------------|
+    | 1      | Sample    | type         |
 
 2. Selecting the `qualityFlag` and the `type` column in the `WWMeasure` table
 
-    | tableName        | variableName        |
-    |------------------|---------------------|
-    | WWMeasure        | qualityFlag;type    |
+    | ruleId | table            | variable            |
+    |--------|------------------|---------------------|
+    | 2      | WWMeasure        | qualityFlag;type    |
 
 3. Selecting all the columns in the `WWMeasure` table
 
-    | tableName        | variableName |
-    |------------------|--------------|
-    | WWMeasure        | all          |
+    | ruleId         | table            | variable     |
+    |----------------|------------------|--------------|
+    | ww_measure_all | WWMeasure        | all          |
 
 4. Selecting a the `type` column in the `WWmeasure` and the `Sample` table
 
-    | tableName               | variableName  |
-    |-------------------------|---------------|
-    | WWMeasure;Sample        | type          |
+    | ruleId | table                   | variable      |
+    |--------|-------------------------|---------------|
+    | 3      | WWMeasure;Sample        | type          |
 
 5. Selecting the `type` column in all tables
 
-    | tableName               | variableName  |
-    |-------------------------|---------------|
-    | all                     | type          |
+    | ruleId | table                   | variable      |
+    |--------|-------------------------|---------------|
+    | 4      | all                     | type          |
 
 Some things to note:
 
 * In examples 2 and 4 where multiple columns and tables were selected respectively, a **;** was used to seperate the values. The same symbol was used to seperate multiple organizations in the previous step. In fact, throughout the entire document when multiple values need to put into a cell, the **;** symbol should be used to seperate them.
 * In examples 3 and 5 where all the columns in a table and all the tables were selected respectively, the keyword **all** was used. Similar to the **;** symbol, the keyword **all** may be used in a cell to mean everything.
-
+* The **ruleId** column mandatory for all rules and each value should be unique accross the entire sheet. The value can be a number or a string. If it is a string, it should not have any spaces in it. The recommended standard is to use [snake_case](https://en.wikipedia.org/wiki/Snake_case) for values in this column.
+ 
 ### 3. Selecting the Direction of the Rule
 
 The third step involves selecting the direction in which the rule should be applied. If we imagine all the ODM data as a set of spreadhseets, with each sheet containing the data for a table, then there are two ways in which a rule can be applied:
@@ -89,7 +90,7 @@ The third step involves selecting the direction in which the rule should be appl
 1. It can applied by going through each column in the spreadsheet and filtering out those columns that meets the rule's specification
 2. It can be applied by going through each row in the spreadsheet and filtering out those rows that meets the rule's specification
 
-This step uses the `direction` column which accepts one of two values, `column` to apply the rule column by column or `row` to apply the rule row by row.
+This step uses the `direction` column which accepts one of two values, `column` to apply the rule column by column or `row` to apply the rule row by row. 
 
 ### 4. Selecting the Values to Filter Out
 
@@ -126,6 +127,14 @@ Some examples are given below,
     |-------------------------|
     | [2021-03-01,2021-12-01] |
 
+Finally, if you want to exclude all values except for one you can use the **!** (NOT) operator as a shortcut. For example, to exclude all values except `rawWW`,
+
+| filterValue             |
+|-------------------------|
+| !rawWW                  |
+
+The NOT operator can be used in combination with any value defined in the filterValue column including intervals.
+
 ## Example Scenarios
 
 In this section we will be working with some data, providing an example scenario for a rule and showing what the rule looks like
@@ -142,54 +151,56 @@ The data we will be working with has two tables from the ODM, **Sample** and **S
 | siteID | name                 | publicHealthDepartment | type   |
 |--------|----------------------|------------------------|--------|
 | 1      | University of Ottawa | Ottawa Public Health   | school |
-| 1      | University of Laval  | Laval Public Health    | school |
+| 2      | University of Laval  | Laval Public Health    | school |
 
 
-1. Remove rows whose site ID in the Sample table is 2 for Ottawa Public Health (OPH)
+1. Remove rows whose siteID in the Sample table is 2 for Ottawa Public Health (OPH)
 
-    | sharedWith | tableName | variableName | direction | filterValue |
-    |------------|-----------|--------------|-----------|-------------|
-    | OPH        | Sample    | siteID       | row       | 1           |
+    | ruleId | sharedWith | table     | variable     | direction | filterValue |
+    |--------|------------|-----------|--------------|-----------|-------------|
+    | 1      | OPH        | Sample    | siteID       | row       | 1           |
 
 2. Remove rows from the Sample table whose type is `rawWW` or `sweSed` for the Public Health Agency of Canada (PHAC)
 
-    | sharedWith | tableName | variableName | direction | filterValue  |
-    |------------|-----------|--------------|-----------|--------------|
-    | PHAC       | Sample    | type         | row       | rawWW;sweSed |
+    | ruleId | sharedWith | table     | variable     | direction | filterValue  |
+    |--------|------------|-----------|--------------|-----------|--------------|
+    | 2      | PHAC       | Sample    | type         | row       | rawWW;sweSed |
 
 3. Remove the type column from all tables for Laval Public Health (LPH)
 
-    | sharedWith | tableName | variableName | direction | filterValue  |
-    |------------|-----------|--------------|-----------|--------------|
-    | LPH        | all       | type         | column    | all          |
+    | ruleId | sharedWith | table     | variable     | direction | filterValue  |
+    |--------|------------|-----------|--------------|-----------|--------------|
+    | 3      | LPH        | all       | type         | column    | all          |
 
-4. Remove samples taken in the year 2021 and those whose volume is less than 5 for OPH and PHAC
+4. Remove samples taken in the year 2021 or those whose volume is less than 5 for OPH and PHAC
 
-    | sharedWith | tableName | variableName | direction | filterValue             |
-    |------------|-----------|--------------|-----------|-------------------------|
-    | OPH;PHAC   | Sample    | dateTime     | row       | [2021-01-01,2021-12-01] |
-    | OPH;PHAC   | Sample    | sizeL        | row       | [Inf,5]                 |
+    | ruleId | sharedWith | table     | variable     | direction | filterValue             |
+    |--------|------------|-----------|--------------|-----------|-------------------------|
+    | 4      | OPH;PHAC   | Sample    | dateTime     | row       | [2021-01-01,2021-12-01] |
+    | 5      | OPH;PHAC   | Sample    | sizeL        | row       | [Inf,5]                 |
 
 5. Remove the notes column from the Sample table and rows from the Site table that belong to the University of Ottawa for LPH
 
-    | sharedWith | tableName | variableName           | direction | filterValue             |
-    |------------|-----------|------------------------|-----------|-------------------------|
-    | LPH        | Site      | notes                  | column    | all                     |
-    | LPH        | Sample    | publicHealthDepartment | row       | Ottawa Public Health    |
+    | ruleId | sharedWith | table     | variable               | direction | filterValue             |
+    |--------|------------|-----------|------------------------|-----------|-------------------------|
+    | 6      | LPH        | Site      | notes                  | column    | all                     |
+    | 7      | LPH        | Sample    | publicHealthDepartment | row       | Ottawa Public Health    |
 
 ## Sharing CSV Columns
 
 This section summarizes all the columns part of the file
 
+**ruleId**: Mandatory for all rules. Can be a number or a string. If a string, then its recommended to use [snake_case](https://en.wikipedia.org/wiki/Snake_case). Each value should be unique accross an entire sharing file.
+
 **sharedWith**: The name(s) of the organizations for this rule. Multiple organizations can be seperated by a **;**
 
-**tableName**: The name(s) of the tables for this rule. Allowable values are names of the tables seperated by a **;** or **all** to select all tables.
+**table**: The name(s) of the tables for this rule. Allowable values are names of the tables seperated by a **;** or **all** to select all tables.
 
-**variableName**: The name(s) of the columns for this rule. Allowable values are names of the columns seperated by a **;** or **all** to select all columns.
+**variable**: The name(s) of the columns for this rule. Allowable values are names of the columns seperated by a **;** or **all** to select all columns.
 
 **direction**: The direction to apply the filtering. Allowable values are **row** or **column**.
 
-**filterValue**: The values of the selected entities to exclude. These can include an interval, single values or a combination of both. Multiple values can be seperated using the **;** symbol. **all** can also be used. For intervals, the mathematical notation for it is used.
+**filterValue**: The values of the selected entities to exclude. These can include an interval, single values or a combination of both. Multiple values can be seperated using the **;** symbol. **all** can also be used. For intervals, the mathematical notation is used. In addition the **!** symbol may be used in front of a value to denote a **NOT**.
 
 **description**: Optional description explaining this rule
 
