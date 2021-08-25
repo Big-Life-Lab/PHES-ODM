@@ -121,11 +121,11 @@ Some examples are given below,
     |-------------------------|
     | rawWW;swrSed            |
 
-2. Exclude values between March 1st 2021 and December 1st 2021 including the endpoints
+2. Exclude values between March 1st 2021 and December 1st 2021 including the endpoints. All Datetime values inside list must go within double or single quotes.
 
     | filterValue             |
     |-------------------------|
-    | [2021-03-01,2021-12-01] |
+    | ["2021-03-01","2021-12-01"] |
 
 Finally, if you want to exclude all values except for one you can use the **!** (NOT) operator as a shortcut. For example, to exclude all values except `rawWW`,
 
@@ -172,11 +172,11 @@ The data we will be working with has two tables from the ODM, **Sample** and **S
     |--------|------------|-----------|--------------|-----------|--------------|
     | 3      | LPH        | all       | type         | column    | all          |
 
-4. Remove samples taken in the year 2021 or those whose volume is less than 5 for OPH and PHAC
+4. Remove samples taken in the year 2021 or those whose volume is less than 5 for OPH and PHAC. Any Datetime values specified as range inside the list like structure must go within double quotes or single quotes. This only applies to datetime values inside list. A single datetime value outside a list should not have quotes around them.
 
     | ruleId | sharedWith | table     | variable     | direction | filterValue             |
     |--------|------------|-----------|--------------|-----------|-------------------------|
-    | 4      | OPH;PHAC   | Sample    | dateTime     | row       | [2021-01-01,2021-12-01] |
+    | 4      | OPH;PHAC   | Sample    | dateTime     | row       | ["2021-01-01","2021-12-01"] |
     | 5      | OPH;PHAC   | Sample    | sizeL        | row       | [Inf,5]                 |
 
 5. Remove the notes column from the Sample table and rows from the Site table that belong to the University of Ottawa for LPH
