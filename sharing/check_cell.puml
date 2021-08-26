@@ -1,0 +1,39 @@
+@startuml Check cell
+
+skinparam wrapWidth 80
+
+start
+
+:Get the type of the column this cell is in (cell_type);
+
+if(The rule value is **all**) then (yes)
+    :Return true;
+
+    stop
+elseif (This value is an interval?) then (yes)
+    :Convert the lower and upper limit to the type in cell_type;
+
+    if (The current cell value is within the interval?) then (yes)
+        :Return true;
+
+        stop
+    else (no)
+        :Return false;
+
+        stop
+    endif
+else (This is a single ruleValue)
+    :Convert the ruleValue to the type in cell_type;
+
+    if (The cell value is equal to the ruleValue?) then (yes)
+        :Return true;
+
+        stop
+    else (no)
+        :Return false;
+
+        stop
+    endif
+endif
+
+@enduml
