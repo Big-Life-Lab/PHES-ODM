@@ -1,0 +1,52 @@
+@startuml activitydiagram
+
+skinparam wrapWidth 80
+
+start
+
+:Create a copy of the data parameter (filtered_data). This is the data that will be returned to the user. Rows will be removed from here as we iterate through each rule that applies to the passed organization;
+
+:Filter the sharing rules parameter to only find the ones that apply to the passed organization parameter (org_rules);
+
+:Create a variable which will hold the summary of the data removed for each rule. This should include the ID of the rule, the names of the columns removed and from which table, and the primary key of the rows removed and the table they were removed from;
+
+while (Are there more rules in org_rules to apply?) is (yes)
+    :Create a subset of filtered_data containing only the tables and columns that the current rule applies to (current_rule_data);
+
+    :Create a variable (current_rule_summary) which will hold a summary of the data removed for the current;
+
+    while (Are there more rule values in the current rule to check?) is (yes)
+        while (Are there more tables in current_rule_data to check?) is (yes)
+            if (The current rule's direction is **row**?) then (yes)
+                while(Are there more rows in current_rule_data for the current table to check?) is (yes)
+                    if (Do any cells in the current row meets this rule value's constraints (See the check_cell diagram)) then (yes)
+                        :Add an entry in current_rule_summary for this row with this table;
+
+                        :Remove this row from filtered_data;
+                    endif
+                endwhile (no)
+            elseif (The current rule's direction is **column**) then (yes)
+                while (Are there more columns in current_rule_data for the current table to check?) is (yes)
+                    if (Do any cells in the current column meets this rule value's constraints (See the check_cell diagram)) then (yes)
+                        :Add an entry in current_rule_summary for this columns with this table;
+
+                        :Remove this column from filtered_data;
+                    endif
+                endwhile (no)
+            else 
+                :Throw an error informing the user about an unknown direction value;
+            endif
+        endwhile (no)
+
+        :Add the data from current_rule_summary to the master summary variable including the ID of the current rule;
+    endwhile (no)
+endwhile (no)
+
+:Use the master summary variable to create the report object;
+
+:Return the filtered_data and the report object;
+
+stop
+
+@enduml
+
