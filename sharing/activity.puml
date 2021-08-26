@@ -1,110 +1,50 @@
 @startuml activitydiagram
 skinparam DefaultTextAlignment center
 start
-:Create list of tables: 
-"table_names";
-:Create list of access groups : 
-"org_list";
-:Load user data and Create dictionary of pandas dataframes: 
-"data";
-:Filter "data" using primary and 
-foreign key constraints 
-into new dictionary of dataframes: 
-"new_df_dict";
-:Create a list of dataframes: 
-"access_list";
-:Load user schema into a Pandas dataframe;
-:Convert schema dataframe into wide table structure;
-:Create columns for sharing properties for organizations: 
-"shared_with_label" where label = "name of organization" 
-with True/ False values;
-:Create columns for sharing properties for organizations: 
-"filter_label" where label = "name of organization";
-:Create a list of dictionaries from the schema 
-specifying rules to filter;
+
+:Create a variable \n for organization : \n "org_group";
+
+:Create dictionary of \n pandas dataframes \n from user data: \n "data";
+
+:Create a list of dictionaries \n from the schema \n specifying sharing rules to filter;
+
 :Filter data based on schema;
-if () then (schema['direction'] = 'column')
-:Filter columns/ variables for each organization;
-:Create a list keep_var 
-that contains lists of variables 
-to keep for each table & each organization
-within nested lists;
-:Loop over each organization in "org_list";
-:Loop over each tables in "table_names" list;
-:Create an temporary list for each table 
-consisting of it's variables;
-if () then ("share_with_label" = True)
-:Keep the variable inside 
-keep_var list for the 
-current table & organization in itteration;
-elseif () then ("shared_with_label" = False and schema['filterValue'] = 'ALL')
-:Remove the variable from 
-keep_var list for the 
-current table & organization in itteration;
-else () then ("shared_with_label" = False and schema['variable'] = 'ALL')
-:Remove all the variable from 
-keep_var list for the 
-current table & organization in itteration;
-endif;
-:Loop over the nested lists 
-for each organization inside:
-"access_list";
-:Filter dataframes in `access_list` with 
-keep_var variables that 
-corresponds to each dataframe;
-else () then (schema['direction'] = 'row')
-:Filter rows in the data for each organization;
-:Loop over each organization in "org_list";
-:Loop over the nested lists 
-for each organization inside "access_list";
-:Loop over each tables in 
-"table_names" list;
-:Loop over the dataframes 
-inside the nested lists in "access_list";
-if () then ("filterValue"= [a,b])
-:Remove all values 
-for the variable 
-within the range 
-between a and b 
-including both a and b;
-elseif () then ("filterValue" = (a,b])
-:Remove all values 
-for the variable 
-within the range 
-between a and b 
-excluding a and including b;
-elseif () then ("filterValue" = [a,b))
-:Remove all values 
-for the variable 
-within the range 
-between a and b 
-including a and excluding b;
-elseif () then ("filterValue" = (a,b))
-:Remove all values 
-for the variable 
-within the range 
-between a and b 
-excluding both a and b;
-elseif () then ("filterValue" = a;b)
-:Remove all values
-for the variable 
-where value of 
-variable = a 'or' b;
-elseif () then ("filterValue" = a)
-:Remove all values
-for the variable
-where value of 
-variable = a;
-elseif () then ("filterValue" !=a)
-:Remove all values 
-for the variable 
-where value of
-variable not equal to a;
-endif
-endif;
-:Return list of filtered dataframes 
-for each organization: 
-"filtered_list";
-:Return a text document with description;
+
+:Iterate through the schema;
+
+    if () then (schema['direction'] = 'column')
+        :Filter columns/ variables;
+        :Loop over each table in \n `data` dictionary;
+            if () then ("shareWith" not contains 'org_group')
+                :Keep the variable \n inside table;
+            elseif () then ("sharedWith" contains 'org_group' and schema['filterValue'] = 'ALL')
+                :Remove the variable \n from table;
+            else () then ("sharedWith" contains 'org_group' and schema['filterValue'] present in table['variable'])
+                :Remove all the variable \n from table; 
+            endif;
+
+    else () then (schema['direction'] = 'row')
+        :Filter rows in the data \n for each organization;
+        :Loop over each table in \n `data` dictionary;
+        if () then ("filterValue"= [a,b])
+            :Remove all values \n for the variable \n within the range \n between a and b \n including both a and b;
+        elseif () then ("filterValue" = (a,b])
+            :Remove all values \n for the variable \n within the range \n between a and b \n excluding a and including b;
+        elseif () then ("filterValue" = [a,b))
+            :Remove all values \n for the variable \n within the range \n between a and b \n including a and excluding b;
+        elseif () then ("filterValue" = (a,b))
+            :Remove all values \n for the variable \n within the range \n between a and b \n excluding both a and b;
+        elseif () then ("filterValue" = a;b)
+            :Remove all values \n for the variable \n where value of \n variable = a 'or' b;
+        elseif () then ("filterValue" = a)
+            :Remove all values \n for the variable \n where value of \n variable = a;
+        elseif () then ("filterValue" !=a)
+            :Remove all values \n for the variable \n where value of \n variable not equal to a;
+        endif
+    endif;
+
+:Return dicionary \n with tables as keys \n and list of dictionaries as rows; 
+
+:Return a list of dictionaries \n specifying each row removed \n with ruleid;
 stop
 @enduml

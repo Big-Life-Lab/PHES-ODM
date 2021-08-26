@@ -197,72 +197,113 @@ This section summarizes all the columns part of the file
 
 # Feature implementation
 
-### How the features will be implemented?
+## How the features will be implemented?
 
-The features that data custodian will request to filter the data through the rules defined in the schema will be implemented using python script that uses `Pandas` library to perform the task. There will be one main function called `create_filtered_dataset(table_names, org_list, data, schema)` that will take in 4 arguments. The table_names, org_list and schema will be of list type. The data argument is of dictionary type. These arguments are provided by the data custodian through web application.
+The features that data custodian will request to filter the data through the rules defined in the schema will be implemented using python script that uses `Pandas` library to perform the task. There will be one main function called `create_filtered_dataset(org_group, data, sharing_rules)` that will take in 3 arguments. The org_group is the name of the organization and sharing_rules is the schema which will be of list type. The data argument is of dictionary type. These arguments are provided by the data custodian through web application.
 
-The data custodian will input in a list of table names separated by comma. It will be entered in a list structure. An example is ['WWMeasure', 'Sample', 'SiteMeasure', 'Lab']. The data custodian will enter in a list of organizations to share data with which is again separated by comma. An example is ['Public', 'PHAC', 'Local']. All the names inside the lists will be written inside quotes. 
-
+The data custodian enters in the name of the organization that they wish to share their data with.
 The data custodian will also provide the data that they want to filter. The data will be a dictionary with keys referencing the table name and values will be list of dictionaries. Each nested dictionary inside the list will correspond to a single row of the table and will only contain one value per key. An example will be:
 
-
+```
 {
-
-'WWMeasure': [{'uWwMeasureID':'Measure WW100', 'SampleID':'Sample S100', 'type':'covN1','value':20000},
-{'uWwMeasureID':'Measure WW101', 'SampleID':'Sample S101', 'type':'covN1','value':15000},], 
-
-'Sample': [{'SampleID':'Sample S100','siteID':'Site T100', 'datetime':'2021-02-01  9:00:00 PM', 'type':'RawWW'},
-{'SampleID':'Sample S101','siteID':'Site T101', 'datetime':'2021-02-01  9:00:00 PM', 'type':'RawWW'},
-{'SampleID':'Sample S102','siteID':'Site T102', 'datetime':'2021-02-01  9:00:00 PM', 'type':'RawWW'}], 
-
-'Lab': [{'labID':'Lab L100', 'assayMethodIDDefault':'Assay Y100', 'name':'University L100 Lab'},
-{'labID':'Lab L101', 'assayMethodIDDefault':'Assay Y101', 'name':'University L100 Lab'}]
-
+    "WWMeasure": [
+        {
+            "uWwMeasureID": "Measure WW100",
+            "SampleID": "Sample S100",
+            "type": "covN1",
+            "value": 20000,
+        },
+        {
+            "uWwMeasureID": "Measure WW101",
+            "SampleID": "Sample S101",
+            "type": "covN1",
+            "value": 15000,
+        },
+    ],
+    "Sample": [
+        {
+            "SampleID": "Sample S100",
+            "siteID": "Site T100",
+            "datetime": "2021-02-01  9:00:00 PM",
+            "type": "RawWW",
+        },
+        {
+            "SampleID": "Sample S101",
+            "siteID": "Site T101",
+            "datetime": "2021-02-01  9:00:00 PM",
+            "type": "RawWW",
+        },
+        {
+            "SampleID": "Sample S102",
+            "siteID": "Site T102",
+            "datetime": "2021-02-01  9:00:00 PM",
+            "type": "RawWW",
+        },
+    ],
+    "Lab": [
+        {
+            "labID": "Lab L100",
+            "assayMethodIDDefault": "Assay Y100",
+            "name": "University L100 Lab",
+        },
+        {
+            "labID": "Lab L101",
+            "assayMethodIDDefault": "Assay Y101",
+            "name": "University L100 Lab",
+        },
+    ],
 }
+```
 
 Above example of data provides two rows for three different tables 'WWMeasure', 'Sample', and 'Lab'. "WWMeasure" table is represented by a key in the main dictionary. The value is a list of dictionaries. Each dictionary is a row within the `WWMeasure` table. In above example there are two rows. The "Sample" table is another key in main dictionary and it's value is again a list of dictionaries which are the rows in the table. There are 3 dictionaries or rows in the `Sample` list or table. The `Lab` table again has 2 rows or dictionaries within the list.  
 
 
 The data custodian will provide schema with predefined rules to filter the data. This schema is a list of dictionaries. An example of how schema might look is following:
 
+```
 [
-
-{'filterValue': 'S101;S102',
-  'sharedWith': 'Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
-  'table': 'ALL',
-  'variable': 'sampleID'
-  'direction': 'row',
-  'ruleID': 1},
-
- {'filterValue': '["2021-01-25", "2021-01-26"); ("2021-01-26","2021-01-31"]',
-  'sharedWith': 'Public',
-  'table': 'WWMeasure',
-  'variable': 'analysisDate',
-  'direction': 'row',
-  'ruleID': 2},
-
- {'filterValue': '2021-01-20; ("2021-01-25", "infinity"]',
-  'sharedWith': 'PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
-  'tableName': 'WWMeasure',
-  'variableName': 'analysisDate',
-  'direction': 'row',
-  'ruleID': 3},
-
- {'filterValue': 'siteT101;siteT102',
-  'sharedWith': 'Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase',
-  'tableName': 'ALL',
-  'variable': 'siteID',
-  'direction': 'column',
-  'ruleID': 4},
-
- {'filterValue': 'ALL',
-  'sharedWith': 'Public;Local',
-  'table': 'ALL',
-  'variable': 'contactName';'contactEmail';'contactPhone';'contactPhoneExt',
-  'direction': 'column',
-  'ruleID': 5}
-
-  ]
+    {
+        "filterValue": "S101;S102",
+        "sharedWith": "Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase",
+        "table": "ALL",
+        "variable": "sampleID",
+        "direction": "row",
+        "ruleID": 1,
+    },
+    {
+        "filterValue": '["2021-01-25", "2021-01-26"); ("2021-01-26","2021-01-31"]',
+        "sharedWith": "Public",
+        "table": "WWMeasure",
+        "variable": "analysisDate",
+        "direction": "row",
+        "ruleID": 2,
+    },
+    {
+        "filterValue": '2021-01-20; ("2021-01-25", "infinity"]',
+        "sharedWith": "PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase",
+        "tableName": "WWMeasure",
+        "variableName": "analysisDate",
+        "direction": "row",
+        "ruleID": 3,
+    },
+    {
+        "filterValue": "siteT101;siteT102",
+        "sharedWith": "Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase",
+        "tableName": "ALL",
+        "variable": "siteID",
+        "direction": "column",
+        "ruleID": 4,
+    },
+    {
+        "filterValue": "ALL",
+        "sharedWith": "Public;Local",
+        "table": "ALL",
+        "variable": "contactName;contactEmail;contactPhone;contactPhoneExt",
+        "direction": "column",
+        "ruleID": 5,
+    },
+]
+```
 
 In above schema there are 5 rules as each dictionary pertains to a single rule. The first rule filters the rows of all tables that have variable name 'sampleID'. The rows filtered are the one that have the value of `sampleID` column set to `S101` 'OR' `S102`. The rows are removed only for the organizations that are mentioned in the `sharedWith` property.
 
@@ -271,8 +312,8 @@ The second rule inside the second dictionary filters all the `analysisDate` valu
 The last or the fifth rule removes all the variables in the `variable` sharing property which are 'contactName','contactEmail','contactPhone', and 'contactPhoneExt' from all the tables only for `Public` and `Local` organizations as mentioned in `sharedWith` property. In this rule, the column is filtered, therefore, the `direction` property is set to 'column'.
 
 The `create_filtered_dataset()` function returns back two things: 
-1. The filtered dataset for all the requested tables and the organizations.
-2. The text document that provides details about what rows and columns were filtered and the reasons as well as license associated with the data.
+1. The filtered dataset in the form of python dictionary with tables as keys and list of dictionaries as values.
+2. The list of dictionaries where each dictionary is the row removed with it's ruleid.
 
 The function does use several sub functions to carry out the filter process using Pandas library . 
 Below is the figure that demonstrates the flow of actions in an activity diagram:
