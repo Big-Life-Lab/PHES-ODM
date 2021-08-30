@@ -1,23 +1,22 @@
 ﻿item,versionStart,versionEnd,table,variable,sharedWith,filterValue,description,license,direction
 variables,1.1,1.2,ALL,sampleID,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,Sample S101;Sample S102,null,null,row
-variables,1.1,1.2,WWMeasure,analysisDate,Public,"[""2021-01-25"", ""2021-01-26""); (""2021-01-26"",""2021-01-31""]",null,null,row
-variables,1.1,1.2,WWMeasure,analysisDate,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"2021-01-20; (""2021-01-25"", Inf]",null,null,row
+variables,1.1,1.2,WWMeasure,analysisDate,Public,"[2021-01-25, 2021-01-26); (2021-01-26,2021-01-31]",null,null,row
+variables,1.1,1.2,WWMeasure,analysisDate,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"2021-01-20; (2021-01-25, 2021-01-28]",null,null,row
 variables,1.1,1.2,ALL,siteID,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,Site T101;Site T102,null,null,row
 variables,1.1,1.2,ALL,contactName;contactEmail;contactPhone;contactPhoneExt,Public;Local,ALL,null,null,column
 variables,1.1,1.2,ALL,labID,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,ALL,null,null,column
 variables,1.1,1.2,Lab,name,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,ALL,null,null,column
 variables,1.1,1.2,Instrument,ALL,Public,,null,null,column
-variables,1.1,1.2,Sample,dateTime,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"['2021-01-25', '2021-01-26'); ('2021-01-26','2021-01-31']",null,null,row
-variables,1.1,1.2,Sample,dateTimeStart,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"['2021-01-25', '2021-01-26'); ('2021-01-26','2021-01-31']",null,null,row
-variables,1.1,1.2,Sample,dateTimeEnd,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"['2021-01-25', '2021-01-26'); ('2021-01-26','2021-01-31']",null,null,row
+variables,1.1,1.2,Sample,dateTime,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"[2021-01-25, 2021-01-26); (2021-01-26,2021-01-31]",null,null,row
+variables,1.1,1.2,Sample,dateTimeStart,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"[2021-01-25, 2021-01-26); (2021-01-26,2021-01-31]",null,null,row
+variables,1.1,1.2,Sample,dateTimeEnd,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"[2021-01-25, 2021-01-26); (2021-01-26,2021-01-31]",null,null,row
 variables,1.1,1.2,Sample,sizeL,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"[1.0, 2.0);[8.0, 10.0]",null,null,row
 variables,1.1,1.2,WWMeasure,reportDate,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,2021-01-25,null,null,row
-variables,1.1,1.2,WWMeasure,reportDate,Public,"['2021-01-25', '2021-01-27');('2021-01-28','2021-02-01']",null,null,row
+variables,1.1,1.2,WWMeasure,reportDate,Public,"[2021-01-25, 2021-01-27);(2021-01-28,2021-02-01]",null,null,row
 variables,1.1,1.2,WWMeasure,value,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"[98000, Inf) ",null,null,row
-variables,1.1,1.2,WWMeasure,value,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"[12000, 15000] ",null,null,row
+variables,1.1,1.2,WWMeasure,value,Public,"[12000, 15000] ",null,null,row
 variables,1.1,1.2,SiteMeasure,instrumentID,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,Instrument IN206;Instrument IN207,null,null,row
-variables,1.1,1.2,SiteMeasure,dateTime,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"['2021-01-25', '2021-01-27']",null,null,row
+variables,1.1,1.2,SiteMeasure,dateTime,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"[2021-01-25, 2021-01-27]",null,null,row
 variables,1.1,1.2,ALL,typeOther,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,ALL,null,null,column
 variables,1.1,1.2,WWMeasure,index,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,6,null,null,column
-variables,1.1,1.2,WWMeasure,index,PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,5,null,null,column
-variables,1.1,1.2,WWMeasure,qualityFlag;LOD,Public;PHAC;Local;Provincial;Quebec;OntarioWSI;CanadianWasteWaterDatabase,"False; [Inf,100]",null,null,multiple
+variables,1.1,1.2,WWMeasure,index,Public,5,null,null,column
