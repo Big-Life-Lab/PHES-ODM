@@ -1,0 +1,6 @@
+﻿unitID,latexExpression,descriptionEN,descriptionFR,scaleID,valueType
+gcMl,$gc/{ml}$,Gene or variant copies per milliter of solution.,Copies de gène par millilitre de solution,quantitative,float
+degC,$^{\circ}C,Temperature in Celcius,Température enCelcius,quantitative,float
+Ct,$Ct$,Cycle tresholds in a PCR assay,...,quantitative,float
+detected,$detected$,,,qualitative,bool
+,,,,,
