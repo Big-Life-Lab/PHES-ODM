@@ -32,17 +32,19 @@ We propose to expand the model to Version 2 to reflect a change in the approach 
 
 - _Description_ (descriptionEN, descriptionFR): Optional. Add a sentence or two to describe the analyze, if the common name is not sufficient.
 
-- _Domain_ (domainID) - domains of environmental testing. To be defined but provisionally include: biologic (i.e. Covid-19, chemical (i.e. nitrogen), physical measure (temperature).
-
-- _Specimen_ (specimenID) - the type of analyze sample. The current two specimen types are a wastewater sample and site sample. Other future samples include surface and air testing.
+- _Specimen_ (specimenID) - the type of analyze sple. The current two specimen types are a wastewater sample and site sample. Other future samples include surface and air testing.
 
 There are three optional attributes to describe group or describe an analyte: analyte group, class and part.
+
+- _Domain_ (domainID) - domains of environmental testing. To be defined but provisionally include: biologic (i.e. Covid-19, chemical (i.e. nitrogen), physical measure (temperature).
 
 - _Analyte group_ (AnalyteGroupID) - one or more analyses can be grouped together. For example, Covid-19 is an analyteGroup and within this group there are analyte cases including RNA alleles (N1, N2, E, etc.) mutations (E484K0), an entire sequence, viral proteins, etc.
 
 - _Analyte class_ (AnalyteClassID) - an analyze group can have difference classes of specific analyze parts. Alleles and mutations are examples of an analyze class.
 
 - _Analyte part_ (analytePart) - the name of that describes the uniquely describes the analyze within an analyzeClass. The gene region N1 is an analytePart within the class 'allele'.
+
+- _Analyte nomeclature_ (analyteNomeclature) - the name of the nomeclature for reporting the analyte part. Pangolin and Nexclade are two nomeclactures used to report vairiants. Variants is the only analyte class that uses the nomeclature attribute at this time.
 
 There are two attributes to describe how the analyte can be reported: aggregate and unit. Many analytes can be reported using different aggressions and units. Aggressions for a Covid-19 variant include: detection (true|false) and proportion (faction of total variants). Units for a Covid-19 N1 Cycle threshold (CT) measure include: mean, median, min, max, single measure, etc.
 
@@ -54,11 +56,11 @@ Aggregations and units are described as sets that reference a list of the specif
 
 There are three attributes to describe the status and province of the analyte: analyte status, first release and last updated.
 
-- Analyte status\* (analyteStatus): a flag (active|inactive) to describe whether the analyte is currently available within the ODM dictionary.
+- _Analyte status_ (analyteStatus): a flag (active|inactive) to describe whether the analyte is currently available within the ODM dictionary.
 
-- First released (firstReleased): the ODM version when the analyte was first released.
+- _First released_ (firstReleased): the ODM version when the analyte was first released.
 
-- Last updated (lastUpdated): the ODM version when the analyte was last updated.
+- _Last updated_ (lastUpdated): the ODM version when the analyte was last updated.
 
 ### Schema for wide table analyte names
 
