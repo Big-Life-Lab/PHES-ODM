@@ -1,4 +1,4 @@
-﻿analyteID,shortName,shortValueName,fullName,fullValueName,commonNameEN,commonNameFR,descriptionEN,descriptionFR,domain,specimen,analyteGroup,analyteClass,classPartID,aggregSetID,unitSetID,analyteStatus,firstReleased,lastUpdated
+﻿analyteID,shortName,shortValueName,fullName,fullValueName,commonNameEN,commonNameFR,descriptionEN,descriptionFR,domainID,specimenID,analyteGroupID,analyteClassID,analytePart,aggregSetID,unitSetID,analyteStatus,firstReleased,lastUpdated
 B-0001,covN1,,Covid19_WW_alelle_N1,,SARS-CoV-2 nucleocapsid gene N1ovid-19 N1 allele,,,,biologic,wastewater sample,Covid19,alelle,N1,,,active,,
-note1,,covN1_aggregation_(unitSource)_unit,analyteGroup_specimen_analyteClass_classPartID,analyteGroup_specimen_analyteClass_classPartID_aggregation_(unitSource)_unit,,,,,,,https://loinc.org/groups/,,,,,,,
+note1,suggested name: analtyeGroup_analytePart,analyteGroup_analytePart_aggregation_(unitSource)_unit,analyteGroup_specimen_analyteClass_classPartID,analyteGroup_specimen_analyteClass_classPartID_aggregation_(unitSource)_unit,,,,,,,https://loinc.org/groups/,,,,,,,
 note2,,not part of this table - just demonstrating for wide table,,not part of this table - just demonstrating for wide table,,,,,,,,,,,,,,
