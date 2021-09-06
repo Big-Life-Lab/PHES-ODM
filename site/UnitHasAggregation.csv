@@ -1,0 +1,5 @@
+unitID,aggregationID
+ct,geoMean
+gcMl,arrmean
+gcMl,single
+ct,single

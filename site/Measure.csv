@@ -1,0 +1,4 @@
+measureID,assayID,sampleID,siteID,polygonID,analysisDate,reportDate,analyteID,unitID,aggregationID,value,qualityFlag,notes
+123ABC,frigonLabSARSPMMV101,qc01_20210201-2,,,2021-02-03,2021-02,covN2,gcMl,single,25.2,False,
+qc01COD20210301-115959,qcEastCODsensor,,qc_01,,,,wqcod,mgL,single,250.7,True,Sensor was dirty
+456XYZ,covid19Screening,,,qc_CapitaleNationale,,2021-02,confirmedCovid19Case,count,single,150,False,

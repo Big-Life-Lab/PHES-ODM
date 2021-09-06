@@ -1,0 +1,4 @@
+﻿aggregationID,description
+single,No aggregation
+arrMean,defined as the sum of all measurements divided ny the number of measurements
+geoMean,defined as the product of all measurements raised to to the inverse power of the number of measurements
