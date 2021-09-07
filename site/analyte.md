@@ -18,31 +18,31 @@ We propose to expand the model to Version 2 to reflect a change in the approach 
 
 - current definition of `type`, "The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (cov), a biomarker for normalisation (n) or a water quality parameter (wq)."
 
-- proposed definition of analyte, "A substance or entity being measured or observed. Covid-19 N1 gene region is an analyze. In some cases, an analyte can be how a sample is measured. For example pH and temperature are analytes."
+- proposed definition of analyte, "A substance or entity being measured or observed. Covid-19 N1 gene region is an analyte. In some cases, an analyte can be how a sample is measured. For example pH and temperature are analytes."
 
 ### 3) A analyte is a unique measure with the following attributes:
 
 - _Analyte ID_ (analyteID): A unique identifier. The identifier is comprised of the domain first two letters and a sequential number.
 
-- _Short name_ (shortName): a short analyze variable name. The name must adhere to common variable name support in open software: pascal case, no special characters.
+- _Short name_ (shortName): a short analyte variable name. The name must adhere to common variable name support in open software: pascal case, no special characters.
 
-- \*long name (full): a name that uniquely identifies a analyte based on its attributes.
+- _Long name_ (full): a name that uniquely identifies a analyte based on its attributes.
 
 - _Common name_ (commonNameEN, commonNameFR): a human-readable name of the analyte.
 
-- _Description_ (descriptionEN, descriptionFR): Optional. Add a sentence or two to describe the analyze, if the common name is not sufficient.
+- _Description_ (descriptionEN, descriptionFR): Optional. Add a sentence or two to describe the analyte, if the common name is not sufficient.
 
-- _Specimen_ (specimenID) - the type of analyze sple. The current two specimen types are a wastewater sample and site sample. Other future samples include surface and air testing.
+- _Specimen_ (specimenID) - the type of analyte. The current two specimen types are a wastewater sample and site sample. Other future samples include surface and air testing.
 
-There are three optional attributes to describe group or describe an analyte: analyte group, class and part.
+There are five optional attributes to describe group or describe an analyte: analyte group, class and part.
 
-- _Domain_ (domainID) - domains of environmental testing. To be defined but provisionally include: biologic (i.e. Covid-19, chemical (i.e. nitrogen), physical measure (temperature).
+- _Domain_ (domainID) - domains of environmental testing. To be defined. Provisionally include: biologic (i.e. Covid-19, chemical (i.e. nitrogen), physical measure (temperature).
 
 - _Analyte group_ (AnalyteGroupID) - one or more analyses can be grouped together. For example, Covid-19 is an analyteGroup and within this group there are analyte cases including RNA alleles (N1, N2, E, etc.) mutations (E484K0), an entire sequence, viral proteins, etc.
 
-- _Analyte class_ (AnalyteClassID) - an analyze group can have difference classes of specific analyze parts. Alleles and mutations are examples of an analyze class.
+- _Analyte class_ (AnalyteClassID) - an analyte group can have difference classes of specific analyte parts. Alleles and mutations are examples of an analyze class.
 
-- _Analyte part_ (analytePart) - the name of that describes the uniquely describes the analyze within an analyzeClass. The gene region N1 is an analytePart within the class 'allele'.
+- _Analyte part_ (analytePart) - the name of that describes the uniquely describes the analyte within an analyteClass. The gene region N1 is an analytePart within the class 'allele'.
 
 - _Analyte nomeclature_ (analyteNomeclature) - the name of the nomeclature for reporting the analyte part. Pangolin and Nexclade are two nomeclactures used to report vairiants. Variants is the only analyte class that uses the nomeclature attribute at this time.
 
@@ -50,9 +50,9 @@ There are two attributes to describe how the analyte can be reported: aggregate 
 
 Aggregations and units are described as sets that reference a list of the specific aggressions and units for the analyte.
 
-- _Aggregate set_ (aggregateSetID): a reference to a list of aggregations for the analyte.
+- _Aggregate set_ (aggregateSetID): a reference to a list of aggregations for the analyte. An aggregate set is list of 'aggregations', as defined in WWMeasure_aggregations in`variableCategories. Aggregrations would would be refactored into a new table `aggregations.csv`.
 
-- _Unit set_ (unitSetID): a reference to a list of units for the analyte.
+- _Unit set_ (unitSetID): a reference to a list of units for the analyte. An aggregate set is list of 'aggregations', as defined in WWMeasure_aggregations in`variableCategories. Aggregrations would would be refactored into a new table `aggregations.csv`.
 
 There are three attributes to describe the status and province of the analyte: analyte status, first release and last updated.
 
