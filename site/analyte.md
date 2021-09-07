@@ -50,9 +50,9 @@ There are two attributes to describe how the analyte can be reported: aggregate 
 
 Aggregations and units are described as sets that reference a list of the specific aggressions and units for the analyte.
 
-- _Aggregate set_ (aggregateSetID): a reference to a list of aggregations for the analyte. An aggregate set is list of 'aggregations', as defined in WWMeasure_aggregations in`variableCategories. Aggregrations would would be refactored into a new table `aggregations.csv`.
+- _Aggregate set_ (aggregateSetID): a reference to a list of aggregations for the analyte. An aggregate set is list of 'aggregations', as defined in WWMeasure_aggregations in variableCategories. Aggregrations would would be refactored into a new table `aggregations.csv`.
 
-- _Unit set_ (unitSetID): a reference to a list of units for the analyte. An aggregate set is list of 'aggregations', as defined in WWMeasure_aggregations in`variableCategories. Aggregrations would would be refactored into a new table `aggregations.csv`.
+- _Unit set_ (unitSetID): a reference to a list of units for the analyte. An aggregate set is list of 'aggregations', as defined in WWMeasure_aggregations in variableCategories. Aggregrations would would be refactored into a new table `aggregations.csv`.
 
 There are three attributes to describe the status and province of the analyte: analyte status, first release and last updated.
 
