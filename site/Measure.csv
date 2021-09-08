@@ -1,4 +1,7 @@
-measureID,assayID,sampleID,siteID,polygonID,analysisDate,reportDate,analyteID,unitID,aggregationID,value,qualityFlag,notes
-123ABC,frigonLabSARSPMMV101,qc01_20210201-2,,,2021-02-03,2021-02,covN2,gcMl,single,25.2,False,
-qc01COD20210301-115959,qcEastCODsensor,,qc_01,,,,wqcod,mgL,single,250.7,True,Sensor was dirty
-456XYZ,covid19Screening,,,qc_CapitaleNationale,,2021-02,confirmedCovid19Case,count,single,150,False,
+﻿measureID,shortName,longName,commonNameEN,commonNameFR,descriptionEN,descriptionFR,status,firstReleased,lastUpdated,domainID,specimenID,analyteGroupID,analyteClassID,analytePart,analytePartNomenclature
+3,wqCOD,,,,,,inactive,0,2,chemical,sample,SARS-CoV-2,stdConcentration,COD,
+4,wqEcoli,,,,,,inactive,0,1,biologic,sample,EColi,UfcConcentration,Faecal coliforms,
+1,covN2,,,,,,active,0,3,biologic,sample,SARS-CoV-2,gene,N2,
+2,covB117,,,,,,active,2,3,biologic,sample,SARS-CoV-2,speciesVariant,B1.1.7,Pangolin
+5,PMMVabcxyz,,,,,,active,2,3,biologic,sample,SARS-CoV-2,geneMutation,abcxyz,Nexclade
+6,wqFlow,,,,,,active,0,3,physical,site,Wastewater,flow,flow,
