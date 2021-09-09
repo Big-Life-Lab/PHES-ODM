@@ -26,7 +26,7 @@ We propose to expand the model to Version 2 to reflect a change in the approach 
 
 - _Short name_ (shortName): a short measure variable name. The name must adhere to common variable name support in open software: pascal case, no special characters.
 
-- _Long name_ (full): a name that uniquely identifies a measure based on its attributes.
+- _Long name_ (fullName): a name that uniquely identifies a measure based on its attributes.
 
 - _Common name_ (commonNameEN, commonNameFR): a human-readable name of the measure.
 
@@ -47,7 +47,6 @@ There are five optional attributes to describe group or describe an measure: mea
 - _Measure nomeclature_ (measureNomeclature) - the name of the nomeclature for reporting the measure part. Pangolin and Nexclade are two nomeclactures used to report variants. Variants is the only measure class that uses the nomeclature attribute at this time.
 
 There are two attributes to describe how the measure can be reported: aggregate and unit. Many measures can be reported using different aggregations and units. Aggregations for a Covid-19 variant include: detection (true|false) and proportion (faction of total variants). Units for a Covid-19 N1 Cycle threshold (CT) measure include: mean, median, min, max, single measure, etc.
-
 
 There are three attributes to describe the status of the measure: measure status, first release and last updated.
 

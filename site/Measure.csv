@@ -1,4 +1,4 @@
-﻿measureID,shortName,longName,commonNameEN,commonNameFR,descriptionEN,descriptionFR,status,firstReleased,lastUpdated,domainID,specimenID,MeasureGroupID,measureClassClassID,measurePart,analytePartNomenclature
+﻿measureID,shortName,fullName,commonNameEN,commonNameFR,descriptionEN,descriptionFR,status,firstReleased,lastUpdated,domainID,specimenID,MeasureGroupID,measureClassClassID,measurePart,analytePartNomenclature
 3,wqCOD,,,,,,inactive,0,2,chemical,sample,SARS-CoV-2,stdConcentration,COD,
 4,wqEcoli,,,,,,inactive,0,1,biologic,sample,EColi,UfcConcentration,Faecal coliforms,
 1,covN2,,,,,,active,0,3,biologic,wwsample,SARS-CoV-2,gene,N2,
