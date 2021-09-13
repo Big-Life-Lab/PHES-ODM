@@ -3,4 +3,14 @@ gcMl,$gc/{ml}$,Gene or variant copies per milliter of solution.,Copies de gène 
 degC,$^{\circ}C,Temperature in Celcius,Température enCelcius,quantitative,float
 Ct,$Ct$,Cycle tresholds in a PCR assay,...,quantitative,float
 detected,$detected$,,,qualitative,bool
-,,,,,
+gcGcPmmoV,$gc/{gc_{PMMoV}$,,,,
+gcGms,$gc/{g_{solids}$,,,,
+gcL,$gc/l$,,,,
+gcGcCrA,$gc/{gc_{CrA}$,,,,
+mgL,$mg/l$,,,,
+ph,,,,,
+uScm,$\mu S / {cm}$,,,,
+propVar,$\%_{variant}$,,,,
+pp,$\%_{pos}$,,,,
+pps,$\%_{primary sludge}$,,,,
+c,$^\circ C$,,,,
