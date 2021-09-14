@@ -1,0 +1,8 @@
+ruleId	sharedWith	table	variable	direction	ruleValue
+1	OPH	Sample	siteID	row	1
+2	PHAC	Sample	type	row	rawWW;sweSwd
+3	LPH	all	type	column	all
+4	OPH;PHAC	Sample	dateTime	row	"[2021-01-01,2021-12-01]"
+5	OPH;PHAC	Sample	sizeL	row	"[Inf,5]"
+6	LPH	Site	notes	column	all
+7	LPH	Sample	publicHealthDepartment	row	Ottawa Public Health
