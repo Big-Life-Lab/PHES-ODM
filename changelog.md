@@ -1,5 +1,43 @@
 # Changelog
 
+## 2021-09-15
+
+**v2.0**
+
+Addresses issues: [#172](https://github.com/Big-Life-Lab/ODM/issues/172), [#120](https://github.com/Big-Life-Lab/ODM/issues/120)
+
+- **Schema changes**
+
+  **Removed tables**
+  - The `WWMeasure`, `SiteMeasure`and `CovidPublicHealthData`tables are . The values they contained are migrating to the new `Value`table (see below).
+
+  **Added tables**
+  - The `Value` table is added to store values stemming from a `measure`s.
+  - The `Measure` table store metadata that fully classify and define a measurement type. This new table is supported by satellite tables that carry further information about the classification of measure and its properties:
+    - The `Domain` table stores domain classifications for measures (Biological chemical, physical)
+    - The `Specimen` table defines all possible `measure` to parent system relationships (measure in wastewater sample, measure from site, measure from polygon, etc.)
+    - The `MeasureGroup` lists names given to groups of measure related to a common substance of interest (e.g., covid-19).
+    - The `MeasureClass` list types of measures performed via similar protocols (e.g., allele counts, or nitrogen concentration).
+    - The `Units` table stores all possible units used to report measurement values.
+    - The `Scale` table stores the different cardinalities that can be assigned to units (quantitative, qualitative, etc.)
+    - The `Aggregation` table stores the different types of aggregations that could be applied to a measurement before reporting. 
+  - The `Assay` table describes unique experimental procedures that yield measure values.
+
+  - The many-to-many relationship tables `AssayHasInstrument`, `MeasureClassHasUnits`, and `UnitHasAggregtation` have also been added.
+
+  **Removed variables**
+  
+  The following variables were removed from the schema. Users are encourages to store default values in a configuration file
+  - `sampleTypeOtherDefault`
+  - `sampleCollectionDefault`
+  - `sampleCollectOtherDefault`
+  - `sampleStorageTempCDefault`
+  - `measureFractionAnalyzedDefault`
+
+
+  
+
+
 ## 2021-02-18
 
 **v1.1.0**
