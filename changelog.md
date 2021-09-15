@@ -28,12 +28,17 @@ Addresses issues: [#172](https://github.com/Big-Life-Lab/ODM/issues/172), [#120]
   **Removed variables**
   
   The following variables were removed from the schema. Users are encourages to store default values in a configuration file
-  - `sampleTypeOtherDefault`
-  - `sampleCollectionDefault`
-  - `sampleCollectOtherDefault`
-  - `sampleStorageTempCDefault`
-  - `measureFractionAnalyzedDefault`
-
+  - `Sample` Table
+    - `sampleTypeOtherDefault`
+    - `sampleCollectionDefault`
+    - `sampleCollectOtherDefault`
+    - `sampleStorageTempCDefault`
+    - `measureFractionAnalyzedDefault`
+  - `Reporter` Table
+    - `siteIDDefault`
+    - `labIDDefault
+  - `Lab` Table
+    - assayMethodIDDefault
 
   
 

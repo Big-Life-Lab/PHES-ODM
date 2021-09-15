@@ -91,27 +91,6 @@ Site,type,estuary,"Estuary, natural water body","Estuaire, ï¿½tendue d'eau natur
 Site,type,sea,"Sea, natural water body.","Mer, ï¿½tendue d'eau naturelle."
 Site,type,ocean,"Ocean, natural water body.","Ocï¿½an, ï¿½tendue d'eau naturelle."
 Site,type,other,Other site type. Add description to typeOther.,"Autre type de site. Ajouter une description dans ""typeOther""."
-Site,SampleTypeDefault,rawWW,Raw wastewater.,Eau usï¿½e brute
-Site,SampleTypeDefault,swrSed,Sediments obtained in sewer.,Sï¿½diments provenant des ï¿½gouts.
-Site,SampleTypeDefault,pstGrit,Raw wastewater after a treatment plant's headworks.,Eau usï¿½e aprï¿½s dï¿½grillage et dessablage.
-Site,SampleTypeDefault,pSludge,Sludge produced by primary clarifiers.,Boue provenant d'un dï¿½canteur primaire.
-Site,SampleTypeDefault,pEfflu,Effluent obtained after primary clarifiers.,Effluent obtenu aprï¿½s un dï¿½canteur primaire.
-Site,SampleTypeDefault,sSludge, Sludge produced by secondary clarifiers.,Boue provenant d'un dï¿½canteur secondaire.
-Site,SampleTypeDefault,sEfflu,Effluent obtained after secondary clarifiers.,Effluent obtenu aprï¿½s un dï¿½canteur secondaire.
-Site,SampleTypeDefault,water,"Non-wastewater, coming from any kind of water body.",Eau non-usï¿½e provenant de toute ï¿½tendue d'eau.
-Site,SampleTypeDefault,faeces,Fecal matter.,Matiï¿½re fï¿½cale.
-Site,SampleTypeDefault,other,Other type of site. Add description to typeOther.,"Autre type de site d'ï¿½chantillonnage. Ajouter une description dans la colonne ""typeOther"""
-Site,SampleCollectionDefault,cpTP24h,A time proportional 24-hour composite sample generally collected by an autosampler.,"Un ï¿½chantillon composite proportionnel au temps prï¿½levï¿½ sur 24 heures, gï¿½nï¿½ralement prï¿½levï¿½ par un auto-ï¿½chantilonneur."
-Site,SampleCollectionDefault,cpFP24h,A flow proportional 24-hour composite sample generally collected by an autosampler.,"Un ï¿½chantillon composite proportionnel au dï¿½bit prï¿½levï¿½ sur 24 heures, gï¿½nï¿½ralement prï¿½levï¿½ par un auto-ï¿½chantilonneur."
-Site,SampleCollectionDefault,grb,A single large representative grab sample.,Un seul ï¿½chantillon ponctuel reprï¿½sentatif.
-Site,SampleCollectionDefault,grbCp8h,"An 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.","Un ï¿½chantillon composite prï¿½levï¿½ sur 8 heures consituï¿½ d'ï¿½chantillons ponctuels collectï¿½s une fois par heure, gï¿½nï¿½ralement prï¿½levï¿½ manuellement."
-Site,SampleCollectionDefault,grbCp3h,"A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.","Un ï¿½chantillon composite prï¿½levï¿½ sur 3 heures consituï¿½ d'ï¿½chantillons ponctuels collectï¿½s une fois par heure, gï¿½nï¿½ralement prï¿½levï¿½ manuellement."
-Site,SampleCollectionDefault,grbCp3,A grab-composite sample composed of 3 separate grab samples.,Un ï¿½chantillon composite composï¿½ de 3 ï¿½chantillons ponctuels.
-Site,SampleCollectionDefault,mooreSw,Moore swab passive sample.,Un ï¿½chantillon passif collectï¿½ par la mï¿½thode de Moore.
-Site,SampleCollectionDefault,other,Other type of collection method. Add description to collectionOther.,"Autre mï¿½thode de collecte. Ajouter une description dans la colonne ""descriptionOther"""
-Site,MeasureFractionAnalyzedDefault,liquid,Liquid fraction,Fraction liquide.
-Site,MeasureFractionAnalyzedDefault,solid,Solid fraction,Fraction solide.
-Site,MeasureFractionAnalyzedDefault,mixed,Mixed/homogenized sample,ï¿½chantillon homogï¿½nï¿½isï¿½/mï¿½langï¿½.
 SiteMeasure,type,envTemp,Environmental temperature.,Tempï¿½rature ambiante.
 SiteMeasure,type,envRnF,"Rain fall, i.e. amount of precipitation in the form of rain.",Pluie (toute prï¿½cipitation sous forme liquide).
 SiteMeasure,type,envSnwF,"Snow fall, i.e. amount of precipitation in the form of snow.",Neige (toute prï¿½cipitations sous forme solide).
@@ -130,13 +109,13 @@ SiteMeasure,type,wwBOD5c,5 day carbonaceous biochemical oxygen demand,Demande bi
 SiteMeasure,type,wwPtot,Total phosphates,Phosphates totaux
 SiteMeasure,type,wwPP,Total phosphorous,Phosphore total
 SiteMeasure,type,wwCond,Conductivity of the wastewater.,Conductivitï¿½
-SiteMeasure,unit,c,Degrees Celcius,Degrés Celcius
-SiteMeasure,unit,mm,Millimeters,Millimètres
-SiteMeasure,unit,m3H,Cubic meters per hour,Mètres cubes par heure
-SiteMeasure,unit,m3D,Cubic meters per day,Mètres cubes par jour
+SiteMeasure,unit,c,Degrees Celcius,Degrï¿½s Celcius
+SiteMeasure,unit,mm,Millimeters,Millimï¿½tres
+SiteMeasure,unit,m3H,Cubic meters per hour,Mï¿½tres cubes par heure
+SiteMeasure,unit,m3D,Cubic meters per day,Mï¿½tres cubes par jour
 SiteMeasure,unit,mgL,Milligrams per liter,Milligrammes par litre
-SiteMeasure,unit,pH,pH units,Unités de pH
-SiteMeasure,unit,usCM,Micro-siemens per centimeter,Micro-siemens par centimètre
+SiteMeasure,unit,pH,pH units,Unitï¿½s de pH
+SiteMeasure,unit,usCM,Micro-siemens per centimeter,Micro-siemens par centimï¿½tre
 SiteMeasure,aggregation,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.","La valeur n'a subi aucune agrï¿½gation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut ï¿½tre un rï¿½plica."
 SiteMeasure,aggregation,mean,Arithmetic mean,Moyenne arithmï¿½tique.
 SiteMeasure,aggregation,geoMn,Geometric mean,Moyenne gï¿½omï¿½trique.

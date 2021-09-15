@@ -1,156 +1,150 @@
 tableName,variableName,variableLabel_en,variableLabel_fr,key,foreignKeyTable,foreignKeyVariable,variableType,variableDesc_en,variableDesc_fr
-Sample,sampleID,Sample id,Identifiant de l'ï¿½chantillon,Primary Key,,,string,Unique identifier for sample. Suggestion:siteID-date-index.,Identifiant unique pour l'ï¿½chantillon. Suggestion:siteID-date-index.
-Sample,siteID,Site id,Identifiant du site,Foreign key,Site,siteID,string,Links with the Site table to describe the location of sampling.,"Crï¿½e un lien avec la table ""Site"" pour dï¿½crire le point d'ï¿½chantillonage."
-Sample,instrumentID,Instrument id,Identifiant de l'instrument,Foreign key,Instrument,InstrumentID,string,Links with the Instrument table to describe the instrument used for sampling.,"Crï¿½e un lien avec la table ""Instrument"" pour dï¿½crire l'instrument utilisï¿½ pour l'ï¿½chantillonnage."
-Sample,reporterID,reporter ID,Identifiant du reporteur,Foreign key,Reporter,reporterID,string,"Links with the reporter table to identify the reporter who collected the sample.","Crï¿½e un lien avec la table ""Reporter"" pour identifier le reporteur ayant prï¿½levï¿½ l'ï¿½chantillon."
-Sample,dateTime,Date time,Date et heure,,,,datetime,"for grab samples this is the date, time and timezone the sample was taken.","Date, heure et fuseau horaire de collecte d'un ï¿½chantillon ponctuel."
-Sample,dateTimeStart,Date time start,Date et heure de dï¿½but,,,,datetime,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken.","Date, heure et fuseau horaire de dï¿½but de collecte d'un ï¿½chantillon composite."
-Sample,dateTimeEnd,Date time end,Date et heure de fin,,,,datetime,"For integrated time average samples this is the date, time and timezone the sample was finished being taken.","Date, heure et fuseau horaire de fin de collecte d'un ï¿½chantillon composite."
-Sample,type,Type,Type,,,,category,Type of sample.,Type d'ï¿½chantillon.
-Sample,typeOther,Type other,Type autre,,,,string,Description for other type of sample not listed in,Description d'un type d'ï¿½chantillon ne faisant pas partie des options disponibles.
-Sample,collection,Collection,Mï¿½thode de collecte,,,,category,Method used to collect the sample.,Mï¿½thode utilisï¿½e pour ï¿½chantillonner.
-Sample,collectionOther,Collection other,Mï¿½thode de collecte autre,,,,string,Description for other type of method not listed in collection.,Description d'une mï¿½thode d'ï¿½chantillonnage ne faisant pas partie des options disponibles.
-Sample,preTreatment,Pre treatment,Prï¿½-traitement,,,,boolean,Was the sample chemically treated in anyway with the addition of stabilizers or other,L'ï¿½chantillon a-t-il ï¿½tï¿½ chimiquement altï¿½rï¿½ par un ajout de stabilisant ou autre?
-Sample,preTreatmentDescription,Pre treatment description,Description du prï¿½-traitment,,,,string,If preTreatment then describe the treatment that was performed.,Description du prï¿½-traitement le cas ï¿½chï¿½ant.
-Sample,pooled,Pooled,ï¿½chantillon combinï¿½,,,,boolean,"Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites","S'il s'agit d'un ï¿½chantillon combinï¿½, c'est-ï¿½-dire, est-il composï¿½ de plusieurs ï¿½chantillons ""enfants""?"
-Sample,children,Children,Enfants,,,,string,If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.,"Si l'ï¿½chantillon est liï¿½e ï¿½ des sous-ï¿½chantillons (soit parce qu'il s'agit d'un ï¿½chantillon combinï¿½ ou parce que des sous-ï¿½chantillons ont ï¿½tï¿½ prï¿½levï¿½s dans cet ï¿½chantillon), insï¿½rer les identifiant des ï¿½chantillons enfants dans une liste sï¿½parï¿½e par des virgules."
-Sample,parent,Parent,Parent,,,,string,If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.,"Si l'ï¿½chantillon a ï¿½tï¿½ combinï¿½ ï¿½ un plus grand ï¿½chantillon, indiquer l'identifiant du plus grand ï¿½chantillon."
-Sample,sizeL,Size l,Volume l,,,,float,Total volume of water or sludge sampled.,Volume total d'eau ou de boue prï¿½levï¿½e.
-Sample,fieldSampleTempC,Field sample temp c,Tempï¿½rature de l'ï¿½chantillon de terrain c,,,,float,Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.,"Temprature ï¿½ laquelle l'ï¿½chantillon ï¿½tait stockï¿½ pendant l'ï¿½chantillonnage. Ce champ est principalement pertinent pour les ï¿½chantillons composites, qui peuvent ï¿½tre stockï¿½es ï¿½ tempï¿½rature ambiante ou rï¿½frigï¿½rï¿½s durant l'ï¿½chantillonnage."
-Sample,shippedOnIce,Shipped on ice,Expï¿½diï¿½ sur glace,,,,boolean,Was the sample kept cool while being shipped to the lab,L'ï¿½chantillon a-t-il ï¿½tï¿½ gardï¿½ au froid lors du transport vers le laboratoire?
-Sample,storageTempC,Storage temp c,Tempï¿½rature de stockage c,,,,float,Temperature that the sample is stored at in Celsius.,Tempï¿½rature de stockage de l'ï¿½chantillon en degrï¿½s Celsius
-Sample,qualityFlag,Quality flag,Indicateur de mauvaise qualitï¿½,,,,boolean,Does the reporter suspect the sample having some quality issues,Le reporteur a-t-il des doutes sur la qualitï¿½ de l'ï¿½chantillon?
+Sample,sampleID,Sample id,Identifiant de l'chantillon,Primary Key,,,string,Unique identifier for sample. Suggestion:siteID-date-index.,Identifiant unique pour l'chantillon. Suggestion:siteID-date-index.
+Sample,siteID,Site id,Identifiant du site,Foreign key,Site,siteID,string,Links with the Site table to describe the location of sampling.,"Cre un lien avec la table ""Site"" pour dcrire le point d'chantillonage."
+Sample,instrumentID,Instrument id,Identifiant de l'instrument,Foreign key,Instrument,InstrumentID,string,Links with the Instrument table to describe the instrument used for sampling.,"Cre un lien avec la table ""Instrument"" pour dcrire l'instrument utilis pour l'chantillonnage."
+Sample,reporterID,reporter ID,Identifiant du reporteur,Foreign key,Reporter,reporterID,string,Links with the reporter table to identify the reporter who collected the sample.,"Cre un lien avec la table ""Reporter"" pour identifier le reporteur ayant prlev l'chantillon."
+Sample,dateTime,Date time,Date et heure,,,,datetime,"for grab samples this is the date, time and timezone the sample was taken.","Date, heure et fuseau horaire de collecte d'un chantillon ponctuel."
+Sample,dateTimeStart,Date time start,Date et heure de dbut,,,,datetime,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken.","Date, heure et fuseau horaire de dbut de collecte d'un chantillon composite."
+Sample,dateTimeEnd,Date time end,Date et heure de fin,,,,datetime,"For integrated time average samples this is the date, time and timezone the sample was finished being taken.","Date, heure et fuseau horaire de fin de collecte d'un chantillon composite."
+Sample,type,Type,Type,,,,category,Type of sample.,Type d'chantillon.
+Sample,typeOther,Type other,Type autre,,,,string,Description for other type of sample not listed in,Description d'un type d'chantillon ne faisant pas partie des options disponibles.
+Sample,collection,Collection,Mthode de collecte,,,,category,Method used to collect the sample.,Mthode utilise pour chantillonner.
+Sample,collectionOther,Collection other,Mthode de collecte autre,,,,string,Description for other type of method not listed in collection.,Description d'une mthode d'chantillonnage ne faisant pas partie des options disponibles.
+Sample,preTreatment,Pre treatment,Pr-traitement,,,,boolean,Was the sample chemically treated in anyway with the addition of stabilizers or other,L'chantillon a-t-il t chimiquement altr par un ajout de stabilisant ou autre?
+Sample,preTreatmentDescription,Pre treatment description,Description du pr-traitment,,,,string,If preTreatment then describe the treatment that was performed.,Description du pr-traitement le cas chant.
+Sample,pooled,Pooled,chantillon combin,,,,boolean,"Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites","S'il s'agit d'un chantillon combin, c'est--dire, est-il compos de plusieurs chantillons ""enfants""?"
+Sample,children,Children,Enfants,,,,string,If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.,"Si l'chantillon est lie  des sous-chantillons (soit parce qu'il s'agit d'un chantillon combin ou parce que des sous-chantillons ont t prlevs dans cet chantillon), insrer les identifiant des chantillons enfants dans une liste spare par des virgules."
+Sample,parent,Parent,Parent,,,,string,If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.,"Si l'chantillon a t combin  un plus grand chantillon, indiquer l'identifiant du plus grand chantillon."
+Sample,sizeL,Size l,Volume l,,,,float,Total volume of water or sludge sampled.,Volume total d'eau ou de boue prleve.
+Sample,fieldSampleTempC,Field sample temp c,Temprature de l'chantillon de terrain c,,,,float,Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.,"Temprature  laquelle l'chantillon tait stock pendant l'chantillonnage. Ce champ est principalement pertinent pour les chantillons composites, qui peuvent tre stockes  temprature ambiante ou rfrigrs durant l'chantillonnage."
+Sample,shippedOnIce,Shipped on ice,Expdi sur glace,,,,boolean,Was the sample kept cool while being shipped to the lab,L'chantillon a-t-il t gard au froid lors du transport vers le laboratoire?
+Sample,storageTempC,Storage temp c,Temprature de stockage c,,,,float,Temperature that the sample is stored at in Celsius.,Temprature de stockage de l'chantillon en degrs Celsius
+Sample,qualityFlag,Quality flag,Indicateur de mauvaise qualit,,,,boolean,Does the reporter suspect the sample having some quality issues,Le reporteur a-t-il des doutes sur la qualit de l'chantillon?
 Sample,notes,Notes,Notes,,,,string,Any additional notes.,Ajouter toutes notes additionnelles.
-WWMeasure,uWwMeasureID,U ww measure id,id u mesure eaux usï¿½es,Primary Key,,,string,Unique identifier a measurement within the measurement table.,"Identifiant unique pour la mesure pour la table ""WWMeasurement"""
-WWMeasure,wwMeasureID,Ww measure id,id mesure eaux usï¿½es,,,,string,Unique identifier for wide table only. Use when all measures are performed on a single sample at the same time and same laboratory. Suggestion: siteID_sampleID_LabID_reportDate_ID.,Identifiat unique utilisï¿½ dans la table horizontale seulement. Utiliser quand toutes les mesures effectuï¿½es sur un ï¿½chantillon sont rï¿½alisï¿½es en mï¿½me temps dans le mï¿½me laboratoire. Suggestion: siteID_sampleID_LabID_reportDate_ID.
-WWMeasure,sampleID,Sample id,Identifiant de l'ï¿½chantillon,Foreign key,Sample,sampleID,string,Links with the identified Sample,"Crï¿½e un lien avec la table ""Sample"" pour dï¿½crire l'ï¿½chantillon mesurï¿½."
-WWMeasure,labID,Lab id,Identifiant du laboratoire,Foreign key,Lab,labID,string,Links with the identified Lab that performed the analysis.,"Crï¿½e un lien avec la table ""Lab"" pour dï¿½crire le laboratoire effectuant la mesure."
-WWMeasure,assayID,Assay id,Identifiant de la mï¿½thode d'analyse,Foreign key,AssayMethod,assayID,string,Links with the AssayMethod used to perform the analysis. Use instrument.ID for measures that are not viral measures.,"Crï¿½e un lien avec la table ""AssayMethod"" pour dï¿½crire la mï¿½thode employï¿½e pour effectuer la mesure. Utiliser l'identifiant de l'instrument pour des mesures non virales."
-WWMeasure,instrumentID,Instrument id,Identifiant de l'instrument,Foreign key,Instrument,instrumentID,string,Links with the Instrument used to perform the analysis. Use assay.ID for viral measures.,"Crï¿½e un lien avec la table ""Instrument"" l'appareil employï¿½ pour effectuer la mesure. Utiliser l'identifiant de la mï¿½thode d'analyse pour les mesures virales."
-WWMeasure,reporterID,Reporter id,Identifiant du reporteur,Foreign key,Reporter,reporterID,string,Links with the reporter that is responsible for the data.,Crï¿½e un lien avec les informations propres au reporteur associï¿½ ï¿½ la mesure.
-WWMeasure,analysisDate,Analysis date,Date de l'analyse,,,,date,date the measurement was performed in the lab.,Date ï¿½ laquelle la mesure a ï¿½tï¿½ rï¿½alisï¿½e en laboratoire.
-WWMeasure,reportDate,Report date,Date de reportage de la donnï¿½e,,,,date,"date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed).","Date a laquelle la donnï¿½e a ï¿½tï¿½ rapportï¿½e. Un ï¿½chantillon pourrait avoir des mesures pour lesquelles la mï¿½thode d'analyse ou la mï¿½thode de reportage des donnï¿½es aurait changï¿½e. Dans ce cas, utiliser le mï¿½me sampleID, mais crï¿½er une nouvelle entrï¿½e dans la table ""WWMeasure avec un ""MeasureID"" diffï¿½rent, et la date de reportage de la donnï¿½e et l'identifiant de la mï¿½thode d'analyse appropriï¿½s."
-WWMeasure,fractionAnalyzed,Fraction analyzed,Fraction analysï¿½e,,,,category,Fraction of the sample that is analyzed.,Fraction de l'ï¿½chantillon employï¿½e pour la mesure.
-WWMeasure,type,Type,Type,,,,category,"The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (cov), a biomarker for normalisation (n) or a water quality parameter (wq).","Le paramï¿½tre mesurï¿½ avec cette analyse. Exemples: Une rï¿½gion de gï¿½ne cible (cov), un biomarqueur (n) ou un indicateur de la qualitï¿½ de l'eau (wq)"
-WWMeasure,typeOther,Type other,Type autre,,,,string,Description for an other variable not listed in category.,Description d'un paramï¿½tre mesurï¿½ ne faisant pas partie des options disponibles.
-WWMeasure,unit,Unit,Unitï¿½,,,,category,Unit of the measurement.,Unitï¿½ de mesure.
-WWMeasure,unitOther,Unit other,Unitï¿½ autre,,,,string,Description for other measurement unit not listed in unit.,Description d'une unitï¿½ de mesure ne faisant pas partie des options disponibles.
-WWMeasure,aggregation,Aggregation,Agrï¿½gation,,,,category,"Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value.",Indicateur statistique utilisï¿½e pour rapporter la mesure effectuï¿½e. Chaque agrï¿½gation doit ï¿½tre reportï¿½e comme une mesure diffï¿½rente (avec un identifiant diffï¿½rent)
-WWMeasure,aggregationOther,Aggregation other,Agrï¿½gation autre,,,,string,Description for other type of aggregation not listed in aggregation.,Description d'une agrï¿½gation ne faisant pas partie des options disponibles.
-WWMeasure,index,Index,Index,,,,integer,Index number in case the measurement was taken multiple times.,Index de la mesure dans le cas oï¿½ la mï¿½me mesure a ï¿½tï¿½ prise en replicata.
-WWMeasure,value,Value,Valeur,,,,float,"The actual value that is being reported for this measurement. Use ""NA"" for missing values and make sure to leave a note.","La valeur numï¿½rique de la mesure effectuï¿½e. Utilise ""NA"" pour les valeurs manquantes et laisser une note."
-WWMeasure,qualityFlag,Quality flag,Indicateur de mauvaise qualitï¿½,,,,boolean,Does the reporter suspect the measurement having some quality issues,Le reporteur de la mesure suspecte-t-il que la mesure est de mauvaise qualitï¿½?
-WWMeasure,accessToPublic,Access to public,Accï¿½s au public,,,,boolean,"If this is 'no', this data will not be available to the public. If missing, data will be available to the public.","Si ""Non"", la donnï¿½e ne sera pas accessible par le public. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-WWMeasure,accessToAllOrg,Access to all org,Accï¿½s ï¿½ toutes les organisations,,,,boolean,"If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.","Si ""Non"", la donnï¿½e ne sera pas accessible par toute organisation partenaire. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-WWMeasure,accessToSelf,Access to self,Accï¿½s au reporteur lui-mï¿½me,,,,boolean,"If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.","Si ""Non"", la donnï¿½e ne sera pas accessible par le reporteur lui-mï¿½me. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-WWMeasure,accessToPHAC,Access to phac,Accï¿½s ï¿½ l'ASPC,,,,boolean,"If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.","Si ""Non"", la donnï¿½e ne sera pas accessible par les employï¿½s de l'Agence de Santï¿½ Publique du Canada. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-WWMeasure,accessToLocalHA,Access to local ha,Accï¿½s ï¿½ l'autoritï¿½ de santï¿½ publique locale,,,,boolean,"If this is 'no', the, data will not be available to local health authorities. If missing, data will be available to local health authorities.","Si ""Non"", la donnï¿½e ne sera pas accessible par les autoritï¿½s de santï¿½ publique locales. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-WWMeasure,accessToProvHA,Access to prov ha,Accï¿½s ï¿½ l'autoritï¿½ de santï¿½ publique provinciale,,,,boolean,"If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.","Si ""Non"", la donnï¿½e ne sera pas accessible par les autoritï¿½s de santï¿½ publique provinciales. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e sera accessible ï¿½ l'autoritï¿½ de santï¿½ publique de la province oï¿½ l'ï¿½chantillonnage a ï¿½tï¿½ rï¿½alisï¿½e."
-WWMeasure,accessToOtherProv,Access to other prov,Accï¿½s aux autres prov,,,,boolean,"If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before","Si ""Non"", la donnï¿½e ne sera pas accessible par les autoritï¿½s de santï¿½ publique provinciales. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-WWMeasure,accessToDetails,Access to details,Accï¿½s aux dï¿½tails,,,,boolean,More details on the existing confidentiality requirements of this measurement.,Indique si des informations supplï¿½mentaires sur la confidentialitï¿½ de la mesure sont disponibles.
-WWMeasure,notes,Notes,Notes,,,,string,Any additional notes.,Ajouter toutes notes additionnelles.
-Site,siteID,Site id,Identifiant du site,Primary Key,,,string,Unique identifier for the location where wastewater sample was taken.,Identifiant unique pour l'ï¿½chantillon. Suggestion:siteID-date-index.
-Site,name,Name,Nom,,,,string,"Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.","Nom du site d'ï¿½chantillonnage. Peut ï¿½tre le nom d'une station de traitement, d'une station de pompage, d'un campus, d'un regard d'ï¿½gouts, etc."
-Site,description,Description,Description,,,,string,"Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.","Description du site d'ï¿½chantillonnage (ville, bï¿½timent, rue, etc.) pour mieux identifier le site d'ï¿½chantillonnage."
-Site,publicHealthDepartment,Public health department or region,DÃ©partement ou rÃ©gion de santÃ© publique,,,,string,The public health department or region where the site or institute is located. See also `healthRegion` if there is a separate regional health care delivery authority.,
-Site,healthRegion,Health planning region,RÃ©gion de planification sanitaire,,,,string,The health planning authority where is site or insititute is located. See also `publicHealthDepartment`,
-Site,type,Type,Type,,,,category,Type of site or institution where sample was taken.,Type de site ou d'institution du site d'ï¿½chantillonnage.
-Site,typeOther,Type other,Type autre,,,,string,Description of the site when the site is not listed. See siteType.,Description du site d'ï¿½chantillonnage dans le cas oï¿½ un type adï¿½quat n'est pas disponible.
-Site,sampleTypeDefault,Sample type default,Type d'ï¿½chantillon par dï¿½faut,,,,category,Used as default when a new sample is created for this site. See type in Sample table.,"Type d'ï¿½chantilon utilisï¿½ par dï¿½faut quand un nouvel ï¿½chantillon est crï¿½ï¿½ pour ce site. Se rï¿½fï¿½rer ï¿½ la colonne ""type"" dans la table ""Sample"""
-Site,sampleTypeOtherDefault,Sample type other default,Type d'ï¿½chantillon autre dï¿½faut,,,,string,Used as default when a new sample is created for this site. See typeOther in Sample table.,"Type d'ï¿½chantilon utilisï¿½ par dï¿½faut quand un nouvel ï¿½chantillon est crï¿½ï¿½ pour ce site. Se rï¿½fï¿½rer ï¿½ la colonne ""typeOther"" dans la table ""Sample"""
-Site,sampleCollectionDefault,Sample collection default,Prï¿½lï¿½vement d'ï¿½chantillons par dï¿½faut,,,,category,Used as default when a new sample is created for this site. See collection in Sample table.,"Mï¿½thode d'ï¿½chantillonnage par dï¿½faut quand un nouvel ï¿½chantillon est crï¿½ï¿½ pour ce site. Se rï¿½fï¿½rer ï¿½ la colonne ""collection"" dans la table ""Sample"""
-Site,sampleCollectOtherDefault,Sample collect other default,Prï¿½lï¿½vement d'un autre ï¿½chantillon par dï¿½faut,,,,string,Used as default when a new sample is created for this site. See collectionOther in Sample table.,"Mï¿½thode d'ï¿½chantillonnage par dï¿½faut quand un nouvel ï¿½chantillon est crï¿½ï¿½ pour ce site. Se rï¿½fï¿½rer ï¿½ la colonne ""collectionOther"" dans la table ""Sample"""
-Site,sampleStorageTempCDefault,Sample storage temp c default,Tempï¿½rature de stockage de l'ï¿½chantillon c par dï¿½faut,,,,float,Used as default when a new sample is created for this site. See storageTempC in Sample table.,"Tempï¿½raure de stockage par dï¿½faut quand un nouvel ï¿½chantillon est crï¿½ï¿½ pour ce site. Se rï¿½fï¿½rer ï¿½ la colonne ""storageTempC"" dans la table ""Sample"""
-Site,measureFractionAnalyzedDefault,Measure fraction analyzed default,Fraction de mesure analysï¿½e par dï¿½faut,,,,category,Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.,"Fraction par dï¿½faut quand une nouvelle mesure est crï¿½ï¿½e pour cet ï¿½chantillon. Se rï¿½fï¿½rer ï¿½ la colonne ""fractionAnalyzed"" dans la table ""WWMeasure"""
-Site,geoLat,Geo lat,Gï¿½o lat,,,,float,"Site geographical location, latitude in decimal coordinates, ie.: (45.424721)",Position gï¿½ographique du site d'ï¿½chantillonnage. Latitude exprimï¿½e en coordonnï¿½es dï¿½cimales (ex. 45.424721)
-Site,geoLong,Geo long,Gï¿½o long,,,,float,"Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)",Position gï¿½ographique du site d'ï¿½chantillonnage. Longitude exprimï¿½e en coordonnï¿½es dï¿½cimales (ex. -75.695000)
+Site,siteID,Site id,Identifiant du site,Primary Key,,,string,Unique identifier for the location where wastewater sample was taken.,Identifiant unique pour l'chantillon. Suggestion:siteID-date-index.
+Site,name,Name,Nom,,,,string,"Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.","Nom du site d'chantillonnage. Peut tre le nom d'une station de traitement, d'une station de pompage, d'un campus, d'un regard d'gouts, etc."
+Site,description,Description,Description,,,,string,"Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.","Description du site d'chantillonnage (ville, btiment, rue, etc.) pour mieux identifier le site d'chantillonnage."
+Site,publicHealthDepartment,Public health department or region,Dpartement ou rgion de sant publique,,,,string,The public health department or region where the site or institute is located. See also `healthRegion` if there is a separate regional health care delivery authority.,
+Site,healthRegion,Health planning region,Rgion de planification sanitaire,,,,string,The health planning authority where is site or insititute is located. See also `publicHealthDepartment`,
+Site,type,Type,Type,,,,category,Type of site or institution where sample was taken.,Type de site ou d'institution du site d'chantillonnage.
+Site,typeOther,Type other,Type autre,,,,string,Description of the site when the site is not listed. See siteType.,Description du site d'chantillonnage dans le cas o un type adquat n'est pas disponible.
+Site,geoLat,Geo lat,Go lat,,,,float,"Site geographical location, latitude in decimal coordinates, ie.: (45.424721)",Position gographique du site d'chantillonnage. Latitude exprime en coordonnes dcimales (ex. 45.424721)
+Site,geoLong,Geo long,Go long,,,,float,"Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)",Position gographique du site d'chantillonnage. Longitude exprime en coordonnes dcimales (ex. -75.695000)
 Site,notes,Notes,Notes,,,,string,Any additional notes.,Ajouter toutes notes additionnelles.
-Site,polygonID,Polygon id,Identifiant du polygone,Foreign key,Polygon,polygonID,string,"Links with the Polygon table, this should encompass the area that typically drains into this site.","Crï¿½e un lien vers la table ""Polygon"". Le polygon liï¿½ devrait englober la rï¿½gion qui se draine dans le site d'ï¿½chantillonnage. "
-Site,sewerNetworkFileLink,Sewer network file link,Lien vers le fichier du rï¿½seau d'ï¿½gouts,,,,string,Link to a file that has any detailed information about the sewer network associated with the site (any format).,Lien vers un fichier contenant toute information additionnelle au sujet du rï¿½seau d'ï¿½gouts associï¿½ ï¿½ ce site d'ï¿½chantillonnage (tous les formats sont acceptï¿½s).
-Site,sewerNetworkFileBLOB,Sewer network file blob,Fichier blob du rï¿½seau d'ï¿½gouts,,,,blob,A file blob that has any detailed information about the sewer network associated with the site (any format).,Un fichier contenant toute information additionnelle au sujet du rï¿½seau d'ï¿½gouts associï¿½ ï¿½ ce site d'ï¿½chantillonnage (tous les formats sont acceptï¿½s).
-SiteMeasure,uSiteMeasureID,U site measure id,Identifiant unique de la mesure sur site,Primary Key,,,string,Unique identifier for each measurement for a site.,Identifiant unique pour le site d'ï¿½chantillonnage.
-SiteMeasure,siteMeasureID,Site measure id,Identifiant de la mesure sur site,,,,string,Unique identifier for wide table only. Use when all measures are performed on a single sample.,Identifiant unique utilisï¿½ dans la table horizontale seulement. Utiliser quand toutes les mesures sont effectuï¿½es sur le mï¿½me ï¿½chantillon.
-SiteMeasure,siteID,Site id,Identifiant du site,Foreign key,Site,siteID,string,Links with the Site table to describe the location of measurement.,"Crï¿½e un lien vers la table ""Site"" pour dï¿½crire le site d'ï¿½chantillonnage."
-SiteMeasure,instrumentID,Instrument id,Identifiant de l'instrument,Foreign key,Instrument,instrumentID,string,Links with the Instrument table to describe instrument used for the measurement.,"Crï¿½e un lien vers la table ""Instrument"" pour dï¿½crire l'appareil utilisï¿½ pour effectuer la mesure."
-SiteMeasure,reporterID,Reporter id,Identifiant du reporteur,Foreign key,Reporter,reporterID,string,Links with the reporter that is responsible for the data.,Crï¿½e un lien avec les informations propres au reporteur associï¿½ ï¿½ la mesure.
-SiteMeasure,sampleID,Sample id,Identifiant de l'ï¿½chantillon,Foreign key,Sample,sampleID,string,Links with the identified Sample,"Crï¿½e un lien avec la table ""Sample"" pour dï¿½crire l'ï¿½chantillon mesurï¿½."
-SiteMeasure,dateTime,Date time,Date et heure,,,,date,The date and time the measurement was performed.,Date ï¿½ laquelle la mesure a ï¿½tï¿½ rï¿½alisï¿½e.
-SiteMeasure,type,Type,Type,,,,category,"The type of measurement that was performed. The prefix env is used for environmental variables, whereas ww indicates a measurement on wastewater.","Type de mesure rï¿½alisï¿½e. Le prï¿½fixe ""env"" est utilisï¿½ pour une variable envioronnementale, alors que ""ww"" indique une mesure rï¿½alisï¿½e sur les eaux usï¿½es."
-SiteMeasure,typeOther,Type other,Type autre,,,,string,Description of the measurement in case it is not listed in type.,Description d'un paramï¿½tre mesurï¿½ ne faisant pas partie des options disponibles.
-SiteMeasure,typeDescription,Type description,Description du type,,,,string,Additional information on the performed measurement.,Ajouter toutes notes additionnelles en lien avec la mesure effectuï¿½e.
-SiteMeasure,aggregation,Aggregation,Agrï¿½gation,,,,category,"When reporting an aggregate measurement, this field describes the method used.",Mï¿½thode d'agrï¿½gation utiliseï¿½e pour rapporter la mesure.
-SiteMeasure,aggregationOther,Aggregation other,Agrï¿½gation autre,,,,string,Description for other type of aggregation not listed in aggregation.,Description d'une agrï¿½gation ne faisant pas partie des options disponibles.
-SiteMeasure,aggregationDesc,Aggregation desc,Agrï¿½gation desc,,,,string,Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.,Informations (ou rï¿½fï¿½rence) liï¿½e(s) ï¿½ la mï¿½thode d'agrï¿½gation utilisï¿½e pour rapporter la mesure.
-SiteMeasure,value,Value,Valeur,,,,float,"The actual value that is being reported for this measurement. Use ""NA"" for missing values and make sure to leave a note.","La valeur numï¿½rique de la mesure effectuï¿½e. Utilise ""NA"" pour les valeurs manquantes et laisser une note."
-SiteMeasure,unit,Unit,Unitï¿½,,,,category,The engineering unit of the measurement.,L'unitï¿½ de mesure
-SiteMeasure,qualityFlag,Quality flag,Indicateur de mauvaise qualitï¿½,,,,boolean,Does the reporter suspect quality issues with the value of this measurement,Le reporteur de la mesure suspecte-t-il que la mesure est de mauvaise qualitï¿½?
-SiteMeasure,accessToPublic,Access to public,Accï¿½s au public,,,,boolean,"If this is 'no', this data will not be available to the public. If missing, data will be available to the public.","Si ""Non"", la donnï¿½e ne sera pas accessible par le public. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-SiteMeasure,accessToAllOrgs,Access to all orgs,Accï¿½s ï¿½ toutes les organisations,,,,boolean,"If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations.","Si ""Non"", la donnï¿½e ne sera pas accessible par toute organisation partenaire. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-SiteMeasure,accessToSelf,Access to self,Accï¿½s au reporteur lui-mï¿½me,,,,boolean,"If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter.","Si ""Non"", la donnï¿½e ne sera pas accessible par le reporteur lui-mï¿½me. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-SiteMeasure,accessToPHAC,Access to phac,Accï¿½s ï¿½ l'ASPC,,,,boolean,"If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC.","Si ""Non"", la donnï¿½e ne sera pas accessible par les employï¿½s de l'Agence de Santï¿½ Publique du Canada. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-SiteMeasure,accessToLocalHA,Access to local ha,Accï¿½s ï¿½ l'autoritï¿½ de santï¿½ publique locale,,,,boolean,"If this is 'no', data will not be available to local health authorities. If missing, data will be available to local health authorities.","Si ""Non"", la donnï¿½e ne sera pas accessible par les autoritï¿½s de santï¿½ publique locales. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-SiteMeasure,accessToProvHA,Access to prov ha,Accï¿½s ï¿½ l'autoritï¿½ de santï¿½ publique provinciale,,,,boolean,"If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities.","Si ""Non"", la donnï¿½e ne sera pas accessible par les autoritï¿½s de santï¿½ publique provinciales. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e sera accessible ï¿½ l'autoritï¿½ de santï¿½ publique de la province oï¿½ l'ï¿½chantillonnage a ï¿½tï¿½ rï¿½alisï¿½e."
-SiteMeasure,accessToOtherProv,Access to other prov,Accï¿½s aux autres provinces,,,,boolean,"If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before.","Si ""Non"", la donnï¿½e ne sera pas accessible par les autoritï¿½s de santï¿½ publique provinciales. Si ""Oui"" ou laissï¿½ vide, la donnï¿½e leur sera accessible."
-SiteMeasure,accessToDetails,Access to details,Accï¿½s aux dï¿½tails,,,,boolean,More details on the existing confidentiality requirements of this measurement.,Indique si des informations supplï¿½mentaires sur la confidentialitï¿½ de la mesure sont disponibles.
-SiteMeasure,notes,Notes,Notes,,,,string,Any additional notes.,Ajouter toutes notes additionnelles.
-Reporter,reporterID,Reporter id,Identifiant du reporteur,Primary Key,,,string,Unique identifier for the person or organization that is reporting the data.,Identifiant unique pour la personne ou l'organisation responsable des donnï¿½es rapportï¿½es.
-Reporter,siteIDDefault,Site id default,Identifiant du site par dï¿½faut,Foreign key,Site,siteID,string,Used as default when a new sample is created by this reporter. See ID in Site table.,"Identifiant de Site utilisï¿½ par dï¿½faut quand un nouvel ï¿½chantillon est crï¿½ï¿½ par ce reporteur. Se rï¿½fï¿½rer ï¿½ la colonne ""siteID"" dans la table ""Site"""
-Reporter,labIDDefault,Lab id default,Identifiant laboratoire par dï¿½faut,Foreign key,Lab,labID,string,Used as default when a new sample is created by this reporter. See ID in Lab table.,"Identifiant de Lab utilisï¿½ par dï¿½faut quand un nouvel ï¿½chantillon est crï¿½ï¿½ par ce reporteur. Se rï¿½fï¿½rer ï¿½ la colonne ""labID"" dans la table ""Lab"""
+Site,polygonID,Polygon id,Identifiant du polygone,Foreign key,Polygon,polygonID,string,"Links with the Polygon table, this should encompass the area that typically drains into this site.","Cre un lien vers la table ""Polygon"". Le polygon li devrait englober la rgion qui se draine dans le site d'chantillonnage. "
+Site,sewerNetworkFileLink,Sewer network file link,Lien vers le fichier du rseau d'gouts,,,,string,Link to a file that has any detailed information about the sewer network associated with the site (any format).,Lien vers un fichier contenant toute information additionnelle au sujet du rseau d'gouts associ  ce site d'chantillonnage (tous les formats sont accepts).
+Site,sewerNetworkFileBLOB,Sewer network file blob,Fichier blob du rseau d'gouts,,,,blob,A file blob that has any detailed information about the sewer network associated with the site (any format).,Un fichier contenant toute information additionnelle au sujet du rseau d'gouts associ  ce site d'chantillonnage (tous les formats sont accepts).
+Reporter,reporterID,Reporter id,Identifiant du reporteur,Primary Key,,,string,Unique identifier for the person or organization that is reporting the data.,Identifiant unique pour la personne ou l'organisation responsable des donnes rapportes.
 Reporter,contactName,Contact name,Nom du contact,,,,string,"Full Name of the reporter, either an organization or individual.",Nom complet du reporteur (personne ou organisation)
-Reporter,contactEmail,Contact email,Adresse ï¿½lectronique du contact,,,,string,Contact e-mail address.,Adresse courriel du contact.
-Reporter,organization,Organization,Organisation,,,,string,The organization to which the reporter is affiliated.,L'organisation Ã  laquelle le reporteur est affiliÃ©.
-Reporter,contactPhone,Contact phone,Tï¿½lï¿½phone du contact,,,,string,Contact phone number.,Numï¿½ro de tï¿½lï¿½phone du contact.
+Reporter,contactEmail,Contact email,Adresse lectronique du contact,,,,string,Contact e-mail address.,Adresse courriel du contact.
+Reporter,organization,Organization,Organisation,,,,string,The organization to which the reporter is affiliated.,L'organisation ˆ laquelle le reporteur est affili.
+Reporter,contactPhone,Contact phone,Tlphone du contact,,,,string,Contact phone number.,Numro de tlphone du contact.
 Reporter,notes,Notes,Notes,,,,string,Any additional notes.,Ajouter toutes notes additionnelles.
 Lab,labID,Lab id,Identifiant du laboratoire,Primary Key,,,string,Unique identifier for the laboratory.,Identifiant unique pour le laboratoire.
-Lab,assayMethodIDDefault,Assay method id default,Identifiant de la mï¿½thode d'analyse par dï¿½faut,Foreign key,AssayMethod,assayMethodID,string,Used as default when a new measurement is created for this lab. See ID in AssayMethod table.,"Identifiant de la mï¿½thode d'analyse utilisï¿½e par dï¿½faut quand une nouvelle mesure est crï¿½ï¿½ par ce laboratoire. Se rï¿½fï¿½rer ï¿½ la colonne ""assayMethodID"" dans la table ""AssayMethod"""
 Lab,name,Name,Nom,,,,string,Name corresponding to lab.,Nom du laboratoire.
 Lab,contactName,Contact name,Nom du contact,,,,string,"Contact person or group, for the lab.",Personne contact de ce laboratoire.
-Lab,contactEmail,Contact email,Adresse ï¿½lectronique du contact,,,,string,"Contact e-mail address, for the lab.",Adresse courriel du contact.
-Lab,contactPhone,Contact phone,Tï¿½lï¿½phone du contact,,,,string,"Contact phone number, for the lab.",Numï¿½ro de tï¿½lï¿½phone du contact.
-Lab,updateDate,Update date,Date de mise ï¿½ jour,,,,date,date information was provided or updated.,Date oï¿½ l'information a ï¿½tï¿½ reportï¿½e une premiï¿½re fois ou mise ï¿½ jour.
-AssayMethod,assayMethodID,Assay method id,Identifiant de la mï¿½thode d'analyse,Primary Key,,,string,Unique identifier for the assay method.,Identifiant unique pour la mï¿½thode d'analyse.
-AssayMethod,instrumentID,Instrument id,Identifiant de l'instrument,Foreign key,Instrument,instrumentID,string,Links with the Instrument table to describe instruments used for the measurement.,"Crï¿½e un lien vers la table ""Instrument"" pour dï¿½crire l'appareil utilisï¿½ pour effectuer la mesure."
-AssayMethod,name,Name,Nom,,,,string,Name of the assay method.,Nom de la mï¿½thode d'analyse.
-AssayMethod,version,Version,Version,,,,string,Version of the assay. Semantic versioning is recommended.,Version de la mï¿½thode d'analyse. Un versionnement de type sï¿½mantique est recommandï¿½.
-AssayMethod,summary,Summary,Rï¿½sumï¿½,,,,string,Short description of the assay and how it is different from the other assay methods.,Brï¿½ve description de la mï¿½thode d'analyse et de comment celle-ci diffï¿½re d'autres mï¿½thodes.
-AssayMethod,referenceLink,Reference link,Lien vers rï¿½fï¿½rence,,,,string,Link to standard operating procedure.,Lien vers la procï¿½dure standard.
-AssayMethod,date,Date,Date,,,,date,date on which the assayMethod was created or updated (for version update).,Date ï¿½ laquelle la mï¿½thode d'analyse (ou une nouvelle version d'une mï¿½thode existante) a ï¿½tï¿½ crï¿½e.
-AssayMethod,aliasID,Alias id,Identifiant de l'alias,,,,string,ID of an assay that is the same or similar. a comma separated list.,Identifiants d'autres mï¿½thodes d'analyse prï¿½sentes dans la table qui sont similaires ï¿½ la mï¿½thode courante. Insï¿½rer sous forme de liste sï¿½parï¿½e par des virgules.
-AssayMethod,extractionVolMl,Extraction volume in ml,Volume d'extraction ml,,,,float,Size of the sample that is analyzed in milliliters.,Volume de l'ï¿½chantillon analysï¿½ (en millilitres)
-AssayMethod,loq,Loq,Limite de quantification,,,,float,Limit of quantification (LOQ) for this method if one exists.,"Limite de quantification pour cette mï¿½thode, le cas ï¿½chï¿½ant."
-AssayMethod,lod,Lod,Limite de dï¿½tection,,,,float,Limit of detection (LOD) for this method if one exists.,"Limite de dï¿½tection pour cette mï¿½thode, le cas ï¿½chï¿½ant."
-AssayMethod,unit,Unit,Unitï¿½,,,,category,"Unit used by this method, and applicable to the LOD and LOQ.",Unitï¿½ de mesure utilisï¿½e par cette mï¿½thode et qui est applicable pour la limite de dï¿½tection ou de quantification.
-AssayMethod,unitOther,Unit other,Unitï¿½ autre,,,,string,"Unit used by this method, that are applicable to the LOD and LOQ.",Unitï¿½ de mesure utilisï¿½e par cette mï¿½thode et qui est applicable pour la limite de dï¿½tection ou de quantification dans le cas oï¿½ celle-ci n'est pas disponible.
-AssayMethod,methodConc,Method conc,Mï¿½thode de concentration,,,,string,Description of the method used to concentrate the sample,Description de la mï¿½thode utilisï¿½e pour concentrer l'ï¿½chantillon.
-AssayMethod,methodExtract,Method extract,Mï¿½thode d'extraction,,,,string,Description of the method used to extract the sample,Description de la mï¿½thode utilisï¿½e pour extraire l'ï¿½chantillon.
-AssayMethod,methodPcr,Method pcr,Mï¿½thode PCR,,,,string,Description of the PCR method used,Description de la m.ï¿½thode PCR utiisï¿½e.
-AssayMethod,qualityAssQC,Quality ass qc,Contrï¿½le de qualitï¿½,,,,string,Description of the quality control steps taken,Description des ï¿½tapes de contrï¿½le de qualitï¿½ mises en place dans la mï¿½thode.
-AssayMethod,inhibition,Inhibition,Inhibition,,,,string,Description of the inhibition parameters.,Description des paramï¿½tres d'inhibition liï¿½s ï¿½ cette mï¿½thode.
-AssayMethod,surrogateRecovery,Surrogate recovery,Rï¿½cupï¿½ration du virus substitut,,,,string,Description of the surrogate recovery for this method.,Description de la mï¿½thode de rï¿½cupï¿½ration du virus de substitution liï¿½e ï¿½ cette mï¿½thode.
+Lab,contactEmail,Contact email,Adresse lectronique du contact,,,,string,"Contact e-mail address, for the lab.",Adresse courriel du contact.
+Lab,contactPhone,Contact phone,Tlphone du contact,,,,string,"Contact phone number, for the lab.",Numro de tlphone du contact.
+Lab,updateDate,Update date,Date de mise  jour,,,,date,date information was provided or updated.,Date o l'information a t reporte une premire fois ou mise  jour.
+AssayMethod,assayMethodID,Assay method id,Identifiant de la mthode d'analyse,Primary Key,,,string,Unique identifier for the assay method.,Identifiant unique pour la mthode d'analyse.
+AssayMethod,instrumentID,Instrument id,Identifiant de l'instrument,Foreign key,Instrument,instrumentID,string,Links with the Instrument table to describe instruments used for the measurement.,"Cre un lien vers la table ""Instrument"" pour dcrire l'appareil utilis pour effectuer la mesure."
+AssayMethod,name,Name,Nom,,,,string,Name of the assay method.,Nom de la mthode d'analyse.
+AssayMethod,version,Version,Version,,,,string,Version of the assay. Semantic versioning is recommended.,Version de la mthode d'analyse. Un versionnement de type smantique est recommand.
+AssayMethod,summary,Summary,Rsum,,,,string,Short description of the assay and how it is different from the other assay methods.,Brve description de la mthode d'analyse et de comment celle-ci diffre d'autres mthodes.
+AssayMethod,referenceLink,Reference link,Lien vers rfrence,,,,string,Link to standard operating procedure.,Lien vers la procdure standard.
+AssayMethod,date,Date,Date,,,,date,date on which the assayMethod was created or updated (for version update).,Date  laquelle la mthode d'analyse (ou une nouvelle version d'une mthode existante) a t cre.
+AssayMethod,aliasID,Alias id,Identifiant de l'alias,,,,string,ID of an assay that is the same or similar. a comma separated list.,Identifiants d'autres mthodes d'analyse prsentes dans la table qui sont similaires  la mthode courante. Insrer sous forme de liste spare par des virgules.
+AssayMethod,extractionVolMl,Extraction volume in ml,Volume d'extraction ml,,,,float,Size of the sample that is analyzed in milliliters.,Volume de l'chantillon analys (en millilitres)
+AssayMethod,loq,Loq,Limite de quantification,,,,float,Limit of quantification (LOQ) for this method if one exists.,"Limite de quantification pour cette mthode, le cas chant."
+AssayMethod,lod,Lod,Limite de dtection,,,,float,Limit of detection (LOD) for this method if one exists.,"Limite de dtection pour cette mthode, le cas chant."
+AssayMethod,unit,Unit,Unit,,,,category,"Unit used by this method, and applicable to the LOD and LOQ.",Unit de mesure utilise par cette mthode et qui est applicable pour la limite de dtection ou de quantification.
+AssayMethod,unitOther,Unit other,Unit autre,,,,string,"Unit used by this method, that are applicable to the LOD and LOQ.",Unit de mesure utilise par cette mthode et qui est applicable pour la limite de dtection ou de quantification dans le cas o celle-ci n'est pas disponible.
+AssayMethod,methodConc,Method conc,Mthode de concentration,,,,string,Description of the method used to concentrate the sample,Description de la mthode utilise pour concentrer l'chantillon.
+AssayMethod,methodExtract,Method extract,Mthode d'extraction,,,,string,Description of the method used to extract the sample,Description de la mthode utilise pour extraire l'chantillon.
+AssayMethod,methodPcr,Method pcr,Mthode PCR,,,,string,Description of the PCR method used,Description de la mthode PCR utiise.
+AssayMethod,qualityAssQC,Quality ass qc,Contrle de qualit,,,,string,Description of the quality control steps taken,Description des tapes de contrle de qualit mises en place dans la mthode.
+AssayMethod,inhibition,Inhibition,Inhibition,,,,string,Description of the inhibition parameters.,Description des paramtres d'inhibition lis  cette mthode.
+AssayMethod,surrogateRecovery,Surrogate recovery,Rcupration du virus substitut,,,,string,Description of the surrogate recovery for this method.,Description de la mthode de rcupration du virus de substitution lie  cette mthode.
 Instrument,instrumentID,Instrument id,Identifiant de l'instrument,Primary Key,,,string,Unique identifier for the instrument.,Identifiant unique pour l'instrument de mesure.
 Instrument,name,Name,Nom,,,,string,Name of the instrument used to perform the measurement.,Nom de l'instrument de mesure.
-Instrument,model,Model,Modï¿½le,,,,string,Model number or version of the instrument.,Numï¿½ro de modï¿½le et/ou de version de l'instrument de mesure.
+Instrument,model,Model,Modle,,,,string,Model number or version of the instrument.,Numro de modle et/ou de version de l'instrument de mesure.
 Instrument,description,Description,Description,,,,string,Description of the instrument.,Description de l'instrument.
-Instrument,alias,Alias,Alias,,,,string,ID of an assay that is the same or similar. A comma separated list.,Identifiants d'autres instruments prï¿½sents dans la table qui sont similaires ï¿½ l'instrument courant. Insï¿½rer sous forme de liste sï¿½parï¿½e par des virgules.
-Instrument,referenceLink,Reference link,Lien vers rï¿½fï¿½rence,,,,string,Link to reference for the instrument.,Lien vers un document de rï¿½fï¿½rence pour l'instrument de mesure.
+Instrument,alias,Alias,Alias,,,,string,ID of an assay that is the same or similar. A comma separated list.,Identifiants d'autres instruments prsents dans la table qui sont similaires  l'instrument courant. Insrer sous forme de liste spare par des virgules.
+Instrument,referenceLink,Reference link,Lien vers rfrence,,,,string,Link to reference for the instrument.,Lien vers un document de rfrence pour l'instrument de mesure.
 Instrument,type,Type,Type,,,,category,Type of instrument used to perform the measurement.,Type de l'instrument de mesure.
-Instrument,typeOther,Type other,Type autre,,,,string,Description of the instrument in case it is not listed in instrumentType.,Description du type d'instrument dans le cas oï¿½ il ne serait pas disponible.
+Instrument,typeOther,Type other,Type autre,,,,string,Description of the instrument in case it is not listed in instrumentType.,Description du type d'instrument dans le cas o il ne serait pas disponible.
 Polygon,polygonID,Polygon id,Identifiant du polygone,Primary Key,,,string,Unique identifier for the polygon.,Identifiant unique du polygone.
-Polygon,name,Name,Nom,,,,string,Descriptive name of the polygon.,Nom du polygon (devrait ï¿½tre descriptif)
-Polygon,pop,Pop,Population,,,,integer,Approximate population size of people living inside the polygon.,Population approximative vivant dans la rï¿½gion reprï¿½sentï¿½e par le polygone.
+Polygon,name,Name,Nom,,,,string,Descriptive name of the polygon.,Nom du polygon (devrait tre descriptif)
+Polygon,pop,Pop,Population,,,,integer,Approximate population size of people living inside the polygon.,Population approximative vivant dans la rgion reprsente par le polygone.
 Polygon,type,Type,Type,,,,category,Type of polygon.,Type de polygone.
 Polygon,wkt,Wkt,Wkt,,,,string,well known text of the polygon,Description formelle du polygone (format Well-Known-Text (wkt))
-Polygon,file,File,Fichier,,,,blob,"File containing the geometry of the polygon, blob format.",Fichier reprï¿½sentant la gï¿½omï¿½trie du polygone (blob).
-Polygon,link,Link,Lien,,,,string,Link to an external reference that describes the geometry of the polygon.,Lien vers une rï¿½fï¿½rence externe dï¿½crivant la gï¿½omï¿½trie du polygone.
-CovidPublicHealthData,cphdID,Cphd id,Identifiant de CPHD,Primary Key,,,string,Unique identifier for the table.,Identifiant unique pour l'information de santï¿½ publique reportï¿½e.
-CovidPublicHealthData,reporterID,Reporter id,Identifiant du reporteur,Foreign key,Reporter,reporterID,string,ID of the reporter who gave this data.,Identifiant unique pour la personne ou l'organisation responsable des donnï¿½es rapportï¿½es.
-CovidPublicHealthData,polygonID,Polygon id,Identifiant du polygone,Foreign key,Polygon,polygonID,string,Links with the Polygon table.,"Crï¿½e un lien vers la table ""Polygon"". Le polygon liï¿½ devrait englober la rï¿½gion reprï¿½sentï¿½e par les donnï¿½es consignï¿½es ici."
-CovidPublicHealthData,date,Date,Date,,,,string,date of reporting for covid-19 measure.,Date de reportage des donnï¿½es de mesure de la COVID-19.
-CovidPublicHealthData,type,Type,Type,,,,category,Type of covid-19 patient data.,Type de donnï¿½e de mesure de la COVID-19.
-CovidPublicHealthData,dateType,Date type,Type de date,,,,category,Type of date used for conf cases. Typically report or episode are reported. onset and test date is not usually reported within aggregate data.,Type de date utiisï¿½e pour reporter les donnï¿½es.
-CovidPublicHealthData,value,Value,Valeur,,,,float,"The actual value that is being reported for this measurement. Use ""NA"" for missing values and make sure to leave a note.","La valeur numï¿½rique de la mesure effectuï¿½e. Utilise ""NA"" pour les valeurs manquantes et laisser une note."
-CovidPublicHealthData,notes,Notes,Notes,,,,string,Any additional notes.,Ajouter toutes notes additionnelles.
+Polygon,file,File,Fichier,,,,blob,"File containing the geometry of the polygon, blob format.",Fichier reprsentant la gomtrie du polygone (blob).
+Polygon,link,Link,Lien,,,,string,Link to an external reference that describes the geometry of the polygon.,Lien vers une rfrence externe dcrivant la gomtrie du polygone.
 Lookup,tableName,Table name,Nom de la table,,,,string,Name of the Table,Nom de la table.
 Lookup,columnName,Column name,Nom de la colonne,,,,string,Name for the column,Nom de la colonne.
 Lookup,value,Value,Valeur,,,,string,Name of the value,Nom de la valeur.
 Lookup,description,Description,Description,,,,string,Name of the description,Nom de la description.
+Assay,assayID,,,Primary Key,,,string,,
+Assay,assayMethodID,,,,AssayMethod,assayMethodID,string,,
+Assay,labID,,,,Lab,labID,string,,
+Assay,reporterID,,,,Reporter,reporterID,string,,
+AssayHasInstrument,assayID,,,,Assay,assayID,string,,
+AssayHasInstrument,assayMethodID,,,,AssayMethod,assayMethodID,string,,
+Value,valueID,,,Primary Key,,,string,,
+Value,assayID,,,,Assay,assayID,string,,
+Value,sampleID,,,,Sample,sampleID,string,,
+Value,siteID,,,,Site,siteID,string,,
+Value,polygonID,,,,Polygon,polygonID,string,,
+Value,analysisDate,,,,,,string,,
+Value,reportDate,,,,,,string,,
+Value,measureID,,,,Measure,measureID,string,,
+Value,unitID,,,,Unit,unitID,string,,
+Value,aggregationID,,,,Aggregation,aggregationID,string,,
+Value,value,,,,,,string,,
+Value,qualityFlag,,,,,,string,,
+Value,notes,,,,,,string,,
+Aggregation,aggregationID,,,Primary Key,,,string,,
+Aggregation,descriptionEN,,,,,,string,,
+Aggregation,descriptionFR,,,,,,string,,
+Domain,domainID,,,Primary Key,,,string,,
+Domain,descriptionEN,,,,,,string,,
+Domain,descriptionFR,,,,,,string,,
+Measure,measureID,,,Primary Key,,,string,,
+Measure,shortName,,,,,,string,,
+Measure,fullName,,,,,,string,,
+Measure,commonNameEN,,,,,,string,,
+Measure,commonNameFR,,,,,,string,,
+Measure,descriptionEN,,,,,,string,,
+Measure,descriptionFR,,,,,,string,,
+Measure,status,,,,,,string,,
+Measure,firstReleased,,,,,,string,,
+Measure,lastUpdated,,,,,,string,,
+Measure,domainID,,,,Domain,domainID,string,,
+Measure,specimenID,,,,Specimen,specimenID,string,,
+Measure,measureGroupID,,,,MeasureGroup,measureGroupID,string,,
+Measure,measureClassID,,,,MeasureClass,measureClassID,string,,
+Measure,measurePart,,,,,,string,,
+Measure,analytePartNomenclature,,,,,,string,,
+MeasureClass,measureClassID,,,Primary Key,,,string,,
+MeasureClass,descriptionEN,,,,,,string,,
+MeasureClass,descriptionFR,,,,,,string,,
+MeasureClassHasUnit,measureClassID,,,,MeasureClass,measureClassID,string,,
+MeasureClassHasUnit,unitID,,,,Unit,unitID,string,,
+MeasureGroup,measureGroupID,,,Primary Key,,,string,,
+MeasureGroup,descriptionEN,,,,,,string,,
+MeasureGroup,descriptionFR,,,,,,string,,
+Scale,scaleID,,,Primary Key,,,string,,
+Scale,descriptionEN,,,,,,string,,
+Scale,descriptionFR,,,,,,string,,
+Specimen,specimenID,,,Primary Key,,,string,,
+Specimen,descriptionEN,,,,,,string,,
+Specimen,descriptionFR,,,,,,string,,
+Specimen,parentTable,,,,,,string,,
+Unit,unitID,,,Primary Key,,,string,,
+Unit,latexEpression,,,,,,string,,
+Unit,descriptionEN,,,,,,string,,
+Unit,descriptionFR,,,,,,string,,
+Unit,scaleID,,,,Scale,scaleID,string,,
+Unit,dataType,,,,,,string,,
+UnitHasAggregation,unitID,,,,Unit,unitID,string,,
+UnitHasAggregation,aggregationID,,,,Aggregation,aggregationID,string,,
