@@ -1,7 +1,25 @@
 ﻿measureID,shortName,fullName,commonNameEN,commonNameFR,descriptionEN,descriptionFR,status,firstReleased,lastUpdated,domainID,specimenID,MeasureGroupID,measureClassClassID,measurePart,analytePartNomenclature
-3,wqCOD,,,,,,inactive,0,2,chemical,wwsample,SARS-CoV-2,stdConcentration,COD,
-4,wqEcoli,,,,,,inactive,0,1,biologic,wwsample,EColi,UfcConcentration,Faecal coliforms,
-1,covN2,,,,,,active,0,3,biologic,wwsample,SARS-CoV-2,gene,N2,
-2,covB117,,,,,,active,2,3,biologic,sample,SARS-CoV-2,speciesVariant,B1.1.7,Pangolin
-5,PMMVabcxyz,,,,,,active,2,3,biologic,sample,SARS-CoV-2,geneMutation,abcxyz,Nexclade
-6,wqFlow,,,,,,active,0,3,physical,site,Wastewater,flow,flow,
+1,wqCOD,,,,chemical oxygen demand,,inactive,0,2,chemical,wwsample,SARS-CoV-2,stdConcentration,COD,
+2,wqEcoli,,,,"concentration of bacteria that are passed through the fecal excrement of humans, livestock and wildlife",,inactive,0,1,biologic,wwsample,EColi,UfcConcentration,Faecal coliforms,
+3,covB117,,,,Variant B.1.1.7 detected,,active,2,3,biologic,sample,SARS-CoV-2,speciesVariant,B1.1.7,Pangolin
+4,covB1.351,,,,Variant B1.351 detected,,active,2,3,biologic,sample,SARS-CoV-2,speciesVariant,B1.351,Pangolin
+5,covP1,,,,Variant P.1 detected,,active,0,3,biologic,wwsample,SARS-CoV-2,speciesVariant,P.1,Pangolin
+6,PMMVabcxyz,,,,gene sequence mutated,,active,2,3,biologic,sample,SARS-CoV-2,geneMutation,abcxyz,Nexclade
+7,wqFlow,,,,measurement of flow of mass of volume per unit of time,,inactive,0,3,physical,site,Wastewater,flow,flow,
+8,CovN1,,,,amount of SARS-CoV-2 nucleocapsid gene N1 in sample,,active,0,3,biologic,sample,SARS-CoV-2,gene,N1,
+9,covN2,,,,amount of SARS-CoV-2 nucleocapsid gene N2 in sample,,active,0,3,biologic,wwsample,SARS-CoV-2,gene,N2,
+10,covN3,,,,amount of SARS-CoV-2 nucleocapsid gene N3 in sample,,active,0,3,biologic,sample,SARS-CoV-2,gene,N1,
+11,covE,,,,amount of SARS-CoV-2 gene region E in sample,,active,0,3,biologic,sample,SARS-CoV-2,gene,N1,
+12,covRdRp,,,,amount of SARS-CoV-2 gene region RdRp,,active,0,3,biologic,wwsample,SARS-CoV-2,gene,RdRp,
+13,PMMoV,,,,amount of Pepper mild mottle virus,,active,0,3,biologic,wwsample,PMMoV,gene,nPMMoV,
+14,crA,,,,amount of cross-assembly phage,,active,0,3,biologic,wwsample,crAssphage,gene,ncrA,
+15,brsv,,,,amount of bovine respiratory syncytial virus,,active,0,3,biologic,wwsample,BRSV,gene,brsv,
+16,wqTS,,,,Total solids concentration measurement,,active,0,3,physical,wwsample,Wastewater,stdConcentration,TS,
+17,wqTSS,,,,Total suspended solids concentration measurement,,active,0,3,physical,wwsample,Wastewater,stdConcentration,TSS,
+18,wqVSS,,,,Volatile suspended solids concentration ,,active,0,3,physical,wwsample,Wastewater,stdConcentration,VSS,
+19,wqOPhos,,,,Ortho-phosphate concentration.,,active,0,3,physical,wwsample,Wastewater,stdConcentration,OPhos,
+20,wqNH4N,,,,"Ammonium nitrogen concentration, as N.",,active,0,3,physical,wwsample,Wastewater,stdConcentration,NH4N,
+21,wqTN,,,,"Total nitrogen concentration, as N.",,active,0,3,physical,wwsample,Wastewater,stdConcentration,TN,
+22,wqPh,,,,pH measurement,,active,0,3,physical,wwsample,Wastewater,pHMeasurement,pH,
+23,wqCond,,,,measurement of conductivity of sample,,active,0,3,physical,wwsample,Wastewater,Conductivity,Cond,
+24,temp,,,,Temperature of the sample measured in degrees Celcius,,active,0,3,physical,wwsample,Wastewater,Temperature,temp,

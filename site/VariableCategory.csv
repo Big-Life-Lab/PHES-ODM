@@ -22,112 +22,32 @@ Measure,status,inactive,,
 Measure,domainID,biologic,A living organism or its genetic material,organisme ou son code génétique
 Measure,domainID,chemical,A chemical compound,à n'importe quelle mesure chimique (même mesure aggrégée comme la DCO par exemple)
 Measure,domainID,physical,A physical properties or objects not characterized by life or chemistry (solids),à une propriété physique ou a une propriété qui n'est pas spécifiée par la composition chimique ou la présence de vie
-Measure,measurePart,COD,,
-Measure,measurePart,Faecal coliforms,,
-Measure,measurePart,N2,,
-Measure,measurePart,B1.1.7,,
-Measure,measurePart,abcxyz,,
-Measure,measurePart,flow,,
-Measure,analytePartNomenclature,Pangolin,,
-Measure,analytePartNomenclature,Nexclade,,
-Measure,specimenID,wwSampleMeasure,measure made in a sample,mesure faite dans un échantillon d'eau usée
-Measure,specimenID,population,aggregated public health measurement,mesure aggrégée de santé publique
-Measure,specimenID,wwSiteMeasure,wastewater measurement characterizing water passing though a site,Mesure d'eau usée passant à travers un site
-Measure,specimenID,patient,measure taken on an individual,mesure réalisée sur un seul individu
-Measure,measureGroupID,SARS-CoV-2,The viral sensation that's gripping the nation!,
-Measure,measureGroupID,flow,flow of mass of volume per unit of time,
-Measure,measureClassID,gene,Genome region that encodes instructions for a given protein,
-Measure,measureClassID,speciesVariant,Subspecies of an organism emerging from as a result of several genetic mutations,
-Measure,measureClassID,stdConcentration,Concentration that cna be expressed in units of mass per volume,
-Measure,measureClassID,UfcConcentration,Concentration of colony forming units per volume,
-Measure,measureClassID,geneMutaiton,Change in a genetic sequence relative to that of a baseline organism,
-Domain,domainID,biologic,A living organism or its genetic material,organisme ou son code génétique
-Domain,domainID,chemical,A chemical compound,à n'importe quelle mesure chimique (même mesure aggrégée comme la DCO par exemple)
-Domain,domainID,physical,A physical properties or objects not characterized by life or chemistry (solids),à une propriété physique ou a une propriété qui n'est pas spécifiée par la composition chimique ou la présence de vie
-MeasureClass,measureClassID,gene,Genome region that encodes instructions for a given protein,
-MeasureClass,measureClassID,speciesVariant,Subspecies of an organism emerging from as a result of several genetic mutations,
-MeasureClass,measureClassID,stdConcentration,Concentration that cna be expressed in units of mass per volume,
-MeasureClass,measureClassID,UfcConcentration,Concentration of colony forming units per volume,
-MeasureClass,measureClassID,geneMutaiton,Change in a genetic sequence relative to that of a baseline organism,
-MeasureGroup,measureGroupID,SARS-CoV-2,The viral sensation that's gripping the nation!,
-MeasureGroup,measureGroupID,flow,flow of mass of volume per unit of time,
-MeasureClassHasUnits,measureClassID,stdConcentration,,"Copies de gï¿½ne ou de variant dï¿½tectï¿½ dans ""sampleGene"". 1=Detectï¿½, 0=Non-dï¿½tectï¿½."
-MeasureClassHasUnits,measureClassID,UfcConcentration,,Proportion du variant dans l'ï¿½chantillon
-MeasureClassHasUnits,measureClassID,allele,,Pourcentage de positifs (mï¿½thode de Moore)
-MeasureClassHasUnits,measureClassID,speciesVariant,,Pourcentage de boues primaire (pour solides totaux)
-MeasureClassHasUnits,measureClassID,geneMutation,,Pourcentage de boues primaire (pour solides totaux)
-MeasureClassHasUnits,unitID,gcMI,Gene or variant copies per milliter of solution.,Copies de gène par millilitre de solution
-MeasureClassHasUnits,unitID,degC,Temperature in Celcius,Température enCelcius
-MeasureClassHasUnits,unitID,Ct,Cycle tresholds in a PCR assay,
-MeasureClassHasUnits,unitID,detected,,
-MeasureClassHasUnits,unitID,gcPmmoV,Gene copies per copy of PMMoV.,Copies de gï¿½ne ou de variant par copie de PMMoV
-MeasureClassHasUnits,unitID,gcGms,Gene copies per gram solids.,Copies de gï¿½ne ou de variant par gramme de solides.
-MeasureClassHasUnits,unitID,gcL,Gene copies per liter.,Copies de gï¿½ne ou de variant par litre.
-MeasureClassHasUnits,unitID,gcCrA,Gene copies per copy of crAssphage.,Copies de gï¿½ne ou de variant par copie de CrAssphage
-MeasureClassHasUnits,unitID,mgL,,
-MeasureClassHasUnits,unitID,ph,,
-MeasureClassHasUnits,unitID,uScm,,
-MeasureClassHasUnits,unitID,propVar,,
-MeasureClassHasUnits,unitID,pp,,
-MeasureClassHasUnits,unitID,pps,,
-MeasureClassHasUnits,unitID,c,,
-Units,unitID,gcMI,Gene or variant copies per milliter of solution.,Copies de gène par millilitre de solution
-Units,unitID,degC,Temperature in Celcius,Température enCelcius
-Units,unitID,Ct,Cycle tresholds in a PCR assay,
-Units,unitID,detected,,
-Units,unitID,gcGcPmmoV,,
-Units,unitID,gcGms,,
-Units,unitID,gcL,,
-Units,unitID,gcGcCrA,,
-Units,unitID,mgL,,
-Units,unitID,ph,,
-Units,unitID,uScm,,
-Units,unitID,propVar,,
-Units,unitID,pp,,
-Units,unitID,pps,,
-Units,unitID,c,,
-Units,scaleID,quantitative,Expresses an amount,Exprime une quantité
-Units,scaleID,qualitative,Expresses a quality,Exprime une qualité
-Scale,scaleID,quantitative,Expresses an amount,Exprime une quantité
-Scale,scaleID,qualitative,Expresses a quality,Exprime une qualité
-UnitHasAggregation,aggregationID,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.","La valeur n'a subi aucune agrégation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut être un réplica."
-UnitHasAggregation,aggregationID,arrMean,Arithmetic mean,Moyenne arithmétique
-UnitHasAggregation,aggregationID,geoMean,Geometric mean,Moyenne géométrique
-UnitHasAggregation,aggregationID,median,Median,Médiane
-UnitHasAggregation,aggregationID,min,Lowest value in a range of values,La valeur la plus basse dans un ensemble
-UnitHasAggregation,aggregationID,max,Highest value in a range of values,La valeur la plus haute dans un ensemble
-UnitHasAggregation,aggregationID,sd,Standard deviation,Écart-type
-Aggregation,aggregationID,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.","La valeur n'a subi aucune agrégation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut être un réplica."
-Aggregation,aggregationID,arrMean,Arithmetic mean,Moyenne arithmétique
-Aggregation,aggregationID,geoMean,Geometric mean,Moyenne géométrique
-Aggregation,aggregationID,median,Median,Médiane
-Aggregation,aggregationID,min,Lowest value in a range of values,La valeur la plus basse dans un ensemble
-Aggregation,aggregationID,max,Highest value in a range of values,La valeur la plus haute dans un ensemble
-Aggregation,aggregationID,sd,Standard deviation,Écart-type
-Value,unitID,gcMI,Gene or variant copies per milliter of solution.,Copies de gène par millilitre de solution
-Value,unitID,degC,Temperature in Celcius,Température enCelcius
-Value,unitID,Ct,Cycle tresholds in a PCR assay,
-Value,unitID,detected,,
-Value,unitID,gcPmmoV,Gene copies per copy of PMMoV.,Copies de gï¿½ne ou de variant par copie de PMMoV
-Value,unitID,gcGms,Gene copies per gram solids.,Copies de gï¿½ne ou de variant par gramme de solides.
-Value,unitID,gcL,Gene copies per liter.,Copies de gï¿½ne ou de variant par litre.
-Value,unitID,gcCrA,Gene copies per copy of crAssphage.,Copies de gï¿½ne ou de variant par copie de CrAssphage
-Value,unitID,mgL,,
-Value,unitID,ph,,
-Value,unitID,uScm,,
-Value,unitID,propVar,,
-Value,unitID,pp,,
-Value,unitID,pps,,
-Value,unitID,c,,
-Value,aggregationID,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.","La valeur n'a subi aucune agrégation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut être un réplica."
-Value,aggregationID,arrMean,Arithmetic mean,Moyenne arithmétique
-Value,aggregationID,geoMean,Geometric mean,Moyenne géométrique
-Value,aggregationID,median,Median,Médiane
-Value,aggregationID,min,Lowest value in a range of values,La valeur la plus basse dans un ensemble
-Value,aggregationID,max,Highest value in a range of values,La valeur la plus haute dans un ensemble
-Value,aggregationID,sd,Standard deviation,Écart-type
-Value,qualityFlag,TRUE,,
-Value,qualityFlag,FALSE,,
+Measure,measurePart,Faecal coliforms,"group of bacteria that are passed through the fecal excrement of humans, livestock and wildlife",
+Measure,measurePart,N1,SARS-CoV-2 nucleocapsid gene N1,
+Measure,measurePart,N2,SARS-CoV-2 nucleocapsid gene N2,
+Measure,measurePart,N3,SARS-like coronaviruses nucleocapsid gene N3,
+Measure,measurePart,E,SARS-CoV-2 gene region E,
+Measure,measurePart,B1.1.7,Variant B.1.1.7,
+Measure,measurePart,B1.351,Variant B.1.351,
+Measure,measurePart,P.1,Variant P.1,
+Measure,measurePart,RdRp,SARS-CoV-2 gene region RdRp,
+Measure,measurePart,nPMMoV,amount of Pepper mild mottle virus,
+Measure,measurePart,ncrA,cross-assembly phage,
+Measure,measurePart,nbrsv,bovine respiratory syncytial virus,
+Measure,measurePart,TS,Total solids concentration.,
+Measure,measurePart,TSS,Total suspended solids concentration.,
+Measure,measurePart,VSS,Volatile suspended solids concentration.,
+Measure,measurePart,COD,Chemical oxygen demand.,
+Measure,measurePart,OPhos,Ortho-phosphate concentration.,
+Measure,measurePart,NH4N,"Ammonium nitrogen concentration, as N.",
+Measure,measurePart,TN,"Total nitrogen concentration, as N.",
+Measure,measurePart,wqPh,pH,
+Measure,measurePart,wqCond,Conductivity,
+Measure,measurePart,temp,"temperature of the sample when the measurement is taken, often when it arrives at the lab.",
+Measure,measurePart,abcxyz,gene sequence mutation,
+Measure,measurePart,other,Other measurement category. Add description to categoryOther.,
+Measure,analytePartNomenclature,Pangolin,Phylogenetic Assignment of Named Global Outbreak Lineages,
+Measure,analytePartNomenclature,Nexclade,compares difference between sequence of genome with a reference sequence and assigns the sequence to a clade,
 Site,type,airPln,Airplane.,Avion.
 Site,type,corFcil,Correctional facility.,Prison.
 Site,type,school,School,ï¿½cole.
@@ -150,12 +70,6 @@ Site,type,estuary,"Estuary, natural water body","Estuaire, ï¿½tendue d'eau natur
 Site,type,sea,"Sea, natural water body.","Mer, ï¿½tendue d'eau naturelle."
 Site,type,ocean,"Ocean, natural water body.","Ocï¿½an, ï¿½tendue d'eau naturelle."
 Site,type,other,Other site type. Add description to typeOther.,"Autre type de site. Ajouter une description dans ""typeOther""."
-AssayMethod,unitID,gcPMMoV,Gene copies per copy of PMMoV.,Copies de gï¿½ne ou de variant par copie de PMMoV
-AssayMethod,unitID,gcMl,Gene copies per milliliter.,Copies de gï¿½ne ou de variant par millilitre.
-AssayMethod,unitID,gcGms,Gene copies per gram solids.,Copies de gï¿½ne ou de variant par gramme de solides.
-AssayMethod,unitID,gcL,Gene copies per liter.,Copies de gï¿½ne ou de variant par litre.
-AssayMethod,unitID,gcCrA,Gene copies per copy of crAssphage.,Copies de gï¿½ne ou de variant par copie de CrAssphage
-AssayMethod,unitID,other,Other measurement of viral copies. Add description to unitOther.,"Autre mesure de copies virales ou de qualitï¿½ des eaux usï¿½es. Ajouter une description dans ""unitOther"""
 Instrument,type,online, An online sensor,Capteur en ligne.
 Instrument,type,lab,Offline laboratory analysis,Analyse en laboratoire.
 Instrument,type,hand,A handheld measurement analyzer.,Mesure ï¿½ l'aide d'un capteur manuel.

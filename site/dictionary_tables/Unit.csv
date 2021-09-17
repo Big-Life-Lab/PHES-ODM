@@ -1,16 +1,18 @@
 ﻿unitID,latexExpression,descriptionEN,descriptionFR,scaleID,dataType
 gcMl,$gc/{ml}$,Gene or variant copies per milliter of solution.,Copies de gène par millilitre de solution,quantitative,float
 degC,$^{\circ}C,Temperature in Celcius,Température enCelcius,quantitative,float
-Ct,$Ct$,Cycle tresholds in a PCR assay,...,quantitative,float
-detected,$detected$,,,qualitative,bool
-gcGcPmmoV,$gc/{gc_{PMMoV}$,,,,
-gcGms,$gc/{g_{solids}$,,,,
-gcL,$gc/l$,,,,
-gcGcCrA,$gc/{gc_{CrA}$,,,,
-mgL,$mg/l$,,,,
-ph,,,,,
-uScm,$\mu S / {cm}$,,,,
-propVar,$\%_{variant}$,,,,
-pp,$\%_{pos}$,,,,
-pps,$\%_{primary sludge}$,,,,
-c,$^\circ C$,,,,
+Ct,$Ct$,Cycle tresholds in a PCR assay,,quantitative,float
+detected,$detected$,Gene copies or variant detected in the sampleGene or variant copiesDetected = 1Gene or variant copiesNot detected = 0.,,qualitative,bool
+gcPmmoV,$gc/{gc_{PMMoV}$,Gene or variant copies per copy of PMMoV.,,quantitative,float
+gcGs,$gc/{g_{solids}$,Gene or variant copies per gram solids.,,quantitative,float
+gcL,$gc/l$,Gene or variant copies per liter.,,quantitative,float
+gcCrA,$gc/{gc_{CrA}$,Gene or variant copies per copy of crAssphage.,,quantitative,float
+mgL,$mg/l$,Milligrams per liter.,,quantitative,float
+ph,$\pH$,pH units,,qualitative,float
+uScm,$\mu S / {cm}$,Micro-siemens per centimeter.,,quantitative,float
+propVar,$\%_{variant}$,Proportion of variant in sample,,quantitative,float
+pp,$\%_{pos}$,"Percent positive, for Moore swab.",,quantitative,float
+pps,$\%_{primary sludge}$,"Percent primary sludge, for total solids.",,quantitative,float
+c,$^\circ C$,temperature in celsius,,quantitative,float
+bool,,In cases where a boolean yes or no is required use bool,,qualitative,bool
+other,,Other measurement of viral copies or wastewater treatment plant parameter. Add description to UnitOther.,,,
