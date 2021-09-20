@@ -28,6 +28,8 @@ The ODM strives to improve wastewater surveillance through the development of an
 
 See [metadata](metadata_en.md) for variable names and definitions. Cliquez [ici](metadata_fr.md) pour la version française.
 
+![Schematic representation of the ODM](img/ODM-schematic.svg?raw=true)
+
 ## Collaborate
 
 Issues, suggestions and pull requests are welcomed. [contributing](CONTRIBUTING.md) for more information. 
