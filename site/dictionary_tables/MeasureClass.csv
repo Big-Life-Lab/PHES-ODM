@@ -1,5 +1,5 @@
 ﻿measureClassID,descriptionEN,descriptionFR
-gene,Genome region that encodes instructions for a given protein,
+allele,Genome region that encodes instructions for a given protein,
 speciesVariant,Subspecies of an organism emerging from as a result of several genetic mutations,
 stdConcentration,Concentration that cna be expressed in units of mass per volume,
 UfcConcentration,Concentration of colony forming units per volume,
