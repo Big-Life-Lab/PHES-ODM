@@ -22,7 +22,7 @@ Wastewater-based surveillance (WBS) of SARS-CoV-2 is developing and expanding ra
 
 WBS has a history informing public health action through its use to monitor health threats such as polio, antimicrobial resistance, as well as illicit drugs, among others. However, as a surveillance tool for pandemic purposes, the program is relatively new and there are implementation gaps. Currently, there is little to no controlled vocabulary on how WBS results should ideally be reported. Hence, the idea of a WBS data model that captures all relevant fields that should ideally be reported on when sharing WBS data.
 
-The ODM strives to improve wastewater surveillance through the development of an open data structure, including metadata and vocabulary. OMD operates under the guidance of an international [steering committee](https://github.com/Big-Life-Lab/covid-19-wastewater/wiki). Working groups can be ongoing or created to address specific tasks and projects. Note that we adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) with recognition of benefit from a common data structure, including metadata and vocabulary.
+The ODM strives to improve wastewater surveillance through the development of an open data structure, including metadata and vocabulary. ODM operates under the guidance of an international [steering committee](https://github.com/Big-Life-Lab/covid-19-wastewater/wiki). Working groups can be ongoing or created to address specific tasks and projects. Note that we adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) with recognition of benefit from a common data structure, including metadata and vocabulary.
 
 ## Data and metadata dictionary
 
@@ -53,7 +53,7 @@ See [roadmap](roadmap.md) for more details.
 
 ## Additional tools
 
-Working group members maintain other repositories with tools that use the OMD, including:
+Working group members maintain other repositories with tools that use the ODM, including:
 
 - [data visualization](https://github.com/Big-Life-Lab/Ottawa-COVID-Projection).
 - methods to convert Excel tables that are not in [ODM format into ODM data frame](https://github.com/jeandavidt/ODM-Import).
