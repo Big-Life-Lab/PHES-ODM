@@ -123,7 +123,7 @@ Some examples are given below,
    | ------------ |
    | rawWW;swrSed |
 
-2. Exclude values between March 1st 2021 and December 1st 2021 including the endpoints. All Datetime values inside list must go within double or single quotes.
+2. Exclude values between March 1st 2021 and December 1st 2021 including the endpoints.
 
    | ruleValue               |
    | ----------------------- |
