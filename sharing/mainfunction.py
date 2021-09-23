@@ -978,7 +978,9 @@ dataset = {'AssayMethod': [{'assayMethodID': 'Assay Y100',
    'unitOther': 'gcmnPMMoV',
    'value': 98000}]}
 
-def create_dataset(rule,data=dataset):
+organization = "PHAC"
+
+def create_dataset(rule,data=dataset, org= organization):
   """The function takes in data in form of a dictionary where the keys specify each table in the data and the value is the actual data in the
   form of list of dictionaries where each nested dictionary is a row within the table. The function also takes in as input the rule which is
   a list of dictionaries where each dictionary specifies the sharing properties such as organization, rulesValue, entities such as table
