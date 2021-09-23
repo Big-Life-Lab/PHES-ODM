@@ -1,25 +1,24 @@
-﻿measureID,shortName,fullName,commonNameEN,commonNameFR,descriptionEN,descriptionFR,status,firstReleased,lastUpdated,domainID,specimenID,MeasureGroupID,measureClassClassID,measurePart,analytePartNomenclature
-1,wqCOD,,,,chemical oxygen demand,,inactive,0,2,chemical,wwsample,SARS-CoV-2,stdConcentration,COD,
-2,wqEcoli,,,,"concentration of bacteria that are passed through the fecal excrement of humans, livestock and wildlife",,inactive,0,1,biologic,wwsample,EColi,UfcConcentration,Faecal coliforms,
-3,covB117,,,,Variant B.1.1.7 detected,,active,2,3,biologic,sample,SARS-CoV-2,speciesVariant,B1.1.7,Pangolin
-4,covB1.351,,,,Variant B1.351 detected,,active,2,3,biologic,sample,SARS-CoV-2,speciesVariant,B1.351,Pangolin
-5,covP1,,,,Variant P.1 detected,,active,0,3,biologic,wwsample,SARS-CoV-2,speciesVariant,P.1,Pangolin
-6,PMMVabcxyz,,,,gene sequence mutated,,active,2,3,biologic,sample,SARS-CoV-2,geneMutation,abcxyz,Nexclade
-7,wqFlow,,,,measurement of flow of mass of volume per unit of time,,inactive,0,3,physical,site,Wastewater,flow,flow,
-8,CovN1,,,,amount of SARS-CoV-2 nucleocapsid gene N1 in sample,,active,0,3,biologic,sample,SARS-CoV-2,allele,N1,
-9,covN2,,,,amount of SARS-CoV-2 nucleocapsid gene N2 in sample,,active,0,3,biologic,wwsample,SARS-CoV-2,allele,N2,
-10,covN3,,,,amount of SARS-CoV-2 nucleocapsid gene N3 in sample,,active,0,3,biologic,sample,SARS-CoV-2,allele,N1,
-11,covE,,,,amount of SARS-CoV-2 gene region E in sample,,active,0,3,biologic,sample,SARS-CoV-2,allele,N1,
-12,covRdRp,,,,amount of SARS-CoV-2 gene region RdRp,,active,0,3,biologic,wwsample,SARS-CoV-2,allele,RdRp,
-13,PMMoV,,,,amount of Pepper mild mottle virus,,active,0,3,biologic,wwsample,PMMoV,allele,nPMMoV,
-14,crA,,,,amount of cross-assembly phage,,active,0,3,biologic,wwsample,crAssphage,allele,ncrA,
-15,brsv,,,,amount of bovine respiratory syncytial virus,,active,0,3,biologic,wwsample,BRSV,allele,brsv,
-16,wqTS,,,,Total solids concentration measurement,,active,0,3,chemical,wwsample,Wastewater,stdConcentration,TS,
-17,wqTSS,,,,Total suspended solids concentration measurement,,active,0,3,chemical,wwsample,Wastewater,stdConcentration,TSS,
-18,wqVSS,,,,Volatile suspended solids concentration ,,active,0,3,chemical,wwsample,Wastewater,stdConcentration,VSS,
-19,wqOPhos,,,,Ortho-phosphate concentration.,,active,0,3,chemical,wwsample,Wastewater,stdConcentration,OPhos,
-20,wqNH4N,,,,"Ammonium nitrogen concentration, as N.",,active,0,3,chemical,wwsample,Wastewater,stdConcentration,NH4N,
-21,wqTN,,,,"Total nitrogen concentration, as N.",,active,0,3,chemical,wwsample,Wastewater,stdConcentration,TN,
-22,wqPh,,,,pH measurement,,active,0,3,chemical,wwsample,Wastewater,pHMeasurement,pH,
-23,wqCond,,,,measurement of conductivity of sample,,active,0,3,physical,wwsample,Wastewater,Conductivity,Cond,
-24,temp,,,,Temperature of the sample measured in degrees Celcius,,active,0,3,physical,wwsample,Wastewater,Temperature,temp,
+measureID,shortName,fullName,commonNameEN,commonNameFR,descriptionEN,descriptionFR,status,firstReleased,lastUpdated,domainID,specimenID,MeasureGroupID,measureClassID,measurePart,analytePartNomenclature
+1,wqCOD,To be procedurally generated,COD,DCO,Chemical oxygen demand,Demande biochimique en oxygène,active,2.0,2.0,chemical,wwsample,Wastewater,stdConcentration,COD,
+2,wqEcoli,To be procedurally generated,Faecal Coliforms,Coliformes fécaux,"Concentration of bacteria that are passed through the faecal excrement of humans, livestock and wildlife",Concentrations de bactéries indicatrices de contamination fécale par les humains et les animaux.,active,2.0,2.0,biologic,wwsample,EColi,ufcConcentration,Faecal coliforms,
+3,covB117,To be procedurally generated,SARS-CoV-2-B.1.1.7,SARS-CoV-2-B.1.1.7,Variant B.1.1.7 of the SARS-CoV-2 virus,Variant B.1.1.7 du virus SARS-CoV-2,active,2.0,2.0,biologic,wwsample,SARS-CoV-2,speciesVariant,B1.1.7,Pangolin
+4,covB1351,To be procedurally generated,SARS-CoV-2-B.1.351,SARS-CoV-2-B.1.351,Variant B.1.351 of the SARS-CoV-2 virus,Variant B.1.351 du virus SARS-CoV-2,active,2.0,2.0,biologic,wwsample,SARS-CoV-2,speciesVariant,B1.351,Pangolin
+5,covP1,To be procedurally generated,SARS-CoV-2-P.1,SARS-CoV-2-P.1,Variant P.1 of the SARS-CoV-2 virus,Variant P.1 du virus SARS-CoV-2,active,2.0,2.0,biologic,wwsample,SARS-CoV-2,speciesVariant,P.1,Pangolin
+7,wqFlow,To be procedurally generated,Flow rate,Débit,Measurement of the flow of mass or volume per unit of time,Mesure de l’écoulement de masse ou de volume par unité de temps,active,2.0,2.0,physical,wwtp,Wastewater,flow,flow,
+8,CovN1,To be procedurally generated,SARS-CoV-2-N1,SARS-CoV-2-N1,"SARS-CoV-2 nucleocapsid gene, allele 1",Allèle 1 du gène exprimant la protéine nucléocapside du SARS-CoV-2,active,2.0,2.0,biologic,wwsample,SARS-CoV-2,allele,N1,
+9,covN2,To be procedurally generated,SARS-CoV-2-N2,SARS-CoV-2-N2,"SARS-CoV-2 nucleocapsid gene, allele 2",Allèle 2 du gène exprimant la protéine nucléocapside du SARS-CoV-2,active,2.0,2.0,biologic,wwsample,SARS-CoV-2,allele,N2,
+10,covN3,To be procedurally generated,SARS-CoV-2-N3,SARS-CoV-2-N3,"SARS-CoV-2 nucleocapsid gene, allele 3",Allèle 3 du gène exprimant la protéine nucléocapside du SARS-CoV-2,active,2.0,2.0,biologic,wwsample,SARS-CoV-2,allele,N3,
+11,covE,To be procedurally generated,SARS-CoV-2-E,SARS-CoV-2-E,SARS-CoV-2 E gene,Région E du génome du SARS-CoV-2,active,2.0,2.0,biologic,wwsample,SARS-CoV-2,allele,E,
+12,covRdrp,To be procedurally generated,SARS-CoV-2-RdRp,SARS-CoV-2-RdRp,SARS-CoV-2 RdRp gene,Région RdRp du génome du SARS-CoV-2,active,2.0,2.0,biologic,wwsample,SARS-CoV-2,allele,RdRp,
+13,pmmovCp,To be procedurally generated,PMMoV-CP,PMMoV-CP,Pepper mild mottle virus capsid protein gene region,Région de la protéine du capside du virus de la marbrure légère du piment,active,2.0,2.0,biologic,wwsample,PMMoV,allele,N,
+14,crA,To be procedurally generated,crAssphage-N,crAssphage-N,crAssphage virus capsid protein gene region,Région de la protéine du capside du virus crAssPhage,active,2.0,2.0,biologic,wwsample,crAssphage,allele,N,
+15,brsvN,To be procedurally generated,BRSV-N,BRSV-N,bovine respiratory syncytial virus capsid protein gene region,Région de la protéine du capside du virus respiratoire syncytial bovin,active,2.0,2.0,biologic,wwsample,BRSV,allele,N,
+16,wqTS,To be procedurally generated,Total Solids,Solides Totaux,Total solids concentration,Solides Totaux,active,2.0,2.0,chemical,wwsample,Wastewater,stdConcentration,TS,
+17,wqTSS,To be procedurally generated,Total Suspended Solids,Matières en Suspension,Total suspended solids,Matières en Suspension,active,2.0,2.0,chemical,wwsample,Wastewater,stdConcentration,TSS,
+18,wqVSS,To be procedurally generated,Volatile Suspended Solids,Matières volatiles en suspension,Volatile suspended solids,Matières volatiles en suspension,active,2.0,2.0,chemical,wwsample,Wastewater,stdConcentration,VSS,
+19,wqOPhos,To be procedurally generated,Orthophosphates,Orthophosphates,Ortho-phosphate concentration.,Orthophosphates,active,2.0,2.0,chemical,wwsample,Wastewater,stdConcentration,OPhos,
+20,wqNH4N,To be procedurally generated,Ammonium Nitrogen,Azote Ammoniacal,"Ammonium nitrogen concentration, as N.",Azote Ammoniacal,active,2.0,2.0,chemical,wwsample,Wastewater,stdConcentration,NH4N,
+21,wqTN,To be procedurally generated,Total Nitrogen,Azote total,"Total nitrogen concentration, as N.",Azote total,active,2.0,2.0,chemical,wwsample,Wastewater,stdConcentration,TN,
+22,wqPh,To be procedurally generated,pH,pH,pH measurement,pH,active,2.0,2.0,chemical,wwsample,Wastewater,pHMeasurement,pH,
+23,wqCond,To be procedurally generated,Conductiivty,Conductivité,measurement of conductivity of sample,Conductivité,active,2.0,2.0,physical,wwsample,Wastewater,Conductivity,Cond,
+24,wqTemp,To be procedurally generated,Temperature,Water Temperature,Temperature of the sample measured in degrees Celcius,Water Temperature,active,2.0,2.0,physical,wwsample,Wastewater,Temperature,temp,

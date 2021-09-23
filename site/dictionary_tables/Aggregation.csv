@@ -1,4 +1,4 @@
-﻿aggregationID,descriptionEN,descriptionFR
+aggregationID,descriptionEN,descriptionFR
 single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.","La valeur n'a subi aucune agrégation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut être un réplica."
 arrMean,Arithmetic mean,Moyenne arithmétique
 geoMean,Geometric mean,Moyenne géométrique
@@ -6,7 +6,3 @@ median,Median,Médiane
 min,Lowest value in a range of values,La valeur la plus basse dans un ensemble
 max,Highest value in a range of values,La valeur la plus haute dans un ensemble
 sd,Standard deviation,Écart-type
-meanNr,"Arithmetic mean, normalized",
-geoMeanNr,"Geometric mean, normalized",
-sdNr,"Standard deviation, normalized",
-other,Other aggregation method. Add description to aggregationOther,

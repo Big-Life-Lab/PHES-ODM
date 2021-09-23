@@ -1,18 +1,20 @@
-﻿unitID,latexExpression,descriptionEN,descriptionFR,scaleID,dataType
-gcMl,$gc/{ml}$,Gene or variant copies per milliter of solution.,Copies de gène par millilitre de solution,quantitative,float
-degC,$^{\circ}C,Temperature in Celcius,Température enCelcius,quantitative,float
-Ct,$Ct$,Cycle tresholds in a PCR assay,,quantitative,float
-detected,$detected$,Gene copies or variant detected in the sampleGene or variant copiesDetected = 1Gene or variant copiesNot detected = 0.,,qualitative,bool
-gcPmmoV,$gc/{gc_{PMMoV}$,Gene or variant copies per copy of PMMoV.,,quantitative,float
-gcGs,$gc/{g_{solids}$,Gene or variant copies per gram solids.,,quantitative,float
-gcL,$gc/l$,Gene or variant copies per liter.,,quantitative,float
-gcCrA,$gc/{gc_{CrA}$,Gene or variant copies per copy of crAssphage.,,quantitative,float
-mgL,$mg/l$,Milligrams per liter.,,quantitative,float
-ph,$\pH$,pH units,,qualitative,float
-uScm,$\mu S / {cm}$,Micro-siemens per centimeter.,,quantitative,float
-propVar,$\%_{variant}$,Proportion of variant in sample,,quantitative,float
-pp,$\%_{pos}$,"Percent positive, for Moore swab.",,quantitative,float
-pps,$\%_{primary sludge}$,"Percent primary sludge, for total solids.",,quantitative,float
-c,$^\circ C$,temperature in celsius,,quantitative,float
-bool,,In cases where a boolean yes or no is required use bool,,qualitative,bool
-other,,Other measurement of viral copies or wastewater treatment plant parameter. Add description to UnitOther.,,,
+unitID,latexExpression,descriptionEN,descriptionFR,unitScaleID,aggregationScaleID,dataType
+gcMl,$gc/{ml}$,Gene or variant copies per milliter of solution.,Copies de gène par millilitre de solution,quantitative,linear,float
+degC,$^{\circ}C,Degrees Celcius,Degrés Celcius,quantitative,linear,float
+ct,$Ct$,Cycle tresholds in a PCR assay,Cycles de seuil,quantitative,logarithmic,float
+detected,$detected$,Substance detected or not detected,Substance détectée ou non,qualitative,linear,bool
+gcGcPmmoV,$gc/{gc_{PMMoV}$,Gene or variant copies per copy of PMMoV.,Copies de gène par copie de gène du PMMV,quantitative,linear,float
+gcGcCrA,$gc/{gc_{CrA}$,Gene or variant copies per copy of crAssphage.,Copies de gène par copie de gène du crAssphage,quantitative,linear,float
+gcGSld,$gc/{g_{solids}$,Gene or variant copies per gram solids.,Copies de gène par millilitre gramme de solides,quantitative,linear,float
+mgL,$mg/l$,Milligrams per liter.,Milligrammes par litre,quantitative,linear,float
+ppm,$ppm$,Parts per million,Parties par million,quantitative,linear,float
+ph,$\pH$,pH units,Unités de pH,qualitative,linear,float
+uSCm,$\mu S / {cm}$,Micro-siemens per centimeter.,Micro-Siemens par centrimètre,quantitative,linear,float
+pctPrp,$\%$,Proportion expressed as percentage,Proportion exprimée en pourcentage,quantitative,linear,float
+pctPos,$\%_{pos}$,Percentage of positive aliquots.,Pourcentage de positivité d’aliquots.,quantitative,linear,float
+pctSld,$\%_{primary sludge}$,"Percentage of total solids, for primary sludge","Pourcentage de solides, pour les boues primaires",quantitative,linear,float
+cfu100Ml,$CFU/{100~ml}$,Colony forming units per 100 ml,Unités formatrices de colonies par 100 millilitres,quantitative,linear,float
+m3S,$m^3/s$,Cubic meter per second,Mètres cubes par seconde,quantitative,linear,float
+kgS,$kg/S$,Kilograms per second,Kilogrammes par seconde,quantitative,linear,float
+bool,,In cases where a boolean yes or no is required use bool,"Pour les cas, ou une réponse positive ou négative est requise",qualitative,linear,bool
+other,,Other unit,Autre unité,,,

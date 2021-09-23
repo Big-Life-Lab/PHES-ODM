@@ -14,7 +14,8 @@ Measure,Measure,Mesure,Definition of measured quantity or quality.,Définiton d'
 MeasureClass,Measure class,Classe de mesure,Group of measures that are performed using similar assay methods.,Classe de mesures utilisant des procédures d'essai similaires.
 MeasureClassHasUnit,Measure class has unit,Classe de mesure utilise unité,Shows relations between a measure class and reporting units.,Montre les relations entre les classes de mesures et les unités utilisées pour raporter leur valeur.
 MeasureGroup,Measure group,Groupe de mesure,Groups measures that have relate to the same.,
-Scale,Scale,Échelle,"Cardinality of a measurement (qualitative, quantitative, etc.).","Cardinalité d'une mesure (quantitative, qualitative, etc.)."
+UnitScale,Unit Scale,Échelle des unités,"Cardinality of a measurement (qualitative, quantitative, etc.).","Cardinalité d'une mesure (quantitative, qualitative, etc.)."
 Specimen,Specimen,Spécimen,Class of entity from which a measure is taken.,"Classe d'entité sur laquelle une mesure est prise (échantillon, site, etc.)."
-Unit,Unit,Unité,Unit of reporting for values,Unité pour rapporter des valeurs
-UnitHasAggregation,Unit has aggregation,Unité utilise aggrégation,Aggregations that are meaningful for a given unit,Aggrégations qui sont utilisables avec une unité
+Unit,Unit of measure,Unité de mesure,Unit of reporting for values,Unité pour rapporter des valeurs
+UnitHasAggregationScale,Unit has aggregation scale,Unité utilise échelle d'aggrégation,Aggregations that are meaningful for a given unit,Aggrégations qui sont utilisables avec une unité
+AggregationScale,Aggregation scales,Échelle d'aggrégation,Scale used to aggregate values together,
