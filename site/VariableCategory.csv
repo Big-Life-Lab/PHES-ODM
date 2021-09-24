@@ -1,90 +1,52 @@
 tableName,variableName,variableValue,desc_en,desc_fr
-Sample,type,rawWW,Raw wastewater.,Eau us�e brute
-Sample,type,swrSed,Sediments obtained in sewer.,S�diments provenant des �gouts.
-Sample,type,pstGrit,Raw wastewater after a treatment plant's headworks.,Eau us�e apr�s d�grillage et dessablage.
-Sample,type,pSludge,Sludge produced by primary clarifiers.,Boue provenant d'un d�canteur primaire.
-Sample,type,pEfflu,Effluent obtained after primary clarifiers.,Effluent obtenu apr�s un d�canteur primaire.
-Sample,type,sSludge,Sludge produced by secondary clarifiers.,Boue provenant d'un d�canteur secondaire.
-Sample,type,sEfflu,Effluent obtained after secondary clarifiers.,Effluent obtenu apr�s un d�canteur secondaire.
-Sample,type,water,"Non-wastewater, coming from any kind of water body.",Eau non-us�e provenant de toute �tendue d'eau.
-Sample,type,faeces,Fecal matter.,Mati�re f�cale.
-Sample,type,other,Other type of site. Add description to typeOther.,"Autre type de site d'�chantillonnage. Ajouter une description dans la colonne ""typeOther"""
-Sample,collection,cpTP24h,A time proportional 24-hour composite sample generally collected by an autosampler.,"Un �chantillon composite proportionnel au temps pr�lev� sur 24 heures, g�n�ralement pr�lev� par un auto-�chantilonneur."
-Sample,collection,cpFP24h,A flow proportional 24-hour composite sample generally collected by an autosampler.,"Un �chantillon composite proportionnel au d�bit pr�lev� sur 24 heures, g�n�ralement pr�lev� par un auto-�chantilonneur."
-Sample,collection,grb,A single large representative grab sample.,Un seul �chantillon ponctuel repr�sentatif.
-Sample,collection,grbCp8h,"A 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.","Un �chantillon composite pr�lev� sur 8 heures consitu� d'�chantillons ponctuels collect�s une fois par heure, g�n�ralement pr�lev� manuellement."
-Sample,collection,grbCp3h,"A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.","Un �chantillon composite pr�lev� sur 3 heures consitu� d'�chantillons ponctuels collect�s une fois par heure, g�n�ralement pr�lev� manuellement."
-Sample,collection,grbCp3,A grab-composite sample composed of 3 separate grab samples.,Un �chantillon composite compos� de 3 �chantillons ponctuels.
-Sample,collection,mooreSw,Moore swab passive sample.,Un �chantillon passif collect� par la m�thode de Moore.
-Sample,collection,other,Other type of collection method. Add description to collectionOther.,"Autre m�thode de collecte. Ajouter une description dans la colonne ""descriptionOther"""
+Sample,type,rawWW,Raw wastewater.,Eau usée brute
+Sample,type,swrSed,Sediments obtained in sewer.,Sédiments provenant des égouts.
+Sample,type,pstGrit,Raw wastewater after a treatment plant's headworks.,Eau usée aprés dégrillage et dessablage.
+Sample,type,pSludge,Sludge produced by primary clarifiers.,Boue provenant d'un décanteur primaire.
+Sample,type,pEfflu,Effluent obtained after primary clarifiers.,Effluent obtenu aprés un décanteur primaire.
+Sample,type,sSludge,Sludge produced by secondary clarifiers.,Boue provenant d'un décanteur secondaire.
+Sample,type,sEfflu,Effluent obtained after secondary clarifiers.,Effluent obtenu aprés un décanteur secondaire.
+Sample,type,water,"Non-wastewater, coming from any kind of water body.",Eau non-usée provenant de toute étendue d'eau.
+Sample,type,faeces,Fecal matter.,Matiére fécale.
+Sample,type,other,Other type of site. Add description to typeOther.,"Autre type de site d'échantillonnage. Ajouter une description dans la colonne ""typeOther"""
+Sample,collection,cpTP24h,A time proportional 24-hour composite sample generally collected by an autosampler.,"Un échantillon composite proportionnel au temps prélevé sur 24 heures, généralement prélevé par un auto-échantilonneur."
+Sample,collection,cpFP24h,A flow proportional 24-hour composite sample generally collected by an autosampler.,"Un échantillon composite proportionnel au débit prélevé sur 24 heures, généralement prélevé par un auto-échantilonneur."
+Sample,collection,grb,A single large representative grab sample.,Un seul échantillon ponctuel représentatif.
+Sample,collection,grbCp8h,"A 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.","Un échantillon composite prélevé sur 8 heures consitué d'échantillons ponctuels collectés une fois par heure, généralement prélevé manuellement."
+Sample,collection,grbCp3h,"A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.","Un échantillon composite prélevé sur 3 heures consitué d'échantillons ponctuels collectés une fois par heure, généralement prélevé manuellement."
+Sample,collection,grbCp3,A grab-composite sample composed of 3 separate grab samples.,Un échantillon composite composé de 3 échantillons ponctuels.
+Sample,collection,mooreSw,Moore swab passive sample.,Un échantillon passif collecté par la méthode de Moore.
+Sample,collection,other,Other type of collection method. Add description to collectionOther.,"Autre méthode de collecte. Ajouter une description dans la colonne ""descriptionOther"""
 Measure,status,active,,
 Measure,status,inactive,,
-Measure,domainID,biologic,A living organism or its genetic material,organisme ou son code g�n�tique
-Measure,domainID,chemical,A chemical compound,� n'importe quelle mesure chimique (m�me mesure aggr�g�e comme la DCO par exemple)
-Measure,domainID,physical,A physical properties or objects not characterized by life or chemistry (solids),� une propri�t� physique ou a une propri�t� qui n'est pas sp�cifi�e par la composition chimique ou la pr�sence de vie
-Measure,measurePart,Faecal coliforms,"group of bacteria that are passed through the fecal excrement of humans, livestock and wildlife",
-Measure,measurePart,N1,SARS-CoV-2 nucleocapsid gene N1,
-Measure,measurePart,N2,SARS-CoV-2 nucleocapsid gene N2,
-Measure,measurePart,N3,SARS-like coronaviruses nucleocapsid gene N3,
-Measure,measurePart,E,SARS-CoV-2 gene region E,
-Measure,measurePart,B1.1.7,Variant B.1.1.7,
-Measure,measurePart,B1.351,Variant B.1.351,
-Measure,measurePart,P.1,Variant P.1,
-Measure,measurePart,RdRp,SARS-CoV-2 gene region RdRp,
-Measure,measurePart,nPMMoV,amount of Pepper mild mottle virus,
-Measure,measurePart,ncrA,cross-assembly phage,
-Measure,measurePart,nbrsv,bovine respiratory syncytial virus,
-Measure,measurePart,TS,Total solids concentration.,
-Measure,measurePart,TSS,Total suspended solids concentration.,
-Measure,measurePart,VSS,Volatile suspended solids concentration.,
-Measure,measurePart,COD,Chemical oxygen demand.,
-Measure,measurePart,OPhos,Ortho-phosphate concentration.,
-Measure,measurePart,NH4N,"Ammonium nitrogen concentration, as N.",
-Measure,measurePart,TN,"Total nitrogen concentration, as N.",
-Measure,measurePart,wqPh,pH,
-Measure,measurePart,wqCond,Conductivity,
-Measure,measurePart,temp,"temperature of the sample when the measurement is taken, often when it arrives at the lab.",
-Measure,measurePart,abcxyz,gene sequence mutation,
-Measure,measurePart,other,Other measurement category. Add description to categoryOther.,
 Measure,analytePartNomenclature,Pangolin,Phylogenetic Assignment of Named Global Outbreak Lineages,
 Measure,analytePartNomenclature,Nexclade,compares difference between sequence of genome with a reference sequence and assigns the sequence to a clade,
 Site,type,airPln,Airplane.,Avion.
 Site,type,corFcil,Correctional facility.,Prison.
-Site,type,school,School,�cole.
-Site,type,hosptl,Hospital,H�pital.
-Site,type,ltcf,Long-term care facility.,�tablissement de soins de longue dur�e.
+Site,type,school,School,école.
+Site,type,hosptl,Hospital,Hépital.
+Site,type,ltcf,Long-term care facility.,établissement de soins de longue durée.
 Site,type,swgTrck,Sewage truck.,Camion de vidange.
 Site,type,uCampus,University campus.,Campus universitaire.
-Site,type,mSwrPpl,Major sewer pipeline.,Collecteur d'�gouts.
+Site,type,mSwrPpl,Major sewer pipeline.,Collecteur d'égouts.
 Site,type,pStat,Pumping station.,Station de pompage.
 Site,type,holdTnk,Hold tank.,Bassin de stockage.
-Site,type,retPond,Retention pond.,Bassin de r�tention.
-Site,type,wwtpMuC,Municipal wastewater treatment plant for combined sewage.,Station de traitement des eaux us�es municipales pour �gouts combin�s.
-Site,type,wwtpMuS,Municipal wastewater treatment plant for sanitary sewage only.,Station de traitement des eaux us�es municipales pour �gouts sanitaires seulement.
-Site,type,wwtpInd,Industrial wastewater treatment plant.,Station de traitement des eaux us�es industrielle.
-Site,type,lagoon,Logoon system for extensive wastewater treatment.,Syst�me de lagunage pour traitement des eaux us�es.
+Site,type,retPond,Retention pond.,Bassin de rétention.
+Site,type,wwtpMuC,Municipal wastewater treatment plant for combined sewage.,Station de traitement des eaux usées municipales pour égouts combinés.
+Site,type,wwtpMuS,Municipal wastewater treatment plant for sanitary sewage only.,Station de traitement des eaux usées municipales pour égouts sanitaires seulement.
+Site,type,wwtpInd,Industrial wastewater treatment plant.,Station de traitement des eaux usées industrielle.
+Site,type,lagoon,Logoon system for extensive wastewater treatment.,Systéme de lagunage pour traitement des eaux usées.
 Site,type,septTnk,Septic tank.,Fosse septique.
-Site,type,river,"River, natural water body.","Rivi�re, �tendue d'eau naturelle."
-Site,type,lake,"Lake, natural water body.","Lac, �tendue d'eau naturelle."
-Site,type,estuary,"Estuary, natural water body","Estuaire, �tendue d'eau naturelle."
-Site,type,sea,"Sea, natural water body.","Mer, �tendue d'eau naturelle."
-Site,type,ocean,"Ocean, natural water body.","Oc�an, �tendue d'eau naturelle."
+Site,type,river,"River, natural water body.","Riviére, étendue d'eau naturelle."
+Site,type,lake,"Lake, natural water body.","Lac, étendue d'eau naturelle."
+Site,type,estuary,"Estuary, natural water body","Estuaire, étendue d'eau naturelle."
+Site,type,sea,"Sea, natural water body.","Mer, étendue d'eau naturelle."
+Site,type,ocean,"Ocean, natural water body.","Océan, étendue d'eau naturelle."
 Site,type,other,Other site type. Add description to typeOther.,"Autre type de site. Ajouter une description dans ""typeOther""."
 Instrument,type,online, An online sensor,Capteur en ligne.
 Instrument,type,lab,Offline laboratory analysis,Analyse en laboratoire.
-Instrument,type,hand,A handheld measurement analyzer.,Mesure � l'aide d'un capteur manuel.
-Instrument,type,atline,An atline analyzer with sampler.,Mesure � l'aide d'un �chantillonneur.
+Instrument,type,hand,A handheld measurement analyzer.,Mesure à l'aide d'un capteur manuel.
+Instrument,type,atline,An atline analyzer with sampler.,Mesure à l'aide d'un échantillonneur.
 Instrument,type,other,An other type of measurement instrument. Add description to instrumentTypeOther.,"Autre type d'appareil de mesure. Ajouter une description dans ""instrumentTypeOther"""
-Polygon,type,swrCat,Sewer catchment area.,Zone de captage d'un r�seau d'�gout.
-Polygon,type,hlthReg,Health region served by the sewer network,R�gion de sant� desservie par le r�seau d'�gout.
-CovidPublicHealthData,type,conf,Number of confirmed cases. This measure should be accompanied by dateType.,"Nombre de cas confirm�s. La mesure devrait �tre accompagn�e d'une valeur dans la colonne ""dateType"""
-CovidPublicHealthData,type,active,Number of active cases.,Nombre de cas actifs.
-CovidPublicHealthData,type,test,Number of tests performed.,Nombre de tests effectu�s.
-CovidPublicHealthData,type,posTest,Number of positive tests.,Nombre de tests positifs.
-CovidPublicHealthData,type,pPosRt,Percent positivity rate.,Pourcentage de positivit� des tests.
-CovidPublicHealthData,type,hospCen,Hospital census or the number of people admitted with covid-19.,Rencensement des patients admis � un h�pital avec la COVID-19.
-CovidPublicHealthData,type,hospAdm,Hospital admissions or patients newly admitted to hospital.,Nombre d'admissions ou nombre de patients admis � l'h�pital.
-CovidPublicHealthData,dateType,episode ,"Episode date is the earliest of onset, test or reported date.","Date estim�e � laquelle l'�pisode de maladie s'est d�clar�. Habituellement calcul� en se basant sur la date des premiers sympt�mes, la date de test ou la date de reportage. "
-CovidPublicHealthData,dateType,onset,"Earliest that symptoms were reported for this case. This data is often not known and reported. In lieu, episode is used.",Date � laquelle les premiers sympt�mes apparaissent. Cette donn�e est souvent inconnue. La date d'�pisode est alors commun�ment utilis�e.
-CovidPublicHealthData,dateType,report,"Date that the numbers were reported publicly. Typically, reported data and this measure is most commonly reported and used.",Date � laquelle la donn�e a �t� report�e � la sant� publique. Cette mesure est commun�ment utilis�e.
-CovidPublicHealthData,dateType,test,Date that the covid-19 test was performed.,Date � laquelle le test de COVID-19 a �t� effectu�.
+Polygon,type,swrCat,Sewer catchment area.,Zone de captage d'un réseau d'égout.
+Polygon,type,hlthReg,Health region served by the sewer network,Région de santé desservie par le réseau d'égout.
