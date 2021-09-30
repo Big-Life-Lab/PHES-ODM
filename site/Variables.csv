@@ -1,45 +1,45 @@
 tableName,variableName,variableShortFormalName,variableLabel,key,foreignKeyTable,foreignKeyVariable,variableType,minLength,maxLength,variableDesc
-Sample,sampleID,sa_said,Sample id,Primary Key,,,string,null,null,Unique identifier for sample. Suggestion:siteID-date-index.
-Sample,siteID,sa_siid,Site id,Foreign key,Site,siteID,string,null,null,Links with the Site table to describe the location of sampling.
+Sample,sampleID,sa_said,Sample id,Primary Key,,,string,,,Unique identifier for sample. Suggestion:siteID-date-index.
+Sample,siteID,sa_siid,Site id,Foreign key,Site,siteID,string,,,Links with the Site table to describe the location of sampling.
 Sample,instrumentID,sa_inid,Instrument id,Foreign key,Instrument,InstrumentID,string,,,Links with the Instrument table to describe the instrument used for sampling.
 Sample,reporterID,sa_reid,reporter ID,Foreign key,Reporter,reporterID,string,,,Links with the reporter table to identify the reporter who collected the sample.
-Sample,dateTime,sa_dt,Date time,,,,datetime,null,null,"for grab samples this is the date, time and timezone the sample was taken."
-Sample,dateTimeStart,sa_dts,Date time start,,,,datetime,null,null,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken."
-Sample,dateTimeEnd,sa_dte,Date time end,,,,datetime,null,null,"For integrated time average samples this is the date, time and timezone the sample was finished being taken."
-Sample,type,sa_ty,Type,,,,category,null,null,Type of sample.
+Sample,dateTime,sa_dt,Date time,,,,datetime,,,"for grab samples this is the date, time and timezone the sample was taken."
+Sample,dateTimeStart,sa_dts,Date time start,,,,datetime,,,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken."
+Sample,dateTimeEnd,sa_dte,Date time end,,,,datetime,,,"For integrated time average samples this is the date, time and timezone the sample was finished being taken."
+Sample,type,sa_ty,Type,,,,category,,,Type of sample.
 Sample,typeOther,sa_tyo,Type other,,,,string,,,Description for other type of sample not listed in
-Sample,collection,sa_co,Collection,,,,category,null,null,Method used to collect the sample.
+Sample,collection,sa_co,Collection,,,,category,,,Method used to collect the sample.
 Sample,collectionOther,sa_coo,Collection other,,,,string,,,Description for other type of method not listed in collection.
 Sample,preTreatment,sa_pt,Pre treatment,,,,boolean,,,Was the sample chemically treated in anyway with the addition of stabilizers or other
 Sample,preTreatmentDescription,sa_ptd,Pre treatment description,,,,string,,,If preTreatment then describe the treatment that was performed.
 Sample,pooled,sa_po,Pooled,,,,boolean,,,"Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites"
 Sample,children,sa_ch,Children,,,,string,,,If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.
 Sample,parent,sa_pa,Parent,,,,string,,,If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.
-Sample,sizeL,sa_sil,Size l,,,,float,null,null,Total volume of water or sludge sampled.
-Sample,fieldSampleTempC,sa_fstc,Field sample temp c,,,,float,null,null,Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
-Sample,shippedOnIce,sa_soi,Shipped on ice,,,,boolean,null,null,Was the sample kept cool while being shipped to the lab
+Sample,sizeL,sa_sil,Size l,,,,float,,,Total volume of water or sludge sampled.
+Sample,fieldSampleTempC,sa_fstc,Field sample temp c,,,,float,,,Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
+Sample,shippedOnIce,sa_soi,Shipped on ice,,,,boolean,,,Was the sample kept cool while being shipped to the lab
 Sample,storageTempC,sa_stc,Storage temp c,,,,float,,,Temperature that the sample is stored at in Celsius.
 Sample,qualityFlag,sa_qf,Quality flag,,,,boolean,,,Does the reporter suspect the sample having some quality issues
-Sample,notes,sa_no,Notes,,,,string,0,255,Any additional notes.
-WWMeasure,uWwMeasureID,wm_umid,U ww measure id,Primary Key,,,string,0,100,Unique identifier a measurement within the measurement table.
+Sample,notes,sa_no,Notes,,,,string,,,Any additional notes.
+WWMeasure,uWwMeasureID,wm_umid,U ww measure id,Primary Key,,,string,,,Unique identifier a measurement within the measurement table.
 WWMeasure,wwMeasureID,wm_mid,Ww measure id,,,,string,,,Unique identifier for wide table only. Use when all measures are performed on a single sample at the same time and same laboratory. Suggestion: siteID_sampleID_LabID_reportDate_ID.
-WWMeasure,sampleID,wm_said,Sample id,Foreign key,Sample,sampleID,string,null,null,Links with the identified Sample
-WWMeasure,labID,wm_laid,Lab id,Foreign key,Lab,labID,string,null,null,Links with the identified Lab that performed the analysis.
-WWMeasure,assayID,wm_asid,Assay id,Foreign key,AssayMethod,assayID,string,null,null,Links with the AssayMethod used to perform the analysis. Use instrument.ID for measures that are not viral measures.
-WWMeasure,instrumentID,wm_inid,Instrument id,Foreign key,Instrument,instrumentID,string,null,null,Links with the Instrument used to perform the analysis. Use assay.ID for viral measures.
-WWMeasure,reporterID,wm_reid,Reporter id,Foreign key,Reporter,reporterID,string,null,null,Links with the reporter that is responsible for the data.
-WWMeasure,analysisDate,wm_ad,Analysis date,,,,date,null,null,date the measurement was performed in the lab.
-WWMeasure,reportDate,wm_rd,Report date,,,,date,null,null,"date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed)."
-WWMeasure,fractionAnalyzed,wm_fa,Fraction analyzed,,,,category,null,null,Fraction of the sample that is analyzed.
-WWMeasure,type,wm_ty,Type,,,,category,null,null,"The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (cov), a biomarker for normalisation (n) or a water quality parameter (wq)."
-WWMeasure,typeOther,wm_tyo,Type other,,,,string,0,100,Description for an other variable not listed in category.
-WWMeasure,unit,wm_un,Unit,,,,category,null,null,Unit of the measurement.
-WWMeasure,unitOther,wm_uno,Unit other,,,,string,0,100,Description for other measurement unit not listed in unit.
+WWMeasure,sampleID,wm_said,Sample id,Foreign key,Sample,sampleID,string,,,Links with the identified Sample
+WWMeasure,labID,wm_laid,Lab id,Foreign key,Lab,labID,string,,,Links with the identified Lab that performed the analysis.
+WWMeasure,assayID,wm_asid,Assay id,Foreign key,AssayMethod,assayID,string,,,Links with the AssayMethod used to perform the analysis. Use instrument.ID for measures that are not viral measures.
+WWMeasure,instrumentID,wm_inid,Instrument id,Foreign key,Instrument,instrumentID,string,,,Links with the Instrument used to perform the analysis. Use assay.ID for viral measures.
+WWMeasure,reporterID,wm_reid,Reporter id,Foreign key,Reporter,reporterID,string,,,Links with the reporter that is responsible for the data.
+WWMeasure,analysisDate,wm_ad,Analysis date,,,,date,,,date the measurement was performed in the lab.
+WWMeasure,reportDate,wm_rd,Report date,,,,date,,,"date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed)."
+WWMeasure,fractionAnalyzed,wm_fa,Fraction analyzed,,,,category,,,Fraction of the sample that is analyzed.
+WWMeasure,type,wm_ty,Type,,,,category,,,"The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (cov), a biomarker for normalisation (n) or a water quality parameter (wq)."
+WWMeasure,typeOther,wm_tyo,Type other,,,,string,,,Description for an other variable not listed in category.
+WWMeasure,unit,wm_un,Unit,,,,category,,,Unit of the measurement.
+WWMeasure,unitOther,wm_uno,Unit other,,,,string,,,Description for other measurement unit not listed in unit.
 WWMeasure,aggregation,wm_ag,Aggregation,,,,category,,,"Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value."
 WWMeasure,aggregationOther,wm_ago,Aggregation other,,,,string,,,Description for other type of aggregation not listed in aggregation.
 WWMeasure,index,wm_in,Index,,,,integer,,,Index number in case the measurement was taken multiple times.
 WWMeasure,value,wm_va,Value,,,,float,,,"The actual value that is being reported for this measurement. Use ""NA"" for missing values and make sure to leave a note."
-WWMeasure,qualityFlag,wm_qf,Quality flag,,,,boolean,0,255,Does the reporter suspect the measurement having some quality issues
+WWMeasure,qualityFlag,wm_qf,Quality flag,,,,boolean,,,Does the reporter suspect the measurement having some quality issues
 WWMeasure,accessToPublic,wm_atpu,Access to public,,,,boolean,,,"If this is 'no', this data will not be available to the public. If missing, data will be available to the public."
 WWMeasure,accessToAllOrg,wm_atao,Access to all org,,,,boolean,,,"If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations."
 WWMeasure,accessToSelf,wm_ats,Access to self,,,,boolean,,,"If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter."
@@ -49,40 +49,40 @@ WWMeasure,accessToProvHA,wm_atph,Access to prov ha,,,,boolean,,,"If this is 'no'
 WWMeasure,accessToOtherProv,wm_atop,Access to other prov,,,,boolean,,,"If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before"
 WWMeasure,accessToDetails,wm_atd,Access to details,,,,boolean,,,More details on the existing confidentiality requirements of this measurement.
 WWMeasure,notes,wm_no,Notes,,,,string,,,Any additional notes.
-Site,siteID,si_siid,Site id,Primary Key,,,string,null,null,Unique identifier for the location where wastewater sample was taken.
-Site,name,si_na,Name,,,,string,0,100,"Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc."
-Site,description,si_de,Description,,,,string,0,255,"Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point."
-Site,publicHealthDepartment,si_phd,Public health department or region,,,,string,null,null,The public health department or region where the site or institute is located. See also `healthRegion` if there is a separate regional health care delivery authority.
-Site,healthRegion,si_hr,Health planning region,,,,string,null,null,The health planning authority where is site or insititute is located. See also `publicHealthDepartment`
-Site,type,si_ty,Type,,,,category,null,null,Type of site or institution where sample was taken.
-Site,typeOther,si_tyo,Type other,,,,string,0,100,Description of the site when the site is not listed. See siteType.
+Site,siteID,si_siid,Site id,Primary Key,,,string,,,Unique identifier for the location where wastewater sample was taken.
+Site,name,si_na,Name,,,,string,,,"Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc."
+Site,description,si_de,Description,,,,string,,,"Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point."
+Site,publicHealthDepartment,si_phd,Public health department or region,,,,string,,,The public health department or region where the site or institute is located. See also `healthRegion` if there is a separate regional health care delivery authority.
+Site,healthRegion,si_hr,Health planning region,,,,string,,,The health planning authority where is site or insititute is located. See also `publicHealthDepartment`
+Site,type,si_ty,Type,,,,category,,,Type of site or institution where sample was taken.
+Site,typeOther,si_tyo,Type other,,,,string,,,Description of the site when the site is not listed. See siteType.
 Site,sampleTypeDefault,si_std,Sample type default,,,,category,,,Used as default when a new sample is created for this site. See type in Sample table.
 Site,sampleTypeOtherDefault,si_stod,Sample type other default,,,,string,,,Used as default when a new sample is created for this site. See typeOther in Sample table.
 Site,sampleCollectionDefault,si_scd,Sample collection default,,,,category,,,Used as default when a new sample is created for this site. See collection in Sample table.
 Site,sampleCollectOtherDefault,si_scod,Sample collect other default,,,,string,,,Used as default when a new sample is created for this site. See collectionOther in Sample table.
 Site,sampleStorageTempCDefault,si_sstc,Sample storage temp c default,,,,float,,,Used as default when a new sample is created for this site. See storageTempC in Sample table.
 Site,measureFractionAnalyzedDefault,si_mfad,Measure fraction analyzed default,,,,category,,,Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.
-Site,geoLat,si_gla,Geo lat,,,,float,null,null,"Site geographical location, latitude in decimal coordinates, ie.: (45.424721)"
-Site,geoLong,si_glo,Geo long,,,,float,null,null,"Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)"
-Site,notes,si_no,Notes,,,,string,0,255,Any additional notes.
+Site,geoLat,si_gla,Geo lat,,,,float,,,"Site geographical location, latitude in decimal coordinates, ie.: (45.424721)"
+Site,geoLong,si_glo,Geo long,,,,float,,,"Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)"
+Site,notes,si_no,Notes,,,,string,,,Any additional notes.
 Site,polygonID,si_pid,Polygon id,Foreign key,Polygon,polygonID,string,,,"Links with the Polygon table, this should encompass the area that typically drains into this site."
 Site,sewerNetworkFileLink,si_snfl,Sewer network file link,,,,string,,,Link to a file that has any detailed information about the sewer network associated with the site (any format).
 Site,sewerNetworkFileBLOB,si_snfb,Sewer network file blob,,,,blob,,,A file blob that has any detailed information about the sewer network associated with the site (any format).
-SiteMeasure,uSiteMeasureID,sm_umid,U site measure id,Primary Key,,,string,null,null,Unique identifier for each measurement for a site.
+SiteMeasure,uSiteMeasureID,sm_umid,U site measure id,Primary Key,,,string,,,Unique identifier for each measurement for a site.
 SiteMeasure,siteMeasureID,sm_mid,Site measure id,,,,string,,,Unique identifier for wide table only. Use when all measures are performed on a single sample.
-SiteMeasure,siteID,sm_siid,Site id,Foreign key,Site,siteID,string,null,null,Links with the Site table to describe the location of measurement.
+SiteMeasure,siteID,sm_siid,Site id,Foreign key,Site,siteID,string,,,Links with the Site table to describe the location of measurement.
 SiteMeasure,instrumentID,sm_iid,Instrument id,Foreign key,Instrument,instrumentID,string,,,Links with the Instrument table to describe instrument used for the measurement.
-SiteMeasure,reporterID,sm_rid,Reporter id,Foreign key,Reporter,reporterID,string,null,null,Links with the reporter that is responsible for the data.
-SiteMeasure,sampleID,sm_said,Sample id,Foreign key,Sample,sampleID,string,null,null,Links with the identified Sample
-SiteMeasure,dateTime,sm_dt,Date time,,,,date,null,null,The date and time the measurement was performed.
-SiteMeasure,type,sm_ty,Type,,,,category,null,null,"The type of measurement that was performed. The prefix env is used for environmental variables, whereas ww indicates a measurement on wastewater."
-SiteMeasure,typeOther,sm_tyo,Type other,,,,string,0,100,Description of the measurement in case it is not listed in type.
-SiteMeasure,typeDescription,sm_tyd,Type description,,,,string,0,255,Additional information on the performed measurement.
-SiteMeasure,aggregation,sm_ag,Aggregation,,,,category,null,null,"When reporting an aggregate measurement, this field describes the method used."
-SiteMeasure,aggregationOther,sm_ago,Aggregation other,,,,string,0,100,Description for other type of aggregation not listed in aggregation.
-SiteMeasure,aggregationDesc,sm_agd,Aggregation desc,,,,string,0,255,Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
-SiteMeasure,value,sm_va,Value,,,,float,null,null,"The actual value that is being reported for this measurement. Use ""NA"" for missing values and make sure to leave a note."
-SiteMeasure,unit,sm_un,Unit,,,,category,null,null,The engineering unit of the measurement.
+SiteMeasure,reporterID,sm_rid,Reporter id,Foreign key,Reporter,reporterID,string,,,Links with the reporter that is responsible for the data.
+SiteMeasure,sampleID,sm_said,Sample id,Foreign key,Sample,sampleID,string,,,Links with the identified Sample
+SiteMeasure,dateTime,sm_dt,Date time,,,,date,,,The date and time the measurement was performed.
+SiteMeasure,type,sm_ty,Type,,,,category,,,"The type of measurement that was performed. The prefix env is used for environmental variables, whereas ww indicates a measurement on wastewater."
+SiteMeasure,typeOther,sm_tyo,Type other,,,,string,,,Description of the measurement in case it is not listed in type.
+SiteMeasure,typeDescription,sm_tyd,Type description,,,,string,,,Additional information on the performed measurement.
+SiteMeasure,aggregation,sm_ag,Aggregation,,,,category,,,"When reporting an aggregate measurement, this field describes the method used."
+SiteMeasure,aggregationOther,sm_ago,Aggregation other,,,,string,,,Description for other type of aggregation not listed in aggregation.
+SiteMeasure,aggregationDesc,sm_agd,Aggregation desc,,,,string,,,Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
+SiteMeasure,value,sm_va,Value,,,,float,,,"The actual value that is being reported for this measurement. Use ""NA"" for missing values and make sure to leave a note."
+SiteMeasure,unit,sm_un,Unit,,,,category,,,The engineering unit of the measurement.
 SiteMeasure,qualityFlag,sm_qf,Quality flag,,,,boolean,,,Does the reporter suspect quality issues with the value of this measurement
 SiteMeasure,accessToPublic,sm_atp,Access to public,,,,boolean,,,"If this is 'no', this data will not be available to the public. If missing, data will be available to the public."
 SiteMeasure,accessToAllOrgs,sm_atao,Access to all orgs,,,,boolean,,,"If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations."
@@ -92,49 +92,49 @@ SiteMeasure,accessToLocalHA,sm_atlh,Access to local ha,,,,boolean,,,"If this is 
 SiteMeasure,accessToProvHA,sm_atph,Access to prov ha,,,,boolean,,,"If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities."
 SiteMeasure,accessToOtherProv,sm_atop,Access to other prov,,,,boolean,,,"If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before."
 SiteMeasure,accessToDetails,sm_atd,Access to details,,,,boolean,,,More details on the existing confidentiality requirements of this measurement.
-SiteMeasure,notes,sm_no,Notes,,,,string,0,255,Any additional notes.
-Reporter,reporterID,re_reid,Reporter id,Primary Key,,,string,null,null,Unique identifier for the person or organization that is reporting the data.
+SiteMeasure,notes,sm_no,Notes,,,,string,,,Any additional notes.
+Reporter,reporterID,re_reid,Reporter id,Primary Key,,,string,,,Unique identifier for the person or organization that is reporting the data.
 Reporter,siteIDDefault,re_sidd,Site id default,Foreign key,Site,siteID,string,,,Used as default when a new sample is created by this reporter. See ID in Site table.
 Reporter,labIDDefault,re_lidd,Lab id default,Foreign key,Lab,labID,string,,,Used as default when a new sample is created by this reporter. See ID in Lab table.
-Reporter,contactName,re_cn,Contact name,,,,string,0,100,"Full Name of the reporter, either an organization or individual."
-Reporter,contactEmail,re_ce,Contact email,,,,string,null,null,Contact e-mail address.
+Reporter,contactName,re_cn,Contact name,,,,string,,,"Full Name of the reporter, either an organization or individual."
+Reporter,contactEmail,re_ce,Contact email,,,,string,,,Contact e-mail address.
 Reporter,organization,re_or,Organization,,,,string,,,The organization to which the reporter is affiliated.
-Reporter,contactPhone,re_cp,Contact phone,,,,string,10,12,Contact phone number.
-Reporter,notes,re_no,Notes,,,,string,0,255,Any additional notes.
-Lab,labID,la_laid,Lab id,Primary Key,,,string,null,null,Unique identifier for the laboratory.
+Reporter,contactPhone,re_cp,Contact phone,,,,string,,,Contact phone number.
+Reporter,notes,re_no,Notes,,,,string,,,Any additional notes.
+Lab,labID,la_laid,Lab id,Primary Key,,,string,,,Unique identifier for the laboratory.
 Lab,assayMethodIDDefault,la_midd,Assay method id default,Foreign key,AssayMethod,assayMethodID,string,,,Used as default when a new measurement is created for this lab. See ID in AssayMethod table.
-Lab,name,la_na,Name,,,,string,0,100,Name corresponding to lab.
-Lab,contactName,la_cn,Contact name,,,,string,0,100,"Contact person or group, for the lab."
-Lab,contactEmail,la_ce,Contact email,,,,string,null,null,"Contact e-mail address, for the lab."
-Lab,contactPhone,la_cp,Contact phone,,,,string,10,12,"Contact phone number, for the lab."
-Lab,updateDate,la_ud,Update date,,,,date,null,null,date information was provided or updated.
-AssayMethod,assayMethodID,am_amid,Assay method id,Primary Key,,,string,null,null,Unique identifier for the assay method.
-AssayMethod,instrumentID,am_inid,Instrument id,Foreign key,Instrument,instrumentID,string,null,null,Links with the Instrument table to describe instruments used for the measurement.
-AssayMethod,name,am_na,Name,,,,string,0,100,Name of the assay method.
-AssayMethod,version,am_ve,Version,,,,string,0,50,Version of the assay. Semantic versioning is recommended.
-AssayMethod,summary,am_su,Summary,,,,string,0,255,Short description of the assay and how it is different from the other assay methods.
-AssayMethod,referenceLink,am_rl,Reference link,,,,string,0,255,Link to standard operating procedure.
-AssayMethod,date,am_da,Date,,,,date,null,null,date on which the assayMethod was created or updated (for version update).
+Lab,name,la_na,Name,,,,string,,,Name corresponding to lab.
+Lab,contactName,la_cn,Contact name,,,,string,,,"Contact person or group, for the lab."
+Lab,contactEmail,la_ce,Contact email,,,,string,,,"Contact e-mail address, for the lab."
+Lab,contactPhone,la_cp,Contact phone,,,,string,,,"Contact phone number, for the lab."
+Lab,updateDate,la_ud,Update date,,,,date,,,date information was provided or updated.
+AssayMethod,assayMethodID,am_amid,Assay method id,Primary Key,,,string,,,Unique identifier for the assay method.
+AssayMethod,instrumentID,am_inid,Instrument id,Foreign key,Instrument,instrumentID,string,,,Links with the Instrument table to describe instruments used for the measurement.
+AssayMethod,name,am_na,Name,,,,string,,,Name of the assay method.
+AssayMethod,version,am_ve,Version,,,,string,,,Version of the assay. Semantic versioning is recommended.
+AssayMethod,summary,am_su,Summary,,,,string,,,Short description of the assay and how it is different from the other assay methods.
+AssayMethod,referenceLink,am_rl,Reference link,,,,string,,,Link to standard operating procedure.
+AssayMethod,date,am_da,Date,,,,date,,,date on which the assayMethod was created or updated (for version update).
 AssayMethod,aliasID,am_aid,Alias id,,,,string,,,ID of an assay that is the same or similar. a comma separated list.
 AssayMethod,extractionVolMl,am_evml,Extraction volume in ml,,,,float,,,Size of the sample that is analyzed in milliliters.
-AssayMethod,loq,am_loq,Loq,,,,float,0,,Limit of quantification (LOQ) for this method if one exists.
-AssayMethod,lod,am_lod,Lod,,,,float,0,,Limit of detection (LOD) for this method if one exists.
-AssayMethod,unit,am_un,Unit,,,,category,null,null,"Unit used by this method, and applicable to the LOD and LOQ."
-AssayMethod,unitOther,am_uno,Unit other,,,,string,null,100,"Unit used by this method, that are applicable to the LOD and LOQ."
+AssayMethod,loq,am_loq,Loq,,,,float,,,Limit of quantification (LOQ) for this method if one exists.
+AssayMethod,lod,am_lod,Lod,,,,float,,,Limit of detection (LOD) for this method if one exists.
+AssayMethod,unit,am_un,Unit,,,,category,,,"Unit used by this method, and applicable to the LOD and LOQ."
+AssayMethod,unitOther,am_uno,Unit other,,,,string,,,"Unit used by this method, that are applicable to the LOD and LOQ."
 AssayMethod,methodConc,am_mc,Method conc,,,,string,,,Description of the method used to concentrate the sample
 AssayMethod,methodExtract,am_me,Method extract,,,,string,,,Description of the method used to extract the sample
 AssayMethod,methodPcr,am_mpcr,Method pcr,,,,string,,,Description of the PCR method used
 AssayMethod,qualityAssQC,am_qaqc,Quality ass qc,,,,string,,,Description of the quality control steps taken
 AssayMethod,inhibition,am_in,Inhibition,,,,string,,,Description of the inhibition parameters.
 AssayMethod,surrogateRecovery,am_sr,Surrogate recovery,,,,string,,,Description of the surrogate recovery for this method.
-Instrument,instrumentID,in_iid,Instrument id,Primary Key,,,string,null,null,Unique identifier for the instrument.
-Instrument,name,in_na,Name,,,,string,0,100,Name of the instrument used to perform the measurement.
-Instrument,model,in_mo,Model,,,,string,0,100,Model number or version of the instrument.
-Instrument,description,in_de,Description,,,,string,0,100,Description of the instrument.
+Instrument,instrumentID,in_iid,Instrument id,Primary Key,,,string,,,Unique identifier for the instrument.
+Instrument,name,in_na,Name,,,,string,,,Name of the instrument used to perform the measurement.
+Instrument,model,in_mo,Model,,,,string,,,Model number or version of the instrument.
+Instrument,description,in_de,Description,,,,string,,,Description of the instrument.
 Instrument,alias,in_al,Alias,,,,string,,,ID of an assay that is the same or similar. A comma separated list.
-Instrument,referenceLink,in_rl,Reference link,,,,string,0,100,Link to reference for the instrument.
-Instrument,type,in_ty,Type,,,,category,null,null,Type of instrument used to perform the measurement.
-Instrument,typeOther,in_tyo,Type other,,,,string,0,100,Description of the instrument in case it is not listed in instrumentType.
+Instrument,referenceLink,in_rl,Reference link,,,,string,,,Link to reference for the instrument.
+Instrument,type,in_ty,Type,,,,category,,,Type of instrument used to perform the measurement.
+Instrument,typeOther,in_tyo,Type other,,,,string,,,Description of the instrument in case it is not listed in instrumentType.
 Polygon,polygonID,po_pid,Polygon id,Primary Key,,,string,,,Unique identifier for the polygon.
 Polygon,name,po_na,Name,,,,string,,,Descriptive name of the polygon.
 Polygon,pop,po_po,Pop,,,,integer,,,Approximate population size of people living inside the polygon.
