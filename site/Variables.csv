@@ -1,153 +1,156 @@
-tableName,variableName,variableLabel_en,variableLabel_fr,key,foreignKeyTable,foreignKeyVariable,variableType,variableDesc_en,variableDesc_fr
-Sample,sampleID,Sample id,Identifiant de l'�chantillon,Primary Key,,,string,Unique identifier for sample. Suggestion:siteID-date-index.,Identifiant unique pour l'�chantillon. Suggestion:siteID-date-index.
-Sample,siteID,Site id,Identifiant du site,Foreign key,Site,siteID,string,Links with the Site table to describe the location of sampling.,"Cr�e un lien avec la table ""Site"" pour d�crire le point d'�chantillonage."
-Sample,instrumentID,Instrument id,Identifiant de l'instrument,Foreign key,Instrument,InstrumentID,string,Links with the Instrument table to describe the instrument used for sampling.,"Cr�e un lien avec la table ""Instrument"" pour d�crire l'instrument utilis� pour l'�chantillonnage."
-Sample,reporterID,reporter ID,Identifiant du reporteur,Foreign key,Reporter,reporterID,string,Links with the reporter table to identify the reporter who collected the sample.,"Cr�e un lien avec la table ""Reporter"" pour identifier le reporteur ayant pr�lev� l'�chantillon."
-Sample,dateTime,Date time,Date et heure,,,,datetime,"for grab samples this is the date, time and timezone the sample was taken.","Date, heure et fuseau horaire de collecte d'un �chantillon ponctuel."
-Sample,dateTimeStart,Date time start,Date et heure de d�but,,,,datetime,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken.","Date, heure et fuseau horaire de d�but de collecte d'un �chantillon composite."
-Sample,dateTimeEnd,Date time end,Date et heure de fin,,,,datetime,"For integrated time average samples this is the date, time and timezone the sample was finished being taken.","Date, heure et fuseau horaire de fin de collecte d'un �chantillon composite."
-Sample,type,Type,Type,,,,category,Type of sample.,Type d'�chantillon.
-Sample,typeOther,Type other,Type autre,,,,string,Description for other type of sample not listed in,Description d'un type d'�chantillon ne faisant pas partie des options disponibles.
-Sample,collection,Collection,M�thode de collecte,,,,category,Method used to collect the sample.,M�thode utilis�e pour �chantillonner.
-Sample,collectionOther,Collection other,M�thode de collecte autre,,,,string,Description for other type of method not listed in collection.,Description d'une m�thode d'�chantillonnage ne faisant pas partie des options disponibles.
-Sample,preTreatment,Pre treatment,Pr�-traitement,,,,boolean,Was the sample chemically treated in anyway with the addition of stabilizers or other,L'�chantillon a-t-il �t� chimiquement alt�r� par un ajout de stabilisant ou autre?
-Sample,preTreatmentDescription,Pre treatment description,Description du pr�-traitment,,,,string,If preTreatment then describe the treatment that was performed.,Description du pr�-traitement le cas �ch�ant.
-Sample,pooled,Pooled,�chantillon combin�,,,,boolean,"Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites","S'il s'agit d'un �chantillon combin�, c'est-�-dire, est-il compos� de plusieurs �chantillons ""enfants""?"
-Sample,children,Children,Enfants,,,,string,If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.,"Si l'�chantillon est li�e � des sous-�chantillons (soit parce qu'il s'agit d'un �chantillon combin� ou parce que des sous-�chantillons ont �t� pr�lev�s dans cet �chantillon), ins�rer les identifiant des �chantillons enfants dans une liste s�par�e par des virgules."
-Sample,parent,Parent,Parent,,,,string,If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.,"Si l'�chantillon a �t� combin� � un plus grand �chantillon, indiquer l'identifiant du plus grand �chantillon."
-Sample,sizeL,Size l,Volume l,,,,float,Total volume of water or sludge sampled.,Volume total d'eau ou de boue pr�lev�e.
-Sample,fieldSampleTempC,Field sample temp c,Temp�rature de l'�chantillon de terrain c,,,,float,Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.,"Temprature � laquelle l'�chantillon �tait stock� pendant l'�chantillonnage. Ce champ est principalement pertinent pour les �chantillons composites, qui peuvent �tre stock�es � temp�rature ambiante ou r�frig�r�s durant l'�chantillonnage."
-Sample,shippedOnIce,Shipped on ice,Exp�di� sur glace,,,,boolean,Was the sample kept cool while being shipped to the lab,L'�chantillon a-t-il �t� gard� au froid lors du transport vers le laboratoire?
-Sample,storageTempC,Storage temp c,Temp�rature de stockage c,,,,float,Temperature that the sample is stored at in Celsius.,Temp�rature de stockage de l'�chantillon en degr�s Celsius
-Sample,qualityFlag,Quality flag,Indicateur de mauvaise qualit�,,,,boolean,Does the reporter suspect the sample having some quality issues,Le reporteur a-t-il des doutes sur la qualit� de l'�chantillon?
-Sample,notes,Notes,Notes,,,,string,Any additional notes.,Ajouter toutes notes additionnelles.
-Site,siteID,Site id,Identifiant du site,Primary Key,,,string,Unique identifier for the location where wastewater sample was taken.,Identifiant unique pour l'�chantillon. Suggestion:siteID-date-index.
-Site,name,Name,Nom,,,,string,"Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc.","Nom du site d'�chantillonnage. Peut �tre le nom d'une station de traitement, d'une station de pompage, d'un campus, d'un regard d'�gouts, etc."
-Site,description,Description,Description,,,,string,"Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point.","Description du site d'�chantillonnage (ville, b�timent, rue, etc.) pour mieux identifier le site d'�chantillonnage."
-Site,publicHealthDepartment,Public health department or region,D�partement ou r�gion de sant� publique,,,,string,The public health department or region where the site or institute is located. See also `healthRegion` if there is a separate regional health care delivery authority.,
-Site,healthRegion,Health planning region,R�gion de planification sanitaire,,,,string,The health planning authority where is site or insititute is located. See also `publicHealthDepartment`,
-Site,type,Type,Type,,,,category,Type of site or institution where sample was taken.,Type de site ou d'institution du site d'�chantillonnage.
-Site,typeOther,Type other,Type autre,,,,string,Description of the site when the site is not listed. See siteType.,Description du site d'�chantillonnage dans le cas o� un type ad�quat n'est pas disponible.
-Site,geoLat,Geo lat,G�o lat,,,,float,"Site geographical location, latitude in decimal coordinates, ie.: (45.424721)",Position g�ographique du site d'�chantillonnage. Latitude exprim�e en coordonn�es d�cimales (ex. 45.424721)
-Site,geoLong,Geo long,G�o long,,,,float,"Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)",Position g�ographique du site d'�chantillonnage. Longitude exprim�e en coordonn�es d�cimales (ex. -75.695000)
-Site,notes,Notes,Notes,,,,string,Any additional notes.,Ajouter toutes notes additionnelles.
-Site,polygonID,Polygon id,Identifiant du polygone,Foreign key,Polygon,polygonID,string,"Links with the Polygon table, this should encompass the area that typically drains into this site.","Cr�e un lien vers la table ""Polygon"". Le polygon li� devrait englober la r�gion qui se draine dans le site d'�chantillonnage. "
-Site,sewerNetworkFileLink,Sewer network file link,Lien vers le fichier du r�seau d'�gouts,,,,string,Link to a file that has any detailed information about the sewer network associated with the site (any format).,Lien vers un fichier contenant toute information additionnelle au sujet du r�seau d'�gouts associ� � ce site d'�chantillonnage (tous les formats sont accept�s).
-Site,sewerNetworkFileBLOB,Sewer network file blob,Fichier blob du r�seau d'�gouts,,,,blob,A file blob that has any detailed information about the sewer network associated with the site (any format).,Un fichier contenant toute information additionnelle au sujet du r�seau d'�gouts associ� � ce site d'�chantillonnage (tous les formats sont accept�s).
-Reporter,reporterID,Reporter id,Identifiant du reporteur,Primary Key,,,string,Unique identifier for the person or organization that is reporting the data.,Identifiant unique pour la personne ou l'organisation responsable des donn�es rapport�es.
-Reporter,contactName,Contact name,Nom du contact,,,,string,"Full Name of the reporter, either an organization or individual.",Nom complet du reporteur (personne ou organisation)
-Reporter,contactEmail,Contact email,Adresse �lectronique du contact,,,,string,Contact e-mail address.,Adresse courriel du contact.
-Reporter,organization,Organization,Organisation,,,,string,The organization to which the reporter is affiliated.,L'organisation � laquelle le reporteur est affili�.
-Reporter,contactPhone,Contact phone,T�l�phone du contact,,,,string,Contact phone number.,Num�ro de t�l�phone du contact.
-Reporter,notes,Notes,Notes,,,,string,Any additional notes.,Ajouter toutes notes additionnelles.
-Lab,labID,Lab id,Identifiant du laboratoire,Primary Key,,,string,Unique identifier for the laboratory.,Identifiant unique pour le laboratoire.
-Lab,name,Name,Nom,,,,string,Name corresponding to lab.,Nom du laboratoire.
-Lab,contactName,Contact name,Nom du contact,,,,string,"Contact person or group, for the lab.",Personne contact de ce laboratoire.
-Lab,contactEmail,Contact email,Adresse �lectronique du contact,,,,string,"Contact e-mail address, for the lab.",Adresse courriel du contact.
-Lab,contactPhone,Contact phone,T�l�phone du contact,,,,string,"Contact phone number, for the lab.",Num�ro de t�l�phone du contact.
-Lab,updateDate,Update date,Date de mise � jour,,,,date,date information was provided or updated.,Date o� l'information a �t� report�e une premi�re fois ou mise � jour.
-AssayMethod,assayMethodID,Assay method id,Identifiant de la m�thode d'analyse,Primary Key,,,string,Unique identifier for the assay method.,Identifiant unique pour la m�thode d'analyse.
-AssayMethod,instrumentID,Instrument id,Identifiant de l'instrument,Foreign key,Instrument,instrumentID,string,Links with the Instrument table to describe instruments used for the measurement.,"Cr�e un lien vers la table ""Instrument"" pour d�crire l'appareil utilis� pour effectuer la mesure."
-AssayMethod,name,Name,Nom,,,,string,Name of the assay method.,Nom de la m�thode d'analyse.
-AssayMethod,version,Version,Version,,,,string,Version of the assay. Semantic versioning is recommended.,Version de la m�thode d'analyse. Un versionnement de type s�mantique est recommand�.
-AssayMethod,summary,Summary,R�sum�,,,,string,Short description of the assay and how it is different from the other assay methods.,Br�ve description de la m�thode d'analyse et de comment celle-ci diff�re d'autres m�thodes.
-AssayMethod,referenceLink,Reference link,Lien vers r�f�rence,,,,string,Link to standard operating procedure.,Lien vers la proc�dure standard.
-AssayMethod,date,Date,Date,,,,date,date on which the assayMethod was created or updated (for version update).,Date � laquelle la m�thode d'analyse (ou une nouvelle version d'une m�thode existante) a �t� cr�e.
-AssayMethod,aliasID,Alias id,Identifiant de l'alias,,,,string,ID of an assay that is the same or similar. a comma separated list.,Identifiants d'autres m�thodes d'analyse pr�sentes dans la table qui sont similaires � la m�thode courante. Ins�rer sous forme de liste s�par�e par des virgules.
-AssayMethod,extractionVolMl,Extraction volume in ml,Volume d'extraction ml,,,,float,Size of the sample that is analyzed in milliliters.,Volume de l'�chantillon analys� (en millilitres)
-AssayMethod,loq,Loq,Limite de quantification,,,,float,Limit of quantification (LOQ) for this method if one exists.,"Limite de quantification pour cette m�thode, le cas �ch�ant."
-AssayMethod,lod,Lod,Limite de d�tection,,,,float,Limit of detection (LOD) for this method if one exists.,"Limite de d�tection pour cette m�thode, le cas �ch�ant."
-AssayMethod,unit,Unit,Unit�,,,,category,"Unit used by this method, and applicable to the LOD and LOQ.",Unit� de mesure utilis�e par cette m�thode et qui est applicable pour la limite de d�tection ou de quantification.
-AssayMethod,unitOther,Unit other,Unit� autre,,,,string,"Unit used by this method, that are applicable to the LOD and LOQ.",Unit� de mesure utilis�e par cette m�thode et qui est applicable pour la limite de d�tection ou de quantification dans le cas o� celle-ci n'est pas disponible.
-AssayMethod,methodConc,Method conc,M�thode de concentration,,,,string,Description of the method used to concentrate the sample,Description de la m�thode utilis�e pour concentrer l'�chantillon.
-AssayMethod,methodExtract,Method extract,M�thode d'extraction,,,,string,Description of the method used to extract the sample,Description de la m�thode utilis�e pour extraire l'�chantillon.
-AssayMethod,methodPcr,Method pcr,M�thode PCR,,,,string,Description of the PCR method used,Description de la m�thode PCR utiis�e.
-AssayMethod,qualityAssQC,Quality ass qc,Contr�le de qualit�,,,,string,Description of the quality control steps taken,Description des �tapes de contr�le de qualit� mises en place dans la m�thode.
-AssayMethod,inhibition,Inhibition,Inhibition,,,,string,Description of the inhibition parameters.,Description des param�tres d'inhibition li�s � cette m�thode.
-AssayMethod,surrogateRecovery,Surrogate recovery,R�cup�ration du virus substitut,,,,string,Description of the surrogate recovery for this method.,Description de la m�thode de r�cup�ration du virus de substitution li�e � cette m�thode.
-Instrument,instrumentID,Instrument id,Identifiant de l'instrument,Primary Key,,,string,Unique identifier for the instrument.,Identifiant unique pour l'instrument de mesure.
-Instrument,name,Name,Nom,,,,string,Name of the instrument used to perform the measurement.,Nom de l'instrument de mesure.
-Instrument,model,Model,Mod�le,,,,string,Model number or version of the instrument.,Num�ro de mod�le et/ou de version de l'instrument de mesure.
-Instrument,description,Description,Description,,,,string,Description of the instrument.,Description de l'instrument.
-Instrument,alias,Alias,Alias,,,,string,ID of an assay that is the same or similar. A comma separated list.,Identifiants d'autres instruments pr�sents dans la table qui sont similaires � l'instrument courant. Ins�rer sous forme de liste s�par�e par des virgules.
-Instrument,referenceLink,Reference link,Lien vers r�f�rence,,,,string,Link to reference for the instrument.,Lien vers un document de r�f�rence pour l'instrument de mesure.
-Instrument,type,Type,Type,,,,category,Type of instrument used to perform the measurement.,Type de l'instrument de mesure.
-Instrument,typeOther,Type other,Type autre,,,,string,Description of the instrument in case it is not listed in instrumentType.,Description du type d'instrument dans le cas o� il ne serait pas disponible.
-Polygon,polygonID,Polygon id,Identifiant du polygone,Primary Key,,,string,Unique identifier for the polygon.,Identifiant unique du polygone.
-Polygon,name,Name,Nom,,,,string,Descriptive name of the polygon.,Nom du polygon (devrait �tre descriptif)
-Polygon,pop,Pop,Population,,,,integer,Approximate population size of people living inside the polygon.,Population approximative vivant dans la r�gion repr�sent�e par le polygone.
-Polygon,type,Type,Type,,,,category,Type of polygon.,Type de polygone.
-Polygon,wkt,Wkt,Wkt,,,,string,well known text of the polygon,Description formelle du polygone (format Well-Known-Text (wkt))
-Polygon,file,File,Fichier,,,,blob,"File containing the geometry of the polygon, blob format.",Fichier repr�sentant la g�om�trie du polygone (blob).
-Polygon,link,Link,Lien,,,,string,Link to an external reference that describes the geometry of the polygon.,Lien vers une r�f�rence externe d�crivant la g�om�trie du polygone.
-Lookup,tableName,Table name,Nom de la table,,,,string,Name of the Table,Nom de la table.
-Lookup,columnName,Column name,Nom de la colonne,,,,string,Name for the column,Nom de la colonne.
-Lookup,value,Value,Valeur,,,,string,Name of the value,Nom de la valeur.
-Lookup,description,Description,Description,,,,string,Name of the description,Nom de la description.
-Assay,assayID,,,Primary Key,,,string,,
-Assay,assayMethodID,,,,AssayMethod,assayMethodID,string,,
-Assay,labID,,,,Lab,labID,string,,
-Assay,reporterID,,,,Reporter,reporterID,string,,
-AssayHasInstrument,assayID,,,,Assay,assayID,string,,
-AssayHasInstrument,assayMethodID,,,,AssayMethod,assayMethodID,string,,
-Value,valueID,,,Primary Key,,,string,,
-Value,assayID,,,,Assay,assayID,string,,
-Value,sampleID,,,,Sample,sampleID,string,,
-Value,siteID,,,,Site,siteID,string,,
-Value,polygonID,,,,Polygon,polygonID,string,,
-Value,analysisDate,,,,,,string,,
-Value,reportDate,,,,,,string,,
-Value,measureID,,,,Measure,measureID,string,,
-Value,unitID,,,,Unit,unitID,string,,
-Value,aggregationID,,,,Aggregation,aggregationID,string,,
-Value,value,,,,,,string,,
-Value,qualityFlag,,,,,,string,,
-Value,notes,,,,,,string,,
-Aggregation,aggregationID,,,Primary Key,,,string,,
-Aggregation,descriptionEN,,,,,,string,,
-Aggregation,descriptionFR,,,,,,string,,
-AggregationScale,aggregationScaleID,,,Primary Key,,,string,,
-AggregationScale,description,,,,,,string,,
-Domain,domainID,,,Primary Key,,,string,,
-Domain,descriptionEN,,,,,,string,,
-Domain,descriptionFR,,,,,,string,,
-Measure,measureID,,,Primary Key,,,string,,
-Measure,shortName,,,,,,string,,
-Measure,fullName,,,,,,string,,
-Measure,commonNameEN,,,,,,string,,
-Measure,commonNameFR,,,,,,string,,
-Measure,descriptionEN,,,,,,string,,
-Measure,descriptionFR,,,,,,string,,
-Measure,status,,,,,,string,,
-Measure,firstReleased,,,,,,string,,
-Measure,lastUpdated,,,,,,string,,
-Measure,domainID,,,,Domain,domainID,string,,
-Measure,specimenID,,,,Specimen,specimenID,string,,
-Measure,measureGroupID,,,,MeasureGroup,measureGroupID,string,,
-Measure,measureClassID,,,,MeasureClass,measureClassID,string,,
-Measure,measurePart,,,,,,string,,
-Measure,analytePartNomenclature,,,,,,string,,
-MeasureClass,measureClassID,,,Primary Key,,,string,,
-MeasureClass,descriptionEN,,,,,,string,,
-MeasureClass,descriptionFR,,,,,,string,,
-MeasureClassHasUnit,measureClassID,,,,MeasureClass,measureClassID,string,,
-MeasureClassHasUnit,unitID,,,,Unit,unitID,string,,
-MeasureGroup,measureGroupID,,,Primary Key,,,string,,
-MeasureGroup,descriptionEN,,,,,,string,,
-MeasureGroup,descriptionFR,,,,,,string,,
-UnitScale,unitScaleID,,,Primary Key,,,string,,
-UnitScale,descriptionEN,,,,,,string,,
-UnitScale,descriptionFR,,,,,,string,,
-Specimen,specimenID,,,Primary Key,,,string,,
-Specimen,descriptionEN,,,,,,string,,
-Specimen,descriptionFR,,,,,,string,,
-Specimen,parentTable,,,,,,string,,
-Unit,unitID,,,Primary Key,,,string,,
-Unit,latexEpression,,,,,,string,,
-Unit,descriptionEN,,,,,,string,,
-Unit,descriptionFR,,,,,,string,,
-Unit,unitScaleID,,,,UnitScale,unitScaleID,string,,
-Unit,aggregationScaleID,,,,AggregationScale,aggregationScaleID,string,,
-Unit,dataType,,,,,,string,,
-UnitHasAggregation,unitID,,,,Unit,unitID,string,,
-UnitHasAggregation,aggregationID,,,,Aggregation,aggregationID,string,,
+tableName,variableName,variableShortFormalName,variableLabel,key,foreignKeyTable,foreignKeyVariable,variableType,minLength,maxLength,variableDesc
+Sample,sampleID,sa_said,Sample id,Primary Key,,,string,null,null,Unique identifier for sample. Suggestion:siteID-date-index.
+Sample,siteID,sa_siid,Site id,Foreign key,Site,siteID,string,null,null,Links with the Site table to describe the location of sampling.
+Sample,instrumentID,sa_inid,Instrument id,Foreign key,Instrument,InstrumentID,string,,,Links with the Instrument table to describe the instrument used for sampling.
+Sample,reporterID,sa_reid,reporter ID,Foreign key,Reporter,reporterID,string,,,Links with the reporter table to identify the reporter who collected the sample.
+Sample,dateTime,sa_dt,Date time,,,,datetime,null,null,"for grab samples this is the date, time and timezone the sample was taken."
+Sample,dateTimeStart,sa_dts,Date time start,,,,datetime,null,null,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken."
+Sample,dateTimeEnd,sa_dte,Date time end,,,,datetime,null,null,"For integrated time average samples this is the date, time and timezone the sample was finished being taken."
+Sample,type,sa_ty,Type,,,,category,null,null,Type of sample.
+Sample,typeOther,sa_tyo,Type other,,,,string,,,Description for other type of sample not listed in
+Sample,collection,sa_co,Collection,,,,category,null,null,Method used to collect the sample.
+Sample,collectionOther,sa_coo,Collection other,,,,string,,,Description for other type of method not listed in collection.
+Sample,preTreatment,sa_pt,Pre treatment,,,,boolean,,,Was the sample chemically treated in anyway with the addition of stabilizers or other
+Sample,preTreatmentDescription,sa_ptd,Pre treatment description,,,,string,,,If preTreatment then describe the treatment that was performed.
+Sample,pooled,sa_po,Pooled,,,,boolean,,,"Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites"
+Sample,children,sa_ch,Children,,,,string,,,If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.
+Sample,parent,sa_pa,Parent,,,,string,,,If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.
+Sample,sizeL,sa_sil,Size l,,,,float,null,null,Total volume of water or sludge sampled.
+Sample,fieldSampleTempC,sa_fstc,Field sample temp c,,,,float,null,null,Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
+Sample,shippedOnIce,sa_soi,Shipped on ice,,,,boolean,null,null,Was the sample kept cool while being shipped to the lab
+Sample,storageTempC,sa_stc,Storage temp c,,,,float,,,Temperature that the sample is stored at in Celsius.
+Sample,qualityFlag,sa_qf,Quality flag,,,,boolean,,,Does the reporter suspect the sample having some quality issues
+Sample,notes,sa_no,Notes,,,,string,0,255,Any additional notes.
+WWMeasure,uWwMeasureID,wm_umid,U ww measure id,Primary Key,,,string,0,100,Unique identifier a measurement within the measurement table.
+WWMeasure,wwMeasureID,wm_mid,Ww measure id,,,,string,,,Unique identifier for wide table only. Use when all measures are performed on a single sample at the same time and same laboratory. Suggestion: siteID_sampleID_LabID_reportDate_ID.
+WWMeasure,sampleID,wm_said,Sample id,Foreign key,Sample,sampleID,string,null,null,Links with the identified Sample
+WWMeasure,labID,wm_laid,Lab id,Foreign key,Lab,labID,string,null,null,Links with the identified Lab that performed the analysis.
+WWMeasure,assayID,wm_asid,Assay id,Foreign key,AssayMethod,assayID,string,null,null,Links with the AssayMethod used to perform the analysis. Use instrument.ID for measures that are not viral measures.
+WWMeasure,instrumentID,wm_inid,Instrument id,Foreign key,Instrument,instrumentID,string,null,null,Links with the Instrument used to perform the analysis. Use assay.ID for viral measures.
+WWMeasure,reporterID,wm_reid,Reporter id,Foreign key,Reporter,reporterID,string,null,null,Links with the reporter that is responsible for the data.
+WWMeasure,analysisDate,wm_ad,Analysis date,,,,date,null,null,date the measurement was performed in the lab.
+WWMeasure,reportDate,wm_rd,Report date,,,,date,null,null,"date the data was reported. One sampleID may have updated reports based on updates to assay method or reporting standard. In this situation, use the original sampleID but updated MeasureID, reportDate and assayID (if needed)."
+WWMeasure,fractionAnalyzed,wm_fa,Fraction analyzed,,,,category,null,null,Fraction of the sample that is analyzed.
+WWMeasure,type,wm_ty,Type,,,,category,null,null,"The variable that is being measured on the sample, e.g. a SARS-CoV-2 gene target region (cov), a biomarker for normalisation (n) or a water quality parameter (wq)."
+WWMeasure,typeOther,wm_tyo,Type other,,,,string,0,100,Description for an other variable not listed in category.
+WWMeasure,unit,wm_un,Unit,,,,category,null,null,Unit of the measurement.
+WWMeasure,unitOther,wm_uno,Unit other,,,,string,0,100,Description for other measurement unit not listed in unit.
+WWMeasure,aggregation,wm_ag,Aggregation,,,,category,,,"Statistical measures used to report the sample units of Ct/Cq, unless otherwise stated. Each aggregation has a corresponding value."
+WWMeasure,aggregationOther,wm_ago,Aggregation other,,,,string,,,Description for other type of aggregation not listed in aggregation.
+WWMeasure,index,wm_in,Index,,,,integer,,,Index number in case the measurement was taken multiple times.
+WWMeasure,value,wm_va,Value,,,,float,,,"The actual value that is being reported for this measurement. Use ""NA"" for missing values and make sure to leave a note."
+WWMeasure,qualityFlag,wm_qf,Quality flag,,,,boolean,0,255,Does the reporter suspect the measurement having some quality issues
+WWMeasure,accessToPublic,wm_atpu,Access to public,,,,boolean,,,"If this is 'no', this data will not be available to the public. If missing, data will be available to the public."
+WWMeasure,accessToAllOrg,wm_atao,Access to all org,,,,boolean,,,"If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations."
+WWMeasure,accessToSelf,wm_ats,Access to self,,,,boolean,,,"If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter."
+WWMeasure,accessToPHAC,wm_atp,Access to phac,,,,boolean,,,"If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC."
+WWMeasure,accessToLocalHA,wm_atlh,Access to local ha,,,,boolean,,,"If this is 'no', the, data will not be available to local health authorities. If missing, data will be available to local health authorities."
+WWMeasure,accessToProvHA,wm_atph,Access to prov ha,,,,boolean,,,"If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities."
+WWMeasure,accessToOtherProv,wm_atop,Access to other prov,,,,boolean,,,"If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before"
+WWMeasure,accessToDetails,wm_atd,Access to details,,,,boolean,,,More details on the existing confidentiality requirements of this measurement.
+WWMeasure,notes,wm_no,Notes,,,,string,,,Any additional notes.
+Site,siteID,si_siid,Site id,Primary Key,,,string,null,null,Unique identifier for the location where wastewater sample was taken.
+Site,name,si_na,Name,,,,string,0,100,"Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc."
+Site,description,si_de,Description,,,,string,0,255,"Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point."
+Site,publicHealthDepartment,si_phd,Public health department or region,,,,string,null,null,The public health department or region where the site or institute is located. See also `healthRegion` if there is a separate regional health care delivery authority.
+Site,healthRegion,si_hr,Health planning region,,,,string,null,null,The health planning authority where is site or insititute is located. See also `publicHealthDepartment`
+Site,type,si_ty,Type,,,,category,null,null,Type of site or institution where sample was taken.
+Site,typeOther,si_tyo,Type other,,,,string,0,100,Description of the site when the site is not listed. See siteType.
+Site,sampleTypeDefault,si_std,Sample type default,,,,category,,,Used as default when a new sample is created for this site. See type in Sample table.
+Site,sampleTypeOtherDefault,si_stod,Sample type other default,,,,string,,,Used as default when a new sample is created for this site. See typeOther in Sample table.
+Site,sampleCollectionDefault,si_scd,Sample collection default,,,,category,,,Used as default when a new sample is created for this site. See collection in Sample table.
+Site,sampleCollectOtherDefault,si_scod,Sample collect other default,,,,string,,,Used as default when a new sample is created for this site. See collectionOther in Sample table.
+Site,sampleStorageTempCDefault,si_sstc,Sample storage temp c default,,,,float,,,Used as default when a new sample is created for this site. See storageTempC in Sample table.
+Site,measureFractionAnalyzedDefault,si_mfad,Measure fraction analyzed default,,,,category,,,Used as default when a new measurement is created for this site. See fractionAnalyzed in Measurement table.
+Site,geoLat,si_gla,Geo lat,,,,float,null,null,"Site geographical location, latitude in decimal coordinates, ie.: (45.424721)"
+Site,geoLong,si_glo,Geo long,,,,float,null,null,"Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)"
+Site,notes,si_no,Notes,,,,string,0,255,Any additional notes.
+Site,polygonID,si_pid,Polygon id,Foreign key,Polygon,polygonID,string,,,"Links with the Polygon table, this should encompass the area that typically drains into this site."
+Site,sewerNetworkFileLink,si_snfl,Sewer network file link,,,,string,,,Link to a file that has any detailed information about the sewer network associated with the site (any format).
+Site,sewerNetworkFileBLOB,si_snfb,Sewer network file blob,,,,blob,,,A file blob that has any detailed information about the sewer network associated with the site (any format).
+SiteMeasure,uSiteMeasureID,sm_umid,U site measure id,Primary Key,,,string,null,null,Unique identifier for each measurement for a site.
+SiteMeasure,siteMeasureID,sm_mid,Site measure id,,,,string,,,Unique identifier for wide table only. Use when all measures are performed on a single sample.
+SiteMeasure,siteID,sm_siid,Site id,Foreign key,Site,siteID,string,null,null,Links with the Site table to describe the location of measurement.
+SiteMeasure,instrumentID,sm_iid,Instrument id,Foreign key,Instrument,instrumentID,string,,,Links with the Instrument table to describe instrument used for the measurement.
+SiteMeasure,reporterID,sm_rid,Reporter id,Foreign key,Reporter,reporterID,string,null,null,Links with the reporter that is responsible for the data.
+SiteMeasure,sampleID,sm_said,Sample id,Foreign key,Sample,sampleID,string,null,null,Links with the identified Sample
+SiteMeasure,dateTime,sm_dt,Date time,,,,date,null,null,The date and time the measurement was performed.
+SiteMeasure,type,sm_ty,Type,,,,category,null,null,"The type of measurement that was performed. The prefix env is used for environmental variables, whereas ww indicates a measurement on wastewater."
+SiteMeasure,typeOther,sm_tyo,Type other,,,,string,0,100,Description of the measurement in case it is not listed in type.
+SiteMeasure,typeDescription,sm_tyd,Type description,,,,string,0,255,Additional information on the performed measurement.
+SiteMeasure,aggregation,sm_ag,Aggregation,,,,category,null,null,"When reporting an aggregate measurement, this field describes the method used."
+SiteMeasure,aggregationOther,sm_ago,Aggregation other,,,,string,0,100,Description for other type of aggregation not listed in aggregation.
+SiteMeasure,aggregationDesc,sm_agd,Aggregation desc,,,,string,0,255,Information on OR reference to which measurements that were included to calculate the aggregated measurement that is being reported.
+SiteMeasure,value,sm_va,Value,,,,float,null,null,"The actual value that is being reported for this measurement. Use ""NA"" for missing values and make sure to leave a note."
+SiteMeasure,unit,sm_un,Unit,,,,category,null,null,The engineering unit of the measurement.
+SiteMeasure,qualityFlag,sm_qf,Quality flag,,,,boolean,,,Does the reporter suspect quality issues with the value of this measurement
+SiteMeasure,accessToPublic,sm_atp,Access to public,,,,boolean,,,"If this is 'no', this data will not be available to the public. If missing, data will be available to the public."
+SiteMeasure,accessToAllOrgs,sm_atao,Access to all orgs,,,,boolean,,,"If this is 'no', this data will not be available to any partner organization. If missing, data will be available to the all organizations."
+SiteMeasure,accessToSelf,sm_ats,Access to self,,,,boolean,,,"If this is 'no', this data will not be shown on the portal when this reporter logs in. If missing, data will be available to this reporter."
+SiteMeasure,accessToPHAC,sm_atp,Access to phac,,,,boolean,,,"If this is 'no', the data will not be available to employees of the Public Health Agency of Canada - PHAC. If missing, data will be available to employees of the Public Health Agency of Canada - PHAC."
+SiteMeasure,accessToLocalHA,sm_atlh,Access to local ha,,,,boolean,,,"If this is 'no', data will not be available to local health authorities. If missing, data will be available to local health authorities."
+SiteMeasure,accessToProvHA,sm_atph,Access to prov ha,,,,boolean,,,"If this is 'no', this data will not be available to provincial health authorities. If missing, data will be available to provincial health authorities."
+SiteMeasure,accessToOtherProv,sm_atop,Access to other prov,,,,boolean,,,"If this is 'no', this data will not be available to other data providers not listed before. If missing, data will be available to other data providers not listed before."
+SiteMeasure,accessToDetails,sm_atd,Access to details,,,,boolean,,,More details on the existing confidentiality requirements of this measurement.
+SiteMeasure,notes,sm_no,Notes,,,,string,0,255,Any additional notes.
+Reporter,reporterID,re_reid,Reporter id,Primary Key,,,string,null,null,Unique identifier for the person or organization that is reporting the data.
+Reporter,siteIDDefault,re_sidd,Site id default,Foreign key,Site,siteID,string,,,Used as default when a new sample is created by this reporter. See ID in Site table.
+Reporter,labIDDefault,re_lidd,Lab id default,Foreign key,Lab,labID,string,,,Used as default when a new sample is created by this reporter. See ID in Lab table.
+Reporter,contactName,re_cn,Contact name,,,,string,0,100,"Full Name of the reporter, either an organization or individual."
+Reporter,contactEmail,re_ce,Contact email,,,,string,null,null,Contact e-mail address.
+Reporter,organization,re_or,Organization,,,,string,,,The organization to which the reporter is affiliated.
+Reporter,contactPhone,re_cp,Contact phone,,,,string,10,12,Contact phone number.
+Reporter,notes,re_no,Notes,,,,string,0,255,Any additional notes.
+Lab,labID,la_laid,Lab id,Primary Key,,,string,null,null,Unique identifier for the laboratory.
+Lab,assayMethodIDDefault,la_midd,Assay method id default,Foreign key,AssayMethod,assayMethodID,string,,,Used as default when a new measurement is created for this lab. See ID in AssayMethod table.
+Lab,name,la_na,Name,,,,string,0,100,Name corresponding to lab.
+Lab,contactName,la_cn,Contact name,,,,string,0,100,"Contact person or group, for the lab."
+Lab,contactEmail,la_ce,Contact email,,,,string,null,null,"Contact e-mail address, for the lab."
+Lab,contactPhone,la_cp,Contact phone,,,,string,10,12,"Contact phone number, for the lab."
+Lab,updateDate,la_ud,Update date,,,,date,null,null,date information was provided or updated.
+AssayMethod,assayMethodID,am_amid,Assay method id,Primary Key,,,string,null,null,Unique identifier for the assay method.
+AssayMethod,instrumentID,am_inid,Instrument id,Foreign key,Instrument,instrumentID,string,null,null,Links with the Instrument table to describe instruments used for the measurement.
+AssayMethod,name,am_na,Name,,,,string,0,100,Name of the assay method.
+AssayMethod,version,am_ve,Version,,,,string,0,50,Version of the assay. Semantic versioning is recommended.
+AssayMethod,summary,am_su,Summary,,,,string,0,255,Short description of the assay and how it is different from the other assay methods.
+AssayMethod,referenceLink,am_rl,Reference link,,,,string,0,255,Link to standard operating procedure.
+AssayMethod,date,am_da,Date,,,,date,null,null,date on which the assayMethod was created or updated (for version update).
+AssayMethod,aliasID,am_aid,Alias id,,,,string,,,ID of an assay that is the same or similar. a comma separated list.
+AssayMethod,extractionVolMl,am_evml,Extraction volume in ml,,,,float,,,Size of the sample that is analyzed in milliliters.
+AssayMethod,loq,am_loq,Loq,,,,float,0,,Limit of quantification (LOQ) for this method if one exists.
+AssayMethod,lod,am_lod,Lod,,,,float,0,,Limit of detection (LOD) for this method if one exists.
+AssayMethod,unit,am_un,Unit,,,,category,null,null,"Unit used by this method, and applicable to the LOD and LOQ."
+AssayMethod,unitOther,am_uno,Unit other,,,,string,null,100,"Unit used by this method, that are applicable to the LOD and LOQ."
+AssayMethod,methodConc,am_mc,Method conc,,,,string,,,Description of the method used to concentrate the sample
+AssayMethod,methodExtract,am_me,Method extract,,,,string,,,Description of the method used to extract the sample
+AssayMethod,methodPcr,am_mpcr,Method pcr,,,,string,,,Description of the PCR method used
+AssayMethod,qualityAssQC,am_qaqc,Quality ass qc,,,,string,,,Description of the quality control steps taken
+AssayMethod,inhibition,am_in,Inhibition,,,,string,,,Description of the inhibition parameters.
+AssayMethod,surrogateRecovery,am_sr,Surrogate recovery,,,,string,,,Description of the surrogate recovery for this method.
+Instrument,instrumentID,in_iid,Instrument id,Primary Key,,,string,null,null,Unique identifier for the instrument.
+Instrument,name,in_na,Name,,,,string,0,100,Name of the instrument used to perform the measurement.
+Instrument,model,in_mo,Model,,,,string,0,100,Model number or version of the instrument.
+Instrument,description,in_de,Description,,,,string,0,100,Description of the instrument.
+Instrument,alias,in_al,Alias,,,,string,,,ID of an assay that is the same or similar. A comma separated list.
+Instrument,referenceLink,in_rl,Reference link,,,,string,0,100,Link to reference for the instrument.
+Instrument,type,in_ty,Type,,,,category,null,null,Type of instrument used to perform the measurement.
+Instrument,typeOther,in_tyo,Type other,,,,string,0,100,Description of the instrument in case it is not listed in instrumentType.
+Polygon,polygonID,po_pid,Polygon id,Primary Key,,,string,,,Unique identifier for the polygon.
+Polygon,name,po_na,Name,,,,string,,,Descriptive name of the polygon.
+Polygon,pop,po_po,Pop,,,,integer,,,Approximate population size of people living inside the polygon.
+Polygon,type,po_ty,Type,,,,category,,,Type of polygon.
+Polygon,wkt,po_wkt,Wkt,,,,string,,,well known text of the polygon
+Polygon,file,po_fi,File,,,,blob,,,"File containing the geometry of the polygon, blob format."
+Polygon,link,po_li,Link,,,,string,,,Link to an external reference that describes the geometry of the polygon.
+CovidPublicHealthData,cphdID,cp_cpid,Cphd id,Primary Key,,,string,,,Unique identifier for the table.
+CovidPublicHealthData,reporterID,cp_rid,Reporter id,Foreign key,Reporter,reporterID,string,,,ID of the reporter who gave this data.
+CovidPublicHealthData,polygonID,cp_pid,Polygon id,Foreign key,Polygon,polygonID,string,,,Links with the Polygon table.
+CovidPublicHealthData,date,cp_da,Date,,,,string,,,date of reporting for covid-19 measure.
+CovidPublicHealthData,type,cp_ty,Type,,,,category,,,Type of covid-19 patient data.
+CovidPublicHealthData,dateType,cp_dt,Date type,,,,category,,,Type of date used for conf cases. Typically report or episode are reported. onset and test date is not usually reported within aggregate data.
+CovidPublicHealthData,value,cp_va,Value,,,,float,,,"The actual value that is being reported for this measurement. Use ""NA"" for missing values and make sure to leave a note."
+CovidPublicHealthData,notes,cp_no,Notes,,,,string,,,Any additional notes.
+Lookup,tableName,lo_tn,Table name,,,,string,,,Name of the Table
+Lookup,columnName,lo_cn,Column name,,,,string,,,Name for the column
+Lookup,value,lo_va,Value,,,,string,,,Name of the value
+Lookup,description,lo_de,Description,,,,string,,,Name of the description
