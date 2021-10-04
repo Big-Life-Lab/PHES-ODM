@@ -1,4 +1,4 @@
-tableName,variableName,variableShortFormalName,variableLabel,key,foreignKeyTable,foreignKeyVariable,variableType,minlength,maxlength,variableDesc
+tableName,variableName,uid,variableLabel,key,foreignKeyTable,foreignKeyVariable,variableType,minlength,maxlength,variableDesc
 Sample,sampleID,sa_said,Sample id,Primary Key,,,string,null,10,Unique identifier for sample. Suggestion:siteID-date-index.
 Sample,siteID,sa_siid,Site id,Foreign key,Site,siteID,string,null,10,Links with the Site table to describe the location of sampling.
 Sample,instrumentID,sa_inid,Instrument id,Foreign key,Instrument,InstrumentID,string,null,10,Links with the Instrument table to describe the instrument used for sampling.

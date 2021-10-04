@@ -1,4 +1,4 @@
-tableName,tableShortFormalName,tableLabel,tableDesc
+tableName,uid,tableLabel,tableDesc
 Sample,sa,Wastewater sample data,The sample is a representative volume of wastewater taken from a Site which is then analysed by a lab.
 Site,si,site of sample,"The site of wastewater sampling, including several defaults that can be used to populate new samples upon creation."
 Reporter,re,Reporter of data,The individual or organization that is reporting and responsible for the quality of the data.
