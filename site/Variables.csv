@@ -1,153 +1,153 @@
 tableName,variableName,variableShortFormalName,variableLabel,key,foreignKeyTable,foreignKeyVariable,variableType,minlength,maxlength,variableDesc
-Sample,sampleID,sa_said,Sample id,Primary Key,,,string,null,null,Unique identifier for sample. Suggestion:siteID-date-index.
-Sample,siteID,sa_siid,Site id,Foreign key,Site,siteID,string,null,null,Links with the Site table to describe the location of sampling.
-Sample,instrumentID,sa_inid,Instrument id,Foreign key,Instrument,InstrumentID,string,,,Links with the Instrument table to describe the instrument used for sampling.
-Sample,reporterID,sa_reid,reporter ID,Foreign key,Reporter,reporterID,string,,,Links with the reporter table to identify the reporter who collected the sample.
+Sample,sampleID,sa_said,Sample id,Primary Key,,,string,null,10,Unique identifier for sample. Suggestion:siteID-date-index.
+Sample,siteID,sa_siid,Site id,Foreign key,Site,siteID,string,null,10,Links with the Site table to describe the location of sampling.
+Sample,instrumentID,sa_inid,Instrument id,Foreign key,Instrument,InstrumentID,string,null,10,Links with the Instrument table to describe the instrument used for sampling.
+Sample,reporterID,sa_reid,reporter ID,Foreign key,Reporter,reporterID,string,null,10,Links with the reporter table to identify the reporter who collected the sample.
 Sample,dateTime,sa_dt,Date time,,,,datetime,null,null,"for grab samples this is the date, time and timezone the sample was taken."
 Sample,dateTimeStart,sa_dts,Date time start,,,,datetime,null,null,"For integrated time averaged samples this is the date, time and timezone the sample was started being taken."
 Sample,dateTimeEnd,sa_dte,Date time end,,,,datetime,null,null,"For integrated time average samples this is the date, time and timezone the sample was finished being taken."
-Sample,type,sa_ty,Type,,,,category,null,null,Type of sample.
+Sample,type,sa_ty,Type,,,,category,0,30,Type of sample.
 Sample,typeOther,sa_tyo,Type other,,,,string,0,100,Description for other type of sample not listed in
-Sample,collection,sa_co,Collection,,,,category,null,null,Method used to collect the sample.
+Sample,collection,sa_co,Collection,,,,category,0,30,Method used to collect the sample.
 Sample,collectionOther,sa_coo,Collection other,,,,string,0,100,Description for other type of method not listed in collection.
-Sample,preTreatment,sa_pt,Pre treatment,,,,boolean,,,Was the sample chemically treated in anyway with the addition of stabilizers or other
+Sample,preTreatment,sa_pt,Pre treatment,,,,boolean,0,1,Was the sample chemically treated in anyway with the addition of stabilizers or other
 Sample,preTreatmentDescription,sa_ptd,Pre treatment description,,,,string,0,255,If preTreatment then describe the treatment that was performed.
-Sample,pooled,sa_po,Pooled,,,,boolean,,,"Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites"
-Sample,children,sa_ch,Children,,,,string,,,If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.
-Sample,parent,sa_pa,Parent,,,,string,,,If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.
-Sample,sizeL,sa_sl,Size l,,,,float,null,null,Total volume of water or sludge sampled.
-Sample,fieldSampleTempC,sa_fstc,Field sample temp c,,,,float,null,null,Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
-Sample,shippedOnIce,sa_soi,Shipped on ice,,,,boolean,null,null,Was the sample kept cool while being shipped to the lab
-Sample,storageTempC,sa_stc,Storage temp c,,,,float,,,Temperature that the sample is stored at in Celsius.
-Sample,qualityFlag,sa_qf,Quality flag,,,,boolean,,,Does the reporter suspect the sample having some quality issues
+Sample,pooled,sa_po,Pooled,,,,boolean,0,1,"Is this a pooled sample, and therefore composed of multiple child samples obtained at different sites"
+Sample,children,sa_ch,Children,,,,string,0,30,If this is a sample with many smaller samples either because of pooling or sub-sampling this indicates a comma separated list of child sampleID's.
+Sample,parent,sa_pa,Parent,,,,string,0,30,If this sample has been pooled into one big sample for analysis this indicates the sampleID of the larger pooled sample.
+Sample,sizeL,sa_sl,Size l,,,,float,0,null,Total volume of water or sludge sampled.
+Sample,fieldSampleTempC,sa_fstc,Field sample temp c,,,,float,0,null,Temperature that the sample is stored at while it is being sampled. This field is mainly relevant for composite samples which are either kept at ambient temperature or refrigerated while being sampled.
+Sample,shippedOnIce,sa_soi,Shipped on ice,,,,boolean,0,1,Was the sample kept cool while being shipped to the lab
+Sample,storageTempC,sa_stc,Storage temp c,,,,float,0,null,Temperature that the sample is stored at in Celsius.
+Sample,qualityFlag,sa_qf,Quality flag,,,,boolean,0,1,Does the reporter suspect the sample having some quality issues
 Sample,notes,sa_no,Notes,,,,string,0,255,Any additional notes.
-Site,siteID,si_siid,Site id,Primary Key,,,string,null,null,Unique identifier for the location where wastewater sample was taken.
+Site,siteID,si_siid,Site id,Primary Key,,,string,null,10,Unique identifier for the location where wastewater sample was taken.
 Site,name,si_na,Name,,,,string,0,100,"Given name to the site. Location name could be a treatment plant, campus, institution or sewer location, etc."
 Site,description,si_de,Description,,,,string,0,255,"Description of wastewater site (city, building, street, etc.) to better identify the location of the sampling point."
-Site,publicHealthDepartment,si_phd,Public health department or region,,,,string,null,null,The public health department or region where the site or institute is located. See also `healthRegion` if there is a separate regional health care delivery authority.
-Site,healthRegion,si_hr,Health planning region,,,,string,null,null,The health planning authority where is site or insititute is located. See also `publicHealthDepartment`
-Site,type,si_ty,Type,,,,category,null,null,Type of site or institution where sample was taken.
+Site,publicHealthDepartment,si_phd,Public health department or region,,,,string,0,30,The public health department or region where the site or institute is located. See also `healthRegion` if there is a separate regional health care delivery authority.
+Site,healthRegion,si_hr,Health planning region,,,,string,0,30,The health planning authority where is site or insititute is located. See also `publicHealthDepartment`
+Site,type,si_ty,Type,,,,category,0,30,Type of site or institution where sample was taken.
 Site,typeOther,si_tyo,Type other,,,,string,0,100,Description of the site when the site is not listed. See siteType.
-Site,geoLat,si_gla,Geo lat,,,,float,null,null,"Site geographical location, latitude in decimal coordinates, ie.: (45.424721)"
-Site,geoLong,si_glo,Geo long,,,,float,null,null,"Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)"
+Site,geoLat,si_gla,Geo lat,,,,float,0,null,"Site geographical location, latitude in decimal coordinates, ie.: (45.424721)"
+Site,geoLong,si_glo,Geo long,,,,float,0,null,"Site geographical location, longitude in decimal coordinates, ie.: (-75.695000)"
 Site,notes,si_no,Notes,,,,string,0,255,Any additional notes.
-Site,polygonID,si_poid,Polygon id,Foreign key,Polygon,polygonID,string,,,"Links with the Polygon table, this should encompass the area that typically drains into this site."
-Site,sewerNetworkFileLink,si_snfl,Sewer network file link,,,,string,,,Link to a file that has any detailed information about the sewer network associated with the site (any format).
-Site,sewerNetworkFileBLOB,si_snfb,Sewer network file blob,,,,blob,,,A file blob that has any detailed information about the sewer network associated with the site (any format).
-Reporter,reporterID,re_reid,Reporter id,Primary Key,,,string,null,null,Unique identifier for the person or organization that is reporting the data.
+Site,polygonID,si_poid,Polygon id,Foreign key,Polygon,polygonID,string,0,30,"Links with the Polygon table, this should encompass the area that typically drains into this site."
+Site,sewerNetworkFileLink,si_snfl,Sewer network file link,,,,string,0,30,Link to a file that has any detailed information about the sewer network associated with the site (any format).
+Site,sewerNetworkFileBLOB,si_snfb,Sewer network file blob,,,,blob,0,65535,A file blob that has any detailed information about the sewer network associated with the site (any format).
+Reporter,reporterID,re_reid,Reporter id,Primary Key,,,string,0,30,Unique identifier for the person or organization that is reporting the data.
 Reporter,contactName,re_cn,Contact name,,,,string,0,100,"Full Name of the reporter, either an organization or individual."
-Reporter,contactEmail,re_ce,Contact email,,,,string,null,null,Contact e-mail address.
-Reporter,organization,re_or,Organization,,,,string,,,The organization to which the reporter is affiliated.
+Reporter,contactEmail,re_ce,Contact email,,,,string,0,100,Contact e-mail address.
+Reporter,organization,re_or,Organization,,,,string,0,100,The organization to which the reporter is affiliated.
 Reporter,contactPhone,re_cp,Contact phone,,,,string,10,12,Contact phone number.
 Reporter,notes,re_no,Notes,,,,string,0,255,Any additional notes.
-Lab,labID,la_laid,Lab id,Primary Key,,,string,null,null,Unique identifier for the laboratory.
+Lab,labID,la_laid,Lab id,Primary Key,,,string,0,10,Unique identifier for the laboratory.
 Lab,name,la_na,Name,,,,string,0,100,Name corresponding to lab.
 Lab,contactName,la_cn,Contact name,,,,string,0,100,"Contact person or group, for the lab."
-Lab,contactEmail,la_ce,Contact email,,,,string,null,null,"Contact e-mail address, for the lab."
+Lab,contactEmail,la_ce,Contact email,,,,string,0,100,"Contact e-mail address, for the lab."
 Lab,contactPhone,la_cp,Contact phone,,,,string,10,12,"Contact phone number, for the lab."
 Lab,updateDate,la_ud,Update date,,,,date,null,null,date information was provided or updated.
-AssayMethod,assayMethodID,am_amid,Assay method id,Primary Key,,,string,null,null,Unique identifier for the assay method.
-AssayMethod,instrumentID,am_inid,Instrument id,Foreign key,Instrument,instrumentID,string,null,null,Links with the Instrument table to describe instruments used for the measurement.
+AssayMethod,assayMethodID,am_amid,Assay method id,Primary Key,,,string,0,10,Unique identifier for the assay method.
+AssayMethod,instrumentID,am_inid,Instrument id,Foreign key,Instrument,instrumentID,string,0,10,Links with the Instrument table to describe instruments used for the measurement.
 AssayMethod,name,am_na,Name,,,,string,0,100,Name of the assay method.
 AssayMethod,version,am_ve,Version,,,,string,0,50,Version of the assay. Semantic versioning is recommended.
 AssayMethod,summary,am_su,Summary,,,,string,0,255,Short description of the assay and how it is different from the other assay methods.
 AssayMethod,referenceLink,am_rl,Reference link,,,,string,0,255,Link to standard operating procedure.
 AssayMethod,date,am_da,Date,,,,date,null,null,date on which the assayMethod was created or updated (for version update).
-AssayMethod,aliasID,am_alid,Alias id,,,,string,,,ID of an assay that is the same or similar. a comma separated list.
-AssayMethod,extractionVolMl,am_evml,Extraction volume in ml,,,,float,,,Size of the sample that is analyzed in milliliters.
-AssayMethod,loq,am_loq,Loq,,,,float,0,,Limit of quantification (LOQ) for this method if one exists.
-AssayMethod,lod,am_lod,Lod,,,,float,0,,Limit of detection (LOD) for this method if one exists.
-AssayMethod,unit,am_un,Unit,,,,category,null,null,"Unit used by this method, and applicable to the LOD and LOQ."
-AssayMethod,unitOther,am_uno,Unit other,,,,string,null,100,"Unit used by this method, that are applicable to the LOD and LOQ."
-AssayMethod,methodConc,am_mc,Method conc,,,,string,,,Description of the method used to concentrate the sample
-AssayMethod,methodExtract,am_me,Method extract,,,,string,,,Description of the method used to extract the sample
-AssayMethod,methodPcr,am_mp,Method pcr,,,,string,,,Description of the PCR method used
-AssayMethod,qualityAssQC,am_qaqc,Quality ass qc,,,,string,,,Description of the quality control steps taken
-AssayMethod,inhibition,am_in,Inhibition,,,,string,,,Description of the inhibition parameters.
-AssayMethod,surrogateRecovery,am_sr,Surrogate recovery,,,,string,,,Description of the surrogate recovery for this method.
-Instrument,instrumentID,in_inid,Instrument id,Primary Key,,,string,null,null,Unique identifier for the instrument.
+AssayMethod,aliasID,am_alid,Alias id,,,,string,0,10,ID of an assay that is the same or similar. a comma separated list.
+AssayMethod,extractionVolMl,am_evml,Extraction volume in ml,,,,float,0,null,Size of the sample that is analyzed in milliliters.
+AssayMethod,loq,am_loq,Loq,,,,float,0,null,Limit of quantification (LOQ) for this method if one exists.
+AssayMethod,lod,am_lod,Lod,,,,float,0,null,Limit of detection (LOD) for this method if one exists.
+AssayMethod,unit,am_un,Unit,,,,category,0,30,"Unit used by this method, and applicable to the LOD and LOQ."
+AssayMethod,unitOther,am_uno,Unit other,,,,string,0,100,"Unit used by this method, that are applicable to the LOD and LOQ."
+AssayMethod,methodConc,am_mc,Method conc,,,,string,0,100,Description of the method used to concentrate the sample
+AssayMethod,methodExtract,am_me,Method extract,,,,string,0,100,Description of the method used to extract the sample
+AssayMethod,methodPcr,am_mp,Method pcr,,,,string,0,100,Description of the PCR method used
+AssayMethod,qualityAssQC,am_qaqc,Quality ass qc,,,,string,0,100,Description of the quality control steps taken
+AssayMethod,inhibition,am_in,Inhibition,,,,string,0,100,Description of the inhibition parameters.
+AssayMethod,surrogateRecovery,am_sr,Surrogate recovery,,,,string,0,100,Description of the surrogate recovery for this method.
+Instrument,instrumentID,in_inid,Instrument id,Primary Key,,,string,0,10,Unique identifier for the instrument.
 Instrument,name,in_na,Name,,,,string,0,100,Name of the instrument used to perform the measurement.
 Instrument,model,in_mo,Model,,,,string,0,100,Model number or version of the instrument.
 Instrument,description,in_de,Description,,,,string,0,100,Description of the instrument.
-Instrument,alias,in_al,Alias,,,,string,,,ID of an assay that is the same or similar. A comma separated list.
+Instrument,alias,in_al,Alias,,,,string,0,10,ID of an assay that is the same or similar. A comma separated list.
 Instrument,referenceLink,in_rl,Reference link,,,,string,0,100,Link to reference for the instrument.
-Instrument,type,in_ty,Type,,,,category,null,null,Type of instrument used to perform the measurement.
+Instrument,type,in_ty,Type,,,,category,0,30,Type of instrument used to perform the measurement.
 Instrument,typeOther,in_tyo,Type other,,,,string,0,100,Description of the instrument in case it is not listed in instrumentType.
-Polygon,polygonID,po_poid,Polygon id,Primary Key,,,string,,,Unique identifier for the polygon.
-Polygon,name,po_na,Name,,,,string,,,Descriptive name of the polygon.
-Polygon,pop,po_pop,Pop,,,,integer,,,Approximate population size of people living inside the polygon.
-Polygon,type,po_ty,Type,,,,category,0,100,Type of polygon.
-Polygon,wkt,po_wkt,Wkt,,,,string,,,well known text of the polygon
-Polygon,file,po_fi,File,,,,blob,,,"File containing the geometry of the polygon, blob format."
-Polygon,link,po_li,Link,,,,string,,,Link to an external reference that describes the geometry of the polygon.
-Lookup,tableName,lo_tn,Table name,,,,string,,,Name of the Table
-Lookup,columnName,lo_cn,Column name,,,,string,,,Name for the column
-Lookup,value,lo_va,Value,,,,string,,,Name of the value
+Polygon,polygonID,po_poid,Polygon id,Primary Key,,,string,0,10,Unique identifier for the polygon.
+Polygon,name,po_na,Name,,,,string,0,30,Descriptive name of the polygon.
+Polygon,pop,po_pop,Pop,,,,integer,0,null,Approximate population size of people living inside the polygon.
+Polygon,type,po_ty,Type,,,,category,0,30,Type of polygon.
+Polygon,wkt,po_wkt,Wkt,,,,string,0,63,well known text of the polygon
+Polygon,file,po_fi,File,,,,blob,0,65535,"File containing the geometry of the polygon, blob format."
+Polygon,link,po_li,Link,,,,string,0,100,Link to an external reference that describes the geometry of the polygon.
+Lookup,tableName,lo_tn,Table name,,,,string,0,30,Name of the Table
+Lookup,columnName,lo_cn,Column name,,,,string,0,30,Name for the column
+Lookup,value,lo_va,Value,,,,string,0,30,Name of the value
 Lookup,description,lo_de,Description,,,,string,0,255,Name of the description
-Assay,assayID,as_asid,,Primary Key,,,string,,,
-Assay,assayMethodID,as_amid,,,AssayMethod,assayMethodID,string,,,
-Assay,labID,as_laid,,,Lab,labID,string,,,
-Assay,reporterID,as_reid,,,Reporter,reporterID,string,,,
-AssayHasInstrument,assayID,ah_asid,,,Assay,assayID,string,,,
-AssayHasInstrument,assayMethodID,ah_amid,,,AssayMethod,assayMethodID,string,,,
-Value,valueID,va_vaid,,Primary Key,,,string,,,
-Value,assayID,va_asid,,,Assay,assayID,string,,,
-Value,sampleID,va_said,,,Sample,sampleID,string,,,
-Value,siteID,va_siid,,,Site,siteID,string,,,
-Value,polygonID,va_poid,,,Polygon,polygonID,string,,,
-Value,analysisDate,va_ad,,,,,string,,,
-Value,reportDate,va_rd,,,,,string,,,
-Value,measureID,va_meid,,,Measure,measureID,string,,,
-Value,unitID,va_unid,,,Unit,unitID,string,,,
-Value,aggregationID,va_agid,,,Aggregation,aggregationID,string,,,
-Value,value,va_va,,,,,string,,,
+Assay,assayID,as_asid,,Primary Key,,,string,0,30,
+Assay,assayMethodID,as_amid,,,AssayMethod,assayMethodID,string,0,30,
+Assay,labID,as_laid,,,Lab,labID,string,0,30,
+Assay,reporterID,as_reid,,,Reporter,reporterID,string,0,30,
+AssayHasInstrument,assayID,ah_asid,,,Assay,assayID,string,0,30,
+AssayHasInstrument,assayMethodID,ah_amid,,,AssayMethod,assayMethodID,string,0,30,
+Value,valueID,va_vaid,,Primary Key,,,string,0,30,
+Value,assayID,va_asid,,,Assay,assayID,string,0,30,
+Value,sampleID,va_said,,,Sample,sampleID,string,0,30,
+Value,siteID,va_siid,,,Site,siteID,string,0,30,
+Value,polygonID,va_poid,,,Polygon,polygonID,string,0,30,
+Value,analysisDate,va_ad,,,,,string,0,30,
+Value,reportDate,va_rd,,,,,string,0,30,
+Value,measureID,va_meid,,,Measure,measureID,string,0,30,
+Value,unitID,va_unid,,,Unit,unitID,string,0,30,
+Value,aggregationID,va_agid,,,Aggregation,aggregationID,string,0,30,
+Value,value,va_va,,,,,string,0,30,
 Value,qualityFlag,va_qf,,,,,string,0,255,
 Value,notes,va_no,,,,,string,0,255,
-Aggregation,aggregationID,ag_agid,,Primary Key,,,string,,,
+Aggregation,aggregationID,ag_agid,,Primary Key,,,string,0,30,
 Aggregation,descriptionEN,ag_deen,,,,,string,0,255,
 Aggregation,descriptionFR,ag_defr,,,,,string,0,255,
-AggregationScale,aggregationScaleID,as_asid,,Primary Key,,,string,,,
+AggregationScale,aggregationScaleID,as_asid,,Primary Key,,,string,0,30,
 AggregationScale,description,as_de,,,,,string,0,255,
-Domain,domainID,do_doid,,Primary Key,,,string,,,
+Domain,domainID,do_doid,,Primary Key,,,string,0,30,
 Domain,descriptionEN,do_deen,,,,,string,0,255,
 Domain,descriptionFR,do_defr,,,,,string,0,255,
-Measure,measureID,me_meid,,Primary Key,,,string,,,
-Measure,shortName,me_sn,,,,,string,,,
-Measure,fullName,me_fn,,,,,string,,,
-Measure,commonNameEN,me_cnen,,,,,string,,,
-Measure,commonNameFR,me_cnfr,,,,,string,,,
+Measure,measureID,me_meid,,Primary Key,,,string,0,30,
+Measure,shortName,me_sn,,,,,string,0,30,
+Measure,fullName,me_fn,,,,,string,0,30,
+Measure,commonNameEN,me_cnen,,,,,string,0,30,
+Measure,commonNameFR,me_cnfr,,,,,string,0,30,
 Measure,descriptionEN,me_deen,,,,,string,0,255,
 Measure,descriptionFR,me_defr,,,,,string,0,255,
-Measure,status,me_st,,,,,string,,,
-Measure,firstReleased,me_fr,,,,,string,,,
-Measure,lastUpdated,me_lu,,,,,string,,,
-Measure,domainID,me_doid,,,Domain,domainID,string,,,
-Measure,specimenID,me_spid,,,Specimen,specimenID,string,,,
-Measure,measureGroupID,me_mgid,,,MeasureGroup,measureGroupID,string,,,
-Measure,measureClassID,me_mcid,,,MeasureClass,measureClassID,string,,,
-Measure,measurePart,me_mp,,,,,string,,,
-Measure,analytePartNomenclature,me_apn,,,,,string,,,
-MeasureClass,measureClassID,mc_mcid,,Primary Key,,,string,,,
+Measure,status,me_st,,,,,string,0,30,
+Measure,firstReleased,me_fr,,,,,string,0,30,
+Measure,lastUpdated,me_lu,,,,,string,0,30,
+Measure,domainID,me_doid,,,Domain,domainID,string,0,30,
+Measure,specimenID,me_spid,,,Specimen,specimenID,string,0,30,
+Measure,measureGroupID,me_mgid,,,MeasureGroup,measureGroupID,string,0,30,
+Measure,measureClassID,me_mcid,,,MeasureClass,measureClassID,string,0,30,
+Measure,measurePart,me_mp,,,,,string,0,30,
+Measure,analytePartNomenclature,me_apn,,,,,string,0,30,
+MeasureClass,measureClassID,mc_mcid,,Primary Key,,,string,0,30,
 MeasureClass,descriptionEN,mc_deen,,,,,string,0,255,
 MeasureClass,descriptionFR,mc_defr,,,,,string,0,255,
-MeasureClassHasUnit,measureClassID,mh_mcid,,,MeasureClass,measureClassID,string,,,
-MeasureClassHasUnit,unitID,mh_unid,,,Unit,unitID,string,,,
-MeasureGroup,measureGroupID,mg_mgid,,Primary Key,,,string,,,
+MeasureClassHasUnit,measureClassID,mh_mcid,,,MeasureClass,measureClassID,string,0,30,
+MeasureClassHasUnit,unitID,mh_unid,,,Unit,unitID,string,0,30,
+MeasureGroup,measureGroupID,mg_mgid,,Primary Key,,,string,0,30,
 MeasureGroup,descriptionEN,mg_deen,,,,,string,0,255,
 MeasureGroup,descriptionFR,mg_defr,,,,,string,0,255,
-UnitScale,unitScaleID,us_usid,,Primary Key,,,string,,,
+UnitScale,unitScaleID,us_usid,,Primary Key,,,string,0,30,
 UnitScale,descriptionEN,us_deen,,,,,string,0,255,
 UnitScale,descriptionFR,us_defr,,,,,string,0,255,
-Specimen,specimenID,sp_spid,,Primary Key,,,string,,,
+Specimen,specimenID,sp_spid,,Primary Key,,,string,0,30,
 Specimen,descriptionEN,sp_deen,,,,,string,0,255,
 Specimen,descriptionFR,sp_defr,,,,,string,0,255,
-Specimen,parentTable,sp_pt,,,,,string,,,
-Unit,unitID,un_inid,,Primary Key,,,string,,,
-Unit,latexEpression,un_le,,,,,string,,,
+Specimen,parentTable,sp_pt,,,,,string,0,30,
+Unit,unitID,un_inid,,Primary Key,,,string,0,30,
+Unit,latexEpression,un_le,,,,,string,0,30,
 Unit,descriptionEN,un_deen,,,,,string,0,255,
 Unit,descriptionFR,un_defr,,,,,string,0,255,
-Unit,unitScaleID,un_usid,,,UnitScale,unitScaleID,string,,,
-Unit,aggregationScaleID,un_asid,,,AggregationScale,aggregationScaleID,string,,,
-Unit,dataType,un_dt,,,,,string,,,
-UnitHasAggregation,unitID,uh_unid,,,Unit,unitID,string,,,
-UnitHasAggregation,aggregationID,uh_agid,,,Aggregation,aggregationID,string,,,
+Unit,unitScaleID,un_usid,,,UnitScale,unitScaleID,string,0,30,
+Unit,aggregationScaleID,un_asid,,,AggregationScale,aggregationScaleID,string,0,30,
+Unit,dataType,un_dt,,,,,string,0,30,
+UnitHasAggregation,unitID,uh_unid,,,Unit,unitID,string,0,30,
+UnitHasAggregation,aggregationID,uh_agid,,,Aggregation,aggregationID,string,0,30,
