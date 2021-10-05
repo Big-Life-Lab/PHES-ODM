@@ -1,21 +1,21 @@
-tableName,tableLabel_en,tableLabel_fr,tableDesc_en,tableDesc_fr
-Sample,Wastewater sample data,Données sur les échantillons d'eaux usées,The sample is a representative volume of wastewater taken from a Site which is then analysed by a lab.,"L'échantillon est un volume d'eau usée représentatif de l'eau présente sur un site, qui est ensuite analysé en laboratoire."
-Site,site of sample,site d'échantillonnage,"The site of wastewater sampling, including several defaults that can be used to populate new samples upon creation.","Le site de collecte des échantilons d'eau usée. Cette table inclus plusieurs paramètres par défaut facilitant la création de nouvaux échantillons dans la table ""Sample"""
-Reporter,Reporter of data,Reporteur des données,The individual or organization that is reporting and responsible for the quality of the data.,Le reporteur ou l'organisation responsable de la collecte de données ou responsable de la qualité des données reportées.
-Lab,Lab,Laboratoire,Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.,"Laboratoire effectuant des analyses d'échantillons d'eaux usées d'un ou plusieurs sites. "
-AssayMethod,Assay Method,Méthode d'essai,"The assay method that was used to perform testing. Create a new record if there are changes (improvements) to an existing assay method. Keep the same ID and use an updated version. A new record for a new version can include only the fields that changed, however, we recommend duplicating existing fields to allow each record to clearly describe all steps. Add a current date when recording a new version to an assay.","La méthode d'analyse utilisée pour réaliser les mesures. Crée une nouvelle rangée dans cette table si des changements (améliorations) sont apportées à une technique d'analyse existante. Garder le même identifiant et modifier le numéro de version. Une nouvelle rangée représentant une nouvelle version d'une méthode existante peut inclure des informations seulement dans les colonnes qui ont changé d'une version à l'autre, cependant, nous recommandons de remplir les autres colonnes avec les valeurs provenant de la version précédente afin de décrire clairement la méthode en entier. Ajouter la date courante lorsqu'une nouvelle rangée est créée. "
-Instrument,Instrument,Instrument,Instruments that are used for measures in WWMeasure and SiteMeasure. The assay method for viral measurement are described in AssayMethod.,"L'instrument utilisé pour mesurer les échantillons et l'eau usée des sites d'échantillonnage. La méthode d'analyse pour les mesures virales sont décrites dans la table ""AssayMethod""."
-Polygon,Area,Domaine,"A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area.","Polygone englobant une région de la surface terrestre. Normalement, ces polygones représentent soit des bassin de drainage d'un réseau d'égouts ou une région de santé publique, ou une autre région associée à des données reportées."
-Lookup,Lookup Table,Tableau de recherche,Used for lookup values of all category based columns,Utiliser pour retrouver les valeurs associées aux colonnes contenant des données catégoriques.
-Assay,Assay,Essai,Procedure that yields measures.,Procédé qui produit des mesures.
-AssayHasInstrument,Assay has instrument,Essai utilise instrument,Shows relations between assays and experiments.,Montre les relation entre les essais et les instruments
-Domain,Domain,Domaine,"Largest measure category (chemical, biological, etc.).","Classification des mesures la plus générale (biologique, chimique, etc.)."
-Measure,Measure,Mesure,Definition of measured quantity or quality.,Définiton d'une quantité ou qualité mesurée.
-MeasureClass,Measure class,Classe de mesure,Group of measures that are performed using similar assay methods.,Classe de mesures utilisant des procédures d'essai similaires.
-MeasureClassHasUnit,Measure class has unit,Classe de mesure utilise unité,Shows relations between a measure class and reporting units.,Montre les relations entre les classes de mesures et les unités utilisées pour raporter leur valeur.
-MeasureGroup,Measure group,Groupe de mesure,Groups measures that have relate to the same.,
-UnitScale,Unit Scale,Échelle des unités,"Cardinality of a measurement (qualitative, quantitative, etc.).","Cardinalité d'une mesure (quantitative, qualitative, etc.)."
-Specimen,Specimen,Spécimen,Class of entity from which a measure is taken.,"Classe d'entité sur laquelle une mesure est prise (échantillon, site, etc.)."
-Unit,Unit of measure,Unité de mesure,Unit of reporting for values,Unité pour rapporter des valeurs
-UnitHasAggregationScale,Unit has aggregation scale,Unité utilise échelle d'aggrégation,Aggregations that are meaningful for a given unit,Aggrégations qui sont utilisables avec une unité
-AggregationScale,Aggregation scales,Échelle d'aggrégation,Scale used to aggregate values together,
+tableName,uid,tableLabel,tableDesc
+Sample,sa,Wastewater sample data,The sample is a representative volume of wastewater taken from a Site which is then analysed by a lab.
+Site,si,site of sample,"The site of wastewater sampling, including several defaults that can be used to populate new samples upon creation."
+Reporter,re,Reporter of data,The individual or organization that is reporting and responsible for the quality of the data.
+Lab,la,Lab,Laboratory that performs SARS-CoV-2 wastewater testing at one or more sites.
+AssayMethod,am,Assay Method,"The assay method that was used to perform testing. Create a new record if there are changes (improvements) to an existing assay method. Keep the same ID and use an updated version. A new record for a new version can include only the fields that changed, however, we recommend duplicating existing fields to allow each record to clearly describe all steps. Add a current date when recording a new version to an assay."
+Instrument,in,Instrument,Instruments that are used for measures in WWMeasure and SiteMeasure. The assay method for viral measurement are described in AssayMethod.
+Polygon,po,Area,"A simple polygon that encloses an area on the surface of the earth, normally these polygons will either be of a sewer catchment area or of a health region or other reporting area."
+Lookup,lo,Lookup Table,Used for lookup values of all category based columns
+Assay,as,Assay,Procedure that yields measures.
+AssayHasInstrument,ah,Assay has instrument,Shows relations between assays and experiments.
+Domain,do,Domain,"Largest measure category (chemical, biological, etc.)."
+Measure,me,Measure,Definition of measured quantity or quality.
+MeasureClass,mc,Measure class,Group of measures that are performed using similar assay methods.
+MeasureClassHasUnit,mh,Measure class has unit,Shows relations between a measure class and reporting units.
+MeasureGroup,mg,Measure group,Groups measures that have relate to the same.
+UnitScale,us,Unit Scale,"Cardinality of a measurement (qualitative, quantitative, etc.)."
+Specimen,sp,Specimen,Class of entity from which a measure is taken.
+Unit,un,Unit of measure,Unit of reporting for values
+UnitHasAggregationScale,uh,Unit has aggregation scale,Aggregations that are meaningful for a given unit
+AggregationScale,as,Aggregation scales,Scale used to aggregate values together
