@@ -12,7 +12,7 @@ There are four types of tables in the ODM:
 
 ## Results tables
 
-The **results tables** are where testing laboratories store the results of measurements and tests performed on wastewater samples. They are regularly updated or added whenever you collect a new sample or perform a new measure on a sample. There are also data tables to describe the wastewater samples, such as when the sample was taken and the volume or other properties of the sample. Example of results data is stored in [data](data).
+The **results tables** are where testing laboratories store the results of measurements and tests performed on wastewater samples. These tables are regularly updated or added whenever a lab collects a new sample or performs a new measure on a sample. There are data tables to describe the wastewater samples, such as when the sample was taken and the volume or other properties of the sample. Example of results data is stored in [data](data).
 
 - [AssayValue] -- hmm. maybe we should call these results tables `AssayResults`, etc.
 - [MeasureValue]
@@ -20,9 +20,11 @@ The **results tables** are where testing laboratories store the results of measu
 - [SiteValue]
 - [PopulationValue]
 
+(add a schematic diagram for the relationship between these data tables: site ---> sample ---> assay ---> measure.)
+
 ## Program description tables
 
-The **program description tables** describe your testing program, including infomation of your testing lab, testing site and assay methods. The table are only updated if you change or add new sites or assay methods.
+The **program description tables** describe your testing program, including infomation about testing labs, testing sites and assay methods. The table are only updated if you change or add new sites or assay methods. Example of information stored in these tables is the name and address of a testing laboratory or testing site.
 
 - [AssayMethod]
 - [Instrument]
@@ -30,9 +32,13 @@ The **program description tables** describe your testing program, including info
 - [Polygon]
 - [Reporter]
 
+(add a schematic diagram?)
+
 ## Dictionary look-up tables
 
 The dictionary look-up tables describe the attributes of measures (and samples??). These tables are only used as a reference for reporting measures or samples. New enteries to these dictionary tables are added when a new type measure or test is created. These tables are used are not used to store data.
+
+(add a schematic diagram similar to LOINC's attributes figure)
 
 - [Aggregation]
 - [AggregationScale]
