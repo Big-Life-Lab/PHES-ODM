@@ -24,7 +24,7 @@ The **results tables** are where testing laboratories store the results of measu
 
 ## Program description tables
 
-The **program description tables** describe your testing program, including infomation about testing labs, testing sites and assay methods. The table are only updated if you change or add new sites or assay methods. Example of information stored in these tables is the name and address of a testing laboratory or testing site.
+The **program description tables** describe your testing program, including infomation about testing labs, testing sites and assay methods. The tables are only updated if you change or add new sites or assay methods. Example of information stored in these tables is the name and address of a testing laboratory or testing site.
 
 - [AssayMethod]
 - [Instrument]
