@@ -16,7 +16,9 @@ MeasureClassHasUnit,mh,Measure class has unit,Shows relations between a measure 
 MeasureGroup,mg,Measure group,Groups measures that have relate to the same.
 UnitScale,us,Unit Scale,"Cardinality of a measurement (qualitative, quantitative, etc.)."
 Specimen,sp,Specimen,Class of entity from which a measure is taken.
-SpecimenHasMeasure,sm,Specimen has measure,"Shows relations between measures and speciments."
+SpecimenHasMeasure,sm,Specimen has measure,Shows relations between measures and speciments.
 Unit,un,Unit of measure,Unit of reporting for values
 UnitHasAggregationScale,uh,Unit has aggregation scale,Aggregations that are meaningful for a given unit
 AggregationScale,as,Aggregation scales,Scale used to aggregate values together
+Languages,ln,Languages,Languages and codes for language IDs for active human languages
+Translation,tr,Translation,Translations for labels and descriptions into other user languages

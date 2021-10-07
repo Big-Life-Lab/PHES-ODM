@@ -152,3 +152,18 @@ Unit,aggregationScaleID,un_asid,,Foreign Key,AggregationScale,aggregationScaleID
 Unit,dataType,un_dt,,,,,string,0,30,
 UnitHasAggregation,unitID,uh_unid,,Foreign Key,Unit,unitID,string,0,30,
 UnitHasAggregation,aggregationID,uh_agid,,Foreign Key,Aggregation,aggregationID,string,0,30,
+Languages,languageID,ln_lnid,Language ID,Primary Key,,,integer,0,null,Unique identifier for language
+Languages,languageFamily,ln_lnfa,Language family,,,,string,0,30,Larger linguistic family for a given human language
+Languages,languageName,ln_lnna,Language name,,,,string,0,30,Name of a given human language
+Languages,nativeName,ln_nana,Native Name,,,,string,0,30,Name of a given human language in said language
+Languages,ISO639_1,ln_is1,ISO639-1,,,,string,0,30,International Organization for Standardization (ISO) 639 standardized nomenclature to classify languages - version 1
+Languages,ISO639_2T,ln_is2t,ISO639-2T,,,,string,0,30,International Organization for Standardization (ISO) 639 standardized nomenclature to classify languages - version 2T
+Languages,ISO639_2B,ln_is2b,ISO639-2B,,,,string,0,30,International Organization for Standardization (ISO) 639 standardized nomenclature to classify languages - version 2B
+Languages,ISO639_3,ln_is3,ISO639-3,,,,string,0,30,International Organization for Standardization (ISO) 639 standardized nomenclature to classify languages - version 3
+Languages,ISO639_6,ln_is6,ISO639-6,,,,string,0,30,International Organization for Standardization (ISO) 639 standardized nomenclature to classify languages - version 6
+Languages,notes,ln_no,Notes,,,,string,0,255,Notes on languages
+Translation,translationID,tr_trid,Translation ID,Primary Key,,,integer,0,null,Unique identifier for a translation
+Translation,lookupID,tr_loid,Look-up ID,Foreign Key,Lookup,lookupID,string,0,30,Unique identifier for a translation look-up
+Translation,languageID,tr_lnid,Language ID,Foreign Key,Languages,languageID,integer,0,null,Unique identifier for language
+Translation,labelTranslation,tr_latr,Label translation,,,,string,0,30,Translation for labels
+Translation,descriptionTranslation,tr_detr,Description translation,,,,string,0,255,Translation for descriptions
