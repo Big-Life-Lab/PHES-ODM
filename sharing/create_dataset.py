@@ -1,16 +1,7 @@
 import pandas as pd # pylint: disable=import-error
-from deepdiff import DeepDiff  # For Deep Difference of 2 objects
-from deepdiff import grep, DeepSearch  # For finding if item exists in an object
-from deepdiff import DeepHash  # For hashing objects based on their contents
-import numpy as np # pylint: disable=import-error
-import json
-import csv
-import re
-import os
 from pandas import Timestamp # pylint: disable=import-error
 from numpy import nan # pylint: disable=import-error
-import loop_through_tables # pylint: disable=import-error
-from loop_through_tables import loop_through_tables # pylint: disable=import-error
+
 
 
 def create_dataset(rules: list, data: dict = {}, org: str = '') -> dict:
