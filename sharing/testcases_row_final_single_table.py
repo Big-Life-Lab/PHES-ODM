@@ -125,11 +125,6 @@ output1 = {
     ],
 }
 
-returned_data = create_dataset(rule_1, data=dataset, org=organization)
-print("DO OUT PUT 1 MATCH")
-print(returned_data == output1)
-
-
 def test_method_1():
     assert create_dataset(rule_1, data=dataset, org=organization) == output1
 
