@@ -1,9 +1,16 @@
-import pytest
-import pandas as pd
-from pandas import Timestamp
-from numpy import nan
-import create_dataset
+import csv
+import json
+import os
+import re
 
+import numpy as np  # pylint: disable=import-error
+import pandas as pd  # pylint: disable=import-error
+import pytest  # pylint: disable=import-error
+from numpy import nan  # pylint: disable=import-error
+from pandas import Timestamp  # pylint: disable=import-error
+
+# import create_dataset # pylint: disable=import-error
+from create_dataset import create_dataset  # pylint: disable=import-error
 
 # User Data:
 
@@ -125,10 +132,8 @@ output1 = {
     ],
 }
 
+
 def test_method_1():
-    """
-    This method tests create_dataset function against rule_1 using pytest.
-    """
     assert create_dataset(rule_1, data=dataset, org=organization) == output1
 
 
@@ -204,9 +209,6 @@ output2 = {
 
 
 def test_method_2():
-    """
-    This method tests create_dataset function against rule_2 using pytest.
-    """
     assert create_dataset(rule_2, data=dataset, org=organization) == output2
 
 
@@ -282,9 +284,6 @@ output3 = {
 
 
 def test_method_3():
-    """
-    This method tests create_dataset function against rule_3 using pytest.
-    """
     assert create_dataset(rule_3, data=dataset, org=organization) == output3
 
 
@@ -360,9 +359,6 @@ output4 = {
 
 
 def test_method_4():
-    """
-    This method tests create_dataset function against rule_4 using pytest.
-    """
     assert create_dataset(rule_4, data=dataset, org=organization) == output4
 
 
@@ -438,9 +434,6 @@ output5 = {
 
 
 def test_method_5():
-    """
-    This method tests create_dataset function against rule_5 using pytest.
-    """
     assert create_dataset(rule_5, data=dataset, org=organization) == output5
 
 
@@ -516,9 +509,6 @@ output6 = {
 
 
 def test_method_6():
-    """
-    This method tests create_dataset function against rule_6 using pytest.
-    """
     assert create_dataset(rule_6, data=dataset, org=organization) == output6
 
 
@@ -594,9 +584,6 @@ output7 = {
 
 
 def test_method_7():
-    """
-    This method tests create_dataset function against rule_7 using pytest.
-    """
     assert create_dataset(rule_7, data=dataset, org=organization) == output7
 
 
@@ -672,9 +659,6 @@ output8 = {
 
 
 def test_method_8():
-    """
-    This method tests create_dataset function against rule_8 using pytest.
-    """
     assert create_dataset(rule_8, data=dataset, org=organization) == output8
 
 
@@ -750,9 +734,6 @@ output9 = {
 
 
 def test_method_9():
-    """
-    This method tests create_dataset function against rule_9 using pytest.
-    """
     assert create_dataset(rule_9, data=dataset, org=organization) == output9
 
 
@@ -828,9 +809,6 @@ output10 = {
 
 
 def test_method_10():
-    """
-    This method tests create_dataset function against rule_10 using pytest.
-    """
     assert create_dataset(rule_10, data=dataset, org=organization) == output10
 
 
@@ -906,9 +884,6 @@ output11 = {
 
 
 def test_method_11():
-    """
-    This method tests create_dataset function against rule_11 using pytest.
-    """
     assert create_dataset(rule_11, data=dataset, org=organization) == output11
 
 
@@ -984,9 +959,6 @@ output12 = {
 
 
 def test_method_12():
-    """
-    This method tests create_dataset function against rule_12 using pytest.
-    """
     assert create_dataset(rule_12, data=dataset, org=organization) == output12
 
 
@@ -1062,9 +1034,6 @@ output13 = {
 
 
 def test_method_13():
-    """
-    This method tests create_dataset function against rule_13 using pytest.
-    """
     assert create_dataset(rule_13, data=dataset, org=organization) == output13
 
 
@@ -1140,9 +1109,6 @@ output14 = {
 
 
 def test_method_14():
-    """
-    This method tests create_dataset function against rule_14 using pytest.
-    """
     assert create_dataset(rule_14, data=dataset, org=organization) == output14
 
 
@@ -1218,9 +1184,6 @@ output15 = {
 
 
 def test_method_15():
-    """
-    This method tests create_dataset function against rule_15 using pytest.
-    """
     assert create_dataset(rule_15, data=dataset, org=organization) == output15
 
 
@@ -1296,9 +1259,6 @@ output16 = {
 
 
 def test_method_16():
-    """
-    This method tests create_dataset function against rule_16 using pytest.
-    """
     assert create_dataset(rule_16, data=dataset, org=organization) == output16
 
 
@@ -1374,9 +1334,6 @@ output17 = {
 
 
 def test_method_17():
-    """
-    This method tests create_dataset function against rule_17 using pytest.
-    """
     assert create_dataset(rule_17, data=dataset, org=organization) == output17
 
 
@@ -1455,9 +1412,6 @@ output18 = {
 
 
 def test_method_18():
-    """
-    This method tests create_dataset function against rule_18 using pytest.
-    """
     assert create_dataset(rule_18, data=dataset, org=organization) == output18
 
 
@@ -1533,9 +1487,6 @@ output19 = {
 
 
 def test_method_19():
-    """
-    This method tests create_dataset function against rule_19 using pytest.
-    """
     assert create_dataset(rule_19, data=dataset, org=organization) == output19
 
 
@@ -1611,9 +1562,6 @@ output20 = {
 
 
 def test_method_20():
-    """
-    This method tests create_dataset function against rule_20 using pytest.
-    """
     assert create_dataset(rule_20, data=dataset, org=organization) == output20
 
 
@@ -1689,9 +1637,6 @@ output21 = {
 
 
 def test_method_21():
-    """
-    This method tests create_dataset function against rule_21 using pytest.
-    """
     assert create_dataset(rule_21, data=dataset, org=organization) == output21
 
 
@@ -1767,9 +1712,6 @@ output22 = {
 
 
 def test_method_22():
-    """
-    This method tests create_dataset function against rule_22 using pytest.
-    """
     assert create_dataset(rule_22, data=dataset, org=organization) == output22
 
 
@@ -1846,9 +1788,6 @@ output23 = {
 
 
 def test_method_23():
-    """
-    This method tests create_dataset function against rule_23 using pytest.
-    """
     assert create_dataset(rule_23, data=dataset, org=organization) == output23
 
 
@@ -1925,9 +1864,6 @@ output24 = {
 
 
 def test_method_24():
-    """
-    This method tests create_dataset function against rule_24 using pytest.
-    """
     assert create_dataset(rule_24, data=dataset, org=organization) == output24
 
 
@@ -2003,9 +1939,6 @@ output25 = {
 
 
 def test_method_25():
-    """
-    This method tests create_dataset function against rule_25 using pytest.
-    """
     assert create_dataset(rule_25, data=dataset, org=organization) == output25
 
 
@@ -2082,9 +2015,6 @@ output26 = {
 
 
 def test_method_26():
-    """
-    This method tests create_dataset function against rule_26 using pytest.
-    """
     assert create_dataset(rule_26, data=dataset, org=organization) == output26
 
 
@@ -2161,9 +2091,6 @@ output27 = {
 
 
 def test_method_27():
-    """
-    This method tests create_dataset function against rule_27 using pytest.
-    """
     assert create_dataset(rule_27, data=dataset, org=organization) == output27
 
 
@@ -2240,9 +2167,6 @@ output28 = {
 
 
 def test_method_28():
-    """
-    This method tests create_dataset function against rule_28 using pytest.
-    """
     assert create_dataset(rule_28, data=dataset, org=organization) == output28
 
 
@@ -2319,9 +2243,6 @@ output29 = {
 
 
 def test_method_29():
-    """
-    This method tests create_dataset function against rule_29 using pytest.
-    """
     assert create_dataset(rule_29, data=dataset, org=organization) == output29
 
 
@@ -2397,9 +2318,6 @@ output30 = {
 
 
 def test_method_30():
-    """
-    This method tests create_dataset function against rule_30 using pytest.
-    """
     assert create_dataset(rule_30, data=dataset, org=organization) == output30
 
 
@@ -2476,9 +2394,6 @@ output31 = {
 
 
 def test_method_31():
-    """
-    This method tests create_dataset function against rule_31 using pytest.
-    """
     assert create_dataset(rule_31, data=dataset, org=organization) == output31
 
 
@@ -2555,9 +2470,6 @@ output32 = {
 
 
 def test_method_32():
-    """
-    This method tests create_dataset function against rule_32 using pytest.
-    """
     assert create_dataset(rule_32, data=dataset, org=organization) == output32
 
 
@@ -2634,9 +2546,6 @@ output33 = {
 
 
 def test_method_33():
-    """
-    This method tests create_dataset function against rule_33 using pytest.
-    """
     assert create_dataset(rule_33, data=dataset, org=organization) == output33
 
 
@@ -2713,9 +2622,6 @@ output34 = {
 
 
 def test_method_34():
-    """
-    This method tests create_dataset function against rule_34 using pytest.
-    """
     assert create_dataset(rule_34, data=dataset, org=organization) == output34
 
 
@@ -2793,9 +2699,6 @@ output35 = {
 
 
 def test_method_35():
-    """
-    This method tests create_dataset function against rule_35 using pytest.
-    """
     assert create_dataset(rule_35, data=dataset, org=organization) == output35
 
 
@@ -2871,9 +2774,6 @@ output36 = {
 
 
 def test_method_36():
-    """
-    This method tests create_dataset function against rule_36 using pytest.
-    """
     assert create_dataset(rule_36, data=dataset, org=organization) == output36
 
 
@@ -2949,9 +2849,6 @@ output37 = {
 
 
 def test_method_37():
-    """
-    This method tests create_dataset function against rule_37 using pytest.
-    """
     assert create_dataset(rule_37, data=dataset, org=organization) == output37
 
 
@@ -3027,9 +2924,6 @@ output38 = {
 
 
 def test_method_38():
-    """
-    This method tests create_dataset function against rule_38 using pytest.
-    """
     assert create_dataset(rule_38, data=dataset, org=organization) == output38
 
 
@@ -3123,9 +3017,6 @@ output39 = {
 
 
 def test_method_39():
-    """
-    This method tests create_dataset function against rule_39 using pytest.
-    """
     assert create_dataset(rule_39, data=dataset, org=organization) == output39
 
 
@@ -3201,9 +3092,6 @@ output40 = {
 
 
 def test_method_40():
-    """
-    This method tests create_dataset function against rule_40 using pytest.
-    """
     assert create_dataset(rule_40, data=dataset, org=organization) == output40
 
 
@@ -3280,9 +3168,6 @@ output41 = {
 
 
 def test_method_41():
-    """
-    This method tests create_dataset function against rule_41 using pytest.
-    """
     assert create_dataset(rule_41, data=dataset, org=organization) == output41
 
 
@@ -3360,9 +3245,6 @@ output42 = {
 
 
 def test_method_42():
-    """
-    This method tests create_dataset function against rule_42 using pytest.
-    """
     assert create_dataset(rule_42, data=dataset, org=organization) == output42
 
 
@@ -3439,9 +3321,6 @@ output43 = {
 
 
 def test_method_43():
-    """
-    This method tests create_dataset function against rule_43 using pytest.
-    """
     assert create_dataset(rule_43, data=dataset, org=organization) == output43
 
 
@@ -3517,9 +3396,6 @@ output44 = {
 
 
 def test_method_44():
-    """
-    This method tests create_dataset function against rule_44 using pytest.
-    """
     assert create_dataset(rule_44, data=dataset, org=organization) == output44
 
 
@@ -3595,9 +3471,6 @@ output45 = {
 
 
 def test_method_45():
-    """
-    This method tests create_dataset function against rule_45 using pytest.
-    """
     assert create_dataset(rule_45, data=dataset, org=organization) == output45
 
 
@@ -3674,9 +3547,6 @@ output46 = {
 
 
 def test_method_46():
-    """
-    This method tests create_dataset function against rule_46 using pytest.
-    """
     assert create_dataset(rule_46, data=dataset, org=organization) == output46
 
 
@@ -3753,9 +3623,6 @@ output47 = {
 
 
 def test_method_47():
-    """
-    This method tests create_dataset function against rule_47 using pytest.
-    """
     assert create_dataset(rule_47, data=dataset, org=organization) == output47
 
 
@@ -3832,9 +3699,6 @@ output48 = {
 
 
 def test_method_48():
-    """
-    This method tests create_dataset function against rule_48 using pytest.
-    """
     assert create_dataset(rule_48, data=dataset, org=organization) == output48
 
 
@@ -3911,9 +3775,6 @@ output49 = {
 
 
 def test_method_49():
-    """
-    This method tests create_dataset function against rule_49 using pytest.
-    """
     assert create_dataset(rule_49, data=dataset, org=organization) == output49
 
 
@@ -3990,9 +3851,6 @@ output50 = {
 
 
 def test_method_50():
-    """
-    This method tests create_dataset function against rule_50 using pytest.
-    """
     assert create_dataset(rule_50, data=dataset, org=organization) == output50
 
 
@@ -4067,7 +3925,4 @@ output51 = {
 
 
 def test_method_51():
-    """
-    This method tests create_dataset function against rule_51 using pytest.
-    """
     assert create_dataset(rule_51, data=dataset, org=organization) == output51

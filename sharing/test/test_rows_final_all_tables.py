@@ -1,14 +1,16 @@
-import pytest # pylint: disable=import-error
-import create_dataset # pylint: disable=import-error
-from create_dataset import create_dataset # pylint: disable=import-error
-import pandas as pd # pylint: disable=import-error
-import numpy as np # pylint: disable=import-error
-import json
 import csv
-import re
+import json
 import os
-from pandas import Timestamp # pylint: disable=import-error
-from numpy import nan # pylint: disable=import-error
+import re
+
+import numpy as np  # pylint: disable=import-error
+import pandas as pd  # pylint: disable=import-error
+import pytest  # pylint: disable=import-error
+from numpy import nan  # pylint: disable=import-error
+from pandas import Timestamp  # pylint: disable=import-error
+
+# import create_dataset  # pylint: disable=import-error
+from create_dataset import create_dataset  # pylint: disable=import-error
 
 # User Data:
 
@@ -20,10 +22,7 @@ dataset = {
             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
             "fieldSampleTempC": 15,
-            "notes": "Samples shipped on ice from site to lab by courier",
             "sampleID": "Sample S100",
-            "shippedOnce": "Yes",
-            "siteID": "Site T113",
             "sizeL": 8,
             "storageTempC": 16,
             "type": "swrSed",
@@ -34,10 +33,7 @@ dataset = {
             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
             "fieldSampleTempC": 17,
-            "notes": "Samples shipped on ice from site to lab by courier",
             "sampleID": "Sample S106",
-            "shippedOnce": "Yes",
-            "siteID": "Site T106",
             "sizeL": 2,
             "storageTempC": 18,
             "type": "pSludge",
@@ -48,10 +44,7 @@ dataset = {
             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
             "fieldSampleTempC": 18,
-            "notes": "Samples shipped on ice from site to lab by courier",
             "sampleID": "Sample S107",
-            "shippedOnce": "Yes",
-            "siteID": "Site T107",
             "sizeL": 10,
             "storageTempC": 22,
             "type": "rawWW",
@@ -60,17 +53,8 @@ dataset = {
     "WWMeasure": [
         {
             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-            "assayID": "Assay Y100",
-            "fractionAnalyzed": "solid",
-            "index": 40,
-            "instrumentID": "Instrument IN200",
-            "labID": "Lab L100",
-            "notes": "CovidN2 replicate measures linked by index",
             "reportDate": Timestamp("2021-02-06 00:00:00"),
-            "reporterID": "Reporter R1",
-            "sampleID": "Sample S100",
             "type": "covN2",
-            "typeOther": nan,
             "uWwMeasureID": "Measure WW100",
             "unit": "gcM",
             "unitOther": "gcMcovN2",
@@ -78,17 +62,8 @@ dataset = {
         },
         {
             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-            "assayID": "Assay Y100",
-            "fractionAnalyzed": "solid",
-            "index": 50,
-            "instrumentID": "Instrument IN200",
-            "labID": "Lab L100",
-            "notes": "CovidN2 replicate measures linked by index",
             "reportDate": Timestamp("2021-01-25 00:00:00"),
-            "reporterID": "Reporter R1",
-            "sampleID": "Sample S100",
             "type": "covN2",
-            "typeOther": nan,
             "uWwMeasureID": "Measure WW100",
             "unit": "gcMl",
             "unitOther": "gcMcovN1",
@@ -96,17 +71,8 @@ dataset = {
         },
         {
             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-            "assayID": "Assay Y100",
-            "fractionAnalyzed": "solid",
-            "index": 60,
-            "instrumentID": "Instrument IN200",
-            "labID": "Lab L100",
-            "notes": "nPMMoV measure linked to CovidN1 by index",
             "reportDate": Timestamp("2021-03-06 00:00:00"),
-            "reporterID": "Reporter R1",
-            "sampleID": "Sample S100",
             "type": "nPMMoV",
-            "typeOther": nan,
             "uWwMeasureID": "Measure WW100",
             "unit": "gcMl",
             "unitOther": "gcmnPMMoV",
@@ -118,19 +84,21 @@ dataset = {
 # User requested organization:
 organization = "PHAC"
 
-#FOR ALL TABLES: INCLUDING SAMPLE, WWMEASURE AND ASSAYMETHOD TABLE.
+# FOR ALL TABLES: INCLUDING SAMPLE, WWMEASURE AND ASSAYMETHOD TABLE.
 ## FOR SINGLE COLUMN FROM EACH TABLE OR ANY OF THE TABLE
 
 # Rule 103 filters rows based on a single column and all values of the rows.
 
-rule_103 = [{
+rule_103 = [
+    {
         "ruleID": "rule103",
         "table": "ALL",
         "variable": "fieldSampleTempC;unitOther",
         "ruleValue": "ALL",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output103 = {
     "filtered_data": {"Sample": [], "WWMeasure": []},
@@ -145,10 +113,7 @@ output103 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -159,10 +124,7 @@ output103 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -173,10 +135,7 @@ output103 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -188,17 +147,8 @@ output103 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -206,17 +156,8 @@ output103 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -224,17 +165,8 @@ output103 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -249,19 +181,26 @@ output103 = {
     ],
 }
 
+
 def test_method_103():
-  assert create_dataset(rule_103, data = dataset, org = organization) == output103
+    """
+    This method tests create_dataset function against rule_103 using pytest.
+    """
+    assert create_dataset(rule_103, data=dataset, org=organization) == output103
+
 
 # Rule 104 filters rows based on a single column from each table and single value from each column or any of the columns being numeric.
 
-rule_104 = [{
+rule_104 = [
+    {
         "ruleID": "rule104",
         "table": "ALL",
         "variable": "value;fieldSampleTempC",
         "ruleValue": "17.0;98000",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output104 = {
     "filtered_data": {
@@ -272,10 +211,7 @@ output104 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -286,10 +222,7 @@ output104 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -298,17 +231,8 @@ output104 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -316,17 +240,8 @@ output104 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -345,10 +260,7 @@ output104 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -360,17 +272,8 @@ output104 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -385,19 +288,26 @@ output104 = {
     ],
 }
 
+
 def test_method_104():
-  assert create_dataset(rule_104, data = dataset, org = organization) == output104
+    """
+    This method tests create_dataset function against rule_104 using pytest.
+    """
+    assert create_dataset(rule_104, data=dataset, org=organization) == output104
+
 
 # Rule 105 filters rows based on a single column from each table and single value from each column or any of the columns being string.
 
-rule_105 = [{
+rule_105 = [
+    {
         "ruleID": "rule105",
         "table": "ALL",
         "variable": "unitOther;collection",
-        "ruleValue": "mooreSW;gcMcovN2",
+        "ruleValue": "mooreSw;gcMcovN2",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output105 = {
     "filtered_data": {
@@ -408,10 +318,7 @@ output105 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -422,10 +329,7 @@ output105 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -434,17 +338,8 @@ output105 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -452,17 +347,8 @@ output105 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -481,10 +367,7 @@ output105 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -496,17 +379,8 @@ output105 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -521,19 +395,26 @@ output105 = {
     ],
 }
 
+
 def test_method_105():
-  assert create_dataset(rule_105, data = dataset, org = organization) == output105
+    """
+    This method tests create_dataset function against rule_105 using pytest.
+    """
+    assert create_dataset(rule_105, data=dataset, org=organization) == output105
+
 
 # Rule 106 filters rows based on a single column from each table and single value from each column or any of the columns being datetime.
 
-rule_106 = [{
+rule_106 = [
+    {
         "ruleID": "rule106",
         "table": "ALL",
         "variable": "analysisDate;dateTimeStart",
         "ruleValue": "2021-02-06;2021-02-01 21:00",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output106 = {
     "filtered_data": {
@@ -544,10 +425,7 @@ output106 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -558,10 +436,7 @@ output106 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -570,17 +445,8 @@ output106 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -588,17 +454,8 @@ output106 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -617,10 +474,7 @@ output106 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -632,17 +486,8 @@ output106 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -657,20 +502,27 @@ output106 = {
     ],
 }
 
-def test_method_106():
-  assert create_dataset(rule_106, data = dataset, org = organization) == output106
 
-# Rule 107 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_106():
+    """
+    This method tests create_dataset function against rule_106 using pytest.
+    """
+    assert create_dataset(rule_106, data=dataset, org=organization) == output106
+
+
+# Rule 107 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two numeric values with [].
 
-rule_107 = [{
+rule_107 = [
+    {
         "ruleID": "rule107",
         "table": "ALL",
         "variable": "fieldSampleTempC;value",
         "ruleValue": "[16000,98000];[16.0,18.0]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output107 = {
     "filtered_data": {
@@ -681,10 +533,7 @@ output107 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -693,17 +542,8 @@ output107 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -722,10 +562,7 @@ output107 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -736,10 +573,7 @@ output107 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -751,17 +585,8 @@ output107 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -769,17 +594,8 @@ output107 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -794,20 +610,27 @@ output107 = {
     ],
 }
 
-def test_method_107():
-  assert create_dataset(rule_107, data = dataset, org = organization) == output107
 
-# Rule 108 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_107():
+    """
+    This method tests create_dataset function against rule_107 using pytest.
+    """
+    assert create_dataset(rule_107, data=dataset, org=organization) == output107
+
+
+# Rule 108 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two numeric values with ().
 
-rule_108 = [{
+rule_108 = [
+    {
         "ruleID": "rule108",
         "table": "ALL",
         "variable": "fieldSampleTempC;value",
         "ruleValue": "(89000,145000);(15.0,18.0)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output108 = {
     "filtered_data": {
@@ -818,10 +641,7 @@ output108 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -832,10 +652,7 @@ output108 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -844,17 +661,8 @@ output108 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -862,17 +670,8 @@ output108 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -891,10 +690,7 @@ output108 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -906,17 +702,8 @@ output108 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -931,20 +718,27 @@ output108 = {
     ],
 }
 
-def test_method_108():
-  assert create_dataset(rule_108, data = dataset, org = organization) == output108
 
-# Rule 109 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_108():
+    """
+    This method tests create_dataset function against rule_108 using pytest.
+    """
+    assert create_dataset(rule_108, data=dataset, org=organization) == output108
+
+
+# Rule 109 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two numeric values with (].
 
-rule_109 = [{
+rule_109 = [
+    {
         "ruleID": "rule109",
         "table": "ALL",
         "variable": "fieldSampleTempC;value",
         "ruleValue": "(89000,145000];(15.0,18.0]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output109 = {
     "filtered_data": {
@@ -955,10 +749,7 @@ output109 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -967,17 +758,8 @@ output109 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -996,10 +778,7 @@ output109 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -1010,10 +789,7 @@ output109 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -1025,17 +801,8 @@ output109 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -1043,17 +810,8 @@ output109 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -1068,20 +826,27 @@ output109 = {
     ],
 }
 
-def test_method_109():
-  assert create_dataset(rule_109, data = dataset, org = organization) == output109
 
-# Rule 110 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_109():
+    """
+    This method tests create_dataset function against rule_109 using pytest.
+    """
+    assert create_dataset(rule_109, data=dataset, org=organization) == output109
+
+
+# Rule 110 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two numeric values with [).
 
-rule_110 = [{
+rule_110 = [
+    {
         "ruleID": "rule110",
         "table": "ALL",
         "variable": "fieldSampleTempC;value",
         "ruleValue": "[16000,98000);[16.0,18.0)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output110 = {
     "filtered_data": {
@@ -1092,10 +857,7 @@ output110 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -1106,10 +868,7 @@ output110 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -1118,17 +877,8 @@ output110 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -1136,17 +886,8 @@ output110 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -1165,10 +906,7 @@ output110 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -1180,17 +918,8 @@ output110 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -1205,20 +934,27 @@ output110 = {
     ],
 }
 
-def test_method_110():
-  assert create_dataset(rule_110, data = dataset, org = organization) == output110
 
-# Rule 111 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_110():
+    """
+    This method tests create_dataset function against rule_110 using pytest.
+    """
+    assert create_dataset(rule_110, data=dataset, org=organization) == output110
+
+
+# Rule 111 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two datetime values with [].
 
-rule_111 = [{
+rule_111 = [
+    {
         "ruleID": "rule111",
         "table": "ALL",
         "variable": "dateTimeStart;analysisDate",
         "ruleValue": "[2021-01-31,2021-02-06]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output111 = {
     "filtered_data": {
@@ -1229,10 +965,7 @@ output111 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -1243,10 +976,7 @@ output111 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -1255,17 +985,8 @@ output111 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -1273,17 +994,8 @@ output111 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -1302,10 +1014,7 @@ output111 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -1317,17 +1026,8 @@ output111 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -1342,20 +1042,27 @@ output111 = {
     ],
 }
 
-def test_method_111():
-  assert create_dataset(rule_111, data = dataset, org = organization) == output111
 
-# Rule 112 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_111():
+    """
+    This method tests create_dataset function against rule_111 using pytest.
+    """
+    assert create_dataset(rule_111, data=dataset, org=organization) == output111
+
+
+# Rule 112 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two datetime values with ().
 
-rule_112 = [{
+rule_112 = [
+    {
         "ruleID": "rule112",
         "table": "ALL",
         "variable": "dateTimeStart;analysisDate",
         "ruleValue": "(2021-01-25 8:00,2021-01-31 8:00)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output112 = {
     "filtered_data": {
@@ -1366,10 +1073,7 @@ output112 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -1380,10 +1084,7 @@ output112 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -1392,17 +1093,8 @@ output112 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -1410,17 +1102,8 @@ output112 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -1439,10 +1122,7 @@ output112 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -1454,17 +1134,8 @@ output112 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -1479,20 +1150,27 @@ output112 = {
     ],
 }
 
-def test_method_112():
-  assert create_dataset(rule_112, data = dataset, org = organization) == output112
 
-# Rule 113 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_112():
+    """
+    This method tests create_dataset function against rule_112 using pytest.
+    """
+    assert create_dataset(rule_112, data=dataset, org=organization) == output112
+
+
+# Rule 113 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two datetime values with (].
 
-rule_113 = [{
+rule_113 = [
+    {
         "ruleID": "rule113",
         "table": "ALL",
         "variable": "dateTimeStart;analysisDate",
         "ruleValue": "(2021-01-29,2021-02-02]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output113 = {
     "filtered_data": {
@@ -1503,10 +1181,7 @@ output113 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -1517,10 +1192,7 @@ output113 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -1529,17 +1201,8 @@ output113 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -1547,17 +1210,8 @@ output113 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -1565,17 +1219,8 @@ output113 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -1594,10 +1239,7 @@ output113 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -1605,26 +1247,34 @@ output113 = {
                     ],
                     "table": "Sample",
                 },
+                {"rows_removed": [], "table": "WWMeasure"},
             ],
             "rule_id": "rule113",
         }
     ],
 }
 
-def test_method_113():
-  assert create_dataset(rule_113, data = dataset, org = organization) == output113
 
-# Rule 114 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_113():
+    """
+    This method tests create_dataset function against rule_113 using pytest.
+    """
+    assert create_dataset(rule_113, data=dataset, org=organization) == output113
+
+
+# Rule 114 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two datetime values with [).
 
-rule_114 = [{
+rule_114 = [
+    {
         "ruleID": "rule114",
         "table": "ALL",
         "variable": "dateTimeStart;analysisDate",
         "ruleValue": "[2021-01-25 8:00,2021-02-01 21:00)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output114 = {
     "filtered_data": {
@@ -1635,10 +1285,7 @@ output114 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -1649,10 +1296,7 @@ output114 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -1660,23 +1304,23 @@ output114 = {
         ],
         "WWMeasure": [
             {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            },
+            {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
-            }
+            },
         ],
     },
     "sharing_summary": [
@@ -1690,10 +1334,7 @@ output114 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -1704,36 +1345,9 @@ output114 = {
                 {
                     "rows_removed": [
                         {
-                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
-                            "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
-                            "type": "covN2",
-                            "typeOther": nan,
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcM",
-                            "unitOther": "gcMcovN2",
-                            "value": 145000,
-                        },
-                        {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -1748,20 +1362,27 @@ output114 = {
     ],
 }
 
-def test_method_114():
-  assert create_dataset(rule_114, data = dataset, org = organization) == output114
 
-# Rule 115 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_114():
+    """
+    This method tests create_dataset function against rule_114 using pytest.
+    """
+    assert create_dataset(rule_114, data=dataset, org=organization) == output114
+
+
+# Rule 115 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two values where the lower bound limit is infinity with ().
 
-rule_115 = [{
+rule_115 = [
+    {
         "ruleID": "rule115",
         "table": "ALL",
         "variable": "storageTempC;analysisDate",
         "ruleValue": "(Inf,17)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output115 = {
     "filtered_data": {
@@ -1772,10 +1393,7 @@ output115 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -1786,10 +1404,7 @@ output115 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -1798,17 +1413,8 @@ output115 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -1816,17 +1422,8 @@ output115 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -1834,17 +1431,8 @@ output115 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -1863,10 +1451,7 @@ output115 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -1874,26 +1459,34 @@ output115 = {
                     ],
                     "table": "Sample",
                 },
+                {"rows_removed": [], "table": "WWMeasure"},
             ],
             "rule_id": "rule115",
         }
     ],
 }
 
-def test_method_115():
-  assert create_dataset(rule_115, data = dataset, org = organization) == output115
 
-# Rule 116 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_115():
+    """
+    This method tests create_dataset function against rule_115 using pytest.
+    """
+    assert create_dataset(rule_115, data=dataset, org=organization) == output115
+
+
+# Rule 116 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two values where the lower bound limit is infinity with (].
 
-rule_116 = [{
+rule_116 = [
+    {
         "ruleID": "rule116",
         "table": "ALL",
         "variable": "fieldSampleTempC;analysisDate",
         "ruleValue": "(Inf,17]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output116 = {
     "filtered_data": {
@@ -1904,10 +1497,7 @@ output116 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -1916,17 +1506,8 @@ output116 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -1934,17 +1515,8 @@ output116 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -1952,17 +1524,8 @@ output116 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -1981,10 +1544,7 @@ output116 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -1995,10 +1555,7 @@ output116 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -2006,26 +1563,34 @@ output116 = {
                     ],
                     "table": "Sample",
                 },
+                {"rows_removed": [], "table": "WWMeasure"},
             ],
             "rule_id": "rule116",
         }
     ],
 }
 
-def test_method_116():
-  assert create_dataset(rule_116, data = dataset, org = organization) == output116
 
-# Rule 117 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_116():
+    """
+    This method tests create_dataset function against rule_116 using pytest.
+    """
+    assert create_dataset(rule_116, data=dataset, org=organization) == output116
+
+
+# Rule 117 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two values where the upper bound limit is infinity with ().
 
-rule_117 = [{
+rule_117 = [
+    {
         "ruleID": "rule117",
         "table": "ALL",
         "variable": "storageTempC;analysisDate",
         "ruleValue": "(2021-01-30,Inf)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output117 = {
     "filtered_data": {
@@ -2036,10 +1601,7 @@ output117 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -2050,10 +1612,7 @@ output117 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -2064,10 +1623,7 @@ output117 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -2076,17 +1632,8 @@ output117 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -2094,17 +1641,8 @@ output117 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -2115,21 +1653,13 @@ output117 = {
     "sharing_summary": [
         {
             "entities_filtered": [
+                {"rows_removed": [], "table": "Sample"},
                 {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -2144,20 +1674,27 @@ output117 = {
     ],
 }
 
-def test_method_117():
-  assert create_dataset(rule_117, data = dataset, org = organization) == output117
 
-# Rule 118 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between 
+def test_method_117():
+    """
+    This method tests create_dataset function against rule_117 using pytest.
+    """
+    assert create_dataset(rule_117, data=dataset, org=organization) == output117
+
+
+# Rule 118 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
 # two values where the upper bound limit is infinity with [).
 
-rule_118 = [{
+rule_118 = [
+    {
         "ruleID": "rule118",
         "table": "ALL",
         "variable": "storageTempC;analysisDate",
         "ruleValue": "[2021-01-28,Inf)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output118 = {
     "filtered_data": {
@@ -2168,10 +1705,7 @@ output118 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -2182,10 +1716,7 @@ output118 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -2196,10 +1727,7 @@ output118 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -2208,17 +1736,8 @@ output118 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -2229,21 +1748,13 @@ output118 = {
     "sharing_summary": [
         {
             "entities_filtered": [
+                {"rows_removed": [], "table": "Sample"},
                 {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -2251,17 +1762,8 @@ output118 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -2276,20 +1778,27 @@ output118 = {
     ],
 }
 
+
 def test_method_118():
-  assert create_dataset(rule_118, data = dataset, org = organization) == output118
+    """
+    This method tests create_dataset function against rule_118 using pytest.
+    """
+    assert create_dataset(rule_118, data=dataset, org=organization) == output118
+
 
 # Rule 119 filters rows based on a single column from each table and multiple values from each column or any of the columns where one value could be
 # an interval and other a single value.
 
-rule_119 = [{
+rule_119 = [
+    {
         "ruleID": "rule119",
         "table": "ALL",
         "variable": "analysisDate;fieldSampleTempC",
         "ruleValue": "[2021-01-28,2021-02-06]; 17.0",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output119 = {
     "filtered_data": {
@@ -2300,10 +1809,7 @@ output119 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -2314,10 +1820,7 @@ output119 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -2326,17 +1829,8 @@ output119 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -2355,10 +1849,7 @@ output119 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -2370,17 +1861,8 @@ output119 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -2388,17 +1870,8 @@ output119 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -2413,22 +1886,29 @@ output119 = {
     ],
 }
 
+
 def test_method_119():
-  assert create_dataset(rule_119, data = dataset, org = organization) == output119
+    """
+    This method tests create_dataset function against rule_119 using pytest.
+    """
+    assert create_dataset(rule_119, data=dataset, org=organization) == output119
+
 
 # For ALL TABLES:
 ## MULTIPLE COLUMNS FROM EACH TABLE OR ANY OF THE TABLES
 
 # Rule 120 filters rows based on multiple columns and all values of the rows.
 
-rule_120 = [{
+rule_120 = [
+    {
         "ruleID": "rule120",
         "table": "ALL",
         "variable": "type;dateTimeStart;analysisDate;date;unitOther",
         "ruleValue": "ALL",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output120 = {
     "filtered_data": {"Sample": [], "WWMeasure": []},
@@ -2443,10 +1923,7 @@ output120 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -2457,10 +1934,7 @@ output120 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -2471,10 +1945,7 @@ output120 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -2486,17 +1957,8 @@ output120 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -2504,17 +1966,8 @@ output120 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -2522,17 +1975,8 @@ output120 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -2547,19 +1991,26 @@ output120 = {
     ],
 }
 
+
 def test_method_120():
-  assert create_dataset(rule_120, data = dataset, org = organization) == output120
+    """
+    This method tests create_dataset function against rule_120 using pytest.
+    """
+    assert create_dataset(rule_120, data=dataset, org=organization) == output120
+
 
 # Rule 121 filters rows based on multiple columns from each table and single value from each column or any of the columns being numeric.
 
-rule_121 = [{
+rule_121 = [
+    {
         "ruleID": "rule121",
         "table": "ALL",
         "variable": "value;storageTempC;fieldSampleTempC",
         "ruleValue": "16.0;98000",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output121 = {
     "filtered_data": {
@@ -2570,10 +2021,7 @@ output121 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -2584,10 +2032,7 @@ output121 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -2596,17 +2041,8 @@ output121 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -2614,17 +2050,8 @@ output121 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -2643,10 +2070,7 @@ output121 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -2658,17 +2082,8 @@ output121 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -2683,19 +2098,26 @@ output121 = {
     ],
 }
 
+
 def test_method_121():
-  assert create_dataset(rule_121, data = dataset, org = organization) == output121
+    """
+    This method tests create_dataset function against rule_121 using pytest.
+    """
+    assert create_dataset(rule_121, data=dataset, org=organization) == output121
+
 
 # Rule 122 filters rows based on multiple columns from each table and single value from each column or any of the columns being string.
 
-rule_122 = [{
+rule_122 = [
+    {
         "ruleID": "rule122",
         "table": "ALL",
         "variable": "unitOther; type; collection",
         "ruleValue": "cpTP24h; gcmnPMMoV; rawWW",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output122 = {
     "filtered_data": {
@@ -2706,10 +2128,7 @@ output122 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -2718,17 +2137,8 @@ output122 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -2736,17 +2146,8 @@ output122 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -2765,10 +2166,7 @@ output122 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -2779,10 +2177,7 @@ output122 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -2794,17 +2189,8 @@ output122 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -2819,19 +2205,26 @@ output122 = {
     ],
 }
 
+
 def test_method_122():
-  assert create_dataset(rule_122, data = dataset, org = organization) == output122
+    """
+    This method tests create_dataset function against rule_122 using pytest.
+    """
+    assert create_dataset(rule_122, data=dataset, org=organization) == output122
+
 
 # Rule 123 filters rows based on multiple columns from each table and single value from each column or any of the columns being datetime.
 
-rule_123 = [{
+rule_123 = [
+    {
         "ruleID": "rule123",
         "table": "ALL",
         "variable": "analysisDate; reportDate; dateTimeStart;dateTimeEnd",
         "ruleValue": "2021-02-06;2021-02-01 21:00",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output123 = {
     "filtered_data": {
@@ -2842,29 +2235,28 @@ output123 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
-            }
+            },
+            {
+                "collection": "grb",
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sampleID": "Sample S107",
+                "sizeL": 10,
+                "storageTempC": 22,
+                "type": "rawWW",
+            },
         ],
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -2883,27 +2275,10 @@ output123 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
-                            "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
                         },
                     ],
                     "table": "Sample",
@@ -2912,17 +2287,8 @@ output123 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -2930,17 +2296,8 @@ output123 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -2955,20 +2312,27 @@ output123 = {
     ],
 }
 
+
 def test_method_123():
-  assert create_dataset(rule_123, data = dataset, org = organization) == output123
+    """
+    This method tests create_dataset function against rule_123 using pytest.
+    """
+    assert create_dataset(rule_123, data=dataset, org=organization) == output123
+
 
 # Rule 124 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
 # numbers with [].
 
-rule_124 = [{
+rule_124 = [
+    {
         "ruleID": "rule124",
         "table": "ALL",
         "variable": "value;storageTempC;fieldSampleTempC",
-        "ruleValue": "[16.0; 17.0]; [98000,145000]",
+        "ruleValue": "[16.0, 17.0]; [98000,145000]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output124 = {
     "filtered_data": {
@@ -2979,10 +2343,7 @@ output124 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -2991,17 +2352,8 @@ output124 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -3020,10 +2372,7 @@ output124 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -3034,10 +2383,7 @@ output124 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -3049,17 +2395,8 @@ output124 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -3067,17 +2404,8 @@ output124 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -3092,20 +2420,27 @@ output124 = {
     ],
 }
 
+
 def test_method_124():
-  assert create_dataset(rule_124, data = dataset, org = organization) == output124
+    """
+    This method tests create_dataset function against rule_124 using pytest.
+    """
+    assert create_dataset(rule_124, data=dataset, org=organization) == output124
+
 
 # Rule 125 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
 # numbers with ().
 
-rule_125 = [{
+rule_125 = [
+    {
         "ruleID": "rule125",
         "table": "ALL",
         "variable": "value;storageTempC;fieldSampleTempC",
         "ruleValue": "(15.0, 18.0); (16000,145000)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output125 = {
     "filtered_data": {
@@ -3116,10 +2451,7 @@ output125 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -3128,17 +2460,8 @@ output125 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -3146,17 +2469,8 @@ output125 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -3175,10 +2489,7 @@ output125 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -3189,10 +2500,7 @@ output125 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -3204,17 +2512,8 @@ output125 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -3229,20 +2528,27 @@ output125 = {
     ],
 }
 
+
 def test_method_125():
-  assert create_dataset(rule_125, data = dataset, org = organization) == output125
+    """
+    This method tests create_dataset function against rule_125 using pytest.
+    """
+    assert create_dataset(rule_125, data=dataset, org=organization) == output125
+
 
 # Rule 126 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
 # numbers with (].
 
-rule_126 = [{
+rule_126 = [
+    {
         "ruleID": "rule126",
         "table": "ALL",
         "variable": "value;storageTempC;fieldSampleTempC",
         "ruleValue": "(15.0, 18.0]; (89000,145000]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output126 = {
     "filtered_data": {
@@ -3250,17 +2556,8 @@ output126 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -3279,10 +2576,7 @@ output126 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -3293,10 +2587,7 @@ output126 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -3307,10 +2598,7 @@ output126 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -3322,17 +2610,8 @@ output126 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -3340,17 +2619,8 @@ output126 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -3365,20 +2635,27 @@ output126 = {
     ],
 }
 
+
 def test_method_126():
-  assert create_dataset(rule_126, data = dataset, org = organization) == output126
+    """
+    This method tests create_dataset function against rule_126 using pytest.
+    """
+    assert create_dataset(rule_126, data=dataset, org=organization) == output126
+
 
 # Rule 127 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
 # numbers with [).
 
-rule_127 = [{
+rule_127 = [
+    {
         "ruleID": "rule127",
         "table": "ALL",
         "variable": "value;storageTempC;fieldSampleTempC",
         "ruleValue": "[16.0, 18.0); [89000,145000)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output127 = {
     "filtered_data": {
@@ -3389,10 +2666,7 @@ output127 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -3401,17 +2675,8 @@ output127 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -3419,17 +2684,8 @@ output127 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -3448,10 +2704,7 @@ output127 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -3462,10 +2715,7 @@ output127 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -3477,17 +2727,8 @@ output127 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -3502,20 +2743,27 @@ output127 = {
     ],
 }
 
+
 def test_method_127():
-  assert create_dataset(rule_127, data = dataset, org = organization) == output127
+    """
+    This method tests create_dataset function against rule_127 using pytest.
+    """
+    assert create_dataset(rule_127, data=dataset, org=organization) == output127
+
 
 # Rule 128 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
 # datetime values with [].
 
-rule_128 = [{
+rule_128 = [
+    {
         "ruleID": "rule128",
         "table": "ALL",
         "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
         "ruleValue": "[2021-02-01 21:00, 2021-02-06 21:00]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
-    }]
+    }
+]
 
 output128 = {
     "filtered_data": {
@@ -3526,29 +2774,28 @@ output128 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
-            }
+            },
+            {
+                "collection": "grb",
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sampleID": "Sample S107",
+                "sizeL": 10,
+                "storageTempC": 22,
+                "type": "rawWW",
+            },
         ],
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -3567,27 +2814,10 @@ output128 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
-                            "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
                         },
                     ],
                     "table": "Sample",
@@ -3596,17 +2826,8 @@ output128 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -3614,17 +2835,8 @@ output128 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -3639,20 +2851,27 @@ output128 = {
     ],
 }
 
+
 def test_method_128():
-  assert create_dataset(rule_128, data = dataset, org = organization) == output128
+    """
+    This method tests create_dataset function against rule_128 using pytest.
+    """
+    assert create_dataset(rule_128, data=dataset, org=organization) == output128
+
 
 # Rule 129 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
 # datetime values with ().
 
-rule_129 = [{
+rule_129 = [
+    {
         "ruleID": "rule129",
         "table": "ALL",
         "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
         "ruleValue": "(2021-01-29,2021-02-06)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
-    }]
+    }
+]
 
 output129 = {
     "filtered_data": {
@@ -3663,10 +2882,7 @@ output129 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -3675,17 +2891,8 @@ output129 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -3693,17 +2900,8 @@ output129 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -3711,17 +2909,8 @@ output129 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -3740,10 +2929,7 @@ output129 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -3754,10 +2940,7 @@ output129 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -3765,26 +2948,34 @@ output129 = {
                     ],
                     "table": "Sample",
                 },
+                {"rows_removed": [], "table": "WWMeasure"},
             ],
             "rule_id": "rule129",
         }
     ],
 }
 
+
 def test_method_129():
-  assert create_dataset(rule_129, data = dataset, org = organization) == output129
+    """
+    This method tests create_dataset function against rule_129 using pytest.
+    """
+    assert create_dataset(rule_129, data=dataset, org=organization) == output129
+
 
 # Rule 130 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
 # datetime values with (].
 
-rule_130 = [{
+rule_130 = [
+    {
         "ruleID": "rule130",
         "table": "ALL",
         "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
         "ruleValue": "(2021-01-30 8:00, 2021-02-06 21:00]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output130 = {
     "filtered_data": {
@@ -3795,10 +2986,7 @@ output130 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -3807,17 +2995,8 @@ output130 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -3836,10 +3015,7 @@ output130 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -3850,10 +3026,7 @@ output130 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -3865,17 +3038,8 @@ output130 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -3883,17 +3047,8 @@ output130 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -3908,20 +3063,27 @@ output130 = {
     ],
 }
 
+
 def test_method_130():
-  assert create_dataset(rule_130, data = dataset, org = organization) == output130
+    """
+    This method tests create_dataset function against rule_130 using pytest.
+    """
+    assert create_dataset(rule_130, data=dataset, org=organization) == output130
+
 
 # Rule 131 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
 # datetime values with [).
 
-rule_131 = [{
+rule_131 = [
+    {
         "ruleID": "rule131",
         "table": "ALL",
         "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
         "ruleValue": "[2021-01-30,2021-02-06)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output131 = {
     "filtered_data": {
@@ -3932,10 +3094,7 @@ output131 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -3944,17 +3103,8 @@ output131 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -3962,17 +3112,8 @@ output131 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -3980,17 +3121,8 @@ output131 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -4009,10 +3141,7 @@ output131 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -4023,10 +3152,7 @@ output131 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -4034,27 +3160,34 @@ output131 = {
                     ],
                     "table": "Sample",
                 },
+                {"rows_removed": [], "table": "WWMeasure"},
             ],
             "rule_id": "rule131",
         }
     ],
 }
 
+
 def test_method_131():
-  assert create_dataset(rule_131, data = dataset, org = organization) == output131
+    """
+    This method tests create_dataset function against rule_131 using pytest.
+    """
+    assert create_dataset(rule_131, data=dataset, org=organization) == output131
 
 
-# Rule 132 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the 
+# Rule 132 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
 # the lower bound limit is infinity with ().
 
-rule_132 = [{
+rule_132 = [
+    {
         "ruleID": "rule132",
         "table": "ALL",
         "variable": "dateTimeStart;dateTimeEnd;analysisDate",
         "ruleValue": "(Inf, 2021-01-26)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output132 = {
     "filtered_data": {
@@ -4065,10 +3198,7 @@ output132 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -4079,10 +3209,7 @@ output132 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -4091,17 +3218,8 @@ output132 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -4109,17 +3227,8 @@ output132 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -4138,10 +3247,7 @@ output132 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -4153,17 +3259,8 @@ output132 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -4178,20 +3275,27 @@ output132 = {
     ],
 }
 
-def test_method_132():
-  assert create_dataset(rule_132, data = dataset, org = organization) == output132
 
-# Rule 133 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the 
+def test_method_132():
+    """
+    This method tests create_dataset function against rule_132 using pytest.
+    """
+    assert create_dataset(rule_132, data=dataset, org=organization) == output132
+
+
+# Rule 133 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
 # the lower bound limit is infinity with (].
 
-rule_133 = [{
+rule_133 = [
+    {
         "ruleID": "rule133",
         "table": "ALL",
         "variable": "dateTimeStart;dateTimeEnd;analysisDate",
         "ruleValue": "(Inf, 2021-01-27]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output133 = {
     "filtered_data": {
@@ -4202,10 +3306,7 @@ output133 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -4216,10 +3317,7 @@ output133 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -4228,17 +3326,8 @@ output133 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -4246,17 +3335,8 @@ output133 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -4275,10 +3355,7 @@ output133 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -4290,17 +3367,8 @@ output133 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -4315,20 +3383,27 @@ output133 = {
     ],
 }
 
-def test_method_133():
-  assert create_dataset(rule_133, data = dataset, org = organization) == output133
 
-# Rule 134 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the 
+def test_method_133():
+    """
+    This method tests create_dataset function against rule_133 using pytest.
+    """
+    assert create_dataset(rule_133, data=dataset, org=organization) == output133
+
+
+# Rule 134 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
 # the upper bound limit is infinity with ().
 
-rule_134 = [{
+rule_134 = [
+    {
         "ruleID": "rule134",
         "table": "ALL",
         "variable": "fieldSampleTempC;storageTempC",
         "ruleValue": "(16.0,Inf)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output134 = {
     "filtered_data": {
@@ -4339,10 +3414,7 @@ output134 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -4351,17 +3423,8 @@ output134 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -4369,17 +3432,8 @@ output134 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -4387,17 +3441,8 @@ output134 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -4416,10 +3461,7 @@ output134 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -4430,10 +3472,7 @@ output134 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -4441,26 +3480,34 @@ output134 = {
                     ],
                     "table": "Sample",
                 },
+                {"rows_removed": [], "table": "WWMeasure"},
             ],
             "rule_id": "rule134",
         }
     ],
 }
 
-def test_method_134():
-  assert create_dataset(rule_134, data = dataset, org = organization) == output134
 
-# Rule 135 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the 
+def test_method_134():
+    """
+    This method tests create_dataset function against rule_134 using pytest.
+    """
+    assert create_dataset(rule_134, data=dataset, org=organization) == output134
+
+
+# Rule 135 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
 # the upper bound limit is infinity with [).
 
-rule_135 = [{
+rule_135 = [
+    {
         "ruleID": "rule135",
         "table": "ALL",
         "variable": "fieldSampleTempC;storageTempC",
         "ruleValue": "[17.0,Inf)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output135 = {
     "filtered_data": {
@@ -4471,10 +3518,7 @@ output135 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -4483,17 +3527,8 @@ output135 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -4501,17 +3536,8 @@ output135 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -4519,17 +3545,8 @@ output135 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -4548,10 +3565,7 @@ output135 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -4562,10 +3576,7 @@ output135 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -4573,26 +3584,34 @@ output135 = {
                     ],
                     "table": "Sample",
                 },
+                {"rows_removed": [], "table": "WWMeasure"},
             ],
             "rule_id": "rule135",
         }
     ],
 }
 
+
 def test_method_135():
-  assert create_dataset(rule_135, data = dataset, org = organization) == output135
+    """
+    This method tests create_dataset function against rule_135 using pytest.
+    """
+    assert create_dataset(rule_135, data=dataset, org=organization) == output135
+
 
 # Rule 136 filters rows based on multiple columns from each table and multiple values from each column or any of the columns where one value could be an interval
 # and the other could be a single value.
 
-rule_136 = [{
+rule_136 = [
+    {
         "ruleID": "rule136",
         "table": "ALL",
         "variable": "dateTimeStart;value;analysisDate",
         "ruleValue": "( 2021-01-27 8:00 , 2021-02-01 21:00] ; 145000;(2021-01-29, 2021-02-06]; [98000,145000]",
         "direction": "row",
-        "sharedWith": "Public;PHAC" 
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output136 = {
     "filtered_data": {
@@ -4603,10 +3622,7 @@ output136 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -4617,35 +3633,13 @@ output136 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
             },
         ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
-                "type": "covN2",
-                "typeOther": nan,
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            }
-        ],
+        "WWMeasure": [],
     },
     "sharing_summary": [
         {
@@ -4658,10 +3652,7 @@ output136 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -4673,35 +3664,26 @@ output136 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
                         },
                         {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                        },
+                        {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -4716,22 +3698,29 @@ output136 = {
     ],
 }
 
+
 def test_method_136():
-  assert create_dataset(rule_136, data = dataset, org = organization) == output136
+    """
+    This method tests create_dataset function against rule_136 using pytest.
+    """
+    assert create_dataset(rule_136, data=dataset, org=organization) == output136
+
 
 # For ALL TABLES:
 ## ALL COLUMNS FROM EACH TABLE OR ANY OF THE TABLES
 
 # Rule 137 filters rows based on all columns from each table and all values of the rows.
 
-rule_137 = [{
+rule_137 = [
+    {
         "ruleID": "rule137",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "ALL",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output137 = {
     "filtered_data": {"Sample": [], "WWMeasure": []},
@@ -4746,10 +3735,7 @@ output137 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -4760,10 +3746,7 @@ output137 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -4774,10 +3757,7 @@ output137 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -4789,17 +3769,8 @@ output137 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -4807,17 +3778,8 @@ output137 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -4825,17 +3787,8 @@ output137 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -4850,19 +3803,26 @@ output137 = {
     ],
 }
 
+
 def test_method_137():
-  assert create_dataset(rule_137, data = dataset, org = organization) == output137
+    """
+    This method tests create_dataset function against rule_137 using pytest.
+    """
+    assert create_dataset(rule_137, data=dataset, org=organization) == output137
+
 
 # Rule 138 filters rows based on all columns from each table and single value from each column or any of the columns being numeric.
 
-rule_138 = [{
+rule_138 = [
+    {
         "ruleID": "rule138",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "17.0;16000",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output138 = {
     "filtered_data": {
@@ -4873,10 +3833,7 @@ output138 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -4887,10 +3844,7 @@ output138 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -4899,17 +3853,8 @@ output138 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -4917,17 +3862,8 @@ output138 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -4946,10 +3882,7 @@ output138 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -4961,17 +3894,8 @@ output138 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -4986,19 +3910,26 @@ output138 = {
     ],
 }
 
+
 def test_method_138():
-  assert create_dataset(rule_138, data = dataset, org = organization) == output138
+    """
+    This method tests create_dataset function against rule_138 using pytest.
+    """
+    assert create_dataset(rule_138, data=dataset, org=organization) == output138
+
 
 # Rule 139 filters rows based on all columns from each table and single value from each column or any of the columns being string.
 
-rule_139 = [{
+rule_139 = [
+    {
         "ruleID": "rule139",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "mooreSw;gcMcovN2",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output139 = {
     "filtered_data": {
@@ -5009,10 +3940,7 @@ output139 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -5023,10 +3951,7 @@ output139 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -5035,17 +3960,8 @@ output139 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -5053,17 +3969,8 @@ output139 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -5082,10 +3989,7 @@ output139 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -5097,17 +4001,8 @@ output139 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -5122,19 +4017,26 @@ output139 = {
     ],
 }
 
+
 def test_method_139():
-  assert create_dataset(rule_139, data = dataset, org = organization) == output139
+    """
+    This method tests create_dataset function against rule_139 using pytest.
+    """
+    assert create_dataset(rule_139, data=dataset, org=organization) == output139
+
 
 # Rule 140 filters rows based on all columns from each table and single value from each column or any of the columns being datetime.
 
-rule_140 = [{
+rule_140 = [
+    {
         "ruleID": "rule140",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "2021-01-27 8:00;2021-02-06",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output140 = {
     "filtered_data": {
@@ -5145,10 +4047,7 @@ output140 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -5159,10 +4058,7 @@ output140 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -5171,17 +4067,8 @@ output140 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -5200,10 +4087,7 @@ output140 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -5215,17 +4099,8 @@ output140 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -5233,17 +4108,8 @@ output140 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -5258,53 +4124,36 @@ output140 = {
     ],
 }
 
-def test_method_140():
-  assert create_dataset(rule_140, data = dataset, org = organization) == output140
 
-# Rule 141 filters rows based on all columns from each table and single value from each column or any of the columns being an interval 
+def test_method_140():
+    """
+    This method tests create_dataset function against rule_140 using pytest.
+    """
+    assert create_dataset(rule_140, data=dataset, org=organization) == output140
+
+
+# Rule 141 filters rows based on all columns from each table and single value from each column or any of the columns being an interval
 # between two numbers with [].
 
-rule_141 = [{
+rule_141 = [
+    {
         "ruleID": "rule141",
         "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "[8.0,10.0];[16.0,17.0],[76000,102000]",
+        "ruleValue": "[8.0,10.0];[16.0,17.0];[76000,102000]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output141 = {
     "filtered_data": {
-        "Sample": [
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
-                "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            }
-        ],
+        "Sample": [],
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -5312,17 +4161,8 @@ output141 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -5341,13 +4181,21 @@ output141 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                        },
+                        {
+                            "collection": "cpTP24h",
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sampleID": "Sample S106",
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "type": "pSludge",
                         },
                         {
                             "collection": "grb",
@@ -5355,10 +4203,7 @@ output141 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -5370,17 +4215,8 @@ output141 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -5395,20 +4231,27 @@ output141 = {
     ],
 }
 
-def test_method_141():
-  assert create_dataset(rule_141,data = dataset, org = organization) == output141    
 
-# Rule 142 filters rows based on all columns from each table and single value from each column or any of the columns being an interval 
+def test_method_141():
+    """
+    This method tests create_dataset function against rule_141 using pytest.
+    """
+    assert create_dataset(rule_141, data=dataset, org=organization) == output141
+
+
+# Rule 142 filters rows based on all columns from each table and single value from each column or any of the columns being an interval
 # between two numbers with ().
 
-rule_142 = [{
+rule_142 = [
+    {
         "ruleID": "rule142",
         "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "(2.0,10.0);(15.0,18.0),(92000,102000)",
+        "ruleValue": "(2.0,10.0);(15.0,18.0);(92000,102000)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output142 = {
     "filtered_data": {
@@ -5419,10 +4262,7 @@ output142 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -5431,17 +4271,8 @@ output142 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -5449,17 +4280,8 @@ output142 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -5478,10 +4300,7 @@ output142 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -5492,10 +4311,7 @@ output142 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -5507,17 +4323,8 @@ output142 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -5532,20 +4339,27 @@ output142 = {
     ],
 }
 
-def test_method_142():
-  assert create_dataset(rule_142, data = dataset, org = organization) == output142
 
-# Rule 143 filters rows based on all columns from each table and single value from each column or any of the columns being an interval 
+def test_method_142():
+    """
+    This method tests create_dataset function against rule_142 using pytest.
+    """
+    assert create_dataset(rule_142, data=dataset, org=organization) == output142
+
+
+# Rule 143 filters rows based on all columns from each table and single value from each column or any of the columns being an interval
 # between two numbers with (].
 
-rule_143 = [{
+rule_143 = [
+    {
         "ruleID": "rule143",
         "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "(2.0,10.0];(16.0,18.0],(92000,145000]",
+        "ruleValue": "(2.0,10.0];(16.0,18.0];(92000,145000]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output143 = {
     "filtered_data": {
@@ -5553,17 +4367,8 @@ output143 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -5582,10 +4387,7 @@ output143 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -5596,10 +4398,7 @@ output143 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -5610,10 +4409,7 @@ output143 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -5625,17 +4421,8 @@ output143 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -5643,17 +4430,8 @@ output143 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -5668,20 +4446,27 @@ output143 = {
     ],
 }
 
-def test_method_143():
-  assert create_dataset(rule_143, data = dataset, org = organization) == output143
 
-# Rule 144 filters rows based on all columns from each table and single value from each column or any of the columns being an interval 
+def test_method_143():
+    """
+    This method tests create_dataset function against rule_143 using pytest.
+    """
+    assert create_dataset(rule_143, data=dataset, org=organization) == output143
+
+
+# Rule 144 filters rows based on all columns from each table and single value from each column or any of the columns being an interval
 # between two numbers with [).
 
-rule_144 = [{
+rule_144 = [
+    {
         "ruleID": "rule144",
         "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "[2.0,10.0);[19.0,22.0),[92000,102000)",
+        "ruleValue": "[2.0,10.0);[19.0,22.0);[92000,102000)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output144 = {
     "filtered_data": {
@@ -5692,10 +4477,7 @@ output144 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -5704,17 +4486,8 @@ output144 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -5722,17 +4495,8 @@ output144 = {
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -5751,10 +4515,7 @@ output144 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -5765,10 +4526,7 @@ output144 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -5780,17 +4538,8 @@ output144 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -5805,20 +4554,27 @@ output144 = {
     ],
 }
 
+
 def test_method_144():
-  assert create_dataset(rule_144, data = dataset, org = organization) == output144
+    """
+    This method tests create_dataset function against rule_144 using pytest.
+    """
+    assert create_dataset(rule_144, data=dataset, org=organization) == output144
+
 
 # Rule 145 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two datetime
 # with [].
 
-rule_145 = [{
+rule_145 = [
+    {
         "ruleID": "rule145",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "[2021-01-29,2021-02-06]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output145 = {
     "filtered_data": {
@@ -5829,10 +4585,7 @@ output145 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -5841,17 +4594,8 @@ output145 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -5870,10 +4614,7 @@ output145 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -5884,10 +4625,7 @@ output145 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -5899,17 +4637,8 @@ output145 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -5917,17 +4646,8 @@ output145 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -5942,20 +4662,27 @@ output145 = {
     ],
 }
 
-def test_method_145():
-  assert create_dataset(rule_145, data = dataset, org = organization) == output145
 
-# Rule 146 filters rows based on all columns from each table and single value from each column or any of the columns being an interval 
+def test_method_145():
+    """
+    This method tests create_dataset function against rule_145 using pytest.
+    """
+    assert create_dataset(rule_145, data=dataset, org=organization) == output145
+
+
+# Rule 146 filters rows based on all columns from each table and single value from each column or any of the columns being an interval
 # between two datetime with ().
 
-rule_146 = [{
+rule_146 = [
+    {
         "ruleID": "rule146",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "(2021-01-27 8:00, 2021-01-30 8:00)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output146 = {
     "filtered_data": {
@@ -5966,10 +4693,7 @@ output146 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -5978,17 +4702,8 @@ output146 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 40,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
@@ -5996,17 +4711,8 @@ output146 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -6025,10 +4731,7 @@ output146 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -6039,10 +4742,7 @@ output146 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -6054,17 +4754,8 @@ output146 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -6079,20 +4770,27 @@ output146 = {
     ],
 }
 
-def test_method_146():
-  assert create_dataset(rule_146, data = dataset, org = organization) == output146
 
-# Rule 147 filters rows based on all columns from each table and single value from each column or any of the columns being an interval 
+def test_method_146():
+    """
+    This method tests create_dataset function against rule_146 using pytest.
+    """
+    assert create_dataset(rule_146, data=dataset, org=organization) == output146
+
+
+# Rule 147 filters rows based on all columns from each table and single value from each column or any of the columns being an interval
 # between two datetime with (].
 
-rule_147 = [{
+rule_147 = [
+    {
         "ruleID": "rule147",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "(2021-01-31,2021-02-09]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output147 = {
     "filtered_data": {
@@ -6103,10 +4801,7 @@ output147 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -6115,17 +4810,8 @@ output147 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -6144,10 +4830,7 @@ output147 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -6158,10 +4841,7 @@ output147 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -6173,17 +4853,8 @@ output147 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -6191,17 +4862,8 @@ output147 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -6216,20 +4878,27 @@ output147 = {
     ],
 }
 
-def test_method_147():
-  assert create_dataset(rule_147, data = dataset, org = organization) == output147
 
-# Rule 148 filters rows based on all columns from each table and single value from each column or any of the columns being an interval 
+def test_method_147():
+    """
+    This method tests create_dataset function against rule_147 using pytest.
+    """
+    assert create_dataset(rule_147, data=dataset, org=organization) == output147
+
+
+# Rule 148 filters rows based on all columns from each table and single value from each column or any of the columns being an interval
 # between two datetime with [).
 
-rule_148 = [{
+rule_148 = [
+    {
         "ruleID": "rule148",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "[2021-01-29,2021-02-09)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output148 = {
     "filtered_data": {
@@ -6240,10 +4909,7 @@ output148 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -6252,17 +4918,8 @@ output148 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -6281,10 +4938,7 @@ output148 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -6295,10 +4949,7 @@ output148 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -6310,17 +4961,8 @@ output148 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -6328,17 +4970,8 @@ output148 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -6353,20 +4986,27 @@ output148 = {
     ],
 }
 
-def test_method_148():
-  assert create_dataset(rule_148, data = dataset, org = organization) == output148
 
-# Rule 149 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the 
+def test_method_148():
+    """
+    This method tests create_dataset function against rule_148 using pytest.
+    """
+    assert create_dataset(rule_148, data=dataset, org=organization) == output148
+
+
+# Rule 149 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
 # the lower bound limit is infinity with ().
 
-rule_149 = [{
+rule_149 = [
+    {
         "ruleID": "rule149",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "(Inf, 2021-01-27)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output149 = {
     "filtered_data": {
@@ -6377,29 +5017,28 @@ output149 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
-            }
+            },
+            {
+                "collection": "grb",
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sampleID": "Sample S107",
+                "sizeL": 10,
+                "storageTempC": 22,
+                "type": "rawWW",
+            },
         ],
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -6418,27 +5057,10 @@ output149 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
-                            "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
                         },
                     ],
                     "table": "Sample",
@@ -6447,17 +5069,8 @@ output149 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -6465,17 +5078,8 @@ output149 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -6490,20 +5094,27 @@ output149 = {
     ],
 }
 
-def test_method_149():
-  assert create_dataset(rule_149, data = dataset, org = organization) == output149
 
-# Rule 150 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the 
+def test_method_149():
+    """
+    This method tests create_dataset function against rule_149 using pytest.
+    """
+    assert create_dataset(rule_149, data=dataset, org=organization) == output149
+
+
+# Rule 150 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
 # the lower bound limit is infinity with (].
 
-rule_150 = [{
+rule_150 = [
+    {
         "ruleID": "rule150",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "(Inf, 2021-01-27]",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output150 = {
     "filtered_data": {
@@ -6514,10 +5125,7 @@ output150 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -6528,10 +5136,7 @@ output150 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -6540,17 +5145,8 @@ output150 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -6569,10 +5165,7 @@ output150 = {
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S106",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T106",
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
@@ -6584,17 +5177,8 @@ output150 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -6602,17 +5186,8 @@ output150 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 50,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
@@ -6627,20 +5202,27 @@ output150 = {
     ],
 }
 
-def test_method_150():
-  assert create_dataset(rule_150, data = dataset, org = organization) == output150
 
-# Rule 151 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the 
+def test_method_150():
+    """
+    This method tests create_dataset function against rule_150 using pytest.
+    """
+    assert create_dataset(rule_150, data=dataset, org=organization) == output150
+
+
+# Rule 151 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
 # the upper bound limit is infinity with ().
 
-rule_151 = [{
+rule_151 = [
+    {
         "ruleID": "rule151",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "(98000,Inf)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output151 = {
     "filtered_data": {
@@ -6651,10 +5233,7 @@ output151 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -6665,10 +5244,7 @@ output151 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -6679,10 +5255,7 @@ output151 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -6691,17 +5264,8 @@ output151 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -6709,17 +5273,8 @@ output151 = {
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 60,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "nPMMoV measure linked to CovidN1 by index",
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "nPMMoV",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
@@ -6730,21 +5285,13 @@ output151 = {
     "sharing_summary": [
         {
             "entities_filtered": [
+                {"rows_removed": [], "table": "Sample"},
                 {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -6759,20 +5306,27 @@ output151 = {
     ],
 }
 
-def test_method_151():
-  assert create_dataset(rule_151, data = dataset, org = organization) == output151
 
-# Rule 152 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the 
+def test_method_151():
+    """
+    This method tests create_dataset function against rule_151 using pytest.
+    """
+    assert create_dataset(rule_151, data=dataset, org=organization) == output151
+
+
+# Rule 152 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
 # the upper bound limit is infinity with [).
 
-rule_152 = [{
+rule_152 = [
+    {
         "ruleID": "rule152",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "[98000,Inf)",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output152 = {
     "filtered_data": {
@@ -6783,10 +5337,7 @@ output152 = {
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S100",
-                "shippedOnce": "Yes",
-                "siteID": "Site T113",
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
@@ -6797,10 +5348,7 @@ output152 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -6811,10 +5359,7 @@ output152 = {
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S107",
-                "shippedOnce": "Yes",
-                "siteID": "Site T107",
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
@@ -6823,17 +5368,8 @@ output152 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -6844,21 +5380,13 @@ output152 = {
     "sharing_summary": [
         {
             "entities_filtered": [
+                {"rows_removed": [], "table": "Sample"},
                 {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -6866,17 +5394,8 @@ output152 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -6891,20 +5410,27 @@ output152 = {
     ],
 }
 
+
 def test_method_152():
-  assert create_dataset(rule_152, data = dataset, org = organization) == output152
+    """
+    This method tests create_dataset function against rule_152 using pytest.
+    """
+    assert create_dataset(rule_152, data=dataset, org=organization) == output152
+
 
 # Rule 153 filters rows based on all columns from each table and multiple values from each column or any of the columns where one value could be an interval
 # and the other could be a single value.
 
-rule_153 = [{
+rule_153 = [
+    {
         "ruleID": "rule153",
         "table": "ALL",
         "variable": "ALL",
         "ruleValue": "( 2021-01-30 8:00 , 2021-02-03 21:00] ; 145000; [98000,145000]; 2021-03-06;swrSed",
         "direction": "row",
-        "sharedWith": "Public;PHAC"
-    }]
+        "sharedWith": "Public;PHAC",
+    }
+]
 
 output153 = {
     "filtered_data": {
@@ -6915,10 +5441,7 @@ output153 = {
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "notes": "Samples shipped on ice from site to lab by courier",
                 "sampleID": "Sample S106",
-                "shippedOnce": "Yes",
-                "siteID": "Site T106",
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
@@ -6927,17 +5450,8 @@ output153 = {
         "WWMeasure": [
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "assayID": "Assay Y100",
-                "fractionAnalyzed": "solid",
-                "index": 50,
-                "instrumentID": "Instrument IN200",
-                "labID": "Lab L100",
-                "notes": "CovidN2 replicate measures linked by index",
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "reporterID": "Reporter R1",
-                "sampleID": "Sample S100",
                 "type": "covN2",
-                "typeOther": nan,
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
@@ -6956,10 +5470,7 @@ output153 = {
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S100",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T113",
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
@@ -6970,10 +5481,7 @@ output153 = {
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "notes": "Samples shipped on ice from site to lab by courier",
                             "sampleID": "Sample S107",
-                            "shippedOnce": "Yes",
-                            "siteID": "Site T107",
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
@@ -6985,17 +5493,8 @@ output153 = {
                     "rows_removed": [
                         {
                             "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 40,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "CovidN2 replicate measures linked by index",
                             "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "covN2",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
@@ -7003,17 +5502,8 @@ output153 = {
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "assayID": "Assay Y100",
-                            "fractionAnalyzed": "solid",
-                            "index": 60,
-                            "instrumentID": "Instrument IN200",
-                            "labID": "Lab L100",
-                            "notes": "nPMMoV measure linked to CovidN1 by index",
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "reporterID": "Reporter R1",
-                            "sampleID": "Sample S100",
                             "type": "nPMMoV",
-                            "typeOther": nan,
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
@@ -7028,5 +5518,9 @@ output153 = {
     ],
 }
 
+
 def test_method_153():
-  assert create_dataset(rule_153, data = dataset, org = organization) == output153
+    """
+    This method tests create_dataset function against rule_153 using pytest.
+    """
+    assert create_dataset(rule_153, data=dataset, org=organization) == output153
