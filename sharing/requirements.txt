@@ -1,0 +1,7 @@
+pytest
+mypy
+pandas
+numpy
+re
+json
+csv
