@@ -5,9 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: [ main ]
+    branches: [ sharing_github_action ]
   pull_request:
-    branches: [ main ]
+    branches: [ sharing_github_action ]
   workflow_dispatch:
 
 jobs:
