@@ -1,16 +1,9 @@
-import csv
-import json
-import os
-import re
+"""Testing single table"""
+import sys
+from pandas import Timestamp
 
-import numpy as np  # pylint: disable=import-error
-import pandas as pd  # pylint: disable=import-error
-import pytest  # pylint: disable=import-error
-from numpy import nan  # pylint: disable=import-error
-from pandas import Timestamp  # pylint: disable=import-error
-
-# import create_dataset # pylint: disable=import-error
-from create_dataset import create_dataset  # pylint: disable=import-error
+sys.path.append("..")  # Adds higher directory to python modules path.
+from create_dataset import create_dataset
 
 # User Data:
 
@@ -57,8 +50,8 @@ dataset = {
     ],
 }
 
-# User requested organization:
-organization = "PHAC"
+# User requested ORG_NAME:
+ORG_NAME = "PHAC"
 
 # For a SINGLE TABLE: `Sample` table is used.
 # For single column:
@@ -134,7 +127,10 @@ output1 = {
 
 
 def test_method_1():
-    assert create_dataset(rule_1, data=dataset, org=organization) == output1
+    """
+    Rule 1 filters rows based on a single column and all values of the rows.
+    """
+    assert create_dataset(rule_1, data=dataset, org=ORG_NAME) == output1
 
 
 # Rule 2 filters rows based on a single column and single value being numeric.
@@ -209,7 +205,10 @@ output2 = {
 
 
 def test_method_2():
-    assert create_dataset(rule_2, data=dataset, org=organization) == output2
+    """
+    Rule 2 filters rows based on a single column and single value being numeric.
+    """
+    assert create_dataset(rule_2, data=dataset, org=ORG_NAME) == output2
 
 
 # Rule 3 filters rows based on a single column and single value being string.
@@ -284,10 +283,14 @@ output3 = {
 
 
 def test_method_3():
-    assert create_dataset(rule_3, data=dataset, org=organization) == output3
+    """
+    Rule 3 filters rows based on a single column and single value being string.
+    """
+    assert create_dataset(rule_3, data=dataset, org=ORG_NAME) == output3
 
 
-# Rule 4 filters rows based on a single column and single value from each column or any of the columns being a datetime.
+# Rule 4 filters rows based on a single column and single value from each column
+# or any of the columns being a datetime.
 
 rule_4 = [
     {
@@ -359,10 +362,15 @@ output4 = {
 
 
 def test_method_4():
-    assert create_dataset(rule_4, data=dataset, org=organization) == output4
+    """
+    Rule 4 filters rows based on a single column and single value
+    from each column or any of the columns being a datetime.
+    """
+    assert create_dataset(rule_4, data=dataset, org=ORG_NAME) == output4
 
 
-# Rule 5 filters rows based on a single column and range interval for a numeric value with [] interval.
+# Rule 5 filters rows based on a single column and range interval
+# for a numeric value with [] interval.
 
 rule_5 = [
     {
@@ -434,10 +442,15 @@ output5 = {
 
 
 def test_method_5():
-    assert create_dataset(rule_5, data=dataset, org=organization) == output5
+    """
+    Rule 5 filters rows based on a single column and range interval
+    for a numeric value with [] interval.
+    """
+    assert create_dataset(rule_5, data=dataset, org=ORG_NAME) == output5
 
 
-# Rule 6 filters rows based on a single column and range interval for a numeric value with () interval.
+# Rule 6 filters rows based on a single column and range interval
+# for a numeric value with () interval.
 
 rule_6 = [
     {
@@ -509,10 +522,15 @@ output6 = {
 
 
 def test_method_6():
-    assert create_dataset(rule_6, data=dataset, org=organization) == output6
+    """
+    Rule 6 filters rows based on a single column and range interval
+    for a numeric value with () interval.
+    """
+    assert create_dataset(rule_6, data=dataset, org=ORG_NAME) == output6
 
 
-# Rule 7 filters rows based on a single column and range interval for a numeric value with (] interval.
+# Rule 7 filters rows based on a single column and range interval
+# for a numeric value with (] interval.
 
 rule_7 = [
     {
@@ -584,10 +602,15 @@ output7 = {
 
 
 def test_method_7():
-    assert create_dataset(rule_7, data=dataset, org=organization) == output7
+    """
+    Rule 7 filters rows based on a single column and range interval
+    for a numeric value with (] interval.
+    """
+    assert create_dataset(rule_7, data=dataset, org=ORG_NAME) == output7
 
 
-# Rule 8 filters rows based on a single column and range interval for a numeric value with [) interval.
+# Rule 8 filters rows based on a single column and range interval
+# for a numeric value with [) interval.
 
 rule_8 = [
     {
@@ -659,10 +682,15 @@ output8 = {
 
 
 def test_method_8():
-    assert create_dataset(rule_8, data=dataset, org=organization) == output8
+    """
+    Rule 8 filters rows based on a single column and range interval
+    for a numeric value with [) interval.
+    """
+    assert create_dataset(rule_8, data=dataset, org=ORG_NAME) == output8
 
 
-# Rule 9 filters rows based on a single column and range interval between datetime value with [] interval.
+# Rule 9 filters rows based on a single column and range interval
+# between datetime value with [] interval.
 
 rule_9 = [
     {
@@ -734,10 +762,15 @@ output9 = {
 
 
 def test_method_9():
-    assert create_dataset(rule_9, data=dataset, org=organization) == output9
+    """
+    Rule 9 filters rows based on a single column and range interval
+    between datetime value with [] interval.
+    """
+    assert create_dataset(rule_9, data=dataset, org=ORG_NAME) == output9
 
 
-# Rule 10 filters rows based on a single column and range interval between datetime value with () interval.
+# Rule 10 filters rows based on a single column and range interval
+# between datetime value with () interval.
 
 rule_10 = [
     {
@@ -809,10 +842,15 @@ output10 = {
 
 
 def test_method_10():
-    assert create_dataset(rule_10, data=dataset, org=organization) == output10
+    """
+    Rule 10 filters rows based on a single column and range interval
+    between datetime value with () interval.
+    """
+    assert create_dataset(rule_10, data=dataset, org=ORG_NAME) == output10
 
 
-# Rule 11 filters rows based on a single column and range interval between datetime value with (] interval.
+# Rule 11 filters rows based on a single column and range interval
+# between datetime value with (] interval.
 
 rule_11 = [
     {
@@ -884,10 +922,15 @@ output11 = {
 
 
 def test_method_11():
-    assert create_dataset(rule_11, data=dataset, org=organization) == output11
+    """
+    Rule 11 filters rows based on a single column and range interval
+    between datetime value with (] interval.
+    """
+    assert create_dataset(rule_11, data=dataset, org=ORG_NAME) == output11
 
 
-# Rule 12 filters rows based on a single column and range interval between datetime value with [) interval.
+# Rule 12 filters rows based on a single column and range interval
+# between datetime value with [) interval.
 
 rule_12 = [
     {
@@ -959,10 +1002,15 @@ output12 = {
 
 
 def test_method_12():
-    assert create_dataset(rule_12, data=dataset, org=organization) == output12
+    """
+    Rule 12 filters rows based on a single column and range interval
+    between datetime value with [) interval.
+    """
+    assert create_dataset(rule_12, data=dataset, org=ORG_NAME) == output12
 
 
-# Rule 13 filters rows based on a single column and range interval between two value with () interval where lower bound is infinity.
+# Rule 13 filters rows based on a single column and range interval
+# between two value with () interval where lower bound is infinity.
 
 rule_13 = [
     {
@@ -1034,10 +1082,15 @@ output13 = {
 
 
 def test_method_13():
-    assert create_dataset(rule_13, data=dataset, org=organization) == output13
+    """
+    Rule 13 filters rows based on a single column and range interval
+    between two value with () interval where lower bound is infinity.
+    """
+    assert create_dataset(rule_13, data=dataset, org=ORG_NAME) == output13
 
 
-# Rule 14 filters rows based on a single column and range interval between two value with (] interval where lower bound is infinity.
+# Rule 14 filters rows based on a single column and range interval
+# between two value with (] interval where lower bound is infinity.
 
 rule_14 = [
     {
@@ -1109,10 +1162,15 @@ output14 = {
 
 
 def test_method_14():
-    assert create_dataset(rule_14, data=dataset, org=organization) == output14
+    """
+    Rule 14 filters rows based on a single column and range interval
+    between two value with (] interval where lower bound is infinity.
+    """
+    assert create_dataset(rule_14, data=dataset, org=ORG_NAME) == output14
 
 
-# Rule 15 filters rows based on a single column and range interval between two value with () interval where upper bound is infinity.
+# Rule 15 filters rows based on a single column and range interval
+# between two value with () interval where upper bound is infinity.
 
 rule_15 = [
     {
@@ -1184,10 +1242,15 @@ output15 = {
 
 
 def test_method_15():
-    assert create_dataset(rule_15, data=dataset, org=organization) == output15
+    """
+    Rule 15 filters rows based on a single column and range interval
+    between two value with () interval where upper bound is infinity.
+    """
+    assert create_dataset(rule_15, data=dataset, org=ORG_NAME) == output15
 
 
-# Rule 16 filters rows based on a single column and range interval between two value with [) interval where upper bound is infinity.
+# Rule 16 filters rows based on a single column and range interval
+# between two value with [) interval where upper bound is infinity.
 
 rule_16 = [
     {
@@ -1259,10 +1322,15 @@ output16 = {
 
 
 def test_method_16():
-    assert create_dataset(rule_16, data=dataset, org=organization) == output16
+    """
+    Rule 16 filters rows based on a single column and range interval
+    between two value with [) interval where upper bound is infinity.
+    """
+    assert create_dataset(rule_16, data=dataset, org=ORG_NAME) == output16
 
 
-# Rule 17 filters rows based on a single column and multiple values to filter by a single value and a range.
+# Rule 17 filters rows based on a single column and multiple values
+# to filter by a single value and a range.
 
 rule_17 = [
     {
@@ -1334,7 +1402,11 @@ output17 = {
 
 
 def test_method_17():
-    assert create_dataset(rule_17, data=dataset, org=organization) == output17
+    """
+    Rule 17 filters rows based on a single column and multiple values
+    to filter by a single value and a range.
+    """
+    assert create_dataset(rule_17, data=dataset, org=ORG_NAME) == output17
 
 
 # For SINGLE TABLE:
@@ -1412,10 +1484,14 @@ output18 = {
 
 
 def test_method_18():
-    assert create_dataset(rule_18, data=dataset, org=organization) == output18
+    """
+    Rule 18 filters all rows from more than 1 column from a single table.
+    """
+    assert create_dataset(rule_18, data=dataset, org=ORG_NAME) == output18
 
 
-# Rule 19 filters rows from multiple columns from a single table based on a single value from each column or any of the columns being a number.
+# Rule 19 filters rows from multiple columns from a single table based
+# on a single value from each column or any of the columns being a number.
 
 rule_19 = [
     {
@@ -1487,10 +1563,15 @@ output19 = {
 
 
 def test_method_19():
-    assert create_dataset(rule_19, data=dataset, org=organization) == output19
+    """
+    Rule 19 filters rows from multiple columns from a single table based
+    on a single value from each column or any of the columns being a number.
+    """
+    assert create_dataset(rule_19, data=dataset, org=ORG_NAME) == output19
 
 
-# Rule 20 filters rows from multiple columns from a single table based on a single value from each columns or any of the columns being a string.
+# Rule 20 filters rows from multiple columns from a single table based
+# on a single value from each columns or any of the columns being a string.
 
 rule_20 = [
     {
@@ -1562,10 +1643,15 @@ output20 = {
 
 
 def test_method_20():
-    assert create_dataset(rule_20, data=dataset, org=organization) == output20
+    """
+    Rule 20 filters rows from multiple columns from a single table based
+    on a single value from each columns or any of the columns being a string.
+    """
+    assert create_dataset(rule_20, data=dataset, org=ORG_NAME) == output20
 
 
-# Rule 21 filters rows from multiple columns from a single table based on a single value from each columns or any of the columns being a datetime.
+# Rule 21 filters rows from multiple columns from a single table based on a
+# single value from each columns or any of the columns being a datetime.
 
 rule_21 = [
     {
@@ -1637,10 +1723,15 @@ output21 = {
 
 
 def test_method_21():
-    assert create_dataset(rule_21, data=dataset, org=organization) == output21
+    """
+    Rule 21 filters rows from multiple columns from a single table based on a
+    single value from each columns or any of the columns being a datetime.
+    """
+    assert create_dataset(rule_21, data=dataset, org=ORG_NAME) == output21
 
 
-# Rule 22 filters rows from multiple columns from a single table based on a single value from each column or any of the columns being an
+# Rule 22 filters rows from multiple columns from a single table
+# based on a single value from each column or any of the columns being an
 # interval between two numbers with [] interval
 
 rule_22 = [
@@ -1712,10 +1803,16 @@ output22 = {
 
 
 def test_method_22():
-    assert create_dataset(rule_22, data=dataset, org=organization) == output22
+    """
+    Rule 22 filters rows from multiple columns from a single table
+    based on a single value from each column or any of the columns being an
+    interval between two numbers with [] interval
+    """
+    assert create_dataset(rule_22, data=dataset, org=ORG_NAME) == output22
 
 
-# Rule 23 filters rows from multiple columns from a single table based on a single value from each columns or any of the columns
+# Rule 23 filters rows from multiple columns from a single table based on a
+# single value from each columns or any of the columns
 # being an interval between two numbers with () interval
 
 rule_23 = [
@@ -1788,10 +1885,16 @@ output23 = {
 
 
 def test_method_23():
-    assert create_dataset(rule_23, data=dataset, org=organization) == output23
+    """
+    Rule 23 filters rows from multiple columns from a single table based on a
+    single value from each columns or any of the columns
+    being an interval between two numbers with () interval
+    """
+    assert create_dataset(rule_23, data=dataset, org=ORG_NAME) == output23
 
 
-# Rule 24 filters rows from multiple columns from a single table based on a single value from each columns or any of the columns
+# Rule 24 filters rows from multiple columns from a single table based on a
+# single value from each columns or any of the columns
 # being an interval between two numbers with (] interval
 
 
@@ -1864,10 +1967,16 @@ output24 = {
 
 
 def test_method_24():
-    assert create_dataset(rule_24, data=dataset, org=organization) == output24
+    """
+    Rule 24 filters rows from multiple columns from a single table based on a
+    single value from each columns or any of the columns
+    being an interval between two numbers with (] interval
+    """
+    assert create_dataset(rule_24, data=dataset, org=ORG_NAME) == output24
 
 
-# Rule 25 filters rows from multiple columns from a single table based on a single value from each columns or any of the columns
+# Rule 25 filters rows from multiple columns from a single table based on a
+# single value from each columns or any of the columns
 # being an interval between two numbers with [) interval
 
 rule_25 = [
@@ -1939,10 +2048,16 @@ output25 = {
 
 
 def test_method_25():
-    assert create_dataset(rule_25, data=dataset, org=organization) == output25
+    """
+    Rule 25 filters rows from multiple columns from a single table based on a
+    single value from each columns or any of the columns
+    being an interval between two numbers with [) interval
+    """
+    assert create_dataset(rule_25, data=dataset, org=ORG_NAME) == output25
 
 
-# Rule 26 filters rows from multiple columns from a single table based on a single value from each columns or any of the columns
+# Rule 26 filters rows from multiple columns from a single table based on a
+# single value from each columns or any of the columns
 # being an interval between two datetime values with [] interval
 
 rule_26 = [
@@ -2015,10 +2130,16 @@ output26 = {
 
 
 def test_method_26():
-    assert create_dataset(rule_26, data=dataset, org=organization) == output26
+    """
+    Rule 26 filters rows from multiple columns from a single table based on a
+    single value from each columns or any of the columns
+    being an interval between two datetime values with [] interval
+    """
+    assert create_dataset(rule_26, data=dataset, org=ORG_NAME) == output26
 
 
-# Rule 27 filters rows from multiple columns from a single table based on a single value from each column or any of the columns
+# Rule 27 filters rows from multiple columns from a single table based on a
+# single value from each column or any of the columns
 # being an interval between two datetime values with () interval
 
 rule_27 = [
@@ -2091,10 +2212,16 @@ output27 = {
 
 
 def test_method_27():
-    assert create_dataset(rule_27, data=dataset, org=organization) == output27
+    """
+    Rule 27 filters rows from multiple columns from a single table based on a
+    single value from each column or any of the columns
+    being an interval between two datetime values with () interval
+    """
+    assert create_dataset(rule_27, data=dataset, org=ORG_NAME) == output27
 
 
-# Rule 28 filters rows from multiple columns from a single table based on a single value from each column or any of the columns
+# Rule 28 filters rows from multiple columns from a single table based on a
+# single value from each column or any of the columns
 # being an interval between two datetime values with (] interval
 
 rule_28 = [
@@ -2167,10 +2294,16 @@ output28 = {
 
 
 def test_method_28():
-    assert create_dataset(rule_28, data=dataset, org=organization) == output28
+    """
+    Rule 28 filters rows from multiple columns from a single table based on a
+    single value from each column or any of the columns
+    being an interval between two datetime values with (] interval
+    """
+    assert create_dataset(rule_28, data=dataset, org=ORG_NAME) == output28
 
 
-# Rule 29 filters rows from multiple columns from a single table based on a single value from each column or any of the columns
+# Rule 29 filters rows from multiple columns from a single table based on a
+# single value from each column or any of the columns
 # being an interval between two datetime values with [) interval
 
 rule_29 = [
@@ -2243,11 +2376,17 @@ output29 = {
 
 
 def test_method_29():
-    assert create_dataset(rule_29, data=dataset, org=organization) == output29
+    """
+    Rule 29 filters rows from multiple columns from a single table based on a
+    single value from each column or any of the columns
+    being an interval between two datetime values with [) interval
+    """
+    assert create_dataset(rule_29, data=dataset, org=ORG_NAME) == output29
 
 
-# Rule 30 filters rows from multiple columns from a single table based on a single value from each column or any of the columns
-# being an interval between two values where the lower bound limit is infinity and with () interval
+# Rule 30 filters rows from multiple columns from a single table based on a
+# single value from each column or any of the columns being interval between
+# two values where the lower bound limit is infinity and with () interval
 
 rule_30 = [
     {
@@ -2318,11 +2457,17 @@ output30 = {
 
 
 def test_method_30():
-    assert create_dataset(rule_30, data=dataset, org=organization) == output30
+    """
+    Rule 30 filters rows from multiple columns from a single table based on a
+    single value from each column or any of the columns being interval between
+    two values where the lower bound limit is infinity and with () interva
+    """
+    assert create_dataset(rule_30, data=dataset, org=ORG_NAME) == output30
 
 
-# Rule 31 filters rows from multiple columns from a single table based on a single value from each column or any of the columns
-# being an interval between two values where the lower bound limit is infinity and with (] interval
+# Rule 31 filters rows from multiple columns from a single table based on a
+# single value from each column or any of the columns being interval between
+# two values where the lower bound limit is infinity and with (] interval
 
 rule_31 = [
     {
@@ -2394,11 +2539,17 @@ output31 = {
 
 
 def test_method_31():
-    assert create_dataset(rule_31, data=dataset, org=organization) == output31
+    """
+    Rule 31 filters rows from multiple columns from a single table based on a
+    single value from each column or any of the columns being interval between
+    two values where the lower bound limit is infinity and with (] interval
+    """
+    assert create_dataset(rule_31, data=dataset, org=ORG_NAME) == output31
 
 
-# Rule 32 filters rows from multiple columns from a single table based on a single value from each column or any of the columns
-# being an interval between two values where the upper bound limit is infinity and with () interval
+# Rule 32 filters rows from multiple columns from a single table based on a
+# single value from each column or any of the columns being interval between
+# two values where the upper bound limit is infinity and with () interval
 
 rule_32 = [
     {
@@ -2470,11 +2621,17 @@ output32 = {
 
 
 def test_method_32():
-    assert create_dataset(rule_32, data=dataset, org=organization) == output32
+    """
+    Rule 32 filters rows from multiple columns from a single table based on a
+    single value from each column or any of the columns being interval between
+    two values where the upper bound limit is infinity and with () interval
+    """
+    assert create_dataset(rule_32, data=dataset, org=ORG_NAME) == output32
 
 
-# Rule 33 filters rows from multiple columns from a single table based on a single value from each column or any of the columns
-# being an interval between two values where the upper bound limit is infinity and with [) interval
+# Rule 33 filters rows from multiple columns from a single table based on a
+# single value from each column or any of the columns being interval between
+# two values where the upper bound limit is infinity and with [) interval
 
 rule_33 = [
     {
@@ -2546,11 +2703,16 @@ output33 = {
 
 
 def test_method_33():
-    assert create_dataset(rule_33, data=dataset, org=organization) == output33
+    """
+    Rule 33 filters rows from multiple columns from a single table based on a
+    single value from each column or any of the columns being interval between
+    two values where the upper bound limit is infinity and with [) interval
+    """
+    assert create_dataset(rule_33, data=dataset, org=ORG_NAME) == output33
 
 
-# Rule 34 filters rows from multiple columns from a single table based on multiple values where one can be a single value
-# and other being an interval.
+# Rule 34 filters rows from multiple columns from a single table based on
+# multiple values where one can be a single value and other being interval.
 
 rule_34 = [
     {
@@ -2622,7 +2784,11 @@ output34 = {
 
 
 def test_method_34():
-    assert create_dataset(rule_34, data=dataset, org=organization) == output34
+    """
+    Rule 34 filters rows from multiple columns from a single table based on
+    multiple values where one can be a single value and other being interval.
+    """
+    assert create_dataset(rule_34, data=dataset, org=ORG_NAME) == output34
 
 
 # SINGLE TABLE:
@@ -2699,10 +2865,14 @@ output35 = {
 
 
 def test_method_35():
-    assert create_dataset(rule_35, data=dataset, org=organization) == output35
+    """
+    Rule 35 filters all the rows from all column from a single table.
+    """
+    assert create_dataset(rule_35, data=dataset, org=ORG_NAME) == output35
 
 
-# Rule 36 filters rows from all columns from a single table based on a single value from each column or any of the columns being a number.
+# Rule 36 filters rows from all columns from a single table based on a
+# single value from each column or any of the columns being a number.
 
 rule_36 = [
     {
@@ -2774,10 +2944,15 @@ output36 = {
 
 
 def test_method_36():
-    assert create_dataset(rule_36, data=dataset, org=organization) == output36
+    """
+    Rule 36 filters rows from all columns from a single table based on a
+    single value from each column or any of the columns being a number.
+    """
+    assert create_dataset(rule_36, data=dataset, org=ORG_NAME) == output36
 
 
-# Rule 37 filters rows from all columns from a single table based on a single value from each column or any of the columns being a string.
+# Rule 37 filters rows from all columns from a single table based on a
+# single value from each column or any of the columns being a string.
 
 rule_37 = [
     {
@@ -2849,10 +3024,15 @@ output37 = {
 
 
 def test_method_37():
-    assert create_dataset(rule_37, data=dataset, org=organization) == output37
+    """
+    Rule 37 filters rows from all columns from a single table based on a
+    single value from each column or any of the columns being a string.
+    """
+    assert create_dataset(rule_37, data=dataset, org=ORG_NAME) == output37
 
 
-# Rule 38 filters rows from all columns from a single table based on a single value from each column or any of the columns being a datetime.
+# Rule 38 filters rows from all columns from a single table based on a
+# single value from each column or any of the columns being a datetime.
 
 rule_38 = [
     {
@@ -2924,11 +3104,16 @@ output38 = {
 
 
 def test_method_38():
-    assert create_dataset(rule_38, data=dataset, org=organization) == output38
+    """
+    Rule 38 filters rows from all columns from a single table based on a
+    single value from each column or any of the columns being a datetime.
+    """
+    assert create_dataset(rule_38, data=dataset, org=ORG_NAME) == output38
 
 
-# Rule 39 filters rows from all columns from a single table based on a single value from each column or any of the columns being an
-# interval between two numbers with [] interval.
+# Rule 39 filters rows from all columns from a single table based on a
+# single value from each column or any of the columns being an interval
+# between two numbers with [] interval.
 
 rule_39 = [
     {
@@ -3017,11 +3202,17 @@ output39 = {
 
 
 def test_method_39():
-    assert create_dataset(rule_39, data=dataset, org=organization) == output39
+    """
+    Rule 39 filters rows from all columns from a single table based on a
+    single value from each column or any of the columns being an interval
+    between two numbers with [] interval.
+    """
+    assert create_dataset(rule_39, data=dataset, org=ORG_NAME) == output39
 
 
-# Rule 40 filters rows from all columns from a single table based on a single value from each column or any of the columns
-# being an interval between two numbers with () interval.
+# Rule 40 filters rows from all columns from a single table based on a
+# single value from each column or any of the columns being an interval
+# between two numbers with () interval.
 
 rule_40 = [
     {
@@ -3092,11 +3283,17 @@ output40 = {
 
 
 def test_method_40():
-    assert create_dataset(rule_40, data=dataset, org=organization) == output40
+    """
+    Rule 40 filters rows from all columns from a single table based on a
+    single value from each column or any of the columns being an interval
+    between two numbers with () interval.
+    """
+    assert create_dataset(rule_40, data=dataset, org=ORG_NAME) == output40
 
 
-# Rule 41 filters rows from all columns from a single table based on a single value from each column or any of the columns
-# being an interval between two numbers with (] interval.
+# Rule 41 filters rows from all columns from a single table based on a
+# single value from each column or any of the columns being an interval
+# between two numbers with (] interval.
 
 rule_41 = [
     {
@@ -3168,11 +3365,17 @@ output41 = {
 
 
 def test_method_41():
-    assert create_dataset(rule_41, data=dataset, org=organization) == output41
+    """
+    Rule 41 filters rows from all columns from a single table based on a
+    single value from each column or any of the columns being an interval
+    between two numbers with (] interval.
+    """
+    assert create_dataset(rule_41, data=dataset, org=ORG_NAME) == output41
 
 
-# Rule 42 filters rows from all columns from a single table based on a single value from each column or any of the columns
-# being an interval between two numbers with [) interval.
+# Rule 42 filters rows from all columns from a single table based on a
+# single value from each column or any of the columns being an interval
+# between two numbers with [) interval.
 
 rule_42 = [
     {
@@ -3245,11 +3448,17 @@ output42 = {
 
 
 def test_method_42():
-    assert create_dataset(rule_42, data=dataset, org=organization) == output42
+    """
+    Rule 42 filters rows from all columns from a single table based on a
+    single value from each column or any of the columns being an interval
+    between two numbers with [) interval.
+    """
+    assert create_dataset(rule_42, data=dataset, org=ORG_NAME) == output42
 
 
-# Rule 43 filters rows from all columns from a single table based on a single value from each column or any of the columns
-# being an interval between two datetime values with [] interval.
+# Rule 43 filters rows from all columns from a single table based on a
+# single value from each column or any of the columns being an interval
+# between two datetime values with [] interval.
 
 rule_43 = [
     {
@@ -3321,11 +3530,17 @@ output43 = {
 
 
 def test_method_43():
-    assert create_dataset(rule_43, data=dataset, org=organization) == output43
+    """
+    Rule 43 filters rows from all columns from a single table based on a
+    single value from each column or any of the columns being an interval
+    between two datetime values with [] interval.
+    """
+    assert create_dataset(rule_43, data=dataset, org=ORG_NAME) == output43
 
 
-# Rule 44 filters rows from all columns from a single table based on a single value from each column or any of the columns
-# being an interval between two datetime values with () interval.
+# Rule 44 filters rows from all columns from a single table based on a
+# single value from each column or any of the columns being an interval
+# between two datetime values with () interval.
 
 rule_44 = [
     {
@@ -3396,11 +3611,17 @@ output44 = {
 
 
 def test_method_44():
-    assert create_dataset(rule_44, data=dataset, org=organization) == output44
+    """
+    Rule 44 filters rows from all columns from a single table based on a
+    single value from each column or any of the columns being an interval
+    between two datetime values with () interval.
+    """
+    assert create_dataset(rule_44, data=dataset, org=ORG_NAME) == output44
 
 
-# Rule 45 filters rows from all columns from a single table based on a single value from each column or any of the columns
-# being an interval between two datetime values with (] interval.
+# Rule 45 filters rows from all columns from a single table based on a
+# single value from each column or any of the columns being an interval
+# between two datetime values with (] interval.
 
 rule_45 = [
     {
@@ -3471,11 +3692,17 @@ output45 = {
 
 
 def test_method_45():
-    assert create_dataset(rule_45, data=dataset, org=organization) == output45
+    """
+    Rule 45 filters rows from all columns from a single table based on a
+    single value from each column or any of the columns being an interval
+    between two datetime values with (] interval.
+    """
+    assert create_dataset(rule_45, data=dataset, org=ORG_NAME) == output45
 
 
-# Rule 46 filters rows from all columns from a single table based on a single value from each column or any of the columns
-# being an interval between two datetime values with [) interval.
+# Rule 46 filters rows from all columns from a single table based on a
+# single value from each column or any of the columns being an interval
+# between two datetime values with [) interval.
 
 rule_46 = [
     {
@@ -3547,11 +3774,16 @@ output46 = {
 
 
 def test_method_46():
-    assert create_dataset(rule_46, data=dataset, org=organization) == output46
+    """
+    Rule 46 filters rows from all columns from a single table based on a
+    single value from each column or any of the columns being an interval
+    between two datetime values with [) interval.
+    """
+    assert create_dataset(rule_46, data=dataset, org=ORG_NAME) == output46
 
 
-# Rule 47 filters rows from all columns from a single table based on a single value
-# being an interval where the lower bound limit is infinity with (] interval
+# Rule 47 filters rows from all columns from a single table based on a single
+# value being interval where lower bound limit is infinity with (] interval
 
 rule_47 = [
     {
@@ -3623,11 +3855,15 @@ output47 = {
 
 
 def test_method_47():
-    assert create_dataset(rule_47, data=dataset, org=organization) == output47
+    """
+    Rule 47 filters rows from all columns from a single table based on a single
+    value being interval where lower bound limit is infinity with (] interval
+    """
+    assert create_dataset(rule_47, data=dataset, org=ORG_NAME) == output47
 
 
-# Rule 48 filters rows from all columns from a single table based on a single value
-# being an interval where the lower bound limit is infinity with () interval
+# Rule 48 filters rows from all columns from a single table based on a single
+# value being interval where lower bound limit is infinity with () interval
 
 rule_48 = [
     {
@@ -3699,11 +3935,15 @@ output48 = {
 
 
 def test_method_48():
-    assert create_dataset(rule_48, data=dataset, org=organization) == output48
+    """
+    Rule 48 filters rows from all columns from a single table based on a single
+    value being interval where lower bound limit is infinity with () interval
+    """
+    assert create_dataset(rule_48, data=dataset, org=ORG_NAME) == output48
 
 
-# Rule 49 filters rows from all columns from a single table based on a single value
-# being an interval where the upper bound limit is infinity with () interval
+# Rule 49 filters rows from all columns from a single table based on a single
+# value being interval where upper bound limit is infinity with () interval
 
 rule_49 = [
     {
@@ -3775,11 +4015,15 @@ output49 = {
 
 
 def test_method_49():
-    assert create_dataset(rule_49, data=dataset, org=organization) == output49
+    """
+    Rule 49 filters rows from all columns from a single table based on a single
+    value being interval where upper bound limit is infinity with () interval
+    """
+    assert create_dataset(rule_49, data=dataset, org=ORG_NAME) == output49
 
 
-# Rule 50 filters rows from all columns from a single table based on a single value being an interval
-# where the upper bound limit is infinity with [) interval
+# Rule 50 filters rows from all columns from a single table based on single
+# value being interval where upper bound limit is infinity with [) interval
 
 rule_50 = [
     {
@@ -3851,10 +4095,15 @@ output50 = {
 
 
 def test_method_50():
-    assert create_dataset(rule_50, data=dataset, org=organization) == output50
+    """
+    Rule 50 filters rows from all columns from a single table based on single
+    value being interval where upper bound limit is infinity with [) interval
+    """
+    assert create_dataset(rule_50, data=dataset, org=ORG_NAME) == output50
 
 
-# Rule 51 filters rows from all columns from a single table based on a multiple values where one can be an interval and other a value.
+# Rule 51 filters rows from all columns from a single table based on a
+# multiple values where one can be an interval and other a value.
 
 rule_51 = [
     {
@@ -3925,4 +4174,8 @@ output51 = {
 
 
 def test_method_51():
-    assert create_dataset(rule_51, data=dataset, org=organization) == output51
+    """
+    Rule 51 filters rows from all columns from a single table based on a
+    multiple values where one can be an interval and other a value.
+    """
+    assert create_dataset(rule_51, data=dataset, org=ORG_NAME) == output51
