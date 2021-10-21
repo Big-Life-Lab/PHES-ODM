@@ -101,7 +101,6 @@ output103 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -110,9 +109,9 @@ output103 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -121,9 +120,9 @@ output103 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -132,6 +131,7 @@ output103 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -200,7 +200,6 @@ output104 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -209,9 +208,9 @@ output104 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -220,6 +219,7 @@ output104 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -249,7 +249,6 @@ output104 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -258,6 +257,7 @@ output104 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -309,7 +309,6 @@ output105 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -318,9 +317,9 @@ output105 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -329,6 +328,7 @@ output105 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -358,7 +358,6 @@ output105 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -367,6 +366,7 @@ output105 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -418,7 +418,6 @@ output106 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -427,9 +426,9 @@ output106 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -438,6 +437,7 @@ output106 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -467,7 +467,6 @@ output106 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -476,6 +475,7 @@ output106 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -528,7 +528,6 @@ output107 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -537,6 +536,7 @@ output107 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             }
         ],
         "WWMeasure": [
@@ -557,7 +557,6 @@ output107 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -566,9 +565,9 @@ output107 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -577,6 +576,7 @@ output107 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -639,7 +639,6 @@ output108 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -648,9 +647,9 @@ output108 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -659,6 +658,7 @@ output108 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -688,7 +688,6 @@ output108 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -697,6 +696,7 @@ output108 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -750,7 +750,6 @@ output109 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -759,6 +758,7 @@ output109 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             }
         ],
         "WWMeasure": [
@@ -779,7 +779,6 @@ output109 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -788,9 +787,9 @@ output109 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -799,6 +798,7 @@ output109 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -861,7 +861,6 @@ output110 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -870,9 +869,9 @@ output110 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -881,6 +880,7 @@ output110 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -910,7 +910,6 @@ output110 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -919,6 +918,7 @@ output110 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -972,7 +972,6 @@ output111 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -981,9 +980,9 @@ output111 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -992,6 +991,7 @@ output111 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -1021,7 +1021,6 @@ output111 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -1030,6 +1029,7 @@ output111 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -1083,7 +1083,6 @@ output112 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -1092,9 +1091,9 @@ output112 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -1103,6 +1102,7 @@ output112 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
         ],
         "WWMeasure": [
@@ -1132,7 +1132,6 @@ output112 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -1141,6 +1140,7 @@ output112 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         }
                     ],
                     "table": "Sample",
@@ -1194,7 +1194,6 @@ output113 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -1203,9 +1202,9 @@ output113 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -1214,6 +1213,7 @@ output113 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -1252,7 +1252,6 @@ output113 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -1261,6 +1260,7 @@ output113 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -1301,7 +1301,6 @@ output114 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -1310,9 +1309,9 @@ output114 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -1321,6 +1320,7 @@ output114 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
         ],
         "WWMeasure": [
@@ -1350,7 +1350,6 @@ output114 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -1359,6 +1358,7 @@ output114 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         }
                     ],
                     "table": "Sample",
@@ -1412,7 +1412,6 @@ output115 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -1421,9 +1420,9 @@ output115 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -1432,6 +1431,7 @@ output115 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -1470,7 +1470,6 @@ output115 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -1479,6 +1478,7 @@ output115 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -1519,7 +1519,6 @@ output116 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -1528,6 +1527,7 @@ output116 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             }
         ],
         "WWMeasure": [
@@ -1566,7 +1566,6 @@ output116 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -1575,9 +1574,9 @@ output116 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -1586,6 +1585,7 @@ output116 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -1626,7 +1626,6 @@ output117 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -1635,9 +1634,9 @@ output117 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -1646,9 +1645,9 @@ output117 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -1657,6 +1656,7 @@ output117 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -1733,7 +1733,6 @@ output118 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -1742,9 +1741,9 @@ output118 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -1753,9 +1752,9 @@ output118 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -1764,6 +1763,7 @@ output118 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -1840,7 +1840,6 @@ output119 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -1849,9 +1848,9 @@ output119 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -1860,6 +1859,7 @@ output119 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -1880,7 +1880,6 @@ output119 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -1889,6 +1888,7 @@ output119 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -1956,7 +1956,6 @@ output120 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -1965,9 +1964,9 @@ output120 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -1976,9 +1975,9 @@ output120 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -1987,6 +1986,7 @@ output120 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -2055,7 +2055,6 @@ output121 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -2064,9 +2063,9 @@ output121 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -2075,6 +2074,7 @@ output121 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -2104,7 +2104,6 @@ output121 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -2113,6 +2112,7 @@ output121 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -2164,7 +2164,6 @@ output122 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -2173,6 +2172,7 @@ output122 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             }
         ],
         "WWMeasure": [
@@ -2202,7 +2202,6 @@ output122 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -2211,9 +2210,9 @@ output122 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -2222,6 +2221,7 @@ output122 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -2273,7 +2273,6 @@ output123 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -2282,9 +2281,9 @@ output123 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -2293,6 +2292,7 @@ output123 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -2313,7 +2313,6 @@ output123 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -2322,6 +2321,7 @@ output123 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                     ],
                     "table": "Sample",
@@ -2383,7 +2383,6 @@ output124 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -2392,6 +2391,7 @@ output124 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             }
         ],
         "WWMeasure": [
@@ -2412,7 +2412,6 @@ output124 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -2421,9 +2420,9 @@ output124 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -2432,6 +2431,7 @@ output124 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -2494,7 +2494,6 @@ output125 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -2503,6 +2502,7 @@ output125 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             }
         ],
         "WWMeasure": [
@@ -2532,7 +2532,6 @@ output125 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -2541,9 +2540,9 @@ output125 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -2552,6 +2551,7 @@ output125 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -2622,7 +2622,6 @@ output126 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -2631,9 +2630,9 @@ output126 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -2642,9 +2641,9 @@ output126 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -2653,6 +2652,7 @@ output126 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -2715,7 +2715,6 @@ output127 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -2724,6 +2723,7 @@ output127 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             }
         ],
         "WWMeasure": [
@@ -2753,7 +2753,6 @@ output127 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -2762,9 +2761,9 @@ output127 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -2773,6 +2772,7 @@ output127 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -2826,7 +2826,6 @@ output128 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -2835,9 +2834,9 @@ output128 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -2846,6 +2845,7 @@ output128 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -2866,7 +2866,6 @@ output128 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -2875,6 +2874,7 @@ output128 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                     ],
                     "table": "Sample",
@@ -2937,7 +2937,6 @@ output129 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -2946,6 +2945,7 @@ output129 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -2984,7 +2984,6 @@ output129 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -2993,9 +2992,9 @@ output129 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -3004,6 +3003,7 @@ output129 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3044,7 +3044,6 @@ output130 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -3053,6 +3052,7 @@ output130 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -3073,7 +3073,6 @@ output130 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -3082,9 +3081,9 @@ output130 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -3093,6 +3092,7 @@ output130 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3155,7 +3155,6 @@ output131 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -3164,6 +3163,7 @@ output131 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -3202,7 +3202,6 @@ output131 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -3211,9 +3210,9 @@ output131 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -3222,6 +3221,7 @@ output131 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3262,7 +3262,6 @@ output132 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -3271,9 +3270,9 @@ output132 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -3282,6 +3281,7 @@ output132 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -3311,7 +3311,6 @@ output132 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -3320,6 +3319,7 @@ output132 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -3373,7 +3373,6 @@ output133 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -3382,9 +3381,9 @@ output133 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -3393,6 +3392,7 @@ output133 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -3422,7 +3422,6 @@ output133 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -3431,6 +3430,7 @@ output133 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -3484,7 +3484,6 @@ output134 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -3493,6 +3492,7 @@ output134 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             }
         ],
         "WWMeasure": [
@@ -3531,7 +3531,6 @@ output134 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -3540,9 +3539,9 @@ output134 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -3551,6 +3550,7 @@ output134 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3591,7 +3591,6 @@ output135 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -3600,6 +3599,7 @@ output135 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             }
         ],
         "WWMeasure": [
@@ -3638,7 +3638,6 @@ output135 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -3647,9 +3646,9 @@ output135 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -3658,6 +3657,7 @@ output135 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3699,7 +3699,6 @@ output136 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -3708,9 +3707,9 @@ output136 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -3719,6 +3718,7 @@ output136 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [],
@@ -3729,7 +3729,6 @@ output136 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -3738,6 +3737,7 @@ output136 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -3814,7 +3814,6 @@ output137 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -3823,9 +3822,9 @@ output137 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -3834,9 +3833,9 @@ output137 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -3845,6 +3844,7 @@ output137 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3913,7 +3913,6 @@ output138 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -3922,9 +3921,9 @@ output138 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -3933,6 +3932,7 @@ output138 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -3962,7 +3962,6 @@ output138 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -3971,6 +3970,7 @@ output138 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -4022,7 +4022,6 @@ output139 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -4031,9 +4030,9 @@ output139 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -4042,6 +4041,7 @@ output139 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -4071,7 +4071,6 @@ output139 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -4080,6 +4079,7 @@ output139 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -4131,7 +4131,6 @@ output140 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -4140,9 +4139,9 @@ output140 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -4151,6 +4150,7 @@ output140 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
         ],
         "WWMeasure": [
@@ -4171,7 +4171,6 @@ output140 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -4180,6 +4179,7 @@ output140 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         }
                     ],
                     "table": "Sample",
@@ -4267,7 +4267,6 @@ output141 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -4276,9 +4275,9 @@ output141 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -4287,9 +4286,9 @@ output141 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -4298,6 +4297,7 @@ output141 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -4351,7 +4351,6 @@ output142 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -4360,6 +4359,7 @@ output142 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             }
         ],
         "WWMeasure": [
@@ -4389,7 +4389,6 @@ output142 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -4398,9 +4397,9 @@ output142 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -4409,6 +4408,7 @@ output142 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -4479,7 +4479,6 @@ output143 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -4488,9 +4487,9 @@ output143 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -4499,9 +4498,9 @@ output143 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -4510,6 +4509,7 @@ output143 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -4572,7 +4572,6 @@ output144 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -4581,6 +4580,7 @@ output144 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             }
         ],
         "WWMeasure": [
@@ -4610,7 +4610,6 @@ output144 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -4619,9 +4618,9 @@ output144 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -4630,6 +4629,7 @@ output144 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -4683,7 +4683,6 @@ output145 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -4692,6 +4691,7 @@ output145 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -4712,7 +4712,6 @@ output145 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -4721,9 +4720,9 @@ output145 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -4732,6 +4731,7 @@ output145 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -4794,7 +4794,6 @@ output146 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -4803,6 +4802,7 @@ output146 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -4832,7 +4832,6 @@ output146 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -4841,9 +4840,9 @@ output146 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -4852,6 +4851,7 @@ output146 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -4905,7 +4905,6 @@ output147 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -4914,6 +4913,7 @@ output147 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -4934,7 +4934,6 @@ output147 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -4943,9 +4942,9 @@ output147 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -4954,6 +4953,7 @@ output147 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -5016,7 +5016,6 @@ output148 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -5025,6 +5024,7 @@ output148 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -5045,7 +5045,6 @@ output148 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -5054,9 +5053,9 @@ output148 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -5065,6 +5064,7 @@ output148 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -5127,7 +5127,6 @@ output149 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -5136,9 +5135,9 @@ output149 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -5147,6 +5146,7 @@ output149 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -5167,7 +5167,6 @@ output149 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -5176,6 +5175,7 @@ output149 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -5238,7 +5238,6 @@ output150 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -5247,9 +5246,9 @@ output150 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -5258,6 +5257,7 @@ output150 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -5278,7 +5278,6 @@ output150 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -5287,6 +5286,7 @@ output150 = {
                             "sizeL": 2,
                             "storageTempC": 18,
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -5349,7 +5349,6 @@ output151 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -5358,9 +5357,9 @@ output151 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -5369,9 +5368,9 @@ output151 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -5380,6 +5379,7 @@ output151 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -5456,7 +5456,6 @@ output152 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -5465,9 +5464,9 @@ output152 = {
                 "sizeL": 8,
                 "storageTempC": 16,
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -5476,9 +5475,9 @@ output152 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -5487,6 +5486,7 @@ output152 = {
                 "sizeL": 10,
                 "storageTempC": 22,
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -5564,7 +5564,6 @@ output153 = {
     "filtered_data": {
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -5573,6 +5572,7 @@ output153 = {
                 "sizeL": 2,
                 "storageTempC": 18,
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -5593,7 +5593,6 @@ output153 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -5602,9 +5601,9 @@ output153 = {
                             "sizeL": 8,
                             "storageTempC": 16,
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -5613,6 +5612,7 @@ output153 = {
                             "sizeL": 10,
                             "storageTempC": 22,
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
