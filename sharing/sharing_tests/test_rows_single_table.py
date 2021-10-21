@@ -10,7 +10,6 @@ from create_dataset import create_dataset
 dataset = {
     "Sample": [
         {
-            "collection": "mooreSw",
             "dateTime": Timestamp("2021-02-01 21:00:00"),
             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
@@ -19,9 +18,9 @@ dataset = {
             "storageTempC": 16,
             "type": "swrSed",
             "sampleID": "Sample S101",
+            "collection": "mooreSw",
         },
         {
-            "collection": "cpTP24h",
             "dateTime": Timestamp("2021-01-25 21:00:00"),
             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
@@ -30,9 +29,9 @@ dataset = {
             "storageTempC": 18,
             "type": "pSludge",
             "sampleID": "Sample S102",
+            "collection": "cpTP24h",
         },
         {
-            "collection": "grb",
             "dateTime": Timestamp("2021-01-28 21:00:00"),
             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
@@ -41,6 +40,7 @@ dataset = {
             "storageTempC": 22,
             "type": "rawWW",
             "sampleID": "Sample S103",
+            "collection": "grb",
         },
     ],
     "WWMeasure": [
