@@ -1,58 +1,46 @@
-import csv
-import json
-import os
-import re
+"""Testing single table"""
+import sys
+from pandas import Timestamp
 
-import numpy as np  # pylint: disable=import-error
-import pandas as pd  # pylint: disable=import-error
-import pytest  # pylint: disable=import-error
-from numpy import nan  # pylint: disable=import-error
-from pandas import Timestamp  # pylint: disable=import-error
-
-# import create_dataset  # pylint: disable=import-error
-from create_dataset import create_dataset  # pylint: disable=import-error
+sys.path.append("..")  # Adds higher directory to python modules path.
+from create_dataset import create_dataset
 
 # User Data:
 
 dataset = {
-    "AssayMethod": [
-        {
-            "assayMethodID": "Assay Y101",
-        }
-    ],
     "Sample": [
         {
-            "collection": "mooreSw",
             "dateTime": Timestamp("2021-02-01 21:00:00"),
             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
             "fieldSampleTempC": 15,
-            "sampleID": "Sample S100",
             "sizeL": 8,
             "storageTempC": 16,
+            "sampleID": "Sample S100",
             "type": "swrSed",
+            "collection": "mooreSw",
         },
         {
-            "collection": "cpTP24h",
             "dateTime": Timestamp("2021-01-25 21:00:00"),
             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
             "fieldSampleTempC": 17,
-            "sampleID": "Sample S106",
             "sizeL": 2,
             "storageTempC": 18,
+            "sampleID": "Sample S106",
             "type": "pSludge",
+            "collection": "cpTP24h",
         },
         {
-            "collection": "grb",
             "dateTime": Timestamp("2021-01-28 21:00:00"),
             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
             "fieldSampleTempC": 18,
-            "sampleID": "Sample S107",
             "sizeL": 10,
             "storageTempC": 22,
+            "sampleID": "Sample S107",
             "type": "rawWW",
+            "collection": "grb",
         },
     ],
     "WWMeasure": [
@@ -86,72 +74,64 @@ dataset = {
     ],
 }
 
-# User requested organization:
-organization = "PHAC"
+# User requested ORG_NAME:
+ORG_NAME = "PHAC"
 
-# FOR MULTIPLE TABLES: Tables `Sample` and `WWMeasure` are used.
+# FOR ALL TABLES: INCLUDING SAMPLE, WWMEASURE AND ASSAYMETHOD TABLE.
 ## FOR SINGLE COLUMN FROM EACH TABLE OR ANY OF THE TABLE
 
-# Rule 52 filters rows based on a single column and all values of the rows.
+# Rule 103 filters rows based on a single column and all values of the rows.
 
-rule_52 = [
+rule_103 = [
     {
-        "ruleID": "rule52",
-        "table": "Sample;WWMeasure",
-        "variable": "fieldSampleTempC;value",
+        "ruleID": "rule103",
+        "table": "ALL",
+        "variable": "fieldSampleTempC;unitOther",
         "ruleValue": "ALL",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output52 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [],
-        "WWMeasure": [],
-    },
+output103 = {
+    "filtered_data": {"Sample": [], "WWMeasure": []},
     "sharing_summary": [
         {
             "entities_filtered": [
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -189,25 +169,26 @@ output52 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule52",
+            "rule_id": "rule103",
         }
     ],
 }
 
 
-def test_method_52():
+def test_method_103():
     """
-    This method tests the function create_dataset against rule_52 with pytest.
+    Rule 103 filters rows based on a single column and all values of the rows.
     """
-    assert create_dataset(rule_52, data=dataset, org=organization) == output52
+    assert create_dataset(rule_103, data=dataset, org=ORG_NAME) == output103
 
 
-# Rule 53 filters rows based on a single column from each table and single value from each column or any of the columns being numeric.
+# Rule 104 filters rows based on a single column from each table and single
+# value from each column or any of the columns being numeric.
 
-rule_53 = [
+rule_104 = [
     {
-        "ruleID": "rule53",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule104",
+        "table": "ALL",
         "variable": "value;fieldSampleTempC",
         "ruleValue": "17.0;98000",
         "direction": "row",
@@ -215,35 +196,30 @@ rule_53 = [
     }
 ]
 
-output53 = {
+output104 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -273,15 +249,15 @@ output53 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -301,72 +277,69 @@ output53 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule53",
+            "rule_id": "rule104",
         }
     ],
 }
 
 
-def test_method_53():
+def test_method_104():
     """
-    This method tests the function create_dataset against rule_53 with pytest.
+    Rule 104 filters rows based on a single column from each table and single
+    value from each column or any of the columns being numeric.
     """
-    assert create_dataset(rule_53, data=dataset, org=organization) == output53
+    assert create_dataset(rule_104, data=dataset, org=ORG_NAME) == output104
 
 
-# Rule 54 filters rows based on a single column from each table and single value from each column or any of the columns being string.
+# Rule 105 filters rows based on a single column from each table and single
+# value from each column or any of the columns being string.
 
-rule_54 = [
+rule_105 = [
     {
-        "ruleID": "rule54",
-        "table": "Sample;WWMeasure",
-        "variable": "unitOther;type",
-        "ruleValue": "gcMcovN1;pSludge",
+        "ruleID": "rule105",
+        "table": "ALL",
+        "variable": "unitOther;collection",
+        "ruleValue": "mooreSw;gcMcovN2",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output54 = {
+output105 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
-                "sizeL": 8,
-                "storageTempC": 16,
-                "type": "swrSed",
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
             {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
                 "type": "covN2",
                 "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -385,15 +358,15 @@ output54 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
-                            "dateTime": Timestamp("2021-01-25 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                            "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
-                            "sizeL": 2,
-                            "storageTempC": 18,
-                            "type": "pSludge",
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -401,84 +374,70 @@ output54 = {
                 {
                     "rows_removed": [
                         {
-                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
                             "type": "covN2",
                             "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcMcovN1",
-                            "value": 16000,
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
                         }
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule54",
+            "rule_id": "rule105",
         }
     ],
 }
 
 
-def test_method_54():
+def test_method_105():
     """
-    This method tests the function create_dataset against rule_54 with pytest.
+    Rule 105 filters rows based on a single column from each table and single
+    value from each column or any of the columns being string.
     """
-    assert create_dataset(rule_54, data=dataset, org=organization) == output54
+    assert create_dataset(rule_105, data=dataset, org=ORG_NAME) == output105
 
 
-# Rule 55 filters rows based on a single column from each table and single value from each column or any of the columns being datetime.
+# Rule 106 filters rows based on a single column from each table and single
+# value from each column or any of the columns being datetime.
 
-rule_55 = [
+rule_106 = [
     {
-        "ruleID": "rule55",
-        "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;analysisDate",
-        "ruleValue": "2021-01-28 00:00:00;2021-01-28 21:00:00",
+        "ruleID": "rule106",
+        "table": "ALL",
+        "variable": "analysisDate;dateTimeStart",
+        "ruleValue": "2021-02-06;2021-02-01 21:00",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output55 = {
+output106 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
-                "sizeL": 8,
-                "storageTempC": 16,
-                "type": "swrSed",
-            },
-            {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -492,92 +451,93 @@ output55 = {
                 "value": 145000,
             },
             {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
+                "unitOther": "gcMcovN1",
+                "value": 16000,
             },
         ],
     },
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"rows_removed": [], "table": "Sample"},
                 {
                     "rows_removed": [
                         {
-                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "type": "covN2",
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        }
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
-                            "unitOther": "gcMcovN1",
-                            "value": 16000,
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
                         }
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule55",
+            "rule_id": "rule106",
         }
     ],
 }
 
 
-def test_method_55():
+def test_method_106():
     """
-    This method tests the function create_dataset against rule_55 with pytest.
+    Rule 106 filters rows based on a single column from each table and single
+    value from each column or any of the columns being datetime.
     """
-    assert create_dataset(rule_55, data=dataset, org=organization) == output55
+    assert create_dataset(rule_106, data=dataset, org=ORG_NAME) == output106
 
 
-# Rule 56 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 107 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two numeric values with [].
 
-rule_56 = [
+rule_107 = [
     {
-        "ruleID": "rule56",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule107",
+        "table": "ALL",
         "variable": "fieldSampleTempC;value",
-        "ruleValue": "[16000,98000];[16.0,17.0]",
+        "ruleValue": "[16000,98000];[16.0,18.0]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output56 = {
+output107 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
-            },
-            {
-                "collection": "grb",
-                "dateTime": Timestamp("2021-01-28 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
-                "sizeL": 10,
-                "storageTempC": 22,
-                "type": "rawWW",
-            },
+                "collection": "mooreSw",
+            }
         ],
         "WWMeasure": [
             {
@@ -597,16 +557,27 @@ output56 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
-                        }
+                            "collection": "cpTP24h",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-28 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                            "fieldSampleTempC": 18,
+                            "sizeL": 10,
+                            "storageTempC": 22,
+                            "sampleID": "Sample S107",
+                            "type": "rawWW",
+                            "collection": "grb",
+                        },
                     ],
                     "table": "Sample",
                 },
@@ -634,62 +605,60 @@ output56 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule56",
+            "rule_id": "rule107",
         }
     ],
 }
 
 
-def test_method_56():
+def test_method_107():
     """
-    This method tests the function create_dataset against rule_56 with pytest.
+    Rule 107 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two numeric values with [].
     """
-    assert create_dataset(rule_56, data=dataset, org=organization) == output56
+    assert create_dataset(rule_107, data=dataset, org=ORG_NAME) == output107
 
 
-# Rule 57 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 108 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two numeric values with ().
 
-rule_57 = [
+rule_108 = [
     {
-        "ruleID": "rule57",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule108",
+        "table": "ALL",
         "variable": "fieldSampleTempC;value",
-        "ruleValue": "(85000,145000);(15.0,18.0)",
+        "ruleValue": "(89000,145000);(15.0,18.0)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output57 = {
+output108 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -719,15 +688,15 @@ output57 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -747,64 +716,50 @@ output57 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule57",
+            "rule_id": "rule108",
         }
     ],
 }
 
 
-def test_method_57():
+def test_method_108():
     """
-    This method tests the function create_dataset against rule_57 with pytest.
+    Rule 108 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two numeric values with ().
     """
-    assert create_dataset(rule_57, data=dataset, org=organization) == output57
+    assert create_dataset(rule_108, data=dataset, org=ORG_NAME) == output108
 
 
-# Rule 58 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 109 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two numeric values with (].
 
-rule_58 = [
+rule_109 = [
     {
-        "ruleID": "rule58",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule109",
+        "table": "ALL",
         "variable": "fieldSampleTempC;value",
-        "ruleValue": "(85000,145000];(15.0,17.0]",
+        "ruleValue": "(89000,145000];(15.0,18.0]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-
-output58 = {
+output109 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
-            },
-            {
-                "collection": "grb",
-                "dateTime": Timestamp("2021-01-28 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
-                "sizeL": 10,
-                "storageTempC": 22,
-                "type": "rawWW",
-            },
+                "collection": "mooreSw",
+            }
         ],
         "WWMeasure": [
             {
@@ -824,16 +779,27 @@ output58 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
-                        }
+                            "collection": "cpTP24h",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-28 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                            "fieldSampleTempC": 18,
+                            "sizeL": 10,
+                            "storageTempC": 22,
+                            "sampleID": "Sample S107",
+                            "type": "rawWW",
+                            "collection": "grb",
+                        },
                     ],
                     "table": "Sample",
                 },
@@ -861,73 +827,60 @@ output58 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule58",
+            "rule_id": "rule109",
         }
     ],
 }
 
 
-def test_method_58():
+def test_method_109():
     """
-    This method tests the function create_dataset against rule_58 with pytest.
+    Rule 109 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two numeric values with (].
     """
-    assert create_dataset(rule_58, data=dataset, org=organization) == output58
+    assert create_dataset(rule_109, data=dataset, org=ORG_NAME) == output109
 
 
-# Rule 59 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 110 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two numeric values with [).
 
-rule_59 = [
+rule_110 = [
     {
-        "ruleID": "rule59",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule110",
+        "table": "ALL",
         "variable": "fieldSampleTempC;value",
-        "ruleValue": "[76000,145000);[16.0,17.0)",
+        "ruleValue": "[16000,98000);[16.0,18.0)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output59 = {
+output110 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            },
-            {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -941,317 +894,104 @@ output59 = {
                 "value": 145000,
             },
             {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
             },
         ],
     },
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"rows_removed": [], "table": "Sample"},
                 {
                     "rows_removed": [
                         {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        }
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
                         }
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule59",
+            "rule_id": "rule110",
         }
     ],
 }
 
 
-def test_method_59():
+def test_method_110():
     """
-    This method tests the function create_dataset against rule_59 with pytest.
+    Rule 110 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two numeric values with [).
     """
-    assert create_dataset(rule_59, data=dataset, org=organization) == output59
+    assert create_dataset(rule_110, data=dataset, org=ORG_NAME) == output110
 
 
-# Rule 60 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 111 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two datetime values with [].
 
-rule_60 = [
+rule_111 = [
     {
-        "ruleID": "rule60",
-        "table": "Sample;WWMeasure",
-        "variable": "analysisDate;dateTimeStart",
-        "ruleValue": "[2021-01-24 8:00 , 2021-01-30 8:00]",
+        "ruleID": "rule111",
+        "table": "ALL",
+        "variable": "dateTimeStart;analysisDate",
+        "ruleValue": "[2021-01-31,2021-02-06]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output60 = {
+output111 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
-                "sizeL": 8,
-                "storageTempC": 16,
-                "type": "swrSed",
-            }
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "cpTP24h",
-                            "dateTime": Timestamp("2021-01-25 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                            "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
-                            "sizeL": 2,
-                            "storageTempC": 18,
-                            "type": "pSludge",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        },
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcM",
-                            "unitOther": "gcMcovN2",
-                            "value": 145000,
-                        },
-                        {
-                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcMcovN1",
-                            "value": 16000,
-                        },
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule60",
-        }
-    ],
-}
-
-
-def test_method_60():
-    """
-    This method tests the function create_dataset against rule_60 with pytest.
-    """
-    assert create_dataset(rule_60, data=dataset, org=organization) == output60
-
-
-# Rule 61 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
-# two datetime values with ().
-
-rule_61 = [
-    {
-        "ruleID": "rule61",
-        "table": "Sample;WWMeasure",
-        "variable": "analysisDate;dateTimeStart",
-        "ruleValue": "(2021-01-24 8:00,2021-02-01 21:00)",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output61 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "mooreSw",
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
-                "sizeL": 8,
-                "storageTempC": 16,
-                "type": "swrSed",
-            },
-            {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
-            },
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            }
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        }
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcM",
-                            "unitOther": "gcMcovN2",
-                            "value": 145000,
-                        },
-                        {
-                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcMcovN1",
-                            "value": 16000,
-                        },
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule61",
-        }
-    ],
-}
-
-
-def test_method_61():
-    """
-    This method tests the function create_dataset against rule_61 with pytest.
-    """
-    assert create_dataset(rule_61, data=dataset, org=organization) == output61
-
-
-# Rule 62 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
-# two datetime values with (].
-
-rule_62 = [
-    {
-        "ruleID": "rule62",
-        "table": "Sample;WWMeasure",
-        "variable": "analysisDate;dateTimeStart",
-        "ruleValue": "(2021-01-29 8:00,2021-02-06 21:00]",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output62 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
                 "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -1281,15 +1021,15 @@ output62 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -1309,52 +1049,279 @@ output62 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule62",
+            "rule_id": "rule111",
         }
     ],
 }
 
 
-def test_method_62():
+def test_method_111():
     """
-    This method tests the function create_dataset against rule_62 with pytest.
+    Rule 111 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime values with [].
     """
-    assert create_dataset(rule_62, data=dataset, org=organization) == output62
+    assert create_dataset(rule_111, data=dataset, org=ORG_NAME) == output111
 
 
-# Rule 63 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 112 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
+# two datetime values with ().
+
+rule_112 = [
+    {
+        "ruleID": "rule112",
+        "table": "ALL",
+        "variable": "dateTimeStart;analysisDate",
+        "ruleValue": "(2021-01-25 8:00,2021-01-31 8:00)",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output112 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-02-01 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                "fieldSampleTempC": 15,
+                "sizeL": 8,
+                "storageTempC": 16,
+                "sampleID": "Sample S100",
+                "type": "swrSed",
+                "collection": "mooreSw",
+            },
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            },
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            },
+            {
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
+            },
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-01-28 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                            "fieldSampleTempC": 18,
+                            "sizeL": 10,
+                            "storageTempC": 22,
+                            "sampleID": "Sample S107",
+                            "type": "rawWW",
+                            "collection": "grb",
+                        }
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                        }
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule112",
+        }
+    ],
+}
+
+
+def test_method_112():
+    """
+    Rule 112 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime values with ().
+    """
+    assert create_dataset(rule_112, data=dataset, org=ORG_NAME) == output112
+
+
+# Rule 113 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
+# two datetime values with (].
+
+rule_113 = [
+    {
+        "ruleID": "rule113",
+        "table": "ALL",
+        "variable": "dateTimeStart;analysisDate",
+        "ruleValue": "(2021-01-29,2021-02-02]",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output113 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            },
+            {
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
+            },
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            },
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            },
+            {
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
+            },
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        }
+                    ],
+                    "table": "Sample",
+                },
+                {"rows_removed": [], "table": "WWMeasure"},
+            ],
+            "rule_id": "rule113",
+        }
+    ],
+}
+
+
+def test_method_113():
+    """
+    Rule 113 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime values with (].
+    """
+    assert create_dataset(rule_113, data=dataset, org=ORG_NAME) == output113
+
+
+# Rule 114 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two datetime values with [).
 
-rule_63 = [
+rule_114 = [
     {
-        "ruleID": "rule63",
-        "table": "Sample;WWMeasure",
-        "variable": "analysisDate;dateTimeStart",
-        "ruleValue": "[2021-01-27,2021-02-02)",
+        "ruleID": "rule114",
+        "table": "ALL",
+        "variable": "dateTimeStart;analysisDate",
+        "ruleValue": "[2021-01-25 8:00,2021-02-01 21:00)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output63 = {
+output114 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "cpTP24h",
+                "dateTime": Timestamp("2021-02-01 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                "fieldSampleTempC": 15,
+                "sizeL": 8,
+                "storageTempC": 16,
+                "sampleID": "Sample S100",
+                "type": "swrSed",
+                "collection": "mooreSw",
+            },
+            {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
-            }
+                "collection": "cpTP24h",
+            },
         ],
         "WWMeasure": [
             {
@@ -1383,27 +1350,16 @@ output63 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        },
-                        {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
-                        },
+                            "collection": "grb",
+                        }
                     ],
                     "table": "Sample",
                 },
@@ -1417,57 +1373,66 @@ output63 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
-                        }
+                        },
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule63",
+            "rule_id": "rule114",
         }
     ],
 }
 
 
-def test_method_63():
+def test_method_114():
     """
-    This method tests the function create_dataset against rule_63 with pytest.
+    Rule 114 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime values with [).
     """
-    assert create_dataset(rule_63, data=dataset, org=organization) == output63
+    assert create_dataset(rule_114, data=dataset, org=ORG_NAME) == output114
 
 
-# Rule 64 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 115 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two values where the lower bound limit is infinity with ().
 
-rule_64 = [
+rule_115 = [
     {
-        "ruleID": "rule64",
-        "table": "Sample;WWMeasure",
-        "variable": "value;dateTimeStart",
-        "ruleValue": "(Inf,2021-01-28 8:00)",
+        "ruleID": "rule115",
+        "table": "ALL",
+        "variable": "storageTempC;analysisDate",
+        "ruleValue": "(Inf,17)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output64 = {
+output115 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
-                "sizeL": 8,
-                "storageTempC": 16,
-                "type": "swrSed",
-            }
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            },
+            {
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
+            },
         ],
         "WWMeasure": [
             {
@@ -1505,307 +1470,65 @@ output64 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
-                            "dateTime": Timestamp("2021-01-25 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                            "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
-                            "sizeL": 2,
-                            "storageTempC": 18,
-                            "type": "pSludge",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        },
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        }
                     ],
                     "table": "Sample",
                 },
                 {"rows_removed": [], "table": "WWMeasure"},
             ],
-            "rule_id": "rule64",
+            "rule_id": "rule115",
         }
     ],
 }
 
 
-def test_method_64():
+def test_method_115():
     """
-    This method tests the function create_dataset against rule_64 with pytest.
+    Rule 115 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two values where the lower bound limit is infinity with ().
     """
-    assert create_dataset(rule_64, data=dataset, org=organization) == output64
+    assert create_dataset(rule_115, data=dataset, org=ORG_NAME) == output115
 
 
-# Rule 65 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 116 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two values where the lower bound limit is infinity with (].
 
-rule_65 = [
+rule_116 = [
     {
-        "ruleID": "rule65",
-        "table": "Sample;WWMeasure",
-        "variable": "value;dateTimeStart",
-        "ruleValue": "(Inf,72000]",
+        "ruleID": "rule116",
+        "table": "ALL",
+        "variable": "fieldSampleTempC;analysisDate",
+        "ruleValue": "(Inf,17]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output65 = {
+output116 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
-                "sizeL": 8,
-                "storageTempC": 16,
-                "type": "swrSed",
-            },
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            },
-            {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
-            },
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {"rows_removed": [], "table": "Sample"},
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcMcovN1",
-                            "value": 16000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule65",
-        }
-    ],
-}
-
-
-def test_method_65():
-    """
-    This method tests the function create_dataset against rule_65 with pytest.
-    """
-    assert create_dataset(rule_65, data=dataset, org=organization) == output65
-
-
-# Rule 66 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
-# two values where the upper bound limit is infinity with ().
-
-rule_66 = [
-    {
-        "ruleID": "rule66",
-        "table": "Sample;WWMeasure",
-        "variable": "value;dateTimeStart",
-        "ruleValue": "(98000, Inf)",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output66 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "mooreSw",
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
-                "sizeL": 8,
-                "storageTempC": 16,
-                "type": "swrSed",
-            },
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            },
-            {
                 "collection": "grb",
-                "dateTime": Timestamp("2021-01-28 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
-                "sizeL": 10,
-                "storageTempC": 22,
-                "type": "rawWW",
-            },
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {"rows_removed": [], "table": "Sample"},
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcM",
-                            "unitOther": "gcMcovN2",
-                            "value": 145000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule66",
-        }
-    ],
-}
-
-
-def test_method_66():
-    """
-    This method tests the function create_dataset against rule_66 with pytest.
-    """
-    assert create_dataset(rule_66, data=dataset, org=organization) == output66
-
-
-# Rule 67 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
-# two values where the upper bound limit is infinity with [).
-
-rule_67 = [
-    {
-        "ruleID": "rule67",
-        "table": "Sample;WWMeasure",
-        "variable": "value;dateTimeStart",
-        "ruleValue": "[2021-02-01 21:00, Inf)",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output67 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
             }
-        ],
-        "Sample": [
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            },
-            {
-                "collection": "grb",
-                "dateTime": Timestamp("2021-01-28 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
-                "sizeL": 10,
-                "storageTempC": 22,
-                "type": "rawWW",
-            },
         ],
         "WWMeasure": [
             {
@@ -1843,67 +1566,98 @@ output67 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
-                        }
+                            "collection": "mooreSw",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        },
                     ],
                     "table": "Sample",
                 },
                 {"rows_removed": [], "table": "WWMeasure"},
             ],
-            "rule_id": "rule67",
+            "rule_id": "rule116",
         }
     ],
 }
 
 
-def test_method_67():
+def test_method_116():
     """
-    This method tests the function create_dataset against rule_67 with pytest.
+    Rule 116 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two values where the lower bound limit is infinity with (].
     """
-    assert create_dataset(rule_67, data=dataset, org=organization) == output67
+    assert create_dataset(rule_116, data=dataset, org=ORG_NAME) == output116
 
 
-# Rule 68 filters rows based on a single column from each table and multiple values from each column or any of the columns where one value could be
-# an interval and other a single value.
+# Rule 117 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
+# two values where the upper bound limit is infinity with ().
 
-rule_68 = [
+rule_117 = [
     {
-        "ruleID": "rule68",
-        "table": "Sample;WWMeasure",
-        "variable": "value;dateTimeStart",
-        "ruleValue": "[2021-02-01 21:00, 2021-02-06 21:00]; 16000; 2021-01-24 8:00",
+        "ruleID": "rule117",
+        "table": "ALL",
+        "variable": "storageTempC;analysisDate",
+        "ruleValue": "(2021-01-30,Inf)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output68 = {
+output117 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "grb",
+                "dateTime": Timestamp("2021-02-01 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                "fieldSampleTempC": 15,
+                "sizeL": 8,
+                "storageTempC": 16,
+                "sampleID": "Sample S100",
+                "type": "swrSed",
+                "collection": "mooreSw",
+            },
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            },
+            {
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
-            }
+                "collection": "grb",
+            },
         ],
         "WWMeasure": [
             {
@@ -1916,14 +1670,208 @@ output68 = {
                 "value": 145000,
             },
             {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
+                "unitOther": "gcMcovN1",
+                "value": 16000,
             },
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {"rows_removed": [], "table": "Sample"},
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        }
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule117",
+        }
+    ],
+}
+
+
+def test_method_117():
+    """
+    Rule 117 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two values where the upper bound limit is infinity with ().
+    """
+    assert create_dataset(rule_117, data=dataset, org=ORG_NAME) == output117
+
+
+# Rule 118 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
+# two values where the upper bound limit is infinity with [).
+
+rule_118 = [
+    {
+        "ruleID": "rule118",
+        "table": "ALL",
+        "variable": "storageTempC;analysisDate",
+        "ruleValue": "[2021-01-28,Inf)",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output118 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-02-01 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                "fieldSampleTempC": 15,
+                "sizeL": 8,
+                "storageTempC": 16,
+                "sampleID": "Sample S100",
+                "type": "swrSed",
+                "collection": "mooreSw",
+            },
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            },
+            {
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
+            },
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            }
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {"rows_removed": [], "table": "Sample"},
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        },
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule118",
+        }
+    ],
+}
+
+
+def test_method_118():
+    """
+    Rule 118 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two values where the upper bound limit is infinity with [).
+    """
+    assert create_dataset(rule_118, data=dataset, org=ORG_NAME) == output118
+
+
+# Rule 119 filters rows based on a single column from each table and multiple
+# values from each column or any of the columns where one value could be
+# an interval and other a single value.
+
+rule_119 = [
+    {
+        "ruleID": "rule119",
+        "table": "ALL",
+        "variable": "analysisDate;fieldSampleTempC",
+        "ruleValue": "[2021-01-28,2021-02-06]; 17.0",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output119 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-02-01 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                "fieldSampleTempC": 15,
+                "sizeL": 8,
+                "storageTempC": 16,
+                "sampleID": "Sample S100",
+                "type": "swrSed",
+                "collection": "mooreSw",
+            },
+            {
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
+            },
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            }
         ],
     },
     "sharing_summary": [
@@ -1932,27 +1880,16 @@ output68 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        },
-                        {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
-                        },
+                            "collection": "cpTP24h",
+                        }
                     ],
                     "table": "Sample",
                 },
@@ -1966,87 +1903,90 @@ output68 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
-                        }
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        },
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule68",
+            "rule_id": "rule119",
         }
     ],
 }
 
 
-def test_method_68():
+def test_method_119():
     """
-    This method tests the function create_dataset against rule_68 with pytest.
+    Rule 119 filters rows based on a single column from each table and multiple
+    values from each column or any of the columns where one value could be
+    an interval and other a single value.
     """
-    assert create_dataset(rule_68, data=dataset, org=organization) == output68
+    assert create_dataset(rule_119, data=dataset, org=ORG_NAME) == output119
 
 
-# For MULTIPLE TABLES:
+# For ALL TABLES:
 ## MULTIPLE COLUMNS FROM EACH TABLE OR ANY OF THE TABLES
 
-# Rule 69 filters rows based on multiple columns and all values of the rows.
+# Rule 120 filters rows based on multiple columns and all values of the rows.
 
-rule_69 = [
+rule_120 = [
     {
-        "ruleID": "rule69",
-        "table": "Sample;WWMeasure",
-        "variable": "value;dateTimeStart;analysisDate",
+        "ruleID": "rule120",
+        "table": "ALL",
+        "variable": "type;dateTimeStart;analysisDate;date;unitOther",
         "ruleValue": "ALL",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output69 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [],
-        "WWMeasure": [],
-    },
+output120 = {
+    "filtered_data": {"Sample": [], "WWMeasure": []},
     "sharing_summary": [
         {
             "entities_filtered": [
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -2084,25 +2024,26 @@ output69 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule69",
+            "rule_id": "rule120",
         }
     ],
 }
 
 
-def test_method_69():
+def test_method_120():
     """
-    This method tests the function create_dataset against rule_69 with pytest.
+    Rule 120 filters rows based on multiple columns and all values of the rows.
     """
-    assert create_dataset(rule_69, data=dataset, org=organization) == output69
+    assert create_dataset(rule_120, data=dataset, org=ORG_NAME) == output120
 
 
-# Rule 70 filters rows based on multiple columns from each table and single value from each column or any of the columns being numeric.
+# Rule 121 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being numeric.
 
-rule_70 = [
+rule_121 = [
     {
-        "ruleID": "rule70",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule121",
+        "table": "ALL",
         "variable": "value;storageTempC;fieldSampleTempC",
         "ruleValue": "16.0;98000",
         "direction": "row",
@@ -2110,35 +2051,30 @@ rule_70 = [
     }
 ]
 
-output70 = {
+output121 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -2168,15 +2104,15 @@ output70 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -2196,64 +2132,59 @@ output70 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule70",
+            "rule_id": "rule121",
         }
     ],
 }
 
 
-def test_method_70():
+def test_method_121():
     """
-    This method tests the function create_dataset against rule_70 with pytest.
+    Rule 121 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being numeric.
     """
-    assert create_dataset(rule_70, data=dataset, org=organization) == output70
+    assert create_dataset(rule_121, data=dataset, org=ORG_NAME) == output121
 
 
-# Rule 71 filters rows based on multiple columns from each table and single value from each column or any of the columns being string.
+# Rule 122 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being string.
 
-rule_71 = [
+rule_122 = [
     {
-        "ruleID": "rule71",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule122",
+        "table": "ALL",
         "variable": "unitOther; type; collection",
-        "ruleValue": "rawWW; gcMcovN2",
+        "ruleValue": "cpTP24h; gcmnPMMoV; rawWW",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output71 = {
+output122 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
-            },
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            },
+                "collection": "mooreSw",
+            }
         ],
         "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -2263,15 +2194,6 @@ output71 = {
                 "unitOther": "gcMcovN1",
                 "value": 16000,
             },
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            },
         ],
     },
     "sharing_summary": [
@@ -2280,89 +2202,97 @@ output71 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "grb",
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        },
+                        {
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
-                        }
+                            "collection": "grb",
+                        },
                     ],
                     "table": "Sample",
                 },
                 {
                     "rows_removed": [
                         {
-                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "type": "covN2",
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
                             "uWwMeasureID": "Measure WW100",
-                            "unit": "gcM",
-                            "unitOther": "gcMcovN2",
-                            "value": 145000,
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
                         }
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule71",
+            "rule_id": "rule122",
         }
     ],
 }
 
 
-def test_method_71():
+def test_method_122():
     """
-    This method tests the function create_dataset against rule_71 with pytest.
+    Rule 122 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being string.
     """
-    assert create_dataset(rule_71, data=dataset, org=organization) == output71
+    assert create_dataset(rule_122, data=dataset, org=ORG_NAME) == output122
 
 
-# Rule 72 filters rows based on multiple columns from each table and single value from each column or any of the columns being datetime.
+# Rule 123 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being datetime.
 
-rule_72 = [
+rule_123 = [
     {
-        "ruleID": "rule72",
-        "table": "Sample;WWMeasure",
-        "variable": "analysisDate; dateTimeStart; dateTimeEnd",
-        "ruleValue": "2021-01-25 ; 2021-01-27 8:00",
+        "ruleID": "rule123",
+        "table": "ALL",
+        "variable": "analysisDate; reportDate; dateTimeStart;dateTimeEnd",
+        "ruleValue": "2021-02-06;2021-02-01 21:00",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output72 = {
+output123 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
-                "sizeL": 8,
-                "storageTempC": 16,
-                "type": "swrSed",
-            },
-            {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
+            },
+            {
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -2374,16 +2304,7 @@ output72 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
-            },
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            },
+            }
         ],
     },
     "sharing_summary": [
@@ -2392,16 +2313,16 @@ output72 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        }
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
                     ],
                     "table": "Sample",
                 },
@@ -2415,31 +2336,42 @@ output72 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
-                        }
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        },
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule72",
+            "rule_id": "rule123",
         }
     ],
 }
 
 
-def test_method_72():
+def test_method_123():
     """
-    This method tests the function create_dataset against rule_72 with pytest.
+    Rule 123 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being datetime.
     """
-    assert create_dataset(rule_72, data=dataset, org=organization) == output72
+    assert create_dataset(rule_123, data=dataset, org=ORG_NAME) == output123
 
 
-# Rule 73 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
+# Rule 124 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
 # numbers with [].
 
-rule_73 = [
+rule_124 = [
     {
-        "ruleID": "rule73",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule124",
+        "table": "ALL",
         "variable": "value;storageTempC;fieldSampleTempC",
         "ruleValue": "[16.0, 17.0]; [98000,145000]",
         "direction": "row",
@@ -2447,24 +2379,19 @@ rule_73 = [
     }
 ]
 
-output73 = {
+output124 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             }
         ],
         "WWMeasure": [
@@ -2485,26 +2412,26 @@ output73 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -2533,63 +2460,50 @@ output73 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule73",
+            "rule_id": "rule124",
         }
     ],
 }
 
 
-def test_method_73():
+def test_method_124():
     """
-    This method tests the function create_dataset against rule_73 with pytest.
+    Rule 124 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    numbers with [].
     """
-    assert create_dataset(rule_73, data=dataset, org=organization) == output73
+    assert create_dataset(rule_124, data=dataset, org=ORG_NAME) == output124
 
 
-# Rule 74 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
+# Rule 125 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
 # numbers with ().
 
-rule_74 = [
+rule_125 = [
     {
-        "ruleID": "rule74",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule125",
+        "table": "ALL",
         "variable": "value;storageTempC;fieldSampleTempC",
-        "ruleValue": "(15.0, 17.0); (85000,145000)",
+        "ruleValue": "(15.0, 18.0); (16000,145000)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output74 = {
+output125 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            },
-            {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
-            },
+                "collection": "grb",
+            }
         ],
         "WWMeasure": [
             {
@@ -2618,134 +2532,32 @@ output74 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
-                        }
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule74",
-        }
-    ],
-}
-
-
-def test_method_74():
-    """
-    This method tests the function create_dataset against rule_74 with pytest.
-    """
-    assert create_dataset(rule_74, data=dataset, org=organization) == output74
-
-
-# Rule 75 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
-# numbers with (].
-
-rule_75 = [
-    {
-        "ruleID": "rule75",
-        "table": "Sample;WWMeasure",
-        "variable": "value;storageTempC;fieldSampleTempC",
-        "ruleValue": "(15.0, 17.0]; (16000,145000]",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output75 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "grb",
-                "dateTime": Timestamp("2021-01-28 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
-                "sizeL": 10,
-                "storageTempC": 22,
-                "type": "rawWW",
-            }
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            }
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
                             "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
                 },
                 {
                     "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcM",
-                            "unitOther": "gcMcovN2",
-                            "value": 145000,
-                        },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -2754,620 +2566,53 @@ output75 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
-                        },
+                        }
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule75",
+            "rule_id": "rule125",
         }
     ],
 }
 
 
-def test_method_75():
+def test_method_125():
     """
-    This method tests the function create_dataset against rule_75 with pytest.
+    Rule 125 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    numbers with ().
     """
-    assert create_dataset(rule_75, data=dataset, org=organization) == output75
+    assert create_dataset(rule_125, data=dataset, org=ORG_NAME) == output125
 
 
-# Rule 76 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
-# numbers with [).
+# Rule 126 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
+# numbers with (].
 
-rule_76 = [
+rule_126 = [
     {
-        "ruleID": "rule76",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule126",
+        "table": "ALL",
         "variable": "value;storageTempC;fieldSampleTempC",
-        "ruleValue": "[16.0, 17.0); [98000,145000)",
+        "ruleValue": "(15.0, 18.0]; (89000,145000]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output76 = {
+output126 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            },
-            {
-                "collection": "grb",
-                "dateTime": Timestamp("2021-01-28 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
-                "sizeL": 10,
-                "storageTempC": 22,
-                "type": "rawWW",
-            },
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        }
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule76",
-        }
-    ],
-}
-
-
-def test_method_76():
-    """
-    This method tests the function create_dataset against rule_76 with pytest.
-    """
-    assert create_dataset(rule_76, data=dataset, org=organization) == output76
-
-
-# Rule 77 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
-# datetime values with [].
-
-rule_77 = [
-    {
-        "ruleID": "rule77",
-        "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
-        "ruleValue": " [2021-01-27,2021-01-30]",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output77 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            }
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        },
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcMcovN1",
-                            "value": 16000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule77",
-        }
-    ],
-}
-
-
-def test_method_77():
-    """
-    This method tests the function create_dataset against rule_77 with pytest.
-    """
-    assert create_dataset(rule_77, data=dataset, org=organization) == output77
-
-
-# Rule 78 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
-# datetime values with ().
-
-rule_78 = [
-    {
-        "ruleID": "rule78",
-        "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
-        "ruleValue": "( 2021-01-30 8:00 , 2021-02-06 21:00)",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output78 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            }
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        },
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule78",
-        }
-    ],
-}
-
-
-def test_method_78():
-    """
-    This method tests the function create_dataset against rule_78 with pytest.
-    """
-    assert create_dataset(rule_78, data=dataset, org=organization) == output78
-
-
-# Rule 79 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
-# datetime values with (].
-
-rule_79 = [
-    {
-        "ruleID": "rule79",
-        "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
-        "ruleValue": "( 2021-01-30 8:00 , 2021-02-06 21:00]",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output79 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            }
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        },
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule79",
-        }
-    ],
-}
-
-
-def test_method_79():
-    """
-    This method tests the function create_dataset against rule_79 with pytest.
-    """
-    assert create_dataset(rule_79, data=dataset, org=organization) == output79
-
-
-# Rule 80 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
-# datetime values with [).
-
-rule_80 = [
-    {
-        "ruleID": "rule80",
-        "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
-        "ruleValue": "[2021-01-29 00:00 , 2021-02-06 21:00)",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output80 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            }
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        },
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule80",
-        }
-    ],
-}
-
-
-def test_method_80():
-    """
-    This method tests the function create_dataset against rule_80 with pytest.
-    """
-    assert create_dataset(rule_80, data=dataset, org=organization) == output80
-
-
-# Rule 81 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
-# the lower bound limit is infinity with ().
-
-rule_81 = [
-    {
-        "ruleID": "rule81",
-        "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
-        "ruleValue": "(Inf, 2021-01-31)",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output81 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [],
         "WWMeasure": [
             {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
+                "unitOther": "gcMcovN1",
+                "value": 16000,
             }
         ],
     },
@@ -3377,37 +2622,37 @@ output81 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3424,66 +2669,631 @@ output81 = {
                             "value": 145000,
                         },
                         {
-                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "type": "covN2",
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
-                            "unitOther": "gcMcovN1",
-                            "value": 16000,
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
                         },
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule81",
+            "rule_id": "rule126",
         }
     ],
 }
 
 
-def test_method_81():
+def test_method_126():
     """
-    This method tests the function create_dataset against rule_81 with pytest.
+    Rule 126 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    numbers with (].
     """
-    assert create_dataset(rule_81, data=dataset, org=organization) == output81
+    assert create_dataset(rule_126, data=dataset, org=ORG_NAME) == output126
 
 
-# Rule 82 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
-# the lower bound limit is infinity with (].
+# Rule 127 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
+# numbers with [).
 
-rule_82 = [
+rule_127 = [
     {
-        "ruleID": "rule82",
-        "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
-        "ruleValue": "(Inf , 2021-01-28 8:00]",
+        "ruleID": "rule127",
+        "table": "ALL",
+        "variable": "value;storageTempC;fieldSampleTempC",
+        "ruleValue": "[16.0, 18.0); [89000,145000)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output82 = {
+output127 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
+            }
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            },
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            },
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        },
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        }
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule127",
+        }
+    ],
+}
+
+
+def test_method_127():
+    """
+    Rule 127 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    numbers with [).
+    """
+    assert create_dataset(rule_127, data=dataset, org=ORG_NAME) == output127
+
+
+# Rule 128 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
+# datetime values with [].
+
+rule_128 = [
+    {
+        "ruleID": "rule128",
+        "table": "ALL",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
+        "ruleValue": "[2021-02-01 21:00, 2021-02-06 21:00]",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output128 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            },
+            {
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
+            },
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            }
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        },
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule128",
+        }
+    ],
+}
+
+
+def test_method_128():
+    """
+    Rule 128 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    datetime values with [].
+    """
+    assert create_dataset(rule_128, data=dataset, org=ORG_NAME) == output128
+
+
+# Rule 129 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
+# datetime values with ().
+
+rule_129 = [
+    {
+        "ruleID": "rule129",
+        "table": "ALL",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
+        "ruleValue": "(2021-01-29,2021-02-06)",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output129 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            }
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            },
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            },
+            {
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
+            },
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-28 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                            "fieldSampleTempC": 18,
+                            "sizeL": 10,
+                            "storageTempC": 22,
+                            "sampleID": "Sample S107",
+                            "type": "rawWW",
+                            "collection": "grb",
+                        },
+                    ],
+                    "table": "Sample",
+                },
+                {"rows_removed": [], "table": "WWMeasure"},
+            ],
+            "rule_id": "rule129",
+        }
+    ],
+}
+
+
+def test_method_129():
+    """
+    Rule 129 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    datetime values with ().
+    """
+    assert create_dataset(rule_129, data=dataset, org=ORG_NAME) == output129
+
+
+# Rule 130 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
+# datetime values with (].
+
+rule_130 = [
+    {
+        "ruleID": "rule130",
+        "table": "ALL",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
+        "ruleValue": "(2021-01-30 8:00, 2021-02-06 21:00]",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output130 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            }
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            }
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-28 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                            "fieldSampleTempC": 18,
+                            "sizeL": 10,
+                            "storageTempC": 22,
+                            "sampleID": "Sample S107",
+                            "type": "rawWW",
+                            "collection": "grb",
+                        },
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        },
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule130",
+        }
+    ],
+}
+
+
+def test_method_130():
+    """
+    Rule 130 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    datetime values with (].
+    """
+    assert create_dataset(rule_130, data=dataset, org=ORG_NAME) == output130
+
+
+# Rule 131 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
+# datetime values with [).
+
+rule_131 = [
+    {
+        "ruleID": "rule131",
+        "table": "ALL",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
+        "ruleValue": "[2021-01-30,2021-02-06)",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output131 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            }
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            },
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            },
+            {
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
+            },
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-28 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                            "fieldSampleTempC": 18,
+                            "sizeL": 10,
+                            "storageTempC": 22,
+                            "sampleID": "Sample S107",
+                            "type": "rawWW",
+                            "collection": "grb",
+                        },
+                    ],
+                    "table": "Sample",
+                },
+                {"rows_removed": [], "table": "WWMeasure"},
+            ],
+            "rule_id": "rule131",
+        }
+    ],
+}
+
+
+def test_method_131():
+    """
+    Rule 131 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    datetime values with [).
+    """
+    assert create_dataset(rule_131, data=dataset, org=ORG_NAME) == output131
+
+
+# Rule 132 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval where the
+# the lower bound limit is infinity with ().
+
+rule_132 = [
+    {
+        "ruleID": "rule132",
+        "table": "ALL",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
+        "ruleValue": "(Inf, 2021-01-26)",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output132 = {
+    "filtered_data": {
+        "Sample": [
+            {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
-            }
+                "collection": "mooreSw",
+            },
+            {
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
+            },
         ],
         "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -3492,7 +3302,7 @@ output82 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
-            }
+            },
         ],
     },
     "sharing_summary": [
@@ -3501,27 +3311,16 @@ output82 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        },
+                            "collection": "cpTP24h",
+                        }
                     ],
                     "table": "Sample",
                 },
@@ -3535,302 +3334,65 @@ output82 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
-                        },
-                        {
-                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcMcovN1",
-                            "value": 16000,
-                        },
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule82",
-        }
-    ],
-}
-
-
-def test_method_82():
-    """
-    This method tests the function create_dataset against rule_82 with pytest.
-    """
-    assert create_dataset(rule_82, data=dataset, org=organization) == output82
-
-
-# Rule 83 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
-# the upper bound limit is infinity with ().
-
-rule_83 = [
-    {
-        "ruleID": "rule83",
-        "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
-        "ruleValue": "(2021-01-25, Inf)",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output83 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            }
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            }
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        },
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcMcovN1",
-                            "value": 16000,
-                        },
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
-                        },
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule83",
-        }
-    ],
-}
-
-
-def test_method_83():
-    """
-    This method tests the function create_dataset against rule_83 with pytest.
-    """
-    assert create_dataset(rule_83, data=dataset, org=organization) == output83
-
-
-# Rule 84 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
-# the upper bound limit is infinity with [).
-
-rule_84 = [
-    {
-        "ruleID": "rule84",
-        "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
-        "ruleValue": "[2021-02-01 21:00, Inf)",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output84 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            },
-            {
-                "collection": "grb",
-                "dateTime": Timestamp("2021-01-28 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
-                "sizeL": 10,
-                "storageTempC": 22,
-                "type": "rawWW",
-            },
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        },
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
                         }
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule84",
+            "rule_id": "rule132",
         }
     ],
 }
 
 
-def test_method_84():
+def test_method_132():
     """
-    This method tests the function create_dataset against rule_84 with pytest.
+    Rule 132 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval where the
+    the lower bound limit is infinity with ().
     """
-    assert create_dataset(rule_84, data=dataset, org=organization) == output84
+    assert create_dataset(rule_132, data=dataset, org=ORG_NAME) == output132
 
 
-# Rule 85 filters rows based on multiple columns from each table and multiple values from each column or any of the columns where one value could be an interval
-# and the other could be a single value.
+# Rule 133 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval where the
+# the lower bound limit is infinity with (].
 
-rule_85 = [
+rule_133 = [
     {
-        "ruleID": "rule85",
-        "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;value;analysisDate",
-        "ruleValue": "( 2021-01-30 8:00 , 2021-02-06 21:00] ; 145000",
+        "ruleID": "rule133",
+        "table": "ALL",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
+        "ruleValue": "(Inf, 2021-01-27]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output85 = {
+output133 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
+                "dateTime": Timestamp("2021-02-01 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                "fieldSampleTempC": 15,
+                "sizeL": 8,
+                "storageTempC": 16,
+                "sampleID": "Sample S100",
+                "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -3842,7 +3404,16 @@ output85 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
-            }
+            },
+            {
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
+            },
         ],
     },
     "sharing_summary": [
@@ -3851,16 +3422,16 @@ output85 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        },
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        }
                     ],
                     "table": "Sample",
                 },
@@ -3874,57 +3445,282 @@ output85 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
-                        },
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
-                        },
+                        }
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule85",
+            "rule_id": "rule133",
         }
     ],
 }
 
 
-def test_method_85():
+def test_method_133():
     """
-    This method tests the function create_dataset against rule_85 with pytest.
+    Rule 133 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval where the
+    the lower bound limit is infinity with (].
     """
-    assert create_dataset(rule_85, data=dataset, org=organization) == output85
+    assert create_dataset(rule_133, data=dataset, org=ORG_NAME) == output133
 
 
-# For MULTIPLE TABLES:
-## ALL COLUMNS FROM EACH TABLE OR ANY OF THE TABLES
+# Rule 134 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval where the
+# the upper bound limit is infinity with ().
 
-# Rule 86 filters rows based on all columns from each table and all values of the rows.
-
-rule_86 = [
+rule_134 = [
     {
-        "ruleID": "rule86",
-        "table": "Sample;WWMeasure",
-        "variable": "ALL",
-        "ruleValue": "ALL",
+        "ruleID": "rule134",
+        "table": "ALL",
+        "variable": "fieldSampleTempC;storageTempC",
+        "ruleValue": "(16.0,Inf)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output86 = {
+output134 = {
     "filtered_data": {
-        "AssayMethod": [
+        "Sample": [
             {
-                "assayMethodID": "Assay Y101",
+                "dateTime": Timestamp("2021-02-01 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                "fieldSampleTempC": 15,
+                "sizeL": 8,
+                "storageTempC": 16,
+                "sampleID": "Sample S100",
+                "type": "swrSed",
+                "collection": "mooreSw",
             }
         ],
-        "Sample": [],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            },
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            },
+            {
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
+            },
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-28 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                            "fieldSampleTempC": 18,
+                            "sizeL": 10,
+                            "storageTempC": 22,
+                            "sampleID": "Sample S107",
+                            "type": "rawWW",
+                            "collection": "grb",
+                        },
+                    ],
+                    "table": "Sample",
+                },
+                {"rows_removed": [], "table": "WWMeasure"},
+            ],
+            "rule_id": "rule134",
+        }
+    ],
+}
+
+
+def test_method_134():
+    """
+    Rule 134 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval where the
+    the upper bound limit is infinity with ().
+    """
+    assert create_dataset(rule_134, data=dataset, org=ORG_NAME) == output134
+
+
+# Rule 135 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval where the
+# the upper bound limit is infinity with [).
+
+rule_135 = [
+    {
+        "ruleID": "rule135",
+        "table": "ALL",
+        "variable": "fieldSampleTempC;storageTempC",
+        "ruleValue": "[17.0,Inf)",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output135 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-02-01 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                "fieldSampleTempC": 15,
+                "sizeL": 8,
+                "storageTempC": 16,
+                "sampleID": "Sample S100",
+                "type": "swrSed",
+                "collection": "mooreSw",
+            }
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            },
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            },
+            {
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
+            },
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-28 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                            "fieldSampleTempC": 18,
+                            "sizeL": 10,
+                            "storageTempC": 22,
+                            "sampleID": "Sample S107",
+                            "type": "rawWW",
+                            "collection": "grb",
+                        },
+                    ],
+                    "table": "Sample",
+                },
+                {"rows_removed": [], "table": "WWMeasure"},
+            ],
+            "rule_id": "rule135",
+        }
+    ],
+}
+
+
+def test_method_135():
+    """
+    Rule 135 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval where the
+    the upper bound limit is infinity with [).
+    """
+    assert create_dataset(rule_135, data=dataset, org=ORG_NAME) == output135
+
+
+# Rule 136 filters rows based on multiple columns from each table and multiple
+# values from each column or any of the columns where one value could be an
+# interval and the other could be a single value.
+
+rule_136 = [
+    {
+        "ruleID": "rule136",
+        "table": "ALL",
+        "variable": "dateTimeStart;value;analysisDate",
+        "ruleValue": "( 2021-01-27 8:00 , 2021-02-01 21:00] ; \
+            145000;(2021-01-29, 2021-02-06]; [98000,145000]",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output136 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            },
+            {
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
+            },
+        ],
         "WWMeasure": [],
     },
     "sharing_summary": [
@@ -3933,37 +3729,122 @@ output86 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
+                        }
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
                         },
                         {
-                            "collection": "cpTP24h",
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        },
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule136",
+        }
+    ],
+}
+
+
+def test_method_136():
+    """
+    Rule 136 filters rows based on multiple columns from each table and multiple
+    values from each column or any of the columns where one value could be an
+    interval and the other could be a single value.
+    """
+    assert create_dataset(rule_136, data=dataset, org=ORG_NAME) == output136
+
+
+# For ALL TABLES:
+## ALL COLUMNS FROM EACH TABLE OR ANY OF THE TABLES
+
+# Rule 137 filters rows based on all columns from each table and all values of the rows.
+
+rule_137 = [
+    {
+        "ruleID": "rule137",
+        "table": "ALL",
+        "variable": "ALL",
+        "ruleValue": "ALL",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output137 = {
+    "filtered_data": {"Sample": [], "WWMeasure": []},
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                        {
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -4001,62 +3882,485 @@ output86 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule86",
+            "rule_id": "rule137",
         }
     ],
 }
 
 
-def test_method_86():
+def test_method_137():
     """
-    This method tests the function create_dataset against rule_86 with pytest.
+    Rule 137 filters rows based on all columns from each table and all values of the rows.
     """
-    assert create_dataset(rule_86, data=dataset, org=organization) == output86
+    assert create_dataset(rule_137, data=dataset, org=ORG_NAME) == output137
 
 
-# Rule 87 filters rows based on all columns from each table and single value from each column or any of the columns being numeric.
+# Rule 138 filters rows based on all columns from each table and single value
+# from each column or any of the columns being numeric.
 
-rule_87 = [
+rule_138 = [
     {
-        "ruleID": "rule87",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule138",
+        "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "17.0;98000",
+        "ruleValue": "17.0;16000",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output87 = {
+output138 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            },
+            {
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
+            },
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        }
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                        }
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule138",
+        }
+    ],
+}
+
+
+def test_method_138():
+    """
+    Rule 138 filters rows based on all columns from each table and single value
+    from each column or any of the columns being numeric.
+    """
+    assert create_dataset(rule_138, data=dataset, org=ORG_NAME) == output138
+
+
+# Rule 139 filters rows based on all columns from each table and single value
+# from each column or any of the columns being string.
+
+rule_139 = [
+    {
+        "ruleID": "rule139",
+        "table": "ALL",
+        "variable": "ALL",
+        "ruleValue": "mooreSw;gcMcovN2",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output139 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            },
+            {
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
+            },
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            },
+            {
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
+            },
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        }
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                        }
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule139",
+        }
+    ],
+}
+
+
+def test_method_139():
+    """
+    Rule 139 filters rows based on all columns from each table and single value
+    from each column or any of the columns being string.
+    """
+    assert create_dataset(rule_139, data=dataset, org=ORG_NAME) == output139
+
+
+# Rule 140 filters rows based on all columns from each table and single value
+# from each column or any of the columns being datetime.
+
+rule_140 = [
+    {
+        "ruleID": "rule140",
+        "table": "ALL",
+        "variable": "ALL",
+        "ruleValue": "2021-01-27 8:00;2021-02-06",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output140 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-02-01 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                "fieldSampleTempC": 15,
+                "sizeL": 8,
+                "storageTempC": 16,
+                "sampleID": "Sample S100",
+                "type": "swrSed",
+                "collection": "mooreSw",
+            },
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            },
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            }
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-01-28 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                            "fieldSampleTempC": 18,
+                            "sizeL": 10,
+                            "storageTempC": 22,
+                            "sampleID": "Sample S107",
+                            "type": "rawWW",
+                            "collection": "grb",
+                        }
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        },
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule140",
+        }
+    ],
+}
+
+
+def test_method_140():
+    """
+    Rule 140 filters rows based on all columns from each table and single value
+    from each column or any of the columns being datetime.
+    """
+    assert create_dataset(rule_140, data=dataset, org=ORG_NAME) == output140
+
+
+# Rule 141 filters rows based on all columns from each table and single value
+# from each column or any of the columns being an interval between two numbers
+# with [].
+
+rule_141 = [
+    {
+        "ruleID": "rule141",
+        "table": "ALL",
+        "variable": "ALL",
+        "ruleValue": "[8.0,10.0];[16.0,17.0];[76000,102000]",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output141 = {
+    "filtered_data": {
+        "Sample": [],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcM",
+                "unitOther": "gcMcovN2",
+                "value": 145000,
+            },
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            },
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-28 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                            "fieldSampleTempC": 18,
+                            "sizeL": 10,
+                            "storageTempC": 22,
+                            "sampleID": "Sample S107",
+                            "type": "rawWW",
+                            "collection": "grb",
+                        },
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        }
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule141",
+        }
+    ],
+}
+
+
+def test_method_141():
+    """
+    Rule 141 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval between
+    two numbers with [].
+    """
+    assert create_dataset(rule_141, data=dataset, org=ORG_NAME) == output141
+
+
+# Rule 142 filters rows based on all columns from each table and single
+# value from each column or any of the columns being an interval between
+# two numbers with ().
+
+rule_142 = [
+    {
+        "ruleID": "rule142",
+        "table": "ALL",
+        "variable": "ALL",
+        "ruleValue": "(2.0,10.0);(15.0,18.0);(92000,102000)",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output142 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
+            }
         ],
         "WWMeasure": [
             {
@@ -4085,230 +4389,26 @@ output87 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
-                            "dateTime": Timestamp("2021-01-25 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                            "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
-                            "sizeL": 2,
-                            "storageTempC": 18,
-                            "type": "pSludge",
-                        }
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule87",
-        }
-    ],
-}
-
-
-def test_method_87():
-    """
-    This method tests the function create_dataset against rule_87 with pytest.
-    """
-    assert create_dataset(rule_87, data=dataset, org=organization) == output87
-
-
-# Rule 88 filters rows based on all columns from each table and single value from each column or any of the columns being string.
-
-rule_88 = [
-    {
-        "ruleID": "rule88",
-        "table": "Sample;WWMeasure",
-        "variable": "ALL",
-        "ruleValue": "gcmnPMMoV; pSludge; grb;gcM",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output88 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "mooreSw",
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
-                "sizeL": 8,
-                "storageTempC": 16,
-                "type": "swrSed",
-            }
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            }
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "cpTP24h",
-                            "dateTime": Timestamp("2021-01-25 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                            "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
-                            "sizeL": 2,
-                            "storageTempC": 18,
-                            "type": "pSludge",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        },
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcM",
-                            "unitOther": "gcMcovN2",
-                            "value": 145000,
-                        },
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
-                        },
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule88",
-        }
-    ],
-}
-
-
-def test_method_88():
-    """
-    This method tests the function create_dataset against rule_88 with pytest.
-    """
-    assert create_dataset(rule_88, data=dataset, org=organization) == output88
-
-
-# Rule 89 filters rows based on all columns from each table and single value from each column or any of the columns being datetime.
-
-rule_89 = [
-    {
-        "ruleID": "rule89",
-        "table": "Sample;WWMeasure",
-        "variable": "ALL",
-        "ruleValue": "2021-02-01 21:00; 2021-01-25",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output89 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            },
-            {
-                "collection": "grb",
-                "dateTime": Timestamp("2021-01-28 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
-                "sizeL": 10,
-                "storageTempC": 22,
-                "type": "rawWW",
-            },
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            }
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -4316,61 +4416,50 @@ output89 = {
                 {
                     "rows_removed": [
                         {
-                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcM",
-                            "unitOther": "gcMcovN2",
-                            "value": 145000,
-                        },
-                        {
-                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "type": "covN2",
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
                             "uWwMeasureID": "Measure WW100",
                             "unit": "gcMl",
-                            "unitOther": "gcMcovN1",
-                            "value": 16000,
-                        },
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        }
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule89",
+            "rule_id": "rule142",
         }
     ],
 }
 
 
-def test_method_89():
+def test_method_142():
     """
-    This method tests the function create_dataset against rule_89 with pytest.
+    Rule 142 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval between
+    two numbers with ().
     """
-    assert create_dataset(rule_89, data=dataset, org=organization) == output89
+    assert create_dataset(rule_142, data=dataset, org=ORG_NAME) == output142
 
 
-# Rule 90 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two numbers
-# with [].
+# Rule 143 filters rows based on all columns from each table and single
+# value from each column or any of the columns being an interval between
+# two numbers with (].
 
-rule_90 = [
+rule_143 = [
     {
-        "ruleID": "rule90",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule143",
+        "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "[8.0,10.0];[16.0,17.0];[98000,145000]",
+        "ruleValue": "(2.0,10.0];(16.0,18.0];(92000,145000]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output90 = {
+output143 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [],
         "WWMeasure": [
             {
@@ -4390,37 +4479,37 @@ output90 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -4449,277 +4538,49 @@ output90 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule90",
+            "rule_id": "rule143",
         }
     ],
 }
 
 
-def test_method_90():
+def test_method_143():
     """
-    This method tests the function create_dataset against rule_90 with pytest.
+    Rule 143 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval between
+    two numbers with (].
     """
-    assert create_dataset(rule_90, data=dataset, org=organization) == output90
+    assert create_dataset(rule_143, data=dataset, org=ORG_NAME) == output143
 
 
-# Rule 91 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two numbers
-# with ().
+# Rule 144 filters rows based on all columns from each table and single
+# value from each column or any of the columns being an interval between
+# two numbers with [).
 
-rule_91 = [
+rule_144 = [
     {
-        "ruleID": "rule91",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule144",
+        "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "(2.0,10.0);(15.0,17.0);(16000,145000)",
+        "ruleValue": "[2.0,10.0);[19.0,22.0);[92000,102000)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output91 = {
+output144 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            },
-            {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
-            },
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        }
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule91",
-        }
-    ],
-}
-
-
-def test_method_91():
-    """
-    This method tests the function create_dataset against rule_91 with pytest.
-    """
-    assert create_dataset(rule_91, data=dataset, org=organization) == output91
-
-
-# Rule 92 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two numbers
-# with (].
-
-rule_92 = [
-    {
-        "ruleID": "rule92",
-        "table": "Sample;WWMeasure",
-        "variable": "ALL",
-        "ruleValue": "(2.0,10.0];(98000,145000]",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output92 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
-            }
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        },
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                            "reportDate": Timestamp("2021-02-06 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcM",
-                            "unitOther": "gcMcovN2",
-                            "value": 145000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule92",
-        }
-    ],
-}
-
-
-def test_method_92():
-    """
-    This method tests the function create_dataset against rule_92 with pytest.
-    """
-    assert create_dataset(rule_92, data=dataset, org=organization) == output92
-
-
-# Rule 93 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two numbers
-# with [).
-
-rule_93 = [
-    {
-        "ruleID": "rule93",
-        "table": "Sample;WWMeasure",
-        "variable": "ALL",
-        "ruleValue": "[8.0,10.0);[16.0,18.0);[98000,102000)",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output93 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
                 "collection": "grb",
-                "dateTime": Timestamp("2021-01-28 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
-                "sizeL": 10,
-                "storageTempC": 22,
-                "type": "rawWW",
             }
         ],
         "WWMeasure": [
@@ -4749,26 +4610,26 @@ output93 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -4788,164 +4649,49 @@ output93 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule93",
+            "rule_id": "rule144",
         }
     ],
 }
 
 
-def test_method_93():
+def test_method_144():
     """
-    This method tests the function create_dataset against rule_93 with pytest.
+    Rule 144 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval between
+    two numbers with [).
     """
-    assert create_dataset(rule_93, data=dataset, org=organization) == output93
+    assert create_dataset(rule_144, data=dataset, org=ORG_NAME) == output144
 
 
-# Rule 94 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two datetime
-# with [].
+# Rule 145 filters rows based on all columns from each table and single
+# value from each column or any of the columns being an interval between
+# two datetime with [].
 
-rule_94 = [
+rule_145 = [
     {
-        "ruleID": "rule94",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule145",
+        "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "[2021-01-27,2021-01-31]",
+        "ruleValue": "[2021-01-29,2021-02-06]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output94 = {
+output145 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
-            },
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
-                {
-                    "rows_removed": [
-                        {
-                            "collection": "mooreSw",
-                            "dateTime": Timestamp("2021-02-01 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                            "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
-                            "sizeL": 8,
-                            "storageTempC": 16,
-                            "type": "swrSed",
-                        },
-                        {
-                            "collection": "grb",
-                            "dateTime": Timestamp("2021-01-28 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                            "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
-                            "sizeL": 10,
-                            "storageTempC": 22,
-                            "type": "rawWW",
-                        },
-                    ],
-                    "table": "Sample",
-                },
-                {
-                    "rows_removed": [
-                        {
-                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                            "reportDate": Timestamp("2021-01-25 00:00:00"),
-                            "type": "covN2",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcMcovN1",
-                            "value": 16000,
-                        }
-                    ],
-                    "table": "WWMeasure",
-                },
-            ],
-            "rule_id": "rule94",
-        }
-    ],
-}
-
-
-def test_method_94():
-    """
-    This method tests the function create_dataset against rule_94 with pytest.
-    """
-    assert create_dataset(rule_94, data=dataset, org=organization) == output94
-
-
-# Rule 95 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two datetime
-# with ().
-
-rule_95 = [
-    {
-        "ruleID": "rule95",
-        "table": "Sample;WWMeasure",
-        "variable": "ALL",
-        "ruleValue": "(2021-01-29 8:00, 2021-02-06 21:00)",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output95 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
                 "collection": "cpTP24h",
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
-                "sizeL": 2,
-                "storageTempC": 18,
-                "type": "pSludge",
             }
         ],
         "WWMeasure": [
@@ -4957,7 +4703,7 @@ output95 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
-            },
+            }
         ],
     },
     "sharing_summary": [
@@ -4966,26 +4712,26 @@ output95 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -5014,51 +4760,49 @@ output95 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule95",
+            "rule_id": "rule145",
         }
     ],
 }
 
 
-def test_method_95():
+def test_method_145():
     """
-    This method tests the function create_dataset against rule_95 with pytest.
+    Rule 145 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime with [].
     """
-    assert create_dataset(rule_95, data=dataset, org=organization) == output95
+    assert create_dataset(rule_145, data=dataset, org=ORG_NAME) == output145
 
 
-# Rule 96 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two datetime
-# with [).
+# Rule 146 filters rows based on all columns from each table and single
+# value from each column or any of the columns being an interval between
+# two datetime with ().
 
-rule_96 = [
+rule_146 = [
     {
-        "ruleID": "rule96",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule146",
+        "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "[2021-01-27 8:00, 2021-02-01 21:00)",
+        "ruleValue": "(2021-01-27 8:00, 2021-01-30 8:00)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output96 = {
+output146 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -5088,26 +4832,26 @@ output96 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -5127,72 +4871,61 @@ output96 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule96",
+            "rule_id": "rule146",
         }
     ],
 }
 
 
-def test_method_96():
+def test_method_146():
     """
-    This method tests the function create_dataset against rule_96 with pytest.
+    Rule 146 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime with ().
     """
-    assert create_dataset(rule_96, data=dataset, org=organization) == output96
+    assert create_dataset(rule_146, data=dataset, org=ORG_NAME) == output146
 
 
-# Rule 97 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two datetime
-# with (].
+# Rule 147 filters rows based on all columns from each table and single
+# value from each column or any of the columns being an interval between
+# two datetime with (].
 
-rule_97 = [
+rule_147 = [
     {
-        "ruleID": "rule97",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule147",
+        "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "(2021-01-26,2021-02-02];",
+        "ruleValue": "(2021-01-31,2021-02-09]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output97 = {
+output147 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
             {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
                 "type": "covN2",
                 "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            },
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            }
         ],
     },
     "sharing_summary": [
@@ -5201,32 +4934,263 @@ output97 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
                 },
                 {
                     "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        },
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule147",
+        }
+    ],
+}
+
+
+def test_method_147():
+    """
+    Rule 147 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime with (].
+    """
+    assert create_dataset(rule_147, data=dataset, org=ORG_NAME) == output147
+
+
+# Rule 148 filters rows based on all columns from each table and single
+# value from each column or any of the columns being an interval
+# between two datetime with [).
+
+rule_148 = [
+    {
+        "ruleID": "rule148",
+        "table": "ALL",
+        "variable": "ALL",
+        "ruleValue": "[2021-01-29,2021-02-09)",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output148 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-01-25 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                "fieldSampleTempC": 17,
+                "sizeL": 2,
+                "storageTempC": 18,
+                "sampleID": "Sample S106",
+                "type": "pSludge",
+                "collection": "cpTP24h",
+            }
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                "reportDate": Timestamp("2021-01-25 00:00:00"),
+                "type": "covN2",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcMcovN1",
+                "value": 16000,
+            }
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                        {
+                            "dateTime": Timestamp("2021-01-28 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                            "fieldSampleTempC": 18,
+                            "sizeL": 10,
+                            "storageTempC": 22,
+                            "sampleID": "Sample S107",
+                            "type": "rawWW",
+                            "collection": "grb",
+                        },
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                            "reportDate": Timestamp("2021-03-06 00:00:00"),
+                            "type": "nPMMoV",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcmnPMMoV",
+                            "value": 98000,
+                        },
+                    ],
+                    "table": "WWMeasure",
+                },
+            ],
+            "rule_id": "rule148",
+        }
+    ],
+}
+
+
+def test_method_148():
+    """
+    Rule 148 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime with [).
+    """
+    assert create_dataset(rule_148, data=dataset, org=ORG_NAME) == output148
+
+
+# Rule 149 filters rows based on all columns from each table and single
+# value from each column or any of the columns being an interval
+# where the lower bound limit is infinity with ().
+
+rule_149 = [
+    {
+        "ruleID": "rule149",
+        "table": "ALL",
+        "variable": "ALL",
+        "ruleValue": "(Inf, 2021-01-27)",
+        "direction": "row",
+        "sharedWith": "Public;PHAC",
+    }
+]
+
+output149 = {
+    "filtered_data": {
+        "Sample": [
+            {
+                "dateTime": Timestamp("2021-02-01 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                "fieldSampleTempC": 15,
+                "sizeL": 8,
+                "storageTempC": 16,
+                "sampleID": "Sample S100",
+                "type": "swrSed",
+                "collection": "mooreSw",
+            },
+            {
+                "dateTime": Timestamp("2021-01-28 21:00:00"),
+                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
+                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
+                "fieldSampleTempC": 18,
+                "sizeL": 10,
+                "storageTempC": 22,
+                "sampleID": "Sample S107",
+                "type": "rawWW",
+                "collection": "grb",
+            },
+        ],
+        "WWMeasure": [
+            {
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
+            }
+        ],
+    },
+    "sharing_summary": [
+        {
+            "entities_filtered": [
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        },
+                    ],
+                    "table": "Sample",
+                },
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                        },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -5235,88 +5199,68 @@ output97 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
-                        }
+                        },
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule97",
+            "rule_id": "rule149",
         }
     ],
 }
 
 
-def test_method_97():
+def test_method_149():
     """
-    This method tests the function create_dataset against rule_97 with pytest.
+    Rule 149 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval
+    where the lower bound limit is infinity with ().
     """
-    assert create_dataset(rule_97, data=dataset, org=organization) == output97
+    assert create_dataset(rule_149, data=dataset, org=ORG_NAME) == output149
 
 
-# Rule 98 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
-# the lower bound limit is infinity with ().
+# Rule 150 filters rows based on all columns from each table and single
+# value from each column or any of the columns being an interval
+# where the lower bound limit is infinity with (].
 
-rule_98 = [
+rule_150 = [
     {
-        "ruleID": "rule98",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule150",
+        "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "(Inf , 8.0)",
+        "ruleValue": "(Inf, 2021-01-27]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output98 = {
+output150 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -5325,7 +5269,7 @@ output98 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
-            },
+            }
         ],
     },
     "sharing_summary": [
@@ -5334,197 +5278,108 @@ output98 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
                 },
-                {"rows_removed": [], "table": "WWMeasure"},
-            ],
-            "rule_id": "rule98",
-        }
-    ],
-}
-
-
-def test_method_98():
-    """
-    This method tests the function create_dataset against rule_98 with pytest.
-    """
-    assert create_dataset(rule_98, data=dataset, org=organization) == output98
-
-
-# Rule 99 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
-# the lower bound limit is infinity with (].
-
-rule_99 = [
-    {
-        "ruleID": "rule99",
-        "table": "Sample;WWMeasure",
-        "variable": "ALL",
-        "ruleValue": "(Inf , 4.0]",
-        "direction": "row",
-        "sharedWith": "Public;PHAC",
-    }
-]
-
-output99 = {
-    "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
-        "Sample": [
-            {
-                "collection": "mooreSw",
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
-                "sizeL": 8,
-                "storageTempC": 16,
-                "type": "swrSed",
-            },
-            {
-                "collection": "grb",
-                "dateTime": Timestamp("2021-01-28 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
-                "sizeL": 10,
-                "storageTempC": 22,
-                "type": "rawWW",
-            },
-        ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-            {
-                "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                "reportDate": Timestamp("2021-03-06 00:00:00"),
-                "type": "nPMMoV",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcmnPMMoV",
-                "value": 98000,
-            },
-        ],
-    },
-    "sharing_summary": [
-        {
-            "entities_filtered": [
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
-                            "dateTime": Timestamp("2021-01-25 21:00:00"),
-                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                            "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
-                            "sizeL": 2,
-                            "storageTempC": 18,
-                            "type": "pSludge",
-                        }
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                        },
                     ],
-                    "table": "Sample",
+                    "table": "WWMeasure",
                 },
-                {"rows_removed": [], "table": "WWMeasure"},
             ],
-            "rule_id": "rule99",
+            "rule_id": "rule150",
         }
     ],
 }
 
 
-def test_method_99():
+def test_method_150():
     """
-    This method tests the function create_dataset against rule_99 with pytest.
+    Rule 150 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval
+    where the lower bound limit is infinity with (].
     """
-    assert create_dataset(rule_99, data=dataset, org=organization) == output99
+    assert create_dataset(rule_150, data=dataset, org=ORG_NAME) == output150
 
 
-# Rule 100 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
-# the upper bound limit is infinity with ().
+# Rule 151 filters rows based on all columns from each table and single
+# value from each column or any of the columns being an interval
+# where the upper bound limit is infinity with ().
 
-rule_100 = [
+rule_151 = [
     {
-        "ruleID": "rule100",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule151",
+        "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "(92000,Inf)",
+        "ruleValue": "(98000,Inf)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output100 = {
+output151 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -5536,7 +5391,16 @@ output100 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
-            }
+            },
+            {
+                "analysisDate": Timestamp("2021-02-06 00:00:00"),
+                "reportDate": Timestamp("2021-03-06 00:00:00"),
+                "type": "nPMMoV",
+                "uWwMeasureID": "Measure WW100",
+                "unit": "gcMl",
+                "unitOther": "gcmnPMMoV",
+                "value": 98000,
+            },
         ],
     },
     "sharing_summary": [
@@ -5553,40 +5417,34 @@ output100 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
-                        },
-                        {
-                            "analysisDate": Timestamp("2021-02-06 00:00:00"),
-                            "reportDate": Timestamp("2021-03-06 00:00:00"),
-                            "type": "nPMMoV",
-                            "uWwMeasureID": "Measure WW100",
-                            "unit": "gcMl",
-                            "unitOther": "gcmnPMMoV",
-                            "value": 98000,
-                        },
+                        }
                     ],
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule100",
+            "rule_id": "rule151",
         }
     ],
 }
 
 
-def test_method_100():
+def test_method_151():
     """
-    This method tests the function create_dataset against rule_100 with pytest.
+    Rule 151 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval
+    where the upper bound limit is infinity with ().
     """
-    assert create_dataset(rule_100, data=dataset, org=organization) == output100
+    assert create_dataset(rule_151, data=dataset, org=ORG_NAME) == output151
 
 
-# Rule 101 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
-# the upper bound limit is infinity with [).
+# Rule 152 filters rows based on all columns from each table and single
+# value from each column or any of the columns being an interval
+# where the upper bound limit is infinity with [).
 
-rule_101 = [
+rule_152 = [
     {
-        "ruleID": "rule101",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule152",
+        "table": "ALL",
         "variable": "ALL",
         "ruleValue": "[98000,Inf)",
         "direction": "row",
@@ -5594,46 +5452,41 @@ rule_101 = [
     }
 ]
 
-output101 = {
+output152 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -5676,51 +5529,50 @@ output101 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule101",
+            "rule_id": "rule152",
         }
     ],
 }
 
 
-def test_method_101():
+def test_method_152():
     """
-    This method tests the function create_dataset against rule_101 with pytest.
+    Rule 152 filters rows based on all columns from each table and single
+    value from each column or any of the columns being an interval
+    where the upper bound limit is infinity with [).
     """
-    assert create_dataset(rule_101, data=dataset, org=organization) == output101
+    assert create_dataset(rule_152, data=dataset, org=ORG_NAME) == output152
 
 
-# Rule 102 filters rows based on all columns from each table and multiple values from each column or any of the columns where one value could be an interval
-# and the other could be a single value.
+# Rule 153 filters rows based on all columns from each table and multiple
+# values from each column or any of the columns where one value could be
+# an interval and the other could be a single value.
 
-rule_102 = [
+rule_153 = [
     {
-        "ruleID": "rule102",
-        "table": "Sample;WWMeasure",
+        "ruleID": "rule153",
+        "table": "ALL",
         "variable": "ALL",
-        "ruleValue": "( 2021-01-30 8:00 , 2021-02-06 21:00] ; 145000;[98000,145000]",
+        "ruleValue": "( 2021-01-30 8:00 , 2021-02-03 21:00] ; \
+            145000; [98000,145000]; 2021-03-06;swrSed",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output102 = {
+output153 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -5741,26 +5593,26 @@ output102 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -5789,14 +5641,16 @@ output102 = {
                     "table": "WWMeasure",
                 },
             ],
-            "rule_id": "rule102",
+            "rule_id": "rule153",
         }
     ],
 }
 
 
-def test_method_102():
+def test_method_153():
     """
-    This method tests the function create_dataset against rule_102 with pytest.
+    Rule 153 filters rows based on all columns from each table and multiple
+    values from each column or any of the columns where one value could be
+    an interval and the other could be a single value.
     """
-    assert create_dataset(rule_102, data=dataset, org=organization) == output102
+    assert create_dataset(rule_153, data=dataset, org=ORG_NAME) == output153
