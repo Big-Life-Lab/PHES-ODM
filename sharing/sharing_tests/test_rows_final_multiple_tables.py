@@ -6,11 +6,10 @@ import re
 import numpy as np  # pylint: disable=import-error
 import pandas as pd  # pylint: disable=import-error
 import pytest  # pylint: disable=import-error
-from numpy import nan  # pylint: disable=import-error
-from pandas import Timestamp  # pylint: disable=import-error
-
 # import create_dataset  # pylint: disable=import-error
 from create_dataset import create_dataset  # pylint: disable=import-error
+from numpy import nan  # pylint: disable=import-error
+from pandas import Timestamp  # pylint: disable=import-error
 
 # User Data:
 
