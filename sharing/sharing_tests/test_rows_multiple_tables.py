@@ -1,15 +1,10 @@
-import csv
-import json
-import os
-import re
+"""Testing multiple tables"""
+import sys
+from pandas import Timestamp
 
-import numpy as np  # pylint: disable=import-error
-import pandas as pd  # pylint: disable=import-error
-import pytest  # pylint: disable=import-error
-# import create_dataset  # pylint: disable=import-error
-from create_dataset import create_dataset  # pylint: disable=import-error
-from numpy import nan  # pylint: disable=import-error
-from pandas import Timestamp  # pylint: disable=import-error
+sys.path.append("..")  # Adds higher directory to python modules path.
+from create_dataset import create_dataset
+
 
 # User Data:
 
@@ -21,37 +16,37 @@ dataset = {
     ],
     "Sample": [
         {
-            "collection": "mooreSw",
             "dateTime": Timestamp("2021-02-01 21:00:00"),
             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
             "fieldSampleTempC": 15,
-            "sampleID": "Sample S100",
             "sizeL": 8,
             "storageTempC": 16,
+            "sampleID": "Sample S100",
             "type": "swrSed",
+            "collection": "mooreSw",
         },
         {
-            "collection": "cpTP24h",
             "dateTime": Timestamp("2021-01-25 21:00:00"),
             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
             "fieldSampleTempC": 17,
-            "sampleID": "Sample S106",
             "sizeL": 2,
             "storageTempC": 18,
+            "sampleID": "Sample S106",
             "type": "pSludge",
+            "collection": "cpTP24h",
         },
         {
-            "collection": "grb",
             "dateTime": Timestamp("2021-01-28 21:00:00"),
             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
             "fieldSampleTempC": 18,
-            "sampleID": "Sample S107",
             "sizeL": 10,
             "storageTempC": 22,
+            "sampleID": "Sample S107",
             "type": "rawWW",
+            "collection": "grb",
         },
     ],
     "WWMeasure": [
@@ -85,13 +80,13 @@ dataset = {
     ],
 }
 
-# User requested organization:
-organization = "PHAC"
+# User requested ORG_NAME:
+ORG_NAME = "PHAC"
 
 # FOR MULTIPLE TABLES: Tables `Sample` and `WWMeasure` are used.
 ## FOR SINGLE COLUMN FROM EACH TABLE OR ANY OF THE TABLE
 
-# Rule 52 filters rows based on a single column and all values of the rows.
+#
 
 rule_52 = [
     {
@@ -120,37 +115,37 @@ output52 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -198,10 +193,11 @@ def test_method_52():
     """
     This method tests the function create_dataset against rule_52 with pytest.
     """
-    assert create_dataset(rule_52, data=dataset, org=organization) == output52
+    assert create_dataset(rule_52, data=dataset, org=ORG_NAME) == output52
 
 
-# Rule 53 filters rows based on a single column from each table and single value from each column or any of the columns being numeric.
+# Rule 53 filters rows based on a single column from each table and single
+# value from each column or any of the columns being numeric.
 
 rule_53 = [
     {
@@ -223,26 +219,26 @@ output53 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -272,15 +268,15 @@ output53 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -308,12 +304,14 @@ output53 = {
 
 def test_method_53():
     """
-    This method tests the function create_dataset against rule_53 with pytest.
+    Rule 53 filters rows based on a single column from each table and single
+    value from each column or any of the columns being numeric.
     """
-    assert create_dataset(rule_53, data=dataset, org=organization) == output53
+    assert create_dataset(rule_53, data=dataset, org=ORG_NAME) == output53
 
 
-# Rule 54 filters rows based on a single column from each table and single value from each column or any of the columns being string.
+# Rule 54 filters rows based on a single column from each table and single
+# value from each column or any of the columns being string.
 
 rule_54 = [
     {
@@ -335,26 +333,26 @@ output54 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -384,15 +382,15 @@ output54 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -420,12 +418,14 @@ output54 = {
 
 def test_method_54():
     """
-    This method tests the function create_dataset against rule_54 with pytest.
+    Rule 54 filters rows based on a single column from each table and single
+     value from each column or any of the columns being string.
     """
-    assert create_dataset(rule_54, data=dataset, org=organization) == output54
+    assert create_dataset(rule_54, data=dataset, org=ORG_NAME) == output54
 
 
-# Rule 55 filters rows based on a single column from each table and single value from each column or any of the columns being datetime.
+# Rule 55 filters rows based on a single column from each table and single
+# value from each column or any of the columns being datetime.
 
 rule_55 = [
     {
@@ -447,37 +447,37 @@ output55 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -528,12 +528,14 @@ output55 = {
 
 def test_method_55():
     """
-    This method tests the function create_dataset against rule_55 with pytest.
+    Rule 55 filters rows based on a single column from each table and single
+    value from each column or any of the columns being datetime.
     """
-    assert create_dataset(rule_55, data=dataset, org=organization) == output55
+    assert create_dataset(rule_55, data=dataset, org=ORG_NAME) == output55
 
 
-# Rule 56 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 56 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two numeric values with [].
 
 rule_56 = [
@@ -556,26 +558,26 @@ output56 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -596,15 +598,15 @@ output56 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -641,12 +643,15 @@ output56 = {
 
 def test_method_56():
     """
-    This method tests the function create_dataset against rule_56 with pytest.
+    Rule 56 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two numeric values with [].
     """
-    assert create_dataset(rule_56, data=dataset, org=organization) == output56
+    assert create_dataset(rule_56, data=dataset, org=ORG_NAME) == output56
 
 
-# Rule 57 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 57 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two numeric values with ().
 
 rule_57 = [
@@ -669,26 +674,26 @@ output57 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -718,15 +723,15 @@ output57 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -754,12 +759,15 @@ output57 = {
 
 def test_method_57():
     """
-    This method tests the function create_dataset against rule_57 with pytest.
+    Rule 57 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two numeric values with ().
     """
-    assert create_dataset(rule_57, data=dataset, org=organization) == output57
+    assert create_dataset(rule_57, data=dataset, org=ORG_NAME) == output57
 
 
-# Rule 58 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 58 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two numeric values with (].
 
 rule_58 = [
@@ -783,26 +791,26 @@ output58 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -823,15 +831,15 @@ output58 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -868,12 +876,15 @@ output58 = {
 
 def test_method_58():
     """
-    This method tests the function create_dataset against rule_58 with pytest.
+    Rule 58 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two numeric values with (].
     """
-    assert create_dataset(rule_58, data=dataset, org=organization) == output58
+    assert create_dataset(rule_58, data=dataset, org=ORG_NAME) == output58
 
 
-# Rule 59 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 59 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two numeric values with [).
 
 rule_59 = [
@@ -896,37 +907,37 @@ output59 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -977,12 +988,15 @@ output59 = {
 
 def test_method_59():
     """
-    This method tests the function create_dataset against rule_59 with pytest.
+    Rule 59 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two numeric values with [).
     """
-    assert create_dataset(rule_59, data=dataset, org=organization) == output59
+    assert create_dataset(rule_59, data=dataset, org=ORG_NAME) == output59
 
 
-# Rule 60 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 60 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two datetime values with [].
 
 rule_60 = [
@@ -1005,15 +1019,15 @@ output60 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             }
         ],
         "WWMeasure": [
@@ -1034,26 +1048,26 @@ output60 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -1090,12 +1104,15 @@ output60 = {
 
 def test_method_60():
     """
-    This method tests the function create_dataset against rule_60 with pytest.
+    Rule 60 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime values with [].
     """
-    assert create_dataset(rule_60, data=dataset, org=organization) == output60
+    assert create_dataset(rule_60, data=dataset, org=ORG_NAME) == output60
 
 
-# Rule 61 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 61 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two datetime values with ().
 
 rule_61 = [
@@ -1118,26 +1135,26 @@ output61 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
         ],
         "WWMeasure": [
@@ -1158,15 +1175,15 @@ output61 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         }
                     ],
                     "table": "Sample",
@@ -1203,12 +1220,15 @@ output61 = {
 
 def test_method_61():
     """
-    This method tests the function create_dataset against rule_61 with pytest.
+    Rule 61 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime values with ().
     """
-    assert create_dataset(rule_61, data=dataset, org=organization) == output61
+    assert create_dataset(rule_61, data=dataset, org=ORG_NAME) == output61
 
 
-# Rule 62 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 62 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two datetime values with (].
 
 rule_62 = [
@@ -1231,26 +1251,26 @@ output62 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -1280,15 +1300,15 @@ output62 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -1316,12 +1336,15 @@ output62 = {
 
 def test_method_62():
     """
-    This method tests the function create_dataset against rule_62 with pytest.
+    Rule 62 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime values with (].
     """
-    assert create_dataset(rule_62, data=dataset, org=organization) == output62
+    assert create_dataset(rule_62, data=dataset, org=ORG_NAME) == output62
 
 
-# Rule 63 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 63 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two datetime values with [).
 
 rule_63 = [
@@ -1344,15 +1367,15 @@ output63 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -1382,26 +1405,26 @@ output63 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -1429,12 +1452,15 @@ output63 = {
 
 def test_method_63():
     """
-    This method tests the function create_dataset against rule_63 with pytest.
+    Rule 63 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two datetime values with [).
     """
-    assert create_dataset(rule_63, data=dataset, org=organization) == output63
+    assert create_dataset(rule_63, data=dataset, org=ORG_NAME) == output63
 
 
-# Rule 64 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 64 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two values where the lower bound limit is infinity with ().
 
 rule_64 = [
@@ -1457,15 +1483,15 @@ output64 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             }
         ],
         "WWMeasure": [
@@ -1504,26 +1530,26 @@ output64 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -1538,12 +1564,15 @@ output64 = {
 
 def test_method_64():
     """
-    This method tests the function create_dataset against rule_64 with pytest.
+    Rule 64 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two values where the lower bound limit is infinity with ().
     """
-    assert create_dataset(rule_64, data=dataset, org=organization) == output64
+    assert create_dataset(rule_64, data=dataset, org=ORG_NAME) == output64
 
 
-# Rule 65 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 65 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two values where the lower bound limit is infinity with (].
 
 rule_65 = [
@@ -1566,37 +1595,37 @@ output65 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -1647,12 +1676,15 @@ output65 = {
 
 def test_method_65():
     """
-    This method tests the function create_dataset against rule_65 with pytest.
+    Rule 65 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two values where the lower bound limit is infinity with (].
     """
-    assert create_dataset(rule_65, data=dataset, org=organization) == output65
+    assert create_dataset(rule_65, data=dataset, org=ORG_NAME) == output65
 
 
-# Rule 66 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 66 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two values where the upper bound limit is infinity with ().
 
 rule_66 = [
@@ -1675,37 +1707,37 @@ output66 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -1756,12 +1788,15 @@ output66 = {
 
 def test_method_66():
     """
-    This method tests the function create_dataset against rule_66 with pytest.
+    Rule 66 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two values where the upper bound limit is infinity with ().
     """
-    assert create_dataset(rule_66, data=dataset, org=organization) == output66
+    assert create_dataset(rule_66, data=dataset, org=ORG_NAME) == output66
 
 
-# Rule 67 filters rows based on a single column from each table and single value from each column or any of the columns being an interval between
+# Rule 67 filters rows based on a single column from each table and single
+# value from each column or any of the columns being an interval between
 # two values where the upper bound limit is infinity with [).
 
 rule_67 = [
@@ -1784,26 +1819,26 @@ output67 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -1842,15 +1877,15 @@ output67 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -1865,12 +1900,15 @@ output67 = {
 
 def test_method_67():
     """
-    This method tests the function create_dataset against rule_67 with pytest.
+    Rule 67 filters rows based on a single column from each table and single
+    value from each column or any of the columns being an interval between
+    two values where the upper bound limit is infinity with [).
     """
-    assert create_dataset(rule_67, data=dataset, org=organization) == output67
+    assert create_dataset(rule_67, data=dataset, org=ORG_NAME) == output67
 
 
-# Rule 68 filters rows based on a single column from each table and multiple values from each column or any of the columns where one value could be
+# Rule 68 filters rows based on a single column from each table and multiple
+# values from each column or any of the columns where one value could be
 # an interval and other a single value.
 
 rule_68 = [
@@ -1893,15 +1931,15 @@ output68 = {
         ],
         "Sample": [
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             }
         ],
         "WWMeasure": [
@@ -1931,26 +1969,26 @@ output68 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -1978,9 +2016,11 @@ output68 = {
 
 def test_method_68():
     """
-    This method tests the function create_dataset against rule_68 with pytest.
+    Rule 68 filters rows based on a single column from each table and multiple
+    values from each column or any of the columns where one value could be
+    an interval and other a single value.
     """
-    assert create_dataset(rule_68, data=dataset, org=organization) == output68
+    assert create_dataset(rule_68, data=dataset, org=ORG_NAME) == output68
 
 
 # For MULTIPLE TABLES:
@@ -2015,37 +2055,37 @@ output69 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -2091,12 +2131,13 @@ output69 = {
 
 def test_method_69():
     """
-    This method tests the function create_dataset against rule_69 with pytest.
+    Rule 69 filters rows based on multiple columns and all values of the rows.
     """
-    assert create_dataset(rule_69, data=dataset, org=organization) == output69
+    assert create_dataset(rule_69, data=dataset, org=ORG_NAME) == output69
 
 
-# Rule 70 filters rows based on multiple columns from each table and single value from each column or any of the columns being numeric.
+# Rule 70 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being numeric.
 
 rule_70 = [
     {
@@ -2118,26 +2159,26 @@ output70 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -2167,15 +2208,15 @@ output70 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -2203,12 +2244,14 @@ output70 = {
 
 def test_method_70():
     """
-    This method tests the function create_dataset against rule_70 with pytest.
+    Rule 70 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being numeric.
     """
-    assert create_dataset(rule_70, data=dataset, org=organization) == output70
+    assert create_dataset(rule_70, data=dataset, org=ORG_NAME) == output70
 
 
-# Rule 71 filters rows based on multiple columns from each table and single value from each column or any of the columns being string.
+# Rule 71 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being string.
 
 rule_71 = [
     {
@@ -2230,26 +2273,26 @@ output71 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
         ],
         "WWMeasure": [
@@ -2279,15 +2322,15 @@ output71 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         }
                     ],
                     "table": "Sample",
@@ -2315,12 +2358,14 @@ output71 = {
 
 def test_method_71():
     """
-    This method tests the function create_dataset against rule_71 with pytest.
+    Rule 71 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being string.
     """
-    assert create_dataset(rule_71, data=dataset, org=organization) == output71
+    assert create_dataset(rule_71, data=dataset, org=ORG_NAME) == output71
 
 
-# Rule 72 filters rows based on multiple columns from each table and single value from each column or any of the columns being datetime.
+# Rule 72 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being datetime.
 
 rule_72 = [
     {
@@ -2342,26 +2387,26 @@ output72 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
         ],
         "WWMeasure": [
@@ -2391,15 +2436,15 @@ output72 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         }
                     ],
                     "table": "Sample",
@@ -2427,12 +2472,14 @@ output72 = {
 
 def test_method_72():
     """
-    This method tests the function create_dataset against rule_72 with pytest.
+    Rule 72 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being datetime.
     """
-    assert create_dataset(rule_72, data=dataset, org=organization) == output72
+    assert create_dataset(rule_72, data=dataset, org=ORG_NAME) == output72
 
 
-# Rule 73 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
+# Rule 73 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
 # numbers with [].
 
 rule_73 = [
@@ -2455,15 +2502,15 @@ output73 = {
         ],
         "Sample": [
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             }
         ],
         "WWMeasure": [
@@ -2484,26 +2531,26 @@ output73 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -2540,12 +2587,15 @@ output73 = {
 
 def test_method_73():
     """
-    This method tests the function create_dataset against rule_73 with pytest.
+    Rule 73 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    numbers with [].
     """
-    assert create_dataset(rule_73, data=dataset, org=organization) == output73
+    assert create_dataset(rule_73, data=dataset, org=ORG_NAME) == output73
 
 
-# Rule 74 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
+# Rule 74 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
 # numbers with ().
 
 rule_74 = [
@@ -2568,26 +2618,26 @@ output74 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -2617,15 +2667,15 @@ output74 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -2653,12 +2703,15 @@ output74 = {
 
 def test_method_74():
     """
-    This method tests the function create_dataset against rule_74 with pytest.
+    Rule 74 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    numbers with ().
     """
-    assert create_dataset(rule_74, data=dataset, org=organization) == output74
+    assert create_dataset(rule_74, data=dataset, org=ORG_NAME) == output74
 
 
-# Rule 75 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
+# Rule 75 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
 # numbers with (].
 
 rule_75 = [
@@ -2681,15 +2734,15 @@ output75 = {
         ],
         "Sample": [
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             }
         ],
         "WWMeasure": [
@@ -2710,26 +2763,26 @@ output75 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -2766,12 +2819,15 @@ output75 = {
 
 def test_method_75():
     """
-    This method tests the function create_dataset against rule_75 with pytest.
+    Rule 75 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    numbers with (].
     """
-    assert create_dataset(rule_75, data=dataset, org=organization) == output75
+    assert create_dataset(rule_75, data=dataset, org=ORG_NAME) == output75
 
 
-# Rule 76 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
+# Rule 76 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
 # numbers with [).
 
 rule_76 = [
@@ -2794,26 +2850,26 @@ output76 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -2843,15 +2899,15 @@ output76 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -2879,12 +2935,15 @@ output76 = {
 
 def test_method_76():
     """
-    This method tests the function create_dataset against rule_76 with pytest.
+    Rule 76 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    numbers with [).
     """
-    assert create_dataset(rule_76, data=dataset, org=organization) == output76
+    assert create_dataset(rule_76, data=dataset, org=ORG_NAME) == output76
 
 
-# Rule 77 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
+# Rule 77 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
 # datetime values with [].
 
 rule_77 = [
@@ -2907,15 +2966,15 @@ output77 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -2945,26 +3004,26 @@ output77 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -2992,12 +3051,15 @@ output77 = {
 
 def test_method_77():
     """
-    This method tests the function create_dataset against rule_77 with pytest.
+    Rule 77 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    datetime values with [].
     """
-    assert create_dataset(rule_77, data=dataset, org=organization) == output77
+    assert create_dataset(rule_77, data=dataset, org=ORG_NAME) == output77
 
 
-# Rule 78 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
+# Rule 78 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
 # datetime values with ().
 
 rule_78 = [
@@ -3020,15 +3082,15 @@ output78 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -3058,26 +3120,26 @@ output78 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3105,12 +3167,15 @@ output78 = {
 
 def test_method_78():
     """
-    This method tests the function create_dataset against rule_78 with pytest.
+    Rule 78 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    datetime values with ().
     """
-    assert create_dataset(rule_78, data=dataset, org=organization) == output78
+    assert create_dataset(rule_78, data=dataset, org=ORG_NAME) == output78
 
 
-# Rule 79 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
+# Rule 79 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
 # datetime values with (].
 
 rule_79 = [
@@ -3133,15 +3198,15 @@ output79 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -3171,26 +3236,26 @@ output79 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3218,12 +3283,15 @@ output79 = {
 
 def test_method_79():
     """
-    This method tests the function create_dataset against rule_79 with pytest.
+    Rule 79 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    datetime values with (].
     """
-    assert create_dataset(rule_79, data=dataset, org=organization) == output79
+    assert create_dataset(rule_79, data=dataset, org=ORG_NAME) == output79
 
 
-# Rule 80 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval between two
+# Rule 80 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval between two
 # datetime values with [).
 
 rule_80 = [
@@ -3246,15 +3314,15 @@ output80 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -3284,26 +3352,26 @@ output80 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3331,12 +3399,15 @@ output80 = {
 
 def test_method_80():
     """
-    This method tests the function create_dataset against rule_80 with pytest.
+    Rule 80 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval between two
+    datetime values with [).
     """
-    assert create_dataset(rule_80, data=dataset, org=organization) == output80
+    assert create_dataset(rule_80, data=dataset, org=ORG_NAME) == output80
 
 
-# Rule 81 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
+# Rule 81 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval where the
 # the lower bound limit is infinity with ().
 
 rule_81 = [
@@ -3376,37 +3447,37 @@ output81 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3443,12 +3514,15 @@ output81 = {
 
 def test_method_81():
     """
-    This method tests the function create_dataset against rule_81 with pytest.
+    Rule 81 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval where the
+    the lower bound limit is infinity with ().
     """
-    assert create_dataset(rule_81, data=dataset, org=organization) == output81
+    assert create_dataset(rule_81, data=dataset, org=ORG_NAME) == output81
 
 
-# Rule 82 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
+# Rule 82 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval where the
 # the lower bound limit is infinity with (].
 
 rule_82 = [
@@ -3471,15 +3545,15 @@ output82 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             }
         ],
         "WWMeasure": [
@@ -3500,26 +3574,26 @@ output82 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3556,12 +3630,15 @@ output82 = {
 
 def test_method_82():
     """
-    This method tests the function create_dataset against rule_82 with pytest.
+    Rule 82 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval where the
+    the lower bound limit is infinity with (].
     """
-    assert create_dataset(rule_82, data=dataset, org=organization) == output82
+    assert create_dataset(rule_82, data=dataset, org=ORG_NAME) == output82
 
 
-# Rule 83 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
+# Rule 83 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval where the
 # the upper bound limit is infinity with ().
 
 rule_83 = [
@@ -3584,15 +3661,15 @@ output83 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -3613,26 +3690,26 @@ output83 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -3669,12 +3746,15 @@ output83 = {
 
 def test_method_83():
     """
-    This method tests the function create_dataset against rule_83 with pytest.
+    Rule 83 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval where the
+    the upper bound limit is infinity with ().
     """
-    assert create_dataset(rule_83, data=dataset, org=organization) == output83
+    assert create_dataset(rule_83, data=dataset, org=ORG_NAME) == output83
 
 
-# Rule 84 filters rows based on multiple columns from each table and single value from each column or any of the columns being an interval where the
+# Rule 84 filters rows based on multiple columns from each table and single
+# value from each column or any of the columns being an interval where the
 # the upper bound limit is infinity with [).
 
 rule_84 = [
@@ -3697,26 +3777,26 @@ output84 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -3746,15 +3826,15 @@ output84 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                     ],
                     "table": "Sample",
@@ -3782,13 +3862,16 @@ output84 = {
 
 def test_method_84():
     """
-    This method tests the function create_dataset against rule_84 with pytest.
+    Rule 84 filters rows based on multiple columns from each table and single
+    value from each column or any of the columns being an interval where the
+    the upper bound limit is infinity with [).
     """
-    assert create_dataset(rule_84, data=dataset, org=organization) == output84
+    assert create_dataset(rule_84, data=dataset, org=ORG_NAME) == output84
 
 
-# Rule 85 filters rows based on multiple columns from each table and multiple values from each column or any of the columns where one value could be an interval
-# and the other could be a single value.
+# Rule 85 filters rows based on multiple columns from each table and multiple
+# values from each column or any of the columns where one value could be an
+# interval and the other could be a single value.
 
 rule_85 = [
     {
@@ -3810,26 +3893,26 @@ output85 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -3850,15 +3933,15 @@ output85 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                     ],
                     "table": "Sample",
@@ -3895,15 +3978,18 @@ output85 = {
 
 def test_method_85():
     """
-    This method tests the function create_dataset against rule_85 with pytest.
+    Rule 85 filters rows based on multiple columns from each table and multiple
+    values from each column or any of the columns where one value could be an
+    interval and the other could be a single value.
     """
-    assert create_dataset(rule_85, data=dataset, org=organization) == output85
+    assert create_dataset(rule_85, data=dataset, org=ORG_NAME) == output85
 
 
 # For MULTIPLE TABLES:
 ## ALL COLUMNS FROM EACH TABLE OR ANY OF THE TABLES
 
-# Rule 86 filters rows based on all columns from each table and all values of the rows.
+# Rule 86 filters rows based on all columns from each table and all values of
+# the rows.
 
 rule_86 = [
     {
@@ -3932,37 +4018,37 @@ output86 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -4008,12 +4094,14 @@ output86 = {
 
 def test_method_86():
     """
-    This method tests the function create_dataset against rule_86 with pytest.
+    Rule 86 filters rows based on all columns from each table and all values
+    of the rows.
     """
-    assert create_dataset(rule_86, data=dataset, org=organization) == output86
+    assert create_dataset(rule_86, data=dataset, org=ORG_NAME) == output86
 
 
-# Rule 87 filters rows based on all columns from each table and single value from each column or any of the columns being numeric.
+# Rule 87 filters rows based on all columns from each table and single value
+# from each column or any of the columns being numeric.
 
 rule_87 = [
     {
@@ -4035,26 +4123,26 @@ output87 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -4084,15 +4172,15 @@ output87 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -4120,12 +4208,14 @@ output87 = {
 
 def test_method_87():
     """
-    This method tests the function create_dataset against rule_87 with pytest.
+    Rule 87 filters rows based on all columns from each table and single value
+    from each column or any of the columns being numeric.
     """
-    assert create_dataset(rule_87, data=dataset, org=organization) == output87
+    assert create_dataset(rule_87, data=dataset, org=ORG_NAME) == output87
 
 
-# Rule 88 filters rows based on all columns from each table and single value from each column or any of the columns being string.
+# Rule 88 filters rows based on all columns from each table and single value
+# from each column or any of the columns being string.
 
 rule_88 = [
     {
@@ -4147,15 +4237,15 @@ output88 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             }
         ],
         "WWMeasure": [
@@ -4176,26 +4266,26 @@ output88 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -4232,12 +4322,14 @@ output88 = {
 
 def test_method_88():
     """
-    This method tests the function create_dataset against rule_88 with pytest.
+    Rule 88 filters rows based on all columns from each table and single value
+    from each column or any of the columns being string.
     """
-    assert create_dataset(rule_88, data=dataset, org=organization) == output88
+    assert create_dataset(rule_88, data=dataset, org=ORG_NAME) == output88
 
 
-# Rule 89 filters rows based on all columns from each table and single value from each column or any of the columns being datetime.
+# Rule 89 filters rows based on all columns from each table and single value
+# from each column or any of the columns being datetime.
 
 rule_89 = [
     {
@@ -4259,26 +4351,26 @@ output89 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -4299,15 +4391,15 @@ output89 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                     ],
                     "table": "Sample",
@@ -4344,12 +4436,14 @@ output89 = {
 
 def test_method_89():
     """
-    This method tests the function create_dataset against rule_89 with pytest.
+    Rule 89 filters rows based on all columns from each table and single value
+    from each column or any of the columns being datetime.
     """
-    assert create_dataset(rule_89, data=dataset, org=organization) == output89
+    assert create_dataset(rule_89, data=dataset, org=ORG_NAME) == output89
 
 
-# Rule 90 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two numbers
+# Rule 90 filters rows based on all columns from each table and single value
+# from each column or any of the columns being interval between two numbers
 # with [].
 
 rule_90 = [
@@ -4389,37 +4483,37 @@ output90 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -4456,12 +4550,15 @@ output90 = {
 
 def test_method_90():
     """
-    This method tests the function create_dataset against rule_90 with pytest.
+    Rule 90 filters rows based on all columns from each table and single value
+    from each column or any of the columns being interval between two numbers
+    with [].
     """
-    assert create_dataset(rule_90, data=dataset, org=organization) == output90
+    assert create_dataset(rule_90, data=dataset, org=ORG_NAME) == output90
 
 
-# Rule 91 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two numbers
+# Rule 91 filters rows based on all columns from each table and single value
+# from each column or any of the columns being interval between two numbers
 # with ().
 
 rule_91 = [
@@ -4484,26 +4581,26 @@ output91 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -4533,15 +4630,15 @@ output91 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         }
                     ],
                     "table": "Sample",
@@ -4569,12 +4666,15 @@ output91 = {
 
 def test_method_91():
     """
-    This method tests the function create_dataset against rule_91 with pytest.
+    Rule 91 filters rows based on all columns from each table and single value
+    from each column or any of the columns being interval between two numbers
+    with ().
     """
-    assert create_dataset(rule_91, data=dataset, org=organization) == output91
+    assert create_dataset(rule_91, data=dataset, org=ORG_NAME) == output91
 
 
-# Rule 92 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two numbers
+# Rule 92 filters rows based on all columns from each table and single value
+# from each column or any of the columns being interval between two numbers
 # with (].
 
 rule_92 = [
@@ -4597,15 +4697,15 @@ output92 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -4635,26 +4735,26 @@ output92 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -4682,12 +4782,15 @@ output92 = {
 
 def test_method_92():
     """
-    This method tests the function create_dataset against rule_92 with pytest.
+    Rule 92 filters rows based on all columns from each table and single value
+    from each column or any of the columns being interval between two numbers
+    with (].
     """
-    assert create_dataset(rule_92, data=dataset, org=organization) == output92
+    assert create_dataset(rule_92, data=dataset, org=ORG_NAME) == output92
 
 
-# Rule 93 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two numbers
+# Rule 93 filters rows based on all columns from each table and single value
+# from each column or any of the columns being interval between two numbers
 # with [).
 
 rule_93 = [
@@ -4710,15 +4813,15 @@ output93 = {
         ],
         "Sample": [
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             }
         ],
         "WWMeasure": [
@@ -4748,26 +4851,26 @@ output93 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         },
                     ],
                     "table": "Sample",
@@ -4795,12 +4898,15 @@ output93 = {
 
 def test_method_93():
     """
-    This method tests the function create_dataset against rule_93 with pytest.
+    Rule 93 filters rows based on all columns from each table and single value
+    from each column or any of the columns being interval between two numbers
+    with [).
     """
-    assert create_dataset(rule_93, data=dataset, org=organization) == output93
+    assert create_dataset(rule_93, data=dataset, org=ORG_NAME) == output93
 
 
-# Rule 94 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two datetime
+# Rule 94 filters rows based on all columns from each table and single value
+# from each column or any of the columns being interval between two datetime
 # with [].
 
 rule_94 = [
@@ -4823,15 +4929,15 @@ output94 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
         ],
         "WWMeasure": [
@@ -4861,26 +4967,26 @@ output94 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -4908,12 +5014,15 @@ output94 = {
 
 def test_method_94():
     """
-    This method tests the function create_dataset against rule_94 with pytest.
+    Rule 94 filters rows based on all columns from each table and single value
+    from each column or any of the columns being interval between two datetime
+    with [].
     """
-    assert create_dataset(rule_94, data=dataset, org=organization) == output94
+    assert create_dataset(rule_94, data=dataset, org=ORG_NAME) == output94
 
 
-# Rule 95 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two datetime
+# Rule 95 filters rows based on all columns from each table and single value
+# from each column or any of the columns being interval between two datetime
 # with ().
 
 rule_95 = [
@@ -4936,15 +5045,15 @@ output95 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -4965,26 +5074,26 @@ output95 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -5021,12 +5130,15 @@ output95 = {
 
 def test_method_95():
     """
-    This method tests the function create_dataset against rule_95 with pytest.
+    Rule 95 filters rows based on all columns from each table and single value
+    from each column or any of the columns being interval between two datetime
+    with ().
     """
-    assert create_dataset(rule_95, data=dataset, org=organization) == output95
+    assert create_dataset(rule_95, data=dataset, org=ORG_NAME) == output95
 
 
-# Rule 96 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two datetime
+# Rule 96 filters rows based on all columns from each table and single value
+# from each column or any of the columns being interval between two datetime
 # with [).
 
 rule_96 = [
@@ -5049,15 +5161,15 @@ output96 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -5087,26 +5199,26 @@ output96 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -5134,12 +5246,15 @@ output96 = {
 
 def test_method_96():
     """
-    This method tests the function create_dataset against rule_96 with pytest.
+    Rule 96 filters rows based on all columns from each table and single value
+    from each column or any of the columns being interval between two datetime
+    with [).
     """
-    assert create_dataset(rule_96, data=dataset, org=organization) == output96
+    assert create_dataset(rule_96, data=dataset, org=ORG_NAME) == output96
 
 
-# Rule 97 filters rows based on all columns from each table and single value from each column or any of the columns being an interval between two datetime
+# Rule 97 filters rows based on all columns from each table and single value
+# from each column or any of the columns being interval between two datetime
 # with (].
 
 rule_97 = [
@@ -5162,15 +5277,15 @@ output97 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -5200,26 +5315,26 @@ output97 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -5247,12 +5362,15 @@ output97 = {
 
 def test_method_97():
     """
-    This method tests the function create_dataset against rule_97 with pytest.
+    Rule 97 filters rows based on all columns from each table and single value
+    from each column or any of the columns being interval between two datetime
+    with (].
     """
-    assert create_dataset(rule_97, data=dataset, org=organization) == output97
+    assert create_dataset(rule_97, data=dataset, org=ORG_NAME) == output97
 
 
-# Rule 98 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
+# Rule 98 filters rows based on all columns from each table and single value
+# from each column or any of the columns being an interval where the
 # the lower bound limit is infinity with ().
 
 rule_98 = [
@@ -5275,26 +5393,26 @@ output98 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -5333,15 +5451,15 @@ output98 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -5356,12 +5474,15 @@ output98 = {
 
 def test_method_98():
     """
-    This method tests the function create_dataset against rule_98 with pytest.
+    Rule 98 filters rows based on all columns from each table and single value
+    from each column or any of the columns being an interval where the
+    the lower bound limit is infinity with ().
     """
-    assert create_dataset(rule_98, data=dataset, org=organization) == output98
+    assert create_dataset(rule_98, data=dataset, org=ORG_NAME) == output98
 
 
-# Rule 99 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
+# Rule 99 filters rows based on all columns from each table and single value
+# from each column or any of the columns being an interval where the
 # the lower bound limit is infinity with (].
 
 rule_99 = [
@@ -5384,26 +5505,26 @@ output99 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -5442,15 +5563,15 @@ output99 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "cpTP24h",
                             "dateTime": Timestamp("2021-01-25 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                             "fieldSampleTempC": 17,
-                            "sampleID": "Sample S106",
                             "sizeL": 2,
                             "storageTempC": 18,
+                            "sampleID": "Sample S106",
                             "type": "pSludge",
+                            "collection": "cpTP24h",
                         }
                     ],
                     "table": "Sample",
@@ -5465,12 +5586,15 @@ output99 = {
 
 def test_method_99():
     """
-    This method tests the function create_dataset against rule_99 with pytest.
+    Rule 99 filters rows based on all columns from each table and single value
+    from each column or any of the columns being an interval where the
+    the lower bound limit is infinity with (].
     """
-    assert create_dataset(rule_99, data=dataset, org=organization) == output99
+    assert create_dataset(rule_99, data=dataset, org=ORG_NAME) == output99
 
 
-# Rule 100 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
+# Rule 100 filters rows based on all columns from each table and single value
+# from each column or any of the columns being an interval where the
 # the upper bound limit is infinity with ().
 
 rule_100 = [
@@ -5493,37 +5617,37 @@ output100 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -5574,12 +5698,15 @@ output100 = {
 
 def test_method_100():
     """
-    This method tests the function create_dataset against rule_100 with pytest.
+    Rule 100 filters rows based on all columns from each table and single value
+    from each column or any of the columns being an interval where the
+    the upper bound limit is infinity with ().
     """
-    assert create_dataset(rule_100, data=dataset, org=organization) == output100
+    assert create_dataset(rule_100, data=dataset, org=ORG_NAME) == output100
 
 
-# Rule 101 filters rows based on all columns from each table and single value from each column or any of the columns being an interval where the
+# Rule 101 filters rows based on all columns from each table and single value
+# from each column or any of the columns being an interval where the
 # the upper bound limit is infinity with [).
 
 rule_101 = [
@@ -5602,37 +5729,37 @@ output101 = {
         ],
         "Sample": [
             {
-                "collection": "mooreSw",
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                 "fieldSampleTempC": 15,
-                "sampleID": "Sample S100",
                 "sizeL": 8,
                 "storageTempC": 16,
+                "sampleID": "Sample S100",
                 "type": "swrSed",
+                "collection": "mooreSw",
             },
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             },
             {
-                "collection": "grb",
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                 "fieldSampleTempC": 18,
-                "sampleID": "Sample S107",
                 "sizeL": 10,
                 "storageTempC": 22,
+                "sampleID": "Sample S107",
                 "type": "rawWW",
+                "collection": "grb",
             },
         ],
         "WWMeasure": [
@@ -5683,13 +5810,16 @@ output101 = {
 
 def test_method_101():
     """
-    This method tests the function create_dataset against rule_101 with pytest.
+    Rule 101 filters rows based on all columns from each table and single value
+    from each column or any of the columns being an interval where the
+    the upper bound limit is infinity with [).
     """
-    assert create_dataset(rule_101, data=dataset, org=organization) == output101
+    assert create_dataset(rule_101, data=dataset, org=ORG_NAME) == output101
 
 
-# Rule 102 filters rows based on all columns from each table and multiple values from each column or any of the columns where one value could be an interval
-# and the other could be a single value.
+# Rule 102 filters rows based on all columns from each table and multiple
+# values from each column or any of the columns where one value could be
+# an interval and the other could be a single value.
 
 rule_102 = [
     {
@@ -5711,15 +5841,15 @@ output102 = {
         ],
         "Sample": [
             {
-                "collection": "cpTP24h",
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
                 "fieldSampleTempC": 17,
-                "sampleID": "Sample S106",
                 "sizeL": 2,
                 "storageTempC": 18,
+                "sampleID": "Sample S106",
                 "type": "pSludge",
+                "collection": "cpTP24h",
             }
         ],
         "WWMeasure": [
@@ -5740,26 +5870,26 @@ output102 = {
                 {
                     "rows_removed": [
                         {
-                            "collection": "mooreSw",
                             "dateTime": Timestamp("2021-02-01 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                             "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
                             "fieldSampleTempC": 15,
-                            "sampleID": "Sample S100",
                             "sizeL": 8,
                             "storageTempC": 16,
+                            "sampleID": "Sample S100",
                             "type": "swrSed",
+                            "collection": "mooreSw",
                         },
                         {
-                            "collection": "grb",
                             "dateTime": Timestamp("2021-01-28 21:00:00"),
                             "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                             "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
                             "fieldSampleTempC": 18,
-                            "sampleID": "Sample S107",
                             "sizeL": 10,
                             "storageTempC": 22,
+                            "sampleID": "Sample S107",
                             "type": "rawWW",
+                            "collection": "grb",
                         },
                     ],
                     "table": "Sample",
@@ -5796,6 +5926,8 @@ output102 = {
 
 def test_method_102():
     """
-    This method tests the function create_dataset against rule_102 with pytest.
+    Rule 102 filters rows based on all columns from each table and multiple
+    values from each column or any of the columns where one value could be
+    an interval and the other could be a single value.
     """
-    assert create_dataset(rule_102, data=dataset, org=organization) == output102
+    assert create_dataset(rule_102, data=dataset, org=ORG_NAME) == output102
