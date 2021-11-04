@@ -136,6 +136,7 @@ def loop_through_rules(
 
         # If the direction of the rule is row, remove rows of data based on rule
         if rule["direction"] == "row":
+
             # if ruleValue is 'ALL', remove all columns and rows from dataframe
             if filter_by == "ALL":
                 intermediate_filtered_data = pd.DataFrame()

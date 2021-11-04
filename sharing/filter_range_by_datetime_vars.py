@@ -52,6 +52,8 @@ def filter_range_by_datetime_vars(
     pat2 = r"(\d+-\d+-\d+)"
     pat7 = r"(\d+-\d+-\d+ \d+:\d+)"
     pat8 = r"(\d+/\d+/\d+ \d+:\d+)"
+    pat9 = r"(\d+-\d+-\d+ \d+:\d+:\d+)"
+    pat10 = r"(\d+/\d+/\d+ \d+:\d+:\d+)"
 
     # First ensure if either of the limits is of datetime type:
 
@@ -62,14 +64,19 @@ def filter_range_by_datetime_vars(
             or re.fullmatch(pat2, str(lower_limit)) is not None
             or re.fullmatch(pat7, str(lower_limit)) is not None
             or re.fullmatch(pat8, str(lower_limit)) is not None
+            or re.fullmatch(pat9, str(lower_limit)) is not None
+            or re.fullmatch(pat10, str(lower_limit)) is not None
         ) or (
             re.fullmatch(pat1, str(upper_limit)) is not None
             or re.fullmatch(pat2, str(upper_limit)) is not None
             or re.fullmatch(pat7, str(upper_limit)) is not None
             or re.fullmatch(pat8, str(upper_limit)) is not None
+            or re.fullmatch(pat9, str(upper_limit)) is not None
+            or re.fullmatch(pat10, str(upper_limit)) is not None
         ):
             rule_is_datetime = True
-
+        print("RULE IS DATETIME")
+        print(rule_is_datetime)
         # If range type and rule is datetime, then loop through all datetime vars
         # and check if there is infinity in either limits
         if rule_is_datetime:
@@ -81,11 +88,15 @@ def filter_range_by_datetime_vars(
                     or re.fullmatch(pat2, str(lower_limit)) is not None
                     or re.fullmatch(pat7, str(lower_limit)) is not None
                     or re.fullmatch(pat8, str(lower_limit)) is not None
+                    or re.fullmatch(pat9, str(lower_limit)) is not None
+                    or re.fullmatch(pat10, str(lower_limit)) is not None
                 ) and (
                     re.fullmatch(pat1, str(upper_limit)) is not None
                     or re.fullmatch(pat2, str(upper_limit)) is not None
                     or re.fullmatch(pat7, str(upper_limit)) is not None
                     or re.fullmatch(pat8, str(upper_limit)) is not None
+                    or re.fullmatch(pat9, str(upper_limit)) is not None
+                    or re.fullmatch(pat10, str(upper_limit)) is not None
                 ):
                     rule_is_datetime = True
 
@@ -97,6 +108,8 @@ def filter_range_by_datetime_vars(
                     or re.fullmatch(pat2, str(lower_limit)) is not None
                     or re.fullmatch(pat7, str(lower_limit)) is not None
                     or re.fullmatch(pat8, str(lower_limit)) is not None
+                    or re.fullmatch(pat9, str(lower_limit)) is not None
+                    or re.fullmatch(pat10, str(lower_limit)) is not None
                 ) and str(upper_limit).startswith("inf"):
                     rule_is_datetime = True
                     lower_limit = pd.to_datetime(lower_limit)
@@ -110,6 +123,8 @@ def filter_range_by_datetime_vars(
                     or re.fullmatch(pat2, str(upper_limit)) is not None
                     or re.fullmatch(pat7, str(upper_limit)) is not None
                     or re.fullmatch(pat8, str(upper_limit)) is not None
+                    or re.fullmatch(pat9, str(upper_limit)) is not None
+                    or re.fullmatch(pat10, str(upper_limit)) is not None
                 ):
                     rule_is_datetime = True
                     upper_limit = pd.to_datetime(upper_limit)
@@ -160,6 +175,8 @@ def filter_range_by_datetime_vars(
             pat2,
             pat7,
             pat8,
+            pat9,
+            pat10,
             filter_val,
             rule_is_datetime,
             rule_is_numeric,

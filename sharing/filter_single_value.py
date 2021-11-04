@@ -13,6 +13,8 @@ def filter_single_value(
     pat2: str,
     pat7: str,
     pat8: str,
+    pat9: str,
+    pat10: str,
     filter_val: Any,
     rule_is_datetime: bool,
     rule_is_numeric: bool,
@@ -36,6 +38,8 @@ def filter_single_value(
         pat2(str): the datetime pattern to check with refular expression
         pat7(str): the datetime pattern to check with refular expression
         pat8(str): the datetime pattern to check with refular expression
+        pat9(str): the datetime pattern to check with refular expression
+        pat10(str): the datetime pattern to check with refular expression
         filter_val(str): current single rule value
         datetime_variables(list): current rule variables of datetime type
         numeric_variables(list): current rule variables of numeric type
@@ -44,9 +48,6 @@ def filter_single_value(
         dataframe: filtered data
         bool: bool variable specifies if rule is datetime, numeric or character
     """
-
-    pat9 = r"(\d+-\d+-\d+ \d+:\d+:\d+)"
-    pat10 = r"(\d+/\d+/\d+ \d+:\d+:\d+)"
 
     # First check if the single ruleValue if of string type, then check if it is
     # of datetime type, numeric type or character type
