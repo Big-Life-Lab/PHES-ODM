@@ -9,11 +9,7 @@ from create_dataset import create_dataset
 # User Data:
 
 dataset = {
-    "AssayMethod": [
-        {
-            "assayMethodID": "Assay Y101",
-        }
-    ],
+    "AssayMethod": [{"assayMethodID": "Assay Y101",}],
     "Sample": [
         {
             "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -58,6 +54,7 @@ dataset = {
             "unit": "gcM",
             "unitOther": "gcMcovN2",
             "value": 145000,
+            "index": 160000,
         },
         {
             "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -67,6 +64,7 @@ dataset = {
             "unit": "gcMl",
             "unitOther": "gcMcovN1",
             "value": 16000,
+            "index": 170000,
         },
         {
             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -76,6 +74,7 @@ dataset = {
             "unit": "gcMl",
             "unitOther": "gcmnPMMoV",
             "value": 98000,
+            "index": 180000,
         },
     ],
 }
@@ -86,8 +85,7 @@ ORG_NAME = "PHAC"
 # FOR MULTIPLE TABLES: Tables `Sample` and `WWMeasure` are used.
 ## FOR SINGLE COLUMN FROM EACH TABLE OR ANY OF THE TABLE
 
-#
-
+# Rule 52 filters rows of each table by a single column and all values.
 rule_52 = [
     {
         "ruleID": "rule52",
@@ -99,13 +97,9 @@ rule_52 = [
     }
 ]
 
-output52 = {
+output_52 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [],
         "WWMeasure": [],
     },
@@ -160,6 +154,7 @@ output52 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -169,6 +164,7 @@ output52 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -178,6 +174,7 @@ output52 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -189,11 +186,11 @@ output52 = {
 }
 
 
-def test_method_52():
+def test_multiple_table_single_column_all_values():
     """
-    This method tests the function create_dataset against rule_52 with pytest.
+    Rule 52 filters rows of each table by a single column and all values.
     """
-    assert create_dataset(rule_52, data=dataset, org=ORG_NAME) == output52
+    assert create_dataset(rule_52, data=dataset, org=ORG_NAME) == output_52
 
 
 # Rule 53 filters rows based on a single column from each table and single
@@ -210,13 +207,9 @@ rule_53 = [
     }
 ]
 
-output53 = {
+output_53 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -250,6 +243,7 @@ output53 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -259,6 +253,7 @@ output53 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -291,6 +286,7 @@ output53 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -302,12 +298,12 @@ output53 = {
 }
 
 
-def test_method_53():
+def test_multiple_table_single_column_single_value_numeric():
     """
     Rule 53 filters rows based on a single column from each table and single
     value from each column or any of the columns being numeric.
     """
-    assert create_dataset(rule_53, data=dataset, org=ORG_NAME) == output53
+    assert create_dataset(rule_53, data=dataset, org=ORG_NAME) == output_53
 
 
 # Rule 54 filters rows based on a single column from each table and single
@@ -324,13 +320,9 @@ rule_54 = [
     }
 ]
 
-output54 = {
+output_54 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -364,6 +356,7 @@ output54 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -373,6 +366,7 @@ output54 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -405,6 +399,7 @@ output54 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -416,12 +411,12 @@ output54 = {
 }
 
 
-def test_method_54():
+def test_multiple_table_single_column_single_value_string():
     """
     Rule 54 filters rows based on a single column from each table and single
      value from each column or any of the columns being string.
     """
-    assert create_dataset(rule_54, data=dataset, org=ORG_NAME) == output54
+    assert create_dataset(rule_54, data=dataset, org=ORG_NAME) == output_54
 
 
 # Rule 55 filters rows based on a single column from each table and single
@@ -432,19 +427,15 @@ rule_55 = [
         "ruleID": "rule55",
         "table": "Sample;WWMeasure",
         "variable": "dateTimeStart;analysisDate",
-        "ruleValue": "2021-01-28 00:00:00;2021-01-28 21:00:00",
+        "ruleValue": "2021-01-28 00:00:00;2021-01-24 08:00:00",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output55 = {
+output_55 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -456,17 +447,6 @@ output55 = {
                 "sampleID": "Sample S100",
                 "type": "swrSed",
                 "collection": "mooreSw",
-            },
-            {
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sizeL": 2,
-                "storageTempC": 18,
-                "sampleID": "Sample S106",
-                "type": "pSludge",
-                "collection": "cpTP24h",
             },
             {
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
@@ -489,6 +469,7 @@ output55 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -498,13 +479,29 @@ output55 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"rows_removed": [], "table": "Sample"},
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        },
+                    ],
+                    "table": "Sample",
+                },
                 {
                     "rows_removed": [
                         {
@@ -515,6 +512,7 @@ output55 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -526,12 +524,12 @@ output55 = {
 }
 
 
-def test_method_55():
+def test_multiple_table_single_column_single_value_datetime():
     """
     Rule 55 filters rows based on a single column from each table and single
     value from each column or any of the columns being datetime.
     """
-    assert create_dataset(rule_55, data=dataset, org=ORG_NAME) == output55
+    assert create_dataset(rule_55, data=dataset, org=ORG_NAME) == output_55
 
 
 # Rule 56 filters rows based on a single column from each table and single
@@ -549,13 +547,9 @@ rule_56 = [
     }
 ]
 
-output56 = {
+output_56 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -589,6 +583,7 @@ output56 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             }
         ],
     },
@@ -621,6 +616,7 @@ output56 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -630,6 +626,7 @@ output56 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -641,13 +638,13 @@ output56 = {
 }
 
 
-def test_method_56():
+def test_multiple_table_single_column_interval_closed_closed_numeric():
     """
     Rule 56 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two numeric values with [].
     """
-    assert create_dataset(rule_56, data=dataset, org=ORG_NAME) == output56
+    assert create_dataset(rule_56, data=dataset, org=ORG_NAME) == output_56
 
 
 # Rule 57 filters rows based on a single column from each table and single
@@ -665,13 +662,9 @@ rule_57 = [
     }
 ]
 
-output57 = {
+output_57 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -705,6 +698,7 @@ output57 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -714,6 +708,7 @@ output57 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -746,6 +741,7 @@ output57 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -757,13 +753,13 @@ output57 = {
 }
 
 
-def test_method_57():
+def test_multiple_table_single_column_interval_open_open_numeric():
     """
     Rule 57 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two numeric values with ().
     """
-    assert create_dataset(rule_57, data=dataset, org=ORG_NAME) == output57
+    assert create_dataset(rule_57, data=dataset, org=ORG_NAME) == output_57
 
 
 # Rule 58 filters rows based on a single column from each table and single
@@ -782,13 +778,9 @@ rule_58 = [
 ]
 
 
-output58 = {
+output_58 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -822,6 +814,7 @@ output58 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             }
         ],
     },
@@ -854,6 +847,7 @@ output58 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -863,6 +857,7 @@ output58 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -874,13 +869,13 @@ output58 = {
 }
 
 
-def test_method_58():
+def test_multiple_table_single_column_interval_open_closed_numeric():
     """
     Rule 58 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two numeric values with (].
     """
-    assert create_dataset(rule_58, data=dataset, org=ORG_NAME) == output58
+    assert create_dataset(rule_58, data=dataset, org=ORG_NAME) == output_58
 
 
 # Rule 59 filters rows based on a single column from each table and single
@@ -892,31 +887,16 @@ rule_59 = [
         "ruleID": "rule59",
         "table": "Sample;WWMeasure",
         "variable": "fieldSampleTempC;value",
-        "ruleValue": "[76000,145000);[16.0,17.0)",
+        "ruleValue": "[76000,145000);[15.0,17.0)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output59 = {
+output_59 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
-            {
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sizeL": 8,
-                "storageTempC": 16,
-                "sampleID": "Sample S100",
-                "type": "swrSed",
-                "collection": "mooreSw",
-            },
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
@@ -949,6 +929,7 @@ output59 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -958,13 +939,29 @@ output59 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"rows_removed": [], "table": "Sample"},
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                    ],
+                    "table": "Sample",
+                },
                 {
                     "rows_removed": [
                         {
@@ -975,6 +972,7 @@ output59 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -986,13 +984,13 @@ output59 = {
 }
 
 
-def test_method_59():
+def test_multiple_table_single_column_interval_closed_open_numeric():
     """
     Rule 59 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two numeric values with [).
     """
-    assert create_dataset(rule_59, data=dataset, org=ORG_NAME) == output59
+    assert create_dataset(rule_59, data=dataset, org=ORG_NAME) == output_59
 
 
 # Rule 60 filters rows based on a single column from each table and single
@@ -1010,13 +1008,9 @@ rule_60 = [
     }
 ]
 
-output60 = {
+output_60 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -1039,6 +1033,7 @@ output60 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -1082,6 +1077,7 @@ output60 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -1091,6 +1087,7 @@ output60 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -1102,13 +1099,13 @@ output60 = {
 }
 
 
-def test_method_60():
+def test_multiple_table_single_column_interval_closed_closed_datetime():
     """
     Rule 60 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two datetime values with [].
     """
-    assert create_dataset(rule_60, data=dataset, org=ORG_NAME) == output60
+    assert create_dataset(rule_60, data=dataset, org=ORG_NAME) == output_60
 
 
 # Rule 61 filters rows based on a single column from each table and single
@@ -1126,13 +1123,9 @@ rule_61 = [
     }
 ]
 
-output61 = {
+output_61 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -1166,6 +1159,7 @@ output61 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             }
         ],
     },
@@ -1198,6 +1192,7 @@ output61 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -1207,6 +1202,7 @@ output61 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -1218,13 +1214,13 @@ output61 = {
 }
 
 
-def test_method_61():
+def test_multiple_table_single_column_interval_open_open_datetime():
     """
     Rule 61 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two datetime values with ().
     """
-    assert create_dataset(rule_61, data=dataset, org=ORG_NAME) == output61
+    assert create_dataset(rule_61, data=dataset, org=ORG_NAME) == output_61
 
 
 # Rule 62 filters rows based on a single column from each table and single
@@ -1242,13 +1238,9 @@ rule_62 = [
     }
 ]
 
-output62 = {
+output_62 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -1282,6 +1274,7 @@ output62 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -1291,6 +1284,7 @@ output62 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -1323,6 +1317,7 @@ output62 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -1334,13 +1329,13 @@ output62 = {
 }
 
 
-def test_method_62():
+def test_multiple_table_single_column_interval_open_closed_datetime():
     """
     Rule 62 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two datetime values with (].
     """
-    assert create_dataset(rule_62, data=dataset, org=ORG_NAME) == output62
+    assert create_dataset(rule_62, data=dataset, org=ORG_NAME) == output_62
 
 
 # Rule 63 filters rows based on a single column from each table and single
@@ -1358,13 +1353,9 @@ rule_63 = [
     }
 ]
 
-output63 = {
+output_63 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -1387,6 +1378,7 @@ output63 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -1396,6 +1388,7 @@ output63 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -1439,6 +1432,7 @@ output63 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -1450,13 +1444,13 @@ output63 = {
 }
 
 
-def test_method_63():
+def test_multiple_table_single_column_interval_closed_open_datetime():
     """
     Rule 63 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two datetime values with [).
     """
-    assert create_dataset(rule_63, data=dataset, org=ORG_NAME) == output63
+    assert create_dataset(rule_63, data=dataset, org=ORG_NAME) == output_63
 
 
 # Rule 64 filters rows based on a single column from each table and single
@@ -1468,19 +1462,15 @@ rule_64 = [
         "ruleID": "rule64",
         "table": "Sample;WWMeasure",
         "variable": "value;dateTimeStart",
-        "ruleValue": "(Inf,2021-01-28 8:00)",
+        "ruleValue": "(Inf,2021-01-28 8:00);(Inf, 17000)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output64 = {
+output_64 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -1503,15 +1493,7 @@ output64 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -1521,6 +1503,7 @@ output64 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -1554,7 +1537,21 @@ output64 = {
                     ],
                     "table": "Sample",
                 },
-                {"rows_removed": [], "table": "WWMeasure"},
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                            "index": 170000,
+                        },
+                    ],
+                    "table": "WWMeasure",
+                },
             ],
             "rule_id": "rule64",
         }
@@ -1562,13 +1559,13 @@ output64 = {
 }
 
 
-def test_method_64():
+def test_multiple_table_single_column_interval_open_open_lower_inf():
     """
     Rule 64 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two values where the lower bound limit is infinity with ().
     """
-    assert create_dataset(rule_64, data=dataset, org=ORG_NAME) == output64
+    assert create_dataset(rule_64, data=dataset, org=ORG_NAME) == output_64
 
 
 # Rule 65 filters rows based on a single column from each table and single
@@ -1580,19 +1577,15 @@ rule_65 = [
         "ruleID": "rule65",
         "table": "Sample;WWMeasure",
         "variable": "value;dateTimeStart",
-        "ruleValue": "(Inf,72000]",
+        "ruleValue": "(Inf,72000]; (Inf, 2021-01-24 08:00:00]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output65 = {
+output_65 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -1604,17 +1597,6 @@ output65 = {
                 "sampleID": "Sample S100",
                 "type": "swrSed",
                 "collection": "mooreSw",
-            },
-            {
-                "dateTime": Timestamp("2021-01-25 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
-                "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "sizeL": 2,
-                "storageTempC": 18,
-                "sampleID": "Sample S106",
-                "type": "pSludge",
-                "collection": "cpTP24h",
             },
             {
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
@@ -1637,6 +1619,7 @@ output65 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -1646,13 +1629,29 @@ output65 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"rows_removed": [], "table": "Sample"},
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-01-25 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
+                            "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
+                            "fieldSampleTempC": 17,
+                            "sizeL": 2,
+                            "storageTempC": 18,
+                            "sampleID": "Sample S106",
+                            "type": "pSludge",
+                            "collection": "cpTP24h",
+                        },
+                    ],
+                    "table": "Sample",
+                },
                 {
                     "rows_removed": [
                         {
@@ -1663,6 +1662,7 @@ output65 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -1674,13 +1674,13 @@ output65 = {
 }
 
 
-def test_method_65():
+def test_multiple_table_single_column_interval_open_closed_lower_inf():
     """
     Rule 65 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two values where the lower bound limit is infinity with (].
     """
-    assert create_dataset(rule_65, data=dataset, org=ORG_NAME) == output65
+    assert create_dataset(rule_65, data=dataset, org=ORG_NAME) == output_65
 
 
 # Rule 66 filters rows based on a single column from each table and single
@@ -1692,31 +1692,16 @@ rule_66 = [
         "ruleID": "rule66",
         "table": "Sample;WWMeasure",
         "variable": "value;dateTimeStart",
-        "ruleValue": "(98000, Inf)",
+        "ruleValue": "(98000, Inf);(2021-01-27 08:00:00,Inf)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output66 = {
+output_66 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
-            {
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sizeL": 8,
-                "storageTempC": 16,
-                "sampleID": "Sample S100",
-                "type": "swrSed",
-                "collection": "mooreSw",
-            },
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
@@ -1749,6 +1734,7 @@ output66 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -1758,13 +1744,29 @@ output66 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"rows_removed": [], "table": "Sample"},
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                    ],
+                    "table": "Sample",
+                },
                 {
                     "rows_removed": [
                         {
@@ -1775,6 +1777,7 @@ output66 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -1786,13 +1789,13 @@ output66 = {
 }
 
 
-def test_method_66():
+def test_multiple_table_single_column_interval_open_open_upper_inf():
     """
     Rule 66 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two values where the upper bound limit is infinity with ().
     """
-    assert create_dataset(rule_66, data=dataset, org=ORG_NAME) == output66
+    assert create_dataset(rule_66, data=dataset, org=ORG_NAME) == output_66
 
 
 # Rule 67 filters rows based on a single column from each table and single
@@ -1804,19 +1807,15 @@ rule_67 = [
         "ruleID": "rule67",
         "table": "Sample;WWMeasure",
         "variable": "value;dateTimeStart",
-        "ruleValue": "[2021-02-01 21:00, Inf)",
+        "ruleValue": "[2021-02-01 21:00, Inf);[145000,Inf)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output67 = {
+output_67 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -1843,15 +1842,6 @@ output67 = {
         ],
         "WWMeasure": [
             {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
                 "type": "covN2",
@@ -1859,6 +1849,7 @@ output67 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -1868,6 +1859,7 @@ output67 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -1890,7 +1882,21 @@ output67 = {
                     ],
                     "table": "Sample",
                 },
-                {"rows_removed": [], "table": "WWMeasure"},
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                            "index": 160000,
+                        },
+                    ],
+                    "table": "WWMeasure",
+                },
             ],
             "rule_id": "rule67",
         }
@@ -1898,13 +1904,13 @@ output67 = {
 }
 
 
-def test_method_67():
+def test_multiple_table_single_column_interval_closed_open_upper_inf():
     """
     Rule 67 filters rows based on a single column from each table and single
     value from each column or any of the columns being an interval between
     two values where the upper bound limit is infinity with [).
     """
-    assert create_dataset(rule_67, data=dataset, org=ORG_NAME) == output67
+    assert create_dataset(rule_67, data=dataset, org=ORG_NAME) == output_67
 
 
 # Rule 68 filters rows based on a single column from each table and multiple
@@ -1922,13 +1928,9 @@ rule_68 = [
     }
 ]
 
-output68 = {
+output_68 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
@@ -1951,6 +1953,7 @@ output68 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -1960,6 +1963,7 @@ output68 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -2003,6 +2007,7 @@ output68 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -2014,13 +2019,13 @@ output68 = {
 }
 
 
-def test_method_68():
+def test_multiple_table_single_column_multiple_values():
     """
     Rule 68 filters rows based on a single column from each table and multiple
     values from each column or any of the columns where one value could be
     an interval and other a single value.
     """
-    assert create_dataset(rule_68, data=dataset, org=ORG_NAME) == output68
+    assert create_dataset(rule_68, data=dataset, org=ORG_NAME) == output_68
 
 
 # For MULTIPLE TABLES:
@@ -2032,20 +2037,16 @@ rule_69 = [
     {
         "ruleID": "rule69",
         "table": "Sample;WWMeasure",
-        "variable": "value;dateTimeStart;analysisDate",
+        "variable": "value;dateTimeStart;analysisDate;dateTimeEnd",
         "ruleValue": "ALL",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output69 = {
+output_69 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [],
         "WWMeasure": [],
     },
@@ -2100,6 +2101,7 @@ output69 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -2109,6 +2111,7 @@ output69 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -2118,6 +2121,7 @@ output69 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -2129,11 +2133,11 @@ output69 = {
 }
 
 
-def test_method_69():
+def test_multiple_table_multiple_column_all_values():
     """
     Rule 69 filters rows based on multiple columns and all values of the rows.
     """
-    assert create_dataset(rule_69, data=dataset, org=ORG_NAME) == output69
+    assert create_dataset(rule_69, data=dataset, org=ORG_NAME) == output_69
 
 
 # Rule 70 filters rows based on multiple columns from each table and single
@@ -2143,20 +2147,16 @@ rule_70 = [
     {
         "ruleID": "rule70",
         "table": "Sample;WWMeasure",
-        "variable": "value;storageTempC;fieldSampleTempC",
-        "ruleValue": "16.0;98000",
+        "variable": "value;storageTempC;fieldSampleTempC;index",
+        "ruleValue": "16.0;98000;170000",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output70 = {
+output_70 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -2190,15 +2190,7 @@ output70 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
+                "index": 160000,
             },
         ],
     },
@@ -2224,6 +2216,16 @@ output70 = {
                 {
                     "rows_removed": [
                         {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                            "index": 170000,
+                        },
+                        {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
                             "type": "nPMMoV",
@@ -2231,7 +2233,8 @@ output70 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
-                        }
+                            "index": 180000,
+                        },
                     ],
                     "table": "WWMeasure",
                 },
@@ -2242,12 +2245,12 @@ output70 = {
 }
 
 
-def test_method_70():
+def test_multiple_table_multiple_column_single_value_numeric():
     """
     Rule 70 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being numeric.
     """
-    assert create_dataset(rule_70, data=dataset, org=ORG_NAME) == output70
+    assert create_dataset(rule_70, data=dataset, org=ORG_NAME) == output_70
 
 
 # Rule 71 filters rows based on multiple columns from each table and single
@@ -2264,13 +2267,9 @@ rule_71 = [
     }
 ]
 
-output71 = {
+output_71 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -2304,6 +2303,7 @@ output71 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -2313,6 +2313,7 @@ output71 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -2345,6 +2346,7 @@ output71 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -2356,12 +2358,12 @@ output71 = {
 }
 
 
-def test_method_71():
+def test_multiple_table_multiple_column_single_value_string():
     """
     Rule 71 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being string.
     """
-    assert create_dataset(rule_71, data=dataset, org=ORG_NAME) == output71
+    assert create_dataset(rule_71, data=dataset, org=ORG_NAME) == output_71
 
 
 # Rule 72 filters rows based on multiple columns from each table and single
@@ -2371,20 +2373,16 @@ rule_72 = [
     {
         "ruleID": "rule72",
         "table": "Sample;WWMeasure",
-        "variable": "analysisDate; dateTimeStart; dateTimeEnd",
+        "variable": "analysisDate; dateTimeStart; dateTimeEnd; reportDate",
         "ruleValue": "2021-01-25 ; 2021-01-27 8:00",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output72 = {
+output_72 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -2411,15 +2409,6 @@ output72 = {
         ],
         "WWMeasure": [
             {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-            {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
                 "type": "nPMMoV",
@@ -2427,6 +2416,7 @@ output72 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -2459,7 +2449,18 @@ output72 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
-                        }
+                            "index": 160000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                            "index": 170000,
+                        },
                     ],
                     "table": "WWMeasure",
                 },
@@ -2470,12 +2471,12 @@ output72 = {
 }
 
 
-def test_method_72():
+def test_multiple_table_multiple_column_single_value_datetime():
     """
     Rule 72 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being datetime.
     """
-    assert create_dataset(rule_72, data=dataset, org=ORG_NAME) == output72
+    assert create_dataset(rule_72, data=dataset, org=ORG_NAME) == output_72
 
 
 # Rule 73 filters rows based on multiple columns from each table and single
@@ -2486,20 +2487,16 @@ rule_73 = [
     {
         "ruleID": "rule73",
         "table": "Sample;WWMeasure",
-        "variable": "value;storageTempC;fieldSampleTempC",
-        "ruleValue": "[16.0, 17.0]; [98000,145000]",
+        "variable": "value;storageTempC;fieldSampleTempC; index",
+        "ruleValue": "[16.0, 17.0]; [98000,145000]; [175000, 180000]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output73 = {
+output_73 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
@@ -2522,6 +2519,7 @@ output73 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             }
         ],
     },
@@ -2565,6 +2563,7 @@ output73 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -2574,6 +2573,7 @@ output73 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -2585,13 +2585,13 @@ output73 = {
 }
 
 
-def test_method_73():
+def test_multiple_table_multiple_column_interval_closed_closed_numeric():
     """
     Rule 73 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval between two
     numbers with [].
     """
-    assert create_dataset(rule_73, data=dataset, org=ORG_NAME) == output73
+    assert create_dataset(rule_73, data=dataset, org=ORG_NAME) == output_73
 
 
 # Rule 74 filters rows based on multiple columns from each table and single
@@ -2602,20 +2602,16 @@ rule_74 = [
     {
         "ruleID": "rule74",
         "table": "Sample;WWMeasure",
-        "variable": "value;storageTempC;fieldSampleTempC",
-        "ruleValue": "(15.0, 17.0); (85000,145000)",
+        "variable": "value;storageTempC;fieldSampleTempC; index",
+        "ruleValue": "(15.0, 17.0); (85000,145000); (170000,190000)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output74 = {
+output_74 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -2649,6 +2645,7 @@ output74 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -2658,6 +2655,7 @@ output74 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -2690,6 +2688,7 @@ output74 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -2701,13 +2700,13 @@ output74 = {
 }
 
 
-def test_method_74():
+def test_multiple_table_multiple_column_interval_open_open_numeric():
     """
     Rule 74 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval between two
     numbers with ().
     """
-    assert create_dataset(rule_74, data=dataset, org=ORG_NAME) == output74
+    assert create_dataset(rule_74, data=dataset, org=ORG_NAME) == output_74
 
 
 # Rule 75 filters rows based on multiple columns from each table and single
@@ -2718,20 +2717,16 @@ rule_75 = [
     {
         "ruleID": "rule75",
         "table": "Sample;WWMeasure",
-        "variable": "value;storageTempC;fieldSampleTempC",
-        "ruleValue": "(15.0, 17.0]; (16000,145000]",
+        "variable": "value;storageTempC;fieldSampleTempC; index",
+        "ruleValue": "(15.0, 17.0]; (16000,145000]; (170000,180000]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output75 = {
+output_75 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
@@ -2754,6 +2749,7 @@ output75 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             }
         ],
     },
@@ -2797,6 +2793,7 @@ output75 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -2806,6 +2803,7 @@ output75 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -2817,13 +2815,13 @@ output75 = {
 }
 
 
-def test_method_75():
+def test_multiple_table_multiple_column_interval_open_closed_numeric():
     """
     Rule 75 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval between two
     numbers with (].
     """
-    assert create_dataset(rule_75, data=dataset, org=ORG_NAME) == output75
+    assert create_dataset(rule_75, data=dataset, org=ORG_NAME) == output_75
 
 
 # Rule 76 filters rows based on multiple columns from each table and single
@@ -2834,20 +2832,16 @@ rule_76 = [
     {
         "ruleID": "rule76",
         "table": "Sample;WWMeasure",
-        "variable": "value;storageTempC;fieldSampleTempC",
-        "ruleValue": "[16.0, 17.0); [98000,145000)",
+        "variable": "value;storageTempC;fieldSampleTempC; index",
+        "ruleValue": "[16.0, 17.0); [98000,145000); [170000,180000)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output76 = {
+output_76 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -2881,15 +2875,7 @@ output76 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
+                "index": 160000,
             },
         ],
     },
@@ -2915,6 +2901,16 @@ output76 = {
                 {
                     "rows_removed": [
                         {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                            "index": 170000,
+                        },
+                        {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
                             "type": "nPMMoV",
@@ -2922,7 +2918,8 @@ output76 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
-                        }
+                            "index": 180000,
+                        },
                     ],
                     "table": "WWMeasure",
                 },
@@ -2933,13 +2930,13 @@ output76 = {
 }
 
 
-def test_method_76():
+def test_multiple_table_multiple_column_interval_closed_open_numeric():
     """
     Rule 76 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval between two
     numbers with [).
     """
-    assert create_dataset(rule_76, data=dataset, org=ORG_NAME) == output76
+    assert create_dataset(rule_76, data=dataset, org=ORG_NAME) == output_76
 
 
 # Rule 77 filters rows based on multiple columns from each table and single
@@ -2950,20 +2947,16 @@ rule_77 = [
     {
         "ruleID": "rule77",
         "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
         "ruleValue": " [2021-01-27,2021-01-30]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output77 = {
+output_77 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -2986,6 +2979,7 @@ output77 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -2995,6 +2989,7 @@ output77 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -3038,6 +3033,7 @@ output77 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -3049,13 +3045,13 @@ output77 = {
 }
 
 
-def test_method_77():
+def test_multiple_table_multiple_column_interval_closed_closed_datetime():
     """
     Rule 77 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval between two
     datetime values with [].
     """
-    assert create_dataset(rule_77, data=dataset, org=ORG_NAME) == output77
+    assert create_dataset(rule_77, data=dataset, org=ORG_NAME) == output_77
 
 
 # Rule 78 filters rows based on multiple columns from each table and single
@@ -3066,20 +3062,16 @@ rule_78 = [
     {
         "ruleID": "rule78",
         "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate; reportDate",
         "ruleValue": "( 2021-01-30 8:00 , 2021-02-06 21:00)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output78 = {
+output_78 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -3095,15 +3087,6 @@ output78 = {
         ],
         "WWMeasure": [
             {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
                 "type": "covN2",
@@ -3111,6 +3094,7 @@ output78 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -3147,6 +3131,16 @@ output78 = {
                 {
                     "rows_removed": [
                         {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                            "index": 160000,
+                        },
+                        {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
                             "type": "nPMMoV",
@@ -3154,7 +3148,8 @@ output78 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
-                        }
+                            "index": 180000,
+                        },
                     ],
                     "table": "WWMeasure",
                 },
@@ -3165,13 +3160,13 @@ output78 = {
 }
 
 
-def test_method_78():
+def test_multiple_table_multiple_column_interval_open_open_datetime():
     """
     Rule 78 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval between two
     datetime values with ().
     """
-    assert create_dataset(rule_78, data=dataset, org=ORG_NAME) == output78
+    assert create_dataset(rule_78, data=dataset, org=ORG_NAME) == output_78
 
 
 # Rule 79 filters rows based on multiple columns from each table and single
@@ -3182,20 +3177,16 @@ rule_79 = [
     {
         "ruleID": "rule79",
         "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate; reportDate",
         "ruleValue": "( 2021-01-30 8:00 , 2021-02-06 21:00]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output79 = {
+output_79 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -3211,15 +3202,6 @@ output79 = {
         ],
         "WWMeasure": [
             {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
                 "type": "covN2",
@@ -3227,6 +3209,7 @@ output79 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -3263,6 +3246,16 @@ output79 = {
                 {
                     "rows_removed": [
                         {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                            "index": 160000,
+                        },
+                        {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
                             "type": "nPMMoV",
@@ -3270,7 +3263,8 @@ output79 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
-                        }
+                            "index": 180000,
+                        },
                     ],
                     "table": "WWMeasure",
                 },
@@ -3281,13 +3275,13 @@ output79 = {
 }
 
 
-def test_method_79():
+def test_multiple_table_multiple_column_interval_open_closed_datetime():
     """
     Rule 79 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval between two
     datetime values with (].
     """
-    assert create_dataset(rule_79, data=dataset, org=ORG_NAME) == output79
+    assert create_dataset(rule_79, data=dataset, org=ORG_NAME) == output_79
 
 
 # Rule 80 filters rows based on multiple columns from each table and single
@@ -3305,13 +3299,9 @@ rule_80 = [
     }
 ]
 
-output80 = {
+output_80 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -3334,6 +3324,7 @@ output80 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -3343,6 +3334,7 @@ output80 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -3386,7 +3378,8 @@ output80 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
-                        }
+                            "index": 180000,
+                        },
                     ],
                     "table": "WWMeasure",
                 },
@@ -3397,13 +3390,13 @@ output80 = {
 }
 
 
-def test_method_80():
+def test_multiple_table_multiple_column_interval_closed_open_datetime():
     """
     Rule 80 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval between two
     datetime values with [).
     """
-    assert create_dataset(rule_80, data=dataset, org=ORG_NAME) == output80
+    assert create_dataset(rule_80, data=dataset, org=ORG_NAME) == output_80
 
 
 # Rule 81 filters rows based on multiple columns from each table and single
@@ -3414,20 +3407,16 @@ rule_81 = [
     {
         "ruleID": "rule81",
         "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate; reportDate",
         "ruleValue": "(Inf, 2021-01-31)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output81 = {
+output_81 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [],
         "WWMeasure": [
             {
@@ -3438,6 +3427,7 @@ output81 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             }
         ],
     },
@@ -3492,6 +3482,7 @@ output81 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -3501,6 +3492,7 @@ output81 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -3512,13 +3504,13 @@ output81 = {
 }
 
 
-def test_method_81():
+def test_multiple_table_multiple_column_interval_open_open_lower_inf():
     """
     Rule 81 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval where the
     the lower bound limit is infinity with ().
     """
-    assert create_dataset(rule_81, data=dataset, org=ORG_NAME) == output81
+    assert create_dataset(rule_81, data=dataset, org=ORG_NAME) == output_81
 
 
 # Rule 82 filters rows based on multiple columns from each table and single
@@ -3529,20 +3521,16 @@ rule_82 = [
     {
         "ruleID": "rule82",
         "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate; reportDate",
         "ruleValue": "(Inf , 2021-01-28 8:00]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output82 = {
+output_82 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -3565,6 +3553,7 @@ output82 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             }
         ],
     },
@@ -3608,6 +3597,7 @@ output82 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -3617,6 +3607,7 @@ output82 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -3628,13 +3619,13 @@ output82 = {
 }
 
 
-def test_method_82():
+def test_multiple_table_multiple_column_interval_open_closed_lower_inf():
     """
     Rule 82 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval where the
     the lower bound limit is infinity with (].
     """
-    assert create_dataset(rule_82, data=dataset, org=ORG_NAME) == output82
+    assert create_dataset(rule_82, data=dataset, org=ORG_NAME) == output_82
 
 
 # Rule 83 filters rows based on multiple columns from each table and single
@@ -3645,20 +3636,16 @@ rule_83 = [
     {
         "ruleID": "rule83",
         "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
         "ruleValue": "(2021-01-25, Inf)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output83 = {
+output_83 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -3672,17 +3659,7 @@ output83 = {
                 "collection": "cpTP24h",
             }
         ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            }
-        ],
+        "WWMeasure": [],
     },
     "sharing_summary": [
         {
@@ -3717,6 +3694,16 @@ output83 = {
                 {
                     "rows_removed": [
                         {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                            "index": 160000,
+                        },
+                        {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
                             "reportDate": Timestamp("2021-01-25 00:00:00"),
                             "type": "covN2",
@@ -3724,6 +3711,7 @@ output83 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -3733,6 +3721,7 @@ output83 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -3744,13 +3733,13 @@ output83 = {
 }
 
 
-def test_method_83():
+def test_multiple_table_multiple_column_interval_open_open_upper_inf():
     """
     Rule 83 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval where the
     the upper bound limit is infinity with ().
     """
-    assert create_dataset(rule_83, data=dataset, org=ORG_NAME) == output83
+    assert create_dataset(rule_83, data=dataset, org=ORG_NAME) == output_83
 
 
 # Rule 84 filters rows based on multiple columns from each table and single
@@ -3761,20 +3750,16 @@ rule_84 = [
     {
         "ruleID": "rule84",
         "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
         "ruleValue": "[2021-02-01 21:00, Inf)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output84 = {
+output_84 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -3801,15 +3786,6 @@ output84 = {
         ],
         "WWMeasure": [
             {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
                 "type": "covN2",
@@ -3817,6 +3793,7 @@ output84 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -3842,6 +3819,16 @@ output84 = {
                 {
                     "rows_removed": [
                         {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                            "index": 160000,
+                        },
+                        {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
                             "type": "nPMMoV",
@@ -3849,7 +3836,8 @@ output84 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
-                        }
+                            "index": 180000,
+                        },
                     ],
                     "table": "WWMeasure",
                 },
@@ -3860,13 +3848,13 @@ output84 = {
 }
 
 
-def test_method_84():
+def test_multiple_table_multiple_column_interval_closed_open_upper_inf():
     """
     Rule 84 filters rows based on multiple columns from each table and single
     value from each column or any of the columns being an interval where the
     the upper bound limit is infinity with [).
     """
-    assert create_dataset(rule_84, data=dataset, org=ORG_NAME) == output84
+    assert create_dataset(rule_84, data=dataset, org=ORG_NAME) == output_84
 
 
 # Rule 85 filters rows based on multiple columns from each table and multiple
@@ -3877,20 +3865,16 @@ rule_85 = [
     {
         "ruleID": "rule85",
         "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;value;analysisDate",
+        "variable": "dateTimeStart;value;analysisDate;fieldSampleTempC",
         "ruleValue": "( 2021-01-30 8:00 , 2021-02-06 21:00] ; 145000",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output85 = {
+output_85 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -3924,6 +3908,7 @@ output85 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             }
         ],
     },
@@ -3956,6 +3941,7 @@ output85 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -3965,6 +3951,7 @@ output85 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -3976,13 +3963,13 @@ output85 = {
 }
 
 
-def test_method_85():
+def test_multiple_table_multiple_column_multiple_values():
     """
     Rule 85 filters rows based on multiple columns from each table and multiple
     values from each column or any of the columns where one value could be an
     interval and the other could be a single value.
     """
-    assert create_dataset(rule_85, data=dataset, org=ORG_NAME) == output85
+    assert create_dataset(rule_85, data=dataset, org=ORG_NAME) == output_85
 
 
 # For MULTIPLE TABLES:
@@ -4002,13 +3989,9 @@ rule_86 = [
     }
 ]
 
-output86 = {
+output_86 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [],
         "WWMeasure": [],
     },
@@ -4063,6 +4046,7 @@ output86 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -4072,6 +4056,7 @@ output86 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -4081,6 +4066,7 @@ output86 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -4092,12 +4078,12 @@ output86 = {
 }
 
 
-def test_method_86():
+def test_multiple_table_all_columns_all_values():
     """
     Rule 86 filters rows based on all columns from each table and all values
     of the rows.
     """
-    assert create_dataset(rule_86, data=dataset, org=ORG_NAME) == output86
+    assert create_dataset(rule_86, data=dataset, org=ORG_NAME) == output_86
 
 
 # Rule 87 filters rows based on all columns from each table and single value
@@ -4114,13 +4100,9 @@ rule_87 = [
     }
 ]
 
-output87 = {
+output_87 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -4154,6 +4136,7 @@ output87 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -4163,6 +4146,7 @@ output87 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -4195,6 +4179,7 @@ output87 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -4206,12 +4191,12 @@ output87 = {
 }
 
 
-def test_method_87():
+def test_multiple_table_all_columns_single_value_numeric():
     """
     Rule 87 filters rows based on all columns from each table and single value
     from each column or any of the columns being numeric.
     """
-    assert create_dataset(rule_87, data=dataset, org=ORG_NAME) == output87
+    assert create_dataset(rule_87, data=dataset, org=ORG_NAME) == output_87
 
 
 # Rule 88 filters rows based on all columns from each table and single value
@@ -4228,13 +4213,9 @@ rule_88 = [
     }
 ]
 
-output88 = {
+output_88 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -4257,6 +4238,7 @@ output88 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             }
         ],
     },
@@ -4300,6 +4282,7 @@ output88 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -4309,6 +4292,7 @@ output88 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -4320,12 +4304,12 @@ output88 = {
 }
 
 
-def test_method_88():
+def test_multiple_table_all_columns_single_value_string():
     """
     Rule 88 filters rows based on all columns from each table and single value
     from each column or any of the columns being string.
     """
-    assert create_dataset(rule_88, data=dataset, org=ORG_NAME) == output88
+    assert create_dataset(rule_88, data=dataset, org=ORG_NAME) == output_88
 
 
 # Rule 89 filters rows based on all columns from each table and single value
@@ -4342,13 +4326,9 @@ rule_89 = [
     }
 ]
 
-output89 = {
+output_89 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -4382,6 +4362,7 @@ output89 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             }
         ],
     },
@@ -4414,6 +4395,7 @@ output89 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -4423,6 +4405,7 @@ output89 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -4434,12 +4417,12 @@ output89 = {
 }
 
 
-def test_method_89():
+def test_multiple_table_all_columns_single_value_datetime():
     """
     Rule 89 filters rows based on all columns from each table and single value
     from each column or any of the columns being datetime.
     """
-    assert create_dataset(rule_89, data=dataset, org=ORG_NAME) == output89
+    assert create_dataset(rule_89, data=dataset, org=ORG_NAME) == output_89
 
 
 # Rule 90 filters rows based on all columns from each table and single value
@@ -4457,13 +4440,9 @@ rule_90 = [
     }
 ]
 
-output90 = {
+output_90 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [],
         "WWMeasure": [
             {
@@ -4474,6 +4453,7 @@ output90 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             }
         ],
     },
@@ -4528,6 +4508,7 @@ output90 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -4537,6 +4518,7 @@ output90 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -4548,13 +4530,13 @@ output90 = {
 }
 
 
-def test_method_90():
+def test_multiple_table_all_columns_interval_closed_closed_numeric():
     """
     Rule 90 filters rows based on all columns from each table and single value
     from each column or any of the columns being interval between two numbers
     with [].
     """
-    assert create_dataset(rule_90, data=dataset, org=ORG_NAME) == output90
+    assert create_dataset(rule_90, data=dataset, org=ORG_NAME) == output_90
 
 
 # Rule 91 filters rows based on all columns from each table and single value
@@ -4572,13 +4554,9 @@ rule_91 = [
     }
 ]
 
-output91 = {
+output_91 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -4612,6 +4590,7 @@ output91 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -4621,6 +4600,7 @@ output91 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -4653,6 +4633,7 @@ output91 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -4664,13 +4645,13 @@ output91 = {
 }
 
 
-def test_method_91():
+def test_multiple_table_all_columns_interval_open_open_numeric():
     """
     Rule 91 filters rows based on all columns from each table and single value
     from each column or any of the columns being interval between two numbers
     with ().
     """
-    assert create_dataset(rule_91, data=dataset, org=ORG_NAME) == output91
+    assert create_dataset(rule_91, data=dataset, org=ORG_NAME) == output_91
 
 
 # Rule 92 filters rows based on all columns from each table and single value
@@ -4688,13 +4669,9 @@ rule_92 = [
     }
 ]
 
-output92 = {
+output_92 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -4717,6 +4694,7 @@ output92 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -4726,6 +4704,7 @@ output92 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -4769,6 +4748,7 @@ output92 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -4780,13 +4760,13 @@ output92 = {
 }
 
 
-def test_method_92():
+def test_multiple_table_all_columns_interval_open_closed_numeric():
     """
     Rule 92 filters rows based on all columns from each table and single value
     from each column or any of the columns being interval between two numbers
     with (].
     """
-    assert create_dataset(rule_92, data=dataset, org=ORG_NAME) == output92
+    assert create_dataset(rule_92, data=dataset, org=ORG_NAME) == output_92
 
 
 # Rule 93 filters rows based on all columns from each table and single value
@@ -4804,13 +4784,9 @@ rule_93 = [
     }
 ]
 
-output93 = {
+output_93 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
@@ -4833,6 +4809,7 @@ output93 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -4842,6 +4819,7 @@ output93 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -4885,6 +4863,7 @@ output93 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -4896,13 +4875,13 @@ output93 = {
 }
 
 
-def test_method_93():
+def test_multiple_table_all_columns_interval_closed_open_numeric():
     """
     Rule 93 filters rows based on all columns from each table and single value
     from each column or any of the columns being interval between two numbers
     with [).
     """
-    assert create_dataset(rule_93, data=dataset, org=ORG_NAME) == output93
+    assert create_dataset(rule_93, data=dataset, org=ORG_NAME) == output_93
 
 
 # Rule 94 filters rows based on all columns from each table and single value
@@ -4920,13 +4899,9 @@ rule_94 = [
     }
 ]
 
-output94 = {
+output_94 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -4949,6 +4924,7 @@ output94 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -4958,6 +4934,7 @@ output94 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -5001,6 +4978,7 @@ output94 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -5012,13 +4990,13 @@ output94 = {
 }
 
 
-def test_method_94():
+def test_multiple_table_all_columns_interval_closed_closed_datetime():
     """
     Rule 94 filters rows based on all columns from each table and single value
     from each column or any of the columns being interval between two datetime
     with [].
     """
-    assert create_dataset(rule_94, data=dataset, org=ORG_NAME) == output94
+    assert create_dataset(rule_94, data=dataset, org=ORG_NAME) == output_94
 
 
 # Rule 95 filters rows based on all columns from each table and single value
@@ -5036,13 +5014,9 @@ rule_95 = [
     }
 ]
 
-output95 = {
+output_95 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -5065,6 +5039,7 @@ output95 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
         ],
     },
@@ -5108,6 +5083,7 @@ output95 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -5117,6 +5093,7 @@ output95 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -5128,13 +5105,13 @@ output95 = {
 }
 
 
-def test_method_95():
+def test_multiple_table_all_columns_interval_open_open_datetime():
     """
     Rule 95 filters rows based on all columns from each table and single value
     from each column or any of the columns being interval between two datetime
     with ().
     """
-    assert create_dataset(rule_95, data=dataset, org=ORG_NAME) == output95
+    assert create_dataset(rule_95, data=dataset, org=ORG_NAME) == output_95
 
 
 # Rule 96 filters rows based on all columns from each table and single value
@@ -5152,13 +5129,9 @@ rule_96 = [
     }
 ]
 
-output96 = {
+output_96 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -5181,6 +5154,7 @@ output96 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -5190,6 +5164,7 @@ output96 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -5233,6 +5208,7 @@ output96 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -5244,13 +5220,13 @@ output96 = {
 }
 
 
-def test_method_96():
+def test_multiple_table_all_columns_interval_closed_open_datetime():
     """
     Rule 96 filters rows based on all columns from each table and single value
     from each column or any of the columns being interval between two datetime
     with [).
     """
-    assert create_dataset(rule_96, data=dataset, org=ORG_NAME) == output96
+    assert create_dataset(rule_96, data=dataset, org=ORG_NAME) == output_96
 
 
 # Rule 97 filters rows based on all columns from each table and single value
@@ -5268,13 +5244,9 @@ rule_97 = [
     }
 ]
 
-output97 = {
+output_97 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -5297,6 +5269,7 @@ output97 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -5306,6 +5279,7 @@ output97 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -5349,6 +5323,7 @@ output97 = {
                             "unit": "gcMl",
                             "unitOther": "gcMcovN1",
                             "value": 16000,
+                            "index": 170000,
                         }
                     ],
                     "table": "WWMeasure",
@@ -5360,13 +5335,13 @@ output97 = {
 }
 
 
-def test_method_97():
+def test_multiple_table_all_columns_interval_open_closed_datetime():
     """
     Rule 97 filters rows based on all columns from each table and single value
     from each column or any of the columns being interval between two datetime
     with (].
     """
-    assert create_dataset(rule_97, data=dataset, org=ORG_NAME) == output97
+    assert create_dataset(rule_97, data=dataset, org=ORG_NAME) == output_97
 
 
 # Rule 98 filters rows based on all columns from each table and single value
@@ -5378,19 +5353,15 @@ rule_98 = [
         "ruleID": "rule98",
         "table": "Sample;WWMeasure",
         "variable": "ALL",
-        "ruleValue": "(Inf , 8.0)",
+        "ruleValue": "(Inf , 8.0);(Inf,2021-01-26 00:00:00)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output98 = {
+output_98 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -5417,24 +5388,6 @@ output98 = {
         ],
         "WWMeasure": [
             {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-            {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
                 "type": "nPMMoV",
@@ -5442,6 +5395,7 @@ output98 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -5464,7 +5418,31 @@ output98 = {
                     ],
                     "table": "Sample",
                 },
-                {"rows_removed": [], "table": "WWMeasure"},
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                            "index": 160000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                            "index": 170000,
+                        },
+                    ],
+                    "table": "WWMeasure",
+                },
             ],
             "rule_id": "rule98",
         }
@@ -5472,13 +5450,13 @@ output98 = {
 }
 
 
-def test_method_98():
+def test_multiple_table_all_columns_interval_open_open_lower_inf():
     """
     Rule 98 filters rows based on all columns from each table and single value
     from each column or any of the columns being an interval where the
     the lower bound limit is infinity with ().
     """
-    assert create_dataset(rule_98, data=dataset, org=ORG_NAME) == output98
+    assert create_dataset(rule_98, data=dataset, org=ORG_NAME) == output_98
 
 
 # Rule 99 filters rows based on all columns from each table and single value
@@ -5490,19 +5468,15 @@ rule_99 = [
         "ruleID": "rule99",
         "table": "Sample;WWMeasure",
         "variable": "ALL",
-        "ruleValue": "(Inf , 4.0]",
+        "ruleValue": "(Inf , 4.0];(Inf,2021-01-26 08:00:00]",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output99 = {
+output_99 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
@@ -5529,24 +5503,6 @@ output99 = {
         ],
         "WWMeasure": [
             {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-            },
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            },
-            {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
                 "type": "nPMMoV",
@@ -5554,6 +5510,7 @@ output99 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -5576,7 +5533,31 @@ output99 = {
                     ],
                     "table": "Sample",
                 },
-                {"rows_removed": [], "table": "WWMeasure"},
+                {
+                    "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                            "index": 160000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                            "index": 170000,
+                        },
+                    ],
+                    "table": "WWMeasure",
+                },
             ],
             "rule_id": "rule99",
         }
@@ -5584,13 +5565,13 @@ output99 = {
 }
 
 
-def test_method_99():
+def test_multiple_table_all_columns_interval_open_closed_lower_inf():
     """
     Rule 99 filters rows based on all columns from each table and single value
     from each column or any of the columns being an interval where the
     the lower bound limit is infinity with (].
     """
-    assert create_dataset(rule_99, data=dataset, org=ORG_NAME) == output99
+    assert create_dataset(rule_99, data=dataset, org=ORG_NAME) == output_99
 
 
 # Rule 100 filters rows based on all columns from each table and single value
@@ -5602,31 +5583,16 @@ rule_100 = [
         "ruleID": "rule100",
         "table": "Sample;WWMeasure",
         "variable": "ALL",
-        "ruleValue": "(92000,Inf)",
+        "ruleValue": "(92000,Inf);(2021-02-01 08:00:00, Inf)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output100 = {
+output_100 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
-            {
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sizeL": 8,
-                "storageTempC": 16,
-                "sampleID": "Sample S100",
-                "type": "swrSed",
-                "collection": "mooreSw",
-            },
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
@@ -5650,22 +5616,27 @@ output100 = {
                 "collection": "grb",
             },
         ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            }
-        ],
+        "WWMeasure": [],
     },
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"rows_removed": [], "table": "Sample"},
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                    ],
+                    "table": "Sample",
+                },
                 {
                     "rows_removed": [
                         {
@@ -5676,6 +5647,17 @@ output100 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                            "index": 170000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -5685,6 +5667,7 @@ output100 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -5696,13 +5679,13 @@ output100 = {
 }
 
 
-def test_method_100():
+def test_multiple_table_all_columns_interval_open_open_upper_inf():
     """
     Rule 100 filters rows based on all columns from each table and single value
     from each column or any of the columns being an interval where the
     the upper bound limit is infinity with ().
     """
-    assert create_dataset(rule_100, data=dataset, org=ORG_NAME) == output100
+    assert create_dataset(rule_100, data=dataset, org=ORG_NAME) == output_100
 
 
 # Rule 101 filters rows based on all columns from each table and single value
@@ -5714,31 +5697,16 @@ rule_101 = [
         "ruleID": "rule101",
         "table": "Sample;WWMeasure",
         "variable": "ALL",
-        "ruleValue": "[98000,Inf)",
+        "ruleValue": "[98000,Inf);[2021-02-01 21:00:00,Inf)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output101 = {
+output_101 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
-            {
-                "dateTime": Timestamp("2021-02-01 21:00:00"),
-                "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
-                "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "sizeL": 8,
-                "storageTempC": 16,
-                "sampleID": "Sample S100",
-                "type": "swrSed",
-                "collection": "mooreSw",
-            },
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
@@ -5762,22 +5730,27 @@ output101 = {
                 "collection": "grb",
             },
         ],
-        "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-28 00:00:00"),
-                "reportDate": Timestamp("2021-01-25 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcMl",
-                "unitOther": "gcMcovN1",
-                "value": 16000,
-            }
-        ],
+        "WWMeasure": [],
     },
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"rows_removed": [], "table": "Sample"},
+                {
+                    "rows_removed": [
+                        {
+                            "dateTime": Timestamp("2021-02-01 21:00:00"),
+                            "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
+                            "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
+                            "fieldSampleTempC": 15,
+                            "sizeL": 8,
+                            "storageTempC": 16,
+                            "sampleID": "Sample S100",
+                            "type": "swrSed",
+                            "collection": "mooreSw",
+                        },
+                    ],
+                    "table": "Sample",
+                },
                 {
                     "rows_removed": [
                         {
@@ -5788,6 +5761,17 @@ output101 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
+                        },
+                        {
+                            "analysisDate": Timestamp("2021-01-28 00:00:00"),
+                            "reportDate": Timestamp("2021-01-25 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcMl",
+                            "unitOther": "gcMcovN1",
+                            "value": 16000,
+                            "index": 170000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -5797,6 +5781,7 @@ output101 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -5808,13 +5793,13 @@ output101 = {
 }
 
 
-def test_method_101():
+def test_multiple_table_all_columns_interval_closed_open_upper_inf():
     """
     Rule 101 filters rows based on all columns from each table and single value
     from each column or any of the columns being an interval where the
     the upper bound limit is infinity with [).
     """
-    assert create_dataset(rule_101, data=dataset, org=ORG_NAME) == output101
+    assert create_dataset(rule_101, data=dataset, org=ORG_NAME) == output_101
 
 
 # Rule 102 filters rows based on all columns from each table and multiple
@@ -5832,13 +5817,9 @@ rule_102 = [
     }
 ]
 
-output102 = {
+output_102 = {
     "filtered_data": {
-        "AssayMethod": [
-            {
-                "assayMethodID": "Assay Y101",
-            }
-        ],
+        "AssayMethod": [{"assayMethodID": "Assay Y101",}],
         "Sample": [
             {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
@@ -5861,6 +5842,7 @@ output102 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             }
         ],
     },
@@ -5904,6 +5886,7 @@ output102 = {
                             "unit": "gcM",
                             "unitOther": "gcMcovN2",
                             "value": 145000,
+                            "index": 160000,
                         },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -5913,6 +5896,7 @@ output102 = {
                             "unit": "gcMl",
                             "unitOther": "gcmnPMMoV",
                             "value": 98000,
+                            "index": 180000,
                         },
                     ],
                     "table": "WWMeasure",
@@ -5924,10 +5908,11 @@ output102 = {
 }
 
 
-def test_method_102():
+def test_multiple_table_all_columns_multiple_values():
     """
     Rule 102 filters rows based on all columns from each table and multiple
     values from each column or any of the columns where one value could be
     an interval and the other could be a single value.
     """
-    assert create_dataset(rule_102, data=dataset, org=ORG_NAME) == output102
+    assert create_dataset(rule_102, data=dataset, org=ORG_NAME) == output_102
+
