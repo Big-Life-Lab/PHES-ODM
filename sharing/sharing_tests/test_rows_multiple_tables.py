@@ -3292,7 +3292,7 @@ rule_80 = [
     {
         "ruleID": "rule80",
         "table": "Sample;WWMeasure",
-        "variable": "dateTimeStart;dateTimeEnd;analysisDate",
+        "variable": "dateTimeStart;dateTimeEnd;analysisDate;reportDate",
         "ruleValue": "[2021-01-29 00:00 , 2021-02-06 21:00)",
         "direction": "row",
         "sharedWith": "Public;PHAC",
@@ -3316,16 +3316,6 @@ output_80 = {
             }
         ],
         "WWMeasure": [
-            {
-                "analysisDate": Timestamp("2021-01-25 00:00:00"),
-                "reportDate": Timestamp("2021-02-06 00:00:00"),
-                "type": "covN2",
-                "uWwMeasureID": "Measure WW100",
-                "unit": "gcM",
-                "unitOther": "gcMcovN2",
-                "value": 145000,
-                "index": 160000,
-            },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -3370,6 +3360,16 @@ output_80 = {
                 },
                 {
                     "rows_removed": [
+                        {
+                            "analysisDate": Timestamp("2021-01-25 00:00:00"),
+                            "reportDate": Timestamp("2021-02-06 00:00:00"),
+                            "type": "covN2",
+                            "uWwMeasureID": "Measure WW100",
+                            "unit": "gcM",
+                            "unitOther": "gcMcovN2",
+                            "value": 145000,
+                            "index": 160000,
+                        },
                         {
                             "analysisDate": Timestamp("2021-02-06 00:00:00"),
                             "reportDate": Timestamp("2021-03-06 00:00:00"),
