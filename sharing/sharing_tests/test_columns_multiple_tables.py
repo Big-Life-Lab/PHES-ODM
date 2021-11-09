@@ -162,7 +162,6 @@ output_52 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "fieldSampleTempC": [
@@ -277,7 +276,6 @@ output_53 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "fieldSampleTempC": [
@@ -392,7 +390,6 @@ output_54 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "type": [
@@ -507,7 +504,6 @@ output_55 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -641,7 +637,6 @@ output_56 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "fieldSampleTempC": [
@@ -758,7 +753,6 @@ output_57 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "fieldSampleTempC": [
@@ -876,7 +870,6 @@ output_58 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "fieldSampleTempC": [
@@ -993,7 +986,6 @@ output_59 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "fieldSampleTempC": [
@@ -1110,7 +1102,6 @@ output_60 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -1245,7 +1236,6 @@ output_61 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -1380,7 +1370,6 @@ output_62 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -1515,7 +1504,6 @@ output_63 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -1650,7 +1638,6 @@ output_64 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -1776,7 +1763,6 @@ output_65 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -1902,7 +1888,6 @@ output_66 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -2028,7 +2013,6 @@ output_67 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -2154,7 +2138,6 @@ output_68 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -2275,7 +2258,6 @@ output_69 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeEnd": [
@@ -2426,7 +2408,6 @@ output_70 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "storageTempC": [
@@ -2546,7 +2527,6 @@ output_71 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "type": [
@@ -2658,7 +2638,6 @@ output_72 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -2803,7 +2782,6 @@ output_73 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "fieldSampleTempC": [
@@ -2930,7 +2908,6 @@ output_74 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "storageTempC": [
@@ -3049,7 +3026,6 @@ output_75 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "fieldSampleTempC": [
@@ -3176,7 +3152,6 @@ output_76 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "storageTempC": [
@@ -3295,7 +3270,6 @@ output_77 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeEnd": [
@@ -3438,7 +3412,6 @@ output_78 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeEnd": [
@@ -3595,7 +3568,6 @@ output_79 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeEnd": [
@@ -3752,7 +3724,6 @@ output_80 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeEnd": [
@@ -3909,7 +3880,6 @@ output_81 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeEnd": [
@@ -4066,7 +4036,6 @@ output_82 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeEnd": [
@@ -4223,7 +4192,6 @@ output_83 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeEnd": [
@@ -4383,7 +4351,6 @@ output_84 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -4529,7 +4496,6 @@ output_85 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTimeStart": [
@@ -4615,7 +4581,6 @@ output_86 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "collection": [
@@ -4845,7 +4810,6 @@ output_87 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "fieldSampleTempC": [
@@ -4954,7 +4918,6 @@ output_88 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "collection": [
@@ -5073,7 +5036,6 @@ output_89 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTime": [
@@ -5229,7 +5191,6 @@ output_90 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "fieldSampleTempC": [
@@ -5353,7 +5314,6 @@ output_91 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "sizeL": [
@@ -5475,7 +5435,6 @@ output_92 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "sizeL": [
@@ -5586,7 +5545,6 @@ output_93 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "fieldSampleTempC": [
@@ -5707,7 +5665,6 @@ output_94 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTime": [
@@ -5861,7 +5818,6 @@ output_95 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTime": [
@@ -6032,7 +5988,6 @@ output_96 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTime": [
@@ -6189,7 +6144,6 @@ output_97 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTime": [
@@ -6340,7 +6294,6 @@ output_98 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTime": [
@@ -6510,7 +6463,6 @@ output_99 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTime": [
@@ -6683,7 +6635,6 @@ output_100 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTime": [
@@ -6842,7 +6793,6 @@ output_101 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTime": [
@@ -6998,7 +6948,6 @@ output_102 = {
     "sharing_summary": [
         {
             "entities_filtered": [
-                {"columns_removed": {}, "table": "AssayMethod"},
                 {
                     "columns_removed": {
                         "dateTime": [

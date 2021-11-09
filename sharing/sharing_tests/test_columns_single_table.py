@@ -28,7 +28,7 @@ dataset = {
             "sizeL": 2,
             "storageTempC": 18,
             "type": "pSludge",
-            "sampleID": "Sample S102",
+            "sampleID": "Sample S106",
             "collection": "cpTP24h",
         },
         {
@@ -39,7 +39,7 @@ dataset = {
             "sizeL": 10,
             "storageTempC": 22,
             "type": "rawWW",
-            "sampleID": "Sample S103",
+            "sampleID": "Sample S107",
             "collection": "grb",
         },
     ],
@@ -114,7 +114,6 @@ output_1 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule1",
         }
@@ -191,7 +190,6 @@ output_2 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule2",
         }
@@ -268,7 +266,6 @@ output_3 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule3",
         }
@@ -355,7 +352,6 @@ output_4 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule4",
         }
@@ -434,7 +430,6 @@ output_5 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule5",
         }
@@ -513,7 +508,6 @@ output_6 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule6",
         }
@@ -592,7 +586,6 @@ output_7 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule7",
         }
@@ -671,7 +664,6 @@ output_8 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule8",
         }
@@ -759,7 +751,6 @@ output_9 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule9",
         }
@@ -847,7 +838,6 @@ output_10 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule10",
         }
@@ -935,7 +925,6 @@ output_11 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule11",
         }
@@ -1023,7 +1012,6 @@ output_12 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule12",
         }
@@ -1111,7 +1099,6 @@ output_13 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule13",
         }
@@ -1199,7 +1186,6 @@ output_14 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule14",
         }
@@ -1287,7 +1273,6 @@ output_15 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule15",
         }
@@ -1375,7 +1360,6 @@ output_16 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule16",
         }
@@ -1454,7 +1438,6 @@ output_17 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule17",
         }
@@ -1538,7 +1521,6 @@ output_18 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule18",
         }
@@ -1618,7 +1600,6 @@ output_19 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule19",
         }
@@ -1699,7 +1680,6 @@ output_20 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule20",
         }
@@ -1787,7 +1767,6 @@ output_21 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule21",
         }
@@ -1869,7 +1848,6 @@ output_22 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule22",
         }
@@ -1952,7 +1930,6 @@ output_23 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule23",
         }
@@ -2036,7 +2013,6 @@ output_24 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule24",
         }
@@ -2119,7 +2095,6 @@ output_25 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule25",
         }
@@ -2220,7 +2195,6 @@ output_26 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule26",
         }
@@ -2310,7 +2284,6 @@ output_27 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule27",
         }
@@ -2411,7 +2384,6 @@ output_28 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule28",
         }
@@ -2512,7 +2484,6 @@ output_29 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule29",
         }
@@ -2613,7 +2584,6 @@ output_30 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule30",
         }
@@ -2714,7 +2684,6 @@ output_31 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule31",
         }
@@ -2815,7 +2784,6 @@ output_32 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule32",
         }
@@ -2905,7 +2873,6 @@ output_33 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule33",
         }
@@ -2987,7 +2954,6 @@ output_34 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule34",
         }
@@ -3101,7 +3067,6 @@ output_35 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule35",
         }
@@ -3181,7 +3146,6 @@ output_36 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule36",
         }
@@ -3262,7 +3226,6 @@ output_37 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule37",
         }
@@ -3372,7 +3335,6 @@ output_38 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule38",
         }
@@ -3463,7 +3425,6 @@ output_39 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule39_1",
         },
@@ -3484,7 +3445,6 @@ output_39 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule39_2",
         },
@@ -3570,7 +3530,6 @@ output_40 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule40",
         }
@@ -3656,7 +3615,6 @@ output_41 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule41",
         }
@@ -3740,7 +3698,6 @@ output_42 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule42",
         }
@@ -3852,7 +3809,6 @@ output_43 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule43",
         }
@@ -3965,7 +3921,6 @@ output_44 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule44",
         }
@@ -4078,7 +4033,6 @@ output_45 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule45",
         }
@@ -4191,7 +4145,6 @@ output_46 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule46",
         }
@@ -4302,7 +4255,6 @@ output_47 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule47",
         }
@@ -4412,7 +4364,6 @@ output_48 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule48",
         }
@@ -4491,7 +4442,6 @@ output_49 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule49",
         }
@@ -4570,7 +4520,6 @@ output_50 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule50",
         }
@@ -4682,7 +4631,6 @@ output_51 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule51",
         }
