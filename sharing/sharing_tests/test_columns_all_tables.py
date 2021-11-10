@@ -52,6 +52,7 @@ dataset = {
             "uWwMeasureID": "Measure WW100",
             "unit": "gcM",
             "unitOther": "gcMcovN2",
+            "index": 160000,
             "value": 145000,
         },
         {
@@ -61,6 +62,7 @@ dataset = {
             "uWwMeasureID": "Measure WW100",
             "unit": "gcMl",
             "unitOther": "gcMcovN1",
+            "index": 170000,
             "value": 16000,
         },
         {
@@ -70,6 +72,7 @@ dataset = {
             "uWwMeasureID": "Measure WW100",
             "unit": "gcMl",
             "unitOther": "gcmnPMMoV",
+            "index": 180000,
             "value": 98000,
         },
     ],
@@ -136,6 +139,7 @@ output_103 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -144,6 +148,7 @@ output_103 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -152,6 +157,7 @@ output_103 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -249,6 +255,7 @@ output_104 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -257,6 +264,7 @@ output_104 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -265,6 +273,7 @@ output_104 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -362,6 +371,7 @@ output_105 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -370,6 +380,7 @@ output_105 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -378,6 +389,7 @@ output_105 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -475,6 +487,7 @@ output_106 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -483,6 +496,7 @@ output_106 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -491,6 +505,7 @@ output_106 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -607,6 +622,7 @@ output_107 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -615,6 +631,7 @@ output_107 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -623,6 +640,7 @@ output_107 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -722,6 +740,7 @@ output_108 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -730,6 +749,7 @@ output_108 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -738,6 +758,7 @@ output_108 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -838,6 +859,7 @@ output_109 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -846,6 +868,7 @@ output_109 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -854,6 +877,7 @@ output_109 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -953,6 +977,7 @@ output_110 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -961,6 +986,7 @@ output_110 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -969,6 +995,7 @@ output_110 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -1068,6 +1095,7 @@ output_111 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -1076,6 +1104,7 @@ output_111 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -1084,6 +1113,7 @@ output_111 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -1201,6 +1231,7 @@ output_112 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -1209,6 +1240,7 @@ output_112 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -1217,6 +1249,7 @@ output_112 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -1334,6 +1367,7 @@ output_113 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -1342,6 +1376,7 @@ output_113 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -1350,6 +1385,7 @@ output_113 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -1467,6 +1503,7 @@ output_114 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -1475,6 +1512,7 @@ output_114 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -1483,6 +1521,7 @@ output_114 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -1600,6 +1639,7 @@ output_115 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -1608,6 +1648,7 @@ output_115 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -1616,6 +1657,7 @@ output_115 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -1724,6 +1766,7 @@ output_116 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -1732,6 +1775,7 @@ output_116 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -1740,6 +1784,7 @@ output_116 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -1848,6 +1893,7 @@ output_117 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -1856,6 +1902,7 @@ output_117 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -1864,6 +1911,7 @@ output_117 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -1972,6 +2020,7 @@ output_118 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -1980,6 +2029,7 @@ output_118 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -1988,6 +2038,7 @@ output_118 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -2096,6 +2147,7 @@ output_119 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -2104,6 +2156,7 @@ output_119 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -2112,6 +2165,7 @@ output_119 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -2217,6 +2271,7 @@ output_120 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -2224,6 +2279,7 @@ output_120 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -2231,6 +2287,7 @@ output_120 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -2364,6 +2421,7 @@ output_121 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -2372,6 +2430,7 @@ output_121 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -2380,6 +2439,7 @@ output_121 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -2398,11 +2458,6 @@ output_121 = {
                 },
                 {
                     "columns_removed": {
-                        "index": [
-                            {"uWwMeasureID": "Measure WW100", "index": 160000},
-                            {"uWwMeasureID": "Measure WW100", "value": 170000},
-                            {"uWwMeasureID": "Measure WW100", "value": 180000},
-                        ],
                         "value": [
                             {"uWwMeasureID": "Measure WW100", "value": 145000},
                             {"uWwMeasureID": "Measure WW100", "value": 16000},
@@ -2482,6 +2537,7 @@ output_122 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -2490,6 +2546,7 @@ output_122 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -2498,6 +2555,7 @@ output_122 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -2594,6 +2652,7 @@ output_123 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -2601,6 +2660,7 @@ output_123 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -2608,6 +2668,7 @@ output_123 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -3219,6 +3280,7 @@ output_128 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -3227,6 +3289,7 @@ output_128 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -3235,6 +3298,7 @@ output_128 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -3362,6 +3426,7 @@ output_129 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -3369,6 +3434,7 @@ output_129 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -3376,6 +3442,7 @@ output_129 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -3517,6 +3584,7 @@ output_130 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -3524,6 +3592,7 @@ output_130 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -3531,6 +3600,7 @@ output_130 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -3672,6 +3742,7 @@ output_131 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -3679,6 +3750,7 @@ output_131 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -3686,6 +3758,7 @@ output_131 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -3827,6 +3900,7 @@ output_132 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -3834,6 +3908,7 @@ output_132 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -3841,6 +3916,7 @@ output_132 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -3982,6 +4058,7 @@ output_133 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -3989,6 +4066,7 @@ output_133 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -3996,6 +4074,7 @@ output_133 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -4137,6 +4216,7 @@ output_134 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -4144,6 +4224,7 @@ output_134 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -4151,6 +4232,7 @@ output_134 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -4295,6 +4377,7 @@ output_135 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -4302,6 +4385,7 @@ output_135 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -4309,6 +4393,7 @@ output_135 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -4439,6 +4524,7 @@ output_136 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -4446,6 +4532,7 @@ output_136 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -4453,6 +4540,7 @@ output_136 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -4667,6 +4755,11 @@ output_137 = {
                             {"uWwMeasureID": "Measure WW100", "unitOther": "gcMcovN1"},
                             {"uWwMeasureID": "Measure WW100", "unitOther": "gcmnPMMoV"},
                         ],
+                        "index": [
+                            {"index": 160000, "uWwMeasureID": "Measure WW100"},
+                            {"index": 170000, "uWwMeasureID": "Measure WW100"},
+                            {"index": 180000, "uWwMeasureID": "Measure WW100"},
+                        ],
                         "value": [
                             {"uWwMeasureID": "Measure WW100", "value": 145000},
                             {"uWwMeasureID": "Measure WW100", "value": 16000},
@@ -4746,6 +4839,7 @@ output_138 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -4754,6 +4848,7 @@ output_138 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -4762,6 +4857,7 @@ output_138 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -4855,6 +4951,7 @@ output_139 = {
                 "type": "covN2",
                 "uWwMeasureID": "Measure WW100",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -4862,6 +4959,7 @@ output_139 = {
                 "type": "covN2",
                 "uWwMeasureID": "Measure WW100",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -4869,6 +4967,7 @@ output_139 = {
                 "type": "nPMMoV",
                 "uWwMeasureID": "Measure WW100",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -4972,6 +5071,7 @@ output_140 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -4979,6 +5079,7 @@ output_140 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -4986,6 +5087,7 @@ output_140 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -5124,6 +5226,7 @@ output_141 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -5132,6 +5235,7 @@ output_141 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -5140,6 +5244,7 @@ output_141 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -5246,6 +5351,7 @@ output_142 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -5254,6 +5360,7 @@ output_142 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -5262,6 +5369,7 @@ output_142 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -5366,6 +5474,7 @@ output_143 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -5374,6 +5483,7 @@ output_143 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -5382,6 +5492,7 @@ output_143 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -5475,6 +5586,7 @@ output_144 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "analysisDate": Timestamp("2021-01-28 00:00:00"),
@@ -5483,6 +5595,7 @@ output_144 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "analysisDate": Timestamp("2021-02-06 00:00:00"),
@@ -5491,6 +5604,7 @@ output_144 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
@@ -5594,6 +5708,7 @@ output_145 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -5602,6 +5717,7 @@ output_145 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -5610,6 +5726,7 @@ output_145 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -5748,6 +5865,7 @@ output_146 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -5755,6 +5873,7 @@ output_146 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -5762,6 +5881,7 @@ output_146 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -5915,6 +6035,7 @@ output_147 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -5923,6 +6044,7 @@ output_147 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -5931,6 +6053,7 @@ output_147 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -6070,6 +6193,7 @@ output_148 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "reportDate": Timestamp("2021-01-25 00:00:00"),
@@ -6078,6 +6202,7 @@ output_148 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "reportDate": Timestamp("2021-03-06 00:00:00"),
@@ -6086,6 +6211,7 @@ output_148 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -6221,6 +6347,7 @@ output_149 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -6228,6 +6355,7 @@ output_149 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -6235,6 +6363,7 @@ output_149 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -6389,6 +6518,7 @@ output_150 = {
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
                 "value": 145000,
+                "index": 160000,
             },
             {
                 "type": "covN2",
@@ -6396,6 +6526,7 @@ output_150 = {
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
                 "value": 16000,
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
@@ -6403,6 +6534,7 @@ output_150 = {
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
                 "value": 98000,
+                "index": 180000,
             },
         ],
     },
@@ -6643,6 +6775,11 @@ output_151 = {
                                 "uWwMeasureID": "Measure WW100",
                             },
                         ],
+                        "index": [
+                            {"index": 160000, "uWwMeasureID": "Measure WW100"},
+                            {"index": 170000, "uWwMeasureID": "Measure WW100"},
+                            {"index": 180000, "uWwMeasureID": "Measure WW100"},
+                        ],
                         "value": [
                             {"uWwMeasureID": "Measure WW100", "value": 145000},
                             {"uWwMeasureID": "Measure WW100", "value": 16000},
@@ -6800,6 +6937,11 @@ output_152 = {
                                 "uWwMeasureID": "Measure WW100",
                             },
                         ],
+                        "index": [
+                            {"index": 160000, "uWwMeasureID": "Measure WW100"},
+                            {"index": 170000, "uWwMeasureID": "Measure WW100"},
+                            {"index": 180000, "uWwMeasureID": "Measure WW100"},
+                        ],
                         "value": [
                             {"uWwMeasureID": "Measure WW100", "value": 145000},
                             {"uWwMeasureID": "Measure WW100", "value": 16000},
@@ -6873,18 +7015,21 @@ output_153 = {
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcM",
                 "unitOther": "gcMcovN2",
+                "index": 160000,
             },
             {
                 "type": "covN2",
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcMcovN1",
+                "index": 170000,
             },
             {
                 "type": "nPMMoV",
                 "uWwMeasureID": "Measure WW100",
                 "unit": "gcMl",
                 "unitOther": "gcmnPMMoV",
+                "index": 180000,
             },
         ],
     },
