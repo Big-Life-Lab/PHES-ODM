@@ -6,9 +6,7 @@ from typing import Tuple
 from pandas.core.frame import DataFrame
 from numpy import nan
 import pandas as pd
-from create_list_of_datatypes_variables import (
-    create_list_of_datatypes_variables,
-)
+from create_list_of_datatypes_variables import create_list_of_datatypes_variables
 from loop_through_rules import loop_through_rules
 
 
@@ -35,12 +33,12 @@ def loop_through_tables(
     and the summary of data removed.
 
     Parameters:
-        rule (dict): current organization rule
+        rule (dict): current organization rule for current itteration
         datatype_dict (list): list of dictionaries with metadata for each table
         filtered_data (dict): Data to be filtered
         current_rule_summary (dict): will be updated with removed data
-        original_table_data_copy (dataframe): updated filtered data from each rule iteration
-        updated_data_dict (dict): original dataset dictionary updated each iteration
+        original_table_data_copy (dataframe): updated filtered dataframe
+        updated_data_dict (dict): updated original dataset dictionary for current rule
     Returns:
         filtered_data(dict): Data filtered for current rule iteration
         original_data_copy(dataframe): updated filtered data for current rule
@@ -77,8 +75,8 @@ def loop_through_tables(
 
         # ITTERATE THROUGH EACH TABLE IN THE RULE
         if table in filtered_data.keys():
-            # if table in current itteration is part of 'filtered_data' provided
-            # by user, create  a pandas dataframe of it and store it in variable
+            # if table in current itteration is part of 'filtered_data' given
+            # by user, create a pandas dataframe of it and store in variable
             # named 'current_rule_data'
             current_rule_data = pd.DataFrame(filtered_data[table])
             if ";" in existing_variables:
@@ -106,6 +104,7 @@ def loop_through_tables(
             # Separate the variables of different datatypes in to different list
             # using the function create_list_of_datatypes_variables
             (
+                pri_var,
                 temp_datatype_dict,
                 numeric_variables,
                 string_variables,
@@ -116,7 +115,7 @@ def loop_through_tables(
 
             rule_values = rule["ruleValue"]
 
-            # Create list of all the RuleValues in current org_rule list_of_rules
+            # Create list of all the RuleValues- list_of_rules
             if isinstance(rule_values, (float, int)):
                 list_of_rules = [rule_values]
             elif ";" in rule_values:
@@ -130,8 +129,9 @@ def loop_through_tables(
                 for rule in list_of_rules
             ]  # type: ignore
 
-            # current_filtered_data is the dataframe for current table which is
-            # filtered by itterating through all the ruleValues for current org_rule
+            # current_filtered_data is the dataframe for current table
+            # which is filtered by itterating through all the
+            # ruleValues for current rule
             current_filtered_data = loop_through_rules(
                 rule,
                 list_of_rules,
@@ -141,23 +141,37 @@ def loop_through_tables(
                 string_variables,
             )
 
-            # create copy of original table that contains starting data for each iteration
-            # and store it in variable original_table_data_copy
-            # this dataframe is used to filter the rows removed for each iteration
-            # it gets updated each iteration with filtered data from last iteration
-
+            # create copy of original table that contains starting data for
+            # each iteration and store it in variable original_table_data_copy
+            # this dataframe is used to filter the rows removed for
+            # each iteration it gets updated each iteration with filtered data
+            # from last iteration
             original_table_data_copy = pd.DataFrame(updated_data_dict[table]).copy()
 
             # Add the details of entities and rows removed to 'current_rule_summary'
             # along with the table name. Concatenate the original data with the
             # filtered dataset (which has been filtered for the current rule for given table)
-            original_filtered_table = pd.concat(
-                [original_table_data_copy, current_filtered_data], axis=0
-            )
+            if rule["direction"] == "row":
+                original_filtered_table = pd.concat(
+                    [original_table_data_copy, current_filtered_data], axis=0
+                )
 
-            # drop duplicates from original data to get the rows that were removed
-            # from the original data from current table
-            removed_data = original_filtered_table.drop_duplicates(keep=False)
+                # drop duplicates from original data to get the rows that were removed
+                # from the original data from current table
+                removed_data = original_filtered_table.drop_duplicates(keep=False)
+
+            elif rule["direction"] == "column":
+                original_filtered_table = pd.concat(
+                    [original_table_data_copy, current_filtered_data], axis=1
+                )
+                # drop duplicates from original data to get the rows that were removed
+                # from the original data from current table
+                removed_data = original_filtered_table.loc[
+                    :, ~original_filtered_table.columns.duplicated(keep=False)
+                ]
+                removed_data.insert(
+                    0, pri_var, pd.DataFrame(updated_data_dict[table])[pri_var], True
+                )
 
             # Add the values for entities filtered, removed_data, and table name
             # in the current_rule_summary dictionary
@@ -179,6 +193,25 @@ def loop_through_tables(
                             for key in row.keys():
                                 if row[key] == nan:
                                     row[key] = "null"
+                    elif rule["direction"] == "column":
+                        pri_col = list(removed_data.columns)[0]
+                        current_rule_summary["entities_filtered"][num][
+                            "columns_removed"
+                        ] = {}
+                        current_rule_summary["entities_filtered"][num]["table"] = table
+                        removed_columns = list(removed_data.columns)
+                        removed_columns.sort()
+                        removed_columns.remove(pri_col)
+                        removed_columns.insert(0, pri_col)
+                        for iter_num, cols in enumerate(removed_columns):
+                            if iter_num != 0:
+                                if pri_col < cols:
+                                    temp_df = removed_data[[pri_col, cols]]
+                                else:
+                                    temp_df = removed_data[[cols, pri_col]]
+                                current_rule_summary["entities_filtered"][num][
+                                    "columns_removed"
+                                ][cols] = temp_df.to_dict("records")
 
             # Append current_rule_summary to the returned_data list
             filtered_data[table] = current_filtered_data.to_dict("records")

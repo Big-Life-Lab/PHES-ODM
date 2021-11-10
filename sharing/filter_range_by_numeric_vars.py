@@ -7,6 +7,7 @@ from pandas.core.frame import DataFrame  # pylint: disable=import-error
 
 
 def filter_range_by_numeric_vars(
+    column: bool,
     bracket: str,
     lower_limit: str,
     upper_limit: str,
@@ -22,6 +23,7 @@ def filter_range_by_numeric_vars(
     Function returns back the dataframe with or without filter operation.
 
     Parameter:
+        column(bool): checks whether rule direction is column
         bracket(str): type of range bracket
         lower_limit(str): lower limit of the range
         upper_limit(str): upper limit of the range
@@ -67,33 +69,77 @@ def filter_range_by_numeric_vars(
                 up_limit = float(upper_limit)
 
             if rule_is_numeric:
+                if not column:
+                    # Check for type of bracket and then accordingly filter the range value
+                    if bracket == "[]":
+                        intermediate_filtered_data = intermediate_filtered_data.loc[
+                            ~(intermediate_filtered_data[numeric_var] >= low_limit)
+                            | ~(intermediate_filtered_data[numeric_var] <= up_limit),
+                            :,
+                        ]
 
-                # Check for type of bracket and then accordingly filter the range value
-                if bracket == "[]":
-                    intermediate_filtered_data = intermediate_filtered_data.loc[
-                        ~(intermediate_filtered_data[numeric_var] >= low_limit)
-                        | ~(intermediate_filtered_data[numeric_var] <= up_limit),
-                        :,
-                    ]
+                    elif bracket == "[)":
+                        intermediate_filtered_data = intermediate_filtered_data.loc[
+                            ~(intermediate_filtered_data[numeric_var] >= low_limit)
+                            | ~(intermediate_filtered_data[numeric_var] < up_limit),
+                            :,
+                        ]
 
-                elif bracket == "[)":
-                    intermediate_filtered_data = intermediate_filtered_data.loc[
-                        ~(intermediate_filtered_data[numeric_var] >= low_limit)
-                        | ~(intermediate_filtered_data[numeric_var] < up_limit),
-                        :,
-                    ]
+                    elif bracket == "(]":
+                        intermediate_filtered_data = intermediate_filtered_data.loc[
+                            ~(intermediate_filtered_data[numeric_var] > low_limit)
+                            | ~(intermediate_filtered_data[numeric_var] <= up_limit),
+                            :,
+                        ]
 
-                elif bracket == "(]":
-                    intermediate_filtered_data = intermediate_filtered_data.loc[
-                        ~(intermediate_filtered_data[numeric_var] > low_limit)
-                        | ~(intermediate_filtered_data[numeric_var] <= up_limit),
-                        :,
-                    ]
+                    elif bracket == "()":
+                        intermediate_filtered_data = intermediate_filtered_data.loc[
+                            ~(intermediate_filtered_data[numeric_var] > low_limit)
+                            | ~(intermediate_filtered_data[numeric_var] < up_limit),
+                            :,
+                        ]
 
-                elif bracket == "()":
-                    intermediate_filtered_data = intermediate_filtered_data.loc[
-                        ~(intermediate_filtered_data[numeric_var] > low_limit)
-                        | ~(intermediate_filtered_data[numeric_var] < up_limit),
-                        :,
-                    ]
+                elif column and numeric_var in intermediate_filtered_data.columns:
+                    if bracket == "[]":
+                        if intermediate_filtered_data.loc[
+                            (intermediate_filtered_data[numeric_var] >= low_limit)
+                            & (intermediate_filtered_data[numeric_var] <= up_limit),
+                            numeric_var,
+                        ].any():
+                            # Drop the column
+                            intermediate_filtered_data = intermediate_filtered_data.drop(
+                                [numeric_var], axis=1
+                            )
+                    elif bracket == "[)":
+                        if intermediate_filtered_data.loc[
+                            (intermediate_filtered_data[numeric_var] >= low_limit)
+                            & (intermediate_filtered_data[numeric_var] < up_limit),
+                            numeric_var,
+                        ].any():
+                            # Drop the column
+                            intermediate_filtered_data = intermediate_filtered_data.drop(
+                                [numeric_var], axis=1
+                            )
+                    elif bracket == "(]":
+                        if intermediate_filtered_data.loc[
+                            (intermediate_filtered_data[numeric_var] > low_limit)
+                            & (intermediate_filtered_data[numeric_var] <= up_limit),
+                            numeric_var,
+                        ].any():
+                            # Drop the column
+                            intermediate_filtered_data = intermediate_filtered_data.drop(
+                                [numeric_var], axis=1
+                            )
+
+                    elif bracket == "()":
+                        if intermediate_filtered_data.loc[
+                            (intermediate_filtered_data[numeric_var] > low_limit)
+                            & (intermediate_filtered_data[numeric_var] < up_limit),
+                            numeric_var,
+                        ].any():
+                            # Drop the column
+                            intermediate_filtered_data = intermediate_filtered_data.drop(
+                                [numeric_var], axis=1
+                            )
+
     return intermediate_filtered_data, rule_is_numeric

@@ -7,7 +7,7 @@ from typing import Tuple
 
 def create_list_of_datatypes_variables(
     temp_datatype_dict: dict, table: str, to_keep_vars: list
-) -> Tuple[dict, list, list, list]:
+) -> Tuple[str, dict, list, list, list]:
     """The function creates lists of variables of different datatypes.
 
     The functions uses the metadata from variables.csv file to create three
@@ -18,6 +18,7 @@ def create_list_of_datatypes_variables(
         temp_datatype_dict(dict): dictionaries of variable metadata
         to_keep_vars(list): list of variables to keep in current rule
     Returns:
+        pri_var: the primary key variable
         dict: dictionary of variables metadata
         list: list of variables with different datatype
     """
@@ -54,4 +55,12 @@ def create_list_of_datatypes_variables(
 
                 # Add character variables to list string_variables
                 datetime_variables.append(var["variableName"])
-    return temp_datatype_dict, numeric_variables, string_variables, datetime_variables
+        if var["key"] == "Primary Key":
+            pri_var = var["variableName"]
+    return (
+        pri_var,
+        temp_datatype_dict,
+        numeric_variables,
+        string_variables,
+        datetime_variables,
+    )

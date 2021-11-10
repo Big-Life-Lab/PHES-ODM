@@ -11,6 +11,7 @@ from filter_single_value import filter_single_value  # pylint: disable=import-er
 
 
 def filter_range_by_datetime_vars(
+    column: bool,
     bracket: str,
     lower_limit: str,
     upper_limit: str,
@@ -31,6 +32,7 @@ def filter_range_by_datetime_vars(
     Function returns back the dataframe with or without filter operation.
 
     Parameter:
+        column(bool): checks whether the rule direction is column
         bracket(str): type of range bracket
         lower_limit(str): lower limit of the range
         upper_limit(str): upper limit of the range
@@ -75,12 +77,11 @@ def filter_range_by_datetime_vars(
             or re.fullmatch(pat10, str(upper_limit)) is not None
         ):
             rule_is_datetime = True
-        print("RULE IS DATETIME")
-        print(rule_is_datetime)
         # If range type and rule is datetime, then loop through all datetime vars
         # and check if there is infinity in either limits
         if rule_is_datetime:
             for datetime_var in datetime_variables:
+
                 # if regular expression in the ruleValue limits matches the datetime
                 # pattern then it will set rule_is_datetime variable to True
                 if (
@@ -101,8 +102,8 @@ def filter_range_by_datetime_vars(
                     rule_is_datetime = True
 
                     # Changes the limits to datetime type in pandas to filter
-                    lower_limit = pd.to_datetime(lower_limit)
-                    upper_limit = pd.to_datetime(upper_limit)
+                    low_limit = pd.to_datetime(lower_limit)
+                    up_limit = pd.to_datetime(upper_limit)
                 elif (
                     re.fullmatch(pat1, str(lower_limit)) is not None
                     or re.fullmatch(pat2, str(lower_limit)) is not None
@@ -112,10 +113,10 @@ def filter_range_by_datetime_vars(
                     or re.fullmatch(pat10, str(lower_limit)) is not None
                 ) and str(upper_limit).startswith("inf"):
                     rule_is_datetime = True
-                    lower_limit = pd.to_datetime(lower_limit)
+                    low_limit = pd.to_datetime(lower_limit)
 
                     # if upper limit is infinity, add 1 to the max value
-                    upper_limit = intermediate_filtered_data[
+                    up_limit = intermediate_filtered_data[
                         datetime_var
                     ].max() + timedelta(days=1)
                 elif str(lower_limit).startswith("inf") and (
@@ -127,41 +128,84 @@ def filter_range_by_datetime_vars(
                     or re.fullmatch(pat10, str(upper_limit)) is not None
                 ):
                     rule_is_datetime = True
-                    upper_limit = pd.to_datetime(upper_limit)
+                    up_limit = pd.to_datetime(upper_limit)
 
                     # if lower limit is infinity, then subtract 1 from min value
-                    lower_limit = intermediate_filtered_data[
+                    low_limit = intermediate_filtered_data[
                         datetime_var
                     ].min() - timedelta(days=1)
 
-                # Checks type of bracket to do conditional filtering
-                if bracket == "[]":
-                    intermediate_filtered_data = intermediate_filtered_data.loc[
-                        ~(intermediate_filtered_data[datetime_var] >= lower_limit)
-                        | ~(intermediate_filtered_data[datetime_var] <= upper_limit),
-                        :,
-                    ]
+                if not column:
+                    # Checks type of bracket to do conditional filtering
+                    if bracket == "[]":
+                        intermediate_filtered_data = intermediate_filtered_data.loc[
+                            ~(intermediate_filtered_data[datetime_var] >= low_limit)
+                            | ~(intermediate_filtered_data[datetime_var] <= up_limit),
+                            :,
+                        ]
 
-                elif bracket == "[)":
-                    intermediate_filtered_data = intermediate_filtered_data.loc[
-                        ~(intermediate_filtered_data[datetime_var] >= lower_limit)
-                        | ~(intermediate_filtered_data[datetime_var] < upper_limit),
-                        :,
-                    ]
+                    elif bracket == "[)":
+                        intermediate_filtered_data = intermediate_filtered_data.loc[
+                            ~(intermediate_filtered_data[datetime_var] >= low_limit)
+                            | ~(intermediate_filtered_data[datetime_var] < up_limit),
+                            :,
+                        ]
 
-                elif bracket == "(]":
-                    intermediate_filtered_data = intermediate_filtered_data.loc[
-                        ~(intermediate_filtered_data[datetime_var] > lower_limit)
-                        | ~(intermediate_filtered_data[datetime_var] <= upper_limit),
-                        :,
-                    ]
+                    elif bracket == "(]":
+                        intermediate_filtered_data = intermediate_filtered_data.loc[
+                            ~(intermediate_filtered_data[datetime_var] > low_limit)
+                            | ~(intermediate_filtered_data[datetime_var] <= up_limit),
+                            :,
+                        ]
 
-                elif bracket == "()":
-                    intermediate_filtered_data = intermediate_filtered_data.loc[
-                        ~(intermediate_filtered_data[datetime_var] > lower_limit)
-                        | ~(intermediate_filtered_data[datetime_var] < upper_limit),
-                        :,
-                    ]
+                    elif bracket == "()":
+                        intermediate_filtered_data = intermediate_filtered_data.loc[
+                            ~(intermediate_filtered_data[datetime_var] > low_limit)
+                            | ~(intermediate_filtered_data[datetime_var] < up_limit),
+                            :,
+                        ]
+                elif column and datetime_var in intermediate_filtered_data.columns:
+                    if bracket == "[]":
+                        if intermediate_filtered_data.loc[
+                            (intermediate_filtered_data[datetime_var] >= low_limit)
+                            & (intermediate_filtered_data[datetime_var] <= up_limit),
+                            datetime_var,
+                        ].any():
+                            # Drop the column
+                            intermediate_filtered_data = intermediate_filtered_data.drop(
+                                [datetime_var], axis=1
+                            )
+                    elif bracket == "[)":
+                        if intermediate_filtered_data.loc[
+                            (intermediate_filtered_data[datetime_var] >= low_limit)
+                            & (intermediate_filtered_data[datetime_var] < up_limit),
+                            datetime_var,
+                        ].any():
+                            # Drop the column
+                            intermediate_filtered_data = intermediate_filtered_data.drop(
+                                [datetime_var], axis=1
+                            )
+                    elif bracket == "(]":
+                        if intermediate_filtered_data.loc[
+                            (intermediate_filtered_data[datetime_var] > low_limit)
+                            & (intermediate_filtered_data[datetime_var] <= up_limit),
+                            datetime_var,
+                        ].any():
+                            # Drop the column
+                            intermediate_filtered_data = intermediate_filtered_data.drop(
+                                [datetime_var], axis=1
+                            )
+
+                    elif bracket == "()":
+                        if intermediate_filtered_data.loc[
+                            (intermediate_filtered_data[datetime_var] > low_limit)
+                            & (intermediate_filtered_data[datetime_var] < up_limit),
+                            datetime_var,
+                        ].any():
+                            # Drop the column
+                            intermediate_filtered_data = intermediate_filtered_data.drop(
+                                [datetime_var], axis=1
+                            )
 
     # if there is no lower and upper limit then filter by single value
     elif filter_val:
@@ -171,6 +215,7 @@ def filter_range_by_datetime_vars(
             rule_is_numeric,
             rule_is_char,
         ) = filter_single_value(
+            column,
             pat1,
             pat2,
             pat7,

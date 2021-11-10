@@ -9,6 +9,7 @@ from pandas.core.frame import DataFrame  # pylint: disable=import-error
 
 
 def filter_single_value(
+    column: bool,
     pat1: str,
     pat2: str,
     pat7: str,
@@ -34,6 +35,7 @@ def filter_single_value(
 
 
     Parameters:
+        column(bool): checks whether the rule direction is column or not
         pat1(str): the datetime pattern to check with refular expression
         pat2(str): the datetime pattern to check with refular expression
         pat7(str): the datetime pattern to check with refular expression
@@ -65,9 +67,20 @@ def filter_single_value(
             ):
                 rule_is_datetime = True
                 filter_val = pd.to_datetime(filter_val)
-                intermediate_filtered_data = intermediate_filtered_data.loc[
-                    (intermediate_filtered_data[datetime_var] != filter_val), :
-                ]
+
+                if not column and rule_is_datetime:
+                    intermediate_filtered_data = intermediate_filtered_data.loc[
+                        (intermediate_filtered_data[datetime_var] != filter_val), :
+                    ]
+                elif (
+                    column
+                    and rule_is_datetime
+                    and datetime_var in intermediate_filtered_data.columns
+                ):
+                    if filter_val in intermediate_filtered_data[datetime_var].to_list():
+                        intermediate_filtered_data = intermediate_filtered_data.drop(
+                            [datetime_var], axis=1
+                        )
             else:
                 print("DATETIME MATCH NOT FOUND")
 
@@ -81,26 +94,61 @@ def filter_single_value(
                 ):
                     rule_is_numeric = True
                     filter_val = float(str(filter_val))
-                    intermediate_filtered_data = intermediate_filtered_data.loc[
-                        (intermediate_filtered_data[numeric_var] != filter_val)
-                    ]
+
+                    if not column and rule_is_numeric:
+                        intermediate_filtered_data = intermediate_filtered_data.loc[
+                            (intermediate_filtered_data[numeric_var] != filter_val)
+                        ]
+                    elif (
+                        column
+                        and rule_is_numeric
+                        and numeric_var in intermediate_filtered_data.columns
+                    ):
+                        if (
+                            filter_val
+                            in intermediate_filtered_data[numeric_var].to_list()
+                        ):
+                            intermediate_filtered_data = intermediate_filtered_data.drop(
+                                [numeric_var], axis=1
+                            )
 
         # If rule is neither datetime nor numeric
         if not rule_is_datetime and not rule_is_numeric:
             for char_var in string_variables:
                 if not rule_is_datetime:
                     rule_is_char = True
-                    intermediate_filtered_data = intermediate_filtered_data.loc[
-                        (intermediate_filtered_data[char_var] != filter_val), :
-                    ]
+
+                    if not column and rule_is_char:
+                        intermediate_filtered_data = intermediate_filtered_data.loc[
+                            (intermediate_filtered_data[char_var] != filter_val), :
+                        ]
+                    elif (
+                        column
+                        and rule_is_char
+                        and char_var in intermediate_filtered_data.columns
+                    ):
+                        if filter_val in intermediate_filtered_data[char_var].to_list():
+                            intermediate_filtered_data = intermediate_filtered_data.drop(
+                                [char_var], axis=1
+                            )
     else:
 
         # if ruleValue is not of string type, filter it as a numeric type
         for numeric_var in numeric_variables:
             if not rule_is_datetime and (isinstance(filter_val, (float, int))):
                 rule_is_numeric = True
-                intermediate_filtered_data = intermediate_filtered_data.loc[
-                    (intermediate_filtered_data[numeric_var] != filter_val), :
-                ]
+                if not column and rule_is_numeric:
+                    intermediate_filtered_data = intermediate_filtered_data.loc[
+                        (intermediate_filtered_data[numeric_var] != filter_val), :
+                    ]
+                elif (
+                    column
+                    and rule_is_numeric
+                    and numeric_var in intermediate_filtered_data.columns
+                ):
+                    if filter_val in intermediate_filtered_data[numeric_var].to_list():
+                        intermediate_filtered_data = intermediate_filtered_data.drop(
+                            [numeric_var], axis=1
+                        )
 
     return intermediate_filtered_data, rule_is_datetime, rule_is_numeric, rule_is_char

@@ -9,8 +9,6 @@ import pandas as pd  # pylint: disable=import-error
 import loop_through_tables
 
 # from pandas import Timestamp  # pylint: disable=import-error
-
-
 def create_dataset(rules: list, data: dict, org: str) -> dict:
     """Filters data and returns filtered data and shared summary in dictionary.
 
