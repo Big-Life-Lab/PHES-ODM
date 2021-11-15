@@ -1,8 +1,13 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 
 name: Pylint
-
-on: [push]
+on:
+  push:
+    paths:
+      - 'sharing/**'
+  pull_request:
+    paths:
+      - 'sharing/**'
 
 jobs:
   build:
