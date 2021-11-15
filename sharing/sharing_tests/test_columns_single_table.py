@@ -16,8 +16,8 @@ dataset = {
             "fieldSampleTempC": 15,
             "sizeL": 8,
             "storageTempC": 16,
+            "sampleID": "Sample S100",
             "type": "swrSed",
-            "sampleID": "Sample S101",
             "collection": "mooreSw",
         },
         {
@@ -27,8 +27,8 @@ dataset = {
             "fieldSampleTempC": 17,
             "sizeL": 2,
             "storageTempC": 18,
+            "sampleID": "Sample S106",
             "type": "pSludge",
-            "sampleID": "Sample S102",
             "collection": "cpTP24h",
         },
         {
@@ -38,16 +38,12 @@ dataset = {
             "fieldSampleTempC": 18,
             "sizeL": 10,
             "storageTempC": 22,
+            "sampleID": "Sample S107",
             "type": "rawWW",
-            "sampleID": "Sample S103",
             "collection": "grb",
         },
     ],
-    "WWMeasure": [
-        {
-            "uWwMeasureID": "Measure WW100",
-        }
-    ],
+    "WWMeasure": [{"uWwMeasureID": "Measure WW100",}],
 }
 
 # User requested ORG_NAME:
@@ -69,7 +65,7 @@ rule_1 = [
     }
 ]
 
-output1 = {
+output_1 = {
     "filtered_data": {
         "Sample": [
             {
@@ -118,7 +114,6 @@ output1 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule1",
         }
@@ -126,11 +121,11 @@ output1 = {
 }
 
 
-def test_method_1():
+def test_single_table_single_column_all_values():
     """
     Rule 1 filters columns based on a single column and all values of the columns.
     """
-    assert create_dataset(rule_1, data=dataset, org=ORG_NAME) == output1
+    assert create_dataset(rule_1, data=dataset, org=ORG_NAME) == output_1
 
 
 # Rule 2 filters columns based on a single column and single value being numeric.
@@ -146,7 +141,7 @@ rule_2 = [
     }
 ]
 
-output2 = {
+output_2 = {
     "filtered_data": {
         "Sample": [
             {
@@ -195,7 +190,6 @@ output2 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule2",
         }
@@ -203,11 +197,11 @@ output2 = {
 }
 
 
-def test_method_2():
+def test_single_table_single_column_single_value_numeric():
     """
     Rule 2 filters columns based on a single column and single value being numeric.
     """
-    assert create_dataset(rule_2, data=dataset, org=ORG_NAME) == output2
+    assert create_dataset(rule_2, data=dataset, org=ORG_NAME) == output_2
 
 
 # Rule 3 filters columns based on a single column and single value being string.
@@ -223,7 +217,7 @@ rule_3 = [
     }
 ]
 
-output3 = {
+output_3 = {
     "filtered_data": {
         "Sample": [
             {
@@ -272,7 +266,6 @@ output3 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule3",
         }
@@ -280,11 +273,11 @@ output3 = {
 }
 
 
-def test_method_3():
+def test_single_table_single_column_single_value_string():
     """
     Rule 3 filters columns based on a single column and single value being string.
     """
-    assert create_dataset(rule_3, data=dataset, org=ORG_NAME) == output3
+    assert create_dataset(rule_3, data=dataset, org=ORG_NAME) == output_3
 
 
 # Rule 4 filters columns based on a single column and single value from each column
@@ -301,7 +294,7 @@ rule_4 = [
     }
 ]
 
-output4 = {
+output_4 = {
     "filtered_data": {
         "Sample": [
             {
@@ -359,7 +352,6 @@ output4 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule4",
         }
@@ -367,12 +359,12 @@ output4 = {
 }
 
 
-def test_method_4():
+def test_single_table_single_column_single_value_datetime():
     """
     Rule 4 filters columns based on a single column and single value
     from each column or any of the columns being a datetime.
     """
-    assert create_dataset(rule_4, data=dataset, org=ORG_NAME) == output4
+    assert create_dataset(rule_4, data=dataset, org=ORG_NAME) == output_4
 
 
 # Rule 5 filters columns based on a single column and range interval
@@ -389,7 +381,7 @@ rule_5 = [
     }
 ]
 
-output5 = {
+output_5 = {
     "filtered_data": {
         "Sample": [
             {
@@ -438,7 +430,6 @@ output5 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule5",
         }
@@ -446,12 +437,12 @@ output5 = {
 }
 
 
-def test_method_5():
+def test_single_table_single_column_interval_closed_closed_numeric():
     """
     Rule 5 filters columns based on a single column and range interval
     for a numeric value with [] interval.
     """
-    assert create_dataset(rule_5, data=dataset, org=ORG_NAME) == output5
+    assert create_dataset(rule_5, data=dataset, org=ORG_NAME) == output_5
 
 
 # Rule 6 filters columns based on a single column and range interval
@@ -468,7 +459,7 @@ rule_6 = [
     }
 ]
 
-output6 = {
+output_6 = {
     "filtered_data": {
         "Sample": [
             {
@@ -517,7 +508,6 @@ output6 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule6",
         }
@@ -525,12 +515,12 @@ output6 = {
 }
 
 
-def test_method_6():
+def test_single_table_single_column_interval_open_open_numeric():
     """
     Rule 6 filters columns based on a single column and range interval
     for a numeric value with () interval.
     """
-    assert create_dataset(rule_6, data=dataset, org=ORG_NAME) == output6
+    assert create_dataset(rule_6, data=dataset, org=ORG_NAME) == output_6
 
 
 # Rule 7 filters columns based on a single column and range interval
@@ -547,7 +537,7 @@ rule_7 = [
     }
 ]
 
-output7 = {
+output_7 = {
     "filtered_data": {
         "Sample": [
             {
@@ -596,7 +586,6 @@ output7 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule7",
         }
@@ -604,12 +593,12 @@ output7 = {
 }
 
 
-def test_method_7():
+def test_single_table_single_column_interval_open_closed_numeric():
     """
     Rule 7 filters columns based on a single column and range interval
     for a numeric value with (] interval.
     """
-    assert create_dataset(rule_7, data=dataset, org=ORG_NAME) == output7
+    assert create_dataset(rule_7, data=dataset, org=ORG_NAME) == output_7
 
 
 # Rule 8 filters columns based on a single column and range interval
@@ -626,7 +615,7 @@ rule_8 = [
     }
 ]
 
-output8 = {
+output_8 = {
     "filtered_data": {
         "Sample": [
             {
@@ -675,7 +664,6 @@ output8 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule8",
         }
@@ -683,12 +671,12 @@ output8 = {
 }
 
 
-def test_method_8():
+def test_single_table_single_column_interval_closed_open_numeric():
     """
     Rule 8 filters columns based on a single column and range interval
     for a numeric value with [) interval.
     """
-    assert create_dataset(rule_8, data=dataset, org=ORG_NAME) == output8
+    assert create_dataset(rule_8, data=dataset, org=ORG_NAME) == output_8
 
 
 # Rule 9 filters columns based on a single column and range interval
@@ -705,7 +693,7 @@ rule_9 = [
     }
 ]
 
-output9 = {
+output_9 = {
     "filtered_data": {
         "Sample": [
             {
@@ -763,7 +751,6 @@ output9 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule9",
         }
@@ -771,12 +758,12 @@ output9 = {
 }
 
 
-def test_method_9():
+def test_single_table_single_column_interval_closed_closed_datetime():
     """
     Rule 9 filters columns based on a single column and range interval
     between datetime value with [] interval.
     """
-    assert create_dataset(rule_9, data=dataset, org=ORG_NAME) == output9
+    assert create_dataset(rule_9, data=dataset, org=ORG_NAME) == output_9
 
 
 # Rule 10 filters columns based on a single column and range interval
@@ -793,7 +780,7 @@ rule_10 = [
     }
 ]
 
-output10 = {
+output_10 = {
     "filtered_data": {
         "Sample": [
             {
@@ -851,7 +838,6 @@ output10 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule10",
         }
@@ -859,12 +845,12 @@ output10 = {
 }
 
 
-def test_method_10():
+def test_single_table_single_column_interval_open_open_datetime():
     """
     Rule 10 filters columns based on a single column and range interval
     between datetime value with () interval.
     """
-    assert create_dataset(rule_10, data=dataset, org=ORG_NAME) == output10
+    assert create_dataset(rule_10, data=dataset, org=ORG_NAME) == output_10
 
 
 # Rule 11 filters columns based on a single column and range interval
@@ -881,7 +867,7 @@ rule_11 = [
     }
 ]
 
-output11 = {
+output_11 = {
     "filtered_data": {
         "Sample": [
             {
@@ -939,7 +925,6 @@ output11 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule11",
         }
@@ -947,12 +932,12 @@ output11 = {
 }
 
 
-def test_method_11():
+def test_single_table_single_column_interval_open_closed_numeric():
     """
     Rule 11 filters columns based on a single column and range interval
     between datetime value with (] interval.
     """
-    assert create_dataset(rule_11, data=dataset, org=ORG_NAME) == output11
+    assert create_dataset(rule_11, data=dataset, org=ORG_NAME) == output_11
 
 
 # Rule 12 filters columns based on a single column and range interval
@@ -969,7 +954,7 @@ rule_12 = [
     }
 ]
 
-output12 = {
+output_12 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1027,7 +1012,6 @@ output12 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule12",
         }
@@ -1035,12 +1019,12 @@ output12 = {
 }
 
 
-def test_method_12():
+def test_single_table_single_column_interval_closed_open_datetime():
     """
     Rule 12 filters columns based on a single column and range interval
     between datetime value with [) interval.
     """
-    assert create_dataset(rule_12, data=dataset, org=ORG_NAME) == output12
+    assert create_dataset(rule_12, data=dataset, org=ORG_NAME) == output_12
 
 
 # Rule 13 filters columns based on a single column and range interval
@@ -1057,7 +1041,7 @@ rule_13 = [
     }
 ]
 
-output13 = {
+output_13 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1115,7 +1099,6 @@ output13 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule13",
         }
@@ -1123,12 +1106,12 @@ output13 = {
 }
 
 
-def test_method_13():
+def test_single_table_single_column_interval_open_open_numeric_lower_inf():
     """
     Rule 13 filters columns based on a single column and range interval
     between two value with () interval where lower bound is infinity.
     """
-    assert create_dataset(rule_13, data=dataset, org=ORG_NAME) == output13
+    assert create_dataset(rule_13, data=dataset, org=ORG_NAME) == output_13
 
 
 # Rule 14 filters columns based on a single column and range interval
@@ -1145,7 +1128,7 @@ rule_14 = [
     }
 ]
 
-output14 = {
+output_14 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1203,7 +1186,6 @@ output14 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule14",
         }
@@ -1211,12 +1193,12 @@ output14 = {
 }
 
 
-def test_method_14():
+def test_single_table_single_column_interval_lower_inf():
     """
     Rule 14 filters columns based on a single column and range interval
     between two value with (] interval where lower bound is infinity.
     """
-    assert create_dataset(rule_14, data=dataset, org=ORG_NAME) == output14
+    assert create_dataset(rule_14, data=dataset, org=ORG_NAME) == output_14
 
 
 # Rule 15 filters columns based on a single column and range interval
@@ -1233,7 +1215,7 @@ rule_15 = [
     }
 ]
 
-output15 = {
+output_15 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1291,7 +1273,6 @@ output15 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule15",
         }
@@ -1299,12 +1280,12 @@ output15 = {
 }
 
 
-def test_method_15():
+def test_single_table_single_column_interval_open_open_upper_inf():
     """
     Rule 15 filters columns based on a single column and range interval
     between two value with () interval where upper bound is infinity.
     """
-    assert create_dataset(rule_15, data=dataset, org=ORG_NAME) == output15
+    assert create_dataset(rule_15, data=dataset, org=ORG_NAME) == output_15
 
 
 # Rule 16 filters columns based on a single column and range interval
@@ -1321,7 +1302,7 @@ rule_16 = [
     }
 ]
 
-output16 = {
+output_16 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1379,7 +1360,6 @@ output16 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule16",
         }
@@ -1387,12 +1367,12 @@ output16 = {
 }
 
 
-def test_method_16():
+def test_single_table_single_column_interval_upper_inf():
     """
     Rule 16 filters columns based on a single column and range interval
     between two value with [) interval where upper bound is infinity.
     """
-    assert create_dataset(rule_16, data=dataset, org=ORG_NAME) == output16
+    assert create_dataset(rule_16, data=dataset, org=ORG_NAME) == output_16
 
 
 # Rule 17 filters columns based on a single column and multiple values
@@ -1409,7 +1389,7 @@ rule_17 = [
     }
 ]
 
-output17 = {
+output_17 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1458,7 +1438,6 @@ output17 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule17",
         }
@@ -1466,12 +1445,12 @@ output17 = {
 }
 
 
-def test_method_17():
+def test_single_table_single_column_multiple_values():
     """
     Rule 17 filters columns based on a single column and multiple values
     to filter by a single value and a range.
     """
-    assert create_dataset(rule_17, data=dataset, org=ORG_NAME) == output17
+    assert create_dataset(rule_17, data=dataset, org=ORG_NAME) == output_17
 
 
 # For SINGLE TABLE:
@@ -1491,7 +1470,7 @@ rule_18 = [
 ]
 
 
-output18 = {
+output_18 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1542,7 +1521,6 @@ output18 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule18",
         }
@@ -1550,11 +1528,11 @@ output18 = {
 }
 
 
-def test_method_18():
+def test_single_table_multiple_columns_all_values():
     """
     Rule 18 filters all columns from more than 1 column from a single table.
     """
-    assert create_dataset(rule_18, data=dataset, org=ORG_NAME) == output18
+    assert create_dataset(rule_18, data=dataset, org=ORG_NAME) == output_18
 
 
 # Rule 19 filters columns from multiple columns from a single table based
@@ -1571,7 +1549,7 @@ rule_19 = [
     }
 ]
 
-output19 = {
+output_19 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1622,7 +1600,6 @@ output19 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule19",
         }
@@ -1630,12 +1607,12 @@ output19 = {
 }
 
 
-def test_method_19():
+def test_single_table_multiple_columns_single_value_numeric():
     """
     Rule 19 filters columns from multiple columns from a single table based
     on a single value from each column or any of the columns being a number.
     """
-    assert create_dataset(rule_19, data=dataset, org=ORG_NAME) == output19
+    assert create_dataset(rule_19, data=dataset, org=ORG_NAME) == output_19
 
 
 # Rule 20 filters columns from multiple columns from a single table based
@@ -1652,7 +1629,7 @@ rule_20 = [
     }
 ]
 
-output20 = {
+output_20 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1703,7 +1680,6 @@ output20 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule20",
         }
@@ -1711,12 +1687,12 @@ output20 = {
 }
 
 
-def test_method_20():
+def test_single_table_multiple_columns_single_value_string():
     """
     Rule 20 filters columns from multiple columns from a single table based
     on a single value from each columns or any of the columns being a string.
     """
-    assert create_dataset(rule_20, data=dataset, org=ORG_NAME) == output20
+    assert create_dataset(rule_20, data=dataset, org=ORG_NAME) == output_20
 
 
 # Rule 21 filters columns from multiple columns from a single table based on a
@@ -1733,7 +1709,7 @@ rule_21 = [
     }
 ]
 
-output21 = {
+output_21 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1791,7 +1767,6 @@ output21 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule21",
         }
@@ -1799,12 +1774,12 @@ output21 = {
 }
 
 
-def test_method_21():
+def test_single_table_multiple_columns_single_value_datetime():
     """
     Rule 21 filters columns from multiple columns from a single table based on a
     single value from each columns or any of the columns being a datetime.
     """
-    assert create_dataset(rule_21, data=dataset, org=ORG_NAME) == output21
+    assert create_dataset(rule_21, data=dataset, org=ORG_NAME) == output_21
 
 
 # Rule 22 filters columns from multiple columns from a single table
@@ -1816,13 +1791,13 @@ rule_22 = [
         "ruleID": "rule22",
         "table": "Sample",
         "variable": "fieldSampleTempC;storageTempC",
-        "ruleValue": "[15.0,17.0];[18,25]",
+        "ruleValue": "[15.0,25]",
         "direction": "column",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output22 = {
+output_22 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1873,7 +1848,6 @@ output22 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule22",
         }
@@ -1881,13 +1855,13 @@ output22 = {
 }
 
 
-def test_method_22():
+def test_single_table_multiple_column_interval_closed_closed_numeric():
     """
     Rule 22 filters columns from multiple columns from a single table
     based on a single value from each column or any of the columns being an
     interval between two numbers with [] interval
     """
-    assert create_dataset(rule_22, data=dataset, org=ORG_NAME) == output22
+    assert create_dataset(rule_22, data=dataset, org=ORG_NAME) == output_22
 
 
 # Rule 23 filters columns from multiple columns from a single table based on a
@@ -1899,13 +1873,13 @@ rule_23 = [
         "ruleID": "rule23",
         "table": "Sample",
         "variable": "fieldSampleTempC;storageTempC",
-        "ruleValue": "(16.0,18.0);(17,25)",
+        "ruleValue": "(16.0,25)",
         "direction": "column",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output23 = {
+output_23 = {
     "filtered_data": {
         "Sample": [
             {
@@ -1956,7 +1930,6 @@ output23 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule23",
         }
@@ -1964,13 +1937,13 @@ output23 = {
 }
 
 
-def test_method_23():
+def test_single_table_multiple_column_interval_open_open_numeric():
     """
     Rule 23 filters columns from multiple columns from a single table based on a
     single value from each columns or any of the columns
     being an interval between two numbers with () interval
     """
-    assert create_dataset(rule_23, data=dataset, org=ORG_NAME) == output23
+    assert create_dataset(rule_23, data=dataset, org=ORG_NAME) == output_23
 
 
 # Rule 24 filters columns from multiple columns from a single table based on a
@@ -1983,13 +1956,13 @@ rule_24 = [
         "ruleID": "rule24",
         "table": "Sample",
         "variable": "fieldSampleTempC;storageTempC",
-        "ruleValue": "(15.0,18.0];(17,19]",
+        "ruleValue": "(15.0,18.0]",
         "direction": "column",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output24 = {
+output_24 = {
     "filtered_data": {
         "Sample": [
             {
@@ -2040,7 +2013,6 @@ output24 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule24",
         }
@@ -2048,13 +2020,13 @@ output24 = {
 }
 
 
-def test_method_24():
+def test_single_table_multiple_column_interval_open_closed_numeric():
     """
     Rule 24 filters columns from multiple columns from a single table based on a
     single value from each columns or any of the columns
     being an interval between two numbers with (] interval
     """
-    assert create_dataset(rule_24, data=dataset, org=ORG_NAME) == output24
+    assert create_dataset(rule_24, data=dataset, org=ORG_NAME) == output_24
 
 
 # Rule 25 filters columns from multiple columns from a single table based on a
@@ -2066,13 +2038,13 @@ rule_25 = [
         "ruleID": "rule25",
         "table": "Sample",
         "variable": "fieldSampleTempC;storageTempC",
-        "ruleValue": "[16.0,18.0);[17,19)",
+        "ruleValue": "[16.0,19)",
         "direction": "column",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output25 = {
+output_25 = {
     "filtered_data": {
         "Sample": [
             {
@@ -2123,7 +2095,6 @@ output25 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule25",
         }
@@ -2131,13 +2102,13 @@ output25 = {
 }
 
 
-def test_method_25():
+def test_single_table_multiple_column_interval_closed_open_numeric():
     """
     Rule 25 filters columns from multiple columns from a single table based on a
     single value from each columns or any of the columns
     being an interval between two numbers with [) interval
     """
-    assert create_dataset(rule_25, data=dataset, org=ORG_NAME) == output25
+    assert create_dataset(rule_25, data=dataset, org=ORG_NAME) == output_25
 
 
 # Rule 26 filters columns from multiple columns from a single table based on a
@@ -2155,7 +2126,7 @@ rule_26 = [
     }
 ]
 
-output26 = {
+output_26 = {
     "filtered_data": {
         "Sample": [
             {
@@ -2224,7 +2195,6 @@ output26 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule26",
         }
@@ -2232,13 +2202,13 @@ output26 = {
 }
 
 
-def test_method_26():
+def test_single_table_multiple_column_interval_closed_closed_datetime():
     """
     Rule 26 filters columns from multiple columns from a single table based on a
     single value from each columns or any of the columns
     being an interval between two datetime values with [] interval
     """
-    assert create_dataset(rule_26, data=dataset, org=ORG_NAME) == output26
+    assert create_dataset(rule_26, data=dataset, org=ORG_NAME) == output_26
 
 
 # Rule 27 filters columns from multiple columns from a single table based on a
@@ -2256,7 +2226,7 @@ rule_27 = [
     }
 ]
 
-output27 = {
+output_27 = {
     "filtered_data": {
         "Sample": [
             {
@@ -2314,7 +2284,6 @@ output27 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule27",
         }
@@ -2322,13 +2291,13 @@ output27 = {
 }
 
 
-def test_method_27():
+def test_single_table_multiple_column_interval_open_open_datetime():
     """
     Rule 27 filters columns from multiple columns from a single table based on a
     single value from each column or any of the columns
     being an interval between two datetime values with () interval
     """
-    assert create_dataset(rule_27, data=dataset, org=ORG_NAME) == output27
+    assert create_dataset(rule_27, data=dataset, org=ORG_NAME) == output_27
 
 
 # Rule 28 filters columns from multiple columns from a single table based on a
@@ -2346,7 +2315,7 @@ rule_28 = [
     }
 ]
 
-output28 = {
+output_28 = {
     "filtered_data": {
         "Sample": [
             {
@@ -2415,7 +2384,6 @@ output28 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule28",
         }
@@ -2423,13 +2391,13 @@ output28 = {
 }
 
 
-def test_method_28():
+def test_single_table_multiple_column_interval_open_closed_datetime():
     """
     Rule 28 filters columns from multiple columns from a single table based on a
     single value from each column or any of the columns
     being an interval between two datetime values with (] interval
     """
-    assert create_dataset(rule_28, data=dataset, org=ORG_NAME) == output28
+    assert create_dataset(rule_28, data=dataset, org=ORG_NAME) == output_28
 
 
 # Rule 29 filters columns from multiple columns from a single table based on a
@@ -2447,7 +2415,7 @@ rule_29 = [
     }
 ]
 
-output29 = {
+output_29 = {
     "filtered_data": {
         "Sample": [
             {
@@ -2516,7 +2484,6 @@ output29 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule29",
         }
@@ -2524,13 +2491,13 @@ output29 = {
 }
 
 
-def test_method_29():
+def test_single_table_multiple_column_interval_closed_open_datetime():
     """
     Rule 29 filters columns from multiple columns from a single table based on a
     single value from each column or any of the columns
     being an interval between two datetime values with [) interval
     """
-    assert create_dataset(rule_29, data=dataset, org=ORG_NAME) == output29
+    assert create_dataset(rule_29, data=dataset, org=ORG_NAME) == output_29
 
 
 # Rule 30 filters columns from multiple columns from a single table based on a
@@ -2548,7 +2515,7 @@ rule_30 = [
     }
 ]
 
-output30 = {
+output_30 = {
     "filtered_data": {
         "Sample": [
             {
@@ -2617,7 +2584,6 @@ output30 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule30",
         }
@@ -2625,13 +2591,13 @@ output30 = {
 }
 
 
-def test_method_30():
+def test_single_table_multiple_column_interval_open_open_lower_inf():
     """
     Rule 30 filters columns from multiple columns from a single table based on a
     single value from each column or any of the columns being interval between
     two values where the lower bound limit is infinity and with () interva
     """
-    assert create_dataset(rule_30, data=dataset, org=ORG_NAME) == output30
+    assert create_dataset(rule_30, data=dataset, org=ORG_NAME) == output_30
 
 
 # Rule 31 filters columns from multiple columns from a single table based on a
@@ -2649,7 +2615,7 @@ rule_31 = [
     }
 ]
 
-output31 = {
+output_31 = {
     "filtered_data": {
         "Sample": [
             {
@@ -2718,7 +2684,6 @@ output31 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule31",
         }
@@ -2726,13 +2691,13 @@ output31 = {
 }
 
 
-def test_method_31():
+def test_single_table_multiple_column_interval_open_closed_lower_inf():
     """
     Rule 31 filters columns from multiple columns from a single table based on a
     single value from each column or any of the columns being interval between
     two values where the lower bound limit is infinity and with (] interval
     """
-    assert create_dataset(rule_31, data=dataset, org=ORG_NAME) == output31
+    assert create_dataset(rule_31, data=dataset, org=ORG_NAME) == output_31
 
 
 # Rule 32 filters columns from multiple columns from a single table based on a
@@ -2750,7 +2715,7 @@ rule_32 = [
     }
 ]
 
-output32 = {
+output_32 = {
     "filtered_data": {
         "Sample": [
             {
@@ -2819,7 +2784,6 @@ output32 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule32",
         }
@@ -2827,13 +2791,13 @@ output32 = {
 }
 
 
-def test_method_32():
+def test_single_table_multiple_column_interval_open_open_upper_inf():
     """
     Rule 32 filters columns from multiple columns from a single table based on a
     single value from each column or any of the columns being interval between
     two values where the upper bound limit is infinity and with () interval
     """
-    assert create_dataset(rule_32, data=dataset, org=ORG_NAME) == output32
+    assert create_dataset(rule_32, data=dataset, org=ORG_NAME) == output_32
 
 
 # Rule 33 filters columns from multiple columns from a single table based on a
@@ -2851,7 +2815,7 @@ rule_33 = [
     }
 ]
 
-output33 = {
+output_33 = {
     "filtered_data": {
         "Sample": [
             {
@@ -2909,7 +2873,6 @@ output33 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule33",
         }
@@ -2917,13 +2880,13 @@ output33 = {
 }
 
 
-def test_method_33():
+def test_single_table_multiple_column_interval_closed_open_upper_inf():
     """
     Rule 33 filters columns from multiple columns from a single table based on a
     single value from each column or any of the columns being interval between
     two values where the upper bound limit is infinity and with [) interval
     """
-    assert create_dataset(rule_33, data=dataset, org=ORG_NAME) == output33
+    assert create_dataset(rule_33, data=dataset, org=ORG_NAME) == output_33
 
 
 # Rule 34 filters columns from multiple columns from a single table based on
@@ -2940,7 +2903,7 @@ rule_34 = [
     }
 ]
 
-output34 = {
+output_34 = {
     "filtered_data": {
         "Sample": [
             {
@@ -2991,7 +2954,6 @@ output34 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule34",
         }
@@ -2999,12 +2961,12 @@ output34 = {
 }
 
 
-def test_method_34():
+def test_single_table_multiple_column_multiple_values():
     """
     Rule 34 filters columns from multiple columns from a single table based on
     multiple values where one can be a single value and other being interval.
     """
-    assert create_dataset(rule_34, data=dataset, org=ORG_NAME) == output34
+    assert create_dataset(rule_34, data=dataset, org=ORG_NAME) == output_34
 
 
 # SINGLE TABLE:
@@ -3023,7 +2985,7 @@ rule_35 = [
     }
 ]
 
-output35 = {
+output_35 = {
     "filtered_data": {"Sample": [], "WWMeasure": [{"uWwMeasureID": "Measure WW100"}]},
     "sharing_summary": [
         {
@@ -3105,7 +3067,6 @@ output35 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule35",
         }
@@ -3113,11 +3074,11 @@ output35 = {
 }
 
 
-def test_method_35():
+def test_single_table_all_columns_all_values():
     """
     Rule 35 filters all the columns from all column from a single table.
     """
-    assert create_dataset(rule_35, data=dataset, org=ORG_NAME) == output35
+    assert create_dataset(rule_35, data=dataset, org=ORG_NAME) == output_35
 
 
 # Rule 36 filters columns from all columns from a single table based on a
@@ -3134,7 +3095,7 @@ rule_36 = [
     }
 ]
 
-output36 = {
+output_36 = {
     "filtered_data": {
         "Sample": [
             {
@@ -3185,7 +3146,6 @@ output36 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule36",
         }
@@ -3193,12 +3153,12 @@ output36 = {
 }
 
 
-def test_method_36():
+def test_single_table_all_columns_single_value_numeric():
     """
     Rule 36 filters columns from all columns from a single table based on a
     single value from each column or any of the columns being a number.
     """
-    assert create_dataset(rule_36, data=dataset, org=ORG_NAME) == output36
+    assert create_dataset(rule_36, data=dataset, org=ORG_NAME) == output_36
 
 
 # Rule 37 filters columns from all columns from a single table based on a
@@ -3215,7 +3175,7 @@ rule_37 = [
     }
 ]
 
-output37 = {
+output_37 = {
     "filtered_data": {
         "Sample": [
             {
@@ -3266,7 +3226,6 @@ output37 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule37",
         }
@@ -3274,12 +3233,12 @@ output37 = {
 }
 
 
-def test_method_37():
+def test_single_table_all_columns_single_value_string():
     """
     Rule 37 filters columns from all columns from a single table based on a
     single value from each column or any of the columns being a string.
     """
-    assert create_dataset(rule_37, data=dataset, org=ORG_NAME) == output37
+    assert create_dataset(rule_37, data=dataset, org=ORG_NAME) == output_37
 
 
 # Rule 38 filters columns from all columns from a single table based on a
@@ -3290,13 +3249,13 @@ rule_38 = [
         "ruleID": "rule38",
         "table": "Sample",
         "variable": "ALL",
-        "ruleValue": "2021-02-28 21:00;2021-01-24 8:00",
+        "ruleValue": "2021-01-28 21:00;2021-01-24 8:00",
         "direction": "column",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output38 = {
+output_38 = {
     "filtered_data": {
         "Sample": [
             {
@@ -3376,7 +3335,6 @@ output38 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule38",
         }
@@ -3384,18 +3342,21 @@ output38 = {
 }
 
 
-def test_method_38():
+def test_single_table_all_columns_single_value_datetime():
     """
     Rule 38 filters columns from all columns from a single table based on a
     single value from each column or any of the columns being a datetime.
     """
-    assert create_dataset(rule_38, data=dataset, org=ORG_NAME) == output38
+    assert create_dataset(rule_38, data=dataset, org=ORG_NAME) == output_38
 
 
 # Rule 39 filters columns from all columns from a single table based on a
 # single value from each column or any of the columns being an interval
 # between two numbers with [] interval.
 
+# As we can get several rules in a list from one schema, therefore,
+# in the below list of rules, we have added 2 rules to ensure function works
+# for multiple rules in one schema.
 rule_39 = [
     {
         "ruleID": "rule39_1",
@@ -3415,15 +3376,13 @@ rule_39 = [
     },
 ]
 
-output39 = {
+output_39 = {
     "filtered_data": {
         "Sample": [
             {
                 "dateTime": Timestamp("2021-02-01 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-29 21:00:00"),
                 "dateTimeStart": Timestamp("2021-02-01 21:00:00"),
-                "fieldSampleTempC": 15,
-                "storageTempC": 16,
                 "sampleID": "Sample S100",
                 "type": "swrSed",
                 "collection": "mooreSw",
@@ -3432,8 +3391,6 @@ output39 = {
                 "dateTime": Timestamp("2021-01-25 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-01-24 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-24 08:00:00"),
-                "fieldSampleTempC": 17,
-                "storageTempC": 18,
                 "sampleID": "Sample S106",
                 "type": "pSludge",
                 "collection": "cpTP24h",
@@ -3442,8 +3399,6 @@ output39 = {
                 "dateTime": Timestamp("2021-01-28 21:00:00"),
                 "dateTimeEnd": Timestamp("2021-02-01 08:00:00"),
                 "dateTimeStart": Timestamp("2021-01-27 08:00:00"),
-                "fieldSampleTempC": 18,
-                "storageTempC": 22,
                 "sampleID": "Sample S107",
                 "type": "rawWW",
                 "collection": "grb",
@@ -3464,7 +3419,6 @@ output39 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule39_1",
         },
@@ -3485,7 +3439,6 @@ output39 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule39_2",
         },
@@ -3493,19 +3446,20 @@ output39 = {
 }
 
 
-def test_method_39():
+def test_single_table_all_columns_interval_closed_closed_numeric():
     """
     Rule 39 filters columns from all columns from a single table based on a
     single value from each column or any of the columns being an interval
     between two numbers with [] interval.
     """
-    assert create_dataset(rule_39, data=dataset, org=ORG_NAME) == output39
+    assert create_dataset(rule_39, data=dataset, org=ORG_NAME) == output_39
 
 
 # Rule 40 filters columns from all columns from a single table based on a
 # single value from each column or any of the columns being an interval
 # between two numbers with () interval.
 
+# multiple values in ruleValue ensure atleast 1 rule applies to each column
 rule_40 = [
     {
         "ruleID": "rule40",
@@ -3517,7 +3471,7 @@ rule_40 = [
     }
 ]
 
-output40 = {
+output_40 = {
     "filtered_data": {
         "Sample": [
             {
@@ -3570,7 +3524,6 @@ output40 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule40",
         }
@@ -3578,19 +3531,20 @@ output40 = {
 }
 
 
-def test_method_40():
+def test_single_table_all_columns_interval_open_open_numeric():
     """
     Rule 40 filters columns from all columns from a single table based on a
     single value from each column or any of the columns being an interval
     between two numbers with () interval.
     """
-    assert create_dataset(rule_40, data=dataset, org=ORG_NAME) == output40
+    assert create_dataset(rule_40, data=dataset, org=ORG_NAME) == output_40
 
 
 # Rule 41 filters columns from all columns from a single table based on a
 # single value from each column or any of the columns being an interval
 # between two numbers with (] interval.
 
+# multiple values in ruleValue ensure atleast 1 rule applies to each column
 rule_41 = [
     {
         "ruleID": "rule41",
@@ -3602,7 +3556,7 @@ rule_41 = [
     }
 ]
 
-output41 = {
+output_41 = {
     "filtered_data": {
         "Sample": [
             {
@@ -3655,7 +3609,6 @@ output41 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule41",
         }
@@ -3663,19 +3616,20 @@ output41 = {
 }
 
 
-def test_method_41():
+def test_single_table_all_columns_interval_open_closed_numeric():
     """
     Rule 41 filters columns from all columns from a single table based on a
     single value from each column or any of the columns being an interval
     between two numbers with (] interval.
     """
-    assert create_dataset(rule_41, data=dataset, org=ORG_NAME) == output41
+    assert create_dataset(rule_41, data=dataset, org=ORG_NAME) == output_41
 
 
 # Rule 42 filters columns from all columns from a single table based on a
 # single value from each column or any of the columns being an interval
 # between two numbers with [) interval.
 
+# multiple values in ruleValue ensure atleast 1 rule applies to each column
 rule_42 = [
     {
         "ruleID": "rule42",
@@ -3687,8 +3641,7 @@ rule_42 = [
     }
 ]
 
-
-output42 = {
+output_42 = {
     "filtered_data": {
         "Sample": [
             {
@@ -3739,7 +3692,6 @@ output42 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule42",
         }
@@ -3747,13 +3699,13 @@ output42 = {
 }
 
 
-def test_method_42():
+def test_single_table_all_columns_interval_closed_open_numeric():
     """
     Rule 42 filters columns from all columns from a single table based on a
     single value from each column or any of the columns being an interval
     between two numbers with [) interval.
     """
-    assert create_dataset(rule_42, data=dataset, org=ORG_NAME) == output42
+    assert create_dataset(rule_42, data=dataset, org=ORG_NAME) == output_42
 
 
 # Rule 43 filters columns from all columns from a single table based on a
@@ -3765,13 +3717,13 @@ rule_43 = [
         "ruleID": "rule43",
         "table": "Sample",
         "variable": "ALL",
-        "ruleValue": "[2021-01-25 8:00,2021-01-29 8:00]",
+        "ruleValue": "[2021-01-25 8:00,2021-01-29 21:00]",
         "direction": "column",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output43 = {
+output_43 = {
     "filtered_data": {
         "Sample": [
             {
@@ -3851,7 +3803,6 @@ output43 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule43",
         }
@@ -3859,19 +3810,20 @@ output43 = {
 }
 
 
-def test_method_43():
+def test_single_table_all_columns_interval_closed_closed_datetime():
     """
     Rule 43 filters columns from all columns from a single table based on a
     single value from each column or any of the columns being an interval
     between two datetime values with [] interval.
     """
-    assert create_dataset(rule_43, data=dataset, org=ORG_NAME) == output43
+    assert create_dataset(rule_43, data=dataset, org=ORG_NAME) == output_43
 
 
 # Rule 44 filters columns from all columns from a single table based on a
 # single value from each column or any of the columns being an interval
 # between two datetime values with () interval.
 
+# multiple values in ruleValue ensure atleast 1 rule applies to each column
 rule_44 = [
     {
         "ruleID": "rule44",
@@ -3883,7 +3835,7 @@ rule_44 = [
     }
 ]
 
-output44 = {
+output_44 = {
     "filtered_data": {
         "Sample": [
             {
@@ -3963,7 +3915,6 @@ output44 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule44",
         }
@@ -3971,19 +3922,20 @@ output44 = {
 }
 
 
-def test_method_44():
+def test_single_table_all_columns_interval_open_open_datetime():
     """
     Rule 44 filters columns from all columns from a single table based on a
     single value from each column or any of the columns being an interval
     between two datetime values with () interval.
     """
-    assert create_dataset(rule_44, data=dataset, org=ORG_NAME) == output44
+    assert create_dataset(rule_44, data=dataset, org=ORG_NAME) == output_44
 
 
 # Rule 45 filters columns from all columns from a single table based on a
 # single value from each column or any of the columns being an interval
 # between two datetime values with (] interval.
 
+# multiple values in ruleValue ensure atleast 1 rule applies to each column
 rule_45 = [
     {
         "ruleID": "rule45",
@@ -3995,7 +3947,7 @@ rule_45 = [
     }
 ]
 
-output45 = {
+output_45 = {
     "filtered_data": {
         "Sample": [
             {
@@ -4075,7 +4027,6 @@ output45 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule45",
         }
@@ -4083,19 +4034,20 @@ output45 = {
 }
 
 
-def test_method_45():
+def test_single_table_all_columns_interval_open_closed_datetime():
     """
     Rule 45 filters columns from all columns from a single table based on a
     single value from each column or any of the columns being an interval
     between two datetime values with (] interval.
     """
-    assert create_dataset(rule_45, data=dataset, org=ORG_NAME) == output45
+    assert create_dataset(rule_45, data=dataset, org=ORG_NAME) == output_45
 
 
 # Rule 46 filters columns from all columns from a single table based on a
 # single value from each column or any of the columns being an interval
 # between two datetime values with [) interval.
 
+# multiple values in ruleValue ensure atleast 1 rule applies to each column
 rule_46 = [
     {
         "ruleID": "rule46",
@@ -4107,7 +4059,7 @@ rule_46 = [
     }
 ]
 
-output46 = {
+output_46 = {
     "filtered_data": {
         "Sample": [
             {
@@ -4187,7 +4139,6 @@ output46 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule46",
         }
@@ -4195,13 +4146,13 @@ output46 = {
 }
 
 
-def test_method_46():
+def test_single_table_all_columns_interval_closed_open_datetime():
     """
     Rule 46 filters columns from all columns from a single table based on a
     single value from each column or any of the columns being an interval
     between two datetime values with [) interval.
     """
-    assert create_dataset(rule_46, data=dataset, org=ORG_NAME) == output46
+    assert create_dataset(rule_46, data=dataset, org=ORG_NAME) == output_46
 
 
 # Rule 47 filters columns from all columns from a single table based on a single
@@ -4218,7 +4169,7 @@ rule_47 = [
     }
 ]
 
-output47 = {
+output_47 = {
     "filtered_data": {
         "Sample": [
             {
@@ -4298,7 +4249,6 @@ output47 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule47",
         }
@@ -4306,12 +4256,12 @@ output47 = {
 }
 
 
-def test_method_47():
+def test_single_table_all_columns_interval_open_closed_lower_inf():
     """
     Rule 47 filters columns from all columns from a single table based on a single
     value being interval where lower bound limit is infinity with (] interval
     """
-    assert create_dataset(rule_47, data=dataset, org=ORG_NAME) == output47
+    assert create_dataset(rule_47, data=dataset, org=ORG_NAME) == output_47
 
 
 # Rule 48 filters columns from all columns from a single table based on a single
@@ -4328,7 +4278,7 @@ rule_48 = [
     }
 ]
 
-output48 = {
+output_48 = {
     "filtered_data": {
         "Sample": [
             {
@@ -4408,7 +4358,6 @@ output48 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule48",
         }
@@ -4416,12 +4365,12 @@ output48 = {
 }
 
 
-def test_method_48():
+def test_single_table_all_columns_interval_open_open_lower_inf():
     """
     Rule 48 filters columns from all columns from a single table based on a single
     value being interval where lower bound limit is infinity with () interval
     """
-    assert create_dataset(rule_48, data=dataset, org=ORG_NAME) == output48
+    assert create_dataset(rule_48, data=dataset, org=ORG_NAME) == output_48
 
 
 # Rule 49 filters columns from all columns from a single table based on a single
@@ -4438,7 +4387,7 @@ rule_49 = [
     }
 ]
 
-output49 = {
+output_49 = {
     "filtered_data": {
         "Sample": [
             {
@@ -4487,7 +4436,6 @@ output49 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule49",
         }
@@ -4495,12 +4443,12 @@ output49 = {
 }
 
 
-def test_method_49():
+def test_single_table_all_columns_interval_open_open_upper_inf():
     """
     Rule 49 filters columns from all columns from a single table based on a single
     value being interval where upper bound limit is infinity with () interval
     """
-    assert create_dataset(rule_49, data=dataset, org=ORG_NAME) == output49
+    assert create_dataset(rule_49, data=dataset, org=ORG_NAME) == output_49
 
 
 # Rule 50 filters columns from all columns from a single table based on single
@@ -4517,7 +4465,7 @@ rule_50 = [
     }
 ]
 
-output50 = {
+output_50 = {
     "filtered_data": {
         "Sample": [
             {
@@ -4566,7 +4514,6 @@ output50 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule50",
         }
@@ -4574,12 +4521,12 @@ output50 = {
 }
 
 
-def test_method_50():
+def test_single_table_all_columns_interval_closed_open_upper_inf():
     """
     Rule 50 filters columns from all columns from a single table based on single
     value being interval where upper bound limit is infinity with [) interval
     """
-    assert create_dataset(rule_50, data=dataset, org=ORG_NAME) == output50
+    assert create_dataset(rule_50, data=dataset, org=ORG_NAME) == output_50
 
 
 # Rule 51 filters columns from all columns from a single table based on a
@@ -4590,13 +4537,13 @@ rule_51 = [
         "ruleID": "rule51",
         "table": "Sample",
         "variable": "ALL",
-        "ruleValue": "[19,25];(18,22);(2021-01-24 21:00,2021-02-01 21:00]",
+        "ruleValue": "[19,25];(18,22);(2021-01-24 21:00,2021-02-01 21:00];16.0",
         "direction": "column",
         "sharedWith": "Public;PHAC",
     }
 ]
 
-output51 = {
+output_51 = {
     "filtered_data": {
         "Sample": [
             {
@@ -4678,7 +4625,6 @@ output51 = {
                     },
                     "table": "Sample",
                 },
-                {"columns_removed": {}, "table": "WWMeasure"},
             ],
             "rule_id": "rule51",
         }
@@ -4686,9 +4632,9 @@ output51 = {
 }
 
 
-def test_method_51():
+def test_single_table_all_columns_multiple_values():
     """
     Rule 51 filters columns from all columns from a single table based on a
     multiple values where one can be an interval and other a value.
     """
-    assert create_dataset(rule_51, data=dataset, org=ORG_NAME) == output51
+    assert create_dataset(rule_51, data=dataset, org=ORG_NAME) == output_51
