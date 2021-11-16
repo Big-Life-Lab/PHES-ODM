@@ -3,13 +3,16 @@ This module returns final filtered dataset and summary of removed data.
 """
 
 from numpy import nan
-import pandas as pd  # pylint: disable=import-error
+import pandas as pd
+from pandas.core.frame import DataFrame  # pylint: disable=import-error
 
 # import loop_through_tables # pylint: disable=import-error
 import loop_through_tables
+from typing import Any, Dict, List
+
 
 # from pandas import Timestamp  # pylint: disable=import-error
-def create_dataset(rules: list, data: dict, org: str) -> dict:
+def create_dataset(rules: List[Dict[Any, Any]], data: Dict[Any, Any], org: str) -> Dict:
     """Filters data and returns filtered data and shared summary in dictionary.
 
     The function will filter only those rules from rules list that correspond
@@ -29,14 +32,16 @@ def create_dataset(rules: list, data: dict, org: str) -> dict:
     """
 
     # Load the variables.csv file to get the primary key values for each variables in the data
-    variables = pd.read_csv("Variables.csv", delimiter=",")
+    variables: DataFrame = pd.read_csv("Variables.csv", delimiter=",")
 
     # Fetch all the names of tables in the ODM
-    original_tables = list(variables["tableName"].unique())
+    original_tables: List[Any] = list(variables["tableName"].unique())
 
     # For each table, create a list of dictionaries that contains the metadata
     # primary, foreign keys, variable type information for each variable
-    datatype_dict = {}
+    # Add the metadata for each table as value for the table key in dictionary
+    # datatype_dict
+    datatype_dict: Dict[Any, List[Dict[Any, Any]]] = {}
     for table in original_tables:
         datatype_dict[table] = variables[variables["tableName"] == table].to_dict(
             "records"
@@ -44,44 +49,44 @@ def create_dataset(rules: list, data: dict, org: str) -> dict:
 
     # filtered_data is the copy of the data provided by the user.
     # It is returned to the user after filter.
-    filtered_data = data.copy()
-
-    # Store original data from the dataset dictionary in variable origina_data
-    original_data = data.copy()
+    filtered_data: Dict[Any, List[Dict[Any, Any]]] = data.copy()
 
     # Check whether the given organization is part of current rule, then add
     # the rule to a list 'org_rule'. Each rule is a dictionary
-    org_rule = []
+    org_rule: List[Dict[str, Any]] = []
 
     for rule_org in rules:
         if ";" in rule_org["sharedWith"]:
-            list_of_organizations = rule_org["sharedWith"].split(";")
+            list_of_organizations: List[str] = rule_org["sharedWith"].split(";")
         else:
-            list_of_organizations = [rule_org["sharedWith"]]
+            list_of_organizations: List[str] = [rule_org["sharedWith"]]
         if org in list_of_organizations:
             org_rule.append(rule_org)
 
     # Create a copy of original dataset dictionary.
     # This is updated for each iteration to detect rows removed.
-    updated_data_dict = original_data.copy()
+    updated_data_dict: Dict[Any, List[Dict[Any, Any]]] = data.copy()
 
     # returned_data is the dictionary with two keys returned to user:
     # one key containing the filtered_data and the other with the removed data
-    returned_data: dict = {}
-    sharing_summary = []
+    returned_data: Dict[str, Any] = {}
+    sharing_summary: List[Dict[str, Any]] = []
 
     # ITTERATE THROUGH EACH RULE
     for rule in org_rule:
 
         # Create a dictionary that will contain the entities and data removed.
-        current_rule_summary = {"entities_filtered": [], "rule_id": rule["ruleID"]}
+        current_rule_summary: Dict[str, Any] = {
+            "entities_filtered": [],
+            "rule_id": rule["ruleID"],
+        }
 
         # Create an empty dataframe only if it does not exist
         # This dataframe is used to detect rows removed in each iteration.
         try:
             original_table_data_copy  # type: ignore
         except NameError:
-            original_table_data_copy = pd.DataFrame()
+            original_table_data_copy: DataFrame = pd.DataFrame()
 
         #'filtered_data' is the dictionary with filtered data
         # calls the function 'loop_through_tables' to iterate through each table
