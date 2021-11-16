@@ -12,7 +12,9 @@ from typing import Any, Dict, List
 
 
 # from pandas import Timestamp  # pylint: disable=import-error
-def create_dataset(rules: List[Dict[Any, Any]], data: Dict[Any, Any], org: str) -> Dict:
+def create_dataset(
+    rules: List[Dict[Any, Any]], data: Dict[Any, Any], org: str
+) -> Dict[str, Any]:
     """Filters data and returns filtered data and shared summary in dictionary.
 
     The function will filter only those rules from rules list that correspond
