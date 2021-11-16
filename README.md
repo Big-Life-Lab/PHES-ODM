@@ -1,4 +1,4 @@
-# <img src="img/ODM-logo.png" align="right" alt="" width="180"/> The Public Health Evironmental Surveillance Open Data Model (PHES-ODM, or ODM)
+# <img src="img/ODM-logo.png" align="right" alt="" width="180"/> The Public Health Environmental Surveillance Open Data Model (PHES-ODM, or ODM)
 
 <!-- badges: start -->
 
