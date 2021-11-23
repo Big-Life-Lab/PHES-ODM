@@ -8,13 +8,43 @@ from pandas.core.frame import DataFrame  # pylint: disable=import-error
 
 # import loop_through_tables # pylint: disable=import-error
 import loop_through_tables
-from typing import Any, Dict, List
+from typing import Any, Dict, List, TypedDict, Union
+
+
+class MetaData(TypedDict, total=False):
+    tableName: str
+    variableName: str
+    variableLabel_en: str
+    variableLabel_fr: str
+    key: str
+    foreignKeyTable: str
+    foreignKeyVariable: str
+    variableType: str
+    variableDesc_en: str
+    variableDesc_fr: str
+
+
+class Rules(TypedDict, total=False):
+    ruleID: str
+    table: str
+    variable: str
+    ruleValue: Union[str, int, float]
+    direction: str
+    sharedWith: str
+
+
+class CurrentRuleSummary(TypedDict, total=False):
+    entities_filtered: List[Dict[str, Any]]
+    rule_id: Any
+
+
+class ReturnedData(TypedDict, total=False):
+    filtered_data: Dict[Any, List[Dict[Any, Any]]]
+    sharing_summary: List[CurrentRuleSummary]
 
 
 # from pandas import Timestamp  # pylint: disable=import-error
-def create_dataset(
-    rules: List[Dict[Any, Any]], data: Dict[Any, Any], org: str
-) -> Dict[str, Any]:
+def create_dataset(rules: List[Rules], data: Dict[Any, Any], org: str) -> ReturnedData:
     """Filters data and returns filtered data and shared summary in dictionary.
 
     The function will filter only those rules from rules list that correspond
@@ -43,7 +73,7 @@ def create_dataset(
     # primary, foreign keys, variable type information for each variable
     # Add the metadata for each table as value for the table key in dictionary
     # datatype_dict
-    datatype_dict: Dict[Any, List[Dict[Any, Any]]] = {}
+    datatype_dict: Dict[str, List[MetaData]] = {}
     for table in original_tables:
         datatype_dict[table] = variables[variables["tableName"] == table].to_dict(
             "records"
@@ -55,13 +85,13 @@ def create_dataset(
 
     # Check whether the given organization is part of current rule, then add
     # the rule to a list 'org_rule'. Each rule is a dictionary
-    org_rule: List[Dict[str, Any]] = []
+    org_rule: List[Rules] = []
 
     for rule_org in rules:
         if ";" in rule_org["sharedWith"]:
             list_of_organizations: List[str] = rule_org["sharedWith"].split(";")
         else:
-            list_of_organizations: List[str] = [rule_org["sharedWith"]]
+            list_of_organizations = [rule_org["sharedWith"]]
         if org in list_of_organizations:
             org_rule.append(rule_org)
 
@@ -71,16 +101,16 @@ def create_dataset(
 
     # returned_data is the dictionary with two keys returned to user:
     # one key containing the filtered_data and the other with the removed data
-    returned_data: Dict[str, Any] = {}
-    sharing_summary: List[Dict[str, Any]] = []
+    returned_data: ReturnedData = {}
+    sharing_summary: List[CurrentRuleSummary] = []
 
     # ITTERATE THROUGH EACH RULE
     for rule in org_rule:
-
+        current_rule: Rules = rule
         # Create a dictionary that will contain the entities and data removed.
-        current_rule_summary: Dict[str, Any] = {
+        current_rule_summary: CurrentRuleSummary = {
             "entities_filtered": [],
-            "rule_id": rule["ruleID"],
+            "rule_id": current_rule["ruleID"],
         }
 
         # Create an empty dataframe only if it does not exist
@@ -98,7 +128,7 @@ def create_dataset(
             original_table_data_copy,
             current_rule_summary,
         ) = loop_through_tables.loop_through_tables(
-            rule,
+            current_rule,
             datatype_dict,
             filtered_data,
             current_rule_summary,

@@ -2,12 +2,25 @@
 This module creates lists of variables of differnt datatypes.
 """
 
-from typing import Tuple
+from typing import Any, Dict, List, Tuple, TypedDict
+
+
+class Meta_Data(TypedDict, total=False):
+    tableName: str
+    variableName: str
+    variableLabel_en: str
+    variableLabel_fr: str
+    key: str
+    foreignKeyTable: str
+    foreignKeyVariable: str
+    variableType: str
+    variableDesc_en: str
+    variableDesc_fr: str
 
 
 def create_list_of_datatypes_variables(
-    temp_datatype_dict: dict, table: str, to_keep_vars: list
-) -> Tuple[str, dict, list, list, list]:
+    temp_datatype_dict: Dict[str, List[Meta_Data]], table: str, to_keep_vars: List[str],
+) -> Tuple[str, List[Any], List[Any], List[Any]]:
     """The function creates lists of variables of different datatypes.
 
     The functions uses the metadata from variables.csv file to create three
@@ -25,41 +38,48 @@ def create_list_of_datatypes_variables(
 
     # For each table in current rule, create a list of variables of different
     # datatypes (datetime, numeric, or string type)
-    datetime_variables = []
-    string_variables = []
-    numeric_variables = []
+    datetime_variables: List[Any] = []
+    string_variables: List[Any] = []
+    numeric_variables: List[Any] = []
 
     # temp_datatype_dict[table] is a list of dictionaries where each dictionary
     # contains the metadata for each variables in that table such as primary,
     # foreign key, and variable datatype
-    for var in temp_datatype_dict[table]:
-        columns_to_check = [var.lower() for var in to_keep_vars]
+    for key in temp_datatype_dict[table]:
+
+        current_key: Meta_Data = key
+        columns_to_check = [current_key.lower() for current_key in to_keep_vars]
 
         # checks if the variable exist in the current rule
-        if var["variableName"].lower() in columns_to_check:
+        if current_key["variableName"].lower() in columns_to_check:
 
             # If variables are not part of current rule columns, continue
-            if var["variableType"] == "integer" or var["variableType"] == "float":
+            if (
+                current_key["variableType"] == "integer"
+                or current_key["variableType"] == "float"
+            ):
 
                 # Add float variables to list numeric_variables
-                numeric_variables.append(var["variableName"])
+                numeric_variables.append(current_key["variableName"])
             elif (
-                var["variableType"] == "string"
-                or var["variableType"] == "category"
-                or var["variableType"] == "boolean"
+                current_key["variableType"] == "string"
+                or current_key["variableType"] == "category"
+                or current_key["variableType"] == "boolean"
             ):
 
                 # Add character variables to list string_variables
-                string_variables.append(var["variableName"])
-            elif var["variableType"] == "datetime" or var["variableType"] == "date":
+                string_variables.append(current_key["variableName"])
+            elif (
+                current_key["variableType"] == "datetime"
+                or current_key["variableType"] == "date"
+            ):
 
                 # Add character variables to list string_variables
-                datetime_variables.append(var["variableName"])
-        if var["key"] == "Primary Key":
-            pri_var = var["variableName"]
+                datetime_variables.append(current_key["variableName"])
+        if current_key["key"] == "Primary Key":
+            pri_var: str = current_key["variableName"]
     return (
         pri_var,
-        temp_datatype_dict,
         numeric_variables,
         string_variables,
         datetime_variables,

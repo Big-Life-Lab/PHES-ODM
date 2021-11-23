@@ -2,6 +2,7 @@
 """
 This module iterates through each rule in the ruleValues.
 """
+from typing import List, Any, Sequence, TypedDict, Union
 import re
 from pandas.core.frame import DataFrame  # pylint: disable=import-error
 import pandas as pd  # pylint: disable=import-error
@@ -13,13 +14,22 @@ from filter_range_by_numeric_vars import (
 )  # pylint: disable=import-error
 
 
+class Rules(TypedDict, total=False):
+    ruleID: str
+    table: str
+    variable: str
+    ruleValue: Union[str, int, float]
+    direction: str
+    sharedWith: str
+
+
 def loop_through_rules(
-    rule: dict,
-    list_of_rules: list,
+    rule: Rules,
+    list_of_rules: Sequence[Union[str, int, float]],
     intermediate_filtered_data: DataFrame,
-    datetime_variables: list,
-    numeric_variables: list,
-    string_variables: list,
+    datetime_variables: List[Any],
+    numeric_variables: List[Any],
+    string_variables: List[Any],
 ) -> DataFrame:
     """The function filters data by iterating through each rule value.
 
@@ -47,24 +57,26 @@ def loop_through_rules(
     """
 
     # Setting patterns for detecting type of brackets
-    pat3 = r"^\["
-    pat4 = r"\]$"
-    pat5 = r"^\("
-    pat6 = r"\)$"
+    pat3: str = r"^\["
+    pat4: str = r"\]$"
+    pat5: str = r"^\("
+    pat6: str = r"\)$"
 
     # ITTERATING THROUGH EACH RULEVALUE
-    for filter_by in list_of_rules:
-        if isinstance(filter_by, str):
-            filter_by = filter_by.strip()
+    for filter_rule in list_of_rules:
+
+        filter_by: Union[str, int, float] = filter_rule
+        if isinstance(filter_rule, str):
+            filter_by = filter_rule.strip()
 
         # Assign a variable for the bracket type, defines lower and upper limit
         # if the particular ruleValue is a range type
-        bracket = ""
-        lower_limit = ""
-        upper_limit = ""
+        bracket: str = ""
+        lower_limit: str = ""
+        upper_limit: str = ""
 
         # Assign a variable for the ruleValue that is not a range type
-        filter_val = None
+        filter_val: Union[str, float, int, None] = None
 
         if isinstance(filter_by, str):
 
@@ -96,7 +108,7 @@ def loop_through_rules(
 
         # Confirm if the ruleValue is range type by checking if bracket exist
         # & create upper_limit and lower_limit value
-        if bracket:
+        if bracket and isinstance(filter_by, str):
             if "," in filter_by:
                 filter_list = filter_by.split(",")
                 lower_limit = filter_list[0].strip()
@@ -121,13 +133,13 @@ def loop_through_rules(
 
         # Create boolean variables that checks if the current filter value
         # is a datetime or numeric or character value
-        rule_is_datetime = False
-        rule_is_numeric = False
-        rule_is_char = False
+        rule_is_datetime: bool = False
+        rule_is_numeric: bool = False
+        rule_is_char: bool = False
 
         # If the direction of the rule is row, remove rows of data based on rule
         if rule["direction"] == "row":
-            column = False
+            column: bool = False
             # if ruleValue is 'ALL', remove all columns and rows from dataframe
             if filter_by == "ALL":
                 intermediate_filtered_data = pd.DataFrame()
@@ -171,7 +183,8 @@ def loop_through_rules(
         elif rule["direction"] == "column":
             column = True
             if filter_by == "ALL":
-                variables_in_rule = (
+                # Drop all columns in current rule
+                variables_in_rule: List[Any] = (
                     numeric_variables + datetime_variables + string_variables
                 )
                 intermediate_filtered_data = intermediate_filtered_data.drop(

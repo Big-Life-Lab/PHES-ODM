@@ -6,6 +6,7 @@ from typing import Any, Tuple  # pylint: disable=import-error
 import re
 import pandas as pd  # pylint: disable=import-error
 from pandas.core.frame import DataFrame  # pylint: disable=import-error
+from typing import List, Union
 
 
 def filter_single_value(
@@ -16,14 +17,14 @@ def filter_single_value(
     pat8: str,
     pat9: str,
     pat10: str,
-    filter_val: Any,
+    filter_val: Union[str, int, float, None],
     rule_is_datetime: bool,
     rule_is_numeric: bool,
     rule_is_char: bool,
     intermediate_filtered_data: DataFrame,
-    datetime_variables: list,
-    numeric_variables: list,
-    string_variables: list,
+    datetime_variables: List[Any],
+    numeric_variables: List[Any],
+    string_variables: List[Any],
 ) -> Tuple[DataFrame, bool, bool, bool]:
 
     """The function will filter dataframe based on a single rule value.

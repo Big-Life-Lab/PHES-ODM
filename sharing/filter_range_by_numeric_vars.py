@@ -2,7 +2,7 @@
 This module filters data by range between two numeric values.
 """
 
-from typing import Tuple  # pylint: disable=import-error
+from typing import Tuple, List, Any, Union  # pylint: disable=import-error
 from pandas.core.frame import DataFrame  # pylint: disable=import-error
 
 
@@ -13,7 +13,7 @@ def filter_range_by_numeric_vars(
     upper_limit: str,
     intermediate_filtered_data: DataFrame,
     rule_is_numeric: bool,
-    numeric_variables: list,
+    numeric_variables: List[Any],
 ) -> Tuple[DataFrame, bool]:
     """The function filters data by the numeric variables in current rule.
 
@@ -42,8 +42,8 @@ def filter_range_by_numeric_vars(
 
     # If lower and upper limit value exist, then filter as per the range rule.
     if lower_limit and upper_limit:
-        low_limit = None
-        up_limit = None
+        low_limit: Union[int, float, None] = None
+        up_limit: Union[int, float, None] = None
 
         # HANDLING NUMERIC VALUES
 

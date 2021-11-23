@@ -2,8 +2,8 @@
 This module filters the data by a range between two datetime values.
 """
 
-from typing import Any, Tuple  # pylint: disable=import-error
-from datetime import timedelta  # pylint: disable=import-error
+from typing import Any, Tuple, List, Union  # pylint: disable=import-error
+from datetime import datetime, timedelta  # pylint: disable=import-error
 import re
 import pandas as pd  # pylint: disable=import-error
 from pandas.core.frame import DataFrame  # pylint: disable=import-error
@@ -15,14 +15,14 @@ def filter_range_by_datetime_vars(
     bracket: str,
     lower_limit: str,
     upper_limit: str,
-    filter_val: Any,
+    filter_val: Union[str, int, float, None],
     intermediate_filtered_data: DataFrame,
     rule_is_datetime: bool,
     rule_is_numeric: bool,
     rule_is_char: bool,
-    datetime_variables: list,
-    numeric_variables: list,
-    string_variables: list,
+    datetime_variables: List[Any],
+    numeric_variables: List[Any],
+    string_variables: List[Any],
 ) -> Tuple[DataFrame, bool, bool, bool]:
     """The function filters data by the datetime variables in current rule.
 
@@ -50,12 +50,12 @@ def filter_range_by_datetime_vars(
     """
 
     # Define pattern for the datetime type
-    pat1 = r"(\d+/\d+/\d+)"
-    pat2 = r"(\d+-\d+-\d+)"
-    pat7 = r"(\d+-\d+-\d+ \d+:\d+)"
-    pat8 = r"(\d+/\d+/\d+ \d+:\d+)"
-    pat9 = r"(\d+-\d+-\d+ \d+:\d+:\d+)"
-    pat10 = r"(\d+/\d+/\d+ \d+:\d+:\d+)"
+    pat1: str = r"(\d+/\d+/\d+)"
+    pat2: str = r"(\d+-\d+-\d+)"
+    pat7: str = r"(\d+-\d+-\d+ \d+:\d+)"
+    pat8: str = r"(\d+/\d+/\d+ \d+:\d+)"
+    pat9: str = r"(\d+-\d+-\d+ \d+:\d+:\d+)"
+    pat10: str = r"(\d+/\d+/\d+ \d+:\d+:\d+)"
 
     # First ensure if either of the limits is of datetime type:
 
@@ -102,8 +102,8 @@ def filter_range_by_datetime_vars(
                     rule_is_datetime = True
 
                     # Changes the limits to datetime type in pandas to filter
-                    low_limit = pd.to_datetime(lower_limit)
-                    up_limit = pd.to_datetime(upper_limit)
+                    low_limit: datetime = pd.to_datetime(lower_limit)
+                    up_limit: datetime = pd.to_datetime(upper_limit)
                 elif (
                     re.fullmatch(pat1, str(lower_limit)) is not None
                     or re.fullmatch(pat2, str(lower_limit)) is not None

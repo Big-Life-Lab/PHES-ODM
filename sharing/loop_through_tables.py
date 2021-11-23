@@ -1,8 +1,7 @@
 """
 This module loops through each each table within the current rule.
 """
-
-from typing import Tuple
+from typing import TypedDict, Dict, List, Any, Union, Sequence, Tuple
 from pandas.core.frame import DataFrame
 from numpy import nan
 import pandas as pd
@@ -10,14 +9,41 @@ from create_list_of_datatypes_variables import create_list_of_datatypes_variable
 from loop_through_rules import loop_through_rules
 
 
+class MetaData(TypedDict, total=False):
+    tableName: str
+    variableName: str
+    variableLabel_en: str
+    variableLabel_fr: str
+    key: str
+    foreignKeyTable: str
+    foreignKeyVariable: str
+    variableType: str
+    variableDesc_en: str
+    variableDesc_fr: str
+
+
+class Rules(TypedDict, total=False):
+    ruleID: str
+    table: str
+    variable: str
+    ruleValue: Union[str, int, float]
+    direction: str
+    sharedWith: str
+
+
+class CurrentRuleSummary(TypedDict, total=False):
+    entities_filtered: List[Dict[str, Any]]
+    rule_id: Any
+
+
 def loop_through_tables(
-    rule: dict,
-    datatype_dict: dict,
-    filtered_data: dict,
-    current_rule_summary: dict,
+    rule: Rules,
+    datatype_dict: Dict[str, List[MetaData]],
+    filtered_data: Dict[Any, List[Dict[Any, Any]]],
+    current_rule_summary: CurrentRuleSummary,
     original_table_data_copy: DataFrame,
-    updated_data_dict,
-) -> Tuple[dict, DataFrame, dict]:
+    updated_data_dict: Dict[Any, List[Dict[Any, Any]]],
+) -> Tuple[Dict[Any, List[Dict[Any, Any]]], DataFrame, CurrentRuleSummary]:
     """This function iterates through each table in the current rule.
 
     Function iterates through each table in current rule. It creates
@@ -46,12 +72,12 @@ def loop_through_tables(
     """
 
     # tables present in current rule
-    existing_tables = rule["table"]
+    existing_tables: str = rule["table"]
 
     # list_tables is the list of all tables that exist in the current rule
-    existing_variables = rule["variable"]
+    existing_variables: str = rule["variable"]
     if ";" in existing_tables:
-        list_tables = existing_tables.split(";")
+        list_tables: List[str] = existing_tables.split(";")
     elif existing_tables == "ALL":
         list_tables = list(filtered_data.keys())
     else:
@@ -59,7 +85,7 @@ def loop_through_tables(
 
     # Use a temporary dictionary that contains metadata for each table
     # such as variable type, primary and foreign key information
-    temp_datatype_dict = {}
+    temp_datatype_dict: Dict[str, List[MetaData]] = {}
 
     # ITTERATE through all the tables in the list of tables in current rule
 
@@ -68,19 +94,20 @@ def loop_through_tables(
 
     for table in list_tables:
 
+        current_table: str = table
         # datatype_dict[table] is a list of dictionaries where each dictionary
         # contains all the primary, foreign keys and variable type for each
         # variable in current table
-        temp_datatype_dict[table] = datatype_dict[table]
+        temp_datatype_dict[current_table] = datatype_dict[current_table]
 
         # ITTERATE THROUGH EACH TABLE IN THE RULE
-        if table in filtered_data.keys():
+        if current_table in filtered_data.keys():
             # if table in current itteration is part of 'filtered_data' given
             # by user, create a pandas dataframe of it and store in variable
             # named 'current_rule_data'
-            current_rule_data = pd.DataFrame(filtered_data[table])
+            current_rule_data: DataFrame = pd.DataFrame(filtered_data[current_table])
             if ";" in existing_variables:
-                list_variables = existing_variables.split(";")
+                list_variables: List[str] = existing_variables.split(";")
             elif existing_variables == "ALL":
                 list_variables = list(current_rule_data.columns)
             else:
@@ -94,8 +121,8 @@ def loop_through_tables(
             # checks if the list of variables in current rule are also present in
             # the data provided by the user if present then create a list of
             # current variables named 'to_keep_vars'
-            columns_to_check = [var.lower() for var in list_variables]
-            to_keep_vars = [
+            columns_to_check: List[str] = [var.lower() for var in list_variables]
+            to_keep_vars: List[str] = [
                 vars
                 for vars in list(current_rule_data.columns)
                 if vars.lower() in columns_to_check
@@ -105,19 +132,18 @@ def loop_through_tables(
             # using the function create_list_of_datatypes_variables
             (
                 pri_var,
-                temp_datatype_dict,
                 numeric_variables,
                 string_variables,
                 datetime_variables,
             ) = create_list_of_datatypes_variables(
-                temp_datatype_dict, table, to_keep_vars
+                temp_datatype_dict, current_table, to_keep_vars
             )
 
-            rule_values = rule["ruleValue"]
+            rule_values: Union[str, int, float] = rule["ruleValue"]
 
             # Create list of all the RuleValues- list_of_rules
             if isinstance(rule_values, (float, int)):
-                list_of_rules = [rule_values]
+                list_of_rules: Sequence[Union[str, int, float]] = [rule_values]
             elif ";" in rule_values:
                 list_of_rules = rule_values.split(";")
             else:
@@ -146,19 +172,23 @@ def loop_through_tables(
             # this dataframe is used to filter the rows removed for
             # each iteration it gets updated each iteration with filtered data
             # from last iteration
-            original_table_data_copy = pd.DataFrame(updated_data_dict[table]).copy()
+            original_table_data_copy = pd.DataFrame(
+                updated_data_dict[current_table]
+            ).copy()
 
             # Add the details of entities and rows removed to 'current_rule_summary'
             # along with the table name. Concatenate the original data with the
             # filtered dataset (which has been filtered for the current rule for given table)
             if rule["direction"] == "row":
-                original_filtered_table = pd.concat(
+                original_filtered_table: DataFrame = pd.concat(
                     [original_table_data_copy, current_filtered_data], axis=0
                 )
 
                 # drop duplicates from original data to get the rows that were removed
                 # from the original data from current table
-                removed_data = original_filtered_table.drop_duplicates(keep=False)
+                removed_data: DataFrame = original_filtered_table.drop_duplicates(
+                    keep=False
+                )
 
             elif rule["direction"] == "column":
                 original_filtered_table = pd.concat(
