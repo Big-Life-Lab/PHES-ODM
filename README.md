@@ -31,7 +31,7 @@ The ODM strives to improve wastewater surveillance through the development of an
 
 The ODM is comprised of ten primary tables and one lookup table, linked to each other based on logic relationships. The following figure provides an overview of the different data sources that are currently captured.
 
-![Schematic representation of the ODM](img/ODM%20schematic.svg)
+![Schematic representation of the ODM](img/wasteater-map.png)
 
 See [metadata](metadata_en.md) for more detailed information on variable names and definitions. Cliquez [ici](metadata_fr.md) pour la version française.
 
