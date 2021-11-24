@@ -88,16 +88,15 @@ See [license](LICENSE) for more information.
 
 Development and maintenance of the ODM is the result of a collaboration between researchers from multiple institutions:
 
-- uOttawa
-- Université Laval
+- [CIHR Coronavirus Variants Rapid Response Network (CoVaRR-Net)](https://covarrnet.ca)- uOttawa
 - The Ottawa Hospital
-- Ottawa Public Health
+- Université Laval
 - CHEO Research Institute
 - modelEAU
 - CentrEau - Centre québécois de recherche sur la gestion de l'eau
 - Public Health Agency Canada
 - Ministry of Environment, Conservation, and Parks - MECP Ontario
-- [Coronavirus Variants Rapid Response Network (CoVaRR-Net)](https://covarrnet.ca)
+- European Union DG Joint Research Centre
 
 ## References
 
