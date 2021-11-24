@@ -67,6 +67,9 @@ A dashboard using the Ottawa data can be found at: [613covid.ca](https://613covi
 
 See [roadmap](roadmap.md) for more details.
 
+
+[![ODM version 2]({image-url})]({https://vimeo.com/649254159} "What's coming in ODM Version 2")
+
 ## Additional tools
 
 Working group members maintain other repositories with tools that use the ODM, including:
