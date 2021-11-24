@@ -69,7 +69,7 @@ See [roadmap](roadmap.md) for more details.
 
 What's coming to version 2.0.
 
-<a href="{https://vimeo.com/649254159}" title="Link Title"><img src="img/ODM-V2-video.png" alt="What's coming to version 2.0" width="350"/></a>
+<a href= "https://vimeo.com/649254159" title="Link Title"><img src="img/ODM-V2-video.png" alt="What's coming to version 2.0" width="350"/></a>
 
 ## Additional tools
 
