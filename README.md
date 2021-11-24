@@ -47,7 +47,7 @@ Issues, suggestions and pull requests are welcomed. [contributing](CONTRIBUTING.
 
 Subscribe to OMD newletters to receive e-mails about new releases, working group announcements or general updates. [here](https://us20.list-manage.com/survey?u=dd9d7217c4c3932d1ee9ffcfe&id=917b821107&attribution=false).
 
-Questions? E-mail at [phesd_odm@ohri.ca](mailto::phesd_odm@ohri.ca).
+Questions? E-mail at [phes_odm@ohri.ca](mailto::phesd_odm@ohri.ca).
 
 ## Application
 
