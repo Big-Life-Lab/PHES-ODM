@@ -39,9 +39,15 @@ See [metadata](metadata_en.md) for more detailed information on variable names a
 
 Issues, suggestions and pull requests are welcomed. [contributing](CONTRIBUTING.md) for more information.
 
-- [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [dmanuel\@ohri.ca](mailto:dmanuel@ohri.ca).
+- [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [phesd_odm@ohri.ca](mailto::phesd_odm@ohri.caa).
 - [Code of conduct](CODE_OF_CONDUCT.md).
 - Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
+
+## Keep in touch
+
+Subscribe to OMD newletters to receive e-mails about new releases, working group announcements or general updates. [here](https://us20.list-manage.com/survey?u=dd9d7217c4c3932d1ee9ffcfe&id=e2feb67749&attribution=false).
+
+Questions? E-mail at [phesd_odm@ohri.ca](mailto::phesd_odm@ohri.ca).
 
 ## Application
 
