@@ -29,12 +29,9 @@ def filter_range_by_numeric_vars(
         upper_limit(str): upper limit of the range
         filter_val(str): single value to filter
         intermediate_filtered_data(dataframe): data to be filtered
-        rule_is_datetime(bool): bool variable checks rule value is datetime type
         rule_is_numeric(bool): bool variable checks rule value is numeric type
-        rule_is_char(bool): bool variable checks rule value is string type
-        datetime_variables(list): current rule variables of datetime type
         numeric_variables(list): current rule variables of numeric type
-        string_variables(list): current rule variables of string type
+
     Returns:
         dataframe: Dataframe that is filtered if rule value is of datetime type
         bool: bool variable specifies the data type of rule

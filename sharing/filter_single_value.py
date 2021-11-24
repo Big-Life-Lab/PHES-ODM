@@ -44,6 +44,9 @@ def filter_single_value(
         pat9(str): the datetime pattern to check with refular expression
         pat10(str): the datetime pattern to check with refular expression
         filter_val(str): current single rule value
+        rule_is_datetime(bool): bool variable checks rule value is datetime type
+        rule_is_numeric(bool): bool variable checks rule value is numeric type
+        rule_is_char(bool): bool variable checks rule value is string type
         datetime_variables(list): current rule variables of datetime type
         numeric_variables(list): current rule variables of numeric type
         string_variables(list): current rule variables of string type

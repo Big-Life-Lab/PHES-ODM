@@ -29,6 +29,7 @@ def create_list_of_datatypes_variables(
 
     Parameters:
         temp_datatype_dict(dict): dictionaries of variable metadata
+        table(str): current table being itterated
         to_keep_vars(list): list of variables to keep in current rule
     Returns:
         pri_var: the primary key variable
