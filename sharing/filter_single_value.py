@@ -2,11 +2,10 @@
 This module filters data by a single rule value of any datatype.
 """
 
-from typing import Any, Tuple  # pylint: disable=import-error
+from typing import Any, Tuple, List, Union  # pylint: disable=import-error
 import re
 import pandas as pd  # pylint: disable=import-error
 from pandas.core.frame import DataFrame  # pylint: disable=import-error
-from typing import List, Union
 
 
 def filter_single_value(

@@ -1,39 +1,13 @@
 """
 This module loops through each each table within the current rule.
 """
-from typing import TypedDict, Dict, List, Any, Union, Sequence, Tuple
+from typing import List, Union, Dict, Any, Tuple, Sequence
 from pandas.core.frame import DataFrame
 from numpy import nan
 import pandas as pd
+from classes_for_datatypes import Rules, MetaData, CurrentRuleSummary
 from create_list_of_datatypes_variables import create_list_of_datatypes_variables
 from loop_through_rules import loop_through_rules
-
-
-class MetaData(TypedDict, total=False):
-    tableName: str
-    variableName: str
-    variableLabel_en: str
-    variableLabel_fr: str
-    key: str
-    foreignKeyTable: str
-    foreignKeyVariable: str
-    variableType: str
-    variableDesc_en: str
-    variableDesc_fr: str
-
-
-class Rules(TypedDict, total=False):
-    ruleID: str
-    table: str
-    variable: str
-    ruleValue: Union[str, int, float]
-    direction: str
-    sharedWith: str
-
-
-class CurrentRuleSummary(TypedDict, total=False):
-    entities_filtered: List[Dict[str, Any]]
-    rule_id: Any
 
 
 def loop_through_tables(

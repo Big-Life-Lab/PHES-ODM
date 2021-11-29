@@ -1,52 +1,19 @@
 """
 This module returns final filtered dataset and summary of removed data.
 """
-
+from typing import List, Dict, Any
 from numpy import nan
 import pandas as pd
 from pandas.core.frame import DataFrame  # pylint: disable=import-error
+from classes_for_datatypes import Rules, MetaData, CurrentRuleSummary, ReturnedData
 
 # import loop_through_tables # pylint: disable=import-error
 import loop_through_tables
-from typing import Any, Dict, List, TypedDict, Union
-
-
-class MetaData(TypedDict, total=False):
-    tableName: str
-    variableName: str
-    variableLabel_en: str
-    variableLabel_fr: str
-    key: str
-    foreignKeyTable: str
-    foreignKeyVariable: str
-    variableType: str
-    variableDesc_en: str
-    variableDesc_fr: str
-
-
-class Rules(TypedDict, total=False):
-    ruleID: str
-    table: str
-    variable: str
-    ruleValue: Union[str, int, float]
-    direction: str
-    sharedWith: str
-
-
-class CurrentRuleSummary(TypedDict, total=False):
-    entities_filtered: List[Dict[str, Any]]
-    rule_id: Any
-
-
-class ReturnedData(TypedDict, total=False):
-    filtered_data: Dict[Any, List[Dict[Any, Any]]]
-    sharing_summary: List[CurrentRuleSummary]
 
 
 # from pandas import Timestamp  # pylint: disable=import-error
 def create_dataset(rules: List[Rules], data: Dict[Any, Any], org: str) -> ReturnedData:
     """Filters data and returns filtered data and shared summary in dictionary.
-
     The function will filter only those rules from rules list that correspond
     to the particular organization user has requested and create a list
     org_rules. It will iterate through each rule in org_rule to the filter

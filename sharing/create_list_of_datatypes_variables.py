@@ -2,24 +2,12 @@
 This module creates lists of variables of differnt datatypes.
 """
 
-from typing import Any, Dict, List, Tuple, TypedDict
-
-
-class Meta_Data(TypedDict, total=False):
-    tableName: str
-    variableName: str
-    variableLabel_en: str
-    variableLabel_fr: str
-    key: str
-    foreignKeyTable: str
-    foreignKeyVariable: str
-    variableType: str
-    variableDesc_en: str
-    variableDesc_fr: str
+from typing import Any, Dict, List, Tuple
+from classes_for_datatypes import MetaData
 
 
 def create_list_of_datatypes_variables(
-    temp_datatype_dict: Dict[str, List[Meta_Data]], table: str, to_keep_vars: List[str],
+    temp_datatype_dict: Dict[str, List[MetaData]], table: str, to_keep_vars: List[str],
 ) -> Tuple[str, List[Any], List[Any], List[Any]]:
     """The function creates lists of variables of different datatypes.
 
@@ -48,7 +36,7 @@ def create_list_of_datatypes_variables(
     # foreign key, and variable datatype
     for key in temp_datatype_dict[table]:
 
-        current_key: Meta_Data = key
+        current_key: MetaData = key
         columns_to_check = [current_key.lower() for current_key in to_keep_vars]
 
         # checks if the variable exist in the current rule

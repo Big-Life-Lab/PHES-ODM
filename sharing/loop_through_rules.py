@@ -2,25 +2,17 @@
 """
 This module iterates through each rule in the ruleValues.
 """
-from typing import List, Any, Sequence, TypedDict, Union
+from typing import List, Any, Sequence, Union
 import re
 from pandas.core.frame import DataFrame  # pylint: disable=import-error
 import pandas as pd  # pylint: disable=import-error
+from classes_for_datatypes import Rules
 from filter_range_by_datetime_vars import (
     filter_range_by_datetime_vars,
 )  # pylint: disable=import-error
 from filter_range_by_numeric_vars import (
     filter_range_by_numeric_vars,
 )  # pylint: disable=import-error
-
-
-class Rules(TypedDict, total=False):
-    ruleID: str
-    table: str
-    variable: str
-    ruleValue: Union[str, int, float]
-    direction: str
-    sharedWith: str
 
 
 def loop_through_rules(
