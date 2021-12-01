@@ -39,7 +39,7 @@ See [metadata](metadata_en.md) for more detailed information on variable names a
 
 Issues, suggestions and pull requests are welcomed. [contributing](CONTRIBUTING.md) for more information.
 
-- [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [phes_odm@ohri.ca](mailto::phes_odm@ohri.caa).
+- [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [phesd_odm@ohri.ca](mailto::phes_odm@ohri.caa).
 - [Code of conduct](CODE_OF_CONDUCT.md).
 - Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
 
