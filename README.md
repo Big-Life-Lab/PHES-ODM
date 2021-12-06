@@ -12,6 +12,10 @@ development](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://l
 
 ## Description
 
+PHES-ODM began as an open data model for wastwater-based surveillance of SARS-CoV-2. 
+
+> PHES-ODM Version 2 (in progress) expands the original ODM to include surface and air testing, in addition to water. The new PHES-ODM v2 also include robust support for reporting any biologic, toxin, or other health risk.
+
 This repository includes:
 
 - A relational **dictionary** that captures wastewater based surveillance data and metadata. It consists of 150+ variables categorized in 10 tables. Both English and French versions are supported;
