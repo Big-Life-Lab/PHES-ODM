@@ -2,28 +2,23 @@
 This module filters data by a single rule value of any datatype.
 """
 
-from typing import Any, Tuple, List, Union  # pylint: disable=import-error
+from typing import Tuple, List, Union  # pylint: disable=import-error
 import re
 import pandas as pd  # pylint: disable=import-error
 from pandas.core.frame import DataFrame  # pylint: disable=import-error
+from check_rule_type import check_type_of_rule
 
 
 def filter_single_value(
     column: bool,
-    pat1: str,
-    pat2: str,
-    pat7: str,
-    pat8: str,
-    pat9: str,
-    pat10: str,
     filter_val: Union[str, int, float, None],
     rule_is_datetime: bool,
     rule_is_numeric: bool,
     rule_is_char: bool,
     intermediate_filtered_data: DataFrame,
-    datetime_variables: List[Any],
-    numeric_variables: List[Any],
-    string_variables: List[Any],
+    datetime_variables: List[str],
+    numeric_variables: List[str],
+    string_variables: List[str],
 ) -> Tuple[DataFrame, bool, bool, bool]:
 
     """The function will filter dataframe based on a single rule value.
@@ -36,12 +31,6 @@ def filter_single_value(
 
     Parameters:
         column(bool): checks whether the rule direction is column or not
-        pat1(str): the datetime pattern to check with refular expression
-        pat2(str): the datetime pattern to check with refular expression
-        pat7(str): the datetime pattern to check with refular expression
-        pat8(str): the datetime pattern to check with refular expression
-        pat9(str): the datetime pattern to check with refular expression
-        pat10(str): the datetime pattern to check with refular expression
         filter_val(str): current single rule value
         rule_is_datetime(bool): bool variable checks rule value is datetime type
         rule_is_numeric(bool): bool variable checks rule value is numeric type
@@ -60,26 +49,20 @@ def filter_single_value(
         for datetime_var in datetime_variables:
 
             # Check whether the ruleValue is of datetime type
-            if (
-                re.fullmatch(pat1, str(filter_val)) is not None
-                or re.fullmatch(pat2, str(filter_val)) is not None
-                or re.fullmatch(pat7, str(filter_val)) is not None
-                or re.fullmatch(pat8, str(filter_val)) is not None
-                or re.fullmatch(pat9, str(filter_val)) is not None
-                or re.fullmatch(pat10, str(filter_val)) is not None
-            ):
-                rule_is_datetime = True
+            rule_is_datetime = check_type_of_rule(
+                rule_is_datetime, filter_val=filter_val
+            )
+
+            if rule_is_datetime:
                 filter_val = pd.to_datetime(filter_val)
 
-                if not column and rule_is_datetime:
+                if not column:
                     intermediate_filtered_data = intermediate_filtered_data.loc[
                         (intermediate_filtered_data[datetime_var] != filter_val), :
                     ]
-                elif (
-                    column
-                    and rule_is_datetime
-                    and datetime_var in intermediate_filtered_data.columns
-                ):
+                elif column and datetime_var in intermediate_filtered_data.columns:
+                    # Checks if the filter_val value exist in the
+                    # current variable
                     if filter_val in intermediate_filtered_data[datetime_var].to_list():
                         intermediate_filtered_data = intermediate_filtered_data.drop(
                             [datetime_var], axis=1
@@ -98,15 +81,12 @@ def filter_single_value(
                     rule_is_numeric = True
                     filter_val = float(str(filter_val))
 
-                    if not column and rule_is_numeric:
+                    if not column:
                         intermediate_filtered_data = intermediate_filtered_data.loc[
                             (intermediate_filtered_data[numeric_var] != filter_val)
                         ]
-                    elif (
-                        column
-                        and rule_is_numeric
-                        and numeric_var in intermediate_filtered_data.columns
-                    ):
+                    elif column and numeric_var in intermediate_filtered_data.columns:
+                        # Checks if filter_val value exist in current variable
                         if (
                             filter_val
                             in intermediate_filtered_data[numeric_var].to_list()

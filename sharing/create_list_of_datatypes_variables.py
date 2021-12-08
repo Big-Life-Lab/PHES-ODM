@@ -3,11 +3,11 @@ This module creates lists of variables of differnt datatypes.
 """
 
 from typing import Any, Dict, List, Tuple
-from classes_for_datatypes import MetaData
+from classes_for_datatypes import VariableMetaData
 
 
 def create_list_of_datatypes_variables(
-    temp_datatype_dict: Dict[str, List[MetaData]], table: str, to_keep_vars: List[str],
+    current_table_metadata: List[VariableMetaData], to_keep_vars: List[str],
 ) -> Tuple[str, List[Any], List[Any], List[Any]]:
     """The function creates lists of variables of different datatypes.
 
@@ -34,39 +34,32 @@ def create_list_of_datatypes_variables(
     # temp_datatype_dict[table] is a list of dictionaries where each dictionary
     # contains the metadata for each variables in that table such as primary,
     # foreign key, and variable datatype
-    for key in temp_datatype_dict[table]:
+    for key in current_table_metadata:
 
-        current_key: MetaData = key
-        columns_to_check = [current_key.lower() for current_key in to_keep_vars]
+        columns_to_check = [key.lower() for key in to_keep_vars]
 
         # checks if the variable exist in the current rule
-        if current_key["variableName"].lower() in columns_to_check:
+        if key["variableName"].lower() in columns_to_check:
 
             # If variables are not part of current rule columns, continue
-            if (
-                current_key["variableType"] == "integer"
-                or current_key["variableType"] == "float"
-            ):
+            if key["variableType"] == "integer" or key["variableType"] == "float":
 
                 # Add float variables to list numeric_variables
-                numeric_variables.append(current_key["variableName"])
+                numeric_variables.append(key["variableName"])
             elif (
-                current_key["variableType"] == "string"
-                or current_key["variableType"] == "category"
-                or current_key["variableType"] == "boolean"
+                key["variableType"] == "string"
+                or key["variableType"] == "category"
+                or key["variableType"] == "boolean"
             ):
 
                 # Add character variables to list string_variables
-                string_variables.append(current_key["variableName"])
-            elif (
-                current_key["variableType"] == "datetime"
-                or current_key["variableType"] == "date"
-            ):
+                string_variables.append(key["variableName"])
+            elif key["variableType"] == "datetime" or key["variableType"] == "date":
 
                 # Add character variables to list string_variables
-                datetime_variables.append(current_key["variableName"])
-        if current_key["key"] == "Primary Key":
-            pri_var: str = current_key["variableName"]
+                datetime_variables.append(key["variableName"])
+        if key["key"] == "Primary Key":
+            pri_var: str = key["variableName"]
     return (
         pri_var,
         numeric_variables,

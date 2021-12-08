@@ -1,7 +1,11 @@
+"""
+This module defines classes that assigns datatypes for different
+variables or parameters used in the function.
+"""
 from typing import Any, Dict, List, TypedDict, Union
 
 
-class MetaData(TypedDict, total=False):
+class VariableMetaData(TypedDict):
     """
     This is a child class of TypeDict. It defines the data types of
     each variable in the variables.csv file.
@@ -19,7 +23,7 @@ class MetaData(TypedDict, total=False):
     variableDesc_fr: str
 
 
-class Rules(TypedDict, total=False):
+class Rule(TypedDict, total=False):
     """
     Rules is a child class of TypeDict. It defines the data types of
     the values of each of the keys in rules dictionary provided by the user.
@@ -33,7 +37,7 @@ class Rules(TypedDict, total=False):
     sharedWith: str
 
 
-class CurrentRuleSummary(TypedDict, total=False):
+class RuleSummary(TypedDict, total=False):
     """
     CurrentRuleSummary is a child class of TypeDict. It provides
     the datatypes of the values for each key inside current_rule_summary
@@ -41,7 +45,7 @@ class CurrentRuleSummary(TypedDict, total=False):
     """
 
     entities_filtered: List[Dict[str, Any]]
-    rule_id: Any
+    rule_id: str
 
 
 class ReturnedData(TypedDict, total=False):
@@ -52,4 +56,4 @@ class ReturnedData(TypedDict, total=False):
     """
 
     filtered_data: Dict[Any, List[Dict[Any, Any]]]
-    sharing_summary: List[CurrentRuleSummary]
+    sharing_summary: List[RuleSummary]

@@ -5,14 +5,15 @@ from typing import List, Dict, Any
 from numpy import nan
 import pandas as pd
 from pandas.core.frame import DataFrame  # pylint: disable=import-error
-from classes_for_datatypes import Rules, MetaData, CurrentRuleSummary, ReturnedData
+from classes_for_datatypes import Rule, VariableMetaData, RuleSummary, ReturnedData
+
 
 # import loop_through_tables # pylint: disable=import-error
 import loop_through_tables
 
 
 # from pandas import Timestamp  # pylint: disable=import-error
-def create_dataset(rules: List[Rules], data: Dict[Any, Any], org: str) -> ReturnedData:
+def create_dataset(rules: List[Rule], data: Dict[Any, Any], org: str) -> ReturnedData:
     """Filters data and returns filtered data and shared summary in dictionary.
     The function will filter only those rules from rules list that correspond
     to the particular organization user has requested and create a list
@@ -34,15 +35,15 @@ def create_dataset(rules: List[Rules], data: Dict[Any, Any], org: str) -> Return
     variables: DataFrame = pd.read_csv("Variables.csv", delimiter=",")
 
     # Fetch all the names of tables in the ODM
-    original_tables: List[Any] = list(variables["tableName"].unique())
+    original_tables: List[str] = list(variables["tableName"].unique())
 
     # For each table, create a list of dictionaries that contains the metadata
     # primary, foreign keys, variable type information for each variable
     # Add the metadata for each table as value for the table key in dictionary
     # datatype_dict
-    datatype_dict: Dict[str, List[MetaData]] = {}
+    tables_metadata: Dict[str, List[VariableMetaData]] = {}
     for table in original_tables:
-        datatype_dict[table] = variables[variables["tableName"] == table].to_dict(
+        tables_metadata[table] = variables[variables["tableName"] == table].to_dict(
             "records"
         )
 
@@ -52,55 +53,29 @@ def create_dataset(rules: List[Rules], data: Dict[Any, Any], org: str) -> Return
 
     # Check whether the given organization is part of current rule, then add
     # the rule to a list 'org_rule'. Each rule is a dictionary
-    org_rule: List[Rules] = []
+    org_rules: List[Rule] = []
 
-    for rule_org in rules:
-        if ";" in rule_org["sharedWith"]:
-            list_of_organizations: List[str] = rule_org["sharedWith"].split(";")
-        else:
-            list_of_organizations = [rule_org["sharedWith"]]
+    for rule in rules:
+        list_of_organizations: List[str] = rule["sharedWith"].split(";")
         if org in list_of_organizations:
-            org_rule.append(rule_org)
-
-    # Create a copy of original dataset dictionary.
-    # This is updated for each iteration to detect rows removed.
-    updated_data_dict: Dict[Any, List[Dict[Any, Any]]] = data.copy()
+            org_rules.append(rule)
 
     # returned_data is the dictionary with two keys returned to user:
     # one key containing the filtered_data and the other with the removed data
     returned_data: ReturnedData = {}
-    sharing_summary: List[CurrentRuleSummary] = []
+    sharing_summary: List[RuleSummary] = []
 
     # ITTERATE THROUGH EACH RULE
-    for rule in org_rule:
-        current_rule: Rules = rule
-        # Create a dictionary that will contain the entities and data removed.
-        current_rule_summary: CurrentRuleSummary = {
-            "entities_filtered": [],
-            "rule_id": current_rule["ruleID"],
-        }
-
-        # Create an empty dataframe only if it does not exist
-        # This dataframe is used to detect rows removed in each iteration.
-        try:
-            original_table_data_copy  # type: ignore
-        except NameError:
-            original_table_data_copy: DataFrame = pd.DataFrame()
+    for org_rule in org_rules:
 
         #'filtered_data' is the dictionary with filtered data
         # calls the function 'loop_through_tables' to iterate through each table
         # and finally returns the 'filtered_data' and the 'current_rule_summary'.
         (
             filtered_data,
-            original_table_data_copy,
             current_rule_summary,
         ) = loop_through_tables.loop_through_tables(
-            current_rule,
-            datatype_dict,
-            filtered_data,
-            current_rule_summary,
-            original_table_data_copy,
-            updated_data_dict,
+            org_rule, tables_metadata, filtered_data,
         )
         sharing_summary.append(current_rule_summary)
     for table in filtered_data.keys():
