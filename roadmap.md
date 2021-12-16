@@ -1,33 +1,101 @@
-# Roadmap
-
-The [ODM Steering Group](https://github.com/Big-Life-Lab/covid-19-wastewater/wiki#canadian-wastewater-based-epidemiology-data-steering-group) or Working Groups have identified the following features and tools for development.
+# Work-in-progress and roadmap
 
 See the [Roadmap](https://github.com/Big-Life-Lab/covid-19-wastewater/projects/3?add_cards_query=is%3Aopen) project for progress on the roadmap. Add new items or discuss on the discussion [thread](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions/108). Issues with "future" tag are discussed for addition to the roadmap.
 
-There are two scoping documents that support the development of the roadmap. Feel free to made suggestions to these documents.
-- [Project Scope Statement for the ODM](https://docs.google.com/document/d/1QPSTi3zdY5eUQ62eOxSDMVyJBiKa2HEzKHEAnBzpRYA/edit) - Work has begun on the inital milestones.
-- [Project Scope Statement for the COWSD](https://docs.google.com/document/d/1O9qUaF8bEp-ME2_RV7Qqpvt4SmGGP99VIgCoL3HnFvM/edit) - A proposed open database with funding support from [CoVaRRNet](https://covarrnet.ca).
+  [Project Scope Statement for the ODM](https://docs.google.com/document/d/1QPSTi3zdY5eUQ62eOxSDMVyJBiKa2HEzKHEAnBzpRYA/edit) - The scoping document to support the roadmap and version 2.
 
-
-## Requirements
+  ## Requirements
 
 Requirements for future tools and features:
 
-- **Support for English and French** - initially for the data model and then other documentation.
+- **Multilanguage support** - Provisions international language support for all metadata.
 - **Open and cross platform** - Tools to support the data model will be generated using or support open software. The objective is to create pseudo-code that can form the basis to program code in R or Python. Rules as pseudo-code allow development teams to generate consistent data applications in other program platforms (i.e. MS 365 or ArcGIS).
+- **Support exisiting dictionaries** - PHES-ODM seeks to include measures and concepts from other common dictionaries. 
 
+## Version 2
+
+Version 2 has three objectives.
+
+Development of Version 2 is in progress. Key additions include:
+- **Data dictionary** - Ensure the data dictionary is comprehensive, robust and extendable.
+- **Support tools** - Make it as easy as possible to use the data model with tools to transform, validate and share data. 
+- **Improved documentation** - Documentation includes tutorials, how-to-guides, explaination and reference guides.
+
+## Version 2 dictionary
+
+The extended version 2 dictionary includes a structured, extendable approach to include:
+
+- Any biologic, chemical or property.
+
+- Air and surface testing, in addition to wastewater (water).
+
+   - variants, mutations, sequences, proteins
+
+- Other biologics (including antimicrobial resistance), drugs and toxins and properties.
+
+- Expanded ability to report methods, instruments, and quality control and assurance measures.
+
+- Large data – i.e data streaming of wastewater flow or temperature.
+
+- Comprehensive – include all measures in other wastewater dictionaries.
+
+  - CDC National Wastewater Surveillance System, European Nucleotide Association, Norman Score, etc.
+
+## Version 2 support tools
+
+- Excel templates.
+
+   - Long-versions – One measure per row with sheets for data from sites, samples, quality control
+
+- Map - Map your existing data to ODM. Map ODM to other common dictionaries.
+
+- Validate - checks and reports whether your data meets ODM format.
+
+   - Automatic
+   - Extra validation rules can be added (CSV file).
+   - Python library supported, with a schema that can be implemented in other systems.
+
+- Share - filter your data to felicitate sharing just the data you want to share for different groups
+
+   - Sharing to the individual data element.
+
+  - Template provided (CSV), then you customize
+
+### Version 2 milestons
+
+#### December 2021​
+
+- Robust relational dictionary, with entity relationship diagram and SQL logic​
+
+- Data sharing schema and Python application​
+
+- Validation schema​
+
+- Multi-language support​
+
+#### January 2022​
+
+- Excel data collection templates for partners​
+
+- Complete open database​
+
+- Initial documentation to support users in implementing version 2​
+
+#### March 2022​
+
+- Support tools (mappers, validators, and the conductor)​
+
+- Robust documentation (vignettes, tutorials, references, and how-to guides)
 ## Tools
 
-1. **Automatic updating tools** - scripts that can be used to automatically push the most recent updates of the data model to the necessary depending files (input, template, ERD)
-1. **Data mapping methods** - a collection of methods to:
-   Read in data from templates into a database (SQLite supported).
-   Conversion from "long" format to "wide" format needed for data analysis/ML. 
-1. **Data validation tool** - can validate a datafile in terms of formatting and context, and provides feedback of needed changes
-1. **Data linking tools** - tools that will help ensure consistan summarization of public health data into summary results relevent for the WWTP catchment area.
-1. **Data cleaning methods** - rules for cleaning raw ODM data. 
-1. **Visualization tools** - basic plots to visualize relevant signals. Simple visualization tools can be part of vignettes to show how to analyze wastewater data.
-1. **Transformation functions** - functions to create derived variables and aggreagations. i.e. moving averages, normalisation,...
-1. **Open, public data examples within the repository** - Example data to build
+1. **Excel templates** - Record wastewater data in Excel using ODM templates.
+1. **Data mapping methods** - Map data from your existing format to ODM or ODM to other common dictionaries.
+2. **Data validation tool** - Validate your data to see if it conforms to the ODM dictionary.
+
+3. **Data cleaning methods** - rules for cleaning raw ODM data. 
+4. **Visualization tools** - basic plots to visualize relevant signals. Simple visualization tools can be part of vignettes to show how to analyze wastewater data.
+5. **Transformation functions** - functions to create derived variables and aggreagations. i.e. moving averages, normalisation,...
+6. **Open, public data examples within the repository** - Example data to build
 and test common tools and demonstrate ODM compliant data format.
 
 
@@ -40,11 +108,9 @@ Documentation that including tutorials, how-to guides, technical references and 
 1. Explanation - understanding-oriented.
 1. Reference - information-oriented.
 
-- Several presentations have introduced the ODM. Let's make the recordings available as a first step. Next, create additional visual documentation for specific functionalities.
-- Peer-review description with a permalink/DOI reference which would facilitate sharing and referencing within the scientific community.
-- Consider a website that organizes documentation for a wider audience of users that not necessarily know how to work with GitHub. 
 
 ## Process
 
-- Ensure Steering Committee and Working Groups have representation from a range discplines and regions.
-- Add a code of conduct.
+- the PHES-ODM Steering Committee and Working Groups ensures PHES-ODM meets the needs from the full spectrum of users from testing laboratory to public health policy.
+- A working group that meets weekly to discuss ongoing development and receive input from dictionary users. Please email: phesd_odm@ohri.ca if you would like to join the meeting. 
+- [Code of conduct](CODE_OF_CONDUCT.md).

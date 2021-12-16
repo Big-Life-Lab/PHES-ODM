@@ -44,6 +44,8 @@ Issues, suggestions and pull requests are welcomed. [contributing](CONTRIBUTING.
 - [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [phesd_odm@ohri.ca](mailto::phes_odm@ohri.caa).
 - [Code of conduct](CODE_OF_CONDUCT.md).
 - Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
+- [An international steering committee](https://github.com/Big-Life-Lab/PHES-ODM/wiki/Steering-Group-Members) guides the development of the data model.
+- Working groups consist of a regular weekly meeting with ODM developers and users. Add hoc working groups are created to develop specific sections of the ODM. An example of the working group the development of quality assurance and control measures.
 
 ## Keep in touch
 
@@ -53,25 +55,18 @@ Questions? E-mail at [phesd_odm@ohri.ca](mailto::phesd_odm@ohri.ca).
 
 ## Application
 
-Institues across Canada and worldwide have adopted the ODM to structure SARS-CoV-2 WBS data. Programs that use the ODM include Canada's National Microbiology Laboratory (NML), Ontario's Wastewater Initiative by the Ministry of Environment, Conservation, and Parks (MECP), uOttawa, le Centre québécois de recherche sur la gestion de l'eau, Université Laval, and [CETO Epidemiologic platform](https://ceto.ca).
+PHES ODM is used or planned for use in 23 countries. Programs that use or are implementing the ODM include the European Union's Digital European Exchange Platform (DEEP), Canada's National Microbiology Laboratory (NML), Ontario's Wastewater Initiative by the Ministry of Environment, Conservation, and Parks (MECP), uOttawa, le Centre québécois de recherche sur la gestion de l'eau, Université Laval, and [CETO Epidemiologic platform](https://ceto.ca).
 
-A dashboard using the Ottawa data can be found at: [613covid.ca](https://613covid.ca/wastewater). The [CentrEau](https://www.centreau.ulaval.ca/covid/) webpage hosts the dashboard for the province of Québec.
+
 
 ## Work-in-progress
 
-- data dictionary - development of version 2.0 uderway, enhancements include the ability to reprot variants of concern, mutations, other environment testing sites (surface and air, inaddition to wastewater), improve reporting appraoch for quatlity control and quality assurance (QC and QA).
-- data validation - ability to validate weather data adheres to the ODM dictionary.
-- data cleaning and data transformation -
-  - templates that allows wastewater labs to map their data format to ODM format.
-  - an [application](https://github.com/martinwellman/odm-qpcr-analyzer) to map RT-PCR output to ODM format, including performing QC and QA.
-- data visualization - visualizations based on ODM data format.
-- data modelling - modelling based on ODM data format.
-
-See [roadmap](roadmap.md) for more details.
 
 What's coming to version 2.0.
 
 <a href= "https://vimeo.com/649254159" title="Link Title"><img src="img/ODM-V2-video.png" alt="What's coming to version 2.0" width="350"/></a>
+
+See [Work-in-progress and roadmap](roadmap.md) for more details.
 
 ## Additional tools
 
