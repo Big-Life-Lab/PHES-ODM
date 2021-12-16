@@ -57,23 +57,13 @@ Questions? E-mail at [phesd_odm@ohri.ca](mailto::phesd_odm@ohri.ca).
 
 PHES ODM is used or planned for use in 23 countries. Programs that use or are implementing the ODM include the European Union's Digital European Exchange Platform (DEEP), Canada's National Microbiology Laboratory (NML), Ontario's Wastewater Initiative by the Ministry of Environment, Conservation, and Parks (MECP), uOttawa, le Centre québécois de recherche sur la gestion de l'eau, Université Laval, and [CETO Epidemiologic platform](https://ceto.ca).
 
-
-
 ## Work-in-progress
-
 
 What's coming to version 2.0.
 
 <a href= "https://vimeo.com/649254159" title="Link Title"><img src="img/ODM-V2-video.png" alt="What's coming to version 2.0" width="350"/></a>
 
 See [Work-in-progress and roadmap](roadmap.md) for more details.
-
-## Additional tools
-
-Working group members maintain other repositories with tools that use the ODM, including:
-
-- [data visualization](https://github.com/Big-Life-Lab/Ottawa-COVID-Projection).
-- methods to convert Excel tables that are not in [ODM format into ODM data frame](https://github.com/jeandavidt/ODM-Import).
 
 ## License
 

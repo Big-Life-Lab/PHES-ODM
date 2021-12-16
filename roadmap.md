@@ -22,7 +22,7 @@ Development of Version 2 is in progress. Key additions include:
 - **Support tools** - Make it as easy as possible to use the data model with tools to transform, validate and share data.
 - **Improved documentation** - Documentation includes tutorials, how-to-guides, explaination and reference guides.
 
-## Version 2 dictionary
+### Version 2 dictionary
 
 The extended version 2 dictionary includes a structured, extendable approach to include:
 
@@ -42,7 +42,7 @@ The extended version 2 dictionary includes a structured, extendable approach to 
 
   - CDC National Wastewater Surveillance System, European Nucleotide Association, Norman Score, etc.
 
-## Version 2 support tools
+### Version 2 support tools
 
 - Excel templates.
 
