@@ -1,13 +1,13 @@
 """
 This module parses range interval values as numeric datatypes.
 """
-from typing import List, Tuple
-
-from pandas.core.frame import DataFrame
+from typing import Tuple
+import re
+import numpy as np
 
 
 def parse_range_limits_as_numeric(
-    lower_limit: str, upper_limit: str, table_data: DataFrame, numeric_var: List[str]
+    lower_limit: str = None, upper_limit: str = None, filter_val: str = None,
 ) -> Tuple[float, float]:
     """
     This function will parse the lower and upper limit values as float datatype.
@@ -15,26 +15,38 @@ def parse_range_limits_as_numeric(
     Parameters:
     lower_limit (str): lower limit of the range rule value
     upper_limit (str): upper limit of the range rule value
-    table_data (DataFrame): Dataframe from the current table being itterated
-    numeric_var (List): list of numeric variables in the current rule.
+    filter_val (str): single filter value
     Returns:
     low_limit (float): lower limit value parsed as float datatype
     up_limit (float): upper limit value parsed as float datatype
+    filter_val (float): single filter value parsed as float datatype
     """
+    low_limit = None
+    up_limit = None
+    if lower_limit or upper_limit:
+        # HANDLING NUMERIC VALUES
+        try:
+            if lower_limit.lower().startswith("inf"):
+                low_limit = -np.inf
+                up_limit = float(upper_limit)
 
-    # HANDLING NUMERIC VALUES
-    if lower_limit.startswith("inf"):
+            elif upper_limit.lower().startswith("inf"):
+                low_limit = float(lower_limit)
+                up_limit = np.inf
+            else:
+                low_limit = float(lower_limit)
+                up_limit = float(upper_limit)
 
-        # if lower limit is infinity subtract 1 from min value of that variable
-        low_limit = table_data[numeric_var].min() - 1
-        up_limit = float(upper_limit)
-    elif upper_limit.startswith("inf"):
+        except:
+            print("Error: The value provided could not be coerced to numeric")
 
-        # if upper limit is infinity add 1 to the max value of that variable
-        up_limit = table_data[numeric_var].max() + 1
-        low_limit = float(lower_limit)
-    else:
-        low_limit = float(lower_limit)
-        up_limit = float(upper_limit)
+    elif filter_val:
 
-    return low_limit, up_limit
+        # use regular expression to check if it is of numeric type
+        # print(filter_val.isnumeric())
+        if re.fullmatch(r"\d+\.*\d*", str(filter_val)):
+            filter_val = float(str(filter_val))
+        else:
+            print("Error: The value provided could not be coerced to numeric")
+
+    return low_limit, up_limit, filter_val

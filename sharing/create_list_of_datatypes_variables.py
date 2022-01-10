@@ -2,7 +2,7 @@
 This module creates lists of variables of differnt datatypes.
 """
 
-from typing import Any, Dict, List, Tuple
+from typing import Any, List, Tuple
 from classes_for_datatypes import VariableMetaData
 
 

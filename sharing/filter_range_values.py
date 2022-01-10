@@ -1,107 +1,84 @@
 """
-This module filters the data by a range between two datetime values.
+This module filters rows and columns of data based on a range interval.
 """
 
-from typing import Tuple, Union  # pylint: disable=import-error
-from datetime import datetime, timedelta  # pylint: disable=import-error
-import re
-import pandas as pd  # pylint: disable=import-error
-from pandas.core.frame import DataFrame  # pylint: disable=import-error
+from typing import TypedDict, List, Any
+from pandas.core.frame import DataFrame
+import pandas as pd
 
 
-def filter_range_value(
-    column: bool,
-    bracket: str,
-    low_limit: str,
-    up_limit: str,
-    intermediate_filtered_data: DataFrame,
-    var: str,
-) -> Tuple[DataFrame, bool, bool, bool]:
-    """The function filters data based on the type of range interval.
-
-    Function returns back the dataframe with or without filter operation.
-
-    Parameter:
-        column(bool): checks whether the rule direction is column
-        bracket(str): type of range bracket
-        low_limit(str): lower limit of the range
-        up_limit(str): upper limit of the range
-        intermediate_filtered_data(dataframe): data to be filtered
-        var(str): variable to be filtered by from current rule
-    Returns:
-        dataframe: Dataframe that is filtered if rule value is of datetime type
+class Interval(TypedDict):
+    """
+    This classs defines the lower and upper limit of the range.
     """
 
-    if not column:
-        # Checks type of bracket to do conditional filtering
-        if bracket == "[]":
-            intermediate_filtered_data = intermediate_filtered_data.loc[
-                ~(intermediate_filtered_data[var] >= low_limit)
-                | ~(intermediate_filtered_data[var] <= up_limit),
-                :,
-            ]
+    left_limit: Any
+    right_limit: Any
+    bracket: str
 
-        elif bracket == "[)":
-            intermediate_filtered_data = intermediate_filtered_data.loc[
-                ~(intermediate_filtered_data[var] >= low_limit)
-                | ~(intermediate_filtered_data[var] < up_limit),
-                :,
-            ]
 
-        elif bracket == "(]":
-            intermediate_filtered_data = intermediate_filtered_data.loc[
-                ~(intermediate_filtered_data[var] > low_limit)
-                | ~(intermediate_filtered_data[var] <= up_limit),
-                :,
-            ]
+def is_within_interval(interval: Interval, data: DataFrame):
+    """
+    Function checks whether interval exist within the dataset based on bracket
 
-        elif bracket == "()":
-            intermediate_filtered_data = intermediate_filtered_data.loc[
-                ~(intermediate_filtered_data[var] > low_limit)
-                | ~(intermediate_filtered_data[var] < up_limit),
-                :,
-            ]
-    elif column and var in intermediate_filtered_data.columns:
-        if bracket == "[]":
-            if intermediate_filtered_data.loc[
-                (intermediate_filtered_data[var] >= low_limit)
-                & (intermediate_filtered_data[var] <= up_limit),
-                var,
-            ].any():
-                # Drop the column
-                intermediate_filtered_data = intermediate_filtered_data.drop(
-                    [var], axis=1
-                )
-        elif bracket == "[)":
-            if intermediate_filtered_data.loc[
-                (intermediate_filtered_data[var] >= low_limit)
-                & (intermediate_filtered_data[var] < up_limit),
-                var,
-            ].any():
-                # Drop the column
-                intermediate_filtered_data = intermediate_filtered_data.drop(
-                    [var], axis=1
-                )
-        elif bracket == "(]":
-            if intermediate_filtered_data.loc[
-                (intermediate_filtered_data[var] > low_limit)
-                & (intermediate_filtered_data[var] <= up_limit),
-                var,
-            ].any():
-                # Drop the column
-                intermediate_filtered_data = intermediate_filtered_data.drop(
-                    [var], axis=1
-                )
+    Parameter:
+    interval (Interval): the interval with lower and upper limit of the range
+    data (Dataframe): The dataset to be filtered
 
-        elif bracket == "()":
-            if intermediate_filtered_data.loc[
-                (intermediate_filtered_data[var] > low_limit)
-                & (intermediate_filtered_data[var] < up_limit),
-                var,
-            ].any():
-                # Drop the column
-                intermediate_filtered_data = intermediate_filtered_data.drop(
-                    [var], axis=1
-                )
+    Returns:
+    data (Dataframe): Filtered dataset
+    """
+    if interval["bracket"] == "[]":
+        return data.applymap(
+            lambda x: x >= interval["left_limit"] and x <= interval["right_limit"]
+        )
+    elif interval["bracket"] == "[)":
+        return data.applymap(
+            lambda x: x >= interval["left_limit"] and x < interval["right_limit"]
+        )
+    elif interval["bracket"] == "(]":
+        return data.applymap(
+            lambda x: x > interval["left_limit"] and x <= interval["right_limit"]
+        )
+    elif interval["bracket"] == "()":
 
-    return intermediate_filtered_data
+        return data.applymap(
+            lambda x: x > interval["left_limit"] and x < interval["right_limit"]
+        )
+    else:
+        raise f"Invalid bracket for interval {interval.bracket}"
+
+
+def filter_data_with_interval(
+    interval: Interval, data_frame: DataFrame, axis: str
+) -> DataFrame:
+    """
+    Function will remove rows or columns from the data based on range interval
+
+    Parameters:
+    interval (Interval): lower and upper limit of range interval to check
+    df (Dataframe): Dataframe to be filtered
+
+    Returns:
+    df (Dataframe): Filtered dataset
+    """
+    df_boolean = is_within_interval(interval, data_frame)
+
+    if axis == "row":
+        rows_to_remove: List[bool] = []
+        for index, row in df_boolean.iterrows():
+            if False in row.values:
+                rows_to_remove.append(True)
+            else:
+                rows_to_remove.append(False)
+
+        return data_frame.loc[rows_to_remove, :]
+    elif axis == "column":
+        for index, row in df_boolean.iterrows():
+            # If the range exist within the variable
+            # then return empty dataframe for that variable
+            if True in row.values:
+                return pd.DataFrame()
+            else:
+                continue
+        return data_frame

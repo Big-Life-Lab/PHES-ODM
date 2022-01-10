@@ -1,37 +1,110 @@
 """
-This module will return a list of table names or variable names in current
-rule.
+This module returns the list of all values for variables and tables
+present in current rule.
 """
-from typing import List, Dict, Any
-from pandas.core.frame import DataFrame
-import pandas as pd
-from classes_for_datatypes import Rule, RuleSummary
+from typing import List, Callable
+from classes_for_datatypes import Rule
 
 
-def split_value_in_rule_dict(
-    rule: Rule,
-    filtered_data: Dict[Any, List[Dict[Any, Any]]],
-    value="all",
-    to_split="table",
-    current_rule_data: DataFrame = pd.DataFrame(),
-) -> List[str]:
+def split_cell_value(cell_value: str) -> List[str]:
     """
-    Function returns list of table names or variable names in current rule.
+    Function splits the values of table and variable values of sharing rule
+    into a list
 
     Parameters:
-    rule (dict): current organization rule
-    filtered_data (dict): User data to be filtered
-    value (str): value for table or variable key in current rule
-    to_split (str): key of the rule passed in as parameter (table or variable)
-    current_rule_data (DataFrame): current user table being itterated
-    Returns:
-    list_values (List): list of table names or variable names in current rule
-    """
-    if rule[to_split].strip().lower() == value and to_split == "table":
-        list_values: List[str] = list(filtered_data.keys())
-    elif rule[to_split].strip().lower() == value and to_split == "variable":
-        list_values: List[str] = list(current_rule_data.columns)
-    else:
-        list_values = rule[to_split].split(";")
+    cell_value (str): the variable or table string from current rule
 
-    return list_values
+    Returns:
+    List[str]: List of all the values for variable and table in current rule
+    """
+    return cell_value.split(";")
+
+
+def construct_parse_entity_cell_value(
+    field_name: str,
+) -> Callable[[str, List[str]], List[str]]:
+
+    """
+
+    Constructs and returns a function to be used when parsing out the entities
+    (table, variables etc.) to filter in a rule
+
+    Parameters:
+
+    field_name (str): The name of the field in the rule that contains the
+
+    entity values
+
+    """
+
+    def parse_entity_cell_value(rule: Rule, entity_names: List[str]) -> List[str]:
+
+        """
+
+        Parses the entity value for a rule and returns the one which apply
+
+        to the rule
+
+
+
+        Parameters:
+
+        rule (Rule): The rule from where we need to extract the entity values
+
+        entity_names (List[str]): The names of all the entities to filter from
+
+        """
+
+        entity_values = split_cell_value(rule[field_name])
+
+        if entity_values[0].strip().lower() == "all":
+
+            return entity_names
+
+        else:
+            print("ENTITY VALUES", entity_values)
+            print("ENTITY NAMES", entity_names)
+            entity_values = [
+                e_v
+                for e_v in entity_values
+                if e_v.strip().lower()
+                in list(map(lambda var: var.strip().lower(), entity_names))
+            ]
+            print("FINAL ENTITY VALUES", entity_values)
+            return entity_values
+
+    return parse_entity_cell_value
+
+
+"""
+
+Returns the tables which applies to a rule
+
+
+
+Parameters
+
+:param rule (Rule) -- The rule from where we need to extract the tables to work on
+
+:param tables (List[str]) -- All the tables that the user wants to filter
+
+"""
+
+get_tables_for_rule = construct_parse_entity_cell_value("table")
+
+
+"""
+
+Returns the variables which applies to a rule
+
+
+
+Parameters
+
+:param rule (Rule) -- The rule from where we need to extract the tables to work on
+
+:param variables (List[str]) -- The full list of variables to filter from.
+
+"""
+
+get_variables_for_rule = construct_parse_entity_cell_value("variable")

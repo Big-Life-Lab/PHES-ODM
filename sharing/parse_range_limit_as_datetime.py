@@ -3,21 +3,18 @@ This module parses range interval values as datetime datatypes.
 """
 from typing import List, Tuple
 import re
-from datetime import datetime, timedelta  # pylint: disable=import-error
+from datetime import datetime, timedelta
 import pandas as pd
 from pandas.core.frame import DataFrame
-from regex_patterns import (
-    date_pattern_fwd_slash,
-    date_pattern_back_slash,
-    date_pattern_back_slash_h_m,
-    date_pattern_fwd_slash_h_m,
-    date_pattern_fwd_slash_h_m_s,
-    date_pattern_back_slash_h_m_s,
-)
+from regex_patterns import date_time_pattern_iso_8601
 
 
 def parse_range_limit_as_datetime(
-    lower_limit: str, upper_limit: str, table_data: DataFrame, datetime_var: List[str],
+    table_data: DataFrame,
+    datetime_var: List[str],
+    lower_limit: str = None,
+    upper_limit: str = None,
+    filter_val: str = None,
 ) -> Tuple[datetime, datetime]:
     """
     This function will parse the lower and upper limit values as datetime
@@ -32,36 +29,34 @@ def parse_range_limit_as_datetime(
     low_limit (float): lower limit value parsed as datetime datatype
     up_limit (float): upper limit value parsed as datetime datatype
     """
+    low_limit = None
+    up_limit = None
 
-    # Checking pattern of bracket to determine if infinity is present
-    if (
-        re.fullmatch(date_pattern_fwd_slash, str(lower_limit)) is not None
-        or re.fullmatch(date_pattern_back_slash, str(lower_limit)) is not None
-        or re.fullmatch(date_pattern_back_slash_h_m, str(lower_limit)) is not None
-        or re.fullmatch(date_pattern_fwd_slash_h_m, str(lower_limit)) is not None
-        or re.fullmatch(date_pattern_back_slash_h_m_s, str(lower_limit)) is not None
-        or re.fullmatch(date_pattern_fwd_slash_h_m_s, str(lower_limit)) is not None
-    ) and str(upper_limit).startswith("inf"):
-        low_limit = pd.to_datetime(lower_limit)
+    if lower_limit or upper_limit:
+        # Checking pattern of bracket to determine if infinity is present
+        try:
+            if (
+                re.fullmatch(date_time_pattern_iso_8601, str(lower_limit)) is not None
+            ) and str(upper_limit).lower().startswith("inf"):
+                low_limit = pd.to_datetime(lower_limit)
+                up_limit = table_data[datetime_var].max() + timedelta(days=1)
 
-        # if upper limit is infinity, add 1 to the max value
-        up_limit = table_data[datetime_var].max() + timedelta(days=1)
+            elif str(lower_limit).lower().startswith("inf") and (
+                re.fullmatch(date_time_pattern_iso_8601, str(upper_limit)) is not None
+            ):
+                low_limit = table_data[datetime_var].min() - timedelta(days=1)
+                up_limit = pd.to_datetime(upper_limit)
 
-    elif str(lower_limit).startswith("inf") and (
-        re.fullmatch(date_pattern_fwd_slash, str(upper_limit)) is not None
-        or re.fullmatch(date_pattern_back_slash, str(upper_limit)) is not None
-        or re.fullmatch(date_pattern_back_slash_h_m, str(upper_limit)) is not None
-        or re.fullmatch(date_pattern_fwd_slash_h_m, str(upper_limit)) is not None
-        or re.fullmatch(date_pattern_back_slash_h_m_s, str(upper_limit)) is not None
-        or re.fullmatch(date_pattern_fwd_slash_h_m_s, str(upper_limit)) is not None
-    ):
-        up_limit = pd.to_datetime(upper_limit)
+            else:
+                low_limit: datetime = pd.to_datetime(lower_limit)
+                up_limit: datetime = pd.to_datetime(upper_limit)
+        except:
+            print("Error: The value provided could not be coerced to datetime")
 
-        # if lower limit is infinity, then subtract 1 from min value
-        low_limit = table_data[datetime_var].min() - timedelta(days=1)
+    elif filter_val:
+        try:
+            filter_val = pd.to_datetime(filter_val)
+        except:
+            print("Error: The value provided could not be coerced to datetime")
 
-    else:
-        low_limit: datetime = pd.to_datetime(lower_limit)
-        up_limit: datetime = pd.to_datetime(upper_limit)
-
-    return low_limit, up_limit
+    return low_limit, up_limit, filter_val
