@@ -62,11 +62,13 @@ What's coming to version 2.0.
 
 <a href= "https://vimeo.com/649254159" title="Link Title"><img src="img/ODM-V2-video.png" alt="What's coming to version 2.0" width="350"/></a>
 
+The presentation used in the video is [here](https://docs.google.com/presentation/d/14KeMhXHidG1q_zVpce6tkj89LR1H5d4b/edit?usp=sharing&ouid=103619232413193034528&rtpof=true&sd=true). The presentation is updated with developments of ODM v2. The contents can be reused under the license of this repository. 
+
 See [Work-in-progress and roadmap](roadmap.md) for more details.
 
 ## License
 
-Website content is published under a Creative Commons CC BY 4.0 license, which requires users to attribute the source and license type (CC BY 4.0) when sharing our data or website content.
+Website content is published under a Creative Commons CC BY 4.0 license, which requires users to attribute the source and license type (CC BY 4.0) when sharing PHES-ODM content.
 
 See [license](LICENSE) for more information.
 
