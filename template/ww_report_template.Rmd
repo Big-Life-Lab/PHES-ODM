@@ -1,19 +1,26 @@
+## work in progress
+
+To be developed in Spring 2022 with Version 2 updates.
+
 ---
+
 knit: (function(input, ...) {
-    rmarkdown::render(
-      input,
-      output_file = paste0("ww_report", '_', Sys.Date(), '.pdf'
-      ),
-      envir = globalenv()
-    )
-  })
+rmarkdown::render(
+input,
+output*file = paste0("ww_report", '*', Sys.Date(), '.pdf'
+),
+envir = globalenv()
+)
+})
 
 output: pdf_document
 
 header-includes:
+
 - \usepackage{pdflscape}
 - \newcommand{\blandscape}{\begin{landscape}}
 - \newcommand{\elandscape}{\end{landscape}}
+
 ---
 
 ```{r setup, include=FALSE}
@@ -27,7 +34,6 @@ library(knitr)
 library(kableExtra)
 library(googledrive)
 ```
-
 
 ```{r sampleID}
 ###### INSERT INFORMATION HERE:
@@ -57,8 +63,8 @@ for(i in address_counter){
   clientAddress1 <- NULL
   clientAddress2 <- NULL
   clientAddress3 <- NULL
-  } 
-  
+  }
+
   else {
   clientName <- address$Name[i]
   clientTitle <- address$Title[i]
@@ -69,13 +75,13 @@ for(i in address_counter){
   }
 }
 ```
+
 `r clientName`  
 `r clientTitle`  
 `r clientOffice`  
 `r clientAddress1`
 `r clientAddress2`
 `r clientAddress3`
-
 
 # Wastewater Trend Analysis Report: SARS-CoV-2
 
@@ -94,15 +100,18 @@ variant.df <- data.df %>%
 
 detection <- ifelse(last(variant.df$detectB117 == TRUE), "Detected", "Not detected")
 
-```  
-Report Date: `r datetoday` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Authorized by: `r authorizedby`  
-Comments:  
-  
-\noindent\rule{16cm}{0.4pt}
-### Longitudinal data for 5 weeks ending `r date`
-### Method Type: `r analysis` RT-qPCR &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Region: `r region`
-### B.1.1.7 variant: `r detection` on `r last(variant.df$sampleDate)`.
+```
 
+Report Date: `r datetoday` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Authorized by: `r authorizedby`  
+Comments:
+
+\noindent\rule{16cm}{0.4pt}
+
+### Longitudinal data for 5 weeks ending `r date`
+
+### Method Type: `r analysis` RT-qPCR &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Region: `r region`
+
+### B.1.1.7 variant: `r detection` on `r last(variant.df$sampleDate)`.
 
 ## SARS-CoV-2 Detection in Wastewater by CDC N1 & N2 RT-qPCR
 
@@ -151,10 +160,10 @@ plotdata.df$norm_confidence <- ifelse(
 
 N1_N2_plotdata <- filter(plotdata.df, !(is.na(plotdata.df$qualityFlag)))
 
-N1_N2_plotdata$N1_N2_avg_mL <- ifelse(is.na(N1_N2_plotdata$N1_N2_avg_mL), 0, 
+N1_N2_plotdata$N1_N2_avg_mL <- ifelse(is.na(N1_N2_plotdata$N1_N2_avg_mL), 0,
                                    N1_N2_plotdata$N1_N2_avg_mL)
 
-N1_N2_plotdata$N1_N2_avg <- ifelse(is.na(N1_N2_plotdata$N1_N2_avg), 0, 
+N1_N2_plotdata$N1_N2_avg <- ifelse(is.na(N1_N2_plotdata$N1_N2_avg), 0,
                                    N1_N2_plotdata$N1_N2_avg)
 
 N1_N2_plotdata$sampleDate <- as.POSIXct(N1_N2_plotdata$sampleDate)
@@ -182,13 +191,13 @@ viralload_plot <- ggplot(data = N1_N2_plotdata, aes(x = sampleDate, y = N1_N2_av
   scale_color_manual(values = c("0" = "black", "1" = "lightcoral", "2" = "seagreen3"),
                      labels = c("0" = "Non detection", "1" = "Low confidence", "2" = "High Confidence"),
                      name = "Confidence:")+
-  scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day", 
+  scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day",
                    date_labels = "%Y %b %d")+
   scale_y_continuous(trans = 'log10', limits = c(1, N1ymax))+
   labs(x = "Date Sampled", y = "Viral Load (cp/mL)")+
   facet_wrap(vars(siteID), labeller = labeller(siteID = site_labels))+
   theme(plot.title = element_text(size = 16, hjust = 0.5),
-        legend.position = "top", 
+        legend.position = "top",
         legend.direction = "horizontal",
         axis.text.x = element_text(angle = 90, hjust = 1),
         panel.border = element_rect(colour = "black", fill = NA),
@@ -204,13 +213,13 @@ nrm_copies_plot <- ggplot(data = N1_N2_plotdata, aes(x = sampleDate, y = N1_N2_a
   scale_color_manual(values = c("0" = "black", "1" = "lightcoral", "2" = "seagreen3"),
                      labels = c("0" = "Non detection", "1" = "Low confidence", "2" = "High Confidence"),
                      name = "Confidence:") +
-  scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day", 
+  scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day",
                    date_labels = "%Y %b %d")+
   #scale_y_continuous(trans = 'log10', limits = c(1, N1ymax))+
   labs(x = "Date Sampled", y = "Normalized viral copies")+
   facet_wrap(vars(siteID), labeller = labeller(siteID = site_labels))+
   theme(plot.title = element_text(size = 16, hjust = 0.5),
-        legend.position = "top", 
+        legend.position = "top",
         legend.direction = "horizontal",
         axis.text.x = element_text(angle = 90, hjust = 1),
         panel.border = element_rect(colour = "black", fill = NA),
@@ -221,7 +230,7 @@ plot(viralload_plot)
 
 Low confidence: SARS-CoV-2 signal was detected below the method’s limit of quantification.
 
-High confidence: SARS-CoV-2 signal was detected and meets QA/QC requirements. 
+High confidence: SARS-CoV-2 signal was detected and meets QA/QC requirements.
 
 Orange line represents the limit of quantification of the assay
 
@@ -235,13 +244,13 @@ variantplot <- ggplot(data = variant_plotdata, aes(x = sampleDate, y = pctB117))
   geom_point(size = 3.0)+
   geom_line(stat = "identity", size = 1)+
   #scale_color_discrete(labels = c("S_SN501Y_percent" = "N501Y", "S_Sdel_percent" = "Sdel"), name = "Allele:")+
-  scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day", 
+  scale_x_datetime(date_breaks = waiver(), date_minor_breaks = "1 day",
                    date_labels = "%Y %b %d")+
   scale_y_continuous(limits = c(0, 100))+
   labs(x = "Date Sampled", y = "Percent Variant (%)")+
   facet_wrap(vars(siteID))+
   theme(plot.title = element_text(size = 16, hjust = 0.5),
-        legend.position = "top", 
+        legend.position = "top",
         legend.direction = "horizontal",
         axis.text.x = element_text(angle = 90, hjust = 1),
         panel.border = element_rect(colour = "black", fill = NA),
@@ -251,14 +260,15 @@ variantplot <- ggplot(data = variant_plotdata, aes(x = sampleDate, y = pctB117))
 
 ```
 
-NOTE:  
-- This report is the only valid reference in case of differences with other transmitted documents.  
-- The analysis results refer only to what was provided for testing.  
-- The information provided in this report is for research use only.  
+NOTE:
 
-See individual sample report for variances and limitations to sample analysis.  
-  
-&nbsp;  
+- This report is the only valid reference in case of differences with other transmitted documents.
+- The analysis results refer only to what was provided for testing.
+- The information provided in this report is for research use only.
+
+See individual sample report for variances and limitations to sample analysis.
+
+&nbsp;
 
 Robert Delatolla, Kamya Bhatnagar, Patrick M. D’Aoust, Élisabeth Mercier,
 Alex MacKenzie, and Tyson Graber
@@ -307,10 +317,10 @@ col_order <- c("Sample ID", "Submitted ID", "Location", "Date Sampled",
 report.df <- report.df[,col_order]
 
 report.df <- filter(report.df, as.Date(`Date Sampled`) >= as.Date(startdate),
-                    as.Date(`Date Sampled`) <= as.Date(enddate))   
-report.df <- arrange(report.df, `Sample ID`, desc(`Date Sampled`)) 
+                    as.Date(`Date Sampled`) <= as.Date(enddate))
+report.df <- arrange(report.df, `Sample ID`, desc(`Date Sampled`))
 #report.df$`Average N1 Copies/mL` <- round(report.df$`Average N1 Copies/mL`, 2)
-                                              
+
 kable(report.df, booktabs = T, align = "c") %>%
 kable_styling(latex_options = "scale_down") %>%
 #kableExtra::landscape() %>%
@@ -319,6 +329,6 @@ row_spec(0, angle = 45)
 #16cm line for portrait, 23cm line for landscape
 ```
 
-\noindent\rule{16cm}{0.4pt}  
+\noindent\rule{16cm}{0.4pt}
 
-End of report  
+End of report

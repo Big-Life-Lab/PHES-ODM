@@ -39,10 +39,9 @@ See [metadata](metadata_en.md) for more detailed information on variable names a
 
 ## Collaborate
 
-Issues, suggestions and pull requests are welcomed. [contributing](CONTRIBUTING.md) for more information.
+See [contributing](CONTRIBUTING.md and [Code of conduct](CODE_OF_CONDUCT.md)for more information.
 
-- [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [phesd_odm@ohri.ca](mailto::phes_odm@ohri.caa).
-- [Code of conduct](CODE_OF_CONDUCT.md).
+- Issues, suggestions and pull requests are welcomed. GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [phesd_odm@ohri.ca](mailto::phes_odm@ohri.caa).
 - Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
 - [An international steering committee](https://github.com/Big-Life-Lab/PHES-ODM/wiki/Steering-Group-Members) guides the development of the data model.
 - Working groups consist of a regular weekly meeting with ODM developers and users. Add hoc working groups are created to develop specific sections of the ODM. An example of the working group the development of quality assurance and control measures.
@@ -63,11 +62,13 @@ What's coming to version 2.0.
 
 <a href= "https://vimeo.com/649254159" title="Link Title"><img src="img/ODM-V2-video.png" alt="What's coming to version 2.0" width="350"/></a>
 
+The presentation used in the video is [here](https://docs.google.com/presentation/d/14KeMhXHidG1q_zVpce6tkj89LR1H5d4b/edit?usp=sharing&ouid=103619232413193034528&rtpof=true&sd=true). The presentation is updated with developments of ODM v2. The contents can be reused under the license of this repository. 
+
 See [Work-in-progress and roadmap](roadmap.md) for more details.
 
 ## License
 
-Website content is published under a Creative Commons CC BY 4.0 license, which requires users to attribute the source and license type (CC BY 4.0) when sharing our data or website content.
+Website content is published under a Creative Commons CC BY 4.0 license, which requires users to attribute the source and license type (CC BY 4.0) when sharing PHES-ODM content.
 
 See [license](LICENSE) for more information.
 
