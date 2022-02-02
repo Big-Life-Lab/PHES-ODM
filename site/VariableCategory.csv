@@ -130,13 +130,13 @@ SiteMeasure,type,wwBOD5c,5 day carbonaceous biochemical oxygen demand,Demande bi
 SiteMeasure,type,wwPtot,Total phosphates,Phosphates totaux
 SiteMeasure,type,wwPP,Total phosphorous,Phosphore total
 SiteMeasure,type,wwCond,Conductivity of the wastewater.,Conductivitï¿½
-SiteMeasure,unit,c,Degrees Celcius,Degrés Celcius
-SiteMeasure,unit,mm,Millimeters,Millimètres
-SiteMeasure,unit,m3H,Cubic meters per hour,Mètres cubes par heure
-SiteMeasure,unit,m3D,Cubic meters per day,Mètres cubes par jour
+SiteMeasure,unit,c,Degrees Celcius,Degrï¿½s Celcius
+SiteMeasure,unit,mm,Millimeters,Millimï¿½tres
+SiteMeasure,unit,m3H,Cubic meters per hour,Mï¿½tres cubes par heure
+SiteMeasure,unit,m3D,Cubic meters per day,Mï¿½tres cubes par jour
 SiteMeasure,unit,mgL,Milligrams per liter,Milligrammes par litre
-SiteMeasure,unit,pH,pH units,Unités de pH
-SiteMeasure,unit,usCM,Micro-siemens per centimeter,Micro-siemens par centimètre
+SiteMeasure,unit,pH,pH units,Unitï¿½s de pH
+SiteMeasure,unit,usCM,Micro-siemens per centimeter,Micro-siemens par centimï¿½tre
 SiteMeasure,aggregation,single,"This value is not an aggregate measurement in any way (ie. not a mean, median, max or any other) and can be a replicate value.","La valeur n'a subi aucune agrï¿½gation (donc, la valeur n'est pas une moyenne, un maximum, etc.). La valeur peut ï¿½tre un rï¿½plica."
 SiteMeasure,aggregation,mean,Arithmetic mean,Moyenne arithmï¿½tique.
 SiteMeasure,aggregation,geoMn,Geometric mean,Moyenne gï¿½omï¿½trique.
