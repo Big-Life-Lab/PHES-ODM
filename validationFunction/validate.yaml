@@ -1,0 +1,2463 @@
+
+    siteID:
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Site
+        variableName: siteID
+        tableVariableName: siteSiteID
+        description_en: allow any value, unique
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: False 
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: null
+        one of: null
+        regex: null
+        required: True  
+        type: string
+        coerce: null
+
+    name:
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Site
+        description_en: Allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    description:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Site
+        variableName: description
+        description_en: Allow any value, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 255
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+         
+
+    type:     
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Site
+        variableName: type
+        description_en: Allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    typeOther:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Site
+        description_en: Allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    healthRegion:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Site
+        variableName: healthRegion
+        description_en: Allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    publicHealthDepartment:     
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Site
+        description_en: Allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    geoLat:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Site
+        description_en: Allow decimals, min: 41.6765551, max: 56.8593651
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: 41.676551
+        max: 56.8593651
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: float
+        coerce: null
+        FIELD29: 
+
+    geoLong:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Site
+        variableName: geoLong
+        description_en: Allow decimals, min: -95.1560871, max: -74.3201081
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: -95.1560871
+        max: -74.3201081
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: float
+        coerce: null
+
+    notes:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Site
+        description_en: Allow any value, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 255
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    reporterID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Reporter
+        description_en: Allow any value, unique reporterID
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    contactName:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Reporter
+        description_en: Allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    contactEmail:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Reporter
+        description_en: Allow any value, use @
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: ^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$
+        required: TRUE
+        type: string
+        coerce: null
+
+    contactPhone:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Reporter
+        description_en: Allow any value, length 10 - 12
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 10
+        maxlength: 12
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    contactPhoneExt:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Reporter
+        description_en: Allow any value, max 50
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: 50
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    notes:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Reporter
+        description_en: Allow any value, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 255
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    labID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Lab
+        description_en: allow any value, unique labID
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    name:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Lab
+        variableName: name
+        description_en: allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    contactName:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Lab
+        description_en: allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    contactEmail:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Lab
+        description_en: allow any value, use @
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: ^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$
+        required: TRUE
+        type: string
+        coerce: null
+
+    contactPhone:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Lab
+        description_en: allow any value, length 10 - 12
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 10
+        maxlength: 12
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    variableName: contactPhoneExt    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Lab
+        description_en: allow any value, max 50
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 50
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    updateDate:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Lab
+        description_en: allow dates between 2020-01-01 to current date
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: coerceDate
+
+    instrumentID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Instrument
+        description_en: allow any value, unique
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    name:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Instrument
+        description_en: allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    model:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Instrument
+        description_en: allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    variableName: description
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Instrument
+        description_en: allow any value, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    referenceLink:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Instrument
+        description_en: allow any value, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    type:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Instrument
+        description_en: allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    typeOther:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Instrument
+        description_en: allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string 
+        coerce: null
+
+    assayMethodID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: allow any value, unique
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    instrumentID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: allow list, sourced from Instrument table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    name:
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    variableName: version    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: allow any value, max 50
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 50
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    summary:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: allow any value, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 255
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    referenceLink:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: allow any value, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 255
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    variableName: date    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: allow dates between 2020-01-01 to current date
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: coerceDate
+
+    variableName: sampleSizeL    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: value greater than or equal to 0, 3 decimals
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: float
+        coerce: null
+
+    loq:
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: value greater than or equal to 0, 1 decimals
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: float
+        coerce: null
+
+    lod:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: value greater than or equal to 0, 1 decimals
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: float
+        coerce: null
+
+    unit:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    unitOther:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: AssayMethod
+        description_en: allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: 100
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    sampleID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Sample
+        description_en: allow any value, unique
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    siteID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Sample
+        description_en: allow list, sourced from Site table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    type:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Sample
+        description_en: allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    collection:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Sample
+        description_en: allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    dateTime:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Sample
+        variableName: dateTime
+        description_en: date between 2020-01-01 to current date time
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: coerceDate
+
+    dateTimeStart:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Sample
+        description_en: date between 2020-01-01 to current date time
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: coerceDate
+
+    dateTimeEnd:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Sample
+        description_en: date between 2020-01-01 to current date time
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: 0
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: coerceDate
+
+    sizeL:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Sample
+        description_en: value greater than or equal to 0, 1 decimal
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: -500
+        max: 500
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: float
+        coerce: null
+
+    fieldSampleTempC:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Sample
+        description_en: allow number, between -500 and 500, 1 decimal
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: float
+        coerce: null
+
+    shippedOnIce:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Sample
+        description_en: allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    notes:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: Sample
+        description_en: Allow text length, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 255
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    uWwMeasureID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: Allow text length, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    sampleID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: allow list, sourced from Sample table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: WWMeasure, SampleID = Sample, SampleID
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    labID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: allow list, sourced from Lab table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: WWMeasure, labID = Lab, labID
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    assayMethodID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: allow list, sourced from AssayMethod table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: WWMeasure, assayMethodID = AssayMethod, assayMethodID
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    instrumentID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: allow list, sourced from Instrument table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: WWMeasure, instrumentID = Instrument, instrumentID
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    reporterID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: allow list, sourced from Reporter table 
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: WWMeasure, reporterID = Reporter, reporterID
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    analysisDate:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: date between 2020-01-01 to current date
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: coerceDate
+
+    reportDate:   
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: date between 2020-01-01 to current date
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: coerceDate
+
+    fractionAnalyzed:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: 
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    type:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: 
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    typeOther:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: Allow text length, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    unit:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: 
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+
+    unitOther:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: Allow text length, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    index:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: Allow whole number, 1-10
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: 1
+        max: 10
+        minlength: 
+        maxlength: 
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: integer
+        coerce: null
+
+    value:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: Allow decimal, value greater than or equal to 0
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: 0
+        max: 
+        minlength: 
+        maxlength: 
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: integer
+        coerce: null
+
+    qualityFlag:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: 
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: 
+        max: 
+        minlength: 0
+        maxlength: 255
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    notes:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: WWMeasure
+        description_en: Allow text length, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: 
+        max: 
+        minlength: 
+        maxlength: 
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+
+    uSiteMeasureID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: allow any value, unique
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    siteID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow list, sourced from Site table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: SiteMeasure, siteID = Site, siteID
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    sampleID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow list, sourced from Sample table 
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: SiteMeasure, sampleID = Sample, sampleID
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    reporterID:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow list, sourced from Reporter table 
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: SiteMeasure, reporterID = Reporter, reporterID
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    dateTime:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        variableName: dateTime
+        description_en: allow dates between 2020-01-01 to current date time
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    type:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    typeOther:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    typeDescription:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow any value, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 255
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    aggregation:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    aggregationOther:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow any value, max 100
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 100
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    aggregationDesc:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow any value, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: FALSE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 255
+        noneof: null
+        nullable: FALSE
+        one of: null
+        regex: null
+        required: TRUE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    value:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow any number, one decimal
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: float
+        coerce: null
+        FIELD29: 
+    -
+    unit:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow list, sourced from Drop-Down Lists table
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: null
+        maxlength: null
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+        FIELD29: 
+    -
+    notes:    
+        item: variables
+        versionStart: 1.1
+        versionEnd: 1.2
+        tableName: SiteMeasure
+        description_en: Allow any value, max 255
+        allow_unknown: null
+        allowed: null
+        allof: null
+        anyof: null
+        check_with: null
+        contains: null
+        dependencies: null
+        empty: TRUE
+        forbidden: null
+        items: null
+        keysrules: null
+        min: null
+        max: null
+        minlength: 0
+        maxlength: 255
+        noneof: null
+        nullable: TRUE
+        one of: null
+        regex: null
+        required: FALSE
+        type: string
+        coerce: null
+        FIELD29: 
+
