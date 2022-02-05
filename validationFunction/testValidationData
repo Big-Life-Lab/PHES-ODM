@@ -1,0 +1,154 @@
+document = {'versionStart': 1.2, 
+
+siteSiteID': 'Ottawa-1', 
+
+'siteName': 'Ottawa-ROPEC', 
+
+'siteDescription': 'This file contains data regarding normalized SARS-CoV-2 viral RNA signal in wastewater. These data support public health surveillance of covid-19 by providing a rapid assessment of circulating SARS-CoV-2 in the population. Included are normalized SARS-CoV-2 viral RNA signal for the N1 and N2 gene regions. Samples are collected from daily composite samples of primary sludge in Ottawa.', 
+
+'siteType': 'school', 
+
+'siteHealthRegion': 'Central East', 
+
+'sitePublicHealthDepartment': 'Brant County Health Unit', 
+
+'siteGeoLat': 42.656, 
+
+'siteGeoLong': -93.204, 
+
+'siteNotes': 'Robert O. Pickard Environmental Centre (ROPEC) which collects and treats wastewater from 91.6% of Ottawa’s population', 
+
+'reporterReporterID': '876547',
+
+'reporterContactEmail':'blank@gmail.com', 
+
+'reporterContactPhone':'613-xxx-xxxx', 
+
+'reporterContactPhoneExt':'xxx', 
+
+'reporterNotes':'this is a test file', 
+
+'labLabID': 'Ottawa-1', 
+
+'labName': 'OttawaLab, 
+
+'labContactName': 'AnonymousPersonNameHere', 
+
+'labContactEmail': 'labcontact@gmail.com', 
+
+'labContactPhone': '613-xxx-xxxx-, 
+
+'labContactPhoneExt': 'xxx', 
+
+'labUpdateDate': '2020-04-08', 
+
+'instrumentInstrumentID': 'instrumentid45', 
+
+'instrumentName': 'magneticflow', 
+
+'instrumentModel': 'omega', 
+
+'instrumentDescription': 'magneticflowmeter', 
+
+'instrumentReferenceLink':'inserturlhere', 
+
+'instrumentType': 'lab', 
+
+'assayMethodAssayMethodID': '10204', 
+
+'assayMethodInstrumentID': 'instrumentid45', 
+
+'assayMethodName': 'assaymethodname', 
+
+'assayMethodVersion': '2.1', 
+
+'assayMethodSummary': 'summaryofassay', 
+
+'assayMethodReferenceLink': 'inserturlhere', 
+
+'assayMethodDate': '2020-04-08', 
+
+'assayMethodSampleSizeL': '2.200', 
+
+'assayMethodLoq': '1.2', 
+
+'assayMethodIod': '1.1', 
+
+'assayMethodUnit': 'insertunithere', 
+
+'sampleSampleID': 'sampleidhere', 
+
+'sampleSiteID': 'Ottawa-1', 
+
+'sampleType': 'rawWW', 
+
+'sampleCollection': 'cp', 
+
+'sampleDateTime':'2020-04-08', 
+
+'sampleDateTimeStart':'2020-04-08',
+
+'sampleDateTimeEnd':'2020-04-08', 
+
+'sampleSizeL': 2.2, 
+
+'sampleFieldSampleTempC': '200.1', 
+
+'sampleShippedOnIce': 'yes', 
+
+'SampleNotes': 'insertnoteshere', 
+
+'wwMeasureUwwMeasureID': 'insertIDhere', 
+
+'wwMeasureSampleID': 'Ottawa-1', 
+
+'wwMeasureLabID': 'Ottawa-1', 
+
+'wwMeasureAssayMethodID': 10204', 
+
+'wwMeasureInstrumentID': 'instrumentid45', 
+
+'wwMeasureReporterID': '876547',
+
+'wwMeasureAnalysisDate': '2020-04-08', 
+
+'wwMeasureReportDate': '2020-04-08', 
+
+'wwMeasureFractionAnalyzed': 'liquid', 
+
+'wwMeasureType': 'covN1', 
+
+'wwMeasureUnit': 'gcMI', 
+
+'wwMeasureIndex: 7, 
+
+'wwMeasureValue': 5.4, 
+
+'wwMeasureQualityFlag': 'yes', 
+
+'wwMeasureNotes': 'insertnoteshere', 
+
+'siteMeasureuSiteMeasureID': 'siteIDhere', 
+
+'siteMeasureSiteID': 'Ottawa-1', 
+
+'siteMeasureSampleID': 'sampleidhere', 
+
+'siteMeasureReporterID': 876547', 
+
+'siteMeasureDateTime':'2020-04-08', 
+
+'siteMeasureType': 'airPln', 
+
+'siteMeasureTypeDescription': 'insertdescriptionhere', 
+
+'siteMeasureAggregation': 'single', 
+
+'siteMeasureAggregationDesc': 'insertdescriptionhere', 
+
+'siteMeasureValue': 3.4, 
+
+'siteMeasureUnit': 'm3/d', 
+
+'siteMeasureNotes': 'insertnoteshere'
+}
