@@ -42,6 +42,14 @@ Addresses issues: [#172](https://github.com/Big-Life-Lab/ODM/issues/172), [#120]
 
   
 
+## 2021-08-09 (update this date when merging to main)
+
+\*\*v1....
+
+**Variable changes (non-breaking changes)**
+
+- `index`: Change type from integer to string. Allows greter flexiblity for naming indexes.
+
 
 ## 2021-02-18
 
