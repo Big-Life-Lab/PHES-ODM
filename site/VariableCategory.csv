@@ -1,3 +1,56 @@
+
+tableName,variableName,variableValue,desc_en,desc_fr
+Sample,type,rawWW,Raw wastewater.,Eau usée brute
+Sample,type,swrSed,Sediments obtained in sewer.,Sédiments provenant des égouts.
+Sample,type,pstGrit,Raw wastewater after a treatment plant's headworks.,Eau usée aprés dégrillage et dessablage.
+Sample,type,pSludge,Sludge produced by primary clarifiers.,Boue provenant d'un décanteur primaire.
+Sample,type,pEfflu,Effluent obtained after primary clarifiers.,Effluent obtenu aprés un décanteur primaire.
+Sample,type,sSludge,Sludge produced by secondary clarifiers.,Boue provenant d'un décanteur secondaire.
+Sample,type,sEfflu,Effluent obtained after secondary clarifiers.,Effluent obtenu aprés un décanteur secondaire.
+Sample,type,water,"Non-wastewater, coming from any kind of water body.",Eau non-usée provenant de toute étendue d'eau.
+Sample,type,faeces,Fecal matter.,Matiére fécale.
+Sample,type,other,Other type of site. Add description to typeOther.,"Autre type de site d'échantillonnage. Ajouter une description dans la colonne ""typeOther"""
+Sample,collection,cpTP24h,A time proportional 24-hour composite sample generally collected by an autosampler.,"Un échantillon composite proportionnel au temps prélevé sur 24 heures, généralement prélevé par un auto-échantilonneur."
+Sample,collection,cpFP24h,A flow proportional 24-hour composite sample generally collected by an autosampler.,"Un échantillon composite proportionnel au débit prélevé sur 24 heures, généralement prélevé par un auto-échantilonneur."
+Sample,collection,grb,A single large representative grab sample.,Un seul échantillon ponctuel représentatif.
+Sample,collection,grbCp8h,"A 8-hour composite with 8 grab samples each taken once per hour, generally manually performed.","Un échantillon composite prélevé sur 8 heures consitué d'échantillons ponctuels collectés une fois par heure, généralement prélevé manuellement."
+Sample,collection,grbCp3h,"A 3-hour composite with 3 grab samples each taken once per hour, generally manually performed.","Un échantillon composite prélevé sur 3 heures consitué d'échantillons ponctuels collectés une fois par heure, généralement prélevé manuellement."
+Sample,collection,grbCp3,A grab-composite sample composed of 3 separate grab samples.,Un échantillon composite composé de 3 échantillons ponctuels.
+Sample,collection,mooreSw,Moore swab passive sample.,Un échantillon passif collecté par la méthode de Moore.
+Sample,collection,other,Other type of collection method. Add description to collectionOther.,"Autre méthode de collecte. Ajouter une description dans la colonne ""descriptionOther"""
+Measure,status,active,,
+Measure,status,inactive,,
+Measure,analytePartNomenclature,Pangolin,Phylogenetic Assignment of Named Global Outbreak Lineages,
+Measure,analytePartNomenclature,Nexclade,compares difference between sequence of genome with a reference sequence and assigns the sequence to a clade,
+Site,type,airPln,Airplane.,Avion.
+Site,type,corFcil,Correctional facility.,Prison.
+Site,type,school,School,école.
+Site,type,hosptl,Hospital,Hépital.
+Site,type,ltcf,Long-term care facility.,établissement de soins de longue durée.
+Site,type,swgTrck,Sewage truck.,Camion de vidange.
+Site,type,uCampus,University campus.,Campus universitaire.
+Site,type,mSwrPpl,Major sewer pipeline.,Collecteur d'égouts.
+Site,type,pStat,Pumping station.,Station de pompage.
+Site,type,holdTnk,Hold tank.,Bassin de stockage.
+Site,type,retPond,Retention pond.,Bassin de rétention.
+Site,type,wwtpMuC,Municipal wastewater treatment plant for combined sewage.,Station de traitement des eaux usées municipales pour égouts combinés.
+Site,type,wwtpMuS,Municipal wastewater treatment plant for sanitary sewage only.,Station de traitement des eaux usées municipales pour égouts sanitaires seulement.
+Site,type,wwtpInd,Industrial wastewater treatment plant.,Station de traitement des eaux usées industrielle.
+Site,type,lagoon,Logoon system for extensive wastewater treatment.,Systéme de lagunage pour traitement des eaux usées.
+Site,type,septTnk,Septic tank.,Fosse septique.
+Site,type,river,"River, natural water body.","Riviére, étendue d'eau naturelle."
+Site,type,lake,"Lake, natural water body.","Lac, étendue d'eau naturelle."
+Site,type,estuary,"Estuary, natural water body","Estuaire, étendue d'eau naturelle."
+Site,type,sea,"Sea, natural water body.","Mer, étendue d'eau naturelle."
+Site,type,ocean,"Ocean, natural water body.","Océan, étendue d'eau naturelle."
+Site,type,other,Other site type. Add description to typeOther.,"Autre type de site. Ajouter une description dans ""typeOther""."
+Instrument,type,online, An online sensor,Capteur en ligne.
+Instrument,type,lab,Offline laboratory analysis,Analyse en laboratoire.
+Instrument,type,hand,A handheld measurement analyzer.,Mesure à l'aide d'un capteur manuel.
+Instrument,type,atline,An atline analyzer with sampler.,Mesure à l'aide d'un échantillonneur.
+Instrument,type,other,An other type of measurement instrument. Add description to instrumentTypeOther.,"Autre type d'appareil de mesure. Ajouter une description dans ""instrumentTypeOther"""
+Polygon,type,swrCat,Sewer catchment area.,Zone de captage d'un réseau d'égout.
+Polygon,type,hlthReg,Health region served by the sewer network,Région de santé desservie par le réseau d'égout.
 tableName,variableName,variableValue,desc_en,desc_fr
 Sample,type,rawWW,Raw wastewater.,Eau us�e brute
 Sample,type,swrSed,Sediments obtained in sewer.,S�diments provenant des �gouts.

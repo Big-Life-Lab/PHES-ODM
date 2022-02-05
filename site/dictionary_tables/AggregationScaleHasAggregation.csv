@@ -1,0 +1,11 @@
+aggregationScaleID,aggregationID
+linear,single
+linear,arrMean
+linear,median
+linear,min
+linear,max
+linear,sd
+logarithmic,single
+logarithmic,min
+logarithmic,max
+logarithmic,geoMean

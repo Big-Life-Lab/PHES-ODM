@@ -1,0 +1,20 @@
+unitID,latexExpression,descriptionEN,descriptionFR,unitScaleID,aggregationScaleID,dataType
+gcMl,$gc/{ml}$,Gene or variant copies per milliter of solution.,Copies de gène par millilitre de solution,quantitative,linear,float
+degC,$^{\circ}C,Degrees Celcius,Degrés Celcius,quantitative,linear,float
+ct,$Ct$,Cycle tresholds in a PCR assay,Cycles de seuil,quantitative,logarithmic,float
+detected,$detected$,Substance detected or not detected,Substance détectée ou non,qualitative,linear,bool
+gcGcPmmoV,$gc/{gc_{PMMoV}$,Gene or variant copies per copy of PMMoV.,Copies de gène par copie de gène du PMMV,quantitative,linear,float
+gcGcCrA,$gc/{gc_{CrA}$,Gene or variant copies per copy of crAssphage.,Copies de gène par copie de gène du crAssphage,quantitative,linear,float
+gcGSld,$gc/{g_{solids}$,Gene or variant copies per gram solids.,Copies de gène par millilitre gramme de solides,quantitative,linear,float
+mgL,$mg/l$,Milligrams per liter.,Milligrammes par litre,quantitative,linear,float
+ppm,$ppm$,Parts per million,Parties par million,quantitative,linear,float
+ph,$\pH$,pH units,Unités de pH,qualitative,linear,float
+uSCm,$\mu S / {cm}$,Micro-siemens per centimeter.,Micro-Siemens par centrimètre,quantitative,linear,float
+pctPrp,$\%$,Proportion expressed as percentage,Proportion exprimée en pourcentage,quantitative,linear,float
+pctPos,$\%_{pos}$,Percentage of positive aliquots.,Pourcentage de positivité d’aliquots.,quantitative,linear,float
+pctSld,$\%_{primary sludge}$,"Percentage of total solids, for primary sludge","Pourcentage de solides, pour les boues primaires",quantitative,linear,float
+cfu100Ml,$CFU/{100~ml}$,Colony forming units per 100 ml,Unités formatrices de colonies par 100 millilitres,quantitative,linear,float
+m3S,$m^3/s$,Cubic meter per second,Mètres cubes par seconde,quantitative,linear,float
+kgS,$kg/S$,Kilograms per second,Kilogrammes par seconde,quantitative,linear,float
+bool,,In cases where a boolean yes or no is required use bool,"Pour les cas, ou une réponse positive ou négative est requise",qualitative,linear,bool
+other,,Other unit,Autre unité,,,
