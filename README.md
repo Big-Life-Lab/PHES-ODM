@@ -39,7 +39,7 @@ See [metadata](metadata_en.md) for more detailed information on variable names a
 
 ## Collaborate
 
-See [contributing](CONTRIBUTING.md and [Code of conduct](CODE_OF_CONDUCT.md)for more information.
+See [contributing](CONTRIBUTING.md) and [Code of conduct](CODE_OF_CONDUCT.md)for more information.
 
 - Issues, suggestions and pull requests are welcomed. GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [phesd_odm@ohri.ca](mailto::phes_odm@ohri.caa).
 - Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
@@ -62,7 +62,11 @@ What's coming to version 2.0.
 
 <a href= "https://vimeo.com/649254159" title="Link Title"><img src="img/ODM-V2-video.png" alt="What's coming to version 2.0" width="350"/></a>
 
-The presentation used in the video is [here](https://docs.google.com/presentation/d/14KeMhXHidG1q_zVpce6tkj89LR1H5d4b/edit?usp=sharing&ouid=103619232413193034528&rtpof=true&sd=true). The presentation is updated with developments of ODM v2. The contents can be reused under the license of this repository. 
+An overview of the features and structure of version 2.0 to date.
+
+<a href= "https://vimeo.com/674894484" title="Link Title"><img src="img/ODM-V2-video.png" alt="Overview of version 2.0" width="350"/></a>
+
+The presentation used in the first video is [here](https://docs.google.com/presentation/d/14KeMhXHidG1q_zVpce6tkj89LR1H5d4b/edit?usp=sharing&ouid=103619232413193034528&rtpof=true&sd=true). The presentation is updated with developments of ODM v2. The contents can be reused under the license of this repository. 
 
 See [Work-in-progress and roadmap](roadmap.md) for more details.
 
