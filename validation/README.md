@@ -1,12 +1,10 @@
 # Validation specifications
 
 Data validation allows users to check whether their data meets the ODM dictionary format by reporting what variables and entries either meet or do not meet the ODM format.
-
   
 Validation can be performed throughout the data life cycle. Measurement laboratories can validate their data before sharing data with repositories or other researchers. Data repositories can validate data when they accept data from laboratories. Public health epidemiologists and modellers can validate data before analysis. 
-
   
-The emphasis of ODM validation is on providing guidance and support. When you validate data, you receive a report with warnings and errors. ODM validation emphasizes warnings rather than errors. An example of a warning is when an email does not contain an '\@' symbol. An error is when a unique identifier is not repeated (it is not unique). Where possible, data is coerced to validate data. For example, ODM will transform data into real numbers if data is entered as text. (\`temperature\` = \`'1'\` will be transformed into \`temperature\` = \`1\`.
+The emphasis of ODM validation is on providing guidance and support. When you validate data, you receive a report with warnings and errors. ODM validation emphasizes warnings rather than errors. An example of a warning is when an email does not contain an '\@' symbol. An error is when a unique identifier is repeated (it is not unique). Where possible, data is coerced to validate data. For example, ODM will transform data into real numbers if data is entered as text. (\`temperature\` = \`'1'\` will be transformed into \`temperature\` = \`1\`.
 
 ## Context
 
