@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 sampleDate,siteID,siteName,reportDate,covN1_nPMMoV_meanNr,covN1_nPMMoV_sdNr,covN2_nPMMoV_meanNr,covN2_nPMMoV_sdNr,nPPMoV_Ct_mean,qualityFlag,testB117,detectB117,fractionB117,fractionB117_sd
 2020-04-08,Ottawa-1,Ottawa-ROPEC,2020-11-16,0.00026,0.0001,0.00013,0.00004,27.35,FALSE,FALSE,,,
 2020-04-24,Ottawa-1,Ottawa-ROPEC,2020-11-16,0.00015,0.00006,0.00002,0,26.3,FALSE,FALSE,,,
@@ -686,4 +685,3 @@ sampleDate,siteID,siteName,reportDate,covN1_nPMMoV_meanMnNr,covN1_nPMMoV_sdNr,co
 2021-09-27,Ottawa-1,Ottawa-ROPEC,2021-09-29,0.0001,0.00001,0.00014,0.00002,27.083,FALSE,FALSE,,,,125987.44
 2021-09-28,Ottawa-1,Ottawa-ROPEC,2021-09-30,0.00008,0.00002,0.00004,0,26.82,FALSE,FALSE,,,,44157.82
 2021-09-29,Ottawa-1,Ottawa-ROPEC,2021-10-01,0.00028,0.00004,0.00026,0.00005,27.567,FALSE,FALSE,,,,230335.67
->>>>>>> main
