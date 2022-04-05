@@ -6,25 +6,18 @@ Tables that are updated regularly:
 
 - [**SampleReport**](#SampleReport) A sample is a representative volume of wastewater, air, or surface substance taken from a Site which is then analysed by a lab (organization).
 
-- [**MeasureReport**]
-- MeasureReport - {{filter: partID = 'measureReportTable', value: 'partInstruction`}}
+....
+....
 
 Tables that are created initially or once, with few updates
 
-- Address - {{filter: partID = 'addressTable', value: 'partInstruction`}}
-- Contact - {{filter: partID = 'contactTable', value: 'partInstruction`}}
-- Instrument - {{filter: partID = 'instrumentTable', value: 'partInstruction`}}
-- MethodStep - {{filter: partID = 'methodStepTable', value: 'partInstruction`}}
-- MethodSet - {{filter: partID = 'methodSetTable', value: 'partInstruction`}}
-- Organization - {{filter: partID = 'organizationTable', value: 'partInstruction`}}
-- Polygon - {{filter: partID = 'polygonTable', value: 'partInstruction`}
-- Site - - {{filter: partID = 'siteTable', value: 'partInstruction`}}
+- Address - The table that contains information about addresses.
 
 <!-- list of tables that is generated from parts.csv -->
 
 ## [SampleReport]
 
-{{filter: partID = 'sampleReportTable', value: 'partInstruction`}}
+A sample is a representative volume of wastewater, air, or surface substance taken from a Site which is then analysed by a lab (organization).
 
 <!-- {{select: 'SampleReport', filter: {'Input', 'FK', 'Header', 'PK' }} -->
 <!-- {{order: 'PK', 'FK', 'Header' }}                                  -->
