@@ -33,14 +33,23 @@ Program description tables:
 
 
 ## Measures
-{filter: partID = 'measureID', value: 'description`}
+{filter: partID = 'measureID', value: 'description`} Measures are organized into Domains, Groups, and Classes.
+- **Domains** {filter: partID = 'domainID', value: {'partDescription` & 'partInstruction'}}
+- **Groups** {filter: partID = 'groupID', value: {'partDescription` & 'partInstruction'}}
+- **Classes** {filter: partID = 'classID', value: {'partDescription` & 'partInstruction'}}
 
-  <!-- if entry {{partType = 'measure'}} then the following to 'END partype = 'measure' -->
-       - `{{label}}`: (partID: {{partID}}) {{partDescription}}. {{partInstruction}}. [Aggregations]({{link to aggregation set}}). [Units]({{link to unit set}}).   [{filter: "catSetID" != {"NA"}, value: "catSetID"}]({{link to category set}}).
+###<!-- if entry {{partType = 'domain'}} then the following to 'END partype = 'domain' -->`{{label}}` 
+(partID: {{partID}}) {{partDescription}}. {{partInstruction}}.
+<!-- if entry {{partType = 'group'}} then the following to 'END partype = 'group' -->
+- **`{{label}}`**: (partID: {{partID}}) {{partDescription}}. {{partInstruction}}.
+  <!-- if entry {{partType = 'class'}} then the following to 'END partype = 'class' -->
+       - `{{label}}`: (partID: {{partID}}) {{partDescription}}. {{partInstruction}}.
+- Measures:
        
-## Methods
-{filter: partID = 'methodID', value: 'description`}
-
+       <!-- if entry {{partType = 'measure'}} then the following to 'END partype = 'measure' -->
+            - `{{label}}`: (partID: {{partID}}) {{partDescription}}. {{partInstruction}}. [Aggregations]({{link to aggregation set}}). [Units]({{link to unit set}}).   [{filter: "catSetID" != {"NA"}, value: "catSetID"}]({{link to category set}}).-
+-Methods:
+  
   <!-- if entry {{partType = 'method'}} then the following to 'END partype = 'method' -->
        - `{{label}}`: (partID: {{partID}}) {{partDescription}}. {{partInstruction}}. [Aggregations]({{link to aggregation set}}). [Units]({{link to unit set}}).   [{filter: "catSetID" != {"NA"}, value: "catSetID"}]({{link to category set}}).
 
@@ -63,25 +72,6 @@ Program description tables:
   <!-- if entry {{partType = 'catSet'}} then the following to 'END partype = 'catSet' -->
        - `{{label}}`: (partID: {{partID}}) {{partDescription}}. {{partInstruction}}. 
            - {{filter: "partType" = "category" & "catSetID" = "{{label}}", print = {"label": ("partID") "partDescription"}}.
-           
-## Domains, Groups, and Classes
-###Domains
-{filter: partID = 'domainID', value: 'description`}
-
-  <!-- if entry {{partType = 'domain'}} then the following to 'END partype = 'domain' -->
-       - `{{label}}`: (partID: {{partID}}) {{partDescription}}. {{partInstruction}}. [Groups]({{link to groups}}).
-       
-###Groups
-{filter: partID = 'groupID', value: 'description`}
-
-  <!-- if entry {{partType = 'group'}} then the following to 'END partype = 'group' -->
-       - `{{label}}`: (partID: {{partID}}) {{partDescription}}. {{partInstruction}}. [Classes]({{link to classes}}).
-       
-###Classes
-{filter: partID = 'classID', value: 'description`}
-
-  <!-- if entry {{partType = 'class'}} then the following to 'END partype = 'class' -->
-       - `{{label}}`: (partID: {{partID}}) {{partDescription}}. {{partInstruction}}. [Aggregations]({{link to aggregation set}}). [Units]({{link to unit set}}).
        
 # Compartments
 {filter: partID = 'compartmentID', value: 'description`}
