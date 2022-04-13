@@ -29,7 +29,7 @@ Program description tables:
 
 <!-- for each entery -->
 
-- **{{label}}**: ({{partID}}) {{filter: "ReportTable" = {"PK" or "FK"}, value: "ReportTable"}} [{{dataType}}] {{partDescription}}. {{partInstruction}}. Category set: [{filter: "catSetID" != {"NA"}, value: "catSetID"}]({{link to category set}}).
+- **{{label}}**: ({{partID}}) {{filter: "ReportTable" = {"PK" or "FK"}, value: "ReportTable"}} [{{dataType}}] {{partDescription}}. {{partInstruction}}. Categories: [{filter: "catSetID" != {"NA"}, value: "catSetID"}]({{link to category set}}).
 
 
 ## Measures
