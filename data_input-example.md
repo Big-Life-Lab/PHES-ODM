@@ -94,18 +94,54 @@ Program description tables:
 ....
 
 ## Measures
+The uniqe identification of a measure, where a measure is defined as an observation of any substance. Measures are organized into Domains, Groups, and Classes.
+- **Domains** {filter: partID = 'domainID', value: {'partDescription` & 'partInstruction'}}
+- **Groups** {filter: partID = 'groupID', value: {'partDescription` & 'partInstruction'}}
+- **Classes** {filter: partID = 'classID', value: {'partDescription` & 'partInstruction'}
 
-The uniqe identification of a measure, where a measure is defined as an observation of any substance.
+###Physical property
+(partID: P) A physical property or object not characterized by life or chemistry.
 
+- Group: **Not Applicable**: (partID: naGroup) Not applicable. 	Use 'not applicable' when there is no group for the part.
+
+- Class: **Not Applicable**: (partID: naClass) Not applicable. Use 'not applicable' when there is no class for the part.
+
+- Measures:
 - **Environmental Temperature**: (partID: airTemp) A measure of environmental temperature, or the temperature of the air at the site of measurement. [linearAggrs](Linear Aggregations). [TemperatureUnits](Temperature Units).
+- ...
+
+- Methods:
+- 
+- ...
+
+###Chemical
+(partID: C) A chemical compound.
+
+- Group: **Water qualities group**: (partID: waterQual) Specifies a group of measures/methods related to water quality.
+
+- Class: **Standard concentration class**: (partID: standardConc) Specifies a collection of measures/methods relating to standard conentrations.
+- Measures:
 - **5-Day Carbonaceous Biochemical Oxygen Demand**: (partID: BOD5c) The quantity of oxygen utilized for the biochemical degradation of organic matter under standard laboratory procedures in five (5) days in the presence of a nitrification inhibitor, expressed in milligrams per liter (mg/l). [linearAggrs](Linear Aggregations). [stdConcentrationUnits](Standard Concentration Units).
 - ...
+
+- Methods:
 - ...
 
 ## Methods
 
 The unique identifer for a method, where a medthod is defined as a procedure for collecting a sample or performing a measure.
 
+###Biologic
+(partID: B) A living organism or biological substance.
+
+- Group: **Processing**: (partID: process) Specifies a group of measures/methods related to processing prior to final measurements.
+
+- Class: **Genetic sequencing class**: (partID: sequence) Specifies a collection of measures/methods related to genetic sequencing.
+
+- Measures:  
+- **Extraction volume of sample**: (partID: exvol) Extraction volume of sample. [linearAggrs](Linear Aggregations). [volumeUnits](Volume Unit Sets).
+
+- Methods:
 - **nucleic acid extraction method**: (partID: extraction) Description of the method used for extracting nucleic acids or other molecules of interest from raw sample material.
   - _phenol chloroform_: (partID: phenCl) Nucleic acid extraction performed using phenol chloroform.[Aggregations]({{link to aggregation set}}). [Units]({{link to unit set}}).
   - _4s method_: (partID: 4s) Nucleic acid extraction performed using the chemagic viral dna/rna 300 kit.[Aggregations]({{link to aggregation set}}). [Units]({{link to unit set}}).
