@@ -66,7 +66,7 @@ An overview of the features and structure of version 2.0 to date.
 
 <a href= "https://vimeo.com/674894484" title="Link Title"><img src="img/ODM-V2-video.png" alt="Overview of version 2.0" width="350"/></a>
 
-The presentation used in the first video is [here](https://docs.google.com/presentation/d/14KeMhXHidG1q_zVpce6tkj89LR1H5d4b/edit?usp=sharing&ouid=103619232413193034528&rtpof=true&sd=true). The presentation is updated with developments of ODM v2. The contents can be reused under the license of this repository. 
+The presentation used in the first video is [here](https://docs.google.com/presentation/d/1aPUdgtmywJU5L1e8O4loiFtTnV8gAefN/edit?usp=sharing&ouid=103619232413193034528&rtpof=true&sd=true). The presentation is updated with developments of ODM v2. The contents can be reused under the license of this repository. 
 
 See [Work-in-progress and roadmap](roadmap.md) for more details.
 
