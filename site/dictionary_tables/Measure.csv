@@ -5,7 +5,7 @@ measureID,shortName,fullName,commonNameEN,commonNameFR,descriptionEN,description
 4,covB1351,To be procedurally generated,SARS-CoV-2-B.1.351,SARS-CoV-2-B.1.351,Variant B.1.351 of the SARS-CoV-2 virus,Variant B.1.351 du virus SARS-CoV-2,active,2.0,2.0,biologic,SARS-CoV-2,speciesVariant,B1.351,Pangolin
 5,covP1,To be procedurally generated,SARS-CoV-2-P.1,SARS-CoV-2-P.1,Variant P.1 of the SARS-CoV-2 virus,Variant P.1 du virus SARS-CoV-2,active,2.0,2.0,biologic,SARS-CoV-2,speciesVariant,P.1,Pangolin
 7,wqFlow,To be procedurally generated,Flow rate,Débit,Measurement of the flow of mass or volume per unit of time,Mesure de l’écoulement de masse ou de volume par unité de temps,active,2.0,2.0,physical,Wastewater,flow,flow,
-8,CovN1,To be procedurally generated,SARS-CoV-2-N1,SARS-CoV-2-N1,"SARS-CoV-2 nucleocapsid gene, allele 1",Allèle 1 du gène exprimant la protéine nucléocapside du SARS-CoV-2,active,2.0,2.0,biologic,SARS-CoV-2,allele,N1,
+8,covN1,To be procedurally generated,SARS-CoV-2-N1,SARS-CoV-2-N1,"SARS-CoV-2 nucleocapsid gene, allele 1",Allèle 1 du gène exprimant la protéine nucléocapside du SARS-CoV-2,active,2.0,2.0,biologic,SARS-CoV-2,allele,N1,
 9,covN2,To be procedurally generated,SARS-CoV-2-N2,SARS-CoV-2-N2,"SARS-CoV-2 nucleocapsid gene, allele 2",Allèle 2 du gène exprimant la protéine nucléocapside du SARS-CoV-2,active,2.0,2.0,biologic,SARS-CoV-2,allele,N2,
 10,covN3,To be procedurally generated,SARS-CoV-2-N3,SARS-CoV-2-N3,"SARS-CoV-2 nucleocapsid gene, allele 3",Allèle 3 du gène exprimant la protéine nucléocapside du SARS-CoV-2,active,2.0,2.0,biologic,SARS-CoV-2,allele,N3,
 11,covE,To be procedurally generated,SARS-CoV-2-E,SARS-CoV-2-E,SARS-CoV-2 E gene,Région E du génome du SARS-CoV-2,active,2.0,2.0,biologic,SARS-CoV-2,allele,E,
