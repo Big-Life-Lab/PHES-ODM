@@ -1,5 +1,5 @@
 specimenID,descriptionEN,descriptionFR,parentTable
-wwSampleMeasure,measure made in a sample,mesure faite dans un échantillon d'eau usée,Sample
-population,aggregated public health measurement, mesure aggrégée de santé publique,Polygon
-wwSiteMeasure,wastewater measurement characterizing water passing though a site,Mesure d'eau usée passant à travers un site,Site
-patient,measure taken on an individual,mesure réalisée sur un seul individu,Site
+Sa,measure made in a sample,mesure faite dans un échantillon d'eau usée,Sample
+Po,aggregated public health measurement, mesure aggrégée de santé publique,Polygon
+Si,wastewater measurement characterizing water passing though a site,Mesure d'eau usée passant à travers un site,Site
+Pe,measure taken on an individual,mesure réalisée sur un seul individu,Site
