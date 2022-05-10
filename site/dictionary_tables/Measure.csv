@@ -22,3 +22,7 @@ measureID,shortName,fullName,commonNameEN,commonNameFR,descriptionEN,description
 22,wqPh,To be procedurally generated,pH,pH,pH measurement,pH,active,2.0,2.0,chemical,Wastewater,pHMeasurement,pH,
 23,wqCond,To be procedurally generated,Conductiivty,Conductivité,measurement of conductivity of sample,Conductivité,active,2.0,2.0,physical,Wastewater,Conductivity,Cond,
 24,wqTemp,To be procedurally generated,Temperature,Water Temperature,Temperature of the sample measured in degrees Celcius,Water Temperature,active,2.0,2.0,physical,Wastewater,Temperature,temp,
+25,SdelWt,To be procedurally generated,
+26,SdelVo,To be procedurally generated,
+27,SN501yVo,To be procedurally generated,
+27,SN501yWt,To be procedurally generated,
