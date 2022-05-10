@@ -10,7 +10,7 @@ measureID,shortName,fullName,commonNameEN,commonNameFR,descriptionEN,description
 10,covN3,To be procedurally generated,SARS-CoV-2-N3,SARS-CoV-2-N3,"SARS-CoV-2 nucleocapsid gene, allele 3",Allèle 3 du gène exprimant la protéine nucléocapside du SARS-CoV-2,active,2.0,2.0,biologic,SARS-CoV-2,allele,N3,
 11,covE,To be procedurally generated,SARS-CoV-2-E,SARS-CoV-2-E,SARS-CoV-2 E gene,Région E du génome du SARS-CoV-2,active,2.0,2.0,biologic,SARS-CoV-2,allele,E,
 12,covRdrp,To be procedurally generated,SARS-CoV-2-RdRp,SARS-CoV-2-RdRp,SARS-CoV-2 RdRp gene,Région RdRp du génome du SARS-CoV-2,active,2.0,2.0,biologic,SARS-CoV-2,allele,RdRp,
-13,pmmovCp,To be procedurally generated,PMMoV-CP,PMMoV-CP,Pepper mild mottle virus capsid protein gene region,Région de la protéine du capside du virus de la marbrure légère du piment,active,2.0,2.0,biologic,PMMoV,allele,N,
+13,pmmv,To be procedurally generated,PMMoV-CP,PMMoV-CP,Pepper mild mottle virus capsid protein gene region,Région de la protéine du capside du virus de la marbrure légère du piment,active,2.0,2.0,biologic,PMMoV,allele,N,
 14,crA,To be procedurally generated,crAssphage-N,crAssphage-N,crAssphage virus capsid protein gene region,Région de la protéine du capside du virus crAssPhage,active,2.0,2.0,biologic,crAssphage,allele,N,
 15,brsvN,To be procedurally generated,BRSV-N,BRSV-N,bovine respiratory syncytial virus capsid protein gene region,Région de la protéine du capside du virus respiratoire syncytial bovin,active,2.0,2.0,biologic,BRSV,allele,N,
 16,wqTS,To be procedurally generated,Total Solids,Solides Totaux,Total solids concentration,Solides Totaux,active,2.0,2.0,chemical,Wastewater,stdConcentration,TS,
