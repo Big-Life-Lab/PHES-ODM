@@ -1,42 +1,53 @@
 # Inputing data
-
+<!--` chunk1 -->
 The ODM has twelve data entry tables. Three tables record information on a daily or regular basis (termed 'results tables'): SampleReport to record information regarding sampling and specific sample; MeasureReport to record information on individual measures; and MeasureSetReport to organize related measures together into sets. The remaining nine tables are program description tables, and are generally used for initial set-up and then only updated as needed. Example Excel data entry templates is in [templates]().
 
 Results tables:
+<!--` chunk1/ -->
 
 <!-- create list of tables from partType = table, class = results  -->
-<!-- order???? -->
 
-- [**{{label}}**]({{link to section header for each table in this list}}) PartID: [**{{partID}}**] - {{filter: partType = 'table', value: 'partDescription`}}.
+tableRow <- {**{{label}}**, #{{label}}, {{PartID}}, :, {{partDescription}}}
 
+nestedTable <- {**{{label}}**,:, {{partID}}, {{ReportTable}}, {{dataType}}, partDescription, ., partInstruction, ., Categories, :, {{filter:catSetID != "NA", format(catSetID)}}}
+
+{{filter:[partType = "table" && class = "results"], format(tableRow)}}
+
+<!--` chunk2 -->
+Program description tables:
+<!--` chunk2/ -->
 <!-- create list of tables from partType = table, class = programDescription -->
 
-Program description tables:
-
-<!-- create list of tables from partType = table, class = results or programDescription -->
-
-- [**{{label}}**]({{link to section header for each table in this list}}) PartID: [**{{partID}}**] - {{description}}
+{{filter:[partType = "table" && class = "description"], format(tableRow)}}
 
 <!-- list of tables that is generated from parts.csv -->
 
-## {{first item for {{filter: partType = 'table', value: 'label`}}}}
-
-{{value: 'description`}}
-
-<!-- {{select: 'SampleReport', filter: {'Input', 'FK', 'Header', 'PK' }} -->
-<!-- {{order: 'PK', 'FK', 'Header' }}                                  -->
-<!-- {{entry = 'order'}}                                               -->
-
-<!-- for each entery -->
-
-- **{{label}}**: ({{partID}}) {{filter: "ReportTable" = {"PK" or "FK"}, value: "ReportTable"}} [{{dataType}}] {{partDescription}}. {{partInstruction}}. Categories: [{filter: "catSetID" != {"NA"}, value: "catSetID"}]({{link to category set}}).
 
 
+{{filter:SampleReport = ("Input"||"PK"||"FK"||"Header"), order:SampleReport =("PK", "FK", "Header") format(nestedTable)}}
+
+
+<!--` chunk3 -->
 ## Measures
-{filter: partID = 'measureID', value: 'description`} Measures are organized into Domains, Groups, and Classes.
-- **Domains** {filter: partID = 'domainID', value: {'partDescription` & 'partInstruction'}}
-- **Groups** {filter: partID = 'groupID', value: {'partDescription` & 'partInstruction'}}
-- **Classes** {filter: partID = 'classID', value: {'partDescription` & 'partInstruction'}}
+<!--` chunk3/ -->
+
+
+{{filter:partID = "measureID", format({{description}}, Measures are organized into Domains\, Groups\, and Classes.)}}
+
+domainEnd <- {`{{label}}`,(partID: ,{{partID}}, {{partDescription}},)., {{partInstruction}}}
+
+groupEnd <- {**`{{label}}`**,:(partID: ,{{partID}},), {{partDescription}},., {{partInstruction}},.}
+
+classEnd <- {`{{label}}`,: (partID: ,{{partID}},), {{partDescription}},., {{partInstruction}},.}
+
+measureEnd <- {`{{label}}`,: (partID: ,{{partID}},) ,{{partDescription}},. {{partInstruction}},., [Aggregations](link to aggregation set). [Units]({{link to unit set}})., @RUSTY ask what they mean here } [{filter: "catSetID" != {"NA"}, value: "catSetID"}]({{link to category set}}).
+
+methodEnd <- {`{{label}}`,: (partID: ,{{partID}},), {{partDescription}},., {{partInstruction}},. [Aggregations]({{link to aggregation set}}). [Units]({{link to unit set}}).   [{filter: "catSetID" != {"NA"}, value: "catSetID"}]({{link to category set}}).}
+
+
+{{filter: partID = ("domainID"||"groupID"||"classID"),format(**{{partName}}**,{{partDescription}}, &, {{partInstruction}}, {{switch({{partType}}), "domain" = domainEnd, "group" = groupEnd, "class" = classEnd, "measure" = measureEnd, }} )}}
+
+
 
 ###<!-- if entry {{partType = 'domain'}} then the following to 'END partype = 'domain' -->`{{label}}` 
 (partID: {{partID}}) {{partDescription}}. {{partInstruction}}.

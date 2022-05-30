@@ -1,5 +1,3 @@
-
-
 # Implementation
 
 ## filter
@@ -50,3 +48,10 @@ Options(I am not set on the name and open to suggestions) contain options for th
 # Potential suggestions that might be overkill
 
 Allowing creation of option templates in case we want to reuse a particular style.
+
+
+
+# Notes
+Add && and || support
+
+Focus on format template/variable declaration for md snippets
