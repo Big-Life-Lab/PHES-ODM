@@ -18,3 +18,5 @@ m3S,$m^3/s$,Cubic meter per second,Mètres cubes par seconde,quantitative,linear
 kgS,$kg/S$,Kilograms per second,Kilogrammes par seconde,quantitative,linear,float
 bool,,In cases where a boolean yes or no is required use bool,"Pour les cas, ou une réponse positive ou négative est requise",qualitative,linear,bool
 other,,Other unit,Autre unité,,,
+ratio,,Ratio (unitless),,,
+mld,,Megalitres per day.,,,
