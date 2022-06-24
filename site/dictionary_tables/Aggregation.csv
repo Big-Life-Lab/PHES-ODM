@@ -6,3 +6,6 @@ med,Median,Médiane
 min,Lowest value in a range of values,La valeur la plus basse dans un ensemble
 max,Highest value in a range of values,La valeur la plus haute dans un ensemble
 sd,Standard deviation,Écart-type
+pmmovNorm,Mean measure normalized to amount of PMMoV.Mesure moyenne normalisée par rapport à la quantité de PMMoV
+PMFloMean,Mean measure normalized to amount of PMMoV and wastewater flow; AlleleX (gc/mL) x Q (ML/d)  / (Pop /1e5) x 1e3 (mL/L) x 1e6 (L/ML)  = AlleleX (gc/day per 1e5 population) ,Mesure moyenne normalisée à la quantité de PMMoV et au débit d'eaux usées ; AllèleX (gc/mL) x Q (ML/d) / (Pop /1e5) x 1e3 (mL/L) x 1e6 (L/ML) = AllèleX (gc/jour par 1e5 population) 
+FloMean,Mean measure normalized to wastewater flow; AlleleX (gc/mL) x Q (ML/d)  / (Pop /1e5) x 1e3 (mL/L) x 1e6 (L/ML)  = AlleleX (gc/day per 1e5 population) ,Mesure moyenne normalisée au débit d'eaux usées ; AlleleX (gc/mL) x Q (ML/d) / (Pop /1e5) x 1e3 (mL/L) x 1e6 (L/ML) = AlleleX (gc/jour par 1e5 de population) 
