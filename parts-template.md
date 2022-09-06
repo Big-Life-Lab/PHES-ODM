@@ -8,7 +8,7 @@ The ODM has a part ID (partID) and part description (partDescription) for every 
 
 <!--` parts1/ -->
 
-```{}```
+```{rvml}```
 var versionText = <!--` versionText -->Version first released: <!--` versionText/ -->
 var updateText = <!--` updateText -->Version last updated: <!--` updateText/ -->
 
@@ -17,4 +17,4 @@ var tableRow = {**{{like:("label_%")}}**, ({{partID}}) ,(#{{partID}}), {{partDes
 
 {{filter:*, order:label = ASC ,format(tableRow)}}
 
-```{}```
+```{rvml}```
