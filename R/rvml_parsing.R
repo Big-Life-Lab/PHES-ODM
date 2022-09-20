@@ -1,4 +1,24 @@
-
+# SQL convert
+prepare_for_quary <-
+  function(string_to_convert,
+           db_con,
+           sql_connect_symbol,
+           lang_code) {
+    string_to_convert <-
+      stringr::str_replace_all(string_to_convert, "%", lang_code)
+    
+    key_name =
+      stringr::str_match_all(string_to_convert, sql_connect_symbol)[[1]][, 2]
+    key_pos <-
+      stringr::str_locate_all(string_to_convert, sql_connect_symbol)
+    
+    quary_var <-
+      list(db_names = key_name,
+           string_pos = key_pos,
+           var_base = string_to_convert)
+    return(quary_var)
+    
+  }
 
 
 
@@ -13,22 +33,22 @@ trans_list_append <-
            pos_row_end) {
     if (grepl(key_start_name , key_end_name, fixed = TRUE)) {
       # Verify end tag
-      if ("/" != stringr::str_sub(key_end_name, -1)) {
+      if ("/" != stringr::str_sub(key_end_name,-1)) {
         stop("Missing end tag")
       } else{
         # Create translation list item
         trans_start_pos <-
-          key_name_pos_list[[key_start_index]][["key_pos"]][[1]][pos_row_start,1]
-        trans_start_line <- 
+          key_name_pos_list[[key_start_index]][["key_pos"]][[1]][pos_row_start, 1]
+        trans_start_line <-
           key_name_pos_list[[key_start_index]][["row_num"]]
         trans_end_pos <-
-          key_name_pos_list[[key_end_index]][["key_pos"]][[1]][pos_row_end,2]
+          key_name_pos_list[[key_end_index]][["key_pos"]][[1]][pos_row_end, 2]
         trans_end_line <-
           key_name_pos_list[[key_end_index]][["row_num"]]
         list_item <-
           list(
             translation_character_reference = c(trans_start_pos, trans_end_pos),
-            translation_line_reference = c(trans_start_line,trans_end_line),
+            translation_line_reference = c(trans_start_line, trans_end_line),
             translation_key = key_start_name
           )
       }
@@ -84,7 +104,9 @@ insert_translation <-
       
       if (length(key_name) > 0) {
         key_name_pos_list[[length(key_name_pos_list) + 1]] <-
-          list(key_pos = key_pos, key_name = key_name, row_num = line_number)
+          list(key_pos = key_pos,
+               key_name = key_name,
+               row_num = line_number)
       }
     }
     
@@ -112,18 +134,21 @@ insert_translation <-
               key_name_pos_list,
               key_start_index,
               key_end_index,
-              1,1
+              1,
+              1
             )
-          translation_list[[length(translation_list)+1]] <- list_item
+          translation_list[[length(translation_list) + 1]] <-
+            list_item
         }
         # Treat same line translation
       } else
         if (length(tmp_key_name) %% 2 == 0) {
-          for (single_key_index in 1:(length(tmp_key_name)-1)) {
+          for (single_key_index in 1:(length(tmp_key_name) - 1)) {
             key_start_name <-
               trimws(key_name_pos_list[[key_number]][["key_name"]][[single_key_index]])
             key_end_name <-
-              trimws(key_name_pos_list[[key_number]][["key_name"]][[single_key_index+1]])
+              trimws(key_name_pos_list[[key_number]][["key_name"]][[single_key_index +
+                                                                      1]])
             list_item <-
               trans_list_append(
                 key_start_name,
@@ -132,9 +157,10 @@ insert_translation <-
                 key_number,
                 key_number,
                 single_key_index,
-                single_key_index+1
+                single_key_index + 1
               )
-            translation_list[[length(translation_list)+1]] <- list_item
+            translation_list[[length(translation_list) + 1]] <-
+              list_item
           }
         } else
           stop("Missing key pair")
@@ -143,32 +169,50 @@ insert_translation <-
     replace_text <- origin_text
     # Loop over translations
     for (translation_chunk in translation_list) {
-      translation_start_line <- translation_chunk$translation_line_reference[[1]]
-      translation_end_line <- translation_chunk$translation_line_reference[[2]]
-      translation_start_characer <- translation_chunk$translation_character_reference[[1]]
-      translation_end_characer <- translation_chunk$translation_character_reference[[2]]
+      translation_start_line <-
+        translation_chunk$translation_line_reference[[1]]
+      translation_end_line <-
+        translation_chunk$translation_line_reference[[2]]
+      translation_start_characer <-
+        translation_chunk$translation_character_reference[[1]]
+      translation_end_characer <-
+        translation_chunk$translation_character_reference[[2]]
       translation_key <- translation_chunk$translation_key
       # Insert single line translation
-      if(translation_start_line == translation_end_line){
+      if (translation_start_line == translation_end_line) {
         translation_line = translation_start_line
         tmp_line <- replace_text[[translation_line]]
-        quary <- paste0("SELECT ", lang_code, " FROM localization WHERE key ='", translation_key,"'")
-        stringr::str_sub(tmp_line, translation_start_characer, translation_end_characer) <- dbGetQuery(db_con, quary)[[1]]
+        quary <-
+          paste0("SELECT ",
+                 lang_code,
+                 " FROM localization WHERE key ='",
+                 translation_key,
+                 "'")
+        stringr::str_sub(tmp_line,
+                         translation_start_characer,
+                         translation_end_characer) <- DBI::dbGetQuery(db_con, quary)[[1]]
         
-        replace_text[[translation_line]]<- tmp_line
-      
-      # Insert Multi line translation
-      }else{
+        replace_text[[translation_line]] <- tmp_line
         
+        # Insert Multi line translation
+      } else{
         # Remove lines from start+1 to end
-        replace_text <- replace_text[-((translation_start_line+1):translation_end_line)]
+        replace_text <-
+          replace_text[-((translation_start_line + 1):translation_end_line)]
         
         tmp_line <- replace_text[[translation_start_line]]
-        quary <- paste0("SELECT ", lang_code, " FROM localization WHERE key ='", translation_key,"'")
-        stringr::str_sub(tmp_line, translation_start_characer, translation_end_characer) <- dbGetQuery(db_con, quary)[[1]]
+        quary <-
+          paste0("SELECT ",
+                 lang_code,
+                 " FROM localization WHERE key ='",
+                 translation_key,
+                 "'")
+        stringr::str_sub(tmp_line,
+                         translation_start_characer,
+                         translation_end_characer) <- DBI::dbGetQuery(db_con, quary)[[1]]
         
-        replace_text[[translation_start_line]]<- tmp_line
-       
+        replace_text[[translation_start_line]] <- tmp_line
+        
       }
     }
     
@@ -178,38 +222,107 @@ insert_translation <-
 # Import RVML
 insert_content <- function(origin_text, lang_code, db_con) {
   chunk_symbol <- "```\\{rvml\\s*(.*?)\\s*\\}```"
+  var_keyword <- "var"
+  sql_connect_symbol <- "\\{\\{\\s*(.*?)\\s*\\}\\}"
   pos_list <- list()
   insertion_list <- list()
   
   # Get positions and keys of chunks for translation
-  for (line_number in 1:length(origin_text)) { 
+  for (line_number in 1:length(origin_text)) {
     if (length(stringr::str_match_all(origin_text[[line_number]], chunk_symbol)[[1]][, 2]) > 0) {
-      pos_list[[length(pos_list) + 1]] <-line_number
+      pos_list[[length(pos_list) + 1]] <- line_number
     }
   }
-  for (pos_index in seq(1,length(pos_list), by=2)) {
-    insertion_list[[length(insertion_list)+1]] <- list(start_line <- pos_list[[pos_index]], end_line <- pos_list[[pos_index+1]])
+  for (pos_index in seq(1, length(pos_list), by = 2)) {
+    insertion_list[[length(insertion_list) + 1]] <-
+      list(start_line <-
+             pos_list[[pos_index]], end_line <- pos_list[[pos_index + 1]])
   }
   
   # Retrive code line
-  for (variable in vector) {
+  for (single_chunk in insertion_list) {
+    start_pos <- single_chunk[[1]]
+    end_pos <- single_chunk[[2]]
+    var_list <- list()
+    var_names <- ""
     
+    for (line_number in start_pos:end_pos) {
+      if (grepl(var_keyword, origin_text[[line_number]])) {
+        var_value <- sub(".*= ", "", origin_text[[line_number]])
+        var_name <- sub("=.*", "", origin_text[[line_number]])
+        var_name <- trimws(sub(var_keyword, "", var_name))
+        var_names <- paste(names(var_list), collapse="|")
+        
+        # Check for presense of variables inside var_value
+        if (grepl(var_names, var_value)){
+          for (insert_var_name in names(var_list)) {
+            if(grepl(insert_var_name, var_value)){
+              var_value <- stringr::str_replace_all(var_value, insert_var_name, var_list[[insert_var_name]][["var_value"]])
+            }
+          }
+        }
+        
+        if (grepl(sql_connect_symbol, var_value)) {
+          prepared_quary_list <-
+            prepare_for_quary(var_value, db_con, sql_connect_symbol, lang_code)
+          var_list[[var_name]] <-
+            list(
+              line_number = line_number,
+              quary_info = prepared_quary_list
+            )
+        } else{
+          var_list[[var_name]] <-
+            list(
+              line_number = line_number,
+              var_value = var_value
+            )
+        }
+        
+      }else if(grepl(sql_connect_symbol, origin_text[[line_number]])){
+        # SQL keywords
+        sql_where <- "filter"
+        sql_order <- "order"
+        sql_select <- "format"
+        # Create content to insert
+        sql_select_blob <-""
+        sql_order_blob <- ""
+        sql_where_blob <-""
+        
+        quary_line <- origin_text[[line_number]]
+        quary_line <- stringr::str_remove_all(quary_line, "\\{\\{|\\}\\}")
+        quary_commands <- unlist(strsplit(quary_line, ","))
+        for (SQL_command in quary_commands) {
+          if(grepl(sql_select,SQL_command)){
+            name_of_var <- stringr::str_remove_all(SQL_command, "format|\\(|\\)")
+            vars_to_pull <- var_list[[name_of_var]][["quary_info"]][["db_names"]]
+            sql_select_blob <- paste(vars_to_pull, collapse = " ")
+            sql_select_blob <- paste("SELECT", sql_select_blob)
+            print(sql_select_blob)
+          }
+        }
+        quary <- 
+        DBI::dbGetQuery(db_con, quary)[[1]]
+        print(var_list)
+      }
+    }
   }
-  
+  print(var_list)
 }
 
 #
-run_translations <- function(db_con, template_origin){
-  valid_translations <- c("en","fr")
+run_translations <- function(db_con, template_origin) {
+  valid_translations <- c("en", "fr")
   template_text <- read_in_template(template_origin)
   #insert_translation(tmp_line, lang_code = "fr", db_con = db)
   dir.create(file.path(getwd(), "content"), showWarnings = FALSE)
   for (translation_code in valid_translations) {
-    dir.create(file.path(getwd(), paste0("content/",translation_code)), showWarnings = FALSE)
-    translated_text <- insert_translation(template_text, lang_code = translation_code, db_con = db_con)
+    dir.create(file.path(getwd(), paste0("content/", translation_code)), showWarnings = FALSE)
+    translated_text <-
+      insert_translation(template_text, lang_code = translation_code, db_con = db_con)
     
     #Write output
-    fileConn<-file(paste0("content/",translation_code,"/",template_origin))
+    fileConn <-
+      file(paste0("content/", translation_code, "/", template_origin))
     writeLines(translated_text, fileConn)
     close(fileConn)
   }
