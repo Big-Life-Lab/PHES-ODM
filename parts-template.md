@@ -12,7 +12,7 @@ The ODM has a part ID (partID) and part description (partDescription) for every 
 var versionText = <!--` versionText -->Version first released: <!--` versionText/ -->
 var updateText = <!--` updateText -->Version last updated: <!--` updateText/ -->
 
-var tableRow = {**{{label_%}}**, ({{partID}}) ,(#{{partID}}), {{partDesc}},".<br /> partInstr_%, {{partInstr_%}}," <br /> partType_%,{{partType_%}}, "<br />status_%, {{status_%}}, versionText ,{{firstReleased}}, updateText, {{lastUpdated}},"<br /> dataType_%, {{dataType_%}}}
+var tableRow = {**{{partLabel}}** partID:(#{{partID}})<br />{{partDesc}},<br /> partInstr_%, {{partInstr_%}}," <br /> partType_%,{{partType_%}}, "<br />status_%, {{status_%}}, versionText ,{{firstReleased}} updateText, {{lastUpdated}},"<br /> dataType_%, {{dataType_%}}}
 
 {{filter:*, order:label = ASC ,format(tableRow)}}
 
