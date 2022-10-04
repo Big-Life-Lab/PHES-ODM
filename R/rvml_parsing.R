@@ -4,8 +4,9 @@ prepare_for_quary <-
            db_con,
            sql_connect_symbol,
            lang_code) {
+    # Temporary removal of translation code will add when get translations up and running
     string_to_convert <-
-      stringr::str_replace_all(string_to_convert, "%", lang_code)
+      stringr::str_replace_all(string_to_convert, "_%", "")
     
     key_name =
       stringr::str_match_all(string_to_convert, sql_connect_symbol)[[1]][, 2]
@@ -190,7 +191,8 @@ insert_translation <-
                  "'")
         stringr::str_sub(tmp_line,
                          translation_start_characer,
-                         translation_end_characer) <- DBI::dbGetQuery(db_con, quary)[[1]]
+                         translation_end_characer) <-
+          DBI::dbGetQuery(db_con, quary)[[1]]
         
         replace_text[[translation_line]] <- tmp_line
         
@@ -209,7 +211,8 @@ insert_translation <-
                  "'")
         stringr::str_sub(tmp_line,
                          translation_start_characer,
-                         translation_end_characer) <- DBI::dbGetQuery(db_con, quary)[[1]]
+                         translation_end_characer) <-
+          DBI::dbGetQuery(db_con, quary)[[1]]
         
         replace_text[[translation_start_line]] <- tmp_line
         
@@ -226,6 +229,8 @@ insert_content <- function(origin_text, lang_code, db_con) {
   sql_connect_symbol <- "\\{\\{\\s*(.*?)\\s*\\}\\}"
   pos_list <- list()
   insertion_list <- list()
+  content_to_insert <- list()
+  
   
   # Get positions and keys of chunks for translation
   for (line_number in 1:length(origin_text)) {
@@ -236,7 +241,8 @@ insert_content <- function(origin_text, lang_code, db_con) {
   for (pos_index in seq(1, length(pos_list), by = 2)) {
     insertion_list[[length(insertion_list) + 1]] <-
       list(start_line <-
-             pos_list[[pos_index]], end_line <- pos_list[[pos_index + 1]])
+             pos_list[[pos_index]], end_line <-
+             pos_list[[pos_index + 1]])
   }
   
   # Retrive code line
@@ -251,13 +257,14 @@ insert_content <- function(origin_text, lang_code, db_con) {
         var_value <- sub(".*= ", "", origin_text[[line_number]])
         var_name <- sub("=.*", "", origin_text[[line_number]])
         var_name <- trimws(sub(var_keyword, "", var_name))
-        var_names <- paste(names(var_list), collapse="|")
+        var_names <- paste(names(var_list), collapse = "|")
         
         # Check for presense of variables inside var_value
-        if (grepl(var_names, var_value)){
+        if (grepl(var_names, var_value)) {
           for (insert_var_name in names(var_list)) {
-            if(grepl(insert_var_name, var_value)){
-              var_value <- stringr::str_replace_all(var_value, insert_var_name, var_list[[insert_var_name]][["var_value"]])
+            if (grepl(insert_var_name, var_value)) {
+              var_value <-
+                stringr::str_replace_all(var_value, insert_var_name, var_list[[insert_var_name]][["var_value"]])
             }
           }
         }
@@ -266,47 +273,125 @@ insert_content <- function(origin_text, lang_code, db_con) {
           prepared_quary_list <-
             prepare_for_quary(var_value, db_con, sql_connect_symbol, lang_code)
           var_list[[var_name]] <-
-            list(
-              line_number = line_number,
-              quary_info = prepared_quary_list
-            )
+            list(line_number = line_number,
+                 quary_info = prepared_quary_list)
         } else{
           var_list[[var_name]] <-
-            list(
-              line_number = line_number,
-              var_value = var_value
-            )
+            list(line_number = line_number,
+                 var_value = var_value)
         }
         
-      }else if(grepl(sql_connect_symbol, origin_text[[line_number]])){
+      } else if (grepl(sql_connect_symbol, origin_text[[line_number]])) {
         # SQL keywords
         sql_where <- "filter"
         sql_order <- "order"
         sql_select <- "format"
         # Create content to insert
-        sql_select_blob <-""
+        sql_select_blob <- ""
         sql_order_blob <- ""
-        sql_where_blob <-""
+        sql_where_blob <- ""
         
         quary_line <- origin_text[[line_number]]
-        quary_line <- stringr::str_remove_all(quary_line, "\\{\\{|\\}\\}")
+        quary_line <-
+          stringr::str_remove_all(quary_line, "\\{\\{|\\}\\}")
         quary_commands <- unlist(strsplit(quary_line, ","))
+        
+        valid_columns <- DBI::dbListFields(db_con, "parts")
+        quary_columns <- list()
         for (SQL_command in quary_commands) {
-          if(grepl(sql_select,SQL_command)){
-            name_of_var <- stringr::str_remove_all(SQL_command, "format|\\(|\\)")
-            vars_to_pull <- var_list[[name_of_var]][["quary_info"]][["db_names"]]
-            sql_select_blob <- paste(vars_to_pull, collapse = " ")
-            sql_select_blob <- paste("SELECT", sql_select_blob)
-            print(sql_select_blob)
+          if (grepl(sql_select, SQL_command)) {
+            name_of_var <-
+              stringr::str_remove_all(SQL_command, "format|\\(|\\)")
+            vars_to_pull <-
+              var_list[[name_of_var]][["quary_info"]][["db_names"]]
+            
+            # Verify existance of vars
+            for (db_var_name in vars_to_pull) {
+              # Check for var presense
+              if (db_var_name %in% valid_columns) {
+                quary_columns[length(quary_columns) + 1] <- db_var_name
+              }
+            }
+            quary_columns <-
+              paste(unique(unlist(quary_columns)), collapse = ", ")
+            sql_select_blob <- paste("SELECT", quary_columns)
+          } else if (grepl(sql_select, sql_where)) {
+            
+          } else if (grepl(sql_select, sql_order)) {
+            
           }
         }
-        quary <- 
-        DBI::dbGetQuery(db_con, quary)[[1]]
-        print(var_list)
+        # Create content object
+        quary <- paste("SELECT", quary_columns, "FROM parts")
+        content_to_insert[[length(content_to_insert) + 1]] <-
+          list(
+            chunk_location = single_chunk,
+            line_number = line_number,
+            quary = quary,
+            template = var_list[[name_of_var]][["quary_info"]][["var_base"]]
+          )
       }
+      #
+      #val_table <- DBI::dbGetQuery(db_con, quary)
     }
   }
-  print(var_list)
+  # Create output
+  return_content <- list("")
+  for (content_index in 1:length(content_to_insert)) {
+    sql_table <-
+      DBI::dbGetQuery(db_con, content_to_insert[[content_index]]$quary)
+    template <- content_to_insert[[content_index]]$template
+    template <- gsub('^.|.$', '', template)
+    vars_in_template <-
+      unique(stringr::str_match_all(template, sql_connect_symbol)[[1]][, 2])
+    
+    # @RUSTY Figure out way to do with apply
+    for (current_row in 1:nrow(sql_table)) {
+      running_content <- template
+      for (running_var in vars_in_template) {
+        tmp_insert <- as.character(sql_table[current_row, running_var])
+        # For now while i get translations in place
+        if (length(tmp_insert) < 1) {
+          tmp_insert <- "missing till i get translation"
+        }
+        if (is.na(tmp_insert)) {
+          tmp_insert <- "NA(maybe bug)"
+        }
+        running_content <-
+          stringr::str_replace_all(running_content,
+                                   paste0("\\{\\{", running_var, "\\}\\}"),
+                                   tmp_insert)
+      }
+      return_content[[content_index]] <-
+        append(return_content[[content_index]], running_content)
+      
+      # Create empty line for clarity
+      
+      return_content[[content_index]] <-
+        append(return_content[[content_index]], "")
+    }
+  }
+  # Create output
+  new_file <- c()
+  previous_chunk_end <- 1
+  for (content_index in 1:length(content_to_insert)) {
+    chunk_start <-
+      content_to_insert[[content_index]]$chunk_location[[1]]
+    chunk_end <-
+      content_to_insert[[content_index]]$chunk_location[[2]]
+    
+    new_file <-
+      append(new_file, origin_text[previous_chunk_end:chunk_start - 1])
+    
+    previous_chunk_end <- chunk_end
+    
+    new_file <- append(new_file, return_content[[content_index]])
+  }
+  if (previous_chunk_end + 1 < length(origin_text)) {
+    new_file <-
+      append(new_file, origin_text[previous_chunk_end + 1:length(origin_text)])
+  }
+  return(new_file)
 }
 
 #
@@ -325,5 +410,29 @@ run_translations <- function(db_con, template_origin) {
       file(paste0("content/", translation_code, "/", template_origin))
     writeLines(translated_text, fileConn)
     close(fileConn)
+  }
+}
+
+run_content_insert <- function(db_con, content_location) {
+  valid_translations <- c("en", "fr")
+  for (translation_code in valid_translations) {
+    files <-
+      list.files(
+        path = paste0(content_location, "/", translation_code),
+        pattern = "*.md",
+        full.names = TRUE,
+        recursive = FALSE
+      )
+    lapply(files, function(x) {
+      template_text <- read_in_template(x)
+      content_text <-
+        insert_content(template_text, lang_code = translation_code, db_con = db_con)
+      fileConn <-
+        file(x)
+      # Replace br tag with actual new line
+      content_text <- unlist(stringr::str_split(content_text, "<br />"))
+      writeLines(content_text, fileConn)
+      close(fileConn)
+    })
   }
 }
