@@ -12,18 +12,25 @@ development](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://l
 
 ## Description
 
-PHES-ODM began as an open data model for wastwater-based surveillance of SARS-CoV-2. PHES-ODM Version 2 (in progress) expands the original ODM to include surface and air testing, in addition to water. The new PHES-ODM v2 also include robust support for reporting any biologic, toxin, or other health risk.
+PHES-ODM began as an open data model for wastwater-based surveillance of SARS-CoV-2. PHES-ODM Version 2 expands the original ODM to include surface and air testing, in addition to water. The new PHES-ODM v2 also include robust support for reporting any biologic, toxin, or other health risks.
 
 This repository includes:
 
-- A relational **dictionary** that captures wastewater based surveillance data and metadata. It consists of 150+ variables categorized in 10 tables. Both English and French versions are supported;
-- **Documentation** describing how to use the data model;
-- **Template files** that can be used to record data in the ODM format;
-- **Scripts** to set up a relational database according to the ODM schema.
+- An overview of the ODM **structure** and how the ODM represents the real-world process and relationships of enviromental-based surveillance.
+- A **dictionary** that describes surveillance data and metadata. The dictionary lists all ODM parts including the XX report tables and their reporting fields. Also icluded is a list of over XXX environmental biologic pathogens, chemicals and physical properties that can be reported using the ODM.
+- **Example data** for each of the XX tables.
+- **Templates** that can be used to record data in the ODM format.
+- **Scripts** to set up an SQL relational database for the ODM schema.
+
+See the ODM documentation [website](link) for additional information including:
+
+- Tutorials for how to use the report templates. These tutorial help explain how the data model is organized.
+- Additional explaination about ...
+-
 
 ## Background
 
-Wastewater-based surveillance (WBS) of SARS-CoV-2 is developing and expanding rapidly during the current COVID-19 pandemic. WBS has demonstrated itself as valuable public health tool with an increasing number of municipalities that have identified new SARS-CoV-2 transmission using wastewater testing prior to clinical testing. Wastewater testing has also identified new surges and waves that has informed early public health response. Internationally, there are over 2000 testing sites in over 50 countries.
+Wastewater-based surveillance (WBS) of SARS-CoV-2 developed and expanded rapidly during the current COVID-19 pandemic. WBS has demonstrated itself as valuable public health tool with an increasing number of municipalities that have identified new SARS-CoV-2 transmission using wastewater testing prior to clinical testing. Wastewater testing has also identified new surges and waves that has informed early public health response. Internationally, there are over 2000 testing sites in over 50 countries.
 
 WBS has a history informing public health action through its use to monitor health threats such as polio, antimicrobial resistance, as well as illicit drugs, among others. However, as a surveillance tool for pandemic purposes, the program is relatively new and there are implementation gaps. Currently, there is little to no controlled vocabulary on how WBS results should ideally be reported. Hence, the idea of a WBS data model that captures all relevant fields that should ideally be reported on when sharing WBS data.
 
@@ -62,7 +69,7 @@ What's coming to version 2.0.
 
 <a href= "https://vimeo.com/649254159" title="Link Title"><img src="img/ODM-V2-video.png" alt="What's coming to version 2.0" width="350"/></a>
 
-The presentation used in the video is [here](https://docs.google.com/presentation/d/14KeMhXHidG1q_zVpce6tkj89LR1H5d4b/edit?usp=sharing&ouid=103619232413193034528&rtpof=true&sd=true). The presentation is updated with developments of ODM v2. The contents can be reused under the license of this repository. 
+The presentation used in the video is [here](https://docs.google.com/presentation/d/14KeMhXHidG1q_zVpce6tkj89LR1H5d4b/edit?usp=sharing&ouid=103619232413193034528&rtpof=true&sd=true). The presentation is updated with developments of ODM v2. The contents can be reused under the license of this repository.
 
 See [Work-in-progress and roadmap](roadmap.md) for more details.
 
