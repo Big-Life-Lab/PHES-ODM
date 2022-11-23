@@ -1,0 +1,4 @@
+langID,langFam,langName,natName,ISO6391,ISO6392B,ISO6392T,ISO6393,ISO6396,firstReleased,lastUpdated,changes,notes,
+eng,en,Indo-European,English,English,en,eng,eng,eng,2.0.0,2.0.0,,,
+fra,fr,Indo-European,French,Français,fr,fra,fre,fra,2.0.0,2.0.0,,,
+spa,es,Indo-European,Spanish,Español,es,spa,spa,spa,2.0.0,2.0.0,,,
