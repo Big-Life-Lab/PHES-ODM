@@ -1,73 +1,7 @@
 /*
 ODM V2-RC2 ERD from Lucid chart
-Downloaded 2022-11-26
+Downloaded 2022-11-27
 */
-
-CREATE TABLE `organizations` (
-  `orgID` varchar,
-  `datasetID` varchar,
-  `addID` varchar,
-  `orgTypeID` varchar,
-  `name` varchar,
-  `descr` varchar,
-  `lastEdited` varchar,
-  PRIMARY KEY (`orgID`),
-  FOREIGN KEY (`addID`) REFERENCES `addresses`(`addID`),
-  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`)
-);
-
-CREATE TABLE `contacts` (
-  `contID` varchar,
-  `datasetID` varchar,
-  `orgID` varchar,
-  `firstName` varchar,
-  `lastName` varchar,
-  `email` varchar,
-  `phone` varchar,
-  `role` varchar,
-  `lastEdited` varchar,
-  `notes` varchar,
-  PRIMARY KEY (`contID`),
-  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`),
-  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`)
-);
-
-CREATE TABLE `datasets` (
-  `parDatasetID` varchar,
-  `datasetID` varchar,
-  `name` varchar,
-  `license` varchar,
-  `descr` varchar,
-  `refLink` varchar,
-  `langID` varchar,
-  `funderCont` varchar,
-  `custodyCont` varchar,
-  `funderID` varchar,
-  `custodyID` varchar,
-  `lastEdited` varchar,
-  `notes` varchar,
-  PRIMARY KEY (`datasetID`),
-  FOREIGN KEY (`custodyCont`) REFERENCES `contacts`(`contID`),
-  FOREIGN KEY (`custodyID`) REFERENCES `organizations`(`orgID`),
-  FOREIGN KEY (`funderID`) REFERENCES `organizations`(`orgID`),
-  FOREIGN KEY (`funderCont`) REFERENCES `contacts`(`contID`),
-  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`parDatasetID`)
-);
-
-CREATE TABLE `addresses` (
-  `addID` varchar,
-  `datasetID` varchar,
-  `addL1` varchar,
-  `addL2` varchar,
-  `city` varchar,
-  `stateProvReg` varchar,
-  `pCode` varchar,
-  `country` varchar,
-  `lastEdited` varchar,
-  `notes` varchar,
-  PRIMARY KEY (`addID`),
-  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`)
-);
 
 CREATE TABLE `sets` (
   `setID` varchar,
@@ -78,8 +12,7 @@ CREATE TABLE `sets` (
   `lastUpdated` varchar,
   `changes` varchar,
   `notes` varchar,
-  PRIMARY KEY (`setID`),
-  FOREIGN KEY (`partID`) REFERENCES `parts`(`partID`)
+  PRIMARY KEY (`setID`)
 );
 
 CREATE TABLE `parts` (
@@ -165,55 +98,75 @@ CREATE TABLE `parts` (
   `minLength` int,
   `maxLength` int,
   PRIMARY KEY (`partID`),
-  FOREIGN KEY (`compSet`) REFERENCES `sets`(`setID`),
   FOREIGN KEY (`specimenSet`) REFERENCES `sets`(`setID`),
-  FOREIGN KEY (`unitSetID`) REFERENCES `sets`(`setID`),
+  FOREIGN KEY (`qualitySetID`) REFERENCES `sets`(`setID`),
   FOREIGN KEY (`aggSetID`) REFERENCES `sets`(`setID`),
-  FOREIGN KEY (`qualitySetID`) REFERENCES `sets`(`setID`)
+  FOREIGN KEY (`unitSetID`) REFERENCES `sets`(`setID`),
+  FOREIGN KEY (`compSet`) REFERENCES `sets`(`setID`)
 );
 
-CREATE TABLE `instruments` (
-  `instID` varchar,
+CREATE TABLE `datasets` (
+  `parDatasetID` varchar,
   `datasetID` varchar,
   `name` varchar,
-  `model` varchar,
-  `manufacturer` varchar,
-  `contID` varchar,
-  `orgID` varchar,
+  `license` varchar,
   `descr` varchar,
   `refLink` varchar,
-  `instType` varchar,
-  `insTypeOth` varchar,
-  `index` int,
-  `lastEdited` datetime,
+  `langID` varchar,
+  `funderCont` varchar,
+  `custodyCont` varchar,
+  `funderID` varchar,
+  `custodyID` varchar,
+  `lastEdited` varchar,
   `notes` varchar,
-  PRIMARY KEY (`instID`),
-  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`),
-  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`),
-  FOREIGN KEY (`contID`) REFERENCES `contacts`(`contID`)
+  PRIMARY KEY (`datasetID`),
+  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`parDatasetID`),
+  FOREIGN KEY (`license`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`langID`) REFERENCES `parts`(`partID`)
 );
 
-CREATE TABLE `protocolSteps` (
-  `stepID` varchar,
-  `methodID` varchar,
-  `measureID` varchar,
-  `summ` varchar,
-  `sourceStep` varchar,
-  `stepVer` varchar,
-  `refLink` varchar,
-  `orgID` varchar,
-  `contID` varchar,
-  `instID` varchar,
-  `value` varchar,
-  `unitID` varchar,
-  `aggID` varchar,
-  `lastEdited` datetime,
+CREATE TABLE `addresses` (
+  `addID` varchar,
+  `datasetID` varchar,
+  `addL1` varchar,
+  `addL2` varchar,
+  `city` varchar,
+  `stateProvReg` varchar,
+  `pCode` varchar,
+  `country` varchar,
+  `lastEdited` varchar,
   `notes` varchar,
-  PRIMARY KEY (`stepID`),
-  FOREIGN KEY (`contID`) REFERENCES `contacts`(`contID`),
-  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`),
-  FOREIGN KEY (`sourceStep`) REFERENCES `protocolSteps`(`stepID`),
-  FOREIGN KEY (`instID`) REFERENCES `instruments`(`instID`)
+  PRIMARY KEY (`addID`),
+  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`)
+);
+
+CREATE TABLE `organizations` (
+  `orgID` varchar,
+  `datasetID` varchar,
+  `addID` varchar,
+  `orgTypeID` varchar,
+  `name` varchar,
+  `descr` varchar,
+  `lastEdited` varchar,
+  PRIMARY KEY (`orgID`),
+  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`),
+  FOREIGN KEY (`addID`) REFERENCES `addresses`(`addID`)
+);
+
+CREATE TABLE `contacts` (
+  `contID` varchar,
+  `datasetID` varchar,
+  `orgID` varchar,
+  `firstName` varchar,
+  `lastName` varchar,
+  `email` varchar,
+  `phone` varchar,
+  `role` varchar,
+  `lastEdited` varchar,
+  `notes` varchar,
+  PRIMARY KEY (`contID`),
+  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`),
+  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`)
 );
 
 CREATE TABLE `protocols` (
@@ -229,87 +182,9 @@ CREATE TABLE `protocols` (
   `lastEdited` datetime,
   `notes` varchar,
   PRIMARY KEY (`protocolID`),
-  FOREIGN KEY (`sourceProtocol`) REFERENCES `protocols`(`protocolID`),
-  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`),
   FOREIGN KEY (`contID`) REFERENCES `contacts`(`contID`),
-  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`)
-);
-
-CREATE TABLE `protocolRelationships` (
-  `protocolIDContainer` varchar,
-  `protocolIDObj` varchar,
-  `stepIDObj` varchar,
-  `relationshipID` varchar,
-  `protocolIDSub` varchar,
-  `stepIDSub` varchar,
-  `lastEdited` datetime,
-  `notes` varchar,
-  FOREIGN KEY (`protocolIDSub`) REFERENCES `protocols`(`protocolID`),
-  FOREIGN KEY (`protocolIDContainer`) REFERENCES `protocols`(`protocolID`),
-  FOREIGN KEY (`protocolIDObj`) REFERENCES `protocols`(`protocolID`),
-  FOREIGN KEY (`stepIDObj`) REFERENCES `protocolSteps`(`stepID`),
-  FOREIGN KEY (`stepIDSub`) REFERENCES `protocolSteps`(`stepID`)
-);
-
-CREATE TABLE `polygons` (
-  `polygonID` varchar,
-  `datasetID` varchar,
-  `name` varchar,
-  `descr` varchar,
-  `polyPop` int,
-  `geoType` varchar,
-  `geoEPSG` varchar,
-  `geoWKT` varchar,
-  `refLink` varchar,
-  `orgID` varchar,
-  `contID` varchar,
-  `lastEdited` varchar,
-  `notes` varchar,
-  PRIMARY KEY (`polygonID`),
-  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`),
-  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`),
-  FOREIGN KEY (`contID`) REFERENCES `contacts`(`contID`)
-);
-
-CREATE TABLE `sites` (
-  `parSiteID` varchar,
-  `siteID` varchar,
-  `datasetID` varchar,
-  `polygonID` varchar,
-  `siteTypeID` varchar,
-  `samShed` varchar,
-  `addID` varchar,
-  `orgID` varchar,
-  `contID` varchar,
-  `name` varchar,
-  `descr` varchar,
-  `pHDept` varchar,
-  `healthReg` varchar,
-  `popServ` int,
-  `geoLat` varchar,
-  `geoLong` varchar,
-  `geoEPSG` varchar,
-  `lastEdited` date,
-  `notes` varchar,
-  PRIMARY KEY (`siteID`),
-  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`),
-  FOREIGN KEY (`siteID`) REFERENCES `sites`(`parSiteID`),
-  FOREIGN KEY (`polygonID`) REFERENCES `polygons`(`polygonID`),
+  FOREIGN KEY (`protocolID`) REFERENCES `protocols`(`sourceProtocol`),
   FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`)
-);
-
-CREATE TABLE `measureSets` (
-  `measureSetRepID` varchar,
-  `protocolID` varchar,
-  `name` varchar,
-  `orgID` varchar,
-  `contID` varchar,
-  `notes` varchar,
-  `lastEdited` varchar,
-  PRIMARY KEY (`measureSetRepID`),
-  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`),
-  FOREIGN KEY (`protocolID`) REFERENCES `protocols`(`protocolID`),
-  FOREIGN KEY (`contID`) REFERENCES `contacts`(`contID`)
 );
 
 CREATE TABLE `samples` (
@@ -336,10 +211,94 @@ CREATE TABLE `samples` (
   `lastEdited` datetime,
   `notes` varchar,
   PRIMARY KEY (`sampleID`),
-  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`),
-  FOREIGN KEY (`protocolID`) REFERENCES `protocols`(`protocolID`),
+  FOREIGN KEY (`contID`) REFERENCES `contacts`(`contID`),
   FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`),
-  FOREIGN KEY (`contID`) REFERENCES `contacts`(`contID`)
+  FOREIGN KEY (`purposeID`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`protocolID`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`protocolID`) REFERENCES `protocols`(`protocolID`),
+  FOREIGN KEY (`saMaterial`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`repType`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`collType`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`)
+);
+
+CREATE TABLE `languages` (
+  `langID` int,
+  `langFam` varchar,
+  `langName` varchar,
+  `natName` varchar,
+  `ISO6391` varchar,
+  `ISO6392T` varchar,
+  `ISO6392B` varchar,
+  `ISO6393` varchar,
+  `ISO6396` varchar,
+  `firstRelased` varchar,
+  `lastUpdated` varchar,
+  `changes` varchar,
+  `notes` varchar,
+  PRIMARY KEY (`langID`)
+);
+
+CREATE TABLE `measureSets` (
+  `measureSetRepID` varchar,
+  `protocolID` varchar,
+  `name` varchar,
+  `orgID` varchar,
+  `contID` varchar,
+  `notes` varchar,
+  `lastEdited` varchar,
+  PRIMARY KEY (`measureSetRepID`),
+  FOREIGN KEY (`contID`) REFERENCES `contacts`(`contID`),
+  FOREIGN KEY (`protocolID`) REFERENCES `protocols`(`protocolID`),
+  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`)
+);
+
+CREATE TABLE `polygons` (
+  `polygonID` varchar,
+  `datasetID` varchar,
+  `name` varchar,
+  `descr` varchar,
+  `polyPop` int,
+  `geoType` varchar,
+  `geoEPSG` varchar,
+  `geoWKT` varchar,
+  `refLink` varchar,
+  `orgID` varchar,
+  `contID` varchar,
+  `lastEdited` varchar,
+  `notes` varchar,
+  PRIMARY KEY (`polygonID`),
+  FOREIGN KEY (`contID`) REFERENCES `contacts`(`contID`),
+  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`),
+  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`)
+);
+
+CREATE TABLE `sites` (
+  `parSiteID` varchar,
+  `siteID` varchar,
+  `datasetID` varchar,
+  `polygonID` varchar,
+  `siteTypeID` varchar,
+  `samShed` varchar,
+  `addID` varchar,
+  `orgID` varchar,
+  `contID` varchar,
+  `name` varchar,
+  `descr` varchar,
+  `pHDept` varchar,
+  `healthReg` varchar,
+  `popServ` int,
+  `geoLat` varchar,
+  `geoLong` varchar,
+  `geoEPSG` varchar,
+  `lastEdited` date,
+  `notes` varchar,
+  PRIMARY KEY (`siteID`),
+  FOREIGN KEY (`polygonID`) REFERENCES `polygons`(`polygonID`),
+  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`),
+  FOREIGN KEY (`siteID`) REFERENCES `sites`(`parSiteID`),
+  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`),
+  FOREIGN KEY (`siteTypeID`) REFERENCES `parts`(`partID`)
 );
 
 CREATE TABLE `measures` (
@@ -369,22 +328,20 @@ CREATE TABLE `measures` (
   `lastEdited` datetime,
   `notes` varchar,
   PRIMARY KEY (`measureRepID`),
-  FOREIGN KEY (`protocolID`) REFERENCES `protocols`(`protocolID`),
-  FOREIGN KEY (`measureSetRepID`) REFERENCES `measureSets`(`measureSetRepID`),
-  FOREIGN KEY (`sampleID`) REFERENCES `samples`(`sampleID`),
-  FOREIGN KEY (`siteID`) REFERENCES `sites`(`siteID`),
   FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`),
-  FOREIGN KEY (`polygonID`) REFERENCES `polygons`(`polygonID`)
-);
-
-CREATE TABLE `sampleRelationships` (
-  `sampleIDSub` varchar,
-  `relationshipID` varchar,
-  `sampleIDObj` varchar,
-  `lastEdited` datetime,
-  `notes` varchar,
-  FOREIGN KEY (`sampleIDObj`) REFERENCES `samples`(`sampleID`),
-  FOREIGN KEY (`sampleIDSub`) REFERENCES `samples`(`sampleID`)
+  FOREIGN KEY (`measureID`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`siteID`) REFERENCES `sites`(`siteID`),
+  FOREIGN KEY (`sampleID`) REFERENCES `samples`(`sampleID`),
+  FOREIGN KEY (`polygonID`) REFERENCES `polygons`(`polygonID`),
+  FOREIGN KEY (`fractionID`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`aggID`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`classID`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`groupID`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`purposeID`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`measureSetRepID`) REFERENCES `measureSets`(`measureSetRepID`),
+  FOREIGN KEY (`specimenID`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`protocolID`) REFERENCES `protocols`(`protocolID`),
+  FOREIGN KEY (`unitID`) REFERENCES `parts`(`partID`)
 );
 
 CREATE TABLE `qualityReports` (
@@ -398,25 +355,82 @@ CREATE TABLE `qualityReports` (
   `notes` varchar,
   PRIMARY KEY (`qualityID`),
   FOREIGN KEY (`measureSetRepID`) REFERENCES `measureSets`(`measureSetRepID`),
-  FOREIGN KEY (`measureRepID`) REFERENCES `measures`(`measureRepID`),
-  FOREIGN KEY (`sampleID`) REFERENCES `samples`(`sampleID`)
+  FOREIGN KEY (`sampleID`) REFERENCES `samples`(`sampleID`),
+  FOREIGN KEY (`measureRepID`) REFERENCES `measures`(`measureRepID`)
 );
 
-CREATE TABLE `languages` (
-  `langID` int,
-  `langFam` varchar,
-  `langName` varchar,
-  `natName` varchar,
-  `ISO6391` varchar,
-  `ISO6392T` varchar,
-  `ISO6392B` varchar,
-  `ISO6393` varchar,
-  `ISO6396` varchar,
-  `firstRelased` varchar,
-  `lastUpdated` varchar,
-  `changes` varchar,
+CREATE TABLE `instruments` (
+  `instID` varchar,
+  `datasetID` varchar,
+  `name` varchar,
+  `model` varchar,
+  `manufacturer` varchar,
+  `contID` varchar,
+  `orgID` varchar,
+  `descr` varchar,
+  `refLink` varchar,
+  `instType` varchar,
+  `insTypeOth` varchar,
+  `index` int,
+  `lastEdited` datetime,
   `notes` varchar,
-  PRIMARY KEY (`langID`)
+  PRIMARY KEY (`instID`),
+  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`),
+  FOREIGN KEY (`instType`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`datasetID`),
+  FOREIGN KEY (`contID`) REFERENCES `contacts`(`contID`)
+);
+
+CREATE TABLE `protocolSteps` (
+  `stepID` varchar,
+  `methodID` varchar,
+  `measureID` varchar,
+  `summ` varchar,
+  `sourceStep` varchar,
+  `stepVer` varchar,
+  `refLink` varchar,
+  `orgID` varchar,
+  `contID` varchar,
+  `instID` varchar,
+  `value` varchar,
+  `unitID` varchar,
+  `aggID` varchar,
+  `lastEdited` datetime,
+  `notes` varchar,
+  PRIMARY KEY (`stepID`),
+  FOREIGN KEY (`instID`) REFERENCES `instruments`(`instID`),
+  FOREIGN KEY (`contID`) REFERENCES `contacts`(`contID`),
+  FOREIGN KEY (`sourceStep`) REFERENCES `protocolSteps`(`stepID`),
+  FOREIGN KEY (`orgID`) REFERENCES `organizations`(`orgID`),
+  FOREIGN KEY (`aggID`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`unitID`) REFERENCES `parts`(`partID`)
+);
+
+CREATE TABLE `protocolRelationships` (
+  `protocolIDContainer` varchar,
+  `protocolIDObj` varchar,
+  `stepIDObj` varchar,
+  `relationshipID` varchar,
+  `protocolIDSub` varchar,
+  `stepIDSub` varchar,
+  `lastEdited` datetime,
+  `notes` varchar,
+  FOREIGN KEY (`protocolIDObj`) REFERENCES `protocols`(`protocolID`),
+  FOREIGN KEY (`protocolIDContainer`) REFERENCES `protocols`(`protocolID`),
+  FOREIGN KEY (`protocolIDSub`) REFERENCES `protocols`(`protocolID`),
+  FOREIGN KEY (`stepIDObj`) REFERENCES `protocolSteps`(`stepID`),
+  FOREIGN KEY (`stepIDSub`) REFERENCES `protocolSteps`(`stepID`)
+);
+
+CREATE TABLE `sampleRelationships` (
+  `sampleIDSub` varchar,
+  `relationshipID` varchar,
+  `sampleIDObj` varchar,
+  `lastEdited` datetime,
+  `notes` varchar,
+  FOREIGN KEY (`sampleIDObj`) REFERENCES `samples`(`sampleID`),
+  FOREIGN KEY (`sampleIDSub`) REFERENCES `samples`(`sampleID`),
+  FOREIGN KEY (`relationshipID`) REFERENCES `parts`(`partID`)
 );
 
 CREATE TABLE `translations` (
@@ -432,4 +446,3 @@ CREATE TABLE `translations` (
   FOREIGN KEY (`partID`) REFERENCES `parts`(`partID`),
   FOREIGN KEY (`langID`) REFERENCES `languages`(`langID`)
 );
-
