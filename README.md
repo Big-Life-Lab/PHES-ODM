@@ -26,18 +26,23 @@ This repository includes:
 To review the structure proposed for version 2.0.0 of the ODM, and the changes between the new version and the original version, please review the files in the [V2-RC2 Branch](https://github.com/Big-Life-Lab/PHES-ODM/tree/V2-RC2).
 
 To navigate to a different branch, you'll need to click on the drop down menu at the top of the page (see image below).
+
 <img src="img/finding_branches.png" alt="" width="180"/>
 
 From there, select the branch named "V2-RC2 Branch" (see image below).
+
 <img src="img/changing_branches.png" alt="" width="180"/>
 
 This will take you to the branch for the current release candidate for version 2.0.0 of the ODM. Once here,we invite you to look and read through the contents of these three folders (see image below) to become better acquainted with the proposed new version.
+
 <img src="img/what_to_review.png" alt="" width="180"/>
 
 If you have any questions, comments, or concerns about the proposed new structure, you can create a new GitHub issue by navigating to the issues tab (see image below).
+
 <img src="img/issues.png" alt="" width="180"/>
 
 and then clicking on "new issue" (see image below).
+
 <img src="img/new_issue.png" alt="" width="180"/>
 
 We look forward to receiving and reviewing community feedback, which is essential to the collaborative and community-driven spirit of the PHES-ODM project.
