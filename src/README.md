@@ -2,4 +2,4 @@
 
 Source files for:
 
-- Creating an SQL definition for lucid diagram.
+- Create aSQL definition from lucid diagram.
