@@ -361,7 +361,7 @@ CREATE TABLE `measures` (
   `aggID` varchar,
   `nomenclatureID` varchar,
   `index` int,
-  `measLicense` varchar,
+  `measureLic` varchar,
   `organizationID` varchar,
   `contactID` varchar,
   `refLink` varchar,
@@ -379,7 +379,6 @@ CREATE TABLE `qualityReports` (
   `lastEdited` datetime,
   `notes` varchar,
   PRIMARY KEY (`qualityID`));
-
 ;
 ALTER TABLE `datasets` ADD 
   FOREIGN KEY (`datasetID`) REFERENCES `datasets`(`parDatasetID`)
@@ -483,7 +482,7 @@ ALTER TABLE `measures` ADD
   FOREIGN KEY (`groupID`) REFERENCES `parts`(`partID`),
   FOREIGN KEY (`measureID`) REFERENCES `parts`(`partID`),
   FOREIGN KEY (`classID`) REFERENCES `parts`(`partID`),
-  FOREIGN KEY (`measLicense`) REFERENCES `parts`(`partID`),
+  FOREIGN KEY (`measureLic`) REFERENCES `parts`(`partID`),
   FOREIGN KEY (`purposeID`) REFERENCES `parts`(`partID`),
   FOREIGN KEY (`measureSetRepID`) REFERENCES `measureSets`(`measureSetRepID`),
   FOREIGN KEY (`specimenID`) REFERENCES `parts`(`partID`),
