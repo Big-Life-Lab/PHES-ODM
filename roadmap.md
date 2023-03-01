@@ -68,39 +68,7 @@ The conductor is a web-based application, under development, that brings the ODM
 
 ![](img/conductor.png)
 
-### Version 2 milestones
-
-#### Dictionary progress - December 16, 2022
-
-![](img/V2-progress.png)
-
-#### Vocabulary progress - December 16, 2022
-
 ![](img/V2-dictionary.png)
-
-#### December 2021​
-
-- Robust relational dictionary, with entity relationship diagram and SQL logic​
-
-- Data sharing schema and Python application​
-
-- Validation schema​
-
-- Multi-language support​
-
-#### January 2022​
-
-- Excel data collection templates for partners​
-
-- Complete open database​
-
-- Initial documentation to support users in implementing version 2​
-
-#### March 2022​
-
-- Support tools (mappers, validators, and the conductor)​
-
-- Robust documentation (vignettes, tutorials, references, and how-to guides)
 
 ## Documentation
 

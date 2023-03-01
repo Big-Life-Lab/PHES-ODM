@@ -1,7 +1,7 @@
 # Templates
 
-Templates are stored on [OSF.io](osf.io)
+1. Excel input templates are at [OSF.io](https://osf.io).
 
-## Current
+- Dictionary V2-rc2 is here.(pending)
 
-- [Excel data template and dictionary. V2-beta-1.0](https://osf.io/k94qe/).
+2. SQL definition: [wbe-creat-table_SQLITE_en.sql](wbe-creat-table_SQLITE_en.sql)
