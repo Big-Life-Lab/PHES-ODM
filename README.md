@@ -12,21 +12,27 @@ development](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://l
 
 ## Description
 
-PHES-ODM began as an open data model for wastwater-based surveillance of SARS-CoV-2. PHES-ODM Version 2 expands the original ODM to include surface and air testing, in addition to water. The new PHES-ODM v2 also include robust support for reporting any biologic, toxin, or other health risks.
+PHES-ODM began as an open data model for wastwater-based surveillance of SARS-CoV-2. PHES-ODM Version 2 expands the original ODM to include surface and air testing, in addition to water. Version 2 also include robust support for reporting any biologic, toxin, or other health risks.
 
-This repository includes:
+**[ODM documentation website](https://docs.phes-odm.org)** is the main source of information for the ODM.
+The documentation website inlcudes:
 
-- An overview of the ODM **structure** and how the ODM represents the real-world process and relationships of enviromental-based surveillance.
-- A **dictionary** that describes surveillance data and metadata. The dictionary lists all ODM parts including the XX report tables and their reporting fields. Also icluded is a list of over XXX environmental biologic pathogens, chemicals and physical properties that can be reported using the ODM.
-- **Example data** for each of the XX tables.
-- **Templates** that can be used to record data in the ODM format.
+- An introduction the ODM.
+- A quick start guide.
+- How-to guides.
+- Background and explantaory guide to how the ODM works.
+- The reference files in searchable, human readible format.
+- Links to other resources.
+
+## This repository includes
+
+- **Dictionary reference files** for all versions.
 - **Scripts** to set up an SQL relational database for the ODM schema.
-
-See the ODM documentation [website](link) for additional information including:
-
-- Tutorials for how to use the report templates. These tutorial help explain how the data model is organized.
-- Additional explaination about ...
--
+- **Roadmap** and work-in-progress.
+- **How to contribute**
+- **Code of conduct**.
+- **Acknowledgements**.
+- **Steering committee** minutes.
 
 ## Background
 
@@ -94,6 +100,3 @@ Development and maintenance of the ODM is the result of a collaboration between 
 - European Union DG Joint Research Centre
 
 ## Citation
-
-
-
