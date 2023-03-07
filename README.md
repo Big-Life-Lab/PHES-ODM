@@ -14,6 +14,8 @@ development](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://l
 
 PHES-ODM began as an open data model for wastwater-based surveillance of SARS-CoV-2. PHES-ODM Version 2 expands the original ODM to include surface and air testing, in addition to water. Version 2 also include robust support for reporting any biologic, toxin, or other health risks.
 
+The ODM strives to improve wastewater surveillance through interoperable data. The ODM follows an open science approach, including including [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/). Uses an Open software approach, including operates with the guidance of an international [steering committee](https://github.com/Big-Life-Lab/covid-19-wastewater/wiki). People and institutions can contribute to the development of the ODM and the ODM seeks to support a wide range of users.
+
 **[ODM documentation website](https://docs.phes-odm.org)** is the main source of information for the ODM.
 The documentation website inlcudes:
 
@@ -26,21 +28,13 @@ The documentation website inlcudes:
 
 ## This repository includes
 
-- **Dictionary reference files** for all versions.
+- **Dictionary reference files** for all ODM versions.
 - **Scripts** to set up an SQL relational database for the ODM schema.
 - **Roadmap** and work-in-progress.
-- **How to contribute**
+- **How to contribute**.
 - **Code of conduct**.
 - **Acknowledgements**.
 - **Steering committee** minutes.
-
-## Background
-
-Wastewater-based surveillance (WBS) of SARS-CoV-2 developed and expanded rapidly during the current COVID-19 pandemic. WBS has demonstrated itself as valuable public health tool with an increasing number of municipalities that have identified new SARS-CoV-2 transmission using wastewater testing prior to clinical testing. Wastewater testing has also identified new surges and waves that has informed early public health response. Internationally, there are over 2000 testing sites in over 50 countries.
-
-WBS has a history informing public health action through its use to monitor health threats such as polio, antimicrobial resistance, as well as illicit drugs, among others. However, as a surveillance tool for pandemic purposes, the program is relatively new and there are implementation gaps. Currently, there is little to no controlled vocabulary on how WBS results should ideally be reported. Hence, the idea of a WBS data model that captures all relevant fields that should ideally be reported on when sharing WBS data.
-
-The ODM strives to improve wastewater surveillance through the development of an open data structure, including metadata and vocabulary. ODM operates under the guidance of an international [steering committee](https://github.com/Big-Life-Lab/covid-19-wastewater/wiki). Working groups can be ongoing or created to address specific tasks and projects. Note that we adhere to the [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/) with recognition of benefit from a common data structure, including metadata and vocabulary.
 
 ## Data and metadata dictionary
 
@@ -54,7 +48,7 @@ See [metadata](metadata_en.md) for more detailed information on variable names a
 
 See [contributing](CONTRIBUTING.md and [Code of conduct](CODE_OF_CONDUCT.md)for more information.
 
-- Issues, suggestions and pull requests are welcomed. GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues) or email [phesd_odm@ohri.ca](mailto::phes_odm@ohri.caa).
+- Issues, suggestions and pull requests are welcomed. use [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), the [ODM Discourse channel](https://odm.discourse.org) or email [phesd_odm@ohri.ca](mailto::phes_odm@ohri.caa).
 - Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
 - [An international steering committee](https://github.com/Big-Life-Lab/PHES-ODM/wiki/Steering-Group-Members) guides the development of the data model.
 - Working groups consist of a regular weekly meeting with ODM developers and users. Add hoc working groups are created to develop specific sections of the ODM. An example of the working group the development of quality assurance and control measures.
@@ -67,17 +61,15 @@ Questions? E-mail at [phesd_odm@ohri.ca](mailto::phesd_odm@ohri.ca).
 
 ## Application
 
-PHES ODM is used or planned for use in 23 countries. Programs that use or are implementing the ODM include the European Union's Digital European Exchange Platform (DEEP), Canada's National Microbiology Laboratory (NML), Ontario's Wastewater Initiative by the Ministry of Environment, Conservation, and Parks (MECP), uOttawa, le Centre québécois de recherche sur la gestion de l'eau, Université Laval, and [CETO Epidemiologic platform](https://ceto.ca).
+PHES ODM is used or planned for use in 23 countries. Programs that use or are implementing the ODM include the European Union's Digital European Exchange Platform (DEEP), Canada's National Microbiology Laboratory (NML), Ontario's Wastewater Initiative by the Ministry of Environment, Conservation, and Parks (MECP), uOttawa, le Centre québécois de recherche sur la gestion de l'eau, Université Laval.
+
+ODM forms part other platforms and tools including:
+- [CETO Epidemiologic platform](https://ceto.ca).
+- [Ottawa Automatic Data Pipelines](https://phes-odm.org).
 
 ## Work-in-progress
 
-What's coming to version 2.0.
-
-<a href= "https://vimeo.com/649254159" title="Link Title"><img src="img/ODM-V2-video.png" alt="What's coming to version 2.0" width="350"/></a>
-
-The presentation used in the video is [here](https://docs.google.com/presentation/d/14KeMhXHidG1q_zVpce6tkj89LR1H5d4b/edit?usp=sharing&ouid=103619232413193034528&rtpof=true&sd=true). The presentation is updated with developments of ODM v2. The contents can be reused under the license of this repository.
-
-See [Work-in-progress and roadmap](roadmap.md) for more details.
+See [GitHub projects]() for work-in-progress and a roadmap of upcoming enhancements.
 
 ## License
 
@@ -89,8 +81,8 @@ See [license](LICENSE) for more information.
 
 Development and maintenance of the ODM is the result of a collaboration between researchers from multiple institutions:
 
-- [CIHR Coronavirus Variants Rapid Response Network (CoVaRR-Net)](https://covarrnet.ca)- uOttawa
-- The Ottawa Hospital
+- The [University of Ottawa]()
+- [CIHR Coronavirus Variants Rapid Response Network (CoVaRR-Net)](https://covarrnet.ca)
 - Université Laval
 - CHEO Research Institute
 - modelEAU
@@ -98,5 +90,6 @@ Development and maintenance of the ODM is the result of a collaboration between 
 - Public Health Agency Canada
 - Ministry of Environment, Conservation, and Parks - MECP Ontario
 - European Union DG Joint Research Centre
+- The Ottawa Hospital Research Institute
 
 ## Citation
