@@ -46,7 +46,7 @@ See [metadata](metadata_en.md) for more detailed information on variable names a
 
 ## Collaborate
 
-See [contributing](CONTRIBUTING.md and [Code of conduct](CODE_OF_CONDUCT.md)for more information.
+See [contributing](CONTRIBUTING.md) and [Code of conduct](CODE_OF_CONDUCT.md) for more information.
 
 - Issues, suggestions and pull requests are welcomed. use [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), the [ODM Discourse channel](https://odm.discourse.org) or email [phesd_odm@ohri.ca](mailto::phes_odm@ohri.caa).
 - Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
@@ -91,5 +91,3 @@ Development and maintenance of the ODM is the result of a collaboration between 
 - Ministry of Environment, Conservation, and Parks - MECP Ontario
 - European Union DG Joint Research Centre
 - The Ottawa Hospital Research Institute
-
-## Citation
