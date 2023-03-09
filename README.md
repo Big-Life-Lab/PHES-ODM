@@ -16,16 +16,6 @@ PHES-ODM began as an open data model for wastwater-based surveillance of SARS-Co
 
 The ODM strives to improve wastewater surveillance through interoperable data. The ODM follows an open science approach, including including [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/). Uses an Open software approach, including operates with the guidance of an international [steering committee](https://github.com/Big-Life-Lab/covid-19-wastewater/wiki). People and institutions can contribute to the development of the ODM and the ODM seeks to support a wide range of users.
 
-**[ODM documentation website](https://docs.phes-odm.org)** is the main source of information for the ODM.
-The documentation website includes:
-
-- An introduction the ODM.
-- A quick start guide.
-- How-to guides.
-- Background and explantaory guide to how the ODM works.
-- The reference files in searchable, human readible format.
-- Links to other resources.
-
 ## This repository includes
 
 - **[Dictionary reference files](dictionary-tables)** for all ODM versions.
@@ -35,6 +25,20 @@ The documentation website includes:
 - **[Code of conduct](CODE_OF_CONDUCT.md)**.
 - **[Acknowledgements](#acknowledgements)**.
 - **[Steering committee minutes](https://github.com/Big-Life-Lab/PHES-ODM/wiki)**.
+
+## Additional resources
+
+**[ODM documentation website](https://docs.phes-odm.org)**: the main source of information for the ODM.
+The documentation website includes:
+
+- An introduction the ODM.
+- A quick start guide.
+- How-to guides.
+- Background and explantaory guide to how the ODM works.
+- The reference files in searchable, human readible format.
+- Links to other resources.
+
+**[ODM validation toolkit](https://validate-docs.phes-odm.org): Ensure your ODM data is complete and interoperable. You can check whether your data meets the ODM dictionary format.
 
 ## Data and metadata dictionary
 
