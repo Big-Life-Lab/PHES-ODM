@@ -17,7 +17,7 @@ PHES-ODM began as an open data model for wastwater-based surveillance of SARS-Co
 The ODM strives to improve wastewater surveillance through interoperable data. The ODM follows an open science approach, including including [FAIR Guiding Principles](https://www.go-fair.org/fair-principles/). Uses an Open software approach, including operates with the guidance of an international [steering committee](https://github.com/Big-Life-Lab/covid-19-wastewater/wiki). People and institutions can contribute to the development of the ODM and the ODM seeks to support a wide range of users.
 
 **[ODM documentation website](https://docs.phes-odm.org)** is the main source of information for the ODM.
-The documentation website inlcudes:
+The documentation website includes:
 
 - An introduction the ODM.
 - A quick start guide.
@@ -28,13 +28,13 @@ The documentation website inlcudes:
 
 ## This repository includes
 
-- **Dictionary reference files** for all ODM versions.
-- **Scripts** to set up an SQL relational database for the ODM schema.
-- **Roadmap** and work-in-progress.
-- **How to contribute**.
-- **Code of conduct**.
-- **Acknowledgements**.
-- **Steering committee** minutes.
+- **[Dictionary reference files](dictionary-tables)** for all ODM versions.
+- **[Scripts](src)** to set up an SQL relational database for the ODM schema.
+- **[Roadmap and work-in-progress](roadmap.md)**.
+- **[How to contribute](#colloborate)**.
+- **[Code of conduct](CODE_OF_CONDUCT.md)**.
+- **[Acknowledgements](#acknowledgements)**.
+- **[Steering committee minutes](https://github.com/Big-Life-Lab/PHES-ODM/wiki)**.
 
 ## Data and metadata dictionary
 
