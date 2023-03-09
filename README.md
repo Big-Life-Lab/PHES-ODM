@@ -28,21 +28,21 @@ The ODM strives to improve wastewater surveillance through interoperable data. T
 
 ## Additional resources
 
-**[ODM documentation website](https://docs.phes-odm.org)**: the main source of information for the ODM.
+- **[ODM documentation website](https://docs.phes-odm.org)**: the main source of information for the ODM.
 The documentation website includes:
 
-- An introduction the ODM.
-- A quick start guide.
-- How-to guides.
-- Background and explantaory guide to how the ODM works.
-- The reference files in searchable, human readible format.
-- Links to other resources.
+      - An introduction the ODM.
+      - A quick start guide.
+      - How-to guides.
+      - Background and explantaory guide to how the ODM works.
+      - The reference files in searchable, human readible format.
+      - Links to other resources.
 
-**[Report templates](https://osf.io/ab9se/)**: Excel templates to report or store ODM data in the 'long' format. 
+- **[Report templates](https://osf.io/ab9se/)**: Excel templates to report or store ODM data in the 'long' format. 
 
-**[Dictionary as Excel file]((https://osf.io/ab9se/)**: The Excel version of the dictionary. There are worksheets for each dictionary look-up table. 
+- **[Dictionary as Excel file]((https://osf.io/ab9se/)**: The Excel version of the dictionary. There are worksheets for each dictionary look-up table. 
 
-**[ODM validation toolkit](https://validate-docs.phes-odm.org)**: Ensure your ODM data is complete and interoperable. You can check whether your data meets the ODM dictionary format.
+- **[ODM validation toolkit](https://validate-docs.phes-odm.org)**: Ensure your ODM data is complete and interoperable. You can check whether your data meets the ODM dictionary format.
 
 ## Data and metadata dictionary
 
