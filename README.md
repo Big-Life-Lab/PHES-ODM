@@ -31,12 +31,12 @@ The ODM strives to improve wastewater surveillance through interoperable data. T
 - **[ODM documentation website](https://docs.phes-odm.org)**: the main source of information for the ODM.
 The documentation website includes:
 
-      - An introduction the ODM.
-      - A quick start guide.
-      - How-to guides.
-      - Background and explantaory guide to how the ODM works.
-      - The reference files in searchable, human readible format.
-      - Links to other resources.
+  - An introduction the ODM.
+  - A quick start guide.
+  - How-to guides.
+  - Background and explantaory guide to how the ODM works.
+  - The reference files in searchable, human readible format.
+  - Links to other resources.
 
 - **[Report templates](https://osf.io/ab9se/)**: Excel templates to report or store ODM data in the 'long' format. 
 
