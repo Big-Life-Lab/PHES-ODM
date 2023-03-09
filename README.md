@@ -38,11 +38,11 @@ The documentation website inlcudes:
 
 ## Data and metadata dictionary
 
-The ODM is comprised of ten primary tables and one lookup table, linked to each other based on logic relationships. The following figure provides an overview of the different data sources that are currently captured.
+The ODM is comprised of 15 report tables and six look-up tablea, linked to each other based on logic relationships. The following figure provides an overview of the different data sources that are currently captured.
 
-![Schematic representation of the ODM](img/wastewater-map.png)
+![Schematic representation of the ODM](img/subway.png)
 
-See [metadata](metadata_en.md) for more detailed information on variable names and definitions. Cliquez [ici](metadata_fr.md) pour la version française.
+![Entity Relationship Diagram](doc-source/ODM_ERD.png)
 
 ## Collaborate
 
@@ -69,7 +69,7 @@ ODM forms part other platforms and tools including:
 
 ## Work-in-progress
 
-See [GitHub projects]() for work-in-progress and a roadmap of upcoming enhancements.
+See [GitHub projects](https://github.com/Big-Life-Lab/PHES-ODM/projects) for work-in-progress and a roadmap of upcoming enhancements.
 
 ## License
 
