@@ -40,7 +40,7 @@ The documentation website includes:
 
 - **[Report templates](https://osf.io/ab9se/)**: Excel templates to report or store ODM data in the 'long' format. 
 
-- **[Dictionary as Excel file]((https://osf.io/ab9se/)**: The Excel version of the dictionary. There are worksheets for each dictionary look-up table. 
+- **[Dictionary as an Excel file](https://osf.io/ab9se/)**: The Excel version of the dictionary. There are worksheets for each dictionary look-up table. 
 
 - **[ODM validation toolkit](https://validate-docs.phes-odm.org)**: Ensure your ODM data is complete and interoperable. You can check whether your data meets the ODM dictionary format.
 
