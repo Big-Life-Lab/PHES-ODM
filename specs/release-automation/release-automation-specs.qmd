@@ -1,0 +1,228 @@
+# Release Automation
+
+This document will go over the specifications for a software system to automate the release process for the Ottawa Data Model (ODM).
+
+## Audience
+
+The primary audience for this document are software engineers who will be responsible for developing the system.
+
+## Context
+
+Wastewater surveillance enables public health departments to monitor communities for possible outbreaks of different infectious diseases using wastewater samples, most notably the different variants of the COVID-19 virus. The ODM dictionary is an open source data model used to represent wastewater surveillance data with all its documentation available [online](https://github.com/Big-Life-Lab/PHES-ODM).
+
+Practically, the dictionary is implemented as an Excel document. Although the main purpose of the excel sheet is to document the data model details in a machine actionable way, it also contains other sheets, for example data templates that make it easy for users to input their wastewater data.
+
+Releasing a new version of the dictionary is a laborious process that requires converting the excel document to multiple output formats. In addition, the different release files need to be uploaded to multiple release locations. Details about the release process are available [online](https://odm.discourse.group/t/generation-of-tables-and-lists-from-the-odm-working-excel-file/99/7). The current manual process of implementing a release takes time away from the dictionary developers as well as is susceptible to errors. Automating this process would increase the quality of each release as well as give back time to the dictionary staff.
+
+## Software Constraints
+
+* The software system will need to use GitHub actions as its continuous integration tool.
+* The software system will need to be written in R or Python.
+
+## Features
+
+### RA-1: Trigerring the Process
+
+A user will need to manually triger the release process from the [Github Actions tab](https://github.com/Big-Life-Lab/PHES-ODM/actions) in the [PHES-ODM repo](https://github.com/Big-Life-Lab/PHES-ODM). The following inputs will need to be provided by the user:
+
+1. Link to the excel dictionary to use for the release. Currently, only links to an OSF repo are allowed.
+2. The OSF personal access token to use. The system will need this to gain access to the repo and perform operations on it.
+
+### RA-2: Creating the Release Files
+
+The first step in each release is the creation of the different files that form that release. The files are created from the dictionary Excel document whose link is provided by the user an as input. In addition, the files tab in the document contains all the metadata needed for this step.
+
+The structure of the files tab is shown [below](./release-automation.qmd#files-sheet). Each row in the files sheet represents a file that has to be created in the release.
+
+The file name can be constructed using the `[name](./release-automation.qmd#name)` and `[type](./release-automation.qmd#type)` columns in the files sheet. The [`type`](./release-automation.qmd#type) column decides what the file extension should be, **.csv** for CSV files and **.xlsx** for excel files.
+
+The [`part`](./release-automation.qmd#part) column determines where the contents of the file comes from or what to fill the file with. The column can contain an ID for a part or a set which should match up with a row in the parts sheet or sets sheet respectively. 
+When the column contains a reference to a part, the content of the file should be filled with the sheet in the dictionary that has the same name as that part. 
+When the column contains a reference to a set, the sheets in the dictionary with the same name as each part in the set should be added as a sheet in the file. The name of the sheets should match the name of the part it represents.
+
+The [`addHeader`](./release-automation.qmd#addheaders) column allows the user to add a string as the first line in the file. Reasons for doing this are explained [here](https://odm.discourse.group/t/generation-of-tables-and-lists-from-the-odm-working-excel-file/99/9?u=ysequeira). Each header should be added as a cell in the first row of the sheet.
+
+For example, consider the following release file,
+
+| A | B |
+|---|---|
+| 1 | 2 |
+
+If the value of the `addHeader` column for it is `version;1.1.0;name;John Doe`, then the release file would be modified as below,
+
+| version | 1.1.0 | name | John Doe |
+|---------|-------|------|----------|
+| A       | B     |      |          |
+| 1       | 2     |      |          |
+
+### RA-3: Deploying the files to OSF
+
+Once the release files have been built they will need to be uploaded to their release destinations. All of this information is encoded in the [`destinations`](./release-automation.qmd#destinations) column in the [`files`](./release-automation.qmd#files-sheet) sheet.
+
+Only the files whose `destinations` column contains the `osf` keyword should be uploaded to OSF. The [`osfLocation`](./release-automation.qmd#osflocation) column contains the path where the file should be uploaded. 
+
+There are three states that need to handled when deplying the file to OSF,
+
+1. When there are no release files on OSF. This means that this is the first release of the dictionary and all the files should be created and put in their correct location.
+2. When there is a previous release on OSF whose version is not the same as the new release. 
+    All the old files need to be moved to a sub folder within an archive folder. The name of the sub folder should be the previous release version. Within the sub folder, the previous release files should be placed in their old paths. 
+    From there, the new files should created and put in their correct location.
+3. When there is a previous release on OSF whose version is the same as the new release.
+    All the old files should be deleted.
+    The new files should be created and put in their correct location.
+
+### RA-4: Deploying the files to GitHub
+
+Similar to deplying files to OSF, files whose [`destinations`](./release-automation.qmd#destinations) column contains the `github` keyword need to be uploaded to the [PHES-ODM repo](https://github.com/Big-Life-Lab/PHES-ODM). The `githubLocation` folder identifies the path where the file should be uploaded.
+
+Similar to the OSF deployment feature, the following two states will need to be handled
+
+1. When there are no release files on GitHub. 
+    The files should be created and put in their correct locations. 
+    A branch should be created and named `release-{version}` and files put in there.
+    A commit should be made with the new files called `[BOT] release-{version}`
+    A PR should be made from the new branch into `dev`. The PR should be called `[BOT] Release {version}`
+2. When there is a release version on GitHub 
+    All the old files need to be deleted
+    The same steps as the first state need to be followed
+
+Finally, for every new release any existing release branches need to be deleted and their PRs need to be closed.
+
+### RA-5: Trigger a PR in the PHES-ODM-Doc repo
+
+Once the upload has been completed to all relevant destinations, a workflow should be trigged in the [PHES-ODM-Doc](https://github.com/Big-Life-Lab/PHES-ODM-Doc). This will allow the documentation repo to update itself with the new files.
+
+### RA-6: Trigger a PR in the PHES-ODM-Validation repo
+
+Similar to the documentation repo, a workflow will need to be trigged in the [PHES-ODM-Validation](https://github.com/Big-Life-Lab/PHES-ODM-Validation) repo to allow it to update to the new dictionary files.
+
+## Reference
+
+This section contains reference material used throughout the document.
+
+### Sheet Data Types
+
+This section goes over the data types that each column in a sheet can be encoded as. Although all sheet files, for example CSV and Excel, are read in as a string, these data types build on top of that encoding to simulate other data types. The data types are:
+
+#### string
+
+#### templateString
+
+A string with placeholders for data that will need to be filled in by a program. The placeholders are identified by opening and closing curly braces.
+
+For example, consider the template string "The file version is {version}". It has only one variable, `version`, which will need to be filled in.
+
+The full list of allowed variables are documented [here](./release-automation.qmd#template-variables).
+
+#### categorical
+
+A column with only a certain number of allowed values.
+
+For example, a categorical column that encodes the type of a pet could have the categories "dog" and "cat"
+
+#### list
+
+A column that encodes multiple values
+
+The multiple values are seperated by a semi-colon (;)
+
+For example, a column that encodes the names of a person's pets could have the value "Roscoe;Amy".
+
+#### nullable
+
+An addon type that allows a column to have null values.
+
+Null values are encoded as `N/A`
+
+### Template Variables
+
+#### version
+
+The current release version
+
+Can be obtained from the `version` column in the `summary` sheet in the dictionary
+
+This variable should be set to the latest version in the version column
+
+### Files Sheet
+
+This section documents details about the different columns in the files sheet in the dictionary. This is the sheet that contains metadata used to build and deploy the release files.
+
+Unless otherwise stated, all columns are required
+
+#### ID
+
+The unique identifier for this file. Mainly used as the primary key for the sheet.
+
+type: [string](./release-automation.qmd#string)
+
+#### label
+
+Human readable description for the file
+
+type: [string](./release-automation.qmd#string), [nullable](./release-automation.qmd#nullable)
+
+#### name
+
+The name of the file in the release
+
+type: [templateString](./release-automation.qmd#templatestring)
+
+#### type
+
+The file type
+
+type: [categorical](./release-automation.qmd#categorical)
+
+categories:
+
+* excel
+* csv
+
+#### part
+
+The name of the part that identifies what sheet(s) from the dictionary should be included in the file
+
+type: [string](./release-automation.qmd#string), [non-nullable](./release-automation.qmd#nullable)
+
+Validations:
+
+* The value should set to a `set` or a `part`
+* The value can be sey to a `set` only if the [type](./release-automation.qmd#type) column is `excel`
+
+#### addHeaders
+
+The contents of an optional header row to add as the first line in the file. Each header should added as a cell in the first row.
+
+type: [list](./release-automation.qmd#list) of [templateString](./release-automation.qmd#templatestring), [nullable](./release-automation.qmd#nullable)
+
+#### destinations
+
+Where the file will be uploaded to
+
+type: [list](./release-automation.qmd#list) of [categorical](./release-automation.qmd#categorical), [non-nullable](./release-automation.qmd#nullable)
+
+Categories
+* osf
+* github
+        
+Validations
+    * Has to have at least one destination
+
+#### osfLocation
+
+The path for the file on OSF
+
+type: [string](./release-automation.qmd#string), [nullable](./release-automation.qmd#nullable)
+
+Validations:
+    * Required if one of the destinations is osf
+
+#### githubLocation
+
+The path for the file on GitHub
+
+type: [string](./release-automation.qmd#string), [nullable](./release-automation.qmd#nullable)
+
+Validations:
+    * Required if one of the destinations is github
