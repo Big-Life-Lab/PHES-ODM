@@ -40,7 +40,7 @@ The [`part`](./release-automation.qmd#part) column determines where the contents
 When the column contains a reference to a part, the content of the file should be filled with the sheet in the dictionary that has the same name as that part. 
 When the column contains a reference to a set, the sheets in the dictionary with the same name as each part in the set should be added as a sheet in the file. The name of the sheets should match the name of the part it represents.
 
-The [`addHeader`](./release-automation.qmd#addheaders) column allows the user to add a string as the first line in the file. Reasons for doing this are explained [here](https://odm.discourse.group/t/generation-of-tables-and-lists-from-the-odm-working-excel-file/99/9?u=ysequeira). Each header should be added as a cell in the first row of the sheet.
+The [`addHeader`](./release-automation.qmd#addheaders) column allows the user to add a string as the first line in the file. Reasons for doing this are explained [here](https://odm.discourse.group/t/generation-of-tables-and-lists-from-the-odm-working-excel-file/99/9). Each header should be added as a cell in the first row of the sheet.
 
 For example, consider the following release file,
 
