@@ -55,27 +55,13 @@ If the value of the `addHeader` column for it is `version;1.1.0;name;John Doe`, 
 | A       | B     |      |          |
 | 1       | 2     |      |          |
 
-### RA-3: Deploying the files to OSF
+### RA-3: Deploying the files to GitHub
 
 Once the release files have been built they will need to be uploaded to their release destinations. All of this information is encoded in the [`destinations`](./release-automation.qmd#destinations) column in the [`files`](./release-automation.qmd#files-sheet) sheet.
 
-Only the files whose `destinations` column contains the `osf` keyword should be uploaded to OSF. The [`osfLocation`](./release-automation.qmd#osflocation) column contains the path where the file should be uploaded. 
+Files whose [`destinations`](./release-automation.qmd#destinations) column contains the `github` keyword will need to be uploaded to the [PHES-ODM repo](https://github.com/Big-Life-Lab/PHES-ODM). The `githubLocation` folder identifies the path where the file should be uploaded.
 
-There are three states that need to handled when deplying the file to OSF,
-
-1. When there are no release files on OSF. This means that this is the first release of the dictionary and all the files should be created and put in their correct location.
-2. When there is a previous release on OSF whose version is not the same as the new release. 
-    2.1. If the previous release is newer than the new release, then an error should be thrown and the entire process should stop.
-    2.2: Otherwise, all the old files need to be moved to a sub folder within an archive folder. The name of the sub folder should be the previous release version. Within the sub folder, the previous release files should be placed in their old paths. From there, the new files should created and put in their correct location.
-3. When there is a previous release on OSF whose version is the same as the new release.
-    All the old files should be deleted.
-    The new files should be created and put in their correct location.
-
-### RA-4: Deploying the files to GitHub
-
-Similar to deplying files to OSF, files whose [`destinations`](./release-automation.qmd#destinations) column contains the `github` keyword need to be uploaded to the [PHES-ODM repo](https://github.com/Big-Life-Lab/PHES-ODM). The `githubLocation` folder identifies the path where the file should be uploaded.
-
-Similar to the OSF deployment feature, the following two states will need to be handled
+The following two states will need to be handled
 
 1. When there are no release files on GitHub. 
     The files should be created and put in their correct locations. 
@@ -87,6 +73,22 @@ Similar to the OSF deployment feature, the following two states will need to be 
     2.2: Otherwise, all the old files need to be deleted. The same steps as the first state need to be followed
 
 Finally, for every new release any existing release branches need to be deleted and their PRs need to be closed.
+
+### RA-4: Deploying the files to OSF
+
+Similar to deplying files to OSF, files whose [`destinations`](./release-automation.qmd#destinations) column contains the `osf` keyword need to be uploaded to OSF. The `osfLocation` folder identifies the path where the file should be uploaded.
+
+The deployment to OSF should take place only when the release branch on GitHub has been merged to `main`.
+
+There are three states that need to handled when deplying the files to OSF,
+
+1. When there are no release files on OSF. This means that this is the first release of the dictionary and all the files should be created and put in their correct location.
+2. When there is a previous release on OSF whose version is not the same as the new release. 
+    2.1. If the previous release is newer than the new release, then an error should be thrown and the entire process should stop.
+    2.2: Otherwise, all the old files need to be moved to a sub folder within an archive folder. The name of the sub folder should be the previous release version. Within the sub folder, the previous release files should be placed in their old paths. From there, the new files should created and put in their correct location.
+3. When there is a previous release on OSF whose version is the same as the new release.
+    All the old files should be deleted.
+    The new files should be created and put in their correct location.
 
 ### RA-5: Trigger a PR in the PHES-ODM-Doc repo
 
