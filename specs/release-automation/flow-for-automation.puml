@@ -1,0 +1,67 @@
+@startuml
+:User triggers the workflow;
+start
+:Create release files;
+while(unchecked release files)
+if (addHeader) then(true)
+:Collapse headers;
+:Add new headers;
+endif
+if (release file on github) then(true)
+if(release version is less then version on github) then(true)
+:Throw error;
+stop
+endif
+:Create new branch if one has not been made;
+:Create the release file;
+:Add release file to correct location;
+else(false)
+if(release on OSF) then(true)
+:Create director for osf file storage;
+endif
+endif
+endwhile
+:Commit files to new branch;
+if(existing release branched/PRs) then(true)
+:Delete existing branches and PRs;
+endif
+:Push changes;
+:Create PR to dev with the new branch;
+stop
+:Release branch merged to main;
+start
+if(release files found in OSF upload directory) then(true)
+if(no release files on OSF) then(false)
+if(version on osf is different to current release version) then (true)
+if(OSF version is greater then release version) then(true)
+:Throw error;
+stop
+else(false)
+:Create archive folder;
+:Move old files to archive;
+:Create new directory for release;
+endif
+else(false)
+:Delete old files;
+endif
+endif
+endif
+:Upload OSF directory to OSF;
+stop
+:Updates to OSF and github are finished;
+start
+fork
+:Pull in latest dictionary changes to PHESD-doc;
+:Create PR to update main with latest changes;
+if(CI passes) then(true)
+:Merge to main;
+endif
+fork again
+:Pull in latest dictionary changes to PHESD-validation;
+:Create PR to update main with latest changes;
+if(CI passes) then(true)
+:Merge to main;
+endif
+endfork
+stop
+@enduml
