@@ -92,11 +92,11 @@ There are three states that need to handled when deplying the files to OSF,
 
 ### RA-5: Trigger a PR in the PHES-ODM-Doc repo
 
-Once the upload has been completed to all relevant destinations, a workflow should be trigged in the [PHES-ODM-Doc](https://github.com/Big-Life-Lab/PHES-ODM-Doc). This will allow the documentation repo to update itself with the new files.
+Once the PR has been created in the PHES-ODM repo, a workflow should be trigged in the [PHES-ODM-Doc](https://github.com/Big-Life-Lab/PHES-ODM-Doc). This will allow the documentation repo to update itself with the new files.
 
 ### RA-6: Trigger a PR in the PHES-ODM-Validation repo
 
-Similar to the documentation repo, a workflow will need to be trigged in the [PHES-ODM-Validation](https://github.com/Big-Life-Lab/PHES-ODM-Validation) repo to allow it to update to the new dictionary files.
+Once the PR has been created in the PHES-ODM repo, a workflow will need to be trigged in the [PHES-ODM-Validation](https://github.com/Big-Life-Lab/PHES-ODM-Validation) repo to allow it to update to the new dictionary files.
 
 ## Reference
 
