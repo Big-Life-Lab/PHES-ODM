@@ -15,3 +15,4 @@ template/attributesDetails.xlsx
 template/~$attributesDetails.xlsx
 
 .devcontainer/*
+.python-version

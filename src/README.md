@@ -1,6 +1,7 @@
 # Script README
 
-Source files for :
+Source files for:
 
-- generating SQL file to create database
-- generating metadata documentation in French and English
+- Create aSQL definition from lucid diagram [lucid-to-sql.py](lucid-to-sql.py).
+
+- Download dictionary files from OSF.io source files [data-tables.r].

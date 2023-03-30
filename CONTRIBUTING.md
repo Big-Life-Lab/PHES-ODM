@@ -9,3 +9,21 @@ The develop of the Ottawa Data Model mostly occurs with informal working groups 
 Working groups propose changes through a pull request to `dev`. Initial review for the PR is from previous contributors. Following there is a pull request from `dev` to `main` for proposed changes to the next version of the Ottawa Data Model. 
 
 We aim for a one-week community review period from `dev` to `main` during the initial agile development period. We welcome community review from anyone in the wastewater surveillance community. The ODM must work for your needed to be successful. Please `watch` this GH repo to ensure you are aware of proposed changed. 
+
+## Repo Organization
+
+### Naming Conventions
+
+* Use [kebab-case](https://www.theserverside.com/definition/Kebab-case#:~:text=Kebab%20case%20%2D%2D%20or%20kebab,properly%20convey%20a%20resource's%20meaning.) when naming files and folder making sure to use lower case
+
+### Git Workflow
+
+This repo follows the [git feature branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
+
+* The main branch (master or main) should always have the latest public/working/correct/buildable version of the documentation
+* As much as possible avoid commiting directly to master/main. Instead new features, bug fixes etc. should be worked on a seperate branch and then a PR should be made to dev. The dev branch should have the next version that the team is working towards. When the dev branch is ready to be released to the public, a PR should be made to master/main and merged in.
+* When a new version is released, the commit that has the new version should be tagged with the version number
+
+### New Version Checklist
+
+* Update the files in the [data](https://github.com/Big-Life-Lab/PHES-ODM/tree/main/data) folder. Each file should have the new version number attached at the end. For example, if the new version is `2.1.0`, then the `parts.csv` file should be named `parts-2.1.0.csv`.

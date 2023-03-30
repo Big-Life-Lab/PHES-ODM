@@ -1,3 +1,0 @@
-﻿locationID,locationName,sampleType,catchmentPop,assayMethod,creator,creatorEmail,maintainer,description,notes,,
-Ottawa-1,Ottawa-ROPEC,sludge,,,uOttawa – CHEO SARS-CoV-2 research group,uottawa.sars.cov.2@gmail.com,uOttawa-CHEO,This file contains data regarding normalized SARS-CoV-2 viral RNA signal in wastewater. These data support public health surveillance of covid-19 by providing a rapid assessment of circulating SARS-CoV-2 in the population. Included are normalized SARS-CoV-2 viral RNA signal for the N1 and N2 gene regions. Samples are collected from daily composite samples of primary sludge in Ottawa.,Robert O. Pickard Environmental Centre (ROPEC) which collects and treats wastewater from 91.6% of Ottawa’s population,,
-,,,,,,,,,,,
