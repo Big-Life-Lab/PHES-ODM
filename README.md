@@ -46,7 +46,7 @@ The documentation website includes:
 
 ## Data and metadata dictionary
 
-The ODM is comprised of 15 report tables and six look-up tablea, linked to each other based on logic relationships. The following figure provides an overview of the different data sources that are currently captured.
+The ODM is comprised of 15 report tables and six look-up tables, linked to each other based on logic relationships. The following figure provides an overview of the different data sources that are currently captured.
 
 ![Schematic representation of the ODM](img/subway.png)
 
