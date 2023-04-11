@@ -10,27 +10,24 @@ end group
 
 group RA-2: Creating the Release Files
     :Retrieve Excel Dictionary;
-
     :Parse metadata from files sheet;
-
-    :Construct file names;
-
-    :Fill file content;
-
+    :Construct file names, ending in ".csv" or ".xlsx";
+    :Populate file with information from appropriate sheet;
     :Add optional headers;
+    :Store file in appropriate directory based on its upload location;
 end group
 
 group RA-3: Deploying the files to GitHub
-    :Check if previous release exists on GitHub;
+    :Check if previous release exists on GitHub in the appropriate directory;
 
     if (No previous release on GitHub) then (yes)
-        :Create new release branch and files on GitHub;
+        :Create new release branch and move files to the GitHub file storage directory;
     else (no)
         if (Previous release is newer) then (yes)
             :Stop process and throw an error;
             stop
         else (no)
-            :Move old files and create new files on GitHub;
+            :Move old files to archive directory and move new files to appropriate directory;
         endif
     endif
     :Create PR from release branch to dev branch;
@@ -43,7 +40,7 @@ group RA-4: Deploying the files to OSF
     :Check if previous release exists on OSF;
 
     if (No previous release on OSF) then (yes)
-        :Create new release files on OSF;
+        :Push files in the OSF release directory to OSF using user OSF key;
     else (no)
         if (Previous release is newer) then (yes)
             :Stop process and throw an error;
@@ -53,7 +50,7 @@ group RA-4: Deploying the files to OSF
                 :Replace old files with new files on OSF;
             else (no)
                 :Move old files to archive folder;
-                :Create new release files on OSF;
+                :Push files in the OSF release directory to OSF using user OSF key;
             endif
         endif
     endif
