@@ -206,11 +206,13 @@ Where the file will be uploaded to
 type: [list](./#list) of [categorical](./#categorical), [non-nullable](./#nullable)
 
 Categories
+
 * osf
 * github
         
 Validations
-    * Has to have at least one destination
+
+* Has to have at least one destination
 
 #### osfLocation
 
@@ -219,7 +221,8 @@ The path for the file on OSF
 type: [string](./#string), [nullable](./#nullable)
 
 Validations:
-    * Required if one of the destinations is osf
+
+* Required if one of the destinations is osf
 
 #### githubLocation
 
@@ -228,4 +231,5 @@ The path for the file on GitHub
 type: [string](./#string), [nullable](./#nullable)
 
 Validations:
-    * Required if one of the destinations is github
+    
+* Required if one of the destinations is github
