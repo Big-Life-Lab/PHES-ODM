@@ -32,15 +32,15 @@ A user will need to manually triger the release process from the [Github Actions
 
 The first step in each release is the creation of the different files that form that release. The files are created from the dictionary Excel document whose link is provided by the user an as input. In addition, the files tab in the document contains all the metadata needed for this step.
 
-The structure of the files tab is shown [below](./release-automation.qmd#files-sheet). Each row in the files sheet represents a file that has to be created in the release.
+The structure of the files tab is shown [below](./#files-sheet). Each row in the files sheet represents a file that has to be created in the release.
 
-The file name can be constructed using the `[name](./release-automation.qmd#name)` and `[type](./release-automation.qmd#type)` columns in the files sheet. The [`type`](./release-automation.qmd#type) column decides what the file extension should be, **.csv** for CSV files and **.xlsx** for excel files.
+The file name can be constructed using the [`name`](./#name) and [`type`](./#type) columns in the files sheet. The [`type`](./#type) column decides what the file extension should be, **.csv** for CSV files and **.xlsx** for excel files.
 
-The [`part`](./release-automation.qmd#part) column determines where the contents of the file comes from or what to fill the file with. The column can contain an ID for a part or a set which should match up with a row in the parts sheet or sets sheet respectively. 
+The [`part`](./#part) column determines where the contents of the file comes from or what to fill the file with. The column can contain an ID for a part or a set which should match up with a row in the parts sheet or sets sheet respectively. 
 When the column contains a reference to a part, the content of the file should be filled with the sheet in the dictionary that has the same name as that part. 
 When the column contains a reference to a set, the sheets in the dictionary with the same name as each part in the set should be added as a sheet in the file. The name of the sheets should match the name of the part it represents.
 
-The [`addHeader`](./release-automation.qmd#addheaders) column allows the user to add a string as the first line in the file. Reasons for doing this are explained [here](https://odm.discourse.group/t/generation-of-tables-and-lists-from-the-odm-working-excel-file/99/9). Each header should be added as a cell in the first row of the sheet.
+The [`addHeader`](./#addheaders) column allows the user to add a string as the first line in the file. Reasons for doing this are explained [here](https://odm.discourse.group/t/generation-of-tables-and-lists-from-the-odm-working-excel-file/99/9). Each header should be added as a cell in the first row of the sheet.
 
 For example, consider the following release file,
 
@@ -57,9 +57,9 @@ If the value of the `addHeader` column for it is `version;1.1.0;name;John Doe`, 
 
 ### RA-3: Deploying the files to GitHub
 
-Once the release files have been built they will need to be uploaded to their release destinations. All of this information is encoded in the [`destinations`](./release-automation.qmd#destinations) column in the [`files`](./release-automation.qmd#files-sheet) sheet.
+Once the release files have been built they will need to be uploaded to their release destinations. All of this information is encoded in the [`destinations`](./#destinations) column in the [`files`](./#files-sheet) sheet.
 
-Files whose [`destinations`](./release-automation.qmd#destinations) column contains the `github` keyword will need to be uploaded to the [PHES-ODM repo](https://github.com/Big-Life-Lab/PHES-ODM). The `githubLocation` folder identifies the path where the file should be uploaded.
+Files whose [`destinations`](./#destinations) column contains the `github` keyword will need to be uploaded to the [PHES-ODM repo](https://github.com/Big-Life-Lab/PHES-ODM). The `githubLocation` folder identifies the path where the file should be uploaded.
 
 The following two states will need to be handled
 
@@ -76,7 +76,7 @@ Finally, for every new release any existing release branches need to be deleted 
 
 ### RA-4: Deploying the files to OSF
 
-Similar to deplying files to OSF, files whose [`destinations`](./release-automation.qmd#destinations) column contains the `osf` keyword need to be uploaded to OSF. The `osfLocation` folder identifies the path where the file should be uploaded.
+Similar to deplying files to OSF, files whose [`destinations`](./#destinations) column contains the `osf` keyword need to be uploaded to OSF. The `osfLocation` folder identifies the path where the file should be uploaded.
 
 The deployment to OSF should take place only when the release branch on GitHub has been merged to `main`.
 
@@ -114,7 +114,7 @@ A string with placeholders for data that will need to be filled in by a program.
 
 For example, consider the template string "The file version is {version}". It has only one variable, `version`, which will need to be filled in.
 
-The full list of allowed variables are documented [here](./release-automation.qmd#template-variables).
+The full list of allowed variables are documented [here](./#template-variables).
 
 #### categorical
 
@@ -156,25 +156,25 @@ Unless otherwise stated, all columns are required
 
 The unique identifier for this file. Mainly used as the primary key for the sheet.
 
-type: [string](./release-automation.qmd#string)
+type: [string](./#string)
 
 #### label
 
 Human readable description for the file
 
-type: [string](./release-automation.qmd#string), [nullable](./release-automation.qmd#nullable)
+type: [string](./#string), [nullable](./#nullable)
 
 #### name
 
 The name of the file in the release
 
-type: [templateString](./release-automation.qmd#templatestring)
+type: [templateString](./#templatestring)
 
 #### type
 
 The file type
 
-type: [categorical](./release-automation.qmd#categorical)
+type: [categorical](./#categorical)
 
 categories:
 
@@ -185,24 +185,24 @@ categories:
 
 The name of the part that identifies what sheet(s) from the dictionary should be included in the file
 
-type: [string](./release-automation.qmd#string), [non-nullable](./release-automation.qmd#nullable)
+type: [string](./#string), [non-nullable](./#nullable)
 
 Validations:
 
 * The value should set to a `set` or a `part`
-* The value can be sey to a `set` only if the [type](./release-automation.qmd#type) column is `excel`
+* The value can be sey to a `set` only if the [type](./#type) column is `excel`
 
 #### addHeaders
 
 The contents of an optional header row to add as the first line in the file. Each header should added as a cell in the first row.
 
-type: [list](./release-automation.qmd#list) of [templateString](./release-automation.qmd#templatestring), [nullable](./release-automation.qmd#nullable)
+type: [list](./#list) of [templateString](./#templatestring), [nullable](./#nullable)
 
 #### destinations
 
 Where the file will be uploaded to
 
-type: [list](./release-automation.qmd#list) of [categorical](./release-automation.qmd#categorical), [non-nullable](./release-automation.qmd#nullable)
+type: [list](./#list) of [categorical](./#categorical), [non-nullable](./#nullable)
 
 Categories
 * osf
@@ -215,7 +215,7 @@ Validations
 
 The path for the file on OSF
 
-type: [string](./release-automation.qmd#string), [nullable](./release-automation.qmd#nullable)
+type: [string](./#string), [nullable](./#nullable)
 
 Validations:
     * Required if one of the destinations is osf
@@ -224,7 +224,7 @@ Validations:
 
 The path for the file on GitHub
 
-type: [string](./release-automation.qmd#string), [nullable](./release-automation.qmd#nullable)
+type: [string](./#string), [nullable](./#nullable)
 
 Validations:
     * Required if one of the destinations is github
