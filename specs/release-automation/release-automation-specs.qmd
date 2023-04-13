@@ -36,11 +36,12 @@ The structure of the files tab is shown [below](./#files-sheet). Each row in the
 
 The file name can be constructed using the [`name`](./#name) and [`type`](./#type) columns in the files sheet. The [`type`](./#type) column decides what the file extension should be, **.csv** for CSV files and **.xlsx** for excel files.
 
-The [`part`](./#part) column determines where the contents of the file comes from or what to fill the file with. The column can contain an ID for a part or a set which should match up with a row in the parts sheet or sets sheet respectively. 
+The [`part`](./#part) column determines where the contents of the file comes from, in other words what to fill the file with. The column should contain a reference to a part in the parts sheet or a set in the sets sheet. Concretly, it should match up with either a value in the `setID` column in the sets sheet, or a value in the `partID` column in the parts sheet.
+
 When the column contains a reference to a part, the content of the file should be filled with the sheet in the dictionary that has the same name as that part. 
 When the column contains a reference to a set, the sheets in the dictionary with the same name as each part in the set should be added as a sheet in the file. The name of the sheets should match the name of the part it represents.
 
-The [`addHeader`](./#addheaders) column allows the user to add a string as the first line in the file. Reasons for doing this are explained [here](https://odm.discourse.group/t/generation-of-tables-and-lists-from-the-odm-working-excel-file/99/9). Each header should be added as a cell in the first row of the sheet.
+The [`addHeader`](./#addheaders) column allows the user to add a string as the first line in the file. Reasons for doing this are explained [in a discourse post](https://odm.discourse.group/t/generation-of-tables-and-lists-from-the-odm-working-excel-file/99/9). Each header should be added as a cell in the first row of the sheet.
 
 For example, consider the following release file,
 
@@ -48,7 +49,7 @@ For example, consider the following release file,
 |---|---|
 | 1 | 2 |
 
-If the value of the `addHeader` column for it is `version;1.1.0;name;John Doe`, then the release file would be modified as below,
+If the value of the `addHeader` column is `version;1.1.0;name;John Doe`, then the release file would be modified as below,
 
 | version | 1.1.0 | name | John Doe |
 |---------|-------|------|----------|
@@ -59,7 +60,7 @@ If the value of the `addHeader` column for it is `version;1.1.0;name;John Doe`, 
 
 Once the release files have been built they will need to be uploaded to their release destinations. All of this information is encoded in the [`destinations`](./#destinations) column in the [`files`](./#files-sheet) sheet.
 
-Files whose [`destinations`](./#destinations) column contains the `github` keyword will need to be uploaded to the [PHES-ODM repo](https://github.com/Big-Life-Lab/PHES-ODM). The `githubLocation` folder identifies the path where the file should be uploaded.
+Files whose [`destinations`](./#destinations) column contains the `github` keyword will need to be uploaded to the [PHES-ODM repo](https://github.com/Big-Life-Lab/PHES-ODM). The [`githubLocation`](./#githubLocation) column identifies the path where the file should be uploaded.
 
 The following two states will need to be handled
 
@@ -76,7 +77,7 @@ Finally, for every new release any existing release branches need to be deleted 
 
 ### RA-4: Deploying the files to OSF
 
-Similar to deplying files to OSF, files whose [`destinations`](./#destinations) column contains the `osf` keyword need to be uploaded to OSF. The `osfLocation` folder identifies the path where the file should be uploaded.
+Similar to deplying files to OSF, files whose [`destinations`](./#destinations) column contains the `osf` keyword need to be uploaded to OSF. The [`osfLocation`](./#osfLocation) folder identifies the path where the file should be uploaded.
 
 The deployment to OSF should take place only when the release branch on GitHub has been merged to `main`.
 
@@ -114,7 +115,7 @@ A string with placeholders for data that will need to be filled in by a program.
 
 For example, consider the template string "The file version is {version}". It has only one variable, `version`, which will need to be filled in.
 
-The full list of allowed variables are documented [here](./#template-variables).
+The full list of allowed variables are documented in the [template variables section](./#template-variables).
 
 #### categorical
 
