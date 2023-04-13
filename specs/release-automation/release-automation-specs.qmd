@@ -33,7 +33,7 @@ The user will interact with the software system in two ways:
 A user will need to manually triger the release process from the [Github Actions tab](https://github.com/Big-Life-Lab/PHES-ODM/actions) in the [PHES-ODM repo](https://github.com/Big-Life-Lab/PHES-ODM). The following inputs will need to be provided by the user:
 
 1. Link to the excel dictionary to use for the release. Currently, only links to an OSF repo are allowed.
-2. The OSF personal access token to use. The system will need this to gain access to the repo and perform operations on it.
+2. The OSF personal access token to use. The system will need this to download the ODM dictionary file user to generate the release files.
 
 ### RA-2: Creating the Release Files
 
@@ -73,9 +73,9 @@ The following two states will need to be handled
 
 1. When there are no release files on GitHub. 
     The files should be created and put in their correct locations. 
-    A branch should be created and named `release-{version}` and files put in there.
+    A branch should be created from `main` and named `release-{version}` and files put in there.
     A commit should be made with the new files called `[BOT] release-{version}`
-    A PR should be made from the new branch into `dev`. The PR should be called `[BOT] Release {version}`
+    A PR should be made from the new branch into `main`. The PR should be called `[BOT] Release {version}`
 2. When there is a release version on GitHub 
     2.1. If the previous release is newer than the new release, then an error should be thrown and the entire process should stop.
     2.2: Otherwise, all the old files need to be deleted. The same steps as the first state need to be followed
