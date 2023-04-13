@@ -14,6 +14,13 @@ Practically, the dictionary is implemented as an Excel document. Although the ma
 
 Releasing a new version of the dictionary is a laborious process that requires converting the excel document to multiple output formats. In addition, the different release files need to be uploaded to multiple release locations. Details about the release process are available [online](https://odm.discourse.group/t/generation-of-tables-and-lists-from-the-odm-working-excel-file/99/7). The current manual process of implementing a release takes time away from the dictionary developers as well as is susceptible to errors. Automating this process would increase the quality of each release as well as give back time to the dictionary staff.
 
+## User interactions
+
+The user will interact with the software system in two ways:
+
+1. **Trigerring a release**: The user will use the GitHub actions tab to start a new release. The steps are outlined in [this diagram](./trigerring-a-release.puml); and
+2. **Merging a release**: Once the user is happy with the release changes, they can merge their release by merging the release PR. The steps are outlines in [this diagram](./merging-a-release.puml).
+
 ## Software Constraints
 
 * The software system will need to use GitHub actions as its continuous integration tool.

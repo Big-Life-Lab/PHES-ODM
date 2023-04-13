@@ -1,0 +1,11 @@
+@startuml Merging a release
+
+start
+
+:User merges the release PR on GitHub to main;
+
+:The release software system uploads the necesarry release files to OSF;
+
+end
+
+@enduml
