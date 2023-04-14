@@ -1,0 +1,63 @@
+@startuml
+title Release Automation Process
+
+start
+group RA-1: Trigerring the Process
+    :User passes link to excel dictionary on OSF to use for the release;
+    :User passes OSF personal access token;
+    :User triggers release process;
+end group
+
+group RA-2: Creating the Release Files
+    :Retrieve Excel Dictionary;
+    :Parse metadata from files sheet;
+    :Extract file name and type;
+    :Extract dictionary version from the dictionary file name;
+    :Extract dictionary version from the dictionary summary sheet;
+    if (Version missmatch) then(yes)
+        :Issue error;
+        stop
+    else (no)
+        :Parse the name template string;
+        :Construct file names using populated template and file type;
+        :Extract the part value from sheets for this file;
+        :Check parts sheet for the partID;
+        if (Part is a set) then (yes)
+            :Extract set information from sets with that part as ID;
+            :Extract sheets with the parts of the set;
+            if(File type is csv) then (yes)
+                :Issue warning;
+                :Skip file;
+            else (no)
+            endif
+        else (no)
+            :Extract sheets with that name;
+        endif
+        :Populate file with appropriate sheet(s);
+        if (Addheader is list) then (yes)
+            :Add optional headers;
+        endif
+        :Create github and OSF staging directories;
+        :Create subdirectories in the staging directories based on osfLocation and githubLocation respectively;
+        :Store file in appropriate directory based on its destination;
+    endif
+end group
+
+group RA-3: Deploying the files to GitHub
+    :Check if previous release exists on GitHub in the current upload destination;
+    :Create new branch from main following the "release-{version}" naming template;
+    if (Is there a previous release on GitHub) then (no)
+        :Move files from the staging github directory to their final location;
+    else (yes)
+        if (Previous release version number is newer) then (yes)
+            :Stop process and throw an error;
+            stop
+        else (no)
+            :Remove old files and move new files to appropriate directory;
+        endif
+    endif
+    :Commit the changes with the message of "[BOT] release-{version}";
+    :Create PR from new branch to main with tittle of "[BOT] Release {version}";
+end group
+stop
+@enduml
