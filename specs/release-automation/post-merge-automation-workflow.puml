@@ -3,15 +3,17 @@ title Post merge workflow
 :Dev branch release PR merged to main branch;
 start
 group RA-4: Deploying the files to OSF
-    if (Is there previous release on OSF) then (no)
+    :Check OSF upload location for existing versions;
+    if (Is there previous release on OSF?) then (no)
         :Push files in the OSF staging directory to OSF using the user's OSF key;
     else (yes)
-        if (Previous release version number is newer) then (yes)
+        if (Previous release version number is newer?) then (yes)
             :Stop process and throw an error;
             stop
         else (no)
-            if (Previous release version number is same version) then (yes)
-                :Replace old files with new files on OSF;
+            if (Previous release version number is same version?) then (yes)
+                :Delete old version files;
+                :Upload new files on OSF;
             else (no)
                 :Move old files to archive folder with their version as the folder name;
                 :Push files in the OSF staging directory to OSF using the user's OSF key;
@@ -19,10 +21,4 @@ group RA-4: Deploying the files to OSF
         endif
     endif
 end group
-
-:Trigger workflow in PHES-ODM-Doc Repo;
-note right: RA-5: Trigger a PR in the PHES-ODM-Doc repo
-
-:Trigger workflow in PHES-ODM-Validation Repo;
-note right: RA-6: Trigger a PR in the PHES-ODM-Validation repo
-stop
+@enduml
