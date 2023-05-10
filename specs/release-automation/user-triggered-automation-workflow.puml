@@ -27,7 +27,7 @@ group RA-2: Creating the Release Files
                 :Extract set information from sets with that part as ID;
                 :Extract sheets with the parts of the set;
                 if(File type is csv?) then (yes)
-                    :Issue warning;
+                    :Record an error;
                     :Skip file;
                 else (no)
                 endif
@@ -40,7 +40,7 @@ group RA-2: Creating the Release Files
             endif
         repeat while (Unchecked rows in the files sheet?) is (yes)
         ->no;
-        if (Errors passed?) then (yes)
+        if (Errors recorded?) then (yes)
             :Display all errors;
             stop
         endif
