@@ -23,7 +23,7 @@ group RA-2: Creating the Release Files
             :Construct file name using populated template and file type;
             :Extract the part value from sheets for this file;
             :Check parts sheet for the partID;
-            if (Part is a partType set and has matching information in the sets sheet?) then (yes)
+            if (The part column matches with a setID in the sets sheet?) then (yes)
                 :Extract set information from sets with that part as ID;
                 :Extract sheets with the parts of the set;
                 if(File type is csv?) then (yes)
