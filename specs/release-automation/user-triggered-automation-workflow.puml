@@ -50,7 +50,8 @@ group RA-2: Creating the Release Files
 end group
 
 group RA-3: Deploying the files to GitHub
-    :Download previous release dictionary file;
+    :Download the latest published dictionary file;
+    :Treat the latest published as previous release dictionary file;
     :Create new branch from main following the "release-{version}" naming template;
     if (Is there a previous release on GitHub?) then (no)
         :Move files from the staging github directory to their final location;
