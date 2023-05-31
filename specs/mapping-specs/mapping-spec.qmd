@@ -1,0 +1,67 @@
+
+
+# Requirement Gathering Document
+
+## 1. Purpose
+
+The purpose of this document is to capture the requirements for the new Python software library to map data from one data dictionary to another. The main dictionary we will map to is the Population Health Environmental Surveillance - Open Data Dictionary, Version 2.
+
+## 2. Project Overview
+
+The project involves creating a Python software library that aids in mapping data from one data dictionary to another, primarily focusing on the Population Health Environmental Surveillance - Open Data Dictionary (PHES-ODD). The library should adhere to Open Science and FAIR (Findable, Accessible, Interoperable, Reusable) data principles.
+
+## 3. Stakeholders
+
+Stakeholders will include:
+- Wastewater surveillance programs that hold data in ODM version 1.1 who want to map their data to version 2.
+- Waster surveillance and laboratories that hold data in non-ODM format who want to map ther data to ODM format. 
+- People/program who hold data in other published dictionaries who want to map/transform their data to ODM or from ODM to their dictionary.
+- People who have ODM data in wide format to wish to map their data to ODM long format. 
+
+## 4. Functional Requirements
+
+- The library should be able to read and write PHES-ODD v2 data dictionaries.
+- The library should be able to map data between PHES-ODD and other data dictionaries.
+- The library should follow the FAIR data principles, ensuring that the data and the library itself are Findable, Accessible, Interoperable, and Reusable.
+- The library should include functions to validate mappings against the PHES-ODD.
+- The library should include documentation with clear examples of how to use the library.
+
+## 5. Non-Functional Requirements
+
+- The library should be implemented in Python.
+- The library should be easy to install and use.
+- The library should be open source and follow open science principles.
+- The library should be performant, even with large data dictionaries.
+
+
+# Scoping Document
+
+## 1. Project Objective
+
+The objective of this project is to create a Python library that aids users in mapping data from one data dictionary to another, primarily focusing on the PHES-ODD v2. The goal is not only to provide a tool for data mapping but also to create a platform that follows open science principles and promotes the FAIR data principles.
+
+## 2. Deliverables
+
+The main deliverable is a Python library, along with its documentation. The library should be compatible with PHES-ODD v2 and have the ability to map to other data dictionaries.
+
+## 3. Out of Scope
+
+The project will not include:
+
+- Direct support or tools for data dictionaries other than PHES-ODD v2. While the tool should be flexible enough to handle other dictionaries, specific support for these is out of scope.
+- The project won't handle data cleaning or preprocessing tasks.
+
+## 4. Project Constraints
+
+- The project will be completed using Python.
+- The library will be built with the intent of open sourcing it.
+
+## 5. Assumptions
+
+- The project assumes that users have a basic understanding of Python and data dictionaries.
+- It is assumed that PHES-ODD v2 is the primary dictionary to which data will be mapped.
+
+## 6. Dependencies
+
+- The project may depend on the ongoing maintenance and updates of the PHES-ODD v2.
+- The project will follow the approach of the previously developed R package called 'recodeflow'.
