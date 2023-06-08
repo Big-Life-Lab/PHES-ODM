@@ -28,7 +28,7 @@ Stakeholders will include:
 
 ## 5. Non-Functional Requirements
 
-- The library should be implemented in Python.
+- The library should be implemented in Python?
 - The library should be easy to install and use.
 - The library should be open source and follow open science principles.
 - The library should be performant, even with large data dictionaries.
@@ -43,6 +43,20 @@ The objective of this project is to create a Python library that aids users in m
 ## 2. Deliverables
 
 The main deliverable is a Python library, along with its documentation. The library should be compatible with PHES-ODD v2 and have the ability to map to other data dictionaries.
+
+## 2. File format supported
+
+- CSV
+- Excel
+
+
+## x. Types of database or dictionaries supported supported
+
+x.1 ODM version to version (i.e. version 1 to version 2).
+x.2 ODM wide to long formats, and vice versa.
+x.3 Mixed ODM wide and long formats to ODM long.
+x.4 User generated tables to OMD (i.e. Quebec site that do not use a well-specified dictionary; rather they have generated their own in-house dictionary).
+x.5 Other published dictionaries or databases (NCBI, NWSS, PHA4GE)
 
 ## 3. Out of Scope
 
