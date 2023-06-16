@@ -1,0 +1,24 @@
+@startuml
+title Post merge workflow
+:Dev branch release PR merged to main branch;
+start
+group RA-4: Deploying the files to OSF
+    :Check OSF upload location for existing versions;
+    if (Is there previous release on OSF?) then (no)
+        :Push files in the OSF staging directory to OSF using the user's OSF key;
+    else (yes)
+        if (Previous release version number is newer?) then (yes)
+            :Stop process and throw an error;
+            stop
+        else (no)
+            if (Previous release version number is same version?) then (yes)
+                :Delete old version files;
+                :Upload new files on OSF;
+            else (no)
+                :Move old files to archive folder with their version as the folder name;
+                :Push files in the OSF staging directory to OSF using the user's OSF key;
+            endif
+        endif
+    endif
+end group
+@enduml

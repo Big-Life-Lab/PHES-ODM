@@ -26,6 +26,13 @@ Details about the release process are available [online](https://odm.discourse.g
 The current manual process of implementing a release takes time away from the dictionary developers and is susceanderrors.
 Automating this process would increase the release's quality, as well as give back time to the dictionary staff.
 
+## User interactions
+
+The user will interact with the software system in two ways:
+
+1. **Trigerring a release**: The user will use the GitHub actions tab to start a new release. The steps are outlined in [this diagram](./trigerring-a-release.puml); and
+2. **Merging a release**: Once the user is happy with the release changes, they can merge their release by merging the release PR. The steps are outlines in [this diagram](./merging-a-release.puml).
+
 ## Software Constraints
 
 -   The software system will use GitHub actions as its continuous integration tool.
@@ -74,7 +81,7 @@ For example, consider the following release file,
 |-----|-----|
 | 1   | 2   |
 
-If the value of the `addHeader` column for it is `version;1.1.0;name;John Doe`, then the release file would be modified as below,
+If the value of the `addHeader` column is `version;1.1.0;name;John Doe`, then the release file would be modified as below,
 
 | version | 1.1.0 | name | John Doe |
 |---------|-------|------|----------|
@@ -83,16 +90,20 @@ If the value of the `addHeader` column for it is `version;1.1.0;name;John Doe`, 
 
 ### RA-3: Deploying the files to GitHub
 
-Once the release files have been built they will need to be uploaded to their release destinations.
-All of this information is encoded in the [`destinations`](./release-automation.qmd#destinations) column in the [`files`](./release-automation.qmd#files-sheet) sheet.
+Once the release files have been built they will need to be uploaded to their release destinations. All of this information is encoded in the [`destinations`](./#destinations) column in the [`files`](./#files-sheet) sheet.
 
-Files whose [`destinations`](./release-automation.qmd#destinations) column contains the `github` keyword will need to be uploaded to the [PHES-ODM repo](https://github.com/Big-Life-Lab/PHES-ODM).
-The `githubLocation` folder identifies the path where the file should be uploaded.
+Files whose [`destinations`](./#destinations) column contains the `github` keyword will need to be uploaded to the [PHES-ODM repo](https://github.com/Big-Life-Lab/PHES-ODM). The [`githubLocation`](./#githubLocation) column identifies the path where the file should be uploaded.
 
 The following two states will need to be handled
 
-1.  When there are no release files on GitHub. The files should be created and put in their correct locations. A branch should be created and named `release-{version}` and files put in there. A commit should be made with the new files called `[BOT] release-{version}` A PR should be made from the new branch into `dev`. The PR should be called `[BOT] Release {version}`
-2.  When there is a release version on GitHub 2.1. If the previous release is newer than the new release, then an error should be thrown and the entire process should stop. 2.2: Otherwise, all the old files need to be deleted. The same steps as the first state need to be followed
+1. When there are no release files on GitHub. 
+    The files should be created and put in their correct locations. 
+    A branch should be created from `main` and named `release-{version}` and files put in there.
+    A commit should be made with the new files called `[BOT] release-{version}`
+    A PR should be made from the new branch into `main`. The PR should be called `[BOT] Release {version}`
+2. When there is a release version on GitHub 
+    2.1. If the previous release is newer than the new release, then an error should be thrown and the entire process should stop.
+    2.2: Otherwise, all the old files need to be deleted. The same steps as the first state need to be followed
 
 Finally, for every new release any existing release branches need to be deleted and their PRs need to be closed.
 
@@ -116,7 +127,7 @@ This will allow the documentation repo to update itself with the new files.
 
 ### RA-6: Trigger a PR in the PHES-ODM-Validation repo
 
-Similar to the documentation repo, a workflow will need to be trigged in the [PHES-ODM-Validation](https://github.com/Big-Life-Lab/PHES-ODM-Validation) repo to allow it to update to the new dictionary files.
+Once the PR has been created in the PHES-ODM repo, a workflow will need to be trigged in the [PHES-ODM-Validation](https://github.com/Big-Life-Lab/PHES-ODM-Validation) repo to allow it to update to the new dictionary files.
 
 ## Reference
 
@@ -138,7 +149,7 @@ The placeholders are identified by opening and closing curly braces.
 For example, consider the template string "The file version is {version}".
 It has only one variable, `version`, which will need to be filled in.
 
-The full list of allowed variables are documented [here](./release-automation.qmd#template-variables).
+The full list of allowed variables are documented in the [template variables section](./#template-variables).
 
 #### categorical
 
@@ -182,25 +193,25 @@ Unless otherwise stated, all columns are required
 The unique identifier for this file.
 Mainly used as the primary key for the sheet.
 
-type: [string](./release-automation.qmd#string)
+type: [string](./#string)
 
 #### label
 
 Human readable description for the file
 
-type: [string](./release-automation.qmd#string), [nullable](./release-automation.qmd#nullable)
+type: [string](./#string), [nullable](./#nullable)
 
 #### name
 
 The name of the file in the release
 
-type: [templateString](./release-automation.qmd#templatestring)
+type: [templateString](./#templatestring)
 
 #### type
 
 The file type
 
-type: [categorical](./release-automation.qmd#categorical)
+type: [categorical](./#categorical)
 
 categories:
 
@@ -211,42 +222,51 @@ categories:
 
 The name of the part that identifies what sheet(s) from the dictionary should be included in the file
 
-type: [string](./release-automation.qmd#string), [non-nullable](./release-automation.qmd#nullable)
+type: [string](./#string), [non-nullable](./#nullable)
 
 Validations:
 
--   The value should set to a `set` or a `part`
--   The value can be sey to a `set` only if the [type](./release-automation.qmd#type) column is `excel`
+* The value should set to a `set` or a `part`
+* The value can be sey to a `set` only if the [type](./#type) column is `excel`
 
 #### addHeaders
 
 The contents of an optional header row to add as the first line in the file.
 Each header should added as a cell in the first row.
 
-type: [list](./release-automation.qmd#list) of [templateString](./release-automation.qmd#templatestring), [nullable](./release-automation.qmd#nullable)
+type: [list](./#list) of [templateString](./#templatestring), [nullable](./#nullable)
 
 #### destinations
 
 Where the file will be uploaded to
 
-type: [list](./release-automation.qmd#list) of [categorical](./release-automation.qmd#categorical), [non-nullable](./release-automation.qmd#nullable)
+type: [list](./#list) of [categorical](./#categorical), [non-nullable](./#nullable)
 
-Categories \* osf \* github
+Categories
 
-Validations \* Has to have at least one destination
+* osf
+* github
+        
+Validations
+
+* Has to have at least one destination
 
 #### osfLocation
 
 The path for the file on OSF
 
-type: [string](./release-automation.qmd#string), [nullable](./release-automation.qmd#nullable)
+type: [string](./#string), [nullable](./#nullable)
 
-Validations: \* Required if one of the destinations is osf
+Validations:
+
+* Required if one of the destinations is osf
 
 #### githubLocation
 
 The path for the file on GitHub
 
-type: [string](./release-automation.qmd#string), [nullable](./release-automation.qmd#nullable)
+type: [string](./#string), [nullable](./#nullable)
 
-Validations: \* Required if one of the destinations is github
+Validations:
+    
+* Required if one of the destinations is github
