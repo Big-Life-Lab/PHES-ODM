@@ -1,0 +1,26 @@
+name: Update Documentation
+on:
+  workflow_dispatch:
+    inputs:
+      dictionary_link:
+        description: "Link to the dictionary stored on OSF"
+        required: true
+        default: 'missing'
+      osf_token:
+        description: "Personal OSF token to use for the download"
+        required: true
+        default: 'missing'
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: setup-r
+      uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: "4.1.1"
+    - name: Install R dependencies
+      uses: r-lib/actions/setup-r-dependencies@v2
+    - name: Run dictionary validation
+      uses: R -e 'PHES.ODM::create_release_files(${{github.event.inputs.dictionary_link}}, ${{github.event.inputs.osf_token}})'
