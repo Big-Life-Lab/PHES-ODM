@@ -180,15 +180,25 @@ validate_files_sheet <-
     return(files_to_extract)
   }
 
+#' Create Files
+#' 
+#' Function responsible for creating the release files based on output from validate_files_sheet
+#' 
+#' @param files_to_extract List output from validate_files_sheet
+#' @param dictionary_name String containing the dictionary name
+#' @param dictionary_path String containing the path to the dictionary
 create_files <-
   function(files_to_extract,
            dictionary_name,
            dictionary_path) {
+    # Loop over files to extract based on fileID
     for (fileID in names(files_to_extract)) {
       current_file_info <- files_to_extract[[fileID]]
       
+      # Use parts as names of sheets to extract
       sheets_to_read <- current_file_info$partID
       read_sheets <- list()
+      # In case of multiple sheets loop over the parts and read into list
       if (length(sheets_to_read) > 1) {
         for (sheet_name in sheets_to_read) {
           read_sheets[[sheet_name]] <- readxl::read_excel(file.path(getwd(),
@@ -196,6 +206,8 @@ create_files <-
                                                                     dictionary_name),
                                                           sheet = sheet_name)
           if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
+            # If custom headers are present more current headers down into first row and replace header
+            read_sheets[[sheet_name]] <- rbind(colnames(read_sheets[[sheet_name]]), read_sheets[[sheet_name]])
             colnames(read_sheets[[sheet_name]]) <-
               strsplit(current_file_info$add_headers, ";")[[1]]
           }
@@ -207,10 +219,12 @@ create_files <-
                                                       dictionary_name),
                                             sheet = sheets_to_read)
         if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
+          read_sheets[[sheets_to_read]] <- rbind(colnames(read_sheets[[sheets_to_read]]), read_sheets[[sheets_to_read]])
           colnames(read_sheets[[sheets_to_read]]) <-
             strsplit(current_file_info$add_headers, ";")[[1]]
         }
       }
+      # Create a write_directory based on destination and saving location
       write_dir <- ""
       if (current_file_info$destination == "github") {
         write_dir <- file.path(
