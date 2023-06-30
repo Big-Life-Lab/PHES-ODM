@@ -148,6 +148,7 @@ validate_files_sheet <-
         if (nrow(sets_info) >= 1) {
           # Replace partID with the partIDs belonging to the set
           partID <- sets_info[["partID"]]
+          partID <- strsplit(partID, ",")[[1]]
           validated_file <- TRUE
         } else{
           # Append error
@@ -198,6 +199,8 @@ create_files <-
       # Use parts as names of sheets to extract
       sheets_to_read <- current_file_info$partID
       read_sheets <- list()
+      print(sheets_to_read)
+      print(length(sheets_to_read))
       # In case of multiple sheets loop over the parts and read into list
       if (length(sheets_to_read) > 1) {
         for (sheet_name in sheets_to_read) {
@@ -255,7 +258,8 @@ create_files <-
               paste0(current_file_info$file_name, ".xlsx")
             ),
             sheetName = sheet_name,
-            row.names = FALSE
+            row.names = FALSE,
+            append = TRUE
           )
         }
       }else if(current_file_info$file_type == "csv"){
