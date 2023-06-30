@@ -2,6 +2,9 @@ files <- list(
   file_name = list(
     name = "name"
   ),
+  file_id = list(
+    name = "ID"
+  ),
   file_type = list(
     name = "fileType",
     categories = list(
