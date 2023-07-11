@@ -1,5 +1,5 @@
-#source(file.path(getwd(), "R", "odm-dictionary-file.R"))
-#source(file.path(getwd(), "R", "files.R"))
+source(file.path(getwd(), "R", "odm-dictionary-file.R"))
+source(file.path(getwd(), "R", "files.R"))
 #' Create release files
 #'
 #' Creates release files given the user OSF link and auth token.
@@ -21,13 +21,13 @@ create_release_files <-
     # Validate dictionary version
     dictionary_info <- validate_version(dictionary_path)
     
+    dictionary <- dictionary_info[[1]]
+    dictionary_version <- dictionary_info[[2]]
+    
     # Validate files sheet
     files_to_make <-
-      validate_files_sheet(
-        dictionary_info$dictionary_name,
-        dictionary_info$dictionary_version,
-        dictionary_path
-      )
+      validate_files_sheet(dictionary,
+                           dictionary_version)
     
     create_files(files_to_make,
                  dictionary_info$dictionary_name,
@@ -57,28 +57,28 @@ validate_version <- function(dictionary_path) {
     regmatches(file_names,
                regexec(dictionary_version_pattern, file_names))[[1]][2]
   
+  # Read in the dictionary workbook
+  dictionary <- openxlsx::loadWorkbook(file.path(getwd(),
+                                   dictionary_path,
+                                   file_names))
+  
   # Acquire version number from summary sheet
-  summary_sheet <- readxl::read_excel(file.path(getwd(),
-                                                dictionary_path,
-                                                file_names),
-                                      sheet = odm_dictionary$summary_sheet_name)
+  summary_sheet <- openxlsx::readWorkbook(dictionary, odm_dictionary$summary_sheet_name)
   # Read the first column
   summary_versions <- summary_sheet[[1]]
   # Strip off any NA rows
   summary_versions <- summary_versions[!is.na(summary_versions)]
   # Select the last version
   summary_version <- summary_versions[[length(summary_versions)]]
-  matching_versions <- FALSE
   # Compare if the versions match
-  if (summary_version == dictionary_file_name_version_number) {
-    matching_versions <- TRUE
+  if (summary_version != dictionary_file_name_version_number) {
+    warning("Dictionary file name version does not reflect version in summary sheet")
   }
   
   return(
     list(
-      dictionary_name = file_names,
-      dictionary_version = summary_version,
-      matching_versions = matching_versions
+      dictionary = dictionary,
+      dictionary_version = summary_version
     )
   )
 }
@@ -93,17 +93,10 @@ validate_version <- function(dictionary_path) {
 #'
 #' @return 2 lists containing csvs to export and another list containing excels to export.
 validate_files_sheet <-
-  function(dictionary_name,
-           version,
-           dictionary_path) {
-    files_sheet <- readxl::read_excel(file.path(getwd(),
-                                                dictionary_path,
-                                                dictionary_name),
-                                      sheet = odm_dictionary$files_sheet_name)
-    sets_sheet <- readxl::read_excel(file.path(getwd(),
-                                               dictionary_path,
-                                               dictionary_name),
-                                     sheet = odm_dictionary$sets_sheet_name)
+  function(dictionary,
+           version) {
+    files_sheet <- openxlsx::readWorkbook(dictionary, odm_dictionary$files_sheet_name)
+    sets_sheet <- openxlsx::readWorkbook(dictionary, odm_dictionary$sets_sheet_name)
     
     # Remove any rows with not supported file_type.
     files_sheet_formatted <-
@@ -118,7 +111,7 @@ validate_files_sheet <-
     files_to_extract <- list()
     errors <- ""
     for (row_index in 1:nrow(files_sheet_formatted)) {
-      working_row <- files_sheet_formatted[row_index, ]
+      working_row <- files_sheet_formatted[row_index,]
       
       # File extraction info
       fileID <- working_row[[files$file_id$name]]
@@ -182,16 +175,15 @@ validate_files_sheet <-
   }
 
 #' Create Files
-#' 
+#'
 #' Function responsible for creating the release files based on output from validate_files_sheet
-#' 
+#'
 #' @param files_to_extract List output from validate_files_sheet
 #' @param dictionary_name String containing the dictionary name
 #' @param dictionary_path String containing the path to the dictionary
 create_files <-
   function(files_to_extract,
-           dictionary_name,
-           dictionary_path) {
+           dictionary) {
     # Loop over files to extract based on fileID
     for (fileID in names(files_to_extract)) {
       current_file_info <- files_to_extract[[fileID]]
@@ -204,13 +196,11 @@ create_files <-
       # In case of multiple sheets loop over the parts and read into list
       if (length(sheets_to_read) > 1) {
         for (sheet_name in sheets_to_read) {
-          read_sheets[[sheet_name]] <- readxl::read_excel(file.path(getwd(),
-                                                                    dictionary_path,
-                                                                    dictionary_name),
-                                                          sheet = sheet_name)
+          read_sheets[[sheet_name]] <- openxlsx::readWorkbook(dictionary, sheet_name)
           if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
             # If custom headers are present more current headers down into first row and replace header
-            read_sheets[[sheet_name]] <- rbind(colnames(read_sheets[[sheet_name]]), read_sheets[[sheet_name]])
+            read_sheets[[sheet_name]] <-
+              rbind(colnames(read_sheets[[sheet_name]]), read_sheets[[sheet_name]])
             colnames(read_sheets[[sheet_name]]) <-
               strsplit(current_file_info$add_headers, ";")[[1]]
           }
@@ -222,7 +212,8 @@ create_files <-
                                                       dictionary_name),
                                             sheet = sheets_to_read)
         if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
-          read_sheets[[sheets_to_read]] <- rbind(colnames(read_sheets[[sheets_to_read]]), read_sheets[[sheets_to_read]])
+          read_sheets[[sheets_to_read]] <-
+            rbind(colnames(read_sheets[[sheets_to_read]]), read_sheets[[sheets_to_read]])
           colnames(read_sheets[[sheets_to_read]]) <-
             strsplit(current_file_info$add_headers, ";")[[1]]
         }
@@ -262,11 +253,13 @@ create_files <-
             append = TRUE
           )
         }
-      }else if(current_file_info$file_type == "csv"){
-        write.csv(read_sheets[[1]], file = file.path(
-          write_dir,
-          paste0(current_file_info$file_name, ".csv")
-        ), row.names = FALSE)
+      } else if (current_file_info$file_type == "csv") {
+        write.csv(read_sheets[[1]],
+                  file = file.path(write_dir,
+                                   paste0(
+                                     current_file_info$file_name, ".csv"
+                                   )),
+                  row.names = FALSE)
       }
     }
     
