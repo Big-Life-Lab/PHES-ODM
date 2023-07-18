@@ -173,6 +173,25 @@ validate_files_sheet <-
           if (length(partID) >= 1) {
             validated_file <- TRUE
           }
+        }else{
+          if (partID %in% parts_sheet[["partID"]]) {
+            if(partID %in% names(dictionary)){
+              validated_file <- TRUE  
+            }else{
+              errors <- paste0(
+                errors,
+                " \n",
+                single_part,
+                " does not have a matching sheet.")
+            }
+            
+          } else {
+            errors <-
+              paste0(errors,
+                     " \n",
+                     partID,
+                     " is not found in parts sheet.")
+          }
         }
       } else if (file_type == files$file_type$categories$csv) {
         if (nrow(set_info) >= 1) {
