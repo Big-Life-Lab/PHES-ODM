@@ -111,7 +111,7 @@ validate_files_sheet <-
     files_to_extract <- list()
     errors <- ""
     for (row_index in seq_len(nrow(files_sheet_formatted))) {
-      working_row <- files_sheet_formatted[row_index,]
+      working_row <- files_sheet_formatted[row_index, ]
       
       # File extraction info
       fileID <- working_row[[files$file_id$name]]
@@ -125,7 +125,7 @@ validate_files_sheet <-
       
       validated_file <- FALSE
       
-      set_info <- sets_sheet[sets_sheet$setID == partID, ]
+      set_info <- sets_sheet[sets_sheet$setID == partID,]
       # Determine if the partID supplied is set or part.
       if (file_type == files$file_type$categories$excel) {
         # If part exists in sets its a set therefore all parts belonging to the set are used as partID for sheet creation.
@@ -173,16 +173,15 @@ validate_files_sheet <-
           if (length(partID) >= 1) {
             validated_file <- TRUE
           }
-        }else{
+        } else{
           if (partID %in% parts_sheet[["partID"]]) {
-            if(partID %in% names(dictionary)){
-              validated_file <- TRUE  
-            }else{
-              errors <- paste0(
-                errors,
-                " \n",
-                single_part,
-                " does not have a matching sheet.")
+            if (partID %in% names(dictionary)) {
+              validated_file <- TRUE
+            } else{
+              errors <- paste0(errors,
+                               " \n",
+                               single_part,
+                               " does not have a matching sheet.")
             }
             
           } else {
@@ -203,14 +202,13 @@ validate_files_sheet <-
                    " is recorded for csv but is found in sets.")
         } else{
           if (partID %in% parts_sheet[["partID"]]) {
-            if(partID %in% names(dictionary)){
-              validated_file <- TRUE  
-            }else{
-              errors <- paste0(
-                errors,
-                " \n",
-                single_part,
-                " does not have a matching sheet.")
+            if (partID %in% names(dictionary)) {
+              validated_file <- TRUE
+            } else{
+              errors <- paste0(errors,
+                               " \n",
+                               single_part,
+                               " does not have a matching sheet.")
             }
             
           } else {
@@ -322,10 +320,19 @@ create_files <-
         output_sheet <-
           openxlsx::readWorkbook(dictionary, sheet_name)
         if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
+          new_headers <- strsplit(current_file_info$add_headers, ";")[[1]]
           output_sheet <-
             rbind(colnames(output_sheet), output_sheet)
-          colnames(output_sheet) <-
-            strsplit(current_file_info$add_headers, ";")[[1]]
+          if (length(colnames(output_sheet)) > length(new_headers)) {
+            length_to_append <- length(colnames(output_sheet))-length(new_headers)
+            new_headers <- c(new_headers, rep("", length_to_append))
+          } else if (length(colnames(output_sheet)) < length(new_headers)) {
+            length_to_append <- length(new_headers) - length(colnames(output_sheet))
+            for (col_counter in 1:length_to_append) {
+              output_sheet <- cbind(output_sheet, "")
+            }
+          }
+          colnames(output_sheet) <- new_headers
         }
         
         write.csv(output_sheet,
