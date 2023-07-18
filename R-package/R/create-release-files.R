@@ -1,5 +1,5 @@
-source(file.path(getwd(), "R", "odm-dictionary-file.R"))
-source(file.path(getwd(), "R", "files.R"))
+#source(file.path(getwd(), "R", "odm-dictionary-file.R"))
+#source(file.path(getwd(), "R", "files.R"))
 #' Create release files
 #'
 #' Creates release files given the user OSF link and auth token.
@@ -132,7 +132,7 @@ validate_files_sheet <-
           partID <- set_info[["partID"]]
           validated_file <- TRUE
         }
-      }else if(file_type == files$file_type$categories$csv){
+      } else if (file_type == files$file_type$categories$csv) {
         if (nrow(set_info) >= 1) {
           # Append error
           errors <-
@@ -140,10 +140,10 @@ validate_files_sheet <-
                    " \n",
                    partID,
                    " is recorded for csv but is found in sets.")
-        }else{
+        } else{
           validated_file <- TRUE
         }
-      }else{
+      } else{
         errors <-
           paste0(errors,
                  " \n",
@@ -186,34 +186,6 @@ create_files <-
     for (fileID in names(files_to_extract)) {
       current_file_info <- files_to_extract[[fileID]]
       
-      # Use parts as names of sheets to extract
-      sheets_to_read <- current_file_info$partID
-      read_sheets <- list()
-      print(sheets_to_read)
-      print(length(sheets_to_read))
-      # In case of multiple sheets loop over the parts and read into list
-      if (length(sheets_to_read) > 1) {
-        for (sheet_name in sheets_to_read) {
-          read_sheets[[sheet_name]] <-
-            openxlsx::readWorkbook(dictionary, sheet_name)
-          if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
-            # If custom headers are present more current headers down into first row and replace header
-            read_sheets[[sheet_name]] <-
-              rbind(colnames(read_sheets[[sheet_name]]), read_sheets[[sheet_name]])
-            colnames(read_sheets[[sheet_name]]) <-
-              strsplit(current_file_info$add_headers, ";")[[1]]
-          }
-        }
-      } else{
-        read_sheets[[sheets_to_read]] <-
-          files_sheet <- openxlsx::readWorkbook(dictionary,sheets_to_read)
-        if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
-          read_sheets[[sheets_to_read]] <-
-            rbind(colnames(read_sheets[[sheets_to_read]]), read_sheets[[sheets_to_read]])
-          colnames(read_sheets[[sheets_to_read]]) <-
-            strsplit(current_file_info$add_headers, ";")[[1]]
-        }
-      }
       # Create a write_directory based on destination and saving location
       write_dir <- ""
       if (current_file_info$destination == "github") {
@@ -236,21 +208,48 @@ create_files <-
         dir.create(write_dir,
                    showWarnings = TRUE)
       }
+      
+      
       if (current_file_info$file_type == "excel") {
-        for (sheet_name in names(read_sheets)) {
-          xlsx::write.xlsx(
-            read_sheets[[sheet_name]],
-            file = file.path(
-              write_dir,
-              paste0(current_file_info$file_name, ".xlsx")
-            ),
-            sheetName = sheet_name,
-            row.names = FALSE,
-            append = TRUE
-          )
+        # Use parts as names of sheets to extract
+        sheets_to_read <- current_file_info$partID
+        
+        # Create vector to track recorded sheets
+        sheet_was_copied <- rep(FALSE, length(sheets_to_read))
+        names(sheet_was_copied) <- sheets_to_read
+        
+        tmp_workbook <- openxlsx::copyWorkbook(dictionary)
+        
+        # Loop over sheets removing unnecessary sheets
+        existing_sheets <- names(tmp_workbook)
+        for (sheet_name in existing_sheets) {
+          if (sheet_name %in% names(sheet_was_copied)) {
+            sheet_was_copied[sheet_name] <- TRUE
+          } else{
+            openxlsx::removeWorksheet(tmp_workbook, sheet_name)
+          }
         }
+        
+        # Save the workbook in the appropriate directory
+        openxlsx::saveWorkbook(tmp_workbook,
+                               file = file.path(
+                                 write_dir,
+                                 paste0(current_file_info$file_name, ".xlsx")
+                               ),
+                               overwrite = TRUE)
+        
       } else if (current_file_info$file_type == "csv") {
-        write.csv(read_sheets[[1]],
+        sheet_name <- current_file_info$partID
+        output_sheet <-
+          openxlsx::readWorkbook(dictionary, sheet_name)
+        if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
+          output_sheet <-
+            rbind(colnames(output_sheet), output_sheet)
+          colnames(output_sheet) <-
+            strsplit(current_file_info$add_headers, ";")[[1]]
+        }
+        
+        write.csv(output_sheet,
                   file = file.path(write_dir,
                                    paste0(
                                      current_file_info$file_name, ".csv"
@@ -258,5 +257,4 @@ create_files <-
                   row.names = FALSE)
       }
     }
-    
   }
