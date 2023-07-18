@@ -151,7 +151,7 @@ validate_files_sheet <-
                 )
                 # Remove missing part
                 set_parts <-
-                  set_parts[names(set_parts != single_part)]
+                  set_parts[names(set_parts) != single_part]
               }
               
             } else{
@@ -165,12 +165,13 @@ validate_files_sheet <-
               )
               # Remove missing part
               set_parts <-
-                set_parts[names(set_parts != single_part)]
+                set_parts[names(set_parts) != single_part]
             }
           }
           partID <- unname(set_parts)
           # Check if any valid parts remain
           if (length(partID) >= 1) {
+            print(partID)
             validated_file <- TRUE
           }
         }else{
