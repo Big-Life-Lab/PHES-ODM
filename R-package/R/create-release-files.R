@@ -111,7 +111,7 @@ validate_files_sheet <-
     files_to_extract <- list()
     errors <- ""
     for (row_index in seq_len(nrow(files_sheet_formatted))) {
-      working_row <- files_sheet_formatted[row_index, ]
+      working_row <- files_sheet_formatted[row_index,]
       
       # File extraction info
       fileID <- working_row[[files$file_id$name]]
@@ -125,12 +125,54 @@ validate_files_sheet <-
       
       validated_file <- FALSE
       
-      set_info <- sets_sheet[sets_sheet$setID == partID,]
+      set_info <- sets_sheet[sets_sheet$setID == partID, ]
       # Determine if the partID supplied is set or part.
       if (file_type == files$file_type$categories$excel) {
+        # If part exists in sets its a set therefore all parts belonging to the set are used as partID for sheet creation.
         if (nrow(set_info) >= 1) {
-          partID <- set_info[["partID"]]
-          validated_file <- TRUE
+          set_name <- partID
+          set_parts <- set_info[["partID"]]
+          partID <- set_parts
+          # Set names for elements to allow removal of invalid parts
+          names(set_parts) <- set_parts
+          for (single_part in partID) {
+            if (single_part %in% parts_sheet[["partID"]]) {
+              # Check that a sheet with this part exists
+              if (single_part %in% names(dictionary)) {
+                next()
+              } else{
+                errors <- paste0(
+                  errors,
+                  " \n",
+                  single_part,
+                  " does not have a matching sheet but is part of ",
+                  set_name,
+                  " set, which was selected to be exported."
+                )
+                # Remove missing part
+                set_parts <-
+                  set_parts[names(set_parts != single_part)]
+              }
+              
+            } else{
+              errors <- paste0(
+                errors,
+                " \n",
+                single_part,
+                " is missing from the parts sheet but is present in the ",
+                set_name,
+                " set."
+              )
+              # Remove missing part
+              set_parts <-
+                set_parts[names(set_parts != single_part)]
+            }
+          }
+          partID <- unname(set_parts)
+          # Check if any valid parts remain
+          if (length(partID) >= 1) {
+            validated_file <- TRUE
+          }
         }
       } else if (file_type == files$file_type$categories$csv) {
         if (nrow(set_info) >= 1) {
@@ -141,7 +183,25 @@ validate_files_sheet <-
                    partID,
                    " is recorded for csv but is found in sets.")
         } else{
-          validated_file <- TRUE
+          if (partID %in% parts_sheet[["partID"]]) {
+            if(partID %in% names(dictionary)){
+              validated_file <- TRUE  
+            }else{
+              errors <- paste0(
+                errors,
+                " \n",
+                single_part,
+                " does not have a matching sheet.")
+            }
+            
+          } else {
+            errors <-
+              paste0(errors,
+                     " \n",
+                     partID,
+                     " is not found in parts sheet.")
+          }
+          
         }
       } else{
         errors <-
@@ -196,7 +256,7 @@ create_files <-
           current_file_info$github_location
         )
         dir.create(write_dir,
-                   showWarnings = TRUE)
+                   showWarnings = FALSE)
         
       } else if (current_file_info$destination == "osf") {
         write_dir <- file.path(
@@ -206,7 +266,7 @@ create_files <-
           current_file_info$osf_location
         )
         dir.create(write_dir,
-                   showWarnings = TRUE)
+                   showWarnings = FALSE)
       }
       
       
