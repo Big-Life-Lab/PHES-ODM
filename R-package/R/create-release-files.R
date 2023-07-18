@@ -171,7 +171,6 @@ validate_files_sheet <-
           partID <- unname(set_parts)
           # Check if any valid parts remain
           if (length(partID) >= 1) {
-            print(partID)
             validated_file <- TRUE
           }
         }else{
