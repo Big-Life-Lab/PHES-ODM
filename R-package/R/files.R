@@ -3,7 +3,7 @@ files <- list(
     name = "name"
   ),
   file_id = list(
-    name = "ID"
+    name = "fileID"
   ),
   file_type = list(
     name = "fileType",
