@@ -1,5 +1,5 @@
-#source(file.path(getwd(), "R", "odm-dictionary-file.R"))
-#source(file.path(getwd(), "R", "files.R"))
+source(file.path(getwd(), "R", "odm-dictionary-file.R"))
+source(file.path(getwd(), "R", "files.R"))
 #' Create release files
 #'
 #' Creates release files given the user OSF link and auth token.
@@ -273,7 +273,8 @@ create_files <-
           current_file_info$github_location
         )
         dir.create(write_dir,
-                   showWarnings = FALSE)
+                   showWarnings = FALSE,
+                   recursive = TRUE)
         
       } else if (current_file_info$destination == "osf") {
         write_dir <- file.path(
@@ -283,7 +284,8 @@ create_files <-
           current_file_info$osf_location
         )
         dir.create(write_dir,
-                   showWarnings = FALSE)
+                   showWarnings = FALSE,
+                   recursive = TRUE)
       }
       
       
