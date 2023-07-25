@@ -125,6 +125,17 @@ validate_files_sheet <-
       
       validated_file <- FALSE
       
+      # Validate destination
+      if(!(destination %in% files$destinations$categories)){
+        errors <- paste0(
+          errors,
+          " \n",
+          "File ID: ",
+          fileID,
+          " has an invalid destination set"
+        )
+      }
+      
       set_info <- sets_sheet[sets_sheet$setID == partID,]
       # Determine if the partID supplied is set or part.
       if (file_type == files$file_type$categories$excel) {
