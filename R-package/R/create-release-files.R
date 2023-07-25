@@ -21,17 +21,16 @@ create_release_files <-
     # Validate dictionary version
     dictionary_info <- validate_version(dictionary_path)
     
+    dictionary <- dictionary_info[[1]]
+    dictionary_version <- dictionary_info[[2]]
+    
     # Validate files sheet
     files_to_make <-
-      validate_files_sheet(
-        dictionary_info$dictionary_name,
-        dictionary_info$dictionary_version,
-        dictionary_path
-      )
+      validate_files_sheet(dictionary,
+                           dictionary_version)
     
     create_files(files_to_make,
-                 dictionary_info$dictionary_name,
-                 dictionary_path)
+                 dictionary)
   }
 
 #' Validate Version
@@ -57,30 +56,27 @@ validate_version <- function(dictionary_path) {
     regmatches(file_names,
                regexec(dictionary_version_pattern, file_names))[[1]][2]
   
+  # Read in the dictionary workbook
+  dictionary <- openxlsx::loadWorkbook(file.path(getwd(),
+                                                 dictionary_path,
+                                                 file_names))
+  
   # Acquire version number from summary sheet
-  summary_sheet <- readxl::read_excel(file.path(getwd(),
-                                                dictionary_path,
-                                                file_names),
-                                      sheet = odm_dictionary$summary_sheet_name)
+  summary_sheet <-
+    openxlsx::readWorkbook(dictionary, odm_dictionary$summary_sheet_name)
   # Read the first column
   summary_versions <- summary_sheet[[1]]
   # Strip off any NA rows
   summary_versions <- summary_versions[!is.na(summary_versions)]
   # Select the last version
   summary_version <- summary_versions[[length(summary_versions)]]
-  matching_versions <- FALSE
   # Compare if the versions match
-  if (summary_version == dictionary_file_name_version_number) {
-    matching_versions <- TRUE
+  if (summary_version != dictionary_file_name_version_number) {
+    warning("Dictionary file name version does not reflect version in summary sheet")
   }
   
-  return(
-    list(
-      dictionary_name = file_names,
-      dictionary_version = summary_version,
-      matching_versions = matching_versions
-    )
-  )
+  return(list(dictionary = dictionary,
+              dictionary_version = summary_version))
 }
 
 #' Validate files sheet
@@ -93,17 +89,14 @@ validate_version <- function(dictionary_path) {
 #'
 #' @return 2 lists containing csvs to export and another list containing excels to export.
 validate_files_sheet <-
-  function(dictionary_name,
-           version,
-           dictionary_path) {
-    files_sheet <- readxl::read_excel(file.path(getwd(),
-                                                dictionary_path,
-                                                dictionary_name),
-                                      sheet = odm_dictionary$files_sheet_name)
-    sets_sheet <- readxl::read_excel(file.path(getwd(),
-                                               dictionary_path,
-                                               dictionary_name),
-                                     sheet = odm_dictionary$sets_sheet_name)
+  function(dictionary,
+           version) {
+    files_sheet <-
+      openxlsx::readWorkbook(dictionary, odm_dictionary$files_sheet_name)
+    sets_sheet <-
+      openxlsx::readWorkbook(dictionary, odm_dictionary$sets_sheet_name)
+    parts_sheet <-
+      openxlsx::readWorkbook(dictionary, odm_dictionary$parts_sheet_name)
     
     # Remove any rows with not supported file_type.
     files_sheet_formatted <-
@@ -117,7 +110,7 @@ validate_files_sheet <-
       gsub('\\{version\\}', version, files_sheet_formatted[[files$osf_locations$name]])
     files_to_extract <- list()
     errors <- ""
-    for (row_index in 1:nrow(files_sheet_formatted)) {
+    for (row_index in seq_len(nrow(files_sheet_formatted))) {
       working_row <- files_sheet_formatted[row_index, ]
       
       # File extraction info
@@ -131,9 +124,76 @@ validate_files_sheet <-
       github_location <- working_row[[files$github_location$name]]
       
       validated_file <- FALSE
-      if (file_type == files$file_type$categories$csv) {
-        sets_info <- sets_sheet[sets_sheet$setID == partID, "partID"]
-        if (nrow(sets_info) >= 1) {
+      
+      set_info <- sets_sheet[sets_sheet$setID == partID,]
+      # Determine if the partID supplied is set or part.
+      if (file_type == files$file_type$categories$excel) {
+        # If part exists in sets its a set therefore all parts belonging to the set are used as partID for sheet creation.
+        if (nrow(set_info) >= 1) {
+          set_name <- partID
+          set_parts <- set_info[["partID"]]
+          partID <- set_parts
+          # Set names for elements to allow removal of invalid parts
+          names(set_parts) <- set_parts
+          for (single_part in partID) {
+            if (single_part %in% parts_sheet[["partID"]]) {
+              # Check that a sheet with this part exists
+              if (single_part %in% names(dictionary)) {
+                next()
+              } else{
+                errors <- paste0(
+                  errors,
+                  " \n",
+                  single_part,
+                  " does not have a matching sheet but is part of ",
+                  set_name,
+                  " set, which was selected to be exported."
+                )
+                # Remove missing part
+                set_parts <-
+                  set_parts[names(set_parts) != single_part]
+              }
+              
+            } else{
+              errors <- paste0(
+                errors,
+                " \n",
+                single_part,
+                " is missing from the parts sheet but is present in the ",
+                set_name,
+                " set."
+              )
+              # Remove missing part
+              set_parts <-
+                set_parts[names(set_parts) != single_part]
+            }
+          }
+          partID <- unname(set_parts)
+          # Check if any valid parts remain
+          if (length(partID) >= 1) {
+            validated_file <- TRUE
+          }
+        } else{
+          if (partID %in% parts_sheet[["partID"]]) {
+            if (partID %in% names(dictionary)) {
+              validated_file <- TRUE
+            } else{
+              errors <- paste0(errors,
+                               " \n",
+                               single_part,
+                               " does not have a matching sheet.")
+            }
+            
+          } else {
+            errors <-
+              paste0(errors,
+                     " \n",
+                     partID,
+                     " is not found in parts sheet.")
+          }
+        }
+      } else if (file_type == files$file_type$categories$csv) {
+        if (nrow(set_info) >= 1) {
           # Append error
           errors <-
             paste0(errors,
@@ -141,23 +201,32 @@ validate_files_sheet <-
                    partID,
                    " is recorded for csv but is found in sets.")
         } else{
-          validated_file <- TRUE
+          if (partID %in% parts_sheet[["partID"]]) {
+            if (partID %in% names(dictionary)) {
+              validated_file <- TRUE
+            } else{
+              errors <- paste0(errors,
+                               " \n",
+                               single_part,
+                               " does not have a matching sheet.")
+            }
+            
+          } else {
+            errors <-
+              paste0(errors,
+                     " \n",
+                     partID,
+                     " is not found in parts sheet.")
+          }
+          
         }
-      } else if (file_type == files$file_type$categories$excel) {
-        sets_info <- sets_sheet[sets_sheet$setID == partID, "partID"]
-        if (nrow(sets_info) >= 1) {
-          # Replace partID with the partIDs belonging to the set
-          partID <- sets_info[["partID"]]
-          partID <- strsplit(partID, ",")[[1]]
-          validated_file <- TRUE
-        } else{
-          # Append error
-          errors <-
-            paste0(errors,
-                   " \n",
-                   partID,
-                   " is recorded for excel but is not found in sets.")
-        }
+      } else{
+        errors <-
+          paste0(errors,
+                 " \n",
+                 partID,
+                 " has an unrecognized fileType of ",
+                 file_type)
       }
       
       # Append valid files list
@@ -182,51 +251,18 @@ validate_files_sheet <-
   }
 
 #' Create Files
-#' 
+#'
 #' Function responsible for creating the release files based on output from validate_files_sheet
-#' 
+#'
 #' @param files_to_extract List output from validate_files_sheet
-#' @param dictionary_name String containing the dictionary name
-#' @param dictionary_path String containing the path to the dictionary
+#' @param dictionary openxlsx environment object storing the dictionary
 create_files <-
   function(files_to_extract,
-           dictionary_name,
-           dictionary_path) {
+           dictionary) {
     # Loop over files to extract based on fileID
     for (fileID in names(files_to_extract)) {
       current_file_info <- files_to_extract[[fileID]]
       
-      # Use parts as names of sheets to extract
-      sheets_to_read <- current_file_info$partID
-      read_sheets <- list()
-      print(sheets_to_read)
-      print(length(sheets_to_read))
-      # In case of multiple sheets loop over the parts and read into list
-      if (length(sheets_to_read) > 1) {
-        for (sheet_name in sheets_to_read) {
-          read_sheets[[sheet_name]] <- readxl::read_excel(file.path(getwd(),
-                                                                    dictionary_path,
-                                                                    dictionary_name),
-                                                          sheet = sheet_name)
-          if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
-            # If custom headers are present more current headers down into first row and replace header
-            read_sheets[[sheet_name]] <- rbind(colnames(read_sheets[[sheet_name]]), read_sheets[[sheet_name]])
-            colnames(read_sheets[[sheet_name]]) <-
-              strsplit(current_file_info$add_headers, ";")[[1]]
-          }
-        }
-      } else{
-        read_sheets[[sheets_to_read]] <-
-          files_sheet <- readxl::read_excel(file.path(getwd(),
-                                                      dictionary_path,
-                                                      dictionary_name),
-                                            sheet = sheets_to_read)
-        if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
-          read_sheets[[sheets_to_read]] <- rbind(colnames(read_sheets[[sheets_to_read]]), read_sheets[[sheets_to_read]])
-          colnames(read_sheets[[sheets_to_read]]) <-
-            strsplit(current_file_info$add_headers, ";")[[1]]
-        }
-      }
       # Create a write_directory based on destination and saving location
       write_dir <- ""
       if (current_file_info$destination == "github") {
@@ -237,7 +273,7 @@ create_files <-
           current_file_info$github_location
         )
         dir.create(write_dir,
-                   showWarnings = TRUE)
+                   showWarnings = FALSE)
         
       } else if (current_file_info$destination == "osf") {
         write_dir <- file.path(
@@ -247,27 +283,64 @@ create_files <-
           current_file_info$osf_location
         )
         dir.create(write_dir,
-                   showWarnings = TRUE)
+                   showWarnings = FALSE)
       }
+      
+      
       if (current_file_info$file_type == "excel") {
-        for (sheet_name in names(read_sheets)) {
-          xlsx::write.xlsx(
-            read_sheets[[sheet_name]],
-            file = file.path(
-              write_dir,
-              paste0(current_file_info$file_name, ".xlsx")
-            ),
-            sheetName = sheet_name,
-            row.names = FALSE,
-            append = TRUE
-          )
+        # Use parts as names of sheets to extract
+        sheets_to_read <- current_file_info$partID
+        
+        # Create vector to track recorded sheets
+        sheet_was_copied <- rep(FALSE, length(sheets_to_read))
+        names(sheet_was_copied) <- sheets_to_read
+        
+        tmp_workbook <- openxlsx::copyWorkbook(dictionary)
+        
+        # Loop over sheets removing unnecessary sheets
+        existing_sheets <- names(tmp_workbook)
+        for (sheet_name in existing_sheets) {
+          if (sheet_name %in% names(sheet_was_copied)) {
+            sheet_was_copied[sheet_name] <- TRUE
+          } else{
+            openxlsx::removeWorksheet(tmp_workbook, sheet_name)
+          }
         }
-      }else if(current_file_info$file_type == "csv"){
-        write.csv(read_sheets[[1]], file = file.path(
-          write_dir,
-          paste0(current_file_info$file_name, ".csv")
-        ), row.names = FALSE)
+        
+        # Save the workbook in the appropriate directory
+        openxlsx::saveWorkbook(tmp_workbook,
+                               file = file.path(
+                                 write_dir,
+                                 paste0(current_file_info$file_name, ".xlsx")
+                               ),
+                               overwrite = TRUE)
+        
+      } else if (current_file_info$file_type == "csv") {
+        sheet_name <- current_file_info$partID
+        output_sheet <-
+          openxlsx::readWorkbook(dictionary, sheet_name)
+        if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
+          new_headers <- strsplit(current_file_info$add_headers, ";")[[1]]
+          output_sheet <-
+            rbind(colnames(output_sheet), output_sheet)
+          if (length(colnames(output_sheet)) > length(new_headers)) {
+            length_to_append <- length(colnames(output_sheet))-length(new_headers)
+            new_headers <- c(new_headers, rep("", length_to_append))
+          } else if (length(colnames(output_sheet)) < length(new_headers)) {
+            length_to_append <- length(new_headers) - length(colnames(output_sheet))
+            for (col_counter in 1:length_to_append) {
+              output_sheet <- cbind(output_sheet, "")
+            }
+          }
+          colnames(output_sheet) <- new_headers
+        }
+        
+        write.csv(output_sheet,
+                  file = file.path(write_dir,
+                                   paste0(
+                                     current_file_info$file_name, ".csv"
+                                   )),
+                  row.names = FALSE)
       }
     }
-    
   }
