@@ -4,18 +4,18 @@ source(file.path(getwd(), "R", "files.R"))
 #'
 #' Creates release files given the user OSF link and auth token.
 #'
-#' @param OSF_LINK link to the dictionary stored on OSF used for updating.
+#' @param OSF_LINK_RELEASE link to the dictionary stored on OSF used for updating.
 #' @param OSF_TOKEN OSF auth token used for modifying OSF directories
 #' @param dictionary_path optional string containing path to the dictionary directory. When provided no dictionary is downloaded.
 #'
 #' @export
 create_release_files <-
-  function(OSF_LINK, OSF_TOKEN, dictionary_path = NULL) {
+  function(OSF_LINK_RELEASE, OSF_LINK_PAST_RELEASE, OSF_TOKEN, dictionary_path = NULL, past_dictionary_path = NULL) {
     # Download file using passed credentials
     if (is.null(dictionary_path)) {
       dictionary_path <- odm_dictionary$tmp_dictionary_directory
       osfr::osf_auth(OSF_TOKEN)
-      osfr::osf_retrieve_file(OSF_LINK) %>%
+      osfr::osf_retrieve_file(OSF_LINK_RELEASE) %>%
         osfr::osf_download(path = dictionary_path)
     }
     # Validate dictionary version
@@ -30,6 +30,27 @@ create_release_files <-
                            dictionary_version)
     
     create_files(files_to_make,
+                 dictionary)
+    
+    # Download previous release dictionary
+    if (is.null(past_dictionary_path)) {
+      past_dictionary_path <- odm_dictionary$tmp_dictionary_directory_past_release
+      osfr::osf_auth(OSF_TOKEN)
+      osfr::osf_retrieve_file(OSF_LINK_PAST_RELEASE) %>%
+        osfr::osf_download(path = past_dictionary_path)
+    }
+    # Validate dictionary version
+    past_dictionary_info <- validate_version(past_dictionary_path)
+    
+    past_dictionary <- past_dictionary_info[[1]]
+    past_dictionary_version <- past_dictionary_info[[2]]
+    
+    # Validate files sheet
+    files_to_remove <-
+      validate_files_sheet(past_dictionary,
+                           past_dictionary_version)
+    
+    remove_files(files_to_make,
                  dictionary)
   }
 
@@ -357,3 +378,29 @@ create_files <-
       }
     }
   }
+
+
+
+remove_files <- function(files_to_remove, dictionary){
+  # Loop over files to remove based on fileID
+  for (fileID in names(files_to_remove)) {
+    current_file_info <- files_to_remove[[fileID]]
+    # Skip OSF files
+    if(current_file_info$destination == "OSF"){
+      next()
+    }else if(current_file_info$destination == "github"){
+      # Create full file path
+      file_extension <- switch (current_file_info$file_type,
+        "excel" = ".xlsx",
+        "csv" = ".csv"
+      )
+      file_path <- paste0(current_file_info$github_location, paste0(
+        current_file_info$file_name, file_extension))
+      print(file_path)
+      # Check if file exists 
+      if(file.exists(file_path)){
+        file.remove(file_path)
+      }
+    }
+  }
+}
