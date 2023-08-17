@@ -5,8 +5,10 @@ source(file.path(getwd(), "R", "files.R"))
 #' Creates release files given the user OSF link and auth token.
 #'
 #' @param OSF_LINK_RELEASE link to the dictionary stored on OSF used for updating.
+#' @param OSF_LINK_PAST_RELEASE link to the dictionary stored on OSF used for removal of previous release files.
 #' @param OSF_TOKEN OSF auth token used for modifying OSF directories
 #' @param dictionary_path optional string containing path to the dictionary directory. When provided no dictionary is downloaded.
+#' @param past_dictionary_path optional string containing path to the previous release dictionary directory. When provided no dictionary is downloaded.
 #'
 #' @export
 create_release_files <-
@@ -378,7 +380,12 @@ create_files <-
   }
 
 
-
+#' Remove Files
+#' 
+#' Helper function to remove files based on output from validate_files_sheet.
+#' 
+#' @param files_to_remove List output from validate_files_sheet
+#' @param dictionary openxlsx environment object storing the dictionary
 remove_files <- function(files_to_remove, dictionary) {
   # Loop over files to remove based on fileID
   for (fileID in names(files_to_remove)) {
