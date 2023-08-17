@@ -10,7 +10,17 @@ source(file.path(getwd(), "R", "files.R"))
 #'
 #' @export
 create_release_files <-
-  function(OSF_LINK_RELEASE, OSF_LINK_PAST_RELEASE, OSF_TOKEN, dictionary_path = NULL, past_dictionary_path = NULL) {
+  function(OSF_LINK_RELEASE,
+           OSF_LINK_PAST_RELEASE,
+           OSF_TOKEN,
+           dictionary_path = NULL,
+           past_dictionary_path = NULL) {
+    # Setup logging
+    # Remove previous log
+    file.remove(odm_dictionary$log_path)
+    # Set logger appending
+    logger::log_appender(logger::appender_file(odm_dictionary$log_path))
+    
     # Download file using passed credentials
     if (is.null(dictionary_path)) {
       dictionary_path <- odm_dictionary$tmp_dictionary_directory
@@ -34,7 +44,8 @@ create_release_files <-
     
     # Download previous release dictionary
     if (is.null(past_dictionary_path)) {
-      past_dictionary_path <- odm_dictionary$tmp_dictionary_directory_past_release
+      past_dictionary_path <-
+        odm_dictionary$tmp_dictionary_directory_past_release
       osfr::osf_auth(OSF_TOKEN)
       osfr::osf_retrieve_file(OSF_LINK_PAST_RELEASE) %>%
         osfr::osf_download(path = past_dictionary_path)
@@ -93,7 +104,7 @@ validate_version <- function(dictionary_path) {
   summary_version <- summary_versions[[length(summary_versions)]]
   # Compare if the versions match
   if (summary_version != dictionary_file_name_version_number) {
-    warning("Dictionary file name version does not reflect version in summary sheet")
+    logger::log_warn("Dictionary file name version does not reflect version in summary sheet")
   }
   
   return(list(dictionary = dictionary,
@@ -130,9 +141,9 @@ validate_files_sheet <-
     files_sheet_formatted[[files$osf_locations$name]] <-
       gsub('\\{version\\}', version, files_sheet_formatted[[files$osf_locations$name]])
     files_to_extract <- list()
-    errors <- ""
+    errors <- FALSE
     for (row_index in seq_len(nrow(files_sheet_formatted))) {
-      working_row <- files_sheet_formatted[row_index, ]
+      working_row <- files_sheet_formatted[row_index,]
       
       # File extraction info
       fileID <- working_row[[files$file_id$name]]
@@ -147,17 +158,14 @@ validate_files_sheet <-
       validated_file <- FALSE
       
       # Validate destination
-      if(!(destination %in% files$destinations$categories)){
-        errors <- paste0(
-          errors,
-          " \n",
-          "File ID: ",
-          fileID,
-          " has an invalid destination set"
-        )
+      if (!(destination %in% files$destinations$categories)) {
+        logger::log_warn(paste0("File ID: ",
+                                fileID,
+                                " has an invalid destination set"))
+        errors <- TRUE
       }
       
-      set_info <- sets_sheet[sets_sheet$setID == partID,]
+      set_info <- sets_sheet[sets_sheet$setID == partID, ]
       # Determine if the partID supplied is set or part.
       if (file_type == files$file_type$categories$excel) {
         # If part exists in sets its a set therefore all parts belonging to the set are used as partID for sheet creation.
@@ -173,28 +181,26 @@ validate_files_sheet <-
               if (single_part %in% names(dictionary)) {
                 next()
               } else{
-                errors <- paste0(
-                  errors,
-                  " \n",
-                  single_part,
-                  " does not have a matching sheet but is part of ",
-                  set_name,
-                  " set, which was selected to be exported."
+                logger::log_warn(
+                  paste0(
+                    single_part,
+                    " does not have a matching sheet but is part of ",
+                    set_name,
+                    " set, which was selected to be exported."
+                  )
                 )
+                errors <- TRUE
                 # Remove missing part
                 set_parts <-
                   set_parts[names(set_parts) != single_part]
               }
               
             } else{
-              errors <- paste0(
-                errors,
-                " \n",
-                single_part,
-                " is missing from the parts sheet but is present in the ",
-                set_name,
-                " set."
-              )
+              logger::log_warn(paste0(single_part,
+                                      " is missing from the parts sheet but is present in the ",
+                                      set_name,
+                                      " set."))
+              errors <- TRUE
               # Remove missing part
               set_parts <-
                 set_parts[names(set_parts) != single_part]
@@ -210,55 +216,44 @@ validate_files_sheet <-
             if (partID %in% names(dictionary)) {
               validated_file <- TRUE
             } else{
-              errors <- paste0(errors,
-                               " \n",
-                               single_part,
-                               " does not have a matching sheet.")
+              logger::log_warn(paste0(single_part,
+                                      " does not have a matching sheet."))
+              errors <- TRUE
             }
             
           } else {
-            errors <-
-              paste0(errors,
-                     " \n",
-                     partID,
-                     " is not found in parts sheet.")
+            logger::log_warn(paste0(partID,
+                                    " is not found in parts sheet."))
+            errors <- TRUE
           }
         }
       } else if (file_type == files$file_type$categories$csv) {
         if (nrow(set_info) >= 1) {
-          # Append error
-          errors <-
-            paste0(errors,
-                   " \n",
-                   partID,
-                   " is recorded for csv but is found in sets.")
+          logger::log_warn(paste0(partID,
+                                  " is recorded for csv but is found in sets."))
+          errors <- TRUE
         } else{
           if (partID %in% parts_sheet[["partID"]]) {
             if (partID %in% names(dictionary)) {
               validated_file <- TRUE
             } else{
-              errors <- paste0(errors,
-                               " \n",
-                               single_part,
-                               " does not have a matching sheet.")
+              logger::log_warn(paste0(single_part,
+                                      " does not have a matching sheet."))
+              errors <- TRUE
             }
             
           } else {
-            errors <-
-              paste0(errors,
-                     " \n",
-                     partID,
-                     " is not found in parts sheet.")
+            logger::log_warn(paste0(partID,
+                                    " is not found in parts sheet."))
+            errors <- TRUE
           }
           
         }
       } else{
-        errors <-
-          paste0(errors,
-                 " \n",
-                 partID,
-                 " has an unrecognized fileType of ",
-                 file_type)
+        logger::log_warn(paste0(partID,
+                                " has an unrecognized fileType of ",
+                                file_type))
+        errors <- TRUE
       }
       
       # Append valid files list
@@ -277,7 +272,8 @@ validate_files_sheet <-
     # Will move with development
     # Will become stop once function development is finished
     if (errors != "") {
-      warning(errors)
+      
+      warning("Errors were detected further building cannot continue please check the log for additional info")
     }
     return(files_to_extract)
   }
@@ -358,10 +354,12 @@ create_files <-
           output_sheet <-
             rbind(colnames(output_sheet), output_sheet)
           if (length(colnames(output_sheet)) > length(new_headers)) {
-            length_to_append <- length(colnames(output_sheet))-length(new_headers)
+            length_to_append <-
+              length(colnames(output_sheet)) - length(new_headers)
             new_headers <- c(new_headers, rep("", length_to_append))
           } else if (length(colnames(output_sheet)) < length(new_headers)) {
-            length_to_append <- length(new_headers) - length(colnames(output_sheet))
+            length_to_append <-
+              length(new_headers) - length(colnames(output_sheet))
             for (col_counter in 1:length_to_append) {
               output_sheet <- cbind(output_sheet, "")
             }
@@ -381,24 +379,24 @@ create_files <-
 
 
 
-remove_files <- function(files_to_remove, dictionary){
+remove_files <- function(files_to_remove, dictionary) {
   # Loop over files to remove based on fileID
   for (fileID in names(files_to_remove)) {
     current_file_info <- files_to_remove[[fileID]]
     # Skip OSF files
-    if(current_file_info$destination == "OSF"){
+    if (current_file_info$destination == "OSF") {
       next()
-    }else if(current_file_info$destination == "github"){
+    } else if (current_file_info$destination == "github") {
       # Create full file path
       file_extension <- switch (current_file_info$file_type,
-        "excel" = ".xlsx",
-        "csv" = ".csv"
+                                "excel" = ".xlsx",
+                                "csv" = ".csv")
+      file_path <- paste0(
+        current_file_info$github_location,
+        paste0(current_file_info$file_name, file_extension)
       )
-      file_path <- paste0(current_file_info$github_location, paste0(
-        current_file_info$file_name, file_extension))
-      print(file_path)
-      # Check if file exists 
-      if(file.exists(file_path)){
+      # Check if file exists
+      if (file.exists(file_path)) {
         file.remove(file_path)
       }
     }
