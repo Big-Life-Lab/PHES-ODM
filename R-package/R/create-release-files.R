@@ -24,57 +24,49 @@ create_release_files <-
     logger::log_appender(logger::appender_file(odm_dictionary$log_path))
     
     # Download file using passed credentials
-    if (is.null(dictionary_path)) {
-      dictionary_path <- odm_dictionary$tmp_dictionary_directory
-      osfr::osf_auth(OSF_TOKEN)
-      osfr::osf_retrieve_file(OSF_LINK_RELEASE) %>%
-        osfr::osf_download(path = dictionary_path)
-    }
+    dictionary_path <- download_dictionary(dictionary_path, OSF_TOKEN, OSF_LINK_RELEASE, odm_dictionary$tmp_dictionary_directory)
+    
     # Validate dictionary version
-    dictionary_info <- validate_version(dictionary_path)
+    dictionary_info <- get_dictionary(dictionary_path)
     
     dictionary <- dictionary_info[[1]]
     dictionary_version <- dictionary_info[[2]]
     
     # Validate files sheet
     files_to_make <-
-      validate_files_sheet(dictionary,
-                           dictionary_version)
+      validate_and_parse_files_sheet(dictionary,
+                                     dictionary_version)
     
     create_files(files_to_make,
                  dictionary)
     
     # Download previous release dictionary
-    if (is.null(past_dictionary_path)) {
-      past_dictionary_path <-
-        odm_dictionary$tmp_dictionary_directory_past_release
-      osfr::osf_auth(OSF_TOKEN)
-      osfr::osf_retrieve_file(OSF_LINK_PAST_RELEASE) %>%
-        osfr::osf_download(path = past_dictionary_path)
-    }
+    past_dictionary_path <- download_dictionary(past_dictionary_path, OSF_TOKEN, OSF_LINK_PAST_RELEASE, odm_dictionary$tmp_dictionary_directory_past_release)
+      
     # Validate dictionary version
-    past_dictionary_info <- validate_version(past_dictionary_path)
+    past_dictionary_info <- get_dictionary(past_dictionary_path)
     
     past_dictionary <- past_dictionary_info[[1]]
     past_dictionary_version <- past_dictionary_info[[2]]
     
     # Validate files sheet
     files_to_remove <-
-      validate_files_sheet(past_dictionary,
-                           past_dictionary_version)
+      validate_and_parse_files_sheet(past_dictionary,
+                                     past_dictionary_version)
     
     remove_files(files_to_make,
                  dictionary)
   }
 
-#' Validate Version
+#' Get Dictionary
 #'
-#' Validate dictionary version between file name and summary sheets.
+#' Retrieves the dictionary from the dictionary path. In addition validates that the
+#' latest version in the changelog is matching to the version in the file name.
 #'
 #' @param dictionary_path string containing path to the dictionary directory.
 #'
-#' @return list with: Dictionary file name, Dictionary version, Boolean representing if the versions match.
-validate_version <- function(dictionary_path) {
+#' @return list with: dictionary = xlsx object for a workbook, dictionary_version = string containing the dictionary version
+get_dictionary <- function(dictionary_path) {
   # Acquire version number from file name
   dictionary_version_pattern <- "ODM_dictionary_(\\d.*?).xlsx"
   file_names <-
@@ -113,16 +105,24 @@ validate_version <- function(dictionary_path) {
               dictionary_version = summary_version))
 }
 
-#' Validate files sheet
+#' Validate and parse files sheet
 #'
 #' Validate files sheet and its internal content for proper file creation.
+#' As well as extract all the necessary information for file creation.
 #'
-#' @param dictionary_name string containing the file dictionary name.
+#' @param dictionary xlsx package object storing the dictionary
 #' @param version string containing the dictionary version.
-#' @param dictionary_path string containing path to the dictionary directory.
 #'
-#' @return 2 lists containing csvs to export and another list containing excels to export.
-validate_files_sheet <-
+#' @return List containing files to extract with the following format for each element:
+#' files_to_extract <- list(
+#' file_name = string with the name of the file to create,
+#' file_type = string with the type of file,
+#' sheet_names = string/vector containing names of sheets to incorporate in the file,
+#' add_headers = string containing what headers to add or N/A for no headers,
+#' destination = string location for the file upload,
+#' osf_location = string location of the directory storage directory on OSF,
+#' github_location = string location of the directory storage directory on Github.
+validate_and_parse_files_sheet <-
   function(dictionary,
            version) {
     files_sheet <-
@@ -137,11 +137,17 @@ validate_files_sheet <-
       files_sheet[files_sheet[[files$file_type$name]] %in% files$file_type$categories, unlist(files_sheet_column_names)]
     # insert version
     files_sheet_formatted$name <-
-      gsub('\\{version\\}', version, files_sheet_formatted$name)
+      gsub(odm_dictionary$version_string,
+           version,
+           files_sheet_formatted$name)
     files_sheet_formatted[[files$add_headers$name]] <-
-      gsub('\\{version\\}', version, files_sheet_formatted[[files$add_headers$name]])
+      gsub(odm_dictionary$version_string,
+           version,
+           files_sheet_formatted[[files$add_headers$name]])
     files_sheet_formatted[[files$osf_locations$name]] <-
-      gsub('\\{version\\}', version, files_sheet_formatted[[files$osf_locations$name]])
+      gsub(odm_dictionary$version_string,
+           version,
+           files_sheet_formatted[[files$osf_locations$name]])
     files_to_extract <- list()
     errors <- FALSE
     for (row_index in seq_len(nrow(files_sheet_formatted))) {
@@ -157,13 +163,17 @@ validate_files_sheet <-
       osf_location <- working_row[[files$osf_locations$name]]
       github_location <- working_row[[files$github_location$name]]
       
-      validated_file <- FALSE
+      is_file_valid <- FALSE
       
       # Validate destination
       if (!(destination %in% files$destinations$categories)) {
-        logger::log_warn(paste0("File ID: ",
-                                fileID,
-                                " has an invalid destination set"))
+        logger::log_warn(
+          paste0(
+            "File ID: ",
+            fileID,
+            " has an invalid destination set, and will not be exported."
+          )
+        )
         errors <- TRUE
       }
       
@@ -173,12 +183,12 @@ validate_files_sheet <-
         # If part exists in sets its a set therefore all parts belonging to the set are used as partID for sheet creation.
         if (nrow(set_info) >= 1) {
           set_name <- partID
-          set_parts <- set_info[["partID"]]
-          partID <- set_parts
+          set_parts <- set_info[[files$part_ID$name]]
+          sheet_names <- set_parts
           # Set names for elements to allow removal of invalid parts
           names(set_parts) <- set_parts
           for (single_part in partID) {
-            if (single_part %in% parts_sheet[["partID"]]) {
+            if (single_part %in% parts_sheet[[files$part_ID$name]]) {
               # Check that a sheet with this part exists
               if (single_part %in% names(dictionary)) {
                 next()
@@ -188,7 +198,7 @@ validate_files_sheet <-
                     single_part,
                     " does not have a matching sheet but is part of ",
                     set_name,
-                    " set, which was selected to be exported."
+                    " set, which was selected to be exported. This sheet cannot be exported."
                   )
                 )
                 errors <- TRUE
@@ -198,10 +208,14 @@ validate_files_sheet <-
               }
               
             } else{
-              logger::log_warn(paste0(single_part,
-                                      " is missing from the parts sheet but is present in the ",
-                                      set_name,
-                                      " set."))
+              logger::log_warn(
+                paste0(
+                  single_part,
+                  " is missing from the parts sheet but is present in the ",
+                  set_name,
+                  " set, therefore it cant be exported."
+                )
+              )
               errors <- TRUE
               # Remove missing part
               set_parts <-
@@ -211,59 +225,55 @@ validate_files_sheet <-
           partID <- unname(set_parts)
           # Check if any valid parts remain
           if (length(partID) >= 1) {
-            validated_file <- TRUE
+            is_file_valid <- TRUE
           }
         } else{
-          if (partID %in% parts_sheet[["partID"]]) {
-            if (partID %in% names(dictionary)) {
-              validated_file <- TRUE
-            } else{
-              logger::log_warn(paste0(single_part,
-                                      " does not have a matching sheet."))
-              errors <- TRUE
-            }
-            
-          } else {
-            logger::log_warn(paste0(partID,
-                                    " is not found in parts sheet."))
-            errors <- TRUE
-          }
+          tmp_ret <-
+            is_valid_part(partID,
+                          parts_sheet,
+                          dictionary,
+                          is_file_valid,
+                          errors)
+          is_file_valid <- tmp_ret[[1]]
+          errors <- tmp_ret[[2]]
         }
       } else if (file_type == files$file_type$categories$csv) {
         if (nrow(set_info) >= 1) {
-          logger::log_warn(paste0(partID,
-                                  " is recorded for csv but is found in sets."))
+          logger::log_warn(
+            paste0(
+              partID,
+              " is recorded for csv but is found in sets. csv does not support exporting a set."
+            )
+          )
           errors <- TRUE
         } else{
-          if (partID %in% parts_sheet[["partID"]]) {
-            if (partID %in% names(dictionary)) {
-              validated_file <- TRUE
-            } else{
-              logger::log_warn(paste0(single_part,
-                                      " does not have a matching sheet."))
-              errors <- TRUE
-            }
-            
-          } else {
-            logger::log_warn(paste0(partID,
-                                    " is not found in parts sheet."))
-            errors <- TRUE
-          }
-          
+          tmp_ret <-
+            is_valid_part(partID,
+                          parts_sheet,
+                          dictionary,
+                          is_file_valid,
+                          errors)
+          is_file_valid <- tmp_ret[[1]]
+          errors <- tmp_ret[[2]]
         }
       } else{
-        logger::log_warn(paste0(partID,
-                                " has an unrecognized fileType of ",
-                                file_type))
+        logger::log_warn(
+          paste0(
+            partID,
+            " has an unrecognized fileType of ",
+            file_type,
+            ", and can't be exported."
+          )
+        )
         errors <- TRUE
       }
       
       # Append valid files list
-      if (validated_file) {
+      if (is_file_valid) {
         files_to_extract[[fileID]] <- list(
           file_name = file_name,
           file_type = file_type,
-          partID = partID,
+          sheet_names = partID,
           add_headers = add_headers,
           destination = destination,
           osf_location = osf_location,
@@ -274,45 +284,42 @@ validate_files_sheet <-
     # Will move with development
     # Will become stop once function development is finished
     if (errors != "") {
-      
-      warning("Errors were detected further building cannot continue please check the log for additional info")
+      warning(
+        "Errors were detected further building cannot continue please check the log for additional info"
+      )
     }
     return(files_to_extract)
   }
 
 #' Create Files
 #'
-#' Function responsible for creating the release files based on output from validate_files_sheet
+#' Function responsible for creating the release files based on output from validate_and_parse_files_sheet
 #'
-#' @param files_to_extract List output from validate_files_sheet
+#' @param files_to_extract List output from validate_and_parse_files_sheet
 #' @param dictionary openxlsx environment object storing the dictionary
 create_files <-
   function(files_to_extract,
            dictionary) {
+    reused_storage_prefix <- file.path(getwd(),
+                                       odm_dictionary$tmp_dictionary_directory)
     # Loop over files to extract based on fileID
     for (fileID in names(files_to_extract)) {
       current_file_info <- files_to_extract[[fileID]]
       
-      # Create a write_directory based on destination and saving location
+      # Create a write directory based on destination and saving location
       write_dir <- ""
       if (current_file_info$destination == "github") {
-        write_dir <- file.path(
-          getwd(),
-          odm_dictionary$tmp_dictionary_directory,
-          "github",
-          current_file_info$github_location
-        )
+        write_dir <- file.path(reused_storage_prefix,
+                               "github",
+                               current_file_info$github_location)
         dir.create(write_dir,
                    showWarnings = FALSE,
                    recursive = TRUE)
         
       } else if (current_file_info$destination == "osf") {
-        write_dir <- file.path(
-          getwd(),
-          odm_dictionary$tmp_dictionary_directory,
-          "osf",
-          current_file_info$osf_location
-        )
+        write_dir <- file.path(reused_storage_prefix,
+                               "osf",
+                               current_file_info$osf_location)
         dir.create(write_dir,
                    showWarnings = FALSE,
                    recursive = TRUE)
@@ -321,20 +328,12 @@ create_files <-
       
       if (current_file_info$file_type == "excel") {
         # Use parts as names of sheets to extract
-        sheets_to_read <- current_file_info$partID
-        
-        # Create vector to track recorded sheets
-        sheet_was_copied <- rep(FALSE, length(sheets_to_read))
-        names(sheet_was_copied) <- sheets_to_read
-        
+        sheets_to_copy <- current_file_info$sheet_names
         tmp_workbook <- openxlsx::copyWorkbook(dictionary)
-        
         # Loop over sheets removing unnecessary sheets
         existing_sheets <- names(tmp_workbook)
         for (sheet_name in existing_sheets) {
-          if (sheet_name %in% names(sheet_was_copied)) {
-            sheet_was_copied[sheet_name] <- TRUE
-          } else{
+          if (!(sheet_name %in% sheets_to_copy)) {
             openxlsx::removeWorksheet(tmp_workbook, sheet_name)
           }
         }
@@ -348,7 +347,7 @@ create_files <-
                                overwrite = TRUE)
         
       } else if (current_file_info$file_type == "csv") {
-        sheet_name <- current_file_info$partID
+        sheet_name <- current_file_info$sheet_names
         output_sheet <-
           openxlsx::readWorkbook(dictionary, sheet_name)
         if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
@@ -381,10 +380,10 @@ create_files <-
 
 
 #' Remove Files
-#' 
-#' Helper function to remove files based on output from validate_files_sheet.
-#' 
-#' @param files_to_remove List output from validate_files_sheet
+#'
+#' Helper function to remove files based on output from validate_and_parse_files_sheet.
+#'
+#' @param files_to_remove List output from validate_and_parse_files_sheet
 #' @param dictionary openxlsx environment object storing the dictionary
 remove_files <- function(files_to_remove, dictionary) {
   # Loop over files to remove based on fileID
@@ -408,4 +407,63 @@ remove_files <- function(files_to_remove, dictionary) {
       }
     }
   }
+}
+
+#' Is valid Part
+#'
+#' Helper function for checking if a partID is found in parts and also if a matching sheet is found.
+#'
+#' @param partID partID being tested.
+#' @param parts_sheet Parts sheet from the dictionary.
+#' @param dictionary Reference for the dictionary object.
+#' @param is_file_valid Boolean storing whether the file has been previously validated.
+#' @param errors Boolean storing flag for previously encountered errors.
+#'
+#' @return list: is_file_valid = boolean, errors = boolean.
+is_valid_part <-
+  function(partID,
+           parts_sheet,
+           dictionary,
+           is_file_valid,
+           errors) {
+    if (partID %in% parts_sheet[[files$part_ID$name]]) {
+      if (partID %in% names(dictionary)) {
+        is_file_valid <- TRUE
+      } else{
+        logger::log_warn(paste0(
+          single_part,
+          " does not have a matching sheet, and can't be exported."
+        ))
+        errors <- TRUE
+      }
+      
+    } else {
+      logger::log_warn(paste0(partID,
+                              " is not found in parts sheet, and can't be exported."))
+      errors <- TRUE
+    }
+    
+    return(list(is_file_valid = is_file_valid, errors = errors))
+  }
+
+#' Download dictionary
+#' 
+#' Utility function to download dictionary from OSF
+#' 
+#' @param dictionary_path string with path to dictionary
+#' @param OSF_TOKEN string containing the OSF auth token
+#' @param OSF_LINK string containing the link to the dictionary to download
+#' @param dictionary_set_path string containing the path to be set if one is not provided
+#' 
+#' @return string containing the path to the saved dictionary.
+download_dictionary <- function(dictionary_path, OSF_TOKEN, OSF_LINK, dictionary_set_path){
+  # Download file using passed credentials
+  if (is.null(dictionary_path)) {
+    dictionary_path <- dictionary_set_path
+    osfr::osf_auth(OSF_TOKEN)
+    osfr::osf_retrieve_file(OSF_LINK) %>%
+      osfr::osf_download(path = dictionary_path)
+  }
+  
+  return(dictionary_path)
 }
