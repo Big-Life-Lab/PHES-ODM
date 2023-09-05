@@ -300,8 +300,7 @@ validate_and_parse_files_sheet <-
 create_files <-
   function(files_to_extract,
            dictionary) {
-    reused_storage_prefix <- file.path(getwd(),
-                                       odm_dictionary$tmp_dictionary_directory)
+    reused_storage_prefix <- file.path(getwd(),"..")
     # Loop over files to extract based on fileID
     for (fileID in names(files_to_extract)) {
       current_file_info <- files_to_extract[[fileID]]
@@ -310,22 +309,15 @@ create_files <-
       write_dir <- ""
       if (current_file_info$destination == "github") {
         write_dir <- file.path(reused_storage_prefix,
-                               "github",
                                current_file_info$github_location)
         dir.create(write_dir,
                    showWarnings = FALSE,
                    recursive = TRUE)
         
-      } else if (current_file_info$destination == "osf") {
-        write_dir <- file.path(reused_storage_prefix,
-                               "osf",
-                               current_file_info$osf_location)
-        dir.create(write_dir,
-                   showWarnings = FALSE,
-                   recursive = TRUE)
       }
       
       
+      if(write_dir != ""){
       if (current_file_info$file_type == "excel") {
         # Use parts as names of sheets to extract
         sheets_to_copy <- current_file_info$sheet_names
@@ -375,6 +367,7 @@ create_files <-
                                    )),
                   row.names = FALSE)
       }
+    }
     }
   }
 
