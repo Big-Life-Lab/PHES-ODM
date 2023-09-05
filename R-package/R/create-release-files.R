@@ -33,9 +33,26 @@ create_release_files <-
     dictionary_version <- dictionary_info[[2]]
     
     # Validate files sheet
-    files_to_make <-
+    validation_return <-
       validate_and_parse_files_sheet(dictionary,
                                      dictionary_version)
+    files_to_make <- validation_return[[1]]
+    fatal_errors_flag <- validation_return[[2]]
+    
+    # Will move with development
+    # Will become stop once function development is finished
+    if (fatal_errors_flag) {
+      warning(
+        "Errors were detected further building cannot continue please check the log for additional info"
+      )
+    }
+    
+    # Create connection to git repo
+    repo <- git2r::repository(file.path(getwd(),".."))
+    # Create git branch
+    new_branch_name <- paste0("release-", dictionary_version)
+    git2r::checkout(repo, new_branch_name, create = TRUE)
+    
     
     create_files(files_to_make,
                  dictionary)
@@ -56,6 +73,8 @@ create_release_files <-
     
     remove_files(files_to_make,
                  dictionary)
+    
+    commit_files()
   }
 
 #' Get Dictionary
@@ -122,6 +141,8 @@ get_dictionary <- function(dictionary_path) {
 #' destination = string location for the file upload,
 #' osf_location = string location of the directory storage directory on OSF,
 #' github_location = string location of the directory storage directory on Github.
+#' 
+#' And also a boolean flag representing if fatal errors were encountered.
 validate_and_parse_files_sheet <-
   function(dictionary,
            version) {
@@ -281,14 +302,7 @@ validate_and_parse_files_sheet <-
         )
       }
     }
-    # Will move with development
-    # Will become stop once function development is finished
-    if (errors != "") {
-      warning(
-        "Errors were detected further building cannot continue please check the log for additional info"
-      )
-    }
-    return(files_to_extract)
+    return(list(files_to_extract, errors))
   }
 
 #' Create Files
@@ -390,7 +404,7 @@ remove_files <- function(files_to_remove, dictionary) {
       file_extension <- switch (current_file_info$file_type,
                                 "excel" = ".xlsx",
                                 "csv" = ".csv")
-      file_path <- paste0(
+      file_path <- paste0("..",
         current_file_info$github_location,
         paste0(current_file_info$file_name, file_extension)
       )
@@ -459,4 +473,12 @@ download_dictionary <- function(dictionary_path, OSF_TOKEN, OSF_LINK, dictionary
   }
   
   return(dictionary_path)
+}
+
+commit_files <- function(repo, dictionary_version){
+  # Add all the new files
+  git2r::add(repo, "--all")
+  # Create commit
+  git2r::commit(repo, paste0("[BOT] release-", dictionary_version))
+  
 }

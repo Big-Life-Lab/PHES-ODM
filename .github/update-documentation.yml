@@ -6,6 +6,10 @@ on:
         description: "Link to the dictionary stored on OSF"
         required: true
         default: 'missing'
+      past_dictionary_link:
+        description: "Link to the previous dictionary stored on OSF"
+        required: true
+        default: 'missing'
       osf_token:
         description: "Personal OSF token to use for the download"
         required: true
@@ -22,5 +26,5 @@ jobs:
         r-version: "4.1.1"
     - name: Install R dependencies
       uses: r-lib/actions/setup-r-dependencies@v2
-    - name: Run dictionary validation
-      uses: R -e 'PHES.ODM::create_release_files(${{github.event.inputs.dictionary_link}}, ${{github.event.inputs.osf_token}})'
+    - name: Run dictionary validation and file creation
+      uses: R -e 'PHES.ODM::create_release_files(OSF_LINK_RELEASE = ${{github.event.inputs.dictionary_link}}, OSF_LINK_PAST_RELEASE = ${{github.event.inputs.dictionary_link}}, OSF_TOKEN = ${{github.event.inputs.osf_token}})'
