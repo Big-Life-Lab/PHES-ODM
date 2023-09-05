@@ -477,6 +477,6 @@ download_dictionary <- function(dictionary_path, OSF_TOKEN, OSF_LINK, dictionary
 
 commit_files <- function(repo, dictionary_version){
   # Create commit
-  git2r::commit(repo, paste0("[BOT] release-", dictionary_version), all = TRUE)
+  git2r::commit(all = TRUE, message = paste0("[BOT] release-", dictionary_version))
   
 }
