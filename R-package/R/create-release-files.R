@@ -74,7 +74,7 @@ create_release_files <-
     remove_files(files_to_make,
                  dictionary)
     
-    commit_files()
+    commit_files(repo, dictionary_version)
   }
 
 #' Get Dictionary
@@ -476,9 +476,7 @@ download_dictionary <- function(dictionary_path, OSF_TOKEN, OSF_LINK, dictionary
 }
 
 commit_files <- function(repo, dictionary_version){
-  # Add all the new files
-  git2r::add(repo, "--all")
   # Create commit
-  git2r::commit(repo, paste0("[BOT] release-", dictionary_version))
+  git2r::commit(repo, paste0("[BOT] release-", dictionary_version), all = TRUE)
   
 }
