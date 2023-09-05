@@ -491,11 +491,17 @@ commit_files <- function(repo, dictionary_version){
   
 }
 
+#' Create pull request
+#' 
+#' Utility function to create a pull request
+#' 
+#' @param version Dictionary version
+#' @param branch_name Name of the new branch
 create_pull_request <- function(version, branch_name){
   gh::gh("POST /repos/{owner}/{repo}/pulls", 
          owner = "Big-Life-Lab",
          repo = "PHES-ODM",
          title = paste0("[BOT] Release ", version),
-         head = "branch_name",
+         head = branch_name,
          base = "main")
 }
