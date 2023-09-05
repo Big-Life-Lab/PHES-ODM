@@ -76,7 +76,6 @@ create_release_files <-
     
     commit_files(repo, dictionary_version, new_branch_name)
     
-    create_pull_request(dictionary_version, new_branch_name)
   }
 
 #' Get Dictionary
@@ -488,21 +487,7 @@ commit_files <- function(repo, dictionary_version, branch_name){
   system('git add --all')
   # Create commit
   git2r::commit(repo = repo, message = paste0("[BOT] release-", dictionary_version))
+  # Push updated branch
   git2r::push(repo, "origin", paste0("refs/heads/", branch_name))
   
-}
-
-#' Create pull request
-#' 
-#' Utility function to create a pull request
-#' 
-#' @param version Dictionary version
-#' @param branch_name Name of the new branch
-create_pull_request <- function(version, branch_name){
-  gh::gh("POST /repos/{owner}/{repo}/pulls", 
-         owner = "Big-Life-Lab",
-         repo = "PHES-ODM",
-         title = paste0("[BOT] Release ", version),
-         head = branch_name,
-         base = "main")
 }
