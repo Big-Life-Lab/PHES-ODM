@@ -488,7 +488,7 @@ commit_files <- function(repo, dictionary_version){
   system('git add --all')
   # Create commit
   git2r::commit(repo = repo, message = paste0("[BOT] release-", dictionary_version))
-  git2r::push(repo, set_upstream = TRUE)
+  git2r::push(repo, "origin", set_upstream = TRUE)
   
 }
 
