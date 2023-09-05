@@ -76,7 +76,7 @@ create_release_files <-
     
     commit_files(repo, dictionary_version)
     
-    #create_pull_request(dictionary_version, new_branch_name)
+    create_pull_request(dictionary_version, new_branch_name)
   }
 
 #' Get Dictionary
@@ -488,7 +488,7 @@ commit_files <- function(repo, dictionary_version){
   system('git add --all')
   # Create commit
   git2r::commit(repo = repo, message = paste0("[BOT] release-", dictionary_version))
-  #git2r::push(repo)
+  git2r::push(repo)
   
 }
 
