@@ -74,7 +74,7 @@ create_release_files <-
     remove_files(files_to_make,
                  dictionary)
     
-    commit_files(repo, dictionary_version)
+    commit_files(repo, dictionary_version, new_branch_name)
     
     create_pull_request(dictionary_version, new_branch_name)
   }
@@ -483,12 +483,12 @@ download_dictionary <- function(dictionary_path, OSF_TOKEN, OSF_LINK, dictionary
 #' 
 #' @param repo git2r object for repo reference
 #' @param dictionary_version version of the dictionary being deployed
-commit_files <- function(repo, dictionary_version){
+commit_files <- function(repo, dictionary_version, branch_name){
   # Add all files
   system('git add --all')
   # Create commit
   git2r::commit(repo = repo, message = paste0("[BOT] release-", dictionary_version))
-  git2r::push(repo, "origin", set_upstream = TRUE)
+  git2r::push(repo, "origin", paste0("refs/heads/", branch_name))
   
 }
 
