@@ -1,0 +1,549 @@
+"setID","setType","partID","partLabel","status","firstReleased","lastUpdated","changes","notes"
+"absHumidUnitSet","unitSets","gm3","Gram per cubic metre","active","2.0.0","2.0.0",NA,NA
+"airCompartmentSet","compartmentSets","air","Air compartment","active","2.0.0","2.0.0",NA,NA
+"airSurfaceCompartmentSet","compartmentSets","air","Air compartment","active","2.0.0","2.0.0",NA,NA
+"airSurfaceCompartmentSet","compartmentSets","surf","Surface compartment","active","2.0.0","2.0.0",NA,NA
+"airWaterCompartmentSet","compartmentSets","air","Air compartment","active","2.0.0","2.0.0",NA,NA
+"airWaterCompartmentSet","compartmentSets","air","Air compartment","active","2.0.0","2.0.0",NA,NA
+"alleleUnitSet","unitSets","ct","Cycle threshold or quantification cycle (Ct or Cq)","active","2.0.0","2.0.0",NA,NA
+"alleleUnitSet","unitSets","doc","Depth of coverage","active","2.0.0","2.0.0",NA,NA
+"alleleUnitSet","unitSets","gcCrA","Gene copies per copy of crAssphage","active","2.0.0","2.0.0",NA,NA
+"alleleUnitSet","unitSets","gCGS","Gene copies per gram solids","active","2.0.0","2.0.0",NA,NA
+"alleleUnitSet","unitSets","gcMl","Gene copies per mL","active","2.0.0","2.0.0",NA,NA
+"alleleUnitSet","unitSets","gcD100","gene copies per day per 100,000","active","2.0.0","2.0.0",NA,NA
+"alleleUnitSet","unitSets","det","Detected","active","1.1.0","2.0.0",NA,NA
+"alleleUnitSet","unitSets","gcPpmov","Gene copies per PMMoV copy","active","2.0.0","2.0.0",NA,NA
+"alleleUnitSet","unitSets","det","Detected","active","2.0.0","2.0.0",NA,NA
+"anyCompartmentSet","compartmentSets","air","Air compartment","active","2.0.0","2.0.0",NA,NA
+"anyCompartmentSet","compartmentSets","surf","Surface compartment","active","2.0.0","2.0.0",NA,NA
+"anyCompartmentSet","compartmentSets","wat","Water compartment","active","2.0.0","2.0.0",NA,NA
+"anySpecimenSet","specimenSets","po","Population","active","2.0.0","2.0.0",NA,NA
+"anySpecimenSet","specimenSets","sa","Sample","active","2.0.0","2.0.0",NA,NA
+"anySpecimenSet","specimenSets","si","Site","active","2.0.0","2.0.0",NA,NA
+"bacteriaUnitSet","unitSets","cfu","CFU per 100 ml","active","2.0.0","2.0.0",NA,NA
+"booleanAggrSet","aggregationSets","sin","Single","active","2.0.0","2.0.0",NA,NA
+"booleanAggrSet","aggregationSets","orBoo","OR Boolean aggregation","active","2.0.0","2.0.0",NA,NA
+"booleanAggrSet","aggregationSets","andBoo","AND Boolean aggregation","active","2.0.0","2.0.0",NA,NA
+"booleanSet","mmaSets","TRUE","TRUE","active","2.0.0","2.0.0",NA,NA
+"booleanSet","mmaSets","FALSE","FALSE","active","2.0.0","2.0.0",NA,NA
+"capacityUnitSet","unitSets","mgd","Millions of gallons per day (MG/D)","active","2.0.0","2.0.0",NA,NA
+"capacityUnitSet","unitSets","mld","Megalitres per day (ML/d)","active","2.0.0","2.0.0",NA,NA
+"capacityUnitSet","unitSets","popEq","Population equivalents","active","2.0.0","2.0.0",NA,NA
+"collectSet","mmaSets","areaPr","Area proportional sample","active","2.0.0","2.0.0",NA,NA
+"collectSet","mmaSets","cosca","COSCa ball","active","2.0.0","2.0.0",NA,NA
+"collectSet","mmaSets","flowPr","Flow proportional sample","active","1.0.0","2.0.0",NA,NA
+"collectSet","mmaSets","grb","Grab sample","active","1.0.0","2.0.0",NA,NA
+"collectSet","mmaSets","moorSw","Moore swab passive sample","active","1.0.0","2.0.0",NA,NA
+"collectSet","mmaSets","surfSw","Surface swab","active","2.0.0","2.0.0",NA,NA
+"collectSet","mmaSets","timePr","Time proportional sample","active","1.0.0","2.0.0",NA,NA
+"collectSet","mmaSets","volPr","Volume proportional sample","active","2.0.0","2.0.0",NA,NA
+"collectSet","mmaSets","comp","Composite sample - archival","active","2.0.0","2.0.0",NA,NA
+"conductivityUnitSet","unitSets","uSCm","Micro-Siemens per centimetre","active","2.0.0","2.0.0",NA,NA
+"contactTableSet","dictSets","sites","Sites table","active","2.0.0","2.0.0",NA,NA
+"contactTableSet","dictSets","organizations","Organization table","active","2.0.0","2.0.0",NA,NA
+"contactTableSet","dictSets","contacts","Contact table","active","2.0.0","2.0.0",NA,NA
+"contactTableSet","dictSets","addresses","Address table","active","2.0.0","2.0.0",NA,NA
+"crosswalkTableSet","dictSets",NA,NA,"development","2.0.0","2.0.0",NA,NA
+"dictionaryRefTableSet","dictSets","parts","Parts Look-up table","active","2.0.0","2.0.0",NA,NA
+"dictionaryRefTableSet","dictSets","sets","Sets look-up table","active","2.0.0","2.0.0",NA,NA
+"dictionaryRefTableSet","dictSets","languages","Language Look-up table","active","2.0.0","2.0.0",NA,NA
+"dictionaryRefTableSet","dictSets","countries","Countries look-up tables","active","2.1.0","2.1.0",NA,NA
+"dictionaryRefTableSet","dictSets","zones","Zones look-up table","active","2.1.0","2.1.0",NA,NA
+"dictionaryRefTableSet","dictSets","translations","Translation look-up table","active","2.0.0","2.0.0",NA,NA
+"dissGasUnitSet","unitSets","mgL","Milligrams per litre","active","2.0.0","2.0.0",NA,NA
+"dissGasUnitSet","unitSets","ppm","parts per million","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","addresses","Address table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","contacts","Contact table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","datasets","Dataset table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","instruments","Instrument table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","languages","Language Look-up table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","measures","Measure report table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","measureSets","Measure set report table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","organizations","Organization table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","parts","Parts Look-up table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","polygons","Polygon table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","protocolRelationships","Protocol relationships table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","protocols","Protocols table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","protocolSteps","Protocol steps table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","qualityReports","Quality reports table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","reportersDep","Reporter table depreciated","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","sampleRelationships","Sample relationships table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","samples","Sample report table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","sets","Sets look-up table","active","2.0.0","2.0.0",NA,NA
+"erdTableSet","dictSets","countries","Countries look-up tables","active","2.1.0","2.1.0",NA,NA
+"erdTableSet","dictSets","zones","Zones look-up table","active","2.1.0","2.1.0",NA,NA
+"erdTableSet","dictSets","sites","Sites table","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","extract4s","4s method","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","amiMP96","Amicon filter, extract with MP96","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","bbMP96","Bead beating, extract with MP96","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","chemVir","Chemagic viral dna/rna 300 kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","nucAuto","Nuclisens automated magnetic bead extraction kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","nucManu","Nuclisens manual magnetic bead extraction kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","phenCl","Phenol chloroform","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","promAuto","promega automated tna kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","promHt","promega ht tna kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","promManu","promega manual tna kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","promWW","promega wastewater large volume tna capture kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","qgDNARNA","qiagen allprep dna/rna kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","qgEz1","qiagen ez1 virus mini kit v2.0","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","qgPwrFecal","qiagen allprep powerfecal dna/rna kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","qgPwrViral","qiagen allprep powerviral dna/rna kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","qgPwrWtr","qiagen powerwater kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","qgQiAmp","qiagen qiaamp buffers with epoch columns","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","qgRneasy","qiagen rneasy kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","qgRneasyPwr","qiagen rneasy powermicrobiome kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","resCosca","Resuspend COSCa filter collection","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","thermMag","thermo magmax microbiome ultra nucleic acid isolation kit","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","trizol","trizol, zymo mag beads w/ zymo clean and concentrator","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","zymoEnv","zymo environ water rna kit/ zymo environ water rna kit (cat. r2042)","active","2.0.0","2.0.0",NA,NA
+"extractSet","mmaSets","zymoQuick","zymo quick-rna fungal/bacterial miniprep #r2014","active","2.0.0","2.0.0",NA,NA
+"flowUnitSet","unitSets","kgS","Kilogram per second","active","2.0.0","2.0.0",NA,NA
+"flowUnitSet","unitSets","kgS","Kilogram per second","active","2.0.0","2.0.0",NA,NA
+"flowUnitSet","unitSets","m3D","Cubic metres per day","active","2.0.0","2.0.0",NA,NA
+"flowUnitSet","unitSets","m3H","Cubic metres per hour","active","2.0.0","2.0.0",NA,NA
+"flowUnitSet","unitSets","m3S","Cubic metres per second","active","2.0.0","2.0.0",NA,NA
+"flowUnitSet","unitSets","mgd","Millions of gallons per day (MG/D)","active","2.0.0","2.0.0",NA,NA
+"flowUnitSet","unitSets","mld","Megalitres per day (ML/d)","active","2.0.0","2.0.0",NA,NA
+"fractionSet","mmaSets","liq","Liquid fraction","active","1.0.0","2.0.0",NA,NA
+"fractionSet","mmaSets","mix","Mixed/homogenized sample","active","1.0.0","2.0.0",NA,NA
+"fractionSet","mmaSets","sol","Solid fraction","active","1.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","addresses","Address table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","contacts","Contact table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","datasets","Dataset table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","instruments","Instrument table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","languages","Language Look-up table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","measures","Measure report table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","measureSets","Measure set report table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","organizations","Organization table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","parts","Parts Look-up table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","polygons","Polygon table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","protocolRelationships","Protocol relationships table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","protocols","Protocols table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","protocolSteps","Protocol steps table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","qualityReports","Quality reports table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","sampleRelationships","Sample relationships table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","samples","Sample report table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","sets","Sets look-up table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","sites","Sites table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","translations","Translation look-up table","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","summary","Summary worksheet","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","lists","List worksheet","active","2.0.0","2.0.0",NA,NA
+"fullDictionarySheetSet","dictSets","countries","Countries look-up tables","active","2.1.0","2.1.0",NA,NA
+"fullDictionarySheetSet","dictSets","zones","Zones look-up table","active","2.1.0","2.1.0",NA,NA
+"fullDictionarySheetSet","dictSets","wideNames","Wide name table","active","2.0.0","2.0.0",NA,NA
+"geneticUnitSet","unitSets","boc","Breadth of coverage (&gt;=5x depth)","active","2.0.0","2.0.0",NA,NA
+"geneticUnitSet","unitSets","doc","Depth of coverage","active","2.0.0","2.0.0",NA,NA
+"geneticUnitSet","unitSets","det","Detected","active","2.0.0","2.0.0",NA,NA
+"geneticUnitSet","unitSets","gcL","Gene copies per L","active","2.0.0","2.0.0",NA,NA
+"geneticUnitSet","unitSets","percRec","Percent recovery","active","2.0.0","2.0.0",NA,NA
+"geneticUnitSet","unitSets","prop","Proportion of total","active","2.0.0","2.0.0",NA,NA
+"geneticUnitSet","unitSets","propV","Proportion of variant in sample","active","2.0.0","2.0.0",NA,NA
+"geneticUnitSet","unitSets","det","Detected","active","2.0.0","2.0.0",NA,NA
+"genMissingnessSet","missingnessSets",NA,"Not applicable","active","2.0.0","2.0.0",NA,NA
+"genMissingnessSet","missingnessSets","nan","Not a number","active","2.0.0","2.0.0",NA,NA
+"genMissingnessSet","missingnessSets","nr","Not reported","active","2.0.0","2.0.0",NA,NA
+"genMissingnessSet","missingnessSets","undisc","Undisclosed","active","2.0.0","2.0.0",NA,NA
+"genMissingnessSet","missingnessSets","null","Null","active","2.0.0","2.0.0",NA,NA
+"genQualitySet","qualityIndSets","noConcern","No quality concerns","active","2.0.0","2.0.0",NA,NA
+"genQualitySet","qualityIndSets","qf1","Quality concerns","active","2.0.0","2.0.0",NA,NA
+"genQualitySet","qualityIndSets","mI","Multiple issues","active","2.0.0","2.0.0",NA,NA
+"geoTypeSet","mmaSets","hlthReg","Sewer Network Health Region","active","1.0.0","2.0.0",NA,NA
+"geoTypeSet","mmaSets","swrSet","Sewer catchment area","active","1.0.0","2.0.0",NA,NA
+"humanCompartmentSet","compartmentSets","hum","Human compartment","active","2.0.0","2.0.0",NA,NA
+"inhibitionSet","mmaSets","serialDilution","Serial dilution","active","2.0.0","2.0.0",NA,NA
+"inhibitionSet","mmaSets","spike","Spike matrix and recovery","active","2.0.0","2.0.0",NA,NA
+"insTypeSet","mmaSets","aas","Atline Analyzer","active","1.0.0","2.0.0",NA,NA
+"insTypeSet","mmaSets","hma","Hand Measurement","active","1.0.0","2.0.0",NA,NA
+"insTypeSet","mmaSets","instrumentTypeOther","Other instrument","active","1.0.0","2.0.0",NA,NA
+"insTypeSet","mmaSets","ola","Lab Analysis","active","1.0.0","2.0.0",NA,NA
+"insTypeSet","mmaSets","onse","Online Sensor","active","1.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","pmFloMean","PMMoV- and flow-normalized mean","active","2.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","pmmovNorm","PMMoV-normalized mean","active","2.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","upperCI95","Upper limit of a 95% confidence interval","active","2.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","sdn","Normalized standard deviation","active","1.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","menr","Normalized arithmetic mean","active","1.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","lowerCI95","Lower limit of a 95% confidence interval","active","2.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","floMean","Flow-normalized mean","active","2.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","maxVal","Maximum value","active","2.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","me","Arithmetic mean","active","2.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","med","Median","active","2.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","minVal","Minimum value","active","2.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","sd","Standard deviation","active","2.0.0","2.0.0",NA,NA
+"linearAggrSet","aggregationSets","sin","Single","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","dataTypes","Data types","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","aggregationScales","Aggregation scales","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","aggregations","Aggregations","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","attributes","Attributes","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","classes","Classes","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","compartments","Compartments","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","domains","Domains","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","groups","Groups","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","measurements","Measures","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","methods","Methods","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","missingness","Missingness","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","nomenclatures","Nomenclatures","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","qualityIndicators","Quality indicators","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","specimens","Specimens","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","tables","Tables","active","2.0.0","2.0.0",NA,NA
+"listSet","dictSets","units","Units","active","2.0.0","2.0.0",NA,NA
+"logAggrSet","aggregationSets","pmFloMean","PMMoV- and flow-normalized mean","active","2.0.0","2.0.0",NA,NA
+"logAggrSet","aggregationSets","pmmovNorm","PMMoV-normalized mean","active","2.0.0","2.0.0",NA,NA
+"logAggrSet","aggregationSets","upperCI95","Upper limit of a 95% confidence interval","active","2.0.0","2.0.0",NA,NA
+"logAggrSet","aggregationSets","lowerCI95","Lower limit of a 95% confidence interval","active","2.0.0","2.0.0",NA,NA
+"logAggrSet","aggregationSets","floMean","Flow-normalized mean","active","2.0.0","2.0.0",NA,NA
+"logAggrSet","aggregationSets","ngmn","Normalized geometric mean","active","1.0.0","2.0.0",NA,NA
+"logAggrSet","aggregationSets","gmn","Geometric mean","active","2.0.0","2.0.0",NA,NA
+"logAggrSet","aggregationSets","maxVal","Maximum value","active","2.0.0","2.0.0",NA,NA
+"logAggrSet","aggregationSets","minVal","Minimum value","active","2.0.0","2.0.0",NA,NA
+"logAggrSet","aggregationSets","sin","Single","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","noConcern","No quality concerns","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","qf1","Quality concerns","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","mI","Multiple issues","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","flagAI","AI - Inhibition present but addressed","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","flagB","B - Trace levels of contamination","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","expFail","Experiment Failed","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","flagFI","FI - Inhibition present and unaddressed","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","flagJ","J - Weak signal extrapolation","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","flagND","ND - Non-detect","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","noConcern","No quality concerns","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","flagUJ","UJ - Trace signal extrapolation","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","flagUQ","UQ - Unquantifiable","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","expFail","Experiment Failed","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","lBC","Low breadth of coverage","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","lDC","Low depth of coverage","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","noTime","Sample missing time stamp","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","sC","Sparse coverage","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","noConcern","No quality concerns","active","2.0.0","2.0.0",NA,NA
+"measQualitySet","qualityIndSets","wi","Wide 95% interval","active","2.0.0","2.0.0",NA,NA
+"methodConcSet","mmaSets","aloh3","Aloh3 precipitation","active","2.0.0","2.0.0",NA,NA
+"methodConcSet","mmaSets","amiconUf","Amicon ultrafiltration","active","2.0.0","2.0.0",NA,NA
+"methodConcSet","mmaSets","beeExtractFloc","Beef extract flocculation","active","2.0.0","2.0.0",NA,NA
+"methodConcSet","mmaSets","centriconUf","Centricon ultrafiltration","active","2.0.0","2.0.0",NA,NA
+"methodConcSet","mmaSets","ceres","Ceres nanotrap","active","2.0.0","2.0.0",NA,NA
+"methodConcSet","mmaSets","hollowFiberUF","Hollow fiber dead end ultrafiltration","active","2.0.0","2.0.0",NA,NA
+"methodConcSet","mmaSets","innovaprepUF","Innovaprep ultrafiltration","active","2.0.0","2.0.0",NA,NA
+"methodConcSet","mmaSets","peg","Polyethyleneglycol (PEG) precipitation","active","2.0.0","2.0.0",NA,NA
+"methodConcSet","mmaSets","skimMilkFloc","Skimmed milk flocculation","active","2.0.0","2.0.0",NA,NA
+"methodConcSet","mmaSets","untracent","Ultracentrifugation","active","2.0.0","2.0.0",NA,NA
+"naAggrSet","aggregationSets","naAggr","Aggregation not applicable","active","2.0.0","2.0.0",NA,NA
+"naCompartmentSet","compartmentSets","naCompartment","Compartment not applicable","active","2.0.0","2.0.0",NA,NA
+"naSpecimenSet","specimenSets","naSpecimen","Specimen not applicable","active","2.0.0","2.0.0",NA,NA
+"naUnitSet","unitSets","naUnit","Unit not applicable","active","2.0.0","2.0.0",NA,NA
+"nrNAMissingnessSet","missingnessSets",NA,"Not applicable","active","2.0.0","2.0.0",NA,NA
+"nrNAMissingnessSet","missingnessSets","nr","Not reported","active","2.0.0","2.0.0",NA,NA
+"orgLevelSet","mmaSets","neighborLevel","Local administrative units or neighborhoods","active","2.0.0","2.0.0",NA,NA
+"orgLevelSet","mmaSets","municipalLevel","Municipalities or communes","active","2.0.0","2.0.0",NA,NA
+"orgLevelSet","mmaSets","stateProvLevel","Departments, states, or provinces","active","2.0.0","2.0.0",NA,NA
+"orgLevelSet","mmaSets","admRegLevel","Administrative regions","active","2.0.0","2.0.0",NA,NA
+"orgLevelSet","mmaSets","countryLevel","Countries or sovereign states","active","2.0.0","2.0.0",NA,NA
+"orgLevelSet","mmaSets","countyLevel","Districts, counties, regions","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","ccc","Long-term acute care hospital","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","pubHealth","Public health agency","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","lab","Laboratory","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","healthAdm","Health administration or planning agency","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","fiNa","First Nation","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","ltcf","Long-term care facility","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","ltcfAl","Long-term care - assisted living or retirement home","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","school","School","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","sss","Social services shelter","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","uCampus","University campus","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","airport","Airport","active","2.0.0","2.0.0",NA,NA
+"orgSectorSet","mmaSets","dorm","Higher education domitory or residential building","active","2.0.0","2.0.0",NA,NA
+"orgTypeSet","mmaSets","academ","Academic institution","active","2.0.0","2.0.0",NA,NA
+"orgTypeSet","mmaSets","govt","Government agency","active","2.0.0","2.0.0",NA,NA
+"orgTypeSet","mmaSets","priv","Private sector","active","2.0.0","2.0.0",NA,NA
+"originSet","mmaSets","derived","Derived sample","active","2.0.0","2.0.0",NA,NA
+"originSet","mmaSets","field","Field sample","active","2.0.0","2.0.0",NA,NA
+"originSet","mmaSets","synthetic","Synthetic sample","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","upperCI95","Upper limit of a 95% confidence interval","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","sdn","Normalized standard deviation","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","menr","Normalized arithmetic mean","active","1.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","ngmn","Normalized geometric mean","active","1.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","lowerCI95","Lower limit of a 95% confidence interval","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","floMean","Flow-normalized mean","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","gmn","Geometric mean","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","minVal","Minimum value","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","maxVal","Maximum value","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","me","Arithmetic mean","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","med","Median","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","minVal","Minimum value","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","maxVal","Maximum value","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","naAggr","Aggregation not applicable","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","sd","Standard deviation","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","sin","Single","active","2.0.0","2.0.0",NA,NA
+"otherAggrSet","aggregationSets","sin","Single","active","2.0.0","2.0.0",NA,NA
+"otherReportTableSet","dictSets","polygons","Polygon table","active","2.0.0","2.0.0",NA,NA
+"otherReportTableSet","dictSets","datasets","Dataset table","active","2.0.0","2.0.0",NA,NA
+"outbreakSet","mmaSets","outbEnd","Outbreak End","active","2.0.0","2.0.0",NA,NA
+"outbreakSet","mmaSets","outbOngoing","Outbreak - on-going","active","2.0.0","2.0.0",NA,NA
+"outbreakSet","mmaSets","outbStart","Outbreak start","active","2.0.0","2.0.0",NA,NA
+"pcrQualitySet","qualityIndSets","flagAI","AI - Inhibition present but addressed","active","2.0.0","2.0.0",NA,NA
+"pcrQualitySet","qualityIndSets","flagB","B - Trace levels of contamination","active","2.0.0","2.0.0",NA,NA
+"pcrQualitySet","qualityIndSets","expFail","Experiment Failed","active","2.0.0","2.0.0",NA,NA
+"pcrQualitySet","qualityIndSets","flagFI","FI - Inhibition present and unaddressed","active","2.0.0","2.0.0",NA,NA
+"pcrQualitySet","qualityIndSets","flagJ","J - Weak signal extrapolation","active","2.0.0","2.0.0",NA,NA
+"pcrQualitySet","qualityIndSets","flagND","ND - Non-detect","active","2.0.0","2.0.0",NA,NA
+"pcrQualitySet","qualityIndSets","noConcern","No quality concerns","active","2.0.0","2.0.0",NA,NA
+"pcrQualitySet","qualityIndSets","flagUJ","UJ - Trace signal extrapolation","active","2.0.0","2.0.0",NA,NA
+"pcrQualitySet","qualityIndSets","flagUQ","UQ - Unquantifiable","active","2.0.0","2.0.0",NA,NA
+"pcrSet","mmaSets","bioRadDdpcr","Digital droplet emulsification PCR","active","2.0.0","2.0.0",NA,NA
+"pcrSet","mmaSets","fluiDpcr","Fluidigm digital PCR","active","2.0.0","2.0.0",NA,NA
+"pcrSet","mmaSets","ltDpcr","Life technologies digital PCR","active","2.0.0","2.0.0",NA,NA
+"pcrSet","mmaSets","qgDpcr","qiagen digital PCR","active","2.0.0","2.0.0",NA,NA
+"pcrSet","mmaSets","qpcr","Quantitative PCR","active","2.0.0","2.0.0",NA,NA
+"pcrSet","mmaSets","rainDpcr","Raindance digital PCR","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","acti","Number of active cases","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","conCase","Confirmed Cases Case report date","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","conf","Number of confirmed cases","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","confEp","Confirmed cases episode date","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","confOn","Confirmed Cases Onset date","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","conTest","Confirmed cases test date","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","hosa","General Hospital Admissions","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","hosc","Hospital Census","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","icu","Intensive care unit patients","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","newVax","Population of newly vaccinated persons","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","pprt","Percent positivity rate","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","ptot","Number of positive tests","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","test","Number of tests performed","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","vax1","Population with 1 or more doses of vaccine","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","vax2","Population with 2 or more doses of vaccine","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","rP100","Rate per 100,000","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","recov","Recovered patients","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","daiCo","Daily count","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","death","Deaths","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","cuCo","Cumulative count","active","2.0.0","2.0.0",NA,NA
+"populationUnitSet","unitSets","vax3","Population with 3 or more doses of vaccine","active","2.0.0","2.0.0",NA,NA
+"poSaSpecimenSet","specimenSets","po","Population","active","2.0.0","2.0.0",NA,NA
+"poSaSpecimenSet","specimenSets","sa","Sample","active","2.0.0","2.0.0",NA,NA
+"poSiSpecimenSet","specimenSets","po","Population","active","2.0.0","2.0.0",NA,NA
+"poSiSpecimenSet","specimenSets","si","Site","active","2.0.0","2.0.0",NA,NA
+"poSpecimenSet","specimenSets","po","Population","active","2.0.0","2.0.0",NA,NA
+"precipitationUnitSet","unitSets","cm","Centimetres","active","2.0.0","2.0.0",NA,NA
+"precipitationUnitSet","unitSets","mm","Millimetres","active","2.0.0","2.0.0",NA,NA
+"primerSet","mmaSets","articV3","Use of the articV3 primer","active","2.0.0","2.0.0",NA,NA
+"primerSet","mmaSets","articV4","Use of the articV4 primer","active","2.0.0","2.0.0",NA,NA
+"protocolRelSet","mmaSets","before","Is Before ","active","2.0.0","2.0.0",NA,NA
+"protocolRelSet","mmaSets","specifies","Specifies","active","2.0.0","2.0.0",NA,NA
+"protocolRelSet","mmaSets","concurrent","Is concurrent to","active","2.0.0","2.0.0",NA,NA
+"protocolTableSet","dictSets","protocols","Protocols table","active","2.0.0","2.0.0",NA,NA
+"protocolTableSet","dictSets","protocolRelationships","Protocol relationships table","active","2.0.0","2.0.0",NA,NA
+"protocolTableSet","dictSets","protocolSteps","Protocol steps table","active","2.0.0","2.0.0",NA,NA
+"protocolTableSet","dictSets","instruments","Instrument table","active","2.0.0","2.0.0",NA,NA
+"purposeSet","mmaSets","education","Education","active","2.0.0","2.0.0",NA,NA
+"purposeSet","mmaSets","multiple","Multiple Purpose","active","2.0.0","2.0.0",NA,NA
+"purposeSet","mmaSets","provisional","Provisional report","active","2.0.0","2.0.0",NA,NA
+"purposeSet","mmaSets","qualityControl","Quality control","active","2.0.0","2.0.0",NA,NA
+"purposeSet","mmaSets","regular","Regular","active","2.0.0","2.0.0",NA,NA
+"purposeSet","mmaSets","testing","Testing","active","2.0.0","2.0.0",NA,NA
+"purposeSet","mmaSets","validationStudy","Validation study","active","2.0.0","2.0.0",NA,NA
+"regularReportTableSet","dictSets","measures","Measure report table","active","2.0.0","2.0.0",NA,NA
+"regularReportTableSet","dictSets","samples","Sample report table","active","2.0.0","2.0.0",NA,NA
+"relHumidUnitSet","unitSets","perc","Percent","active","2.0.0","2.0.0",NA,NA
+"replicateSet","mmaSets","colocated","Co-located sample","active","2.0.0","2.0.0",NA,NA
+"replicateSet","mmaSets","fieldReplicate","Field sample replicate","active","2.0.0","2.0.0",NA,NA
+"replicateSet","mmaSets","labDuplicate","Laboratory duplicate ","active","2.0.0","2.0.0",NA,NA
+"replicateSet","mmaSets","lcsd","Laboratory control sample duplicate","active","2.0.0","2.0.0",NA,NA
+"replicateSet","mmaSets","msd","Matrix spike duplicate","active","2.0.0","2.0.0",NA,NA
+"replicateSet","mmaSets","unique","Unique sample","active","2.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","afu","Air filter","active","2.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","desk","Desk or counter","active","2.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","faeces","Fecal matter","active","1.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","floor","Floor","active","2.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","htSam","Holding tank wastewater","active","2.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","nww","Water","active","1.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","pEfflu","Primary clarifier effluent","active","1.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","pSludge","Primary clarifier sludge","active","1.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","pstGrit","Post-grit","active","1.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","rawWW","Raw sewage at site","active","1.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","rawWWdown","Raw sewage downstream from a site","active","2.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","rawWWup","Raw sewage upstream from a site","active","2.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","sEfflu","Secondary clarifier effluent","active","1.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","septage","Septic tank wastewater","active","1.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","sSludge","Secondary clarifier sludge","active","1.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","surface","Other surface","active","2.0.0","2.0.0",NA,NA
+"sampleMatSet","mmaSets","swrSed","Sewer sediment","active","1.0.0","2.0.0",NA,NA
+"sampleQualitySet","qualityIndSets","frozen","Sample frozen","active","2.0.0","2.0.0",NA,NA
+"sampleQualitySet","qualityIndSets","leaked","Leaked sample","active","2.0.0","2.0.0",NA,NA
+"sampleQualitySet","qualityIndSets","lowVol","Low-volume sample","active","2.0.0","2.0.0",NA,NA
+"sampleQualitySet","qualityIndSets","noLabel","Sample not labelled","active","2.0.0","2.0.0",NA,NA
+"sampleQualitySet","qualityIndSets","noTime","Sample missing time stamp","active","2.0.0","2.0.0",NA,NA
+"sampleQualitySet","qualityIndSets","spill","Sample spilled","active","2.0.0","2.0.0",NA,NA
+"sampleQualitySet","qualityIndSets","wrongStorage","Sample stored incorrectly","active","2.0.0","2.0.0",NA,NA
+"sampleQualitySet","qualityIndSets","noConcern","No quality concerns","active","2.0.0","2.0.0",NA,NA
+"sampleQualitySet","qualityIndSets","wrongTemp","Sample stored at wrong temperature","active","2.0.0","2.0.0",NA,NA
+"sampleRelSet","mmaSets","child","Child relationship","active","1.0.0","2.0.0",NA,NA
+"sampleRelSet","mmaSets","colocated","Co-located sample","active","2.0.0","2.0.0",NA,NA
+"sampleRelSet","mmaSets","fieldReplicate","Field sample replicate","active","2.0.0","2.0.0",NA,NA
+"sampleRelSet","mmaSets","msd","Matrix spike duplicate","active","2.0.0","2.0.0",NA,NA
+"sampleRelSet","mmaSets","labDuplicate","Laboratory duplicate ","active","2.0.0","2.0.0",NA,NA
+"sampleRelSet","mmaSets","lcsd","Laboratory control sample duplicate","active","2.0.0","2.0.0",NA,NA
+"saSpecimenSet","specimenSets","sa","Sample","active","2.0.0","2.0.0",NA,NA
+"scriptSet","mmaSets","gromstole","Gromstole 1.0 Script","active","2.0.0","2.0.0",NA,NA
+"scriptSet","mmaSets","freyja","Freyja Script","active","2.0.0","2.0.0",NA,NA
+"seqLaySet","mmaSets","sinLay","Single Layout","active","2.0.0","2.0.0",NA,NA
+"seqLaySet","mmaSets","pairLay","Paired Layout","active","2.0.0","2.0.0",NA,NA
+"seqLaySet","mmaSets","mateLay","Mate pair layout","active","2.0.0","2.0.0",NA,NA
+"seqQualitySet","qualityIndSets","expFail","Experiment Failed","active","2.0.0","2.0.0",NA,NA
+"seqQualitySet","qualityIndSets","lBC","Low breadth of coverage","active","2.0.0","2.0.0",NA,NA
+"seqQualitySet","qualityIndSets","lDC","Low depth of coverage","active","2.0.0","2.0.0",NA,NA
+"seqQualitySet","qualityIndSets","noTime","Sample missing time stamp","active","2.0.0","2.0.0",NA,NA
+"seqQualitySet","qualityIndSets","sC","Sparse coverage","active","2.0.0","2.0.0",NA,NA
+"seqQualitySet","qualityIndSets","noConcern","No quality concerns","active","2.0.0","2.0.0",NA,NA
+"seqQualitySet","qualityIndSets","wi","Wide 95% interval","active","2.0.0","2.0.0",NA,NA
+"seqSelSet","mmaSets","ranSeq","Random sequencing selection method","active","2.0.0","2.0.0",NA,NA
+"seqSelSet","mmaSets","pcrSeq","PCR sequencingsSelection method","active","2.0.0","2.0.0",NA,NA
+"seqStratSet","mmaSets","amp","Amplicon sequencing","active","2.0.0","2.0.0",NA,NA
+"seqStratSet","mmaSets","wgs","Whole genome sequencing","active","2.0.0","2.0.0",NA,NA
+"sevSet","mmaSets","low","Low severity","active","2.0.0","2.0.0",NA,NA
+"sevSet","mmaSets","mid","Mid-level severity","active","2.0.0","2.0.0",NA,NA
+"sevSet","mmaSets","high","High severity","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","airpln","Airplane","active","1.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","ccc","Long-term acute care hospital","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","cdc","Child day care","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","corFcil","Cphd ID","active","1.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","dorm","Higher education domitory or residential building","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","fiNa","First Nation","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","hosptl","Hospital","active","1.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","ltcf","Long-term care facility","active","1.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","ltcfAl","Long-term care - assisted living or retirement home","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","ltcfO","Other long-term care","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","municp","Municipality","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","neigh","Neighbourhood","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","orb","Other residential building","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","school","School","active","1.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","ship","Ship","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","sss","Social services shelter","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","uCampus","University campus","active","1.1.0","2.0.0",NA,NA
+"shedSet","mmaSets","airport","Airport","active","2.0.0","2.0.0",NA,NA
+"shedSet","mmaSets","terminal","Airport terminal","active","2.0.0","2.0.0",NA,NA
+"siSaSpecimenSet","specimenSets","sa","Sample","active","2.0.0","2.0.0",NA,NA
+"siSaSpecimenSet","specimenSets","si","Site","active","2.0.0","2.0.0",NA,NA
+"siSpecimenSet","specimenSets","si","Site","active","2.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","bSwrPpl","Branch sewer pipleline","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","buildCO","Building cleanout","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","estuary","Estuary, natural water body","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","lake","Lake,  natural water body","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","htSite","Holding tank","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","lagoon","Lagoon system","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","mSwrPpl","Major sewer pipeline","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","ocean","Ocean, natural water body","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","pStat","Pumping station","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","retPond","Retention pond","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","river","River, natural water body","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","sea","Sea, natural water body","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","septTnk","Septic tank","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","stabPnd","Stabilization pond","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","swgTrck","Sewage truck","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","wwtpInd","Industrial wastewater treatment plant","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","wwtpMuC","Municipal wastewater treatment plant for combined sewage","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","wwtpMuS","Municipal wastewater treatment plant for sanitary dewage only","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","wwtp","Wastewater treatment plant","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","upstream","Upstream sites","active","1.0.0","2.0.0",NA,NA
+"siteTypeSet","mmaSets","wwtpBack","Back-up wastewater treatment site","active","1.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","cent","Centrifugation","active","2.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","filt","Filtration","active","2.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","graSet","Gravity settling","active","2.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","mfAcidmgcl2","Membrane filtration with acidification and mgcl2","active","2.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","mfAcidmgcl2SS","Membrane filtration with acidification and mgcl2, membrane recombined with separated solids","active","2.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","mfMgcl2","Membrane filtration with addition of mgcl2","active","2.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","mfMgcl2SS","Membrane filtration with  mgcl2 and separated solids","active","2.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","mfNoAmend","Membrane filtration with no amendment","active","2.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","mfNoAmendSS","Membrane filtration with no amendment, membrane recombined with separated solids","active","2.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","mfSampleAcid","Membrane filtration with sample acidification","active","2.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","mfSampleAcidSS","Membrane filtration with sample acidification, membrane recombined with separated solids","active","2.0.0","2.0.0",NA,NA
+"solidSeparationSet","mmaSets","noliquid","No liquid concentration, liquid recombined with separated solids","active","2.0.0","2.0.0",NA,NA
+"specHumidUnitSet","unitSets","ratio","Ratio","active","2.0.0","2.0.0",NA,NA
+"spikeMatSet","mmaSets","clari","Clarified sample","active","1.0.0","2.0.0",NA,NA
+"spikeMatSet","mmaSets","conc","Sample concentrate","active","1.0.0","2.0.0",NA,NA
+"spikeMatSet","mmaSets","deso","Dewatered solids","active","1.0.0","2.0.0",NA,NA
+"spikeMatSet","mmaSets","lysi","Lysis buffer","active","2.0.0","2.0.0",NA,NA
+"spikeMatSet","mmaSets","raws","Raw wastewater","active","1.0.0","2.0.0",NA,NA
+"spikeMatSet","mmaSets","rppw","Raw post-pasteurized wastewater","active","1.0.0","2.0.0",NA,NA
+"spikeTargetSet","mmaSets","bcovCul","bcov culture spike target","active","2.0.0","2.0.0",NA,NA
+"spikeTargetSet","mmaSets","bcovVac","bcov vaccine spike target","active","2.0.0","2.0.0",NA,NA
+"spikeTargetSet","mmaSets","brsvCul","brsv culture spike target","active","2.0.0","2.0.0",NA,NA
+"spikeTargetSet","mmaSets","brsvVac","brsv vaccine spike target","active","2.0.0","2.0.0",NA,NA
+"spikeTargetSet","mmaSets","heatInacSARS","Heat inactivated sars-cov-2 virus spike target","active","2.0.0","2.0.0",NA,NA
+"spikeTargetSet","mmaSets","hepGRnaMat","hep g armored rna spike target","active","2.0.0","2.0.0",NA,NA
+"spikeTargetSet","mmaSets","ms2ColMat","ms2 coliphage spike target","active","2.0.0","2.0.0",NA,NA
+"spikeTargetSet","mmaSets","muCoMat","murine coronavirus spike target","active","2.0.0","2.0.0",NA,NA
+"spikeTargetSet","mmaSets","oc43Mat","oc43 spike target","active","2.0.0","2.0.0",NA,NA
+"spikeTargetSet","mmaSets","phi6Mat","phi6 spike target","active","2.0.0","2.0.0",NA,NA
+"spikeTargetSet","mmaSets","puroMat","Puro virus spike target","active","2.0.0","2.0.0",NA,NA
+"statusSet","mmaSets","active","Active","active","2.0.0","2.0.0",NA,NA
+"statusSet","mmaSets","development","Development","active","2.0.0","2.0.0",NA,NA
+"statusSet","mmaSets","depreciated","Depreciated","active","2.0.0","2.0.0",NA,NA
+"stdConcentrationUnitSet","unitSets","mgL","Milligrams per litre","active","2.0.0","2.0.0",NA,NA
+"stdConcentrationUnitSet","unitSets","ppm","parts per million","active","2.0.0","2.0.0",NA,NA
+"stdConcentrationUnitSet","unitSets","pps","Percent primary sludge","active","2.0.0","2.0.0",NA,NA
+"surfaceCompartmentSet","compartmentSets","surf","Surface compartment","active","2.0.0","2.0.0",NA,NA
+"surfaceWaterCompartmentSet","compartmentSets","surf","Surface compartment","active","2.0.0","2.0.0",NA,NA
+"surfaceWaterCompartmentSet","compartmentSets","wat","Water compartment","active","2.0.0","2.0.0",NA,NA
+"tableSet","mmaSets","fK","Foreign key","active","2.0.0","2.0.0",NA,NA
+"tableSet","mmaSets","header","Header","active","2.0.0","2.0.0",NA,NA
+"tableSet","mmaSets","input","Input","active","2.0.0","2.0.0",NA,NA
+"tableSet","mmaSets","pK","Primary key","active","2.0.0","2.0.0",NA,NA
+"temperatureUnitSet","unitSets","cel","Degrees Celcius","active","2.0.0","2.0.0",NA,NA
+"timeUnitSet","unitSets","days","Days","active","2.0.0","2.0.0",NA,NA
+"timeUnitSet","unitSets","months","Months","active","2.0.0","2.0.0",NA,NA
+"timeUnitSet","unitSets","years","Years","active","2.0.0","2.0.0",NA,NA
+"timeUnitSet","unitSets","hours","Hours","active","2.0.0","2.0.0",NA,NA
+"timeUnitSet","unitSets","minutes","Minutes","active","2.0.0","2.0.0",NA,NA
+"turbidityUnitSet","unitSets","ntu","Nephelometric turbidity unit","active","2.0.0","2.0.0",NA,NA
+"unitlessUnitSet","unitSets","unitless","Unitless measure","active","2.0.0","2.0.0",NA,NA
+"unitlessUnitSet","unitSets","unitless","Unitless measure","active","2.0.0","2.0.0",NA,NA
+"volumeUnitSet","unitSets","kl","Kilolitres","active","2.0.0","2.0.0",NA,NA
+"volumeUnitSet","unitSets","l","Litres","active","2.0.0","2.0.0",NA,NA
+"volumeUnitSet","unitSets","ml","Millilitres","active","2.0.0","2.0.0",NA,NA
+"volumeUnitSet","unitSets","mm","Millimetres","active","2.0.0","2.0.0",NA,NA
+"volumeUnitSet","unitSets","pp","Percent positive","active","2.0.0","2.0.0",NA,NA
+"volumeUnitSet","unitSets","subVar","Sub-variant or lineage","active","2.0.0","2.0.0",NA,NA
+"volumeUnitSet","unitSets","grams","Grams","active","2.0.0","2.0.0",NA,NA
+"volumeUnitSet","unitSets","varFreq","Frequency of variants detected","active","2.0.0","2.0.0",NA,NA
+"waterCompartmentSet","compartmentSets","wat","Water compartment","active","2.0.0","2.0.0",NA,NA
+"weathSet","mmaSets","cloudy","Cloudy","active","2.0.0","2.0.0",NA,NA
+"weathSet","mmaSets","foggy","Foggy","active","2.0.0","2.0.0",NA,NA
+"weathSet","mmaSets","rainy","Rainy","active","2.0.0","2.0.0",NA,NA
+"weathSet","mmaSets","snowy","Snowy","active","2.0.0","2.0.0",NA,NA
+"weathSet","mmaSets","sunny","Sunny","active","2.0.0","2.0.0",NA,NA
+"windSpeedUnitSet","unitSets","ms","Metres per second","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","addresses","Address table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","contacts","Contact table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","datasets","Dataset table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","instruments","Instrument table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","languages","Language Look-up table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","measures","Measure report table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","measureSets","Measure set report table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","organizations","Organization table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","parts","Parts Look-up table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","polygons","Polygon table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","protocolRelationships","Protocol relationships table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","protocols","Protocols table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","protocolSteps","Protocol steps table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","qualityReports","Quality reports table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","sampleRelationships","Sample relationships table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","samples","Sample report table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","sets","Sets look-up table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","sites","Sites table","active","2.0.0","2.0.0",NA,NA
+"templateSheetSet","dictSets","lists","List worksheet","active","2.0.0","2.0.0",NA,NA
+"airportSheetSet","dictSets","airportLists","Airport lists worksheet","active","2.0.0","2.0.0",NA,NA
+"airportSheetSet","dictSets","airportTemplate","Airport Surveillance Template","active","2.0.0","2.0.0",NA,NA
+"tempSet","mmaSets","dna",NA,"active","2.2.0","2.2.0",NA,NA
+"tempSet","mmaSets","rna",NA,"active","2.2.0","2.2.0",NA,NA
+"solidSeparationSet","mmaSets","noSep",NA,"active","2.2.0","2.2.0",NA,NA
+"wideSpecimenSet","specimenSets","po","Population","active","2.2.0","2.2.0",NA,NA
+"wideSpecimenSet","specimenSets","sa","Sample","active","2.2.0","2.2.0",NA,NA
+"wideSpecimenSet","specimenSets","si","Site","active","2.2.0","2.2.0",NA,NA
+"wideSpecimenSet","specimenSets","naSpecimen","Specimen not applicable","active","2.2.0","2.2.0",NA,NA
+"wideSpecimenSet","specimenSets","hSp","See Specimen Header","active","2.2.0","2.2.0",NA,NA
+"wideCompartmentSet","compartmentSets","air","Air compartment","active","2.2.0","2.2.0",NA,NA
+"wideCompartmentSet","compartmentSets","surf","Surface compartment","active","2.2.0","2.2.0",NA,NA
+"wideCompartmentSet","compartmentSets","wat","Water compartment","active","2.2.0","2.2.0",NA,NA
+"wideCompartmentSet","compartmentSets","hCo","See Compartment Header","active","2.2.0","2.2.0",NA,NA
+"wideCompartmentSet","compartmentSets","naCompartment","Compartment not applicable","active","2.2.0","2.2.0",NA,NA
+"fractionSet","mmaSets",NA,"Not applicable","active","2.0.0","2.0.0",NA,NA
+"wideFractionSet","mmaSets","liq","Liquid fraction","active","2.2.0","2.2.0",NA,NA
+"wideFractionSet","mmaSets","mix","Mixed/homogenized sample","active","2.2.0","2.2.0",NA,NA
+"wideFractionSet","mmaSets","sol","Solid fraction","active","2.2.0","2.2.0",NA,NA
+"wideFractionSet","mmaSets",NA,"Not applicable","active","2.2.0","2.2.0",NA,NA
+"wideFractionSet","mmaSets","hFr","See Header for Fraction Analyzed","active","2.2.0","2.2.0",NA,NA
