@@ -497,6 +497,5 @@ create_pull_request <- function(version, branch_name){
          repo = "PHES-ODM",
          title = paste0("[BOT] Release ", version),
          head = "branch_name",
-         base = "main",
-         )
+         base = "main")
 }
