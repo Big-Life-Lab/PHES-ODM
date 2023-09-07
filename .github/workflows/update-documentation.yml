@@ -17,6 +17,9 @@ on:
 jobs:
   build-docs:
     runs-on: ubuntu-latest
+    defaults: 
+      run:
+        working-directory: R-package
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
