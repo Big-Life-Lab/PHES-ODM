@@ -17,3 +17,5 @@ template/~$attributesDetails.xlsx
 .devcontainer/*
 
 ./R-package/log
+
+.python-version
