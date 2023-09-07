@@ -30,5 +30,7 @@ jobs:
           r-version: "4.1.1"
       - name: Install R dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          working-direcotyr: R-package
       - name: Run dictionary validation and file creation
         run: R -e 'PHES.ODM::create_release_files(OSF_LINK_RELEASE = ${{github.event.inputs.dictionary_link}}, OSF_LINK_PAST_RELEASE = ${{github.event.inputs.dictionary_link}}, OSF_TOKEN = ${{github.event.inputs.osf_token}}, dictionary_path = "data/raw", past_dictionary_path = "data/raw")'
