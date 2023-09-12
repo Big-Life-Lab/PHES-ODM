@@ -49,6 +49,8 @@ create_release_files <-
     
     # Create connection to git repo
     repo <- git2r::repository(file.path(getwd(),".."))
+    # Set config
+    git2r::config(repo, user.email = "41898282+github-actions[bot]@users.noreply.github.com", user.name = "github-actions[bot]")
     # Create git branch
     new_branch_name <- paste0("release-", dictionary_version)
     git2r::checkout(repo, new_branch_name, create = TRUE)
