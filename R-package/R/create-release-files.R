@@ -15,6 +15,7 @@ create_release_files <-
   function(OSF_LINK_RELEASE,
            OSF_LINK_PAST_RELEASE,
            OSF_TOKEN,
+           github_token,
            dictionary_path = NULL,
            past_dictionary_path = NULL) {
     # Setup logging
@@ -50,7 +51,7 @@ create_release_files <-
     # Create connection to git repo
     repo <- git2r::repository(file.path(getwd(),".."))
     # Set config
-    git2r::config(repo, user.email = "41898282+github-actions[bot]@users.noreply.github.com", user.name = "github-actions[bot]")
+    git2r::config(repo, user.email = "41898282+github-actions[bot]@users.noreply.github.com", user.name = "github-actions[bot]", user.password = github_token)
     # Create git branch
     new_branch_name <- paste0("release-", dictionary_version)
     git2r::checkout(repo, new_branch_name, create = TRUE)
