@@ -51,7 +51,7 @@ create_release_files <-
     # Create connection to git repo
     repo <- git2r::repository(file.path(getwd(),".."))
     # Set config
-    git2r::config(repo, user.email = "41898282+github-actions[bot]@users.noreply.github.com", user.name = "github-actions[bot]", user.password = github_token)
+    git2r::config(repo, user.email = "projectbiglife@toh.ca", user.name = "PBL-Bot", user.password = github_token, http.followRedirects = "FALSE")
     # Create git branch
     new_branch_name <- paste0("release-", dictionary_version)
     git2r::checkout(repo, new_branch_name, create = TRUE)
@@ -62,7 +62,7 @@ create_release_files <-
     
     # Download previous release dictionary
     past_dictionary_path <- download_dictionary(past_dictionary_path, OSF_TOKEN, OSF_LINK_PAST_RELEASE, odm_dictionary$tmp_dictionary_directory_past_release)
-      
+    
     # Validate dictionary version
     past_dictionary_info <- get_dictionary(past_dictionary_path)
     
@@ -336,56 +336,56 @@ create_files <-
       
       
       if(write_dir != ""){
-      if (current_file_info$file_type == "excel") {
-        # Use parts as names of sheets to extract
-        sheets_to_copy <- current_file_info$sheet_names
-        tmp_workbook <- openxlsx::copyWorkbook(dictionary)
-        # Loop over sheets removing unnecessary sheets
-        existing_sheets <- names(tmp_workbook)
-        for (sheet_name in existing_sheets) {
-          if (!(sheet_name %in% sheets_to_copy)) {
-            openxlsx::removeWorksheet(tmp_workbook, sheet_name)
-          }
-        }
-        
-        # Save the workbook in the appropriate directory
-        openxlsx::saveWorkbook(tmp_workbook,
-                               file = file.path(
-                                 write_dir,
-                                 paste0(current_file_info$file_name, ".xlsx")
-                               ),
-                               overwrite = TRUE)
-        
-      } else if (current_file_info$file_type == "csv") {
-        sheet_name <- current_file_info$sheet_names
-        output_sheet <-
-          openxlsx::readWorkbook(dictionary, sheet_name)
-        if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
-          new_headers <- strsplit(current_file_info$add_headers, ";")[[1]]
-          output_sheet <-
-            rbind(colnames(output_sheet), output_sheet)
-          if (length(colnames(output_sheet)) > length(new_headers)) {
-            length_to_append <-
-              length(colnames(output_sheet)) - length(new_headers)
-            new_headers <- c(new_headers, rep("", length_to_append))
-          } else if (length(colnames(output_sheet)) < length(new_headers)) {
-            length_to_append <-
-              length(new_headers) - length(colnames(output_sheet))
-            for (col_counter in 1:length_to_append) {
-              output_sheet <- cbind(output_sheet, "")
+        if (current_file_info$file_type == "excel") {
+          # Use parts as names of sheets to extract
+          sheets_to_copy <- current_file_info$sheet_names
+          tmp_workbook <- openxlsx::copyWorkbook(dictionary)
+          # Loop over sheets removing unnecessary sheets
+          existing_sheets <- names(tmp_workbook)
+          for (sheet_name in existing_sheets) {
+            if (!(sheet_name %in% sheets_to_copy)) {
+              openxlsx::removeWorksheet(tmp_workbook, sheet_name)
             }
           }
-          colnames(output_sheet) <- new_headers
+          
+          # Save the workbook in the appropriate directory
+          openxlsx::saveWorkbook(tmp_workbook,
+                                 file = file.path(
+                                   write_dir,
+                                   paste0(current_file_info$file_name, ".xlsx")
+                                 ),
+                                 overwrite = TRUE)
+          
+        } else if (current_file_info$file_type == "csv") {
+          sheet_name <- current_file_info$sheet_names
+          output_sheet <-
+            openxlsx::readWorkbook(dictionary, sheet_name)
+          if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
+            new_headers <- strsplit(current_file_info$add_headers, ";")[[1]]
+            output_sheet <-
+              rbind(colnames(output_sheet), output_sheet)
+            if (length(colnames(output_sheet)) > length(new_headers)) {
+              length_to_append <-
+                length(colnames(output_sheet)) - length(new_headers)
+              new_headers <- c(new_headers, rep("", length_to_append))
+            } else if (length(colnames(output_sheet)) < length(new_headers)) {
+              length_to_append <-
+                length(new_headers) - length(colnames(output_sheet))
+              for (col_counter in 1:length_to_append) {
+                output_sheet <- cbind(output_sheet, "")
+              }
+            }
+            colnames(output_sheet) <- new_headers
+          }
+          
+          write.csv(output_sheet,
+                    file = file.path(write_dir,
+                                     paste0(
+                                       current_file_info$file_name, ".csv"
+                                     )),
+                    row.names = FALSE)
         }
-        
-        write.csv(output_sheet,
-                  file = file.path(write_dir,
-                                   paste0(
-                                     current_file_info$file_name, ".csv"
-                                   )),
-                  row.names = FALSE)
       }
-    }
     }
   }
 
@@ -409,8 +409,8 @@ remove_files <- function(files_to_remove, dictionary) {
                                 "excel" = ".xlsx",
                                 "csv" = ".csv")
       file_path <- paste0("..",
-        current_file_info$github_location,
-        paste0(current_file_info$file_name, file_extension)
+                          current_file_info$github_location,
+                          paste0(current_file_info$file_name, file_extension)
       )
       # Check if file exists
       if (file.exists(file_path)) {
