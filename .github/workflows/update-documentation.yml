@@ -33,6 +33,6 @@ jobs:
         with:
           working-directory: R-package
       - name: Source code
-        run: R -e 'source("R-package/R/create-release-files.R")'
+        run: R -e 'source("R/create-release-files.R")'
       - name: Run dictionary validation and file creation
         run: R -e 'PHES.ODM::create_release_files(OSF_LINK_RELEASE = ${{github.event.inputs.dictionary_link}}, OSF_LINK_PAST_RELEASE = ${{github.event.inputs.dictionary_link}}, OSF_TOKEN = ${{github.event.inputs.osf_token}}, dictionary_path = "data/raw", past_dictionary_path = "data/raw")'
