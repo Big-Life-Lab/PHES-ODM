@@ -15,7 +15,7 @@ Imports:
     readxl,
     osfr,
     magrittr,
-    xlsx,
+    openxlsx,
     logger,
     git2r,
     gh
