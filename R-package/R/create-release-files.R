@@ -484,13 +484,12 @@ download_dictionary <- function(dictionary_path, OSF_TOKEN, OSF_LINK, dictionary
 #' 
 #' @param repo git2r object for repo reference
 #' @param dictionary_version version of the dictionary being deployed
-commit_files <- function(repo, dictionary_version, branch_name){
+commit_files <- function(dictionary_version, branch_name){
   # Add all files
   system('git add --all')
   # Create commit
   system(paste0('git commit -m "[BOT] release-', dictionary_version, '"'))
   # Push updated branch
   system(paste0('git push origin', branch_name))
-  git2r::push(repo, "origin", paste0("refs/heads/", branch_name))
   
 }
