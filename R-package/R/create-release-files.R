@@ -53,7 +53,7 @@ create_release_files <-
     system(paste0('git config user.password \"', github_token, '\"'))
     
     # Add origin
-    system(paste0('git remote add origin ', 'https://github.com/Big-Life-Lab/PHES-ODM-action-testing.git'))
+    #system(paste0('git remote add origin ', 'https://github.com/Big-Life-Lab/PHES-ODM-action-testing.git'))
     # Create git branch
     new_branch_name <- paste0("release-", dictionary_version)
     system(paste0('git checkout -b ', new_branch_name))
@@ -79,7 +79,7 @@ create_release_files <-
     remove_files(files_to_make,
                  dictionary)
     
-    commit_files(repo, dictionary_version, new_branch_name)
+    commit_files(dictionary_version, new_branch_name)
     
   }
 
