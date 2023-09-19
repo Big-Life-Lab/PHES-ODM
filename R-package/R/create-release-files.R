@@ -493,6 +493,6 @@ commit_files <- function(dictionary_version, branch_name){
   # Create commit
   system(paste0('git commit -m "[BOT] release-', dictionary_version, '"'))
   # Push updated branch
-  system(paste0('git push origin', branch_name))
+  system(paste0('git push origin ', branch_name))
   
 }
