@@ -12,12 +12,10 @@ Depends:
 Imports:
     rmarkdown,
     glue,
-    readxl,
     osfr,
     magrittr,
-    xlsx,
+    openxlsx,
     logger,
-    git2r,
     gh
 License: cc-by-4.0 
 URL: https://github.com/Big-Life-Lab/PHES-ODM
