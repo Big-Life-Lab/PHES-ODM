@@ -47,14 +47,13 @@ create_release_files <-
         "Errors were detected further building cannot continue please check the log for additional info"
       )
     }
-    
-    # Create connection to git repo
-    repo <- git2r::repository(file.path(getwd(),".."))
-    # Set config
-    git2r::config(repo, user.email = "projectbiglife@toh.ca", user.name = "PBL-Bot", user.password = github_token, http.followRedirects = "FALSE")
+    # Set git config
+    system('git config user.name "PBL-Bot"')
+    system('git config user.email "projectbiglife@toh.ca"')
+    system(paste0('git config user.password \"', github_token, '\"'))
     # Create git branch
     new_branch_name <- paste0("release-", dictionary_version)
-    git2r::checkout(repo, new_branch_name, create = TRUE)
+    system(paste0('git checkout -b ', new_branch_name))
     
     
     create_files(files_to_make,
@@ -489,8 +488,9 @@ commit_files <- function(repo, dictionary_version, branch_name){
   # Add all files
   system('git add --all')
   # Create commit
-  git2r::commit(repo = repo, message = paste0("[BOT] release-", dictionary_version))
+  system(paste0('git commit -m "[BOT] release-', dictionary_version, '"'))
   # Push updated branch
+  system(paste0('git push origin', branch_name))
   git2r::push(repo, "origin", paste0("refs/heads/", branch_name))
   
 }
