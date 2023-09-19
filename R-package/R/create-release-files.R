@@ -52,8 +52,6 @@ create_release_files <-
     system('git config user.email "projectbiglife@toh.ca"')
     system(paste0('git config user.password \"', github_token, '\"'))
     
-    # Add origin
-    #system(paste0('git remote add origin ', 'https://github.com/Big-Life-Lab/PHES-ODM-action-testing.git'))
     # Create git branch
     new_branch_name <- paste0("release-", dictionary_version)
     system(paste0('git checkout -b ', new_branch_name))
