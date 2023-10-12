@@ -1,0 +1,19 @@
+@startuml Creating a new release
+
+header Trigerring a new release
+
+start
+
+:User copies the new dictionary file into the staging folder on OSF;
+
+:User copies the OSF link for the new dictionary file;
+
+:User triggers a release build on GitHub, providing the copied OSF dictionary
+link and their OSF personal access token;
+
+:The release software system creates a PR to main that contains all the
+release files generated from the linked ODM dictionary file;
+
+end
+
+@enduml

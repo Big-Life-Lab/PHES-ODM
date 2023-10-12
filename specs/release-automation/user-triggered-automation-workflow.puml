@@ -1,0 +1,77 @@
+@startuml
+title Release Automation Process
+
+start
+group RA-1: Trigerring the Process
+    :User passes link to excel dictionary on OSF to use for the release;
+    :User passes OSF personal access token;
+    :User triggers release process;
+end group
+
+group RA-2: Creating the Release Files
+    :Retrieve Excel Dictionary;
+    :Parse metadata from files sheet;
+    :Extract file name and type;
+    :Extract dictionary version from the dictionary file name;
+    :Extract dictionary version from the dictionary summary sheet;
+    if (Version missmatch between dictionary file name version and summary sheet version?) then(yes)
+        :Issue error;
+        stop
+    else (no)
+        repeat
+            :Parse the name template string;
+            :Construct file name using populated template and file type;
+            :Extract the part value from sheets for this file;
+            :Check parts sheet for the partID;
+            if (The part column matches with a setID in the sets sheet?) then (yes)
+                :Extract set information from sets with that part as ID;
+                :Extract sheets with the parts of the set;
+                if(File type is csv?) then (yes)
+                    :Record an error;
+                    :Skip file;
+                else (no)
+                endif
+            else (no)
+                :Extract sheets with that name;
+            endif
+            :Populate file with appropriate sheet(s);
+            if (addHeader is list?) then (yes)
+                :Add optional headers;
+            endif
+        repeat while (Unchecked rows in the files sheet?) is (yes)
+        ->no;
+        if (Errors recorded?) then (yes)
+            :Display all errors;
+            stop
+        endif
+        :Create subdirectories if needed, based on githubLocation;
+        :Store file in appropriate directory based on its destination and githubLocation;
+    endif
+end group
+
+group RA-3: Deploying the files to GitHub
+    :Download the latest published dictionary file;
+    :Treat the latest published as previous release dictionary file;
+    :Create new branch from main following the "release-{version}" naming template;
+    if (Is there a previous release on GitHub?) then (no)
+        :Move files from the staging github directory to their final location;
+    else (yes)
+        if (Previous release version number is newer?) then (yes)
+            :Stop process and throw an error;
+            stop
+        else (no)
+            :Remove old files using previous dictionary files sheet and move new files to appropriate directory;
+        endif
+    endif
+    :Commit the changes with the message of "[BOT] release-{version}";
+    :Create PR from new branch to main with title of "[BOT] Release {version}";
+end group
+
+:Trigger workflow in PHES-ODM-Doc Repo;
+note right: RA-5: Trigger a PR in the PHES-ODM-Doc repo
+
+:Trigger workflow in PHES-ODM-Validation Repo;
+note right: RA-6: Trigger a PR in the PHES-ODM-Validation repo
+
+stop
+@enduml
