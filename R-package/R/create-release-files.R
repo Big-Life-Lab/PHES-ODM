@@ -4,16 +4,14 @@ source(file.path(getwd(), "R", "files.R"))
 #'
 #' Creates release files given the user OSF link and auth token.
 #'
-#' @param OSF_LINK_RELEASE link to the dictionary stored on OSF used for updating.
-#' @param OSF_LINK_PAST_RELEASE link to the dictionary stored on OSF used for removal of previous release files.
-#' @param OSF_TOKEN OSF auth token used for modifying OSF directories
+#' @param OSF_REPO_LINK The link to the OSF repo.
+#' @param OSF_TOKEN The OSF token used to authenticate the user.
 #' @param dictionary_path optional string containing path to the dictionary directory. When provided no dictionary is downloaded.
 #' @param past_dictionary_path optional string containing path to the previous release dictionary directory. When provided no dictionary is downloaded.
 #'
 #' @export
 create_release_files <-
-  function(OSF_LINK_RELEASE,
-           OSF_LINK_PAST_RELEASE,
+  function(OSF_REPO_LINK,
            OSF_TOKEN,
            github_token,
            dictionary_path = NULL,
@@ -25,7 +23,7 @@ create_release_files <-
     logger::log_appender(logger::appender_file(odm_dictionary$log_path))
     
     # Download file using passed credentials
-    dictionary_path <- download_dictionary(dictionary_path, OSF_TOKEN, OSF_LINK_RELEASE, odm_dictionary$tmp_dictionary_directory)
+    dictionary_path <- download_dictionary(dictionary_path, OSF_TOKEN, OSF_REPO_LINK, odm_dictionary$tmp_dictionary_directory, origin_directory = "dev-release")
     
     # Validate dictionary version
     dictionary_info <- get_dictionary(dictionary_path)
@@ -63,7 +61,7 @@ create_release_files <-
                  dictionary)
     
     # Download previous release dictionary
-    past_dictionary_path <- download_dictionary(past_dictionary_path, OSF_TOKEN, OSF_LINK_PAST_RELEASE, odm_dictionary$tmp_dictionary_directory_past_release)
+    past_dictionary_path <- download_dictionary(past_dictionary_path, OSF_TOKEN, OSF_REPO_LINK, odm_dictionary$tmp_dictionary_directory_past_release, origin_directory = "Current Release")
     
     # Validate dictionary version
     past_dictionary_info <- get_dictionary(past_dictionary_path)
@@ -465,17 +463,20 @@ is_valid_part <-
 #' 
 #' @param dictionary_path string with path to dictionary
 #' @param OSF_TOKEN string containing the OSF auth token
-#' @param OSF_LINK string containing the link to the dictionary to download
+#' @param OSF_REPO_LINK string containing the link to the dictionary to download
 #' @param dictionary_set_path string containing the path to be set if one is not provided
 #' 
 #' @return string containing the path to the saved dictionary.
-download_dictionary <- function(dictionary_path, OSF_TOKEN, OSF_LINK, dictionary_set_path){
+download_dictionary <- function(dictionary_path, OSF_TOKEN, OSF_REPO_LINK, dictionary_set_path, origin_directory){
   # Download file using passed credentials
   if (is.null(dictionary_path)) {
     dictionary_path <- dictionary_set_path
     osfr::osf_auth(OSF_TOKEN)
-    osfr::osf_retrieve_file(OSF_LINK) %>%
-      osfr::osf_download(path = dictionary_path)
+    repo_info <- osfr::osf_retrieve_node(OSF_LINK)
+    repo_info <- osfr::osf_ls_files(repo_info)
+    requested_directory <- repo_info[repo_info$name == origin_directory, ]
+    requested_dictionary <- osfr::osf_ls_files(requested_directory, type = "file", pattern = "ODM_dictionary_")
+    osfr::osf_download(requested_dictionary, path = dictionary_path, conflicts = "overwrite")
   }
   
   return(dictionary_path)
