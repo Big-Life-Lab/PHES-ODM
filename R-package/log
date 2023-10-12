@@ -1,5 +1,8 @@
-WARN [2023-10-10 11:10:15] Dictionary file name version does not reflect version in summary sheet
-WARN [2023-10-10 11:10:16] dictionarySheetSet is not found in parts sheet, and can't be exported.
-WARN [2023-10-10 11:10:16] fullDictionarySheetSet does not have a matching sheet but is part of fullDictionarySheetSet set, which was selected to be exported. This sheet cannot be exported.
-WARN [2023-10-10 11:10:16] airportSheetSet does not have a matching sheet but is part of airportSheetSet set, which was selected to be exported. This sheet cannot be exported.
-WARN [2023-10-10 11:10:23] Dictionary file name version does not reflect version in summary sheet
+WARN [2023-10-12 13:17:05] Dictionary file name version does not reflect version in summary sheet
+WARN [2023-10-12 13:17:05] dictionarySheetSet is not found in parts sheet, and can't be exported.
+WARN [2023-10-12 13:17:05] fullDictionarySheetSet does not have a matching sheet but is part of fullDictionarySheetSet set, which was selected to be exported. This sheet cannot be exported.
+WARN [2023-10-12 13:17:05] airportSheetSet does not have a matching sheet but is part of airportSheetSet set, which was selected to be exported. This sheet cannot be exported.
+WARN [2023-10-12 13:17:11] Dictionary file name version does not reflect version in summary sheet
+WARN [2023-10-12 13:17:12] dictionarySheetSet is not found in parts sheet, and can't be exported.
+WARN [2023-10-12 13:17:12] fullDictionarySheetSet does not have a matching sheet but is part of fullDictionarySheetSet set, which was selected to be exported. This sheet cannot be exported.
+WARN [2023-10-12 13:17:12] airportSheetSet does not have a matching sheet but is part of airportSheetSet set, which was selected to be exported. This sheet cannot be exported.
