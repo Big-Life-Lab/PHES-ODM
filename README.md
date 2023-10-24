@@ -56,7 +56,7 @@ The ODM is comprised of 15 report tables and six look-up tables, linked to each 
 
 See [contributing](CONTRIBUTING.md) and [Code of conduct](CODE_OF_CONDUCT.md) for more information.
 
-- Issues, suggestions and pull requests are welcomed. use [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), the [ODM Discourse channel](https://odm.discourse.org) or email [phesd_odm@ohri.ca](mailto::phes_odm@ohri.caa).
+- Issues, suggestions and pull requests are welcomed. use [GH issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), the [ODM Discourse channel](https://odm.discourse.group) or email [phesd_odm@ohri.ca](mailto::phes_odm@ohri.caa).
 - Follow the [`dev`](https://github.com/Big-Life-Lab/covid-19-wastewater/tree/dev) branch for upcoming changes. Also follow version changes in [issues](https://github.com/Big-Life-Lab/covid-19-wastewater/issues), [discussions](https://github.com/Big-Life-Lab/covid-19-wastewater/discussions), and [projects](%3Chttps://github.com/Big-Life-Lab/covid-19-wastewater/projects).
 - [An international steering committee](https://github.com/Big-Life-Lab/PHES-ODM/wiki/Steering-Group-Members) guides the development of the data model.
 - Working groups consist of a regular weekly meeting with ODM developers and users. Add hoc working groups are created to develop specific sections of the ODM. An example of the working group the development of quality assurance and control measures.
