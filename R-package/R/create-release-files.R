@@ -238,14 +238,13 @@ validate_and_parse_files_sheet <-
             is_file_valid <- TRUE
           }
         } else{
-          tmp_ret <-
+         is_file_valid <-
             is_valid_part(partID,
                           parts_sheet,
                           dictionary,
                           is_file_valid,
                           errors)
-          is_file_valid <- tmp_ret[[1]]
-          errors <- tmp_ret[[2]]
+          errors <- !is_file_valid 
         }
       } else if (file_type == files$file_type$categories$csv) {
         if (nrow(set_info) >= 1) {
@@ -257,14 +256,13 @@ validate_and_parse_files_sheet <-
           )
           errors <- TRUE
         } else{
-          tmp_ret <-
+            is_file_valid <-
             is_valid_part(partID,
                           parts_sheet,
                           dictionary,
                           is_file_valid,
                           errors)
-          is_file_valid <- tmp_ret[[1]]
-          errors <- tmp_ret[[2]]
+          errors <- !is_file_valid 
         }
       }       
 
@@ -407,16 +405,13 @@ remove_files <- function(files_to_remove, dictionary) {
 #' @param partID partID being tested.
 #' @param parts_sheet Parts sheet from the dictionary.
 #' @param dictionary Reference for the dictionary object.
-#' @param is_file_valid Boolean storing whether the file has been previously validated.
-#' @param errors Boolean storing flag for previously encountered errors.
 #'
-#' @return list: is_file_valid = boolean, errors = boolean.
+#' @return boolean 
 is_valid_part <-
   function(partID,
            parts_sheet,
-           dictionary,
-           is_file_valid,
-           errors) {
+           dictionary)
+    is_file_valid <- FALSE
     if (partID %in% parts_sheet[[files$part_ID$name]]) {
       if (partID %in% names(dictionary)) {
         is_file_valid <- TRUE
@@ -425,16 +420,13 @@ is_valid_part <-
           single_part,
           " does not have a matching sheet, and can't be exported."
         ))
-        errors <- TRUE
       }
       
     } else {
       logger::log_warn(paste0(partID,
                               " is not found in parts sheet, and can't be exported."))
-      errors <- TRUE
     }
-    
-    return(list(is_file_valid = is_file_valid, errors = errors))
+    return(is_file_valid) 
   }
 
 #' Download dictionary
