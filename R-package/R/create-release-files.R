@@ -1,5 +1,7 @@
 source(file.path(getwd(), "R", "odm-dictionary-file.R"))
 source(file.path(getwd(), "R", "files.R"))
+source('R/logging.R')
+
 #' Create release files
 #'
 #' Creates release files given the user OSF link and auth token.
@@ -12,12 +14,8 @@ create_release_files <-
   function(osf_repo_link,
            osf_token,
            github_token)
-    # Setup logging
-    # Remove previous log
-    file.remove(odm_dictionary$log_path)
-    # Set logger appending
-    logger::log_appender(logger::appender_file(odm_dictionary$log_path))
-    
+    setup_logging()
+
     # Download file using passed credentials
     dictionary_path <- download_dictionary(dictionary_path, osf_token, osf_repo_link, odm_dictionary$tmp_dictionary_directory, origin_directory = "dev-release")
     
@@ -38,9 +36,13 @@ create_release_files <-
     # Will become stop once function development is finished
     if (fatal_errors_flag) {
       warning(
-        "Errors were detected further building cannot continue please check the log for additional info"
+        paste0(
+            "Errors were detected further building cannot continue please check the log for additional info."
+            "The log is located at ", log_file_path
+        )
       )
     }
+
     # Set git config
     system('git config user.name "PBL-Bot"')
     system('git config user.email "projectbiglife@toh.ca"')

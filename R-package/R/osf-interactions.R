@@ -1,5 +1,6 @@
 # Load utility functions
 source(file.path(getwd(), "R", "create-release-files.R"))
+source('R/logging.R')
 
 #' Update OSF files
 #'
@@ -15,12 +16,8 @@ update_osf <- function(osf_repo_link,
                        osf_token,
                        dictionary_path = NULL,
                        past_dictionary_path = NULL){
-  # Setup logging
-  # Remove previous log
-  file.remove(odm_dictionary$log_path)
-  # Set logger appending
-  logger::log_appender(logger::appender_file(odm_dictionary$log_path))
-  
+  setup_logging()
+
   # Download file using passed credentials
   dictionary_path <- download_dictionary(dictionary_path, osf_token, osf_repo_link, odm_dictionary$tmp_dictionary_directory, origin_directory = "dev-release")
   
