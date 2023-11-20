@@ -162,6 +162,7 @@ validate_and_parse_files_sheet <-
            version,
            files_sheet_formatted[[files$osf_locations$name]])
     files_to_extract <- list()
+    # Whether there are any errors in the entire file sheet
     errors <- FALSE
     for (row_index in seq_len(nrow(files_sheet_formatted))) {
       working_row <- files_sheet_formatted[row_index,]
