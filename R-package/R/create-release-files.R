@@ -198,8 +198,6 @@ validate_and_parse_files_sheet <-
           set_name <- partID
           set_parts <- set_info[[sets_sheet_metadata$part_ID$name]]
           sheet_names <- set_parts
-          # Set names for elements to allow removal of invalid parts
-          names(set_parts) <- set_parts
           for (single_part in set_parts) {
             if (single_part %in% parts_sheet[[parts_sheet_metadata$part_ID$name]]) {
               # Check that a sheet with this part exists
@@ -216,8 +214,7 @@ validate_and_parse_files_sheet <-
                 )
                 errors <- TRUE
                 # Remove missing part
-                set_parts <-
-                  set_parts[names(set_parts) != single_part]
+                sheet_names <- sheet_names[sheet_names != single_part]
               }
               
             } else{
@@ -231,11 +228,10 @@ validate_and_parse_files_sheet <-
               )
               errors <- TRUE
               # Remove missing part
-              set_parts <-
-                set_parts[names(set_parts) != single_part]
+              sheet_names <- sheet_names[sheet_names != single_part]
             }
           }
-          partID <- unname(set_parts)
+          partID <- sheet_names
           # Check if any valid parts remain
           if (length(partID) >= 1) {
             is_file_valid <- TRUE
