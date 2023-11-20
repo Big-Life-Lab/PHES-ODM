@@ -293,7 +293,6 @@ validate_and_parse_files_sheet <-
 create_files <-
   function(files_to_extract,
            dictionary) {
-    reused_storage_prefix <- file.path(getwd(),"..")
     # Loop over files to extract based on fileID
     for (fileID in names(files_to_extract)) {
       current_file_info <- files_to_extract[[fileID]]
@@ -301,7 +300,8 @@ create_files <-
       # Create a write directory based on destination and saving location
       write_dir <- ""
       if (current_file_info$destination == "github") {
-        write_dir <- file.path(reused_storage_prefix,
+        write_dir <- file.path(getwd(),
+                               "..",
                                current_file_info$github_location)
         dir.create(write_dir,
                    showWarnings = FALSE,
