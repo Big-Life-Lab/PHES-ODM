@@ -70,7 +70,6 @@ update_osf <- function(osf_repo_link,
 #'
 create_osf_files_locally <- function(files_to_extract,
                             dictionary) {
-  reused_storage_prefix <- file.path(getwd(),"osf-stage")
   # Loop over files to extract based on fileID
   for (fileID in names(files_to_extract)) {
     current_file_info <- files_to_extract[[fileID]]
@@ -78,7 +77,7 @@ create_osf_files_locally <- function(files_to_extract,
     # Create a write directory based on destination and saving location
     write_dir <- ""
     if (current_file_info$destination == "osf") {
-      write_dir <- file.path(reused_storage_prefix,
+      write_dir <- file.path(getwd(), "osf-stage",
                              current_file_info$osf_location)
       dir.create(write_dir,
                  showWarnings = FALSE,
