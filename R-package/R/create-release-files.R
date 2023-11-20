@@ -456,7 +456,7 @@ download_dictionary <- function(osf_token, osf_repo_link, dictionary_set_path, o
   # Download file using passed credentials
   osfr::osf_auth(osf_token)
   repo_info <- osfr::osf_retrieve_node(OSF_LINK)
-  repo_info <- osfr::osf_ls_files(repo_info)
+    %>% osfr::osf_ls_files()
   requested_directory <- repo_info[repo_info$name == origin_directory, ]
   requested_dictionary <- osfr::osf_ls_files(requested_directory, type = "file", pattern = "ODM_dictionary_")
   download_info <- osfr::osf_download(requested_dictionary, path = dictionary_set_path, conflicts = "overwrite")
