@@ -37,7 +37,7 @@ update_osf <- function(osf_repo_link,
   # Will move with development
   # Will become stop once function development is finished
   if (fatal_errors_flag) {
-    warning(
+    stop(
         paste0(
             "Errors were detected further building cannot continue please check the log for additional info."
             "The log is located at ", log_file_path
