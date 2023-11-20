@@ -38,8 +38,11 @@ update_osf <- function(osf_repo_link,
   # Will become stop once function development is finished
   if (fatal_errors_flag) {
     warning(
-      "Errors were detected further building cannot continue please check the log for additional info"
-    )
+        paste0(
+            "Errors were detected further building cannot continue please check the log for additional info."
+            "The log is located at ", log_file_path
+        )
+      )
   }
   
   stage_osf_files(files_to_make,
