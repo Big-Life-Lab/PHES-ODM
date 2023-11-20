@@ -147,7 +147,7 @@ validate_and_parse_files_sheet <-
     files_sheet_formatted <-
       files_sheet[files_sheet[[files$file_type$name]] %in% files$file_type$categories, unlist(files_sheet_column_names)]
     # insert version
-    files_sheet_formatted$name <-
+    files_sheet_formatted[[files$add_headers$name]] <-
       gsub(template_variables$version,
            version,
            files_sheet_formatted$name)
