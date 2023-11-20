@@ -461,7 +461,7 @@ download_dictionary <- function(osf_token, osf_repo_link, dictionary_set_path, o
   requested_dictionary <- osfr::osf_ls_files(requested_directory, type = "file", pattern = "ODM_dictionary_")
   download_info <- osfr::osf_download(requested_dictionary, path = dictionary_set_path, conflicts = "overwrite")
   
-  return(download_info[1, "local_pat"])
+  return(download_info[1, "local_path"])
 }
 
 #' Commit files
