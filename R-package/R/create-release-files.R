@@ -266,18 +266,8 @@ validate_and_parse_files_sheet <-
           is_file_valid <- tmp_ret[[1]]
           errors <- tmp_ret[[2]]
         }
-      } else{
-        logger::log_warn(
-          paste0(
-            partID,
-            " has an unrecognized fileType of ",
-            file_type,
-            ", and can't be exported."
-          )
-        )
-        errors <- TRUE
-      }
-      
+      }       
+
       # Append valid files list
       if (is_file_valid) {
         files_to_extract[[fileID]] <- list(
