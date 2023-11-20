@@ -6,12 +6,12 @@ source(file.path(getwd(), "R", "create-release-files.R"))
 #' This function updates files on the Open Science Framework (OSF) using the provided OSF link and token.
 #' It downloads the dictionary file, validates the dictionary version and files sheet, and stages the files to be uploaded to OSF.
 #'
-#' @param OSF_REPO_LINK The link to the OSF repo.
+#' @param osf_repo_link The link to the OSF repo.
 #' @param OSF_TOKEN The OSF token used to authenticate the user.
 #' @param dictionary_path The path to the dictionary file. If NULL, the file will be downloaded from OSF.
 #' @param past_dictionary_path The path to the past dictionary file. If NULL, the file will be downloaded from OSF.
 #'
-update_osf <- function(OSF_REPO_LINK,
+update_osf <- function(osf_repo_link,
                        OSF_TOKEN,
                        dictionary_path = NULL,
                        past_dictionary_path = NULL){
@@ -22,7 +22,7 @@ update_osf <- function(OSF_REPO_LINK,
   logger::log_appender(logger::appender_file(odm_dictionary$log_path))
   
   # Download file using passed credentials
-  dictionary_path <- download_dictionary(dictionary_path, OSF_TOKEN, OSF_REPO_LINK, odm_dictionary$tmp_dictionary_directory, origin_directory = "dev-release")
+  dictionary_path <- download_dictionary(dictionary_path, OSF_TOKEN, osf_repo_link, odm_dictionary$tmp_dictionary_directory, origin_directory = "dev-release")
   
   # Validate dictionary version
   dictionary_info <- get_dictionary(dictionary_path)
@@ -49,7 +49,7 @@ update_osf <- function(OSF_REPO_LINK,
                dictionary)
 
   # Download previous release dictionary
-  past_dictionary_path <- download_dictionary(past_dictionary_path, OSF_TOKEN, OSF_REPO_LINK, odm_dictionary$tmp_dictionary_directory_past_release, origin_directory = "Current Release")
+  past_dictionary_path <- download_dictionary(past_dictionary_path, OSF_TOKEN, osf_repo_link, odm_dictionary$tmp_dictionary_directory_past_release, origin_directory = "Current Release")
   
   # Validate dictionary version
   past_dictionary_info <- get_dictionary(past_dictionary_path)
@@ -57,7 +57,7 @@ update_osf <- function(OSF_REPO_LINK,
   past_dictionary <- past_dictionary_info[[1]]
   past_dictionary_version <- past_dictionary_info[[2]]
   
-  archive_previous_release(OSF_TOKEN, OSF_REPO_LINK, past_dictionary_version)
+  archive_previous_release(OSF_TOKEN, osf_repo_link, past_dictionary_version)
   
 }
 
