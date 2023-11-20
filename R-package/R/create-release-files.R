@@ -6,16 +6,12 @@ source(file.path(getwd(), "R", "files.R"))
 #'
 #' @param osf_repo_link The link to the OSF repo.
 #' @param osf_token The OSF token used to authenticate the user.
-#' @param dictionary_path optional string containing path to the dictionary directory. When provided no dictionary is downloaded.
-#' @param past_dictionary_path optional string containing path to the previous release dictionary directory. When provided no dictionary is downloaded.
 #'
 #' @export
 create_release_files <-
   function(osf_repo_link,
            osf_token,
-           github_token,
-           dictionary_path = NULL,
-           past_dictionary_path = NULL) {
+           github_token)
     # Setup logging
     # Remove previous log
     file.remove(odm_dictionary$log_path)
