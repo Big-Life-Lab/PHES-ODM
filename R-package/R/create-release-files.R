@@ -447,23 +447,19 @@ is_valid_part <-
 #' 
 #' Utility function to download dictionary from OSF
 #' 
-#' @param dictionary_path string with path to dictionary
 #' @param osf_token string containing the OSF auth token
 #' @param osf_repo_link string containing the link to the dictionary to download
 #' @param dictionary_set_path string containing the path to be set if one is not provided
 #' 
 #' @return string containing the path to the saved dictionary.
-download_dictionary <- function(dictionary_path, osf_token, osf_repo_link, dictionary_set_path, origin_directory){
+download_dictionary <- function(osf_token, osf_repo_link, dictionary_set_path, origin_directory){
   # Download file using passed credentials
-  if (is.null(dictionary_path)) {
-    dictionary_path <- dictionary_set_path
-    osfr::osf_auth(osf_token)
-    repo_info <- osfr::osf_retrieve_node(OSF_LINK)
-    repo_info <- osfr::osf_ls_files(repo_info)
-    requested_directory <- repo_info[repo_info$name == origin_directory, ]
-    requested_dictionary <- osfr::osf_ls_files(requested_directory, type = "file", pattern = "ODM_dictionary_")
-    download_info <- osfr::osf_download(requested_dictionary, path = dictionary_path, conflicts = "overwrite")
-  }
+  osfr::osf_auth(osf_token)
+  repo_info <- osfr::osf_retrieve_node(OSF_LINK)
+  repo_info <- osfr::osf_ls_files(repo_info)
+  requested_directory <- repo_info[repo_info$name == origin_directory, ]
+  requested_dictionary <- osfr::osf_ls_files(requested_directory, type = "file", pattern = "ODM_dictionary_")
+  download_info <- osfr::osf_download(requested_dictionary, path = dictionary_set_path, conflicts = "overwrite")
   
   return(download_info[1, "local_pat"])
 }
