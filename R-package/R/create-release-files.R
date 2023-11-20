@@ -1,6 +1,7 @@
 source(file.path(getwd(), "R", "odm-dictionary-file.R"))
 source(file.path(getwd(), "R", "files.R"))
 source('R/logging.R')
+source('R/sets-sheet.R')
 
 #' Create release files
 #'
@@ -194,7 +195,7 @@ validate_and_parse_files_sheet <-
         # If part exists in sets its a set therefore all parts belonging to the set are used as partID for sheet creation.
         if (nrow(set_info) >= 1) {
           set_name <- partID
-          set_parts <- set_info[[files$part_ID$name]]
+          set_parts <- set_info[[sets_sheet_metadata$part_ID$name]]
           sheet_names <- set_parts
           # Set names for elements to allow removal of invalid parts
           names(set_parts) <- set_parts
