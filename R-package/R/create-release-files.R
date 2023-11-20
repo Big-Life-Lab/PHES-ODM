@@ -199,7 +199,7 @@ validate_and_parse_files_sheet <-
           sheet_names <- set_parts
           # Set names for elements to allow removal of invalid parts
           names(set_parts) <- set_parts
-          for (single_part in partID) {
+          for (single_part in set_parts) {
             if (single_part %in% parts_sheet[[files$part_ID$name]]) {
               # Check that a sheet with this part exists
               if (single_part %in% names(dictionary)) {
