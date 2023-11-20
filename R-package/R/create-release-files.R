@@ -295,11 +295,13 @@ create_files <-
            dictionary) {
     # Loop over files to extract based on fileID
     for (fileID in names(files_to_extract)) {
+      if(current_file_info$destination != "github") {
+          next()
+      }
+
       current_file_info <- files_to_extract[[fileID]]
       
       # Create a write directory based on destination and saving location
-      write_dir <- ""
-      if (current_file_info$destination == "github") {
         write_dir <- file.path(getwd(),
                                "..",
                                current_file_info$github_location)
@@ -307,7 +309,6 @@ create_files <-
                    showWarnings = FALSE,
                    recursive = TRUE)
         
-      }
       
       
       if(write_dir != ""){
