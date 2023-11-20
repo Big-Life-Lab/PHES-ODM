@@ -87,26 +87,9 @@ create_release_files <-
 #' @param dictionary_path string containing path to the dictionary directory.
 #'
 #' @return list with: dictionary = xlsx object for a workbook, dictionary_version = string containing the dictionary version
-get_dictionary <- function(dictionary_path) {
-  # Acquire version number from file name
-  dictionary_version_pattern <- "ODM_dictionary_(\\d.*?).xlsx"
-  file_names <-
-    list.files(file.path(getwd(), dictionary_path),
-               pattern = dictionary_version_pattern)
-  # Display error and stop execution for multiple dictionaries
-  if (length(file_names) > 1) {
-    stop('Multiple dictionaries found, only one dictionary should be stored.')
-  } else if (length(file_names) == 0) {
-    stop("No valid files were detected. Make sure the dictionary file is named correctly.")
-  }
-  dictionary_file_name_version_number <-
-    regmatches(file_names,
-               regexec(dictionary_version_pattern, file_names))[[1]][2]
-  
-  # Read in the dictionary workbook
-  dictionary <- openxlsx::loadWorkbook(file.path(getwd(),
-                                                 dictionary_path,
-                                                 file_names))
+get_dictionary <- function(dictionary_path) { 
+      # Read in the dictionary workbook
+  dictionary <- openxlsx::loadWorkbook(dictionary_path)
   
   # Acquire version number from summary sheet
   summary_sheet <-
@@ -117,6 +100,11 @@ get_dictionary <- function(dictionary_path) {
   summary_versions <- summary_versions[!is.na(summary_versions)]
   # Select the last version
   summary_version <- summary_versions[[length(summary_versions)]]
+    file_name <- basename(dictionary_path)
+  dictionary_file_name_version_number <-
+    regmatches(file_name,
+               regexec(dictionary_version_pattern, file_name))[[1]][2]
+  
   # Compare if the versions match
   if (summary_version != dictionary_file_name_version_number) {
     logger::log_warn("Dictionary file name version does not reflect version in summary sheet")
@@ -474,10 +462,10 @@ download_dictionary <- function(dictionary_path, osf_token, osf_repo_link, dicti
     repo_info <- osfr::osf_ls_files(repo_info)
     requested_directory <- repo_info[repo_info$name == origin_directory, ]
     requested_dictionary <- osfr::osf_ls_files(requested_directory, type = "file", pattern = "ODM_dictionary_")
-    osfr::osf_download(requested_dictionary, path = dictionary_path, conflicts = "overwrite")
+    download_info <- osfr::osf_download(requested_dictionary, path = dictionary_path, conflicts = "overwrite")
   }
   
-  return(dictionary_path)
+  return(download_info[1, "local_pat"])
 }
 
 #' Commit files
