@@ -1,4 +1,4 @@
-name: Upload Dictionaries
+name: Merge Release 
 
 on:
   pull_request:
