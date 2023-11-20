@@ -380,9 +380,10 @@ remove_files <- function(files_to_remove, dictionary) {
   for (fileID in names(files_to_remove)) {
     current_file_info <- files_to_remove[[fileID]]
     # Skip OSF files
-    if (current_file_info$destination == "OSF") {
+    if (current_file_info$destination != "github") {
       next()
-    } else if (current_file_info$destination == "github") {
+    } 
+
       # Create full file path
       file_extension <- switch (current_file_info$file_type,
                                 "excel" = ".xlsx",
@@ -395,7 +396,7 @@ remove_files <- function(files_to_remove, dictionary) {
       if (file.exists(file_path)) {
         file.remove(file_path)
       }
-    }
+    
   }
 }
 
