@@ -1,4 +1,4 @@
-name: Update Documentation
+name: Create Release Branch
 on:
   workflow_dispatch:
 jobs:
