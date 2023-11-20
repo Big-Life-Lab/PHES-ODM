@@ -10,13 +10,10 @@ Description: PHES-ODM
 Depends:
     R (>= 4.0.3)
 Imports:
-    rmarkdown,
-    glue,
     osfr,
     magrittr,
     openxlsx,
-    logger,
-    gh
+    logger
 License: cc-by-4.0 
 URL: https://github.com/Big-Life-Lab/PHES-ODM
 BugReports: https://github.com/Big-Life-Lab/PHES-ODM/issues
