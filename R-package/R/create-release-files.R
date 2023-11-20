@@ -338,6 +338,9 @@ create_files <-
             openxlsx::readWorkbook(dictionary, sheet_name)
           if (current_file_info$add_headers != odm_dictionary$dictionary_missing_value) {
             new_headers <- strsplit(current_file_info$add_headers, ";")[[1]]
+            # Move the row with all the column names to be the second row in the 
+            # sheet so that the first can contain the headers to be added to 
+          # the sheet
             output_sheet <-
               rbind(colnames(output_sheet), output_sheet)
             if (length(colnames(output_sheet)) > length(new_headers)) {
