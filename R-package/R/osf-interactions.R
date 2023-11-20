@@ -45,7 +45,7 @@ update_osf <- function(osf_repo_link,
       )
   }
   
-  stage_osf_files(files_to_make,
+  create_osf_files_locally(files_to_make,
                dictionary)
 
   # Download previous release dictionary
@@ -68,7 +68,7 @@ update_osf <- function(osf_repo_link,
 #' @param files_to_extract A list of files to extract.
 #' @param dictionary The dictionary file.
 #'
-stage_osf_files <- function(files_to_extract,
+create_osf_files_locally <- function(files_to_extract,
                             dictionary) {
   reused_storage_prefix <- file.path(getwd(),"osf-stage")
   # Loop over files to extract based on fileID
