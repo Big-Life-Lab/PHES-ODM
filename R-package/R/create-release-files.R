@@ -75,7 +75,7 @@ create_release_files <-
     remove_files(files_to_make,
                  dictionary)
     
-    commit_files(dictionary_version, new_branch_name)
+    commit_and_push_files(dictionary_version, new_branch_name)
     
   }
 
@@ -482,11 +482,11 @@ download_dictionary <- function(dictionary_path, osf_token, osf_repo_link, dicti
 
 #' Commit files
 #' 
-#' Utility function to add and commit all changes
+#' Utility function to add, commit, and push all changes
 #' 
 #' @param repo git2r object for repo reference
 #' @param dictionary_version version of the dictionary being deployed
-commit_files <- function(dictionary_version, branch_name){
+commit_and_push_files <- function(dictionary_version, branch_name){
   # Add all files
   system('git add --all')
   # Create commit
