@@ -34,3 +34,5 @@ files <- list(
 )
 
 files_sheet_column_names <- lapply(files[names(files)], `[[`, 1)
+
+template_variables$version <- "\\{version\\}" 
