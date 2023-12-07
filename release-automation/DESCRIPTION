@@ -1,6 +1,6 @@
-Package: PHES.ODM
+Package: release.automation 
 Type: Package
-Title: PHES-ODM
+Title: Release Automation 
 Version: 2.1.0
 Authors@R: c(
     person(given = "Yulric", family = "Sequeira", role = c("aut"), email = "ysequeira@ohri.ca"),
