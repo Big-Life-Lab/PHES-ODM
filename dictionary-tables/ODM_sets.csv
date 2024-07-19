@@ -1,4 +1,4 @@
-Version,2.2.0,,,,,,,,
+Version,2.2.1,,,,,,,,
 setID,setType,partID,label,enumeration,status,firstReleased,lastUpdated,changes,notes
 absHumidUnitSet,unitSets,gm3,Gram per cubic metre,1,active,2.0.0,2.0.0,,
 airCompartmentSet,compartmentSets,air,Air compartment,1,active,2.0.0,2.0.0,,
