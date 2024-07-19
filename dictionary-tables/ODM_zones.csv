@@ -1,4 +1,4 @@
-Version,2.2.0,
+Version,2.2.1,
 isoCode,isoZone,zoneName
 AD,AD-02,Canillo
 AD,AD-03,Encamp
@@ -146,14 +146,14 @@ AZ,AZ-AGS,Ağdaş
 AZ,AZ-AGU,Ağsu
 AZ,AZ-AST,Astara
 AZ,AZ-BA,Bakı
-AZ-NX,AZ-BAB,Babək
+AZ,AZ-BAB,Babək
 AZ,AZ-BAL,Balakən
 AZ,AZ-BAR,Bərdə
 AZ,AZ-BEY,Beyləqan
 AZ,AZ-BIL,Biləsuvar
 AZ,AZ-CAB,Cəbrayıl
 AZ,AZ-CAL,Cəlilabad
-AZ-NX,AZ-CUL,Culfa
+AZ,AZ-CUL,Culfa
 AZ,AZ-DAS,Daşkəsən
 AZ,AZ-FUZ,Füzuli
 AZ,AZ-GA,Gəncə
@@ -165,7 +165,7 @@ AZ,AZ-HAC,Hacıqabul
 AZ,AZ-IMI,İmişli
 AZ,AZ-ISM,İsmayıllı
 AZ,AZ-KAL,Kəlbəcər
-AZ-NX,AZ-KAN,Kǝngǝrli
+AZ,AZ-KAN,Kǝngǝrli
 AZ,AZ-KUR,Kürdəmir
 AZ,AZ-LA,Lənkəran
 AZ,AZ-LAC,Laçın
@@ -175,10 +175,10 @@ AZ,AZ-MAS,Masallı
 AZ,AZ-MI,Mingəçevir
 AZ,AZ-NA,Naftalan
 AZ,AZ-NEF,Neftçala
-AZ-NX,AZ-NV,Naxçıvan
+AZ,AZ-NV,Naxçıvan
 AZ,AZ-NX,Naxçıvan
 AZ,AZ-OGU,Oğuz
-AZ-NX,AZ-ORD,Ordubad
+AZ,AZ-ORD,Ordubad
 AZ,AZ-QAB,Qəbələ
 AZ,AZ-QAX,Qax
 AZ,AZ-QAZ,Qazax
@@ -188,11 +188,11 @@ AZ,AZ-QOB,Qobustan
 AZ,AZ-QUS,Qusar
 AZ,AZ-SA,Şəki
 AZ,AZ-SAB,Sabirabad
-AZ-NX,AZ-SAD,Sədərək
-AZ-NX,AZ-SAH,Şahbuz
+AZ,AZ-SAD,Sədərək
+AZ,AZ-SAH,Şahbuz
 AZ,AZ-SAK,Şəki
 AZ,AZ-SAL,Salyan
-AZ-NX,AZ-SAR,Şərur
+AZ,AZ-SAR,Şərur
 AZ,AZ-SAT,Saatlı
 AZ,AZ-SBN,Şabran
 AZ,AZ-SIY,Siyəzən
@@ -230,70 +230,70 @@ BB,BB-08,Saint Michael
 BB,BB-09,Saint Peter
 BB,BB-10,Saint Philip
 BB,BB-11,Saint Thomas
-BD-B,BD-01,Bandarban
-BD-A,BD-02,Barguna
-BD-E,BD-03,Bogura
-BD-B,BD-04,Brahmanbaria
-BD-D,BD-05,Bagerhat
-BD-A,BD-06,Barishal
-BD-A,BD-07,Bhola
-BD-B,BD-08,Cumilla
-BD-B,BD-09,Chandpur
-BD-B,BD-10,Chattogram
-BD-B,BD-11,Cox's Bazar
-BD-D,BD-12,Chuadanga
-BD-C,BD-13,Dhaka
-BD-F,BD-14,Dinajpur
-BD-C,BD-15,Faridpur
-BD-B,BD-16,Feni
-BD-C,BD-17,Gopalganj
-BD-C,BD-18,Gazipur
-BD-F,BD-19,Gaibandha
-BD-G,BD-20,Habiganj
-BD-H,BD-21,Jamalpur
-BD-D,BD-22,Jashore
-BD-D,BD-23,Jhenaidah
-BD-E,BD-24,Joypurhat
-BD-A,BD-25,Jhalakathi
-BD-C,BD-26,Kishoreganj
-BD-D,BD-27,Khulna
-BD-F,BD-28,Kurigram
-BD-B,BD-29,Khagrachhari
-BD-D,BD-30,Kushtia
-BD-B,BD-31,Lakshmipur
-BD-F,BD-32,Lalmonirhat
-BD-C,BD-33,Manikganj
-BD-H,BD-34,Mymensingh
-BD-C,BD-35,Munshiganj
-BD-C,BD-36,Madaripur
-BD-D,BD-37,Magura
-BD-G,BD-38,Moulvibazar
-BD-D,BD-39,Meherpur
-BD-C,BD-40,Narayanganj
-BD-H,BD-41,Netrakona
-BD-C,BD-42,Narsingdi
-BD-D,BD-43,Narail
-BD-E,BD-44,Natore
-BD-E,BD-45,Chapai Nawabganj
-BD-F,BD-46,Nilphamari
-BD-B,BD-47,Noakhali
-BD-E,BD-48,Naogaon
-BD-E,BD-49,Pabna
-BD-A,BD-50,Pirojpur
-BD-A,BD-51,Patuakhali
-BD-F,BD-52,Panchagarh
-BD-C,BD-53,Rajbari
-BD-E,BD-54,Rajshahi
-BD-F,BD-55,Rangpur
-BD-B,BD-56,Rangamati
-BD-H,BD-57,Sherpur
-BD-D,BD-58,Satkhira
-BD-E,BD-59,Sirajganj
-BD-G,BD-60,Sylhet
-BD-G,BD-61,Sunamganj
-BD-C,BD-62,Shariatpur
-BD-C,BD-63,Tangail
-BD-F,BD-64,Thakurgaon
+BD,BD-01,Bandarban
+BD,BD-02,Barguna
+BD,BD-03,Bogura
+BD,BD-04,Brahmanbaria
+BD,BD-05,Bagerhat
+BD,BD-06,Barishal
+BD,BD-07,Bhola
+BD,BD-08,Cumilla
+BD,BD-09,Chandpur
+BD,BD-10,Chattogram
+BD,BD-11,Cox's Bazar
+BD,BD-12,Chuadanga
+BD,BD-13,Dhaka
+BD,BD-14,Dinajpur
+BD,BD-15,Faridpur
+BD,BD-16,Feni
+BD,BD-17,Gopalganj
+BD,BD-18,Gazipur
+BD,BD-19,Gaibandha
+BD,BD-20,Habiganj
+BD,BD-21,Jamalpur
+BD,BD-22,Jashore
+BD,BD-23,Jhenaidah
+BD,BD-24,Joypurhat
+BD,BD-25,Jhalakathi
+BD,BD-26,Kishoreganj
+BD,BD-27,Khulna
+BD,BD-28,Kurigram
+BD,BD-29,Khagrachhari
+BD,BD-30,Kushtia
+BD,BD-31,Lakshmipur
+BD,BD-32,Lalmonirhat
+BD,BD-33,Manikganj
+BD,BD-34,Mymensingh
+BD,BD-35,Munshiganj
+BD,BD-36,Madaripur
+BD,BD-37,Magura
+BD,BD-38,Moulvibazar
+BD,BD-39,Meherpur
+BD,BD-40,Narayanganj
+BD,BD-41,Netrakona
+BD,BD-42,Narsingdi
+BD,BD-43,Narail
+BD,BD-44,Natore
+BD,BD-45,Chapai Nawabganj
+BD,BD-46,Nilphamari
+BD,BD-47,Noakhali
+BD,BD-48,Naogaon
+BD,BD-49,Pabna
+BD,BD-50,Pirojpur
+BD,BD-51,Patuakhali
+BD,BD-52,Panchagarh
+BD,BD-53,Rajbari
+BD,BD-54,Rajshahi
+BD,BD-55,Rangpur
+BD,BD-56,Rangamati
+BD,BD-57,Sherpur
+BD,BD-58,Satkhira
+BD,BD-59,Sirajganj
+BD,BD-60,Sylhet
+BD,BD-61,Sunamganj
+BD,BD-62,Shariatpur
+BD,BD-63,Tangail
+BD,BD-64,Thakurgaon
 BD,BD-A,Barishal
 BD,BD-B,Chattogram
 BD,BD-C,Dhaka
@@ -303,18 +303,18 @@ BD,BD-F,Rangpur
 BD,BD-G,Sylhet
 BD,BD-H,Mymensingh
 BE,BE-BRU,Brussels Hoofdstedelijk Gewest
-BE-VLG,BE-VAN,Antwerpen
-BE-VLG,BE-VBR,Vlaams-Brabant
+BE,BE-VAN,Antwerpen
+BE,BE-VBR,Vlaams-Brabant
 BE,BE-VLG,Vlaams Gewest
-BE-VLG,BE-VLI,Limburg
-BE-VLG,BE-VOV,Oost-Vlaanderen
-BE-VLG,BE-VWV,West-Vlaanderen
+BE,BE-VLI,Limburg
+BE,BE-VOV,Oost-Vlaanderen
+BE,BE-VWV,West-Vlaanderen
 BE,BE-WAL,Waals Gewest
-BE-WAL,BE-WBR,Brabant wallon
-BE-WAL,BE-WHT,Hainaut
-BE-WAL,BE-WLG,Liège
-BE-WAL,BE-WLX,Luxembourg
-BE-WAL,BE-WNA,Namur
+BE,BE-WBR,Brabant wallon
+BE,BE-WHT,Hainaut
+BE,BE-WLG,Liège
+BE,BE-WLX,Luxembourg
+BE,BE-WNA,Namur
 BF,BF-01,Boucle du Mouhoun
 BF,BF-02,Cascades
 BF,BF-03,Centre
@@ -328,51 +328,51 @@ BF,BF-10,Nord
 BF,BF-11,Plateau-Central
 BF,BF-12,Sahel
 BF,BF-13,Sud-Ouest
-BF-01,BF-BAL,Balé
-BF-05,BF-BAM,Bam
-BF-01,BF-BAN,Banwa
-BF-07,BF-BAZ,Bazèga
-BF-13,BF-BGR,Bougouriba
-BF-04,BF-BLG,Boulgou
-BF-06,BF-BLK,Boulkiemdé
-BF-02,BF-COM,Comoé
-BF-11,BF-GAN,Ganzourgou
-BF-08,BF-GNA,Gnagna
-BF-08,BF-GOU,Gourma
-BF-09,BF-HOU,Houet
-BF-13,BF-IOB,Ioba
-BF-03,BF-KAD,Kadiogo
-BF-09,BF-KEN,Kénédougou
-BF-08,BF-KMD,Komondjari
-BF-08,BF-KMP,Kompienga
-BF-04,BF-KOP,Koulpélogo
-BF-01,BF-KOS,Kossi
-BF-04,BF-KOT,Kouritenga
-BF-11,BF-KOW,Kourwéogo
-BF-02,BF-LER,Léraba
-BF-10,BF-LOR,Loroum
-BF-01,BF-MOU,Mouhoun
-BF-05,BF-NAM,Namentenga
-BF-07,BF-NAO,Nahouri
-BF-01,BF-NAY,Nayala
-BF-13,BF-NOU,Noumbiel
-BF-11,BF-OUB,Oubritenga
-BF-12,BF-OUD,Oudalan
-BF-10,BF-PAS,Passoré
-BF-13,BF-PON,Poni
-BF-12,BF-SEN,Séno
-BF-06,BF-SIS,Sissili
-BF-05,BF-SMT,Sanmatenga
-BF-06,BF-SNG,Sanguié
-BF-12,BF-SOM,Soum
-BF-01,BF-SOR,Sourou
-BF-08,BF-TAP,Tapoa
-BF-09,BF-TUI,Tuy
-BF-12,BF-YAG,Yagha
-BF-10,BF-YAT,Yatenga
-BF-06,BF-ZIR,Ziro
-BF-10,BF-ZON,Zondoma
-BF-07,BF-ZOU,Zoundwéogo
+BF,BF-BAL,Balé
+BF,BF-BAM,Bam
+BF,BF-BAN,Banwa
+BF,BF-BAZ,Bazèga
+BF,BF-BGR,Bougouriba
+BF,BF-BLG,Boulgou
+BF,BF-BLK,Boulkiemdé
+BF,BF-COM,Comoé
+BF,BF-GAN,Ganzourgou
+BF,BF-GNA,Gnagna
+BF,BF-GOU,Gourma
+BF,BF-HOU,Houet
+BF,BF-IOB,Ioba
+BF,BF-KAD,Kadiogo
+BF,BF-KEN,Kénédougou
+BF,BF-KMD,Komondjari
+BF,BF-KMP,Kompienga
+BF,BF-KOP,Koulpélogo
+BF,BF-KOS,Kossi
+BF,BF-KOT,Kouritenga
+BF,BF-KOW,Kourwéogo
+BF,BF-LER,Léraba
+BF,BF-LOR,Loroum
+BF,BF-MOU,Mouhoun
+BF,BF-NAM,Namentenga
+BF,BF-NAO,Nahouri
+BF,BF-NAY,Nayala
+BF,BF-NOU,Noumbiel
+BF,BF-OUB,Oubritenga
+BF,BF-OUD,Oudalan
+BF,BF-PAS,Passoré
+BF,BF-PON,Poni
+BF,BF-SEN,Séno
+BF,BF-SIS,Sissili
+BF,BF-SMT,Sanmatenga
+BF,BF-SNG,Sanguié
+BF,BF-SOM,Soum
+BF,BF-SOR,Sourou
+BF,BF-TAP,Tapoa
+BF,BF-TUI,Tuy
+BF,BF-YAG,Yagha
+BF,BF-YAT,Yatenga
+BF,BF-ZIR,Ziro
+BF,BF-ZON,Zondoma
+BF,BF-ZOU,Zoundwéogo
 BG,BG-01,Blagoevgrad
 BG,BG-02,Burgas
 BG,BG-03,Varna
@@ -784,29 +784,29 @@ CU,CU-15,Artemisa
 CU,CU-16,Mayabeque
 CU,CU-99,Isla de la Juventud
 CV,CV-B,Ilhas de Barlavento
-CV-S,CV-BR,Brava
-CV-B,CV-BV,Boa Vista
-CV-S,CV-CA,Santa Catarina
-CV-S,CV-CF,Santa Catarina do Fogo
-CV-S,CV-CR,Santa Cruz
-CV-S,CV-MA,Maio
-CV-S,CV-MO,Mosteiros
-CV-B,CV-PA,Paul
-CV-B,CV-PN,Porto Novo
-CV-S,CV-PR,Praia
-CV-B,CV-RB,Ribeira Brava
-CV-B,CV-RG,Ribeira Grande
-CV-S,CV-RS,Ribeira Grande de Santiago
+CV,CV-BR,Brava
+CV,CV-BV,Boa Vista
+CV,CV-CA,Santa Catarina
+CV,CV-CF,Santa Catarina do Fogo
+CV,CV-CR,Santa Cruz
+CV,CV-MA,Maio
+CV,CV-MO,Mosteiros
+CV,CV-PA,Paul
+CV,CV-PN,Porto Novo
+CV,CV-PR,Praia
+CV,CV-RB,Ribeira Brava
+CV,CV-RG,Ribeira Grande
+CV,CV-RS,Ribeira Grande de Santiago
 CV,CV-S,Ilhas de Sotavento
-CV-S,CV-SD,São Domingos
-CV-S,CV-SF,São Filipe
-CV-B,CV-SL,Sal
-CV-S,CV-SM,São Miguel
-CV-S,CV-SO,São Lourenço dos Órgãos
-CV-S,CV-SS,São Salvador do Mundo
-CV-B,CV-SV,São Vicente
-CV-S,CV-TA,Tarrafal
-CV-B,CV-TS,Tarrafal de São Nicolau
+CV,CV-SD,São Domingos
+CV,CV-SF,São Filipe
+CV,CV-SL,Sal
+CV,CV-SM,São Miguel
+CV,CV-SO,São Lourenço dos Órgãos
+CV,CV-SS,São Salvador do Mundo
+CV,CV-SV,São Vicente
+CV,CV-TA,Tarrafal
+CV,CV-TS,Tarrafal de São Nicolau
 CY,CY-01,Lefkosia
 CY,CY-02,Lemesos
 CY,CY-03,Larnaka
@@ -815,94 +815,94 @@ CY,CY-05,Pafos
 CY,CY-06,Keryneia
 CZ,CZ-10,"Praha, Hlavní město"
 CZ,CZ-20,Středočeský kraj
-CZ-20,CZ-201,Benešov
-CZ-20,CZ-202,Beroun
-CZ-20,CZ-203,Kladno
-CZ-20,CZ-204,Kolín
-CZ-20,CZ-205,Kutná Hora
-CZ-20,CZ-206,Mělník
-CZ-20,CZ-207,Mladá Boleslav
-CZ-20,CZ-208,Nymburk
-CZ-20,CZ-209,Praha-východ
-CZ-20,CZ-20A,Praha-západ
-CZ-20,CZ-20B,Příbram
-CZ-20,CZ-20C,Rakovník
+CZ,CZ-201,Benešov
+CZ,CZ-202,Beroun
+CZ,CZ-203,Kladno
+CZ,CZ-204,Kolín
+CZ,CZ-205,Kutná Hora
+CZ,CZ-206,Mělník
+CZ,CZ-207,Mladá Boleslav
+CZ,CZ-208,Nymburk
+CZ,CZ-209,Praha-východ
+CZ,CZ-20A,Praha-západ
+CZ,CZ-20B,Příbram
+CZ,CZ-20C,Rakovník
 CZ,CZ-31,Jihočeský kraj
-CZ-31,CZ-311,České Budějovice
-CZ-31,CZ-312,Český Krumlov
-CZ-31,CZ-313,Jindřichův Hradec
-CZ-31,CZ-314,Písek
-CZ-31,CZ-315,Prachatice
-CZ-31,CZ-316,Strakonice
-CZ-31,CZ-317,Tábor
+CZ,CZ-311,České Budějovice
+CZ,CZ-312,Český Krumlov
+CZ,CZ-313,Jindřichův Hradec
+CZ,CZ-314,Písek
+CZ,CZ-315,Prachatice
+CZ,CZ-316,Strakonice
+CZ,CZ-317,Tábor
 CZ,CZ-32,Plzeňský kraj
-CZ-32,CZ-321,Domažlice
-CZ-32,CZ-322,Klatovy
-CZ-32,CZ-323,Plzeň-město
-CZ-32,CZ-324,Plzeň-jih
-CZ-32,CZ-325,Plzeň-sever
-CZ-32,CZ-326,Rokycany
-CZ-32,CZ-327,Tachov
+CZ,CZ-321,Domažlice
+CZ,CZ-322,Klatovy
+CZ,CZ-323,Plzeň-město
+CZ,CZ-324,Plzeň-jih
+CZ,CZ-325,Plzeň-sever
+CZ,CZ-326,Rokycany
+CZ,CZ-327,Tachov
 CZ,CZ-41,Karlovarský kraj
-CZ-41,CZ-411,Cheb
-CZ-41,CZ-412,Karlovy Vary
-CZ-41,CZ-413,Sokolov
+CZ,CZ-411,Cheb
+CZ,CZ-412,Karlovy Vary
+CZ,CZ-413,Sokolov
 CZ,CZ-42,Ústecký kraj
-CZ-42,CZ-421,Děčín
-CZ-42,CZ-422,Chomutov
-CZ-42,CZ-423,Litoměřice
-CZ-42,CZ-424,Louny
-CZ-42,CZ-425,Most
-CZ-42,CZ-426,Teplice
-CZ-42,CZ-427,Ústí nad Labem
+CZ,CZ-421,Děčín
+CZ,CZ-422,Chomutov
+CZ,CZ-423,Litoměřice
+CZ,CZ-424,Louny
+CZ,CZ-425,Most
+CZ,CZ-426,Teplice
+CZ,CZ-427,Ústí nad Labem
 CZ,CZ-51,Liberecký kraj
-CZ-51,CZ-511,Česká Lípa
-CZ-51,CZ-512,Jablonec nad Nisou
-CZ-51,CZ-513,Liberec
-CZ-51,CZ-514,Semily
+CZ,CZ-511,Česká Lípa
+CZ,CZ-512,Jablonec nad Nisou
+CZ,CZ-513,Liberec
+CZ,CZ-514,Semily
 CZ,CZ-52,Královéhradecký kraj
-CZ-52,CZ-521,Hradec Králové
-CZ-52,CZ-522,Jičín
-CZ-52,CZ-523,Náchod
-CZ-52,CZ-524,Rychnov nad Kněžnou
-CZ-52,CZ-525,Trutnov
+CZ,CZ-521,Hradec Králové
+CZ,CZ-522,Jičín
+CZ,CZ-523,Náchod
+CZ,CZ-524,Rychnov nad Kněžnou
+CZ,CZ-525,Trutnov
 CZ,CZ-53,Pardubický kraj
-CZ-53,CZ-531,Chrudim
-CZ-53,CZ-532,Pardubice
-CZ-53,CZ-533,Svitavy
-CZ-53,CZ-534,Ústí nad Orlicí
+CZ,CZ-531,Chrudim
+CZ,CZ-532,Pardubice
+CZ,CZ-533,Svitavy
+CZ,CZ-534,Ústí nad Orlicí
 CZ,CZ-63,Kraj Vysočina
-CZ-63,CZ-631,Havlíčkův Brod
-CZ-63,CZ-632,Jihlava
-CZ-63,CZ-633,Pelhřimov
-CZ-63,CZ-634,Třebíč
-CZ-63,CZ-635,Žďár nad Sázavou
+CZ,CZ-631,Havlíčkův Brod
+CZ,CZ-632,Jihlava
+CZ,CZ-633,Pelhřimov
+CZ,CZ-634,Třebíč
+CZ,CZ-635,Žďár nad Sázavou
 CZ,CZ-64,Jihomoravský kraj
-CZ-64,CZ-641,Blansko
-CZ-64,CZ-642,Brno-město
-CZ-64,CZ-643,Brno-venkov
-CZ-64,CZ-644,Břeclav
-CZ-64,CZ-645,Hodonín
-CZ-64,CZ-646,Vyškov
-CZ-64,CZ-647,Znojmo
+CZ,CZ-641,Blansko
+CZ,CZ-642,Brno-město
+CZ,CZ-643,Brno-venkov
+CZ,CZ-644,Břeclav
+CZ,CZ-645,Hodonín
+CZ,CZ-646,Vyškov
+CZ,CZ-647,Znojmo
 CZ,CZ-71,Olomoucký kraj
-CZ-71,CZ-711,Jeseník
-CZ-71,CZ-712,Olomouc
-CZ-71,CZ-713,Prostějov
-CZ-71,CZ-714,Přerov
-CZ-71,CZ-715,Šumperk
+CZ,CZ-711,Jeseník
+CZ,CZ-712,Olomouc
+CZ,CZ-713,Prostějov
+CZ,CZ-714,Přerov
+CZ,CZ-715,Šumperk
 CZ,CZ-72,Zlínský kraj
-CZ-72,CZ-721,Kroměříž
-CZ-72,CZ-722,Uherské Hradiště
-CZ-72,CZ-723,Vsetín
-CZ-72,CZ-724,Zlín
+CZ,CZ-721,Kroměříž
+CZ,CZ-722,Uherské Hradiště
+CZ,CZ-723,Vsetín
+CZ,CZ-724,Zlín
 CZ,CZ-80,Moravskoslezský kraj
-CZ-80,CZ-801,Bruntál
-CZ-80,CZ-802,Frýdek-Místek
-CZ-80,CZ-803,Karviná
-CZ-80,CZ-804,Nový Jičín
-CZ-80,CZ-805,Opava
-CZ-80,CZ-806,Ostrava-město
+CZ,CZ-801,Bruntál
+CZ,CZ-802,Frýdek-Místek
+CZ,CZ-803,Karviná
+CZ,CZ-804,Nový Jičín
+CZ,CZ-805,Opava
+CZ,CZ-806,Ostrava-město
 DE,DE-BB,Brandenburg
 DE,DE-BE,Berlin
 DE,DE-BW,Baden-Württemberg
@@ -956,38 +956,38 @@ DM,DM-08,Saint Mark
 DM,DM-09,Saint Patrick
 DM,DM-10,Saint Paul
 DM,DM-11,Saint Peter
-DO-40,DO-01,Distrito Nacional (Santo Domingo)
-DO-41,DO-02,Azua
-DO-38,DO-03,Baoruco
-DO-38,DO-04,Barahona
-DO-34,DO-05,Dajabón
-DO-33,DO-06,Duarte
-DO-37,DO-07,Elías Piña
-DO-42,DO-08,El Seibo
-DO-35,DO-09,Espaillat
-DO-38,DO-10,Independencia
-DO-42,DO-11,La Altagracia
-DO-42,DO-12,La Romana
-DO-36,DO-13,La Vega
-DO-33,DO-14,María Trinidad Sánchez
-DO-34,DO-15,Monte Cristi
-DO-38,DO-16,Pedernales
-DO-41,DO-17,Peravia
-DO-35,DO-18,Puerto Plata
-DO-33,DO-19,Hermanas Mirabal
-DO-33,DO-20,Samaná
-DO-41,DO-21,San Cristóbal
-DO-37,DO-22,San Juan
-DO-39,DO-23,San Pedro de Macorís
-DO-36,DO-24,Sánchez Ramírez
-DO-35,DO-25,Santiago
-DO-34,DO-26,Santiago Rodríguez
-DO-34,DO-27,Valverde
-DO-36,DO-28,Monseñor Nouel
-DO-39,DO-29,Monte Plata
-DO-39,DO-30,Hato Mayor
-DO-41,DO-31,San José de Ocoa
-DO-40,DO-32,Santo Domingo
+DO,DO-01,Distrito Nacional (Santo Domingo)
+DO,DO-02,Azua
+DO,DO-03,Baoruco
+DO,DO-04,Barahona
+DO,DO-05,Dajabón
+DO,DO-06,Duarte
+DO,DO-07,Elías Piña
+DO,DO-08,El Seibo
+DO,DO-09,Espaillat
+DO,DO-10,Independencia
+DO,DO-11,La Altagracia
+DO,DO-12,La Romana
+DO,DO-13,La Vega
+DO,DO-14,María Trinidad Sánchez
+DO,DO-15,Monte Cristi
+DO,DO-16,Pedernales
+DO,DO-17,Peravia
+DO,DO-18,Puerto Plata
+DO,DO-19,Hermanas Mirabal
+DO,DO-20,Samaná
+DO,DO-21,San Cristóbal
+DO,DO-22,San Juan
+DO,DO-23,San Pedro de Macorís
+DO,DO-24,Sánchez Ramírez
+DO,DO-25,Santiago
+DO,DO-26,Santiago Rodríguez
+DO,DO-27,Valverde
+DO,DO-28,Monseñor Nouel
+DO,DO-29,Monte Plata
+DO,DO-30,Hato Mayor
+DO,DO-31,San José de Ocoa
+DO,DO-32,Santo Domingo
 DO,DO-33,Cibao Nordeste
 DO,DO-34,Cibao Noroeste
 DO,DO-35,Cibao Norte
@@ -1207,75 +1207,75 @@ ER,ER-DU,Al Janūbī
 ER,ER-GB,Qāsh-Barkah
 ER,ER-MA,Al Awsaţ
 ER,ER-SK,Shimālī al Baḩrī al Aḩmar
-ES-VC,ES-A,Alicante
-ES-CM,ES-AB,Albacete
-ES-AN,ES-AL,Almería
+ES,ES-A,Alicante
+ES,ES-AB,Albacete
+ES,ES-AL,Almería
 ES,ES-AN,Andalucía
 ES,ES-AR,Aragón
 ES,ES-AS,"Asturias, Principado de"
-ES-CL,ES-AV,Ávila
-ES-CT,ES-B,Barcelona
-ES-EX,ES-BA,Badajoz
-ES-PV,ES-BI,Bizkaia
-ES-CL,ES-BU,Burgos
-ES-GA,ES-C,A Coruña
-ES-AN,ES-CA,Cádiz
+ES,ES-AV,Ávila
+ES,ES-B,Barcelona
+ES,ES-BA,Badajoz
+ES,ES-BI,Bizkaia
+ES,ES-BU,Burgos
+ES,ES-C,A Coruña
+ES,ES-CA,Cádiz
 ES,ES-CB,Cantabria
-ES-EX,ES-CC,Cáceres
+ES,ES-CC,Cáceres
 ES,ES-CE,Ceuta
 ES,ES-CL,Castilla y León
 ES,ES-CM,Castilla-La Mancha
 ES,ES-CN,Canarias
-ES-AN,ES-CO,Córdoba
-ES-CM,ES-CR,Ciudad Real
-ES-VC,ES-CS,Castellón
+ES,ES-CO,Córdoba
+ES,ES-CR,Ciudad Real
+ES,ES-CS,Castellón
 ES,ES-CT,Catalunya
-ES-CM,ES-CU,Cuenca
+ES,ES-CU,Cuenca
 ES,ES-EX,Extremadura
 ES,ES-GA,Galicia
-ES-CN,ES-GC,Las Palmas
-ES-CT,ES-GI,Girona
-ES-AN,ES-GR,Granada
-ES-CM,ES-GU,Guadalajara
-ES-AN,ES-H,Huelva
-ES-AR,ES-HU,Huesca
+ES,ES-GC,Las Palmas
+ES,ES-GI,Girona
+ES,ES-GR,Granada
+ES,ES-GU,Guadalajara
+ES,ES-H,Huelva
+ES,ES-HU,Huesca
 ES,ES-IB,Illes Balears
-ES-AN,ES-J,Jaén
-ES-CT,ES-L,Lleida
-ES-CL,ES-LE,León
-ES-RI,ES-LO,La Rioja
-ES-GA,ES-LU,Lugo
-ES-MD,ES-M,Madrid
-ES-AN,ES-MA,Málaga
+ES,ES-J,Jaén
+ES,ES-L,Lleida
+ES,ES-LE,León
+ES,ES-LO,La Rioja
+ES,ES-LU,Lugo
+ES,ES-M,Madrid
+ES,ES-MA,Málaga
 ES,ES-MC,"Murcia, Región de"
 ES,ES-MD,"Madrid, Comunidad de"
 ES,ES-ML,Melilla
-ES-MC,ES-MU,Murcia
-ES-NC,ES-NA,Navarra
+ES,ES-MU,Murcia
+ES,ES-NA,Navarra
 ES,ES-NC,"Navarra, Comunidad Foral de"
-ES-AS,ES-O,Asturias
-ES-GA,ES-OR,Ourense
-ES-CL,ES-P,Palencia
-ES-IB,ES-PM,Illes Balears
-ES-GA,ES-PO,Pontevedra
+ES,ES-O,Asturias
+ES,ES-OR,Ourense
+ES,ES-P,Palencia
+ES,ES-PM,Illes Balears
+ES,ES-PO,Pontevedra
 ES,ES-PV,País Vasco
 ES,ES-RI,La Rioja
-ES-CB,ES-S,Cantabria
-ES-CL,ES-SA,Salamanca
-ES-AN,ES-SE,Sevilla
-ES-CL,ES-SG,Segovia
-ES-CL,ES-SO,Soria
-ES-PV,ES-SS,Gipuzkoa
-ES-CT,ES-T,Tarragona
-ES-AR,ES-TE,Teruel
-ES-CN,ES-TF,Santa Cruz de Tenerife
-ES-CM,ES-TO,Toledo
-ES-VC,ES-V,Valencia
-ES-CL,ES-VA,Valladolid
+ES,ES-S,Cantabria
+ES,ES-SA,Salamanca
+ES,ES-SE,Sevilla
+ES,ES-SG,Segovia
+ES,ES-SO,Soria
+ES,ES-SS,Gipuzkoa
+ES,ES-T,Tarragona
+ES,ES-TE,Teruel
+ES,ES-TF,Santa Cruz de Tenerife
+ES,ES-TO,Toledo
+ES,ES-V,Valencia
+ES,ES-VA,Valladolid
 ES,ES-VC,"Valenciana, Comunidad"
-ES-PV,ES-VI,Álava
-ES-AR,ES-Z,Zaragoza
-ES-CL,ES-ZA,Zamora
+ES,ES-VI,Álava
+ES,ES-Z,Zaragoza
+ES,ES-ZA,Zamora
 ET,ET-AA,Ādīs Ābeba
 ET,ET-AF,Āfar
 ET,ET-AM,Āmara
@@ -1308,20 +1308,20 @@ FI,FI-16,Päijät-Häme
 FI,FI-17,Satakunta
 FI,FI-18,Uusimaa
 FI,FI-19,Varsinais-Suomi
-FJ-W,FJ-01,Ba
-FJ-N,FJ-02,Bua
-FJ-N,FJ-03,Cakaudrove
-FJ-E,FJ-04,Kadavu
-FJ-E,FJ-05,Lau
-FJ-E,FJ-06,Lomaiviti
-FJ-N,FJ-07,Macuata
-FJ-W,FJ-08,Nadroga and Navosa
-FJ-C,FJ-09,Naitasiri
-FJ-C,FJ-10,Namosi
-FJ-W,FJ-11,Ra
-FJ-C,FJ-12,Rewa
-FJ-C,FJ-13,Serua
-FJ-C,FJ-14,Tailevu
+FJ,FJ-01,Ba
+FJ,FJ-02,Bua
+FJ,FJ-03,Cakaudrove
+FJ,FJ-04,Kadavu
+FJ,FJ-05,Lau
+FJ,FJ-06,Lomaiviti
+FJ,FJ-07,Macuata
+FJ,FJ-08,Nadroga and Navosa
+FJ,FJ-09,Naitasiri
+FJ,FJ-10,Namosi
+FJ,FJ-11,Ra
+FJ,FJ-12,Rewa
+FJ,FJ-13,Serua
+FJ,FJ-14,Tailevu
 FJ,FJ-C,Central
 FJ,FJ-E,Eastern
 FJ,FJ-N,Northern
@@ -1331,105 +1331,105 @@ FM,FM-KSA,Kosrae
 FM,FM-PNI,Pohnpei
 FM,FM-TRK,Chuuk
 FM,FM-YAP,Yap
-FR-ARA,FR-01,Ain
-FR-HDF,FR-02,Aisne
-FR-ARA,FR-03,Allier
-FR-PAC,FR-04,Alpes-de-Haute-Provence
-FR-PAC,FR-05,Hautes-Alpes
-FR-PAC,FR-06,Alpes-Maritimes
-FR-ARA,FR-07,Ardèche
-FR-GES,FR-08,Ardennes
-FR-OCC,FR-09,Ariège
-FR-GES,FR-10,Aube
-FR-OCC,FR-11,Aude
-FR-OCC,FR-12,Aveyron
-FR-PAC,FR-13,Bouches-du-Rhône
-FR-NOR,FR-14,Calvados
-FR-ARA,FR-15,Cantal
-FR-NAQ,FR-16,Charente
-FR-NAQ,FR-17,Charente-Maritime
-FR-CVL,FR-18,Cher
-FR-NAQ,FR-19,Corrèze
+FR,FR-01,Ain
+FR,FR-02,Aisne
+FR,FR-03,Allier
+FR,FR-04,Alpes-de-Haute-Provence
+FR,FR-05,Hautes-Alpes
+FR,FR-06,Alpes-Maritimes
+FR,FR-07,Ardèche
+FR,FR-08,Ardennes
+FR,FR-09,Ariège
+FR,FR-10,Aube
+FR,FR-11,Aude
+FR,FR-12,Aveyron
+FR,FR-13,Bouches-du-Rhône
+FR,FR-14,Calvados
+FR,FR-15,Cantal
+FR,FR-16,Charente
+FR,FR-17,Charente-Maritime
+FR,FR-18,Cher
+FR,FR-19,Corrèze
 FR,FR-20R,Corse
-FR-BFC,FR-21,Côte-d'Or
-FR-BRE,FR-22,Côtes-d'Armor
-FR-NAQ,FR-23,Creuse
-FR-NAQ,FR-24,Dordogne
-FR-BFC,FR-25,Doubs
-FR-ARA,FR-26,Drôme
-FR-NOR,FR-27,Eure
-FR-CVL,FR-28,Eure-et-Loir
-FR-BRE,FR-29,Finistère
-FR-20R,FR-2A,Corse-du-Sud
-FR-20R,FR-2B,Haute-Corse
-FR-OCC,FR-30,Gard
-FR-OCC,FR-31,Haute-Garonne
-FR-OCC,FR-32,Gers
-FR-NAQ,FR-33,Gironde
-FR-OCC,FR-34,Hérault
-FR-BRE,FR-35,Ille-et-Vilaine
-FR-CVL,FR-36,Indre
-FR-CVL,FR-37,Indre-et-Loire
-FR-ARA,FR-38,Isère
-FR-BFC,FR-39,Jura
-FR-NAQ,FR-40,Landes
-FR-CVL,FR-41,Loir-et-Cher
-FR-ARA,FR-42,Loire
-FR-ARA,FR-43,Haute-Loire
-FR-PDL,FR-44,Loire-Atlantique
-FR-CVL,FR-45,Loiret
-FR-OCC,FR-46,Lot
-FR-NAQ,FR-47,Lot-et-Garonne
-FR-OCC,FR-48,Lozère
-FR-PDL,FR-49,Maine-et-Loire
-FR-NOR,FR-50,Manche
-FR-GES,FR-51,Marne
-FR-GES,FR-52,Haute-Marne
-FR-PDL,FR-53,Mayenne
-FR-GES,FR-54,Meurthe-et-Moselle
-FR-GES,FR-55,Meuse
-FR-BRE,FR-56,Morbihan
-FR-GES,FR-57,Moselle
-FR-BFC,FR-58,Nièvre
-FR-HDF,FR-59,Nord
-FR-HDF,FR-60,Oise
-FR-NOR,FR-61,Orne
-FR-HDF,FR-62,Pas-de-Calais
-FR-ARA,FR-63,Puy-de-Dôme
-FR-NAQ,FR-64,Pyrénées-Atlantiques
-FR-OCC,FR-65,Hautes-Pyrénées
-FR-OCC,FR-66,Pyrénées-Orientales
-FR-6AE,FR-67,Bas-Rhin
-FR-6AE,FR-68,Haut-Rhin
-FR-ARA,FR-69,Rhône
-FR-ARA,FR-69M,Métropole de Lyon
-FR-GES,FR-6AE,Alsace
-FR-BFC,FR-70,Haute-Saône
-FR-BFC,FR-71,Saône-et-Loire
-FR-PDL,FR-72,Sarthe
-FR-ARA,FR-73,Savoie
-FR-ARA,FR-74,Haute-Savoie
-FR-IDF,FR-75C,Paris
-FR-NOR,FR-76,Seine-Maritime
-FR-IDF,FR-77,Seine-et-Marne
-FR-IDF,FR-78,Yvelines
-FR-NAQ,FR-79,Deux-Sèvres
-FR-HDF,FR-80,Somme
-FR-OCC,FR-81,Tarn
-FR-OCC,FR-82,Tarn-et-Garonne
-FR-PAC,FR-83,Var
-FR-PAC,FR-84,Vaucluse
-FR-PDL,FR-85,Vendée
-FR-NAQ,FR-86,Vienne
-FR-NAQ,FR-87,Haute-Vienne
-FR-GES,FR-88,Vosges
-FR-BFC,FR-89,Yonne
-FR-BFC,FR-90,Territoire de Belfort
-FR-IDF,FR-91,Essonne
-FR-IDF,FR-92,Hauts-de-Seine
-FR-IDF,FR-93,Seine-Saint-Denis
-FR-IDF,FR-94,Val-de-Marne
-FR-IDF,FR-95,Val-d'Oise
+FR,FR-21,Côte-d'Or
+FR,FR-22,Côtes-d'Armor
+FR,FR-23,Creuse
+FR,FR-24,Dordogne
+FR,FR-25,Doubs
+FR,FR-26,Drôme
+FR,FR-27,Eure
+FR,FR-28,Eure-et-Loir
+FR,FR-29,Finistère
+FR,FR-2A,Corse-du-Sud
+FR,FR-2B,Haute-Corse
+FR,FR-30,Gard
+FR,FR-31,Haute-Garonne
+FR,FR-32,Gers
+FR,FR-33,Gironde
+FR,FR-34,Hérault
+FR,FR-35,Ille-et-Vilaine
+FR,FR-36,Indre
+FR,FR-37,Indre-et-Loire
+FR,FR-38,Isère
+FR,FR-39,Jura
+FR,FR-40,Landes
+FR,FR-41,Loir-et-Cher
+FR,FR-42,Loire
+FR,FR-43,Haute-Loire
+FR,FR-44,Loire-Atlantique
+FR,FR-45,Loiret
+FR,FR-46,Lot
+FR,FR-47,Lot-et-Garonne
+FR,FR-48,Lozère
+FR,FR-49,Maine-et-Loire
+FR,FR-50,Manche
+FR,FR-51,Marne
+FR,FR-52,Haute-Marne
+FR,FR-53,Mayenne
+FR,FR-54,Meurthe-et-Moselle
+FR,FR-55,Meuse
+FR,FR-56,Morbihan
+FR,FR-57,Moselle
+FR,FR-58,Nièvre
+FR,FR-59,Nord
+FR,FR-60,Oise
+FR,FR-61,Orne
+FR,FR-62,Pas-de-Calais
+FR,FR-63,Puy-de-Dôme
+FR,FR-64,Pyrénées-Atlantiques
+FR,FR-65,Hautes-Pyrénées
+FR,FR-66,Pyrénées-Orientales
+FR,FR-67,Bas-Rhin
+FR,FR-68,Haut-Rhin
+FR,FR-69,Rhône
+FR,FR-69M,Métropole de Lyon
+FR,FR-6AE,Alsace
+FR,FR-70,Haute-Saône
+FR,FR-71,Saône-et-Loire
+FR,FR-72,Sarthe
+FR,FR-73,Savoie
+FR,FR-74,Haute-Savoie
+FR,FR-75C,Paris
+FR,FR-76,Seine-Maritime
+FR,FR-77,Seine-et-Marne
+FR,FR-78,Yvelines
+FR,FR-79,Deux-Sèvres
+FR,FR-80,Somme
+FR,FR-81,Tarn
+FR,FR-82,Tarn-et-Garonne
+FR,FR-83,Var
+FR,FR-84,Vaucluse
+FR,FR-85,Vendée
+FR,FR-86,Vienne
+FR,FR-87,Haute-Vienne
+FR,FR-88,Vosges
+FR,FR-89,Yonne
+FR,FR-90,Territoire de Belfort
+FR,FR-91,Essonne
+FR,FR-92,Hauts-de-Seine
+FR,FR-93,Seine-Saint-Denis
+FR,FR-94,Val-de-Marne
+FR,FR-95,Val-d'Oise
 FR,FR-971,Guadeloupe
 FR,FR-972,Martinique
 FR,FR-973,Guyane (française)
@@ -1464,230 +1464,230 @@ GA,GA-6,Ogooué-Ivindo
 GA,GA-7,Ogooué-Lolo
 GA,GA-8,Ogooué-Maritime
 GA,GA-9,Woleu-Ntem
-GB-NIR,GB-ABC,"Armagh City, Banbridge and Craigavon"
-GB-SCT,GB-ABD,Aberdeenshire
-GB-SCT,GB-ABE,Aberdeen City
-GB-SCT,GB-AGB,Argyll and Bute
-GB-WLS,GB-AGY,Isle of Anglesey
-GB-NIR,GB-AND,Ards and North Down
-GB-NIR,GB-ANN,Antrim and Newtownabbey
-GB-SCT,GB-ANS,Angus
-GB-ENG,GB-BAS,Bath and North East Somerset
-GB-ENG,GB-BBD,Blackburn with Darwen
-GB-ENG,GB-BCP,"Bournemouth, Christchurch and Poole"
-GB-ENG,GB-BDF,Bedford
-GB-ENG,GB-BDG,Barking and Dagenham
-GB-ENG,GB-BEN,Brent
-GB-ENG,GB-BEX,Bexley
-GB-NIR,GB-BFS,Belfast City
-GB-WLS,GB-BGE,Bridgend
-GB-WLS,GB-BGW,Blaenau Gwent
-GB-ENG,GB-BIR,Birmingham
-GB-ENG,GB-BKM,Buckinghamshire
-GB-ENG,GB-BNE,Barnet
-GB-ENG,GB-BNH,Brighton and Hove
-GB-ENG,GB-BNS,Barnsley
-GB-ENG,GB-BOL,Bolton
-GB-ENG,GB-BPL,Blackpool
-GB-ENG,GB-BRC,Bracknell Forest
-GB-ENG,GB-BRD,Bradford
-GB-ENG,GB-BRY,Bromley
-GB-ENG,GB-BST,"Bristol, City of"
-GB-ENG,GB-BUR,Bury
-GB-ENG,GB-CAM,Cambridgeshire
-GB-WLS,GB-CAY,Caerphilly
-GB-ENG,GB-CBF,Central Bedfordshire
-GB-NIR,GB-CCG,Causeway Coast and Glens
-GB-WLS,GB-CGN,Ceredigion
-GB-ENG,GB-CHE,Cheshire East
-GB-ENG,GB-CHW,Cheshire West and Chester
-GB-ENG,GB-CLD,Calderdale
-GB-SCT,GB-CLK,Clackmannanshire
-GB-ENG,GB-CMA,Cumbria
-GB-ENG,GB-CMD,Camden
-GB-WLS,GB-CMN,Carmarthenshire
-GB-ENG,GB-CON,Cornwall
-GB-ENG,GB-COV,Coventry
-GB-WLS,GB-CRF,Cardiff
-GB-ENG,GB-CRY,Croydon
-GB-WLS,GB-CWY,Conwy
-GB-ENG,GB-DAL,Darlington
-GB-ENG,GB-DBY,Derbyshire
-GB-WLS,GB-DEN,Denbighshire
-GB-ENG,GB-DER,Derby
-GB-ENG,GB-DEV,Devon
-GB-SCT,GB-DGY,Dumfries and Galloway
-GB-ENG,GB-DNC,Doncaster
-GB-SCT,GB-DND,Dundee City
-GB-ENG,GB-DOR,Dorset
-GB-NIR,GB-DRS,Derry and Strabane
-GB-ENG,GB-DUD,Dudley
-GB-ENG,GB-DUR,"Durham, County"
-GB-ENG,GB-EAL,Ealing
+GB,GB-ABC,"Armagh City, Banbridge and Craigavon"
+GB,GB-ABD,Aberdeenshire
+GB,GB-ABE,Aberdeen City
+GB,GB-AGB,Argyll and Bute
+GB,GB-AGY,Isle of Anglesey
+GB,GB-AND,Ards and North Down
+GB,GB-ANN,Antrim and Newtownabbey
+GB,GB-ANS,Angus
+GB,GB-BAS,Bath and North East Somerset
+GB,GB-BBD,Blackburn with Darwen
+GB,GB-BCP,"Bournemouth, Christchurch and Poole"
+GB,GB-BDF,Bedford
+GB,GB-BDG,Barking and Dagenham
+GB,GB-BEN,Brent
+GB,GB-BEX,Bexley
+GB,GB-BFS,Belfast City
+GB,GB-BGE,Bridgend
+GB,GB-BGW,Blaenau Gwent
+GB,GB-BIR,Birmingham
+GB,GB-BKM,Buckinghamshire
+GB,GB-BNE,Barnet
+GB,GB-BNH,Brighton and Hove
+GB,GB-BNS,Barnsley
+GB,GB-BOL,Bolton
+GB,GB-BPL,Blackpool
+GB,GB-BRC,Bracknell Forest
+GB,GB-BRD,Bradford
+GB,GB-BRY,Bromley
+GB,GB-BST,"Bristol, City of"
+GB,GB-BUR,Bury
+GB,GB-CAM,Cambridgeshire
+GB,GB-CAY,Caerphilly
+GB,GB-CBF,Central Bedfordshire
+GB,GB-CCG,Causeway Coast and Glens
+GB,GB-CGN,Ceredigion
+GB,GB-CHE,Cheshire East
+GB,GB-CHW,Cheshire West and Chester
+GB,GB-CLD,Calderdale
+GB,GB-CLK,Clackmannanshire
+GB,GB-CMA,Cumbria
+GB,GB-CMD,Camden
+GB,GB-CMN,Carmarthenshire
+GB,GB-CON,Cornwall
+GB,GB-COV,Coventry
+GB,GB-CRF,Cardiff
+GB,GB-CRY,Croydon
+GB,GB-CWY,Conwy
+GB,GB-DAL,Darlington
+GB,GB-DBY,Derbyshire
+GB,GB-DEN,Denbighshire
+GB,GB-DER,Derby
+GB,GB-DEV,Devon
+GB,GB-DGY,Dumfries and Galloway
+GB,GB-DNC,Doncaster
+GB,GB-DND,Dundee City
+GB,GB-DOR,Dorset
+GB,GB-DRS,Derry and Strabane
+GB,GB-DUD,Dudley
+GB,GB-DUR,"Durham, County"
+GB,GB-EAL,Ealing
 GB,GB-EAW,England and Wales
-GB-SCT,GB-EAY,East Ayrshire
-GB-SCT,GB-EDH,"Edinburgh, City of"
-GB-SCT,GB-EDU,East Dunbartonshire
-GB-SCT,GB-ELN,East Lothian
-GB-SCT,GB-ELS,Eilean Siar
-GB-ENG,GB-ENF,Enfield
+GB,GB-EAY,East Ayrshire
+GB,GB-EDH,"Edinburgh, City of"
+GB,GB-EDU,East Dunbartonshire
+GB,GB-ELN,East Lothian
+GB,GB-ELS,Eilean Siar
+GB,GB-ENF,Enfield
 GB,GB-ENG,England
-GB-SCT,GB-ERW,East Renfrewshire
-GB-ENG,GB-ERY,East Riding of Yorkshire
-GB-ENG,GB-ESS,Essex
-GB-ENG,GB-ESX,East Sussex
-GB-SCT,GB-FAL,Falkirk
-GB-SCT,GB-FIF,Fife
-GB-WLS,GB-FLN,Flintshire
-GB-NIR,GB-FMO,Fermanagh and Omagh
-GB-ENG,GB-GAT,Gateshead
+GB,GB-ERW,East Renfrewshire
+GB,GB-ERY,East Riding of Yorkshire
+GB,GB-ESS,Essex
+GB,GB-ESX,East Sussex
+GB,GB-FAL,Falkirk
+GB,GB-FIF,Fife
+GB,GB-FLN,Flintshire
+GB,GB-FMO,Fermanagh and Omagh
+GB,GB-GAT,Gateshead
 GB,GB-GBN,Great Britain
-GB-SCT,GB-GLG,Glasgow City
-GB-ENG,GB-GLS,Gloucestershire
-GB-ENG,GB-GRE,Greenwich
-GB-WLS,GB-GWN,Gwynedd
-GB-ENG,GB-HAL,Halton
-GB-ENG,GB-HAM,Hampshire
-GB-ENG,GB-HAV,Havering
-GB-ENG,GB-HCK,Hackney
-GB-ENG,GB-HEF,Herefordshire
-GB-ENG,GB-HIL,Hillingdon
-GB-SCT,GB-HLD,Highland
-GB-ENG,GB-HMF,Hammersmith and Fulham
-GB-ENG,GB-HNS,Hounslow
-GB-ENG,GB-HPL,Hartlepool
-GB-ENG,GB-HRT,Hertfordshire
-GB-ENG,GB-HRW,Harrow
-GB-ENG,GB-HRY,Haringey
-GB-ENG,GB-IOS,Isles of Scilly
-GB-ENG,GB-IOW,Isle of Wight
-GB-ENG,GB-ISL,Islington
-GB-SCT,GB-IVC,Inverclyde
-GB-ENG,GB-KEC,Kensington and Chelsea
-GB-ENG,GB-KEN,Kent
-GB-ENG,GB-KHL,Kingston upon Hull
-GB-ENG,GB-KIR,Kirklees
-GB-ENG,GB-KTT,Kingston upon Thames
-GB-ENG,GB-KWL,Knowsley
-GB-ENG,GB-LAN,Lancashire
-GB-NIR,GB-LBC,Lisburn and Castlereagh
-GB-ENG,GB-LBH,Lambeth
-GB-ENG,GB-LCE,Leicester
-GB-ENG,GB-LDS,Leeds
-GB-ENG,GB-LEC,Leicestershire
-GB-ENG,GB-LEW,Lewisham
-GB-ENG,GB-LIN,Lincolnshire
-GB-ENG,GB-LIV,Liverpool
-GB-ENG,GB-LND,"London, City of"
-GB-ENG,GB-LUT,Luton
-GB-ENG,GB-MAN,Manchester
-GB-ENG,GB-MDB,Middlesbrough
-GB-ENG,GB-MDW,Medway
-GB-NIR,GB-MEA,Mid and East Antrim
-GB-ENG,GB-MIK,Milton Keynes
-GB-SCT,GB-MLN,Midlothian
-GB-WLS,GB-MON,Monmouthshire
-GB-ENG,GB-MRT,Merton
-GB-SCT,GB-MRY,Moray
-GB-WLS,GB-MTY,Merthyr Tydfil
-GB-NIR,GB-MUL,Mid-Ulster
-GB-SCT,GB-NAY,North Ayrshire
-GB-ENG,GB-NBL,Northumberland
-GB-ENG,GB-NEL,North East Lincolnshire
-GB-ENG,GB-NET,Newcastle upon Tyne
-GB-ENG,GB-NFK,Norfolk
-GB-ENG,GB-NGM,Nottingham
+GB,GB-GLG,Glasgow City
+GB,GB-GLS,Gloucestershire
+GB,GB-GRE,Greenwich
+GB,GB-GWN,Gwynedd
+GB,GB-HAL,Halton
+GB,GB-HAM,Hampshire
+GB,GB-HAV,Havering
+GB,GB-HCK,Hackney
+GB,GB-HEF,Herefordshire
+GB,GB-HIL,Hillingdon
+GB,GB-HLD,Highland
+GB,GB-HMF,Hammersmith and Fulham
+GB,GB-HNS,Hounslow
+GB,GB-HPL,Hartlepool
+GB,GB-HRT,Hertfordshire
+GB,GB-HRW,Harrow
+GB,GB-HRY,Haringey
+GB,GB-IOS,Isles of Scilly
+GB,GB-IOW,Isle of Wight
+GB,GB-ISL,Islington
+GB,GB-IVC,Inverclyde
+GB,GB-KEC,Kensington and Chelsea
+GB,GB-KEN,Kent
+GB,GB-KHL,Kingston upon Hull
+GB,GB-KIR,Kirklees
+GB,GB-KTT,Kingston upon Thames
+GB,GB-KWL,Knowsley
+GB,GB-LAN,Lancashire
+GB,GB-LBC,Lisburn and Castlereagh
+GB,GB-LBH,Lambeth
+GB,GB-LCE,Leicester
+GB,GB-LDS,Leeds
+GB,GB-LEC,Leicestershire
+GB,GB-LEW,Lewisham
+GB,GB-LIN,Lincolnshire
+GB,GB-LIV,Liverpool
+GB,GB-LND,"London, City of"
+GB,GB-LUT,Luton
+GB,GB-MAN,Manchester
+GB,GB-MDB,Middlesbrough
+GB,GB-MDW,Medway
+GB,GB-MEA,Mid and East Antrim
+GB,GB-MIK,Milton Keynes
+GB,GB-MLN,Midlothian
+GB,GB-MON,Monmouthshire
+GB,GB-MRT,Merton
+GB,GB-MRY,Moray
+GB,GB-MTY,Merthyr Tydfil
+GB,GB-MUL,Mid-Ulster
+GB,GB-NAY,North Ayrshire
+GB,GB-NBL,Northumberland
+GB,GB-NEL,North East Lincolnshire
+GB,GB-NET,Newcastle upon Tyne
+GB,GB-NFK,Norfolk
+GB,GB-NGM,Nottingham
 GB,GB-NIR,Northern Ireland
-GB-SCT,GB-NLK,North Lanarkshire
-GB-ENG,GB-NLN,North Lincolnshire
-GB-NIR,GB-NMD,"Newry, Mourne and Down"
-GB-ENG,GB-NNH,North Northamptonshire
-GB-ENG,GB-NSM,North Somerset
-GB-WLS,GB-NTL,Neath Port Talbot
-GB-ENG,GB-NTT,Nottinghamshire
-GB-ENG,GB-NTY,North Tyneside
-GB-ENG,GB-NWM,Newham
-GB-WLS,GB-NWP,Newport
-GB-ENG,GB-NYK,North Yorkshire
-GB-ENG,GB-OLD,Oldham
-GB-SCT,GB-ORK,Orkney Islands
-GB-ENG,GB-OXF,Oxfordshire
-GB-WLS,GB-PEM,Pembrokeshire
-GB-SCT,GB-PKN,Perth and Kinross
-GB-ENG,GB-PLY,Plymouth
-GB-ENG,GB-POR,Portsmouth
-GB-WLS,GB-POW,Powys
-GB-ENG,GB-PTE,Peterborough
-GB-ENG,GB-RCC,Redcar and Cleveland
-GB-ENG,GB-RCH,Rochdale
-GB-WLS,GB-RCT,Rhondda Cynon Taff
-GB-ENG,GB-RDB,Redbridge
-GB-ENG,GB-RDG,Reading
-GB-SCT,GB-RFW,Renfrewshire
-GB-ENG,GB-RIC,Richmond upon Thames
-GB-ENG,GB-ROT,Rotherham
-GB-ENG,GB-RUT,Rutland
-GB-ENG,GB-SAW,Sandwell
-GB-SCT,GB-SAY,South Ayrshire
-GB-SCT,GB-SCB,Scottish Borders
+GB,GB-NLK,North Lanarkshire
+GB,GB-NLN,North Lincolnshire
+GB,GB-NMD,"Newry, Mourne and Down"
+GB,GB-NNH,North Northamptonshire
+GB,GB-NSM,North Somerset
+GB,GB-NTL,Neath Port Talbot
+GB,GB-NTT,Nottinghamshire
+GB,GB-NTY,North Tyneside
+GB,GB-NWM,Newham
+GB,GB-NWP,Newport
+GB,GB-NYK,North Yorkshire
+GB,GB-OLD,Oldham
+GB,GB-ORK,Orkney Islands
+GB,GB-OXF,Oxfordshire
+GB,GB-PEM,Pembrokeshire
+GB,GB-PKN,Perth and Kinross
+GB,GB-PLY,Plymouth
+GB,GB-POR,Portsmouth
+GB,GB-POW,Powys
+GB,GB-PTE,Peterborough
+GB,GB-RCC,Redcar and Cleveland
+GB,GB-RCH,Rochdale
+GB,GB-RCT,Rhondda Cynon Taff
+GB,GB-RDB,Redbridge
+GB,GB-RDG,Reading
+GB,GB-RFW,Renfrewshire
+GB,GB-RIC,Richmond upon Thames
+GB,GB-ROT,Rotherham
+GB,GB-RUT,Rutland
+GB,GB-SAW,Sandwell
+GB,GB-SAY,South Ayrshire
+GB,GB-SCB,Scottish Borders
 GB,GB-SCT,Scotland
-GB-ENG,GB-SFK,Suffolk
-GB-ENG,GB-SFT,Sefton
-GB-ENG,GB-SGC,South Gloucestershire
-GB-ENG,GB-SHF,Sheffield
-GB-ENG,GB-SHN,St. Helens
-GB-ENG,GB-SHR,Shropshire
-GB-ENG,GB-SKP,Stockport
-GB-ENG,GB-SLF,Salford
-GB-ENG,GB-SLG,Slough
-GB-SCT,GB-SLK,South Lanarkshire
-GB-ENG,GB-SND,Sunderland
-GB-ENG,GB-SOL,Solihull
-GB-ENG,GB-SOM,Somerset
-GB-ENG,GB-SOS,Southend-on-Sea
-GB-ENG,GB-SRY,Surrey
-GB-ENG,GB-STE,Stoke-on-Trent
-GB-SCT,GB-STG,Stirling
-GB-ENG,GB-STH,Southampton
-GB-ENG,GB-STN,Sutton
-GB-ENG,GB-STS,Staffordshire
-GB-ENG,GB-STT,Stockton-on-Tees
-GB-ENG,GB-STY,South Tyneside
-GB-WLS,GB-SWA,Swansea
-GB-ENG,GB-SWD,Swindon
-GB-ENG,GB-SWK,Southwark
-GB-ENG,GB-TAM,Tameside
-GB-ENG,GB-TFW,Telford and Wrekin
-GB-ENG,GB-THR,Thurrock
-GB-ENG,GB-TOB,Torbay
-GB-WLS,GB-TOF,Torfaen
-GB-ENG,GB-TRF,Trafford
-GB-ENG,GB-TWH,Tower Hamlets
+GB,GB-SFK,Suffolk
+GB,GB-SFT,Sefton
+GB,GB-SGC,South Gloucestershire
+GB,GB-SHF,Sheffield
+GB,GB-SHN,St. Helens
+GB,GB-SHR,Shropshire
+GB,GB-SKP,Stockport
+GB,GB-SLF,Salford
+GB,GB-SLG,Slough
+GB,GB-SLK,South Lanarkshire
+GB,GB-SND,Sunderland
+GB,GB-SOL,Solihull
+GB,GB-SOM,Somerset
+GB,GB-SOS,Southend-on-Sea
+GB,GB-SRY,Surrey
+GB,GB-STE,Stoke-on-Trent
+GB,GB-STG,Stirling
+GB,GB-STH,Southampton
+GB,GB-STN,Sutton
+GB,GB-STS,Staffordshire
+GB,GB-STT,Stockton-on-Tees
+GB,GB-STY,South Tyneside
+GB,GB-SWA,Swansea
+GB,GB-SWD,Swindon
+GB,GB-SWK,Southwark
+GB,GB-TAM,Tameside
+GB,GB-TFW,Telford and Wrekin
+GB,GB-THR,Thurrock
+GB,GB-TOB,Torbay
+GB,GB-TOF,Torfaen
+GB,GB-TRF,Trafford
+GB,GB-TWH,Tower Hamlets
 GB,GB-UKM,United Kingdom
-GB-WLS,GB-VGL,"Vale of Glamorgan, The"
-GB-ENG,GB-WAR,Warwickshire
-GB-ENG,GB-WBK,West Berkshire
-GB-SCT,GB-WDU,West Dunbartonshire
-GB-ENG,GB-WFT,Waltham Forest
-GB-ENG,GB-WGN,Wigan
-GB-ENG,GB-WIL,Wiltshire
-GB-ENG,GB-WKF,Wakefield
-GB-ENG,GB-WLL,Walsall
-GB-SCT,GB-WLN,West Lothian
+GB,GB-VGL,"Vale of Glamorgan, The"
+GB,GB-WAR,Warwickshire
+GB,GB-WBK,West Berkshire
+GB,GB-WDU,West Dunbartonshire
+GB,GB-WFT,Waltham Forest
+GB,GB-WGN,Wigan
+GB,GB-WIL,Wiltshire
+GB,GB-WKF,Wakefield
+GB,GB-WLL,Walsall
+GB,GB-WLN,West Lothian
 GB,GB-WLS,Wales
-GB-ENG,GB-WLV,Wolverhampton
-GB-ENG,GB-WND,Wandsworth
-GB-ENG,GB-WNH,West Northamptonshire
-GB-ENG,GB-WNM,Windsor and Maidenhead
-GB-ENG,GB-WOK,Wokingham
-GB-ENG,GB-WOR,Worcestershire
-GB-ENG,GB-WRL,Wirral
-GB-ENG,GB-WRT,Warrington
-GB-WLS,GB-WRX,Wrexham
-GB-ENG,GB-WSM,Westminster
-GB-ENG,GB-WSX,West Sussex
-GB-ENG,GB-YOR,York
-GB-SCT,GB-ZET,Shetland Islands
+GB,GB-WLV,Wolverhampton
+GB,GB-WND,Wandsworth
+GB,GB-WNH,West Northamptonshire
+GB,GB-WNM,Windsor and Maidenhead
+GB,GB-WOK,Wokingham
+GB,GB-WOR,Worcestershire
+GB,GB-WRL,Wirral
+GB,GB-WRT,Warrington
+GB,GB-WRX,Wrexham
+GB,GB-WSM,Westminster
+GB,GB-WSX,West Sussex
+GB,GB-YOR,York
+GB,GB-ZET,Shetland Islands
 GD,GD-01,Saint Andrew
 GD,GD-02,Saint David
 GD,GD-03,Saint George
@@ -1736,56 +1736,56 @@ GM,GM-N,North Bank
 GM,GM-U,Upper River
 GM,GM-W,Western
 GN,GN-B,Boké
-GN-N,GN-BE,Beyla
-GN-B,GN-BF,Boffa
-GN-B,GN-BK,Boké
+GN,GN-BE,Beyla
+GN,GN-BF,Boffa
+GN,GN-BK,Boké
 GN,GN-C,Conakry
-GN-D,GN-CO,Coyah
+GN,GN-CO,Coyah
 GN,GN-D,Kindia
-GN-F,GN-DB,Dabola
-GN-F,GN-DI,Dinguiraye
-GN-M,GN-DL,Dalaba
-GN-D,GN-DU,Dubréka
+GN,GN-DB,Dabola
+GN,GN-DI,Dinguiraye
+GN,GN-DL,Dalaba
+GN,GN-DU,Dubréka
 GN,GN-F,Faranah
-GN-F,GN-FA,Faranah
-GN-D,GN-FO,Forécariah
-GN-B,GN-FR,Fria
-GN-B,GN-GA,Gaoual
-GN-N,GN-GU,Guékédou
+GN,GN-FA,Faranah
+GN,GN-FO,Forécariah
+GN,GN-FR,Fria
+GN,GN-GA,Gaoual
+GN,GN-GU,Guékédou
 GN,GN-K,Kankan
-GN-K,GN-KA,Kankan
-GN-L,GN-KB,Koubia
-GN-D,GN-KD,Kindia
-GN-K,GN-KE,Kérouané
-GN-B,GN-KN,Koundara
-GN-K,GN-KO,Kouroussa
-GN-F,GN-KS,Kissidougou
+GN,GN-KA,Kankan
+GN,GN-KB,Koubia
+GN,GN-KD,Kindia
+GN,GN-KE,Kérouané
+GN,GN-KN,Koundara
+GN,GN-KO,Kouroussa
+GN,GN-KS,Kissidougou
 GN,GN-L,Labé
-GN-L,GN-LA,Labé
-GN-L,GN-LE,Lélouma
-GN-N,GN-LO,Lola
+GN,GN-LA,Labé
+GN,GN-LE,Lélouma
+GN,GN-LO,Lola
 GN,GN-M,Mamou
-GN-N,GN-MC,Macenta
-GN-K,GN-MD,Mandiana
-GN-L,GN-ML,Mali
-GN-M,GN-MM,Mamou
+GN,GN-MC,Macenta
+GN,GN-MD,Mandiana
+GN,GN-ML,Mali
+GN,GN-MM,Mamou
 GN,GN-N,Nzérékoré
-GN-N,GN-NZ,Nzérékoré
-GN-M,GN-PI,Pita
-GN-K,GN-SI,Siguiri
-GN-D,GN-TE,Télimélé
-GN-L,GN-TO,Tougué
-GN-N,GN-YO,Yomou
-GQ-I,GQ-AN,Annobón
-GQ-I,GQ-BN,Bioko Norte
-GQ-I,GQ-BS,Bioko Sur
+GN,GN-NZ,Nzérékoré
+GN,GN-PI,Pita
+GN,GN-SI,Siguiri
+GN,GN-TE,Télimélé
+GN,GN-TO,Tougué
+GN,GN-YO,Yomou
+GQ,GQ-AN,Annobón
+GQ,GQ-BN,Bioko Norte
+GQ,GQ-BS,Bioko Sur
 GQ,GQ-C,Región Continental
-GQ-C,GQ-CS,Centro Sur
-GQ-C,GQ-DJ,Djibloho
+GQ,GQ-CS,Centro Sur
+GQ,GQ-DJ,Djibloho
 GQ,GQ-I,Región Insular
-GQ-C,GQ-KN,Kié-Ntem
-GQ-C,GQ-LI,Litoral
-GQ-C,GQ-WN,Wele-Nzas
+GQ,GQ-KN,Kié-Ntem
+GQ,GQ-LI,Litoral
+GQ,GQ-WN,Wele-Nzas
 GR,GR-69,Ágion Óros
 GR,GR-A,Anatolikí Makedonía kai Thráki
 GR,GR-B,Kentrikí Makedonía
@@ -1822,18 +1822,18 @@ GT,GT-19,Zacapa
 GT,GT-20,Chiquimula
 GT,GT-21,Jalapa
 GT,GT-22,Jutiapa
-GW-L,GW-BA,Bafatá
-GW-S,GW-BL,Bolama / Bijagós
-GW-N,GW-BM,Biombo
+GW,GW-BA,Bafatá
+GW,GW-BL,Bolama / Bijagós
+GW,GW-BM,Biombo
 GW,GW-BS,Bissau
-GW-N,GW-CA,Cacheu
-GW-L,GW-GA,Gabú
+GW,GW-CA,Cacheu
+GW,GW-GA,Gabú
 GW,GW-L,Leste
 GW,GW-N,Norte
-GW-N,GW-OI,Oio
-GW-S,GW-QU,Quinara
+GW,GW-OI,Oio
+GW,GW-QU,Quinara
 GW,GW-S,Sul
-GW-S,GW-TO,Tombali
+GW,GW-TO,Tombali
 GY,GY-BA,Barima-Waini
 GY,GY-CU,Cuyuni-Mazaruni
 GY,GY-DE,Demerara-Mahaica
@@ -1936,80 +1936,80 @@ HU,HU-VE,Veszprém
 HU,HU-VM,Veszprém
 HU,HU-ZA,Zala
 HU,HU-ZE,Zalaegerszeg
-ID-SM,ID-AC,Aceh
-ID-NU,ID-BA,Bali
-ID-SM,ID-BB,Kepulauan Bangka Belitung
-ID-SM,ID-BE,Bengkulu
-ID-JW,ID-BT,Banten
-ID-SL,ID-GO,Gorontalo
-ID-SM,ID-JA,Jambi
-ID-JW,ID-JB,Jawa Barat
-ID-JW,ID-JI,Jawa Timur
-ID-JW,ID-JK,Jakarta Raya
-ID-JW,ID-JT,Jawa Tengah
+ID,ID-AC,Aceh
+ID,ID-BA,Bali
+ID,ID-BB,Kepulauan Bangka Belitung
+ID,ID-BE,Bengkulu
+ID,ID-BT,Banten
+ID,ID-GO,Gorontalo
+ID,ID-JA,Jambi
+ID,ID-JB,Jawa Barat
+ID,ID-JI,Jawa Timur
+ID,ID-JK,Jakarta Raya
+ID,ID-JT,Jawa Tengah
 ID,ID-JW,Jawa
 ID,ID-KA,Kalimantan
-ID-KA,ID-KB,Kalimantan Barat
-ID-KA,ID-KI,Kalimantan Timur
-ID-SM,ID-KR,Kepulauan Riau
-ID-KA,ID-KS,Kalimantan Selatan
-ID-KA,ID-KT,Kalimantan Tengah
-ID-KA,ID-KU,Kalimantan Utara
-ID-SM,ID-LA,Lampung
-ID-ML,ID-MA,Maluku
+ID,ID-KB,Kalimantan Barat
+ID,ID-KI,Kalimantan Timur
+ID,ID-KR,Kepulauan Riau
+ID,ID-KS,Kalimantan Selatan
+ID,ID-KT,Kalimantan Tengah
+ID,ID-KU,Kalimantan Utara
+ID,ID-LA,Lampung
+ID,ID-MA,Maluku
 ID,ID-ML,Maluku
-ID-ML,ID-MU,Maluku Utara
-ID-NU,ID-NB,Nusa Tenggara Barat
-ID-NU,ID-NT,Nusa Tenggara Timur
+ID,ID-MU,Maluku Utara
+ID,ID-NB,Nusa Tenggara Barat
+ID,ID-NT,Nusa Tenggara Timur
 ID,ID-NU,Nusa Tenggara
-ID-PP,ID-PA,Papua
-ID-PP,ID-PB,Papua Barat
-ID-PP,ID-PE,Papua Pengunungan
+ID,ID-PA,Papua
+ID,ID-PB,Papua Barat
+ID,ID-PE,Papua Pengunungan
 ID,ID-PP,Papua
-ID-PP,ID-PS,Papua Selatan
-ID-PP,ID-PT,Papua Tengah
-ID-SM,ID-RI,Riau
-ID-SL,ID-SA,Sulawesi Utara
-ID-SM,ID-SB,Sumatera Barat
-ID-SL,ID-SG,Sulawesi Tenggara
+ID,ID-PS,Papua Selatan
+ID,ID-PT,Papua Tengah
+ID,ID-RI,Riau
+ID,ID-SA,Sulawesi Utara
+ID,ID-SB,Sumatera Barat
+ID,ID-SG,Sulawesi Tenggara
 ID,ID-SL,Sulawesi
 ID,ID-SM,Sumatera
-ID-SL,ID-SN,Sulawesi Selatan
-ID-SL,ID-SR,Sulawesi Barat
-ID-SM,ID-SS,Sumatera Selatan
-ID-SL,ID-ST,Sulawesi Tengah
-ID-SM,ID-SU,Sumatera Utara
-ID-JW,ID-YO,Yogyakarta
+ID,ID-SN,Sulawesi Selatan
+ID,ID-SR,Sulawesi Barat
+ID,ID-SS,Sumatera Selatan
+ID,ID-ST,Sulawesi Tengah
+ID,ID-SU,Sumatera Utara
+ID,ID-YO,Yogyakarta
 IE,IE-C,Connaught
-IE-M,IE-CE,Clare
-IE-U,IE-CN,Cavan
-IE-M,IE-CO,Cork
-IE-L,IE-CW,Carlow
-IE-L,IE-D,Dublin
-IE-U,IE-DL,Donegal
-IE-C,IE-G,Galway
-IE-L,IE-KE,Kildare
-IE-L,IE-KK,Kilkenny
-IE-M,IE-KY,Kerry
+IE,IE-CE,Clare
+IE,IE-CN,Cavan
+IE,IE-CO,Cork
+IE,IE-CW,Carlow
+IE,IE-D,Dublin
+IE,IE-DL,Donegal
+IE,IE-G,Galway
+IE,IE-KE,Kildare
+IE,IE-KK,Kilkenny
+IE,IE-KY,Kerry
 IE,IE-L,Leinster
-IE-L,IE-LD,Longford
-IE-L,IE-LH,Louth
-IE-M,IE-LK,Limerick
-IE-C,IE-LM,Leitrim
-IE-L,IE-LS,Laois
+IE,IE-LD,Longford
+IE,IE-LH,Louth
+IE,IE-LK,Limerick
+IE,IE-LM,Leitrim
+IE,IE-LS,Laois
 IE,IE-M,Munster
-IE-L,IE-MH,Meath
-IE-U,IE-MN,Monaghan
-IE-C,IE-MO,Mayo
-IE-L,IE-OY,Offaly
-IE-C,IE-RN,Roscommon
-IE-C,IE-SO,Sligo
-IE-M,IE-TA,Tipperary
+IE,IE-MH,Meath
+IE,IE-MN,Monaghan
+IE,IE-MO,Mayo
+IE,IE-OY,Offaly
+IE,IE-RN,Roscommon
+IE,IE-SO,Sligo
+IE,IE-TA,Tipperary
 IE,IE-U,Ulster
-IE-M,IE-WD,Waterford
-IE-L,IE-WH,Westmeath
-IE-L,IE-WW,Wicklow
-IE-L,IE-WX,Wexford
+IE,IE-WD,Waterford
+IE,IE-WH,Westmeath
+IE,IE-WW,Wicklow
+IE,IE-WX,Wexford
 IL,IL-D,HaDarom
 IL,IL-HA,H̱efa
 IL,IL-JM,Yerushalayim
@@ -2053,11 +2053,11 @@ IN,IN-UP,Uttar Pradesh
 IN,IN-UT,Uttarākhand
 IN,IN-WB,West Bengal
 IQ,IQ-AN,Al Anbār
-IQ-KR,IQ-AR,Arbīl
+IQ,IQ-AR,Arbīl
 IQ,IQ-BA,Al Başrah
 IQ,IQ-BB,Bābil
 IQ,IQ-BG,Baghdād
-IQ-KR,IQ-DA,Dahūk
+IQ,IQ-DA,Dahūk
 IQ,IQ-DI,Diyālá
 IQ,IQ-DQ,Dhī Qār
 IQ,IQ-KA,Karbalā’
@@ -2069,7 +2069,7 @@ IQ,IQ-NA,An Najaf
 IQ,IQ-NI,Nīnawá
 IQ,IQ-QA,Al Qādisīyah
 IQ,IQ-SD,Şalāḩ ad Dīn
-IQ-KR,IQ-SU,As Sulaymānīyah
+IQ,IQ-SU,As Sulaymānīyah
 IQ,IQ-WA,Wāsiţ
 IR,IR-00,Markazī
 IR,IR-01,Gīlān
@@ -2194,112 +2194,112 @@ IT,IT-77,Basilicata
 IT,IT-78,Calabria
 IT,IT-82,Sicilia
 IT,IT-88,Sardegna
-IT-82,IT-AG,Agrigento
-IT-21,IT-AL,Alessandria
-IT-57,IT-AN,Ancona
-IT-57,IT-AP,Ascoli Piceno
-IT-65,IT-AQ,L'Aquila
-IT-52,IT-AR,Arezzo
-IT-21,IT-AT,Asti
-IT-72,IT-AV,Avellino
-IT-75,IT-BA,Bari
-IT-25,IT-BG,Bergamo
-IT-21,IT-BI,Biella
-IT-34,IT-BL,Belluno
-IT-72,IT-BN,Benevento
-IT-45,IT-BO,Bologna
-IT-75,IT-BR,Brindisi
-IT-25,IT-BS,Brescia
-IT-75,IT-BT,Barletta-Andria-Trani
-IT-32,IT-BZ,"Bolzano, Bozen"
-IT-88,IT-CA,Cagliari
-IT-67,IT-CB,Campobasso
-IT-72,IT-CE,Caserta
-IT-65,IT-CH,Chieti
-IT-82,IT-CL,Caltanissetta
-IT-21,IT-CN,Cuneo
-IT-25,IT-CO,Como
-IT-25,IT-CR,Cremona
-IT-78,IT-CS,Cosenza
-IT-82,IT-CT,Catania
-IT-78,IT-CZ,Catanzaro
-IT-82,IT-EN,Enna
-IT-45,IT-FC,Forlì-Cesena
-IT-45,IT-FE,Ferrara
-IT-75,IT-FG,Foggia
-IT-52,IT-FI,Firenze
-IT-57,IT-FM,Fermo
-IT-62,IT-FR,Frosinone
-IT-42,IT-GE,Genova
-IT-36,IT-GO,Gorizia
-IT-52,IT-GR,Grosseto
-IT-42,IT-IM,Imperia
-IT-67,IT-IS,Isernia
-IT-78,IT-KR,Crotone
-IT-25,IT-LC,Lecco
-IT-75,IT-LE,Lecce
-IT-52,IT-LI,Livorno
-IT-25,IT-LO,Lodi
-IT-62,IT-LT,Latina
-IT-52,IT-LU,Lucca
-IT-25,IT-MB,Monza e Brianza
-IT-57,IT-MC,Macerata
-IT-82,IT-ME,Messina
-IT-25,IT-MI,Milano
-IT-25,IT-MN,Mantova
-IT-45,IT-MO,Modena
-IT-52,IT-MS,Massa-Carrara
-IT-77,IT-MT,Matera
-IT-72,IT-NA,Napoli
-IT-21,IT-NO,Novara
-IT-88,IT-NU,Nuoro
-IT-88,IT-OR,Oristano
-IT-82,IT-PA,Palermo
-IT-45,IT-PC,Piacenza
-IT-34,IT-PD,Padova
-IT-65,IT-PE,Pescara
-IT-55,IT-PG,Perugia
-IT-52,IT-PI,Pisa
-IT-36,IT-PN,Pordenone
-IT-52,IT-PO,Prato
-IT-45,IT-PR,Parma
-IT-52,IT-PT,Pistoia
-IT-57,IT-PU,Pesaro e Urbino
-IT-25,IT-PV,Pavia
-IT-77,IT-PZ,Potenza
-IT-45,IT-RA,Ravenna
-IT-78,IT-RC,Reggio Calabria
-IT-45,IT-RE,Reggio Emilia
-IT-82,IT-RG,Ragusa
-IT-62,IT-RI,Rieti
-IT-62,IT-RM,Roma
-IT-45,IT-RN,Rimini
-IT-34,IT-RO,Rovigo
-IT-72,IT-SA,Salerno
-IT-52,IT-SI,Siena
-IT-25,IT-SO,Sondrio
-IT-42,IT-SP,La Spezia
-IT-82,IT-SR,Siracusa
-IT-88,IT-SS,Sassari
-IT-88,IT-SU,Sud Sardegna
-IT-42,IT-SV,Savona
-IT-75,IT-TA,Taranto
-IT-65,IT-TE,Teramo
-IT-32,IT-TN,Trento
-IT-21,IT-TO,Torino
-IT-82,IT-TP,Trapani
-IT-55,IT-TR,Terni
-IT-36,IT-TS,Trieste
-IT-34,IT-TV,Treviso
-IT-36,IT-UD,Udine
-IT-25,IT-VA,Varese
-IT-21,IT-VB,Verbano-Cusio-Ossola
-IT-21,IT-VC,Vercelli
-IT-34,IT-VE,Venezia
-IT-34,IT-VI,Vicenza
-IT-34,IT-VR,Verona
-IT-62,IT-VT,Viterbo
-IT-78,IT-VV,Vibo Valentia
+IT,IT-AG,Agrigento
+IT,IT-AL,Alessandria
+IT,IT-AN,Ancona
+IT,IT-AP,Ascoli Piceno
+IT,IT-AQ,L'Aquila
+IT,IT-AR,Arezzo
+IT,IT-AT,Asti
+IT,IT-AV,Avellino
+IT,IT-BA,Bari
+IT,IT-BG,Bergamo
+IT,IT-BI,Biella
+IT,IT-BL,Belluno
+IT,IT-BN,Benevento
+IT,IT-BO,Bologna
+IT,IT-BR,Brindisi
+IT,IT-BS,Brescia
+IT,IT-BT,Barletta-Andria-Trani
+IT,IT-BZ,"Bolzano, Bozen"
+IT,IT-CA,Cagliari
+IT,IT-CB,Campobasso
+IT,IT-CE,Caserta
+IT,IT-CH,Chieti
+IT,IT-CL,Caltanissetta
+IT,IT-CN,Cuneo
+IT,IT-CO,Como
+IT,IT-CR,Cremona
+IT,IT-CS,Cosenza
+IT,IT-CT,Catania
+IT,IT-CZ,Catanzaro
+IT,IT-EN,Enna
+IT,IT-FC,Forlì-Cesena
+IT,IT-FE,Ferrara
+IT,IT-FG,Foggia
+IT,IT-FI,Firenze
+IT,IT-FM,Fermo
+IT,IT-FR,Frosinone
+IT,IT-GE,Genova
+IT,IT-GO,Gorizia
+IT,IT-GR,Grosseto
+IT,IT-IM,Imperia
+IT,IT-IS,Isernia
+IT,IT-KR,Crotone
+IT,IT-LC,Lecco
+IT,IT-LE,Lecce
+IT,IT-LI,Livorno
+IT,IT-LO,Lodi
+IT,IT-LT,Latina
+IT,IT-LU,Lucca
+IT,IT-MB,Monza e Brianza
+IT,IT-MC,Macerata
+IT,IT-ME,Messina
+IT,IT-MI,Milano
+IT,IT-MN,Mantova
+IT,IT-MO,Modena
+IT,IT-MS,Massa-Carrara
+IT,IT-MT,Matera
+IT,IT-NA,Napoli
+IT,IT-NO,Novara
+IT,IT-NU,Nuoro
+IT,IT-OR,Oristano
+IT,IT-PA,Palermo
+IT,IT-PC,Piacenza
+IT,IT-PD,Padova
+IT,IT-PE,Pescara
+IT,IT-PG,Perugia
+IT,IT-PI,Pisa
+IT,IT-PN,Pordenone
+IT,IT-PO,Prato
+IT,IT-PR,Parma
+IT,IT-PT,Pistoia
+IT,IT-PU,Pesaro e Urbino
+IT,IT-PV,Pavia
+IT,IT-PZ,Potenza
+IT,IT-RA,Ravenna
+IT,IT-RC,Reggio Calabria
+IT,IT-RE,Reggio Emilia
+IT,IT-RG,Ragusa
+IT,IT-RI,Rieti
+IT,IT-RM,Roma
+IT,IT-RN,Rimini
+IT,IT-RO,Rovigo
+IT,IT-SA,Salerno
+IT,IT-SI,Siena
+IT,IT-SO,Sondrio
+IT,IT-SP,La Spezia
+IT,IT-SR,Siracusa
+IT,IT-SS,Sassari
+IT,IT-SU,Sud Sardegna
+IT,IT-SV,Savona
+IT,IT-TA,Taranto
+IT,IT-TE,Teramo
+IT,IT-TN,Trento
+IT,IT-TO,Torino
+IT,IT-TP,Trapani
+IT,IT-TR,Terni
+IT,IT-TS,Trieste
+IT,IT-TV,Treviso
+IT,IT-UD,Udine
+IT,IT-VA,Varese
+IT,IT-VB,Verbano-Cusio-Ossola
+IT,IT-VC,Vercelli
+IT,IT-VE,Venezia
+IT,IT-VI,Vicenza
+IT,IT-VR,Verona
+IT,IT-VT,Viterbo
+IT,IT-VV,Vibo Valentia
 JM,JM-01,Kingston
 JM,JM-02,Saint Andrew
 JM,JM-03,Saint Thomas
@@ -2460,20 +2460,20 @@ KI,KI-P,Phoenix Islands
 KM,KM-A,Anjouan
 KM,KM-G,Grande Comore
 KM,KM-M,Mohéli
-KN-K,KN-01,Christ Church Nichola Town
-KN-K,KN-02,Saint Anne Sandy Point
-KN-K,KN-03,Saint George Basseterre
-KN-N,KN-04,Saint George Gingerland
-KN-N,KN-05,Saint James Windward
-KN-K,KN-06,Saint John Capisterre
-KN-N,KN-07,Saint John Figtree
-KN-K,KN-08,Saint Mary Cayon
-KN-K,KN-09,Saint Paul Capisterre
-KN-N,KN-10,Saint Paul Charlestown
-KN-K,KN-11,Saint Peter Basseterre
-KN-N,KN-12,Saint Thomas Lowland
-KN-K,KN-13,Saint Thomas Middle Island
-KN-K,KN-15,Trinity Palmetto Point
+KN,KN-01,Christ Church Nichola Town
+KN,KN-02,Saint Anne Sandy Point
+KN,KN-03,Saint George Basseterre
+KN,KN-04,Saint George Gingerland
+KN,KN-05,Saint James Windward
+KN,KN-06,Saint John Capisterre
+KN,KN-07,Saint John Figtree
+KN,KN-08,Saint Mary Cayon
+KN,KN-09,Saint Paul Capisterre
+KN,KN-10,Saint Paul Charlestown
+KN,KN-11,Saint Peter Basseterre
+KN,KN-12,Saint Thomas Lowland
+KN,KN-13,Saint Thomas Middle Island
+KN,KN-15,Trinity Palmetto Point
 KN,KN-K,Saint Kitts
 KN,KN-N,Nevis
 KP,KP-01,Pyongyang
@@ -2580,39 +2580,39 @@ LI,LI-09,Triesen
 LI,LI-10,Triesenberg
 LI,LI-11,Vaduz
 LK,LK-1,Western Province
-LK-1,LK-11,Colombo
-LK-1,LK-12,Gampaha
-LK-1,LK-13,Kalutara
+LK,LK-11,Colombo
+LK,LK-12,Gampaha
+LK,LK-13,Kalutara
 LK,LK-2,Central Province
-LK-2,LK-21,Kandy
-LK-2,LK-22,Matale
-LK-2,LK-23,Nuwara Eliya
+LK,LK-21,Kandy
+LK,LK-22,Matale
+LK,LK-23,Nuwara Eliya
 LK,LK-3,Southern Province
-LK-3,LK-31,Galle
-LK-3,LK-32,Matara
-LK-3,LK-33,Hambantota
+LK,LK-31,Galle
+LK,LK-32,Matara
+LK,LK-33,Hambantota
 LK,LK-4,Northern Province
-LK-4,LK-41,Jaffna
-LK-4,LK-42,Kilinochchi
-LK-4,LK-43,Mannar
-LK-4,LK-44,Vavuniya
-LK-4,LK-45,Mullaittivu
+LK,LK-41,Jaffna
+LK,LK-42,Kilinochchi
+LK,LK-43,Mannar
+LK,LK-44,Vavuniya
+LK,LK-45,Mullaittivu
 LK,LK-5,Eastern Province
-LK-5,LK-51,Batticaloa
-LK-5,LK-52,Ampara
-LK-5,LK-53,Trincomalee
+LK,LK-51,Batticaloa
+LK,LK-52,Ampara
+LK,LK-53,Trincomalee
 LK,LK-6,North Western Province
-LK-6,LK-61,Kurunegala
-LK-6,LK-62,Puttalam
+LK,LK-61,Kurunegala
+LK,LK-62,Puttalam
 LK,LK-7,North Central Province
-LK-7,LK-71,Anuradhapura
-LK-7,LK-72,Polonnaruwa
+LK,LK-71,Anuradhapura
+LK,LK-72,Polonnaruwa
 LK,LK-8,Uva Province
-LK-8,LK-81,Badulla
-LK-8,LK-82,Monaragala
+LK,LK-81,Badulla
+LK,LK-82,Monaragala
 LK,LK-9,Sabaragamuwa Province
-LK-9,LK-91,Ratnapura
-LK-9,LK-92,Kegalla
+LK,LK-91,Ratnapura
+LK,LK-92,Kegalla
 LR,LR-BG,Bong
 LR,LR-BM,Bomi
 LR,LR-CM,Grand Cape Mount
@@ -2638,66 +2638,66 @@ LS,LS-G,Quthing
 LS,LS-H,Qacha's Nek
 LS,LS-J,Mokhotlong
 LS,LS-K,Thaba-Tseka
-LT-SA,LT-01,Akmenė
-LT-AL,LT-02,Alytaus miestas
-LT-AL,LT-03,Alytus
-LT-UT,LT-04,Anykščiai
-LT-KU,LT-05,Birštonas
-LT-PN,LT-06,Biržai
-LT-AL,LT-07,Druskininkai
-LT-VL,LT-08,Elektrėnai
-LT-UT,LT-09,Ignalina
-LT-KU,LT-10,Jonava
-LT-SA,LT-11,Joniškis
-LT-TA,LT-12,Jurbarkas
-LT-KU,LT-13,Kaišiadorys
-LT-MR,LT-14,Kalvarija
-LT-KU,LT-15,Kauno miestas
-LT-KU,LT-16,Kaunas
-LT-MR,LT-17,Kazlų Rūdos
-LT-KU,LT-18,Kėdainiai
-LT-SA,LT-19,Kelmė
-LT-KL,LT-20,Klaipėdos miestas
-LT-KL,LT-21,Klaipėda
-LT-KL,LT-22,Kretinga
-LT-PN,LT-23,Kupiškis
-LT-AL,LT-24,Lazdijai
-LT-MR,LT-25,Marijampolė
-LT-TE,LT-26,Mažeikiai
-LT-UT,LT-27,Molėtai
-LT-KL,LT-28,Neringa
-LT-TA,LT-29,Pagėgiai
-LT-SA,LT-30,Pakruojis
-LT-KL,LT-31,Palangos miestas
-LT-PN,LT-32,Panevėžio miestas
-LT-PN,LT-33,Panevėžys
-LT-PN,LT-34,Pasvalys
-LT-TE,LT-35,Plungė
-LT-KU,LT-36,Prienai
-LT-SA,LT-37,Radviliškis
-LT-KU,LT-38,Raseiniai
-LT-TE,LT-39,Rietavas
-LT-PN,LT-40,Rokiškis
-LT-MR,LT-41,Šakiai
-LT-VL,LT-42,Šalčininkai
-LT-SA,LT-43,Šiaulių miestas
-LT-SA,LT-44,Šiauliai
-LT-TA,LT-45,Šilalė
-LT-KL,LT-46,Šilutė
-LT-VL,LT-47,Širvintos
-LT-KL,LT-48,Skuodas
-LT-VL,LT-49,Švenčionys
-LT-TA,LT-50,Tauragė
-LT-TE,LT-51,Telšiai
-LT-VL,LT-52,Trakai
-LT-VL,LT-53,Ukmergė
-LT-UT,LT-54,Utena
-LT-AL,LT-55,Varėna
-LT-MR,LT-56,Vilkaviškis
-LT-VL,LT-57,Vilniaus miestas
-LT-VL,LT-58,Vilnius
-LT-UT,LT-59,Visaginas
-LT-UT,LT-60,Zarasai
+LT,LT-01,Akmenė
+LT,LT-02,Alytaus miestas
+LT,LT-03,Alytus
+LT,LT-04,Anykščiai
+LT,LT-05,Birštonas
+LT,LT-06,Biržai
+LT,LT-07,Druskininkai
+LT,LT-08,Elektrėnai
+LT,LT-09,Ignalina
+LT,LT-10,Jonava
+LT,LT-11,Joniškis
+LT,LT-12,Jurbarkas
+LT,LT-13,Kaišiadorys
+LT,LT-14,Kalvarija
+LT,LT-15,Kauno miestas
+LT,LT-16,Kaunas
+LT,LT-17,Kazlų Rūdos
+LT,LT-18,Kėdainiai
+LT,LT-19,Kelmė
+LT,LT-20,Klaipėdos miestas
+LT,LT-21,Klaipėda
+LT,LT-22,Kretinga
+LT,LT-23,Kupiškis
+LT,LT-24,Lazdijai
+LT,LT-25,Marijampolė
+LT,LT-26,Mažeikiai
+LT,LT-27,Molėtai
+LT,LT-28,Neringa
+LT,LT-29,Pagėgiai
+LT,LT-30,Pakruojis
+LT,LT-31,Palangos miestas
+LT,LT-32,Panevėžio miestas
+LT,LT-33,Panevėžys
+LT,LT-34,Pasvalys
+LT,LT-35,Plungė
+LT,LT-36,Prienai
+LT,LT-37,Radviliškis
+LT,LT-38,Raseiniai
+LT,LT-39,Rietavas
+LT,LT-40,Rokiškis
+LT,LT-41,Šakiai
+LT,LT-42,Šalčininkai
+LT,LT-43,Šiaulių miestas
+LT,LT-44,Šiauliai
+LT,LT-45,Šilalė
+LT,LT-46,Šilutė
+LT,LT-47,Širvintos
+LT,LT-48,Skuodas
+LT,LT-49,Švenčionys
+LT,LT-50,Tauragė
+LT,LT-51,Telšiai
+LT,LT-52,Trakai
+LT,LT-53,Ukmergė
+LT,LT-54,Utena
+LT,LT-55,Varėna
+LT,LT-56,Vilkaviškis
+LT,LT-57,Vilniaus miestas
+LT,LT-58,Vilnius
+LT,LT-59,Visaginas
+LT,LT-60,Zarasai
 LT,LT-AL,Alytaus apskritis
 LT,LT-KL,Klaipėdos apskritis
 LT,LT-KU,Kauno apskritis
@@ -2800,81 +2800,81 @@ MA,MA-09,Souss-Massa
 MA,MA-10,Guelmim-Oued Noun (EH-partial)
 MA,MA-11,Laâyoune-Sakia El Hamra (EH-partial)
 MA,MA-12,Dakhla-Oued Ed-Dahab (EH)
-MA-09,MA-AGD,Agadir-Ida-Ou-Tanane
-MA-12,MA-AOU,Aousserd (EH)
-MA-10,MA-ASZ,Assa-Zag (EH-partial)
-MA-05,MA-AZI,Azilal
-MA-05,MA-BEM,Béni Mellal
-MA-02,MA-BER,Berkane
-MA-06,MA-BES,Benslimane
-MA-11,MA-BOD,Boujdour (EH)
-MA-03,MA-BOM,Boulemane
-MA-06,MA-BRR,Berrechid
-MA-06,MA-CAS,Casablanca
-MA-01,MA-CHE,Chefchaouen
-MA-07,MA-CHI,Chichaoua
-MA-06,MA-CHT,Chtouka-Ait Baha
-MA-02,MA-DRI,Driouch
-MA-08,MA-ERR,Errachidia
-MA-07,MA-ESI,Essaouira
-MA-11,MA-ESM,Es-Semara (EH-partial)
-MA-01,MA-FAH,Fahs-Anjra
-MA-03,MA-FES,Fès
-MA-02,MA-FIG,Figuig
-MA-05,MA-FQH,Fquih Ben Salah
-MA-10,MA-GUE,Guelmim
-MA-02,MA-GUF,Guercif
-MA-03,MA-HAJ,El Hajeb
-MA-07,MA-HAO,Al Haouz
-MA-01,MA-HOC,Al Hoceïma
-MA-03,MA-IFR,Ifrane
-MA-09,MA-INE,Inezgane-Ait Melloul
-MA-06,MA-JDI,El Jadida
-MA-02,MA-JRA,Jerada
-MA-04,MA-KEN,Kénitra
-MA-07,MA-KES,El Kelâa des Sraghna
-MA-04,MA-KHE,Khémisset
-MA-05,MA-KHN,Khénifra
-MA-05,MA-KHO,Khouribga
-MA-11,MA-LAA,Laâyoune (EH)
-MA-01,MA-LAR,Larache
-MA-07,MA-MAR,Marrakech
-MA-01,MA-MDF,M’diq-Fnideq
-MA-06,MA-MED,Médiouna
-MA-03,MA-MEK,Meknès
-MA-08,MA-MID,Midelt
-MA-06,MA-MOH,Mohammadia
-MA-03,MA-MOU,Moulay Yacoub
-MA-02,MA-NAD,Nador
-MA-04,MA-NOU,Nouaceur
-MA-08,MA-OUA,Ouarzazate
-MA-12,MA-OUD,Oued Ed-Dahab (EH)
-MA-02,MA-OUJ,Oujda-Angad
-MA-01,MA-OUZ,Ouezzane
-MA-04,MA-RAB,Rabat
-MA-07,MA-REH,Rehamna
-MA-07,MA-SAF,Safi
-MA-04,MA-SAL,Salé
-MA-03,MA-SEF,Sefrou
-MA-06,MA-SET,Settat
-MA-06,MA-SIB,Sidi Bennour
-MA-10,MA-SIF,Sidi Ifni
-MA-04,MA-SIK,Sidi Kacem
-MA-04,MA-SIL,Sidi Slimane
-MA-04,MA-SKH,Skhirate-Témara
-MA-11,MA-TAF,Tarfaya (EH-partial)
-MA-02,MA-TAI,Taourirt
-MA-03,MA-TAO,Taounate
-MA-09,MA-TAR,Taroudannt
-MA-09,MA-TAT,Tata
-MA-03,MA-TAZ,Taza
-MA-01,MA-TET,Tétouan
-MA-08,MA-TIN,Tinghir
-MA-09,MA-TIZ,Tiznit
-MA-01,MA-TNG,Tanger-Assilah
-MA-10,MA-TNT,Tan-Tan (EH-partial)
-MA-07,MA-YUS,Youssoufia
-MA-08,MA-ZAG,Zagora
+MA,MA-AGD,Agadir-Ida-Ou-Tanane
+MA,MA-AOU,Aousserd (EH)
+MA,MA-ASZ,Assa-Zag (EH-partial)
+MA,MA-AZI,Azilal
+MA,MA-BEM,Béni Mellal
+MA,MA-BER,Berkane
+MA,MA-BES,Benslimane
+MA,MA-BOD,Boujdour (EH)
+MA,MA-BOM,Boulemane
+MA,MA-BRR,Berrechid
+MA,MA-CAS,Casablanca
+MA,MA-CHE,Chefchaouen
+MA,MA-CHI,Chichaoua
+MA,MA-CHT,Chtouka-Ait Baha
+MA,MA-DRI,Driouch
+MA,MA-ERR,Errachidia
+MA,MA-ESI,Essaouira
+MA,MA-ESM,Es-Semara (EH-partial)
+MA,MA-FAH,Fahs-Anjra
+MA,MA-FES,Fès
+MA,MA-FIG,Figuig
+MA,MA-FQH,Fquih Ben Salah
+MA,MA-GUE,Guelmim
+MA,MA-GUF,Guercif
+MA,MA-HAJ,El Hajeb
+MA,MA-HAO,Al Haouz
+MA,MA-HOC,Al Hoceïma
+MA,MA-IFR,Ifrane
+MA,MA-INE,Inezgane-Ait Melloul
+MA,MA-JDI,El Jadida
+MA,MA-JRA,Jerada
+MA,MA-KEN,Kénitra
+MA,MA-KES,El Kelâa des Sraghna
+MA,MA-KHE,Khémisset
+MA,MA-KHN,Khénifra
+MA,MA-KHO,Khouribga
+MA,MA-LAA,Laâyoune (EH)
+MA,MA-LAR,Larache
+MA,MA-MAR,Marrakech
+MA,MA-MDF,M’diq-Fnideq
+MA,MA-MED,Médiouna
+MA,MA-MEK,Meknès
+MA,MA-MID,Midelt
+MA,MA-MOH,Mohammadia
+MA,MA-MOU,Moulay Yacoub
+MA,MA-NAD,Nador
+MA,MA-NOU,Nouaceur
+MA,MA-OUA,Ouarzazate
+MA,MA-OUD,Oued Ed-Dahab (EH)
+MA,MA-OUJ,Oujda-Angad
+MA,MA-OUZ,Ouezzane
+MA,MA-RAB,Rabat
+MA,MA-REH,Rehamna
+MA,MA-SAF,Safi
+MA,MA-SAL,Salé
+MA,MA-SEF,Sefrou
+MA,MA-SET,Settat
+MA,MA-SIB,Sidi Bennour
+MA,MA-SIF,Sidi Ifni
+MA,MA-SIK,Sidi Kacem
+MA,MA-SIL,Sidi Slimane
+MA,MA-SKH,Skhirate-Témara
+MA,MA-TAF,Tarfaya (EH-partial)
+MA,MA-TAI,Taourirt
+MA,MA-TAO,Taounate
+MA,MA-TAR,Taroudannt
+MA,MA-TAT,Tata
+MA,MA-TAZ,Taza
+MA,MA-TET,Tétouan
+MA,MA-TIN,Tinghir
+MA,MA-TIZ,Tiznit
+MA,MA-TNG,Tanger-Assilah
+MA,MA-TNT,Tan-Tan (EH-partial)
+MA,MA-YUS,Youssoufia
+MA,MA-ZAG,Zagora
 MC,MC-CL,La Colle
 MC,MC-CO,La Condamine
 MC,MC-FO,Fontvieille
@@ -2959,32 +2959,32 @@ MG,MG-F,Fianarantsoa
 MG,MG-M,Mahajanga
 MG,MG-T,Antananarivo
 MG,MG-U,Toliara
-MH-T,MH-ALK,Ailuk
-MH-L,MH-ALL,Ailinglaplap
-MH-T,MH-ARN,Arno
-MH-T,MH-AUR,Aur
-MH-L,MH-EBO,Ebon
-MH-L,MH-ENI,Enewetak & Ujelang
-MH-L,MH-JAB,Jabat
-MH-L,MH-JAL,Jaluit
-MH-L,MH-KIL,Bikini & Kili
-MH-L,MH-KWA,Kwajalein
+MH,MH-ALK,Ailuk
+MH,MH-ALL,Ailinglaplap
+MH,MH-ARN,Arno
+MH,MH-AUR,Aur
+MH,MH-EBO,Ebon
+MH,MH-ENI,Enewetak & Ujelang
+MH,MH-JAB,Jabat
+MH,MH-JAL,Jaluit
+MH,MH-KIL,Bikini & Kili
+MH,MH-KWA,Kwajalein
 MH,MH-L,Ralik chain
-MH-L,MH-LAE,Lae
-MH-L,MH-LIB,Lib
-MH-T,MH-LIK,Likiep
-MH-T,MH-MAJ,Majuro
-MH-T,MH-MAL,Maloelap
-MH-T,MH-MEJ,Mejit
-MH-T,MH-MIL,Mili
-MH-L,MH-NMK,Namdrik
-MH-L,MH-NMU,Namu
-MH-L,MH-RON,Rongelap
+MH,MH-LAE,Lae
+MH,MH-LIB,Lib
+MH,MH-LIK,Likiep
+MH,MH-MAJ,Majuro
+MH,MH-MAL,Maloelap
+MH,MH-MEJ,Mejit
+MH,MH-MIL,Mili
+MH,MH-NMK,Namdrik
+MH,MH-NMU,Namu
+MH,MH-RON,Rongelap
 MH,MH-T,Ratak chain
-MH-L,MH-UJA,Ujae
-MH-T,MH-UTI,Utrik
-MH-L,MH-WTH,Wotho
-MH-T,MH-WTJ,Wotje
+MH,MH-UJA,Ujae
+MH,MH-UTI,Utrik
+MH,MH-WTH,Wotho
+MH,MH-WTJ,Wotje
 MK,MK-101,Veles
 MK,MK-102,Gradsko
 MK,MK-103,Demir Kapija
@@ -3229,37 +3229,37 @@ MV,MV-27,North Huvadhu Atoll
 MV,MV-28,South Huvadhu Atoll
 MV,MV-29,Fuvammulah
 MV,MV-MLE,Male
-MW-S,MW-BA,Balaka
-MW-S,MW-BL,Blantyre
+MW,MW-BA,Balaka
+MW,MW-BL,Blantyre
 MW,MW-C,Central Region
-MW-S,MW-CK,Chikwawa
-MW-S,MW-CR,Chiradzulu
-MW-N,MW-CT,Chitipa
-MW-C,MW-DE,Dedza
-MW-C,MW-DO,Dowa
-MW-N,MW-KR,Karonga
-MW-C,MW-KS,Kasungu
-MW-C,MW-LI,Lilongwe
-MW-N,MW-LK,Likoma
-MW-C,MW-MC,Mchinji
-MW-S,MW-MG,Mangochi
-MW-S,MW-MH,Machinga
-MW-S,MW-MU,Mulanje
-MW-S,MW-MW,Mwanza
-MW-N,MW-MZ,Mzimba
+MW,MW-CK,Chikwawa
+MW,MW-CR,Chiradzulu
+MW,MW-CT,Chitipa
+MW,MW-DE,Dedza
+MW,MW-DO,Dowa
+MW,MW-KR,Karonga
+MW,MW-KS,Kasungu
+MW,MW-LI,Lilongwe
+MW,MW-LK,Likoma
+MW,MW-MC,Mchinji
+MW,MW-MG,Mangochi
+MW,MW-MH,Machinga
+MW,MW-MU,Mulanje
+MW,MW-MW,Mwanza
+MW,MW-MZ,Mzimba
 MW,MW-N,Northern Region
-MW-N,MW-NB,Nkhata Bay
-MW-S,MW-NE,Neno
-MW-C,MW-NI,Ntchisi
-MW-C,MW-NK,Nkhotakota
-MW-S,MW-NS,Nsanje
-MW-C,MW-NU,Ntcheu
-MW-S,MW-PH,Phalombe
-MW-N,MW-RU,Rumphi
+MW,MW-NB,Nkhata Bay
+MW,MW-NE,Neno
+MW,MW-NI,Ntchisi
+MW,MW-NK,Nkhotakota
+MW,MW-NS,Nsanje
+MW,MW-NU,Ntcheu
+MW,MW-PH,Phalombe
+MW,MW-RU,Rumphi
 MW,MW-S,Southern Region
-MW-C,MW-SA,Salima
-MW-S,MW-TH,Thyolo
-MW-S,MW-ZO,Zomba
+MW,MW-SA,Salima
+MW,MW-TH,Thyolo
+MW,MW-ZO,Zomba
 MX,MX-AGU,Aguascalientes
 MX,MX-BCN,Baja California
 MX,MX-BCS,Baja California Sur
@@ -3554,87 +3554,87 @@ PH,PH-14,Autonomous Region in Muslim Mindanao
 PH,PH-15,Cordillera Administrative Region
 PH,PH-40,Calabarzon
 PH,PH-41,Mimaropa
-PH-15,PH-ABR,Abra
-PH-13,PH-AGN,Agusan del Norte
-PH-13,PH-AGS,Agusan del Sur
-PH-06,PH-AKL,Aklan
-PH-05,PH-ALB,Albay
-PH-06,PH-ANT,Antique
-PH-15,PH-APA,Apayao
-PH-03,PH-AUR,Aurora
-PH-03,PH-BAN,Bataan
-PH-09,PH-BAS,Basilan
-PH-15,PH-BEN,Benguet
-PH-08,PH-BIL,Biliran
-PH-07,PH-BOH,Bohol
-PH-40,PH-BTG,Batangas
-PH-02,PH-BTN,Batanes
-PH-10,PH-BUK,Bukidnon
-PH-03,PH-BUL,Bulacan
-PH-02,PH-CAG,Cagayan
-PH-10,PH-CAM,Camiguin
-PH-05,PH-CAN,Camarines Norte
-PH-06,PH-CAP,Capiz
-PH-05,PH-CAS,Camarines Sur
-PH-05,PH-CAT,Catanduanes
-PH-40,PH-CAV,Cavite
-PH-07,PH-CEB,Cebu
-PH-11,PH-COM,Davao de Oro
-PH-11,PH-DAO,Davao Oriental
-PH-11,PH-DAS,Davao del Sur
-PH-11,PH-DAV,Davao del Norte
-PH-13,PH-DIN,Dinagat Islands
-PH-11,PH-DVO,Davao Occidental
-PH-08,PH-EAS,Eastern Samar
-PH-06,PH-GUI,Guimaras
-PH-15,PH-IFU,Ifugao
-PH-06,PH-ILI,Iloilo
-PH-01,PH-ILN,Ilocos Norte
-PH-01,PH-ILS,Ilocos Sur
-PH-02,PH-ISA,Isabela
-PH-15,PH-KAL,Kalinga
-PH-40,PH-LAG,Laguna
-PH-12,PH-LAN,Lanao del Norte
-PH-14,PH-LAS,Lanao del Sur
-PH-08,PH-LEY,Leyte
-PH-01,PH-LUN,La Union
-PH-41,PH-MAD,Marinduque
-PH-14,PH-MAG,Maguindanao
-PH-05,PH-MAS,Masbate
-PH-41,PH-MDC,Mindoro Occidental
-PH-41,PH-MDR,Mindoro Oriental
-PH-15,PH-MOU,Mountain Province
-PH-10,PH-MSC,Misamis Occidental
-PH-10,PH-MSR,Misamis Oriental
-PH-12,PH-NCO,Cotabato
-PH-06,PH-NEC,Negros Occidental
-PH-07,PH-NER,Negros Oriental
-PH-08,PH-NSA,Northern Samar
-PH-03,PH-NUE,Nueva Ecija
-PH-02,PH-NUV,Nueva Vizcaya
-PH-03,PH-PAM,Pampanga
-PH-01,PH-PAN,Pangasinan
-PH-41,PH-PLW,Palawan
-PH-40,PH-QUE,Quezon
-PH-02,PH-QUI,Quirino
-PH-40,PH-RIZ,Rizal
-PH-41,PH-ROM,Romblon
-PH-11,PH-SAR,Sarangani
-PH-11,PH-SCO,South Cotabato
-PH-07,PH-SIG,Siquijor
-PH-08,PH-SLE,Southern Leyte
-PH-14,PH-SLU,Sulu
-PH-05,PH-SOR,Sorsogon
-PH-12,PH-SUK,Sultan Kudarat
-PH-13,PH-SUN,Surigao del Norte
-PH-13,PH-SUR,Surigao del Sur
-PH-03,PH-TAR,Tarlac
-PH-14,PH-TAW,Tawi-Tawi
-PH-08,PH-WSA,Samar (local variant: Western Samar)
-PH-09,PH-ZAN,Zamboanga del Norte
-PH-09,PH-ZAS,Zamboanga del Sur
-PH-03,PH-ZMB,Zambales
-PH-09,PH-ZSI,Zamboanga Sibugay
+PH,PH-ABR,Abra
+PH,PH-AGN,Agusan del Norte
+PH,PH-AGS,Agusan del Sur
+PH,PH-AKL,Aklan
+PH,PH-ALB,Albay
+PH,PH-ANT,Antique
+PH,PH-APA,Apayao
+PH,PH-AUR,Aurora
+PH,PH-BAN,Bataan
+PH,PH-BAS,Basilan
+PH,PH-BEN,Benguet
+PH,PH-BIL,Biliran
+PH,PH-BOH,Bohol
+PH,PH-BTG,Batangas
+PH,PH-BTN,Batanes
+PH,PH-BUK,Bukidnon
+PH,PH-BUL,Bulacan
+PH,PH-CAG,Cagayan
+PH,PH-CAM,Camiguin
+PH,PH-CAN,Camarines Norte
+PH,PH-CAP,Capiz
+PH,PH-CAS,Camarines Sur
+PH,PH-CAT,Catanduanes
+PH,PH-CAV,Cavite
+PH,PH-CEB,Cebu
+PH,PH-COM,Davao de Oro
+PH,PH-DAO,Davao Oriental
+PH,PH-DAS,Davao del Sur
+PH,PH-DAV,Davao del Norte
+PH,PH-DIN,Dinagat Islands
+PH,PH-DVO,Davao Occidental
+PH,PH-EAS,Eastern Samar
+PH,PH-GUI,Guimaras
+PH,PH-IFU,Ifugao
+PH,PH-ILI,Iloilo
+PH,PH-ILN,Ilocos Norte
+PH,PH-ILS,Ilocos Sur
+PH,PH-ISA,Isabela
+PH,PH-KAL,Kalinga
+PH,PH-LAG,Laguna
+PH,PH-LAN,Lanao del Norte
+PH,PH-LAS,Lanao del Sur
+PH,PH-LEY,Leyte
+PH,PH-LUN,La Union
+PH,PH-MAD,Marinduque
+PH,PH-MAG,Maguindanao
+PH,PH-MAS,Masbate
+PH,PH-MDC,Mindoro Occidental
+PH,PH-MDR,Mindoro Oriental
+PH,PH-MOU,Mountain Province
+PH,PH-MSC,Misamis Occidental
+PH,PH-MSR,Misamis Oriental
+PH,PH-NCO,Cotabato
+PH,PH-NEC,Negros Occidental
+PH,PH-NER,Negros Oriental
+PH,PH-NSA,Northern Samar
+PH,PH-NUE,Nueva Ecija
+PH,PH-NUV,Nueva Vizcaya
+PH,PH-PAM,Pampanga
+PH,PH-PAN,Pangasinan
+PH,PH-PLW,Palawan
+PH,PH-QUE,Quezon
+PH,PH-QUI,Quirino
+PH,PH-RIZ,Rizal
+PH,PH-ROM,Romblon
+PH,PH-SAR,Sarangani
+PH,PH-SCO,South Cotabato
+PH,PH-SIG,Siquijor
+PH,PH-SLE,Southern Leyte
+PH,PH-SLU,Sulu
+PH,PH-SOR,Sorsogon
+PH,PH-SUK,Sultan Kudarat
+PH,PH-SUN,Surigao del Norte
+PH,PH-SUR,Surigao del Sur
+PH,PH-TAR,Tarlac
+PH,PH-TAW,Tawi-Tawi
+PH,PH-WSA,Samar (local variant: Western Samar)
+PH,PH-ZAN,Zamboanga del Norte
+PH,PH-ZAS,Zamboanga del Sur
+PH,PH-ZMB,Zambales
+PH,PH-ZSI,Zamboanga Sibugay
 PK,PK-BA,Balochistan
 PK,PK-GB,Gilgit-Baltistan
 PK,PK-IS,Islamabad
@@ -3780,13 +3780,13 @@ RO,RO-VL,Vâlcea
 RO,RO-VN,Vrancea
 RO,RO-VS,Vaslui
 RS,RS-00,Beograd
-RS-VO,RS-01,Severnobački okrug
-RS-VO,RS-02,Srednjebanatski okrug
-RS-VO,RS-03,Severnobanatski okrug
-RS-VO,RS-04,Južnobanatski okrug
-RS-VO,RS-05,Zapadnobački okrug
-RS-VO,RS-06,Južnobački okrug
-RS-VO,RS-07,Sremski okrug
+RS,RS-01,Severnobački okrug
+RS,RS-02,Srednjebanatski okrug
+RS,RS-03,Severnobanatski okrug
+RS,RS-04,Južnobanatski okrug
+RS,RS-05,Zapadnobački okrug
+RS,RS-06,Južnobački okrug
+RS,RS-07,Sremski okrug
 RS,RS-08,Mačvanski okrug
 RS,RS-09,Kolubarski okrug
 RS,RS-10,Podunavski okrug
@@ -3804,11 +3804,11 @@ RS,RS-21,Toplički okrug
 RS,RS-22,Pirotski okrug
 RS,RS-23,Jablanički okrug
 RS,RS-24,Pčinjski okrug
-RS-KM,RS-25,Kosovski okrug
-RS-KM,RS-26,Pećki okrug
-RS-KM,RS-27,Prizrenski okrug
-RS-KM,RS-28,Kosovsko-Mitrovački okrug
-RS-KM,RS-29,Kosovsko-Pomoravski okrug
+RS,RS-25,Kosovski okrug
+RS,RS-26,Pećki okrug
+RS,RS-27,Prizrenski okrug
+RS,RS-28,Kosovsko-Mitrovački okrug
+RS,RS-29,Kosovsko-Pomoravski okrug
 RS,RS-KM,Kosovo-Metohija
 RS,RS-VO,Vojvodina
 RU,RU-AD,"Adygeya, Respublika"
@@ -4664,141 +4664,141 @@ UA,UA-68,Khmelnytska oblast
 UA,UA-71,Cherkaska oblast
 UA,UA-74,Chernihivska oblast
 UA,UA-77,Chernivetska oblast
-UG-C,UG-101,Kalangala
-UG-C,UG-102,Kampala
-UG-C,UG-103,Kiboga
-UG-C,UG-104,Luwero
-UG-C,UG-105,Masaka
-UG-C,UG-106,Mpigi
-UG-C,UG-107,Mubende
-UG-C,UG-108,Mukono
-UG-C,UG-109,Nakasongola
-UG-C,UG-110,Rakai
-UG-C,UG-111,Sembabule
-UG-C,UG-112,Kayunga
-UG-C,UG-113,Wakiso
-UG-C,UG-114,Lyantonde
-UG-C,UG-115,Mityana
-UG-C,UG-116,Nakaseke
-UG-C,UG-117,Buikwe
-UG-C,UG-118,Bukomansibi
-UG-C,UG-119,Butambala
-UG-C,UG-120,Buvuma
-UG-C,UG-121,Gomba
-UG-C,UG-122,Kalungu
-UG-C,UG-123,Kyankwanzi
-UG-C,UG-124,Lwengo
-UG-C,UG-125,Kyotera
-UG-C,UG-126,Kasanda
-UG-E,UG-201,Bugiri
-UG-E,UG-202,Busia
-UG-E,UG-203,Iganga
-UG-E,UG-204,Jinja
-UG-E,UG-205,Kamuli
-UG-E,UG-206,Kapchorwa
-UG-E,UG-207,Katakwi
-UG-E,UG-208,Kumi
-UG-E,UG-209,Mbale
-UG-E,UG-210,Pallisa
-UG-E,UG-211,Soroti
-UG-E,UG-212,Tororo
-UG-E,UG-213,Kaberamaido
-UG-E,UG-214,Mayuge
-UG-E,UG-215,Sironko
-UG-E,UG-216,Amuria
-UG-E,UG-217,Budaka
-UG-E,UG-218,Bududa
-UG-E,UG-219,Bukedea
-UG-E,UG-220,Bukwo
-UG-E,UG-221,Butaleja
-UG-E,UG-222,Kaliro
-UG-E,UG-223,Manafwa
-UG-E,UG-224,Namutumba
-UG-E,UG-225,Bulambuli
-UG-E,UG-226,Buyende
-UG-E,UG-227,Kibuku
-UG-E,UG-228,Kween
-UG-E,UG-229,Luuka
-UG-E,UG-230,Namayingo
-UG-E,UG-231,Ngora
-UG-E,UG-232,Serere
-UG-E,UG-233,Butebo
-UG-E,UG-234,Namisindwa
-UG-E,UG-235,Bugweri
-UG-E,UG-236,Kapelebyong
-UG-E,UG-237,Kalaki
-UG-N,UG-301,Adjumani
-UG-N,UG-302,Apac
-UG-N,UG-303,Arua
-UG-N,UG-304,Gulu
-UG-N,UG-305,Kitgum
-UG-N,UG-306,Kotido
-UG-N,UG-307,Lira
-UG-N,UG-308,Moroto
-UG-N,UG-309,Moyo
-UG-N,UG-310,Nebbi
-UG-N,UG-311,Nakapiripirit
-UG-N,UG-312,Pader
-UG-N,UG-313,Yumbe
-UG-N,UG-314,Abim
-UG-N,UG-315,Amolatar
-UG-N,UG-316,Amuru
-UG-N,UG-317,Dokolo
-UG-N,UG-318,Kaabong
-UG-N,UG-319,Koboko
-UG-N,UG-320,Maracha
-UG-N,UG-321,Oyam
-UG-N,UG-322,Agago
-UG-N,UG-323,Alebtong
-UG-N,UG-324,Amudat
-UG-N,UG-325,Kole
-UG-N,UG-326,Lamwo
-UG-N,UG-327,Napak
-UG-N,UG-328,Nwoya
-UG-N,UG-329,Otuke
-UG-N,UG-330,Zombo
-UG-N,UG-331,Omoro
-UG-N,UG-332,Pakwach
-UG-N,UG-333,Kwania
-UG-N,UG-334,Nabilatuk
-UG-N,UG-335,Karenga
-UG-N,UG-336,Madi-Okollo
-UG-N,UG-337,Obongi
-UG-W,UG-401,Bundibugyo
-UG-W,UG-402,Bushenyi
-UG-W,UG-403,Hoima
-UG-W,UG-404,Kabale
-UG-W,UG-405,Kabarole
-UG-W,UG-406,Kasese
-UG-W,UG-407,Kibaale
-UG-W,UG-408,Kisoro
-UG-W,UG-409,Masindi
-UG-W,UG-410,Mbarara
-UG-W,UG-411,Ntungamo
-UG-W,UG-412,Rukungiri
-UG-W,UG-413,Kamwenge
-UG-W,UG-414,Kanungu
-UG-W,UG-415,Kyenjojo
-UG-W,UG-416,Buliisa
-UG-W,UG-417,Ibanda
-UG-W,UG-418,Isingiro
-UG-W,UG-419,Kiruhura
-UG-W,UG-420,Buhweju
-UG-W,UG-421,Kiryandongo
-UG-W,UG-422,Kyegegwa
-UG-W,UG-423,Mitooma
-UG-W,UG-424,Ntoroko
-UG-W,UG-425,Rubirizi
-UG-W,UG-426,Sheema
-UG-W,UG-427,Kagadi
-UG-W,UG-428,Kakumiro
-UG-W,UG-429,Rubanda
-UG-W,UG-430,Bunyangabu
-UG-W,UG-431,Rukiga
-UG-W,UG-432,Kikuube
-UG-W,UG-433,Kazo
-UG-W,UG-434,Kitagwenda
-UG-W,UG-435,Rwampara
+UG,UG-101,Kalangala
+UG,UG-102,Kampala
+UG,UG-103,Kiboga
+UG,UG-104,Luwero
+UG,UG-105,Masaka
+UG,UG-106,Mpigi
+UG,UG-107,Mubende
+UG,UG-108,Mukono
+UG,UG-109,Nakasongola
+UG,UG-110,Rakai
+UG,UG-111,Sembabule
+UG,UG-112,Kayunga
+UG,UG-113,Wakiso
+UG,UG-114,Lyantonde
+UG,UG-115,Mityana
+UG,UG-116,Nakaseke
+UG,UG-117,Buikwe
+UG,UG-118,Bukomansibi
+UG,UG-119,Butambala
+UG,UG-120,Buvuma
+UG,UG-121,Gomba
+UG,UG-122,Kalungu
+UG,UG-123,Kyankwanzi
+UG,UG-124,Lwengo
+UG,UG-125,Kyotera
+UG,UG-126,Kasanda
+UG,UG-201,Bugiri
+UG,UG-202,Busia
+UG,UG-203,Iganga
+UG,UG-204,Jinja
+UG,UG-205,Kamuli
+UG,UG-206,Kapchorwa
+UG,UG-207,Katakwi
+UG,UG-208,Kumi
+UG,UG-209,Mbale
+UG,UG-210,Pallisa
+UG,UG-211,Soroti
+UG,UG-212,Tororo
+UG,UG-213,Kaberamaido
+UG,UG-214,Mayuge
+UG,UG-215,Sironko
+UG,UG-216,Amuria
+UG,UG-217,Budaka
+UG,UG-218,Bududa
+UG,UG-219,Bukedea
+UG,UG-220,Bukwo
+UG,UG-221,Butaleja
+UG,UG-222,Kaliro
+UG,UG-223,Manafwa
+UG,UG-224,Namutumba
+UG,UG-225,Bulambuli
+UG,UG-226,Buyende
+UG,UG-227,Kibuku
+UG,UG-228,Kween
+UG,UG-229,Luuka
+UG,UG-230,Namayingo
+UG,UG-231,Ngora
+UG,UG-232,Serere
+UG,UG-233,Butebo
+UG,UG-234,Namisindwa
+UG,UG-235,Bugweri
+UG,UG-236,Kapelebyong
+UG,UG-237,Kalaki
+UG,UG-301,Adjumani
+UG,UG-302,Apac
+UG,UG-303,Arua
+UG,UG-304,Gulu
+UG,UG-305,Kitgum
+UG,UG-306,Kotido
+UG,UG-307,Lira
+UG,UG-308,Moroto
+UG,UG-309,Moyo
+UG,UG-310,Nebbi
+UG,UG-311,Nakapiripirit
+UG,UG-312,Pader
+UG,UG-313,Yumbe
+UG,UG-314,Abim
+UG,UG-315,Amolatar
+UG,UG-316,Amuru
+UG,UG-317,Dokolo
+UG,UG-318,Kaabong
+UG,UG-319,Koboko
+UG,UG-320,Maracha
+UG,UG-321,Oyam
+UG,UG-322,Agago
+UG,UG-323,Alebtong
+UG,UG-324,Amudat
+UG,UG-325,Kole
+UG,UG-326,Lamwo
+UG,UG-327,Napak
+UG,UG-328,Nwoya
+UG,UG-329,Otuke
+UG,UG-330,Zombo
+UG,UG-331,Omoro
+UG,UG-332,Pakwach
+UG,UG-333,Kwania
+UG,UG-334,Nabilatuk
+UG,UG-335,Karenga
+UG,UG-336,Madi-Okollo
+UG,UG-337,Obongi
+UG,UG-401,Bundibugyo
+UG,UG-402,Bushenyi
+UG,UG-403,Hoima
+UG,UG-404,Kabale
+UG,UG-405,Kabarole
+UG,UG-406,Kasese
+UG,UG-407,Kibaale
+UG,UG-408,Kisoro
+UG,UG-409,Masindi
+UG,UG-410,Mbarara
+UG,UG-411,Ntungamo
+UG,UG-412,Rukungiri
+UG,UG-413,Kamwenge
+UG,UG-414,Kanungu
+UG,UG-415,Kyenjojo
+UG,UG-416,Buliisa
+UG,UG-417,Ibanda
+UG,UG-418,Isingiro
+UG,UG-419,Kiruhura
+UG,UG-420,Buhweju
+UG,UG-421,Kiryandongo
+UG,UG-422,Kyegegwa
+UG,UG-423,Mitooma
+UG,UG-424,Ntoroko
+UG,UG-425,Rubirizi
+UG,UG-426,Sheema
+UG,UG-427,Kagadi
+UG,UG-428,Kakumiro
+UG,UG-429,Rubanda
+UG,UG-430,Bunyangabu
+UG,UG-431,Rukiga
+UG,UG-432,Kikuube
+UG,UG-433,Kazo
+UG,UG-434,Kitagwenda
+UG,UG-435,Rwampara
 UG,UG-C,Central
 UG,UG-E,Eastern
 UG,UG-N,Northern
