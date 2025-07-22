@@ -19,8 +19,8 @@ body:
 - type: input
   id: partDescr
   attributes:
-    label: Please provide a brief description of the part:
-    placeholder: "We are measuring levels of [geneX] from [X organism], and so...."
+    label: Please provide a brief description of the part
+    placeholder: "We are measuring levels of 'geneX' from 'X organism', and so...."
   validations:
     required: true
 body:
