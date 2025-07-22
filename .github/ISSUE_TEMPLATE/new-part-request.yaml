@@ -27,8 +27,8 @@ body:
 - type: input
   id: partID
   attributes:
-    label: If you have a suggested partID please record it here
-    description: "partIDs need to be unique from all other existing partIDs, and use only alphanumeric characters. They must not start with a number, however, and cannot contain spaces, "-", "_", or other special characters. Shorter IDs (<20 characters) are also preferred."
+    label: If you have a suggested part ID please record it here
+    description: "partIDs need to be unique from all other existing part IDs, and use only alphanumeric characters. They must not start with a number, however, and cannot contain spaces, "-", "_", or other special characters. Shorter IDs (<20 characters) are also preferred."
   validations:
     required: false
 body:
