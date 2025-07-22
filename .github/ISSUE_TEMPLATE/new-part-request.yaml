@@ -27,7 +27,7 @@ body:
 - type: input
   id: partID
   attributes:
-    label: If you have a suggested partID, please record it here
+    label: If you have a suggested partID please record it here
     description: "partIDs need to be unique from all other existing partIDs, and use only alphanumeric characters. They must not start with a number, however, and cannot contain spaces, "-", "_", or other special characters. Shorter IDs (<20 characters) are also preferred."
   validations:
     required: false
@@ -35,7 +35,8 @@ body:
 - type: input
   id: setInfo
   attributes:
-    label: If this part is of the measurements, methods, or categories type, please state in which set(s) the part would be included
+    label: Please provide the setID for the set or sets to which this part should be added
+    description: If this part is of the measurements, methods, or categories type, please state in which set(s) the part would be included.
     placeholder: "Please report the setID if you can"
   validations:
     required: false
@@ -43,6 +44,7 @@ body:
 - type: textarea
   id: notes
   attributes:
-    label: Any additional comments, notes, or points can be added here
+    label: Further comments
+    description: Any additional comments, notes, or points can be added here
   validations:
     required: false
