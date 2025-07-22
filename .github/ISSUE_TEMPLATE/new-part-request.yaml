@@ -15,6 +15,7 @@ body:
         - attributes
         - methods
         - categories
+        - unsure
     validations:
       required: true
   - type: input
