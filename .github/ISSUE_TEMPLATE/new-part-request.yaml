@@ -1,0 +1,48 @@
+name: PHES-ODM New Part Request Form
+description: As a user of the ODM, we value your feedback, and if you need a new part added the model (ie. a new measure, method, attribute, or category), we want to be able to do that quickly and easily. Please use this form which will automatically generate a GitHub issue, and from there a part can be added.
+assignees: "mathew-thomson"
+title: " [New Part Request]: "
+labels: "NPR" 
+body:
+- type: dropdown
+  id: partType
+  attributes:
+    label: What type of part are you wanting added?
+    options:
+      - measurements
+      - attributes
+      - methods
+      - categories
+  validations:
+    required: true
+body:
+- type: input
+  id: partDescr
+  attributes:
+    label: Please provide a brief description of the part:
+    placeholder: "We are measuring levels of [geneX] from [X organism], and so...."
+  validations:
+    required: true
+body:
+- type: input
+  id: partID
+  attributes:
+    label: If you have a suggested partID, please record it here:
+    description: "partIDs need to be unique from all other existing partIDs, and use only alphanumeric characters. They must not start with a number, however, and cannot contain spaces, "-", "_", or other special characters. Shorter IDs (<20 characters) are also preferred."
+  validations:
+    required: false
+body:
+- type: input
+  id: setInfo
+  attributes:
+    label: If this part is of the measurements, methods, or categories type, please state in which set(s) the part would be included:
+    placeholder: "Please report the setID if you can"
+  validations:
+    required: false
+body:
+- type: textarea
+  id: notes
+  attributes:
+    label: Any additional comments, notes, or points can be added here:
+  validations:
+    required: false
