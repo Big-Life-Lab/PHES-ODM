@@ -15,7 +15,6 @@ body:
       - categories
   validations:
     required: true
-body:
 - type: input
   id: partDescr
   attributes:
@@ -23,7 +22,6 @@ body:
     placeholder: "We are measuring levels of 'geneX' from 'X organism', and so...."
   validations:
     required: true
-body:
 - type: input
   id: partID
   attributes:
@@ -31,7 +29,6 @@ body:
     description: "partIDs need to be unique from all other existing part IDs, and use only alphanumeric characters. They must not start with a number, however, and cannot contain spaces, "-", "_", or other special characters. Shorter IDs (<20 characters) are also preferred."
   validations:
     required: false
-body:
 - type: input
   id: setInfo
   attributes:
@@ -40,7 +37,6 @@ body:
     placeholder: "Please report the setID if you can"
   validations:
     required: false
-body:
 - type: textarea
   id: notes
   attributes:
