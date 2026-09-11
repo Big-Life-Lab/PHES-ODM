@@ -1,5 +1,151 @@
 # Changelog
 
+## 2026-08-24 (update this date when merging to main)
+
+**v2.3.0**
+
+Patch release restoring the v2 line's compliance with the dictionary's own structural conventions, by backporting fixes made during `v3.0.0`/`v3.0.1` development while deliberately excluding that line's feature expansion (the `accessions`, `calculations`, `phActions`, `polygonRelationships` tables and their genomics/AMR/public-health-action vocabulary). Diffed against `v2.2.3` (the previous tagged v2 release) via the real checked-out `dictionary-tables/*.csv` content, not the `firstReleased`/`lastUpdated` metadata columns alone. Cross-checked against `v3.0.0`'s own changelog entry to distinguish backported fixes from stale-duplicate cleanup — this caught a drafting mistake before it shipped: an earlier pass in this release's preparation restored a `bacteria` row from `v2.2.3` without recognizing it as `v3.0.0`'s rename target (`bactFung`); corrected before this entry was finalized, so the two never coexist in the shipped file.
+
+- **Schema changes**
+  - `ODM_parts.csv`: `partLabel` column renamed to `label`
+  - `ODM_parts.csv`: new `fKAliasID` column added — records the primary key referenced under a different name as a foreign key in another table (e.g. `sampleIDObj` in `sampleRelationships` takes the value of a `sampleID`)
+  - `ODM_sets.csv`: +52 rows added, -10 removed (see rename cleanup below) — net +42 rows
+
+- **Variable changes (partID renames, confirmed via exact-label match)**
+  - `flow` → `flowClass`, `time` → `timeClass`, `actiOn` → `actiCaseOn`, `gcD100` → `gcDay100k`, `normanNote` → `normanNotes`, `date` → `dateDep` — all originally made in `v3.0.0` (see that entry for full context); carried into this release via the same backport, not new renames of this release
+  - `aggragationScale` → `aggregationScale` — typo fix
+  - `null` → `NULL` — capitalization consistency fix, to match general coding-language convention
+
+- **Removed stale duplicate rows** (not renames — confirmed against `v3.0.0`'s own changelog and/or an exact-label match against the full new snapshot; the operative partIDs were already live well before this release)
+  - `bacteria` removed, superseded by `bactFung` (renamed in `v3.0.0`, live since v2.0.0)
+  - `h5hema` removed, superseded by `fluH5hema` (live since v2.2.0)
+  - `iavM` removed, superseded by `fluIAVm` (live since v2.2.0)
+  - `n1neur` removed, superseded by `fluN1neur` (live since v2.2.0)
+  - `sGene` removed, superseded by `covS` (live since v2.0.0)
+
+- **Deprecations**
+  - `outbreak` class — reactivated to `active` for this release: its `v3.0.0` migration path (into the `phActions` table) isn't present in the v2 line, so leaving it depreciated would remove the ability to record outbreak data entirely. Not part of `v3.0.0`'s own reactivation list; a v2-specific decision.
+  - `mutation` — collapsed into the `pcr`/`sequencing` classes
+  - `su` (shortName), `collNumPer` (belongs in `wideNames`, not `parts`), `ntcFlag` (duplicated `ntcAmp`)
+  - `iso6392B`/`iso6393`/`iso6396` — formal `parts`-table bookkeeping catch-up for a `ODM_languages.csv` column removal that actually happened at v2.2.0, not this release
+  - `water` — status changed active → depreciated; its `changes` note ("added in V2.0.0") does not describe a deprecation and appears stale or unrelated to this transition — flagged rather than repeated at face value
+
+- **Reactivations** (previously `depreciated`/`development` → `active`)
+  - `neighborLevel`, `countryLevel`, `countyLevel`, `admRegLevel`, `stateProvLevel`, `municipalLevel` — reclassified as organization-level/sector categorical inputs rather than attributes (originally reactivated in `v3.0.0`, carried into this release)
+  - `wideSpecimenSet`, `tempSet`, `wideCompartmentSet`, `wideFractionSet`, `mutationPanel`, `Calprotectin`, `windSpeedUnitSet`, `bactMisc`, `samVol` — previously-staged parts activated in `v3.0.0`, carried into this release
+
+- **Variable changes (non-breaking label wording)** — 27 corrections
+  - `cfu`: "CFU per 100 ml" → "Colony Forming Units"
+  - `colocated`: "Co-located sample" → "Co-located relationship"
+  - `dataTypes`: "Data types" → "Data types part type"
+  - `del143`, `del2084`, `del212`, `del3674`: trailing non-breaking space added to each label (formatting artifact, not a wording change)
+  - `derived`: "Derived sample" → "Derived data"
+  - `ebv`: mojibake corrected — "Epstein‚Äö√Ñ√¨Barr virus (EBV)" → "Epstein–Barr virus (EBV)"
+  - `enaMap`: "European Nucleotide Association" → "European Nucleotide Association Mapping Column"
+  - `exceptions`: "Exception Part Type" → "Exceptions Part Type"
+  - `h5n1`: trailing space added (formatting artifact)
+  - `hiaa5`: leading space removed inconsistency (formatting artifact)
+  - `measureRepID`: "Report ID" → "Measure Report ID"
+  - `outb`: "Outbreak" → "Outbreak declaration"
+  - `outbEnd`: "Outbreak End" → "End of Outbreak"
+  - `outbStart`: "Outbreak start" → "Declared outbreak or Outbreak start"
+  - `outbreakSet`: "Outbreak set" → "Outbreak declaration Value Set"
+  - `partType`: "Part types" → "Part type column (Reported)"
+  - `pcrSeq`: "PCR sequencingsSelection method" → "PCR Sequencing Selection Method" (typo fix)
+  - `qpcr`: "Quantitative PCR" → "Quantitative Real-Time PCR"
+  - `regular`: "Regular" → "Regular Pathogen Surveillance"
+  - `sol`: "Solid fraction" → "Solid fraction (general)"
+  - `testing`: "Testing" → "Protocol testing"
+  - `undisc`: "Undisclosed" → "Undisclosed or Not Provided"
+  - `ureaplasmaGrp`: "Ureaplasma" → "Ureaplasma Group"
+  - `weath`: "Weather" → "Weather (time of sampling)"
+
+- **New `ODM_sets.csv` memberships for pre-existing parts** — parts that already existed as of `v2.2.3` but weren't yet linked into these enumeration sets:
+  - `populationUnitSet`: `confTest`, `vax1p`, `vax1plus`, `vax2p`, `vax2plus`, `vax3p`, `vax3plus`, `vax4`, `vax4p`, `vax4plus`
+  - `seqQualitySet` / `measQualitySet`: `wI` (Wide 95% interval) — also fixes a stale lowercase `wi` duplicate left in both sets
+  - `volumeUnitSet`: `uL`
+  - `spikeMatSet`: `samConc`
+  - `crosswalkTableSet`: `normanNotes` (see rename above)
+  - `siteTypeSet`: `cesspit`
+  - `extractSet`: `esp`
+  - `shrtNameSet`: `pro`, `sar`, `sas` — cleanup of stale `pt`/`sm`/`sr` duplicates left over from the shorthand-collision rename already announced in `v2.2.3`'s own changelog entry
+
+- **Dictionary expansion** — 53 new partIDs
+
+
+### categories (19 new)
+- `cali` — Calibration purpose
+- `cesspit` — Cesspit
+- `derivedSamp` — Derived sample
+- `enaForm` — ENA Format
+- `ncbiForm` — NCBI Format
+- `neighbour` — Neighbouring relationship
+- `norm` — Purpose is normalization
+- `normanForm` — Norman Format
+- `nwssForm` — US-CDC NWSS Format
+- `otherForm` — Other (or proprietary) Format
+- `overlap` — Overlapping relationship
+- `pha4geForm` — PHA4GE Format
+- `phesODMFormV1` — PHES-ODM Version 1 Format
+- `phesODMFormV2` — PHES-ODM Version 2 Format
+- `phesODMFormV3` — PHES-ODM Version 3 Format
+- `relNR` — Relationship Not Reported
+- `solDry` — Solid Fraction (Dry)
+- `solWet` — Solid fraction (Wet)
+- `wSphereForm` — wSphere Format
+
+### attributes (10 new)
+- `aggregationScale` — Aggregation scale
+- `dataType` — Data Type column (Reported)
+- `dateDep` — Date
+- `fKAliasID` — Foreign Key Alias ID
+- `normanNotes` — NORMAN - notes
+- `originalFormat` — Original Data Format
+- `poLic` — Polygon License
+- `relDateEnd` — Measure relevance end date
+- `relDateStart` — Measure relevance start date
+- `tag` — Wide name measurement and linkage tag
+
+### qualityIndicators (8 new)
+- `ampliArtifact` — Sequence Amplification Artifacts
+- `lAGC` — Low Average Genome Coverage
+- `lPGC` — Low Percent of Genome Captured
+- `lowCovMut` — Low Coverage of Characteristic Mutations
+- `lowQualSeq` — Low-quality Sequence
+- `lowSNRatio` — Low Signal-to-Noise Ratio
+- `seqContam` — Sequence Contaminated
+- `shortRead` — Read Lengths Shorter Than Expected
+
+### units (5 new)
+- `actiCaseOn` — Number of active cases by Onset date
+- `cfu100` — CFU per 100 ml
+- `cfugTS` — Colony forming units per grams total solids
+- `cfumL` — Colony forming units per milliliter
+- `gcDay100k` — gene copies per day per 100,000 people
+
+### classes (4 new)
+- `bactFung` — Bacteria and Fungus Class
+- `flowClass` — Flow class
+- `popClass` — Population Class
+- `timeClass` — Time class
+
+### missingness (2 new)
+- `NULL` — Null
+- `restrict` — Restricted data
+
+### measurements (2 new)
+- `stercobilin` — Stercobilin
+- `urobilin` — Urobilin or urochrome
+
+### partTypes (2 new)
+- `partTypes` — Part types part type
+- `shortSets` — Shorthand or Short Name Set Type
+
+### missingnessSets (1 new)
+- `geoRefMissingnessSet` — Geographical Reference Missingness Set
+
+- **Translations** — `ODM_translations.csv` reconciled to match: ~2,100 orphaned rows removed (translations for `v3.0.0`-only content that was trimmed from `ODM_parts.csv`/`ODM_sets.csv` above), and full eng/fra/spa coverage added for every part touched by this release's backported fixes and restorations. No translation-only content changes beyond matching the parts table.
+
 ## 2026-01-23
 
 **v3.0.0**
