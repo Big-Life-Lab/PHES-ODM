@@ -1,39 +1,39 @@
-Version,3.0.1,,,,,,,,,,,,,
+Version,3.0.0,,,,,,,,,,,,,
 isoCode,isoCodeX,numCode,tld,nameEngl,nameOfficial,sovereignty,countryExonym,capitalExonym,countryEndonym,capitalEndonym,langScript,phone,utc,utcDST
-AF,AFG,004,.af,Afghanistan,The Islamic Republic of Afghanistan,UN member state,Afghanistan,Kabul,"Afġānistān, افغانستان","Kabul, كابل","Pashto/Dari, (Arabic script)",93,+04:30,
+AF,AFG,4,.af,Afghanistan,The Islamic Republic of Afghanistan,UN member state,Afghanistan,Kabul,"Afġānistān, افغانستان","Kabul, كابل","Pashto/Dari, (Arabic script)",93,+04:30,
 AX,ALA,248,.ax,Åland Islands,Åland,Finland,Åland,Mariehamn,"Åland, Ahvenanmaa","Mariehamn, Maarianhamina","Swedish, Finnish",+358 (18),+02:00,+03:00
-AL,ALB,008,.al,Albania,The Republic of Albania,UN member state,Albania,Tirana,Shqipëria,Tirana,Albanian,355,+01:00,+02:00
-DZ,DZA,012,.dz,Algeria,The People's Democratic Republic of Algeria,UN member state,Algeria,Algiers,"Dzayer, ⴷⵣⴰⵢⴻⵔ, Al-Jazā'ir, الجزائر","Dzayer, ⴷⵣⴰⵢⴻⵔ, Al-Jazā'ir, الجزائر","Berber language, Arabic, (Tifinagh script), (Arabic script)",213,+01:00,
-AS,ASM,016,.as,American Samoa,The Territory of American Samoa,United States,American Samoa,Pago Pago,"Amerika Sāmoa, American Samoa",Pago Pago,"Samoan, English",+1 (684),−11:00,
-AD,AND,020,.ad,Andorra,The Principality of Andorra,UN member state,Andorra,Andorra la Vella,Andorra,Andorra la Vella,Catalan,376,+01:00,+02:00
-AO,AGO,024,.ao,Angola,The Republic of Angola,UN member state,Angola,Luanda,Angola,"Luanda, Lwanda","Portuguese, Kongo",244,+01:00,
+AL,ALB,8,.al,Albania,The Republic of Albania,UN member state,Albania,Tirana,Shqipëria,Tirana,Albanian,355,+01:00,+02:00
+DZ,DZA,12,.dz,Algeria,The People's Democratic Republic of Algeria,UN member state,Algeria,Algiers,"Dzayer, ⴷⵣⴰⵢⴻⵔ, Al-Jazā'ir, الجزائر","Dzayer, ⴷⵣⴰⵢⴻⵔ, Al-Jazā'ir, الجزائر","Berber language, Arabic, (Tifinagh script), (Arabic script)",213,+01:00,
+AS,ASM,16,.as,American Samoa,The Territory of American Samoa,United States,American Samoa,Pago Pago,"Amerika Sāmoa, American Samoa",Pago Pago,"Samoan, English",+1 (684),−11:00,
+AD,AND,20,.ad,Andorra,The Principality of Andorra,UN member state,Andorra,Andorra la Vella,Andorra,Andorra la Vella,Catalan,376,+01:00,+02:00
+AO,AGO,24,.ao,Angola,The Republic of Angola,UN member state,Angola,Luanda,Angola,"Luanda, Lwanda","Portuguese, Kongo",244,+01:00,
 AI,AIA,660,.ai,Anguilla,Anguilla,United Kingdom,Anguilla,The Valley,Anguilla,The Valley,English,+1 (264),−04:00,
-AQ,ATA,010,.aq,Antarctica,All land and ice shelves south of the 60th parallel south,Antarctic Treaty,NULL,NULL,NULL,NULL,NULL,NULL,NULL,
-AG,ATG,028,.ag,Antigua and Barbuda,Antigua and Barbuda,UN member state,Antigua and Barbuda,Saint John's,Antigua and Barbuda,St. John's,English,+1 (268),−04:00,
-AR,ARG,032,.ar,Argentina,The Argentine Republic,UN member state,Argentina,Buenos Aires,Argentina,Buenos Aires,Spanish,54,−03:00,
-AM,ARM,051,.am,Armenia,The Republic of Armenia,UN member state,Armenia,Yerevan,"Hayastán, Հայաստան","Yerevan, Երևան","Armenian, (Armenian alphabet)",374,+04:00,
+AQ,ATA,10,.aq,Antarctica,All land and ice shelves south of the 60th parallel south,Antarctic Treaty,,,,,,,,
+AG,ATG,28,.ag,Antigua and Barbuda,Antigua and Barbuda,UN member state,Antigua and Barbuda,Saint John's,Antigua and Barbuda,St. John's,English,+1 (268),−04:00,
+AR,ARG,32,.ar,Argentina,The Argentine Republic,UN member state,Argentina,Buenos Aires,Argentina,Buenos Aires,Spanish,54,−03:00,
+AM,ARM,51,.am,Armenia,The Republic of Armenia,UN member state,Armenia,Yerevan,"Hayastán, Հայաստան","Yerevan, Երևան","Armenian, (Armenian alphabet)",374,+04:00,
 AW,ABW,533,.aw,Aruba,Aruba,Netherlands,Aruba,Oranjestad,Aruba,Oranjestad,"Dutch, Papiamento",297,−04:00,
-AU,AUS,036,.au,Australia,The Commonwealth of Australia,UN member state,Australia,Canberra,Australia,Canberra,English/Aboriginal languages,61,+08:00 to 10:30,+08:00 to 11:00
-AT,AUT,040,.at,Austria,The Republic of Austria,UN member state,Austria,Vienna,Österreich,Wien,German,43,+01:00,+02:00
-AZ,AZE,031,.az,Azerbaijan,The Republic of Azerbaijan,UN member state,Azerbaijan,Baku,Azərbaycan,Bakı,Azerbaijani,994,+04:00,
-BS,BHS,044,.bs,Bahamas,The Commonwealth of The Bahamas,UN member state,The Bahamas,Nassau,The Bahamas,Nassau,English,+1 (242),−05:00,−04:00
-BH,BHR,048,.bh,Bahrain,The Kingdom of Bahrain,UN member state,Bahrain,Manama,"Al-Baḥrayn, البحرين","Al-Manāmah, المنامة","Arabic, (Arabic script)",973,+03:00,
-BD,BGD,050,.bd,Bangladesh,The People's Republic of Bangladesh,UN member state,Bangladesh,Dhaka,"Bānglādesh, বাংলাদেশ","Dhākā, ঢাকা","Bengali, (Bengali script)",880,+06:00,
-BB,BRB,052,.bb,Barbados,Barbados,UN member state,Barbados,Bridgetown,Barbados,Bridgetown,English,+1 (246),−04:00,
+AU,AUS,36,.au,Australia,The Commonwealth of Australia,UN member state,Australia,Canberra,Australia,Canberra,English/Aboriginal languages,61,+08:00 to 10:30,+08:00 to 11:00
+AT,AUT,40,.at,Austria,The Republic of Austria,UN member state,Austria,Vienna,Österreich,Wien,German,43,+01:00,+02:00
+AZ,AZE,31,.az,Azerbaijan,The Republic of Azerbaijan,UN member state,Azerbaijan,Baku,Azərbaycan,Bakı,Azerbaijani,994,+04:00,
+BS,BHS,44,.bs,Bahamas,The Commonwealth of The Bahamas,UN member state,The Bahamas,Nassau,The Bahamas,Nassau,English,+1 (242),−05:00,−04:00
+BH,BHR,48,.bh,Bahrain,The Kingdom of Bahrain,UN member state,Bahrain,Manama,"Al-Baḥrayn, البحرين","Al-Manāmah, المنامة","Arabic, (Arabic script)",973,+03:00,
+BD,BGD,50,.bd,Bangladesh,The People's Republic of Bangladesh,UN member state,Bangladesh,Dhaka,"Bānglādesh, বাংলাদেশ","Dhākā, ঢাকা","Bengali, (Bengali script)",880,+06:00,
+BB,BRB,52,.bb,Barbados,Barbados,UN member state,Barbados,Bridgetown,Barbados,Bridgetown,English,+1 (246),−04:00,
 BY,BLR,112,.by,Belarus,The Republic of Belarus,UN member state,Belarus,Minsk,"Bielaruś, Беларусь, Belarus","Minsk, Мінск, Минск","Belarusian, Russian, (Cyrillic script)",375,+03:00,
-BE,BEL,056,.be,Belgium,The Kingdom of Belgium,UN member state,Belgium,Brussels,"België, Belgique, Belgien","Brussel, Bruxelles, Brüssel","Dutch, French, German",32,+01:00,+02:00
-BZ,BLZ,084,.bz,Belize,Belize,UN member state,Belize,Belmopan,Belize,Belmopan,English,501,−06:00,
+BE,BEL,56,.be,Belgium,The Kingdom of Belgium,UN member state,Belgium,Brussels,"België, Belgique, Belgien","Brussel, Bruxelles, Brüssel","Dutch, French, German",32,+01:00,+02:00
+BZ,BLZ,84,.bz,Belize,Belize,UN member state,Belize,Belmopan,Belize,Belmopan,English,501,−06:00,
 BJ,BEN,204,.bj,Benin,The Republic of Benin,UN member state,Benin,Porto-Novo,Bénin,Porto-Novo,French,229,+01:00,
-BM,BMU,060,.bm,Bermuda,Bermuda,United Kingdom,Bermuda,Hamilton,Bermuda,Hamilton,English,+1 (441),−04:00,−03:00
-BT,BTN,064,.bt,Bhutan,The Kingdom of Bhutan,UN member state,Bhutan,Thimphu,"Druk Yul, འབྲུག་ཡུལ","Thimphu, ཐིམ་ཕུ","Dzongkha, (Tibetan alphabet)",975,+06:00,
-BO,BOL,068,.bo,Bolivia,The Plurinational State of Bolivia,UN member state,Bolivia,La Paz,"Bolivia, Buliwya, Wuliwya, Volívia","La Paz, Chuqiyapu","Spanish, Quechua, Aymara, Guaraní",591,−04:00,
+BM,BMU,60,.bm,Bermuda,Bermuda,United Kingdom,Bermuda,Hamilton,Bermuda,Hamilton,English,+1 (441),−04:00,−03:00
+BT,BTN,64,.bt,Bhutan,The Kingdom of Bhutan,UN member state,Bhutan,Thimphu,"Druk Yul, འབྲུག་ཡུལ","Thimphu, ཐིམ་ཕུ","Dzongkha, (Tibetan alphabet)",975,+06:00,
+BO,BOL,68,.bo,Bolivia,The Plurinational State of Bolivia,UN member state,Bolivia,La Paz,"Bolivia, Buliwya, Wuliwya, Volívia","La Paz, Chuqiyapu","Spanish, Quechua, Aymara, Guaraní",591,−04:00,
 BQ,BES,535,.bq,"Bonaire, Sint Eustatius and Saba (Caribbean Netherlands)","Bonaire, Sint Eustatius and Saba",Netherlands,Bonaire,Kralendijk,Bonaire,Boneiru,Dutch,+599 (7),−04:00,
-BA,BIH,070,.ba,Bosnia and Herzegovina,Bosnia and Herzegovina,UN member state,Bosnia and Herzegovina,Sarajevo,"Bosna i Hercegovina, Босна и Херцеговина","Sarajevo, Сарајево","Bosnian, Croatian, (Cyrillic script)",387,+01:00,+02:00
-BW,BWA,072,.bw,Botswana,The Republic of Botswana,UN member state,Botswana,Gaborone,Botswana,Gaborone,"English, Tswana",267,+02:00,
-BV,BVT,074,.no,Bouvet Island,Bouvet Island,Norway,Bouvet Island,NULL,Bouvet Island,NULL,NULL,NULL,NULL,
-BR,BRA,076,.br,Brazil,The Federative Republic of Brazil,UN member state,Brazil,Brasília,Brasil,Brasília,Portuguese,55,−05:00 to –02:00,
-IO,IOT,086,.io,British Indian Ocean Territory,The British Indian Ocean Territory,United Kingdom,British Indian Ocean Territory,Camp Thunder Cove,British Indian Ocean Territory,Camp Thunder Cove,English,246,+06:00,
-BN,BRN,096,.bn,Brunei Darussalam,"The Nation of Brunei, the Abode of Peace",UN member state,Brunei,Bandar Seri Begawan,"Brunei, بروني","Bandar Seri Begawan or Bandar, باندر سري بڬاون","Malay, (Jawi script)",673,+08:00,
+BA,BIH,70,.ba,Bosnia and Herzegovina,Bosnia and Herzegovina,UN member state,Bosnia and Herzegovina,Sarajevo,"Bosna i Hercegovina, Босна и Херцеговина","Sarajevo, Сарајево","Bosnian, Croatian, (Cyrillic script)",387,+01:00,+02:00
+BW,BWA,72,.bw,Botswana,The Republic of Botswana,UN member state,Botswana,Gaborone,Botswana,Gaborone,"English, Tswana",267,+02:00,
+BV,BVT,74,.no,Bouvet Island,Bouvet Island,Norway,Bouvet Island,,Bouvet Island,,,,,
+BR,BRA,76,.br,Brazil,The Federative Republic of Brazil,UN member state,Brazil,Brasília,Brasil,Brasília,Portuguese,55,−05:00 to –02:00,
+IO,IOT,86,.io,British Indian Ocean Territory,The British Indian Ocean Territory,United Kingdom,British Indian Ocean Territory,Camp Thunder Cove,British Indian Ocean Territory,Camp Thunder Cove,English,246,+06:00,
+BN,BRN,96,.bn,Brunei Darussalam,"The Nation of Brunei, the Abode of Peace",UN member state,Brunei,Bandar Seri Begawan,"Brunei, بروني","Bandar Seri Begawan or Bandar, باندر سري بڬاون","Malay, (Jawi script)",673,+08:00,
 BG,BGR,100,.bg,Bulgaria,The Republic of Bulgaria,UN member state,Bulgaria,Sofia,"Bălgariya or Bălgarija, България","Sofiya or Sofija, София","Bulgarian, (Cyrillic script)",359,+02:00,+03:00
 BF,BFA,854,.bf,Burkina Faso,Burkina Faso,UN member state,Burkina Faso,Ouagadougou,Burkina Faso,Ouagadougou,French,226,+00:00,
 BI,BDI,108,.bi,Burundi,The Republic of Burundi,UN member state,Burundi,Gitega,Uburundi,Gitega,"Kirundi, French",257,+02:00,
@@ -79,7 +79,7 @@ FI,FIN,246,.fi,Finland,The Republic of Finland,UN member state,Finland,Helsinki,
 FR,FRA,250,.fr,France,The French Republic,UN member state,France,Paris,France,Paris,French,33,+01:00,+02:00
 GF,GUF,254,.gf,French Guiana,Guyane,France,French Guiana,Cayenne,Guyane,Cayenne,French,594,−03:00,
 PF,PYF,258,.pf,French Polynesia,French Polynesia,France,French Polynesia,Papeete,Polynésie française,Papeete,French,689,−10:00 to –09:00,
-TF,ATF,260,.tf,French Southern Territories,The French Southern and Antarctic Lands,France,French Southern Territories,NULL,French Southern Territories,NULL,French,262,NULL,
+TF,ATF,260,.tf,French Southern Territories,The French Southern and Antarctic Lands,France,French Southern Territories,,French Southern Territories,,French,262,,
 GA,GAB,266,.ga,Gabon,The Gabonese Republic,UN member state,Gabon,Libreville,République gabonaise,Libreville,French,241,+01:00,
 GM,GMB,270,.gm,Gambia,The Republic of The Gambia,UN member state,The Gambia,Banjul,The Gambia,Banjul,English,220,+00:00,
 GE,GEO,268,.ge,Georgia,Georgia,UN member state,Georgia,Tbilisi,"Sak'art'velo, საქართველო","Tbilisi, თბილისი","Georgian, (Georgian alphabet)",995,+04:00,
@@ -97,7 +97,7 @@ GN,GIN,324,.gn,Guinea,The Republic of Guinea,UN member state,Guinea,Conakry,"Gui
 GW,GNB,624,.gw,Guinea-Bissau,The Republic of Guinea-Bissau,UN member state,Guinea-Bissau,Bissau,Guiné-Bissau,Bissau,Portuguese,245,+00:00,
 GY,GUY,328,.gy,Guyana,The Co-operative Republic of Guyana,UN member state,Guyana,Georgetown,Guyana,Georgetown,English,592,−04:00,
 HT,HTI,332,.ht,Haiti,The Republic of Haiti,UN member state,Haiti,Port-au-Prince,"Haïti, Ayiti","Port-au-Prince, Pòtoprens","French, Haitian Creole",509,−05:00,−04:00
-HM,HMD,334,.hm,Heard Island and McDonald Islands,The Territory of Heard Island and McDonald Islands,Australia,Heard Island and McDonald Islands,NULL,Heard Island and McDonald Islands,NULL,English,NULL,NULL,
+HM,HMD,334,.hm,Heard Island and McDonald Islands,The Territory of Heard Island and McDonald Islands,Australia,Heard Island and McDonald Islands,,Heard Island and McDonald Islands,,English,,,
 VA,VAT,336,.va,Holy See (Vatican City),The Holy See,UN observer state,Vatican City,Vatican City,"Civitas Vaticana, Città del Vaticano","Civitas Vaticana, Città del Vaticano","Latin, Italian","+39 (06698), assigned 379",+01:00,+02:00
 HN,HND,340,.hn,Honduras,The Republic of Honduras,UN member state,Honduras,Tegucigalpa,Honduras,Tegucigalpa,Spanish,504,−06:00,
 HK,HKG,344,.hk,Hong Kong,The Hong Kong Special Administrative Region of China,China,Hong Kong,Hong Kong,"Hong Kong, Heung Gong, 香港","Hong Kong, Heung Gong, 香港","English, Cantonese, (Traditional Chinese characters)",852,+08:00,
@@ -118,7 +118,7 @@ JO,JOR,400,.jo,Jordan,The Hashemite Kingdom of Jordan,UN member state,Jordan,Amm
 KZ,KAZ,398,.kz,Kazakhstan,The Republic of Kazakhstan,UN member state,Kazakhstan,Astana,"Qazaqstan, Қазақстан, Kazakhstán, Казахстан","Astana, Астана","Kazakh, Russian, (Cyrillic script)",+997(also 7 until 2025),+05:00 to 06:00,
 KE,KEN,404,.ke,Kenya,The Republic of Kenya,UN member state,Kenya,Nairobi,Kenya,Nairobi,"English, Swahili",254,+03:00,
 KI,KIR,296,.ki,Kiribati,The Republic of Kiribati,UN member state,Kiribati,Tarawa,Kiribati,Tarawa,"English, Gilbertese",686,+12:00 to 14:00,
-XK,NULL,NULL,.xk,Kosovo,The Republic of Kosovo,Disputed,Kosovo,Pristina,"Kosova, Kosovo, Косово","Prishtinë, Priština, Приштина","Albanian, Serbian (Latin), Serbian (Cyrillic)",383,+01:00,+02:00
+XK,,,.xk,Kosovo,The Republic of Kosovo,Disputed,Kosovo,Pristina,"Kosova, Kosovo, Косово","Prishtinë, Priština, Приштина","Albanian, Serbian (Latin), Serbian (Cyrillic)",383,+01:00,+02:00
 KW,KWT,414,.kw,Kuwait,The State of Kuwait,UN member state,Kuwait,Kuwait City,"Dawlat ul-Kuwayt, دولة الكويت, il-ikwet","Madiinat ul-Kuwayt, مدينة الكويت, id-diira, الديرة","Arabic (Official), Kuwaiti Gulf Arabic (native), (Arabic script)",965,+03:00,
 KG,KGZ,417,.kg,Kyrgyzstan,The Kyrgyz Republic,UN member state,Kyrgyzstan,Bishkek,"Kyrgyzstan, Кыргызстан","Bishkek, Бишкек","Kyrgyz, Russian, (Cyrillic script)",996,+06:00,
 LA,LAO,418,.la,Lao People's Democratic Republic,The Lao People's Democratic Republic,UN member state,Laos,Vientiane,"Lao, ປະເທດລາວ","Vientiane, Vieng Chan, or Wīang Chan, ວຽງຈັນ","Lao, Lao alphabet",856,+07:00,
@@ -204,7 +204,7 @@ SG,SGP,702,.sg,Singapore,The Republic of Singapore,UN member state,Singapore,Sin
 SX,SXM,534,.sx,Sint Maarten (Dutch part),Sint Maarten,Netherlands,Sint Maarten,Philipsburg,Sint Maarten,Philipsburg,"Dutch, English",+1 (721),−04:00,
 SK,SVK,703,.sk,Slovakia,The Slovak Republic,UN member state,Slovakia,Bratislava,Slovensko,Bratislava,Slovak,421,+01:00,+02:00
 SI,SVN,705,.si,Slovenia,The Republic of Slovenia,UN member state,Slovenia,Ljubljana,Slovenija,Ljubljana,Slovene,386,+01:00,+02:00
-SB,SLB,090,.sb,Solomon Islands,The Solomon Islands,UN member state,Solomon Islands,Honiara,"Solomon Islands, Solomon Aelan","Honiara, Honiala","English, Neo-Solomonic",677,+11:00,
+SB,SLB,90,.sb,Solomon Islands,The Solomon Islands,UN member state,Solomon Islands,Honiara,"Solomon Islands, Solomon Aelan","Honiara, Honiala","English, Neo-Solomonic",677,+11:00,
 SO,SOM,706,.so,Somalia,The Federal Republic of Somalia,UN member state,Somalia,Mogadishu,"Soomaaliya, aş-Şūmāl, الصومال","Muqdisho, Maqadīshū, مقديشو","Somali, Arabic, (Arabic script)",252,+03:00,
 ZA,ZAF,710,.za,South Africa,The Republic of South Africa,UN member state,South Africa,"Pretoria (administrative capital), Cape Town (legislative capital), Bloemfontein, (judicial capital)","South Africa, Suid-Afrika, iNingizimu Afrika, uMzantsi Afrika, Afrika-Borwa, Afrika Borwa, Aforika Borwa, Afurika Tshipembe, Afrika Dzonga, iSewula Afrika","Pretoria, Cape Town, Pretoria, Kaapstad, iPitoli, iKapa, Pitori, iPitori","English, Afrikaans, isiZulu, isiXhosa, Pedi, Sotho, Tswana, Venda, Tsonga, Swazi, Ndebele",27,+02:00,
 GS,SGS,239,.gs,South Georgia and the South Sandwich Islands,South Georgia and the South Sandwich Islands,United Kingdom,South Georgia and the South Sandwich Islands,King Edward Point,South Georgia and the South Sandwich Islands,King Edward Point,English,500,−02:00,
@@ -236,18 +236,18 @@ UG,UGA,800,.ug,Uganda,The Republic of Uganda,UN member state,Uganda,Kampala,Ugan
 UA,UKR,804,.ua,Ukraine,Ukraine,UN member state,Ukraine,Kyiv,"Ukrajina, Україна","Kyjiv, Київ","Ukrainian, (Cyrillic script)",380,+02:00,+03:00
 AE,ARE,784,.ae,United Arab Emirates (UAE),The United Arab Emirates,UN member state,United Arab Emirates,Abu Dhabi,"Al-’Imārat Al-‘Arabiyyah Al-Muttaḥidah, الإمارات العربيّة المتّحدة","‘Abū ẓabī, أبوظبي","Arabic, (Arabic script)",971,+04:00,
 GB,GBR,826,.gb .uk,"United Kingdom of Great Britain and Northern Ireland (Great Britain, UK)",The United Kingdom of Great Britain and Northern Ireland,UN member state,United Kingdom,London,"United Kingdom or Britain, Y Deyrnas Unedig, Unitit Kinrick, Rìoghachd Aonaichte, Ríocht Aontaithe, An Rywvaneth Unys","London, Llundain, Lunnon, Lunnainn, Londain, Loundres","English, Welsh, Scots, Scots Gaelic, Irish, Cornish",44,+00:00,+01:00
-UM,UMI,581,.us,United States Minor Outlying Islands,"Baker Island, Howland Island, Jarvis Island, Johnston Atoll, Kingman Reef, Midway Atoll, Navassa Island, Palmyra Atoll, and Wake Island",United States,United States Minor Outlying Islands,NULL,United States Minor Outlying Islands,NULL,English,1,NULL,
+UM,UMI,581,.us,United States Minor Outlying Islands,"Baker Island, Howland Island, Jarvis Island, Johnston Atoll, Kingman Reef, Midway Atoll, Navassa Island, Palmyra Atoll, and Wake Island",United States,United States Minor Outlying Islands,,United States Minor Outlying Islands,,English,1,,
 US,USA,840,.us,United States of America (USA),The United States of America,UN member state,United States,"Washington, D.C.","United States or America, Estados Unidos, États-Unis, ‘Amelika Hui Pū ‘ia","Washington, D.C., Washington, or D.C., Washington D.C., Wakinekona/Wasinetona","English, Spanish, Cajun French, Hawaiian",1,−10:00 to –05:00,−10:00 to –04:00
 UY,URY,858,.uy,Uruguay,The Oriental Republic of Uruguay,UN member state,Uruguay,Montevideo,Uruguay,Montevideo,Spanish,598,−03:00,
 UZ,UZB,860,.uz,Uzbekistan,The Republic of Uzbekistan,UN member state,Uzbekistan,Tashkent,"O‘zbekiston, Ўзбекистон","Toshkent, Тошкент","Uzbek, (Cyrillic script)",998,+05:00,
 VU,VUT,548,.vu,Vanuatu,The Republic of Vanuatu,UN member state,Vanuatu,Port Vila,Vanuatu,Port-Vila,French,678,+11:00,
 VE,VEN,862,.ve,Venezuela,The Bolivarian Republic of Venezuela,UN member state,Venezuela,Caracas,Venezuela,Caracas,Spanish,58,−04:00,
 VN,VNM,704,.vn,Viet Nam,The Socialist Republic of Viet Nam,UN member state,Vietnam,Hanoi,Việt Nam,Hà Nội,Vietnamese,84,+07:00,
-VG,VGB,092,.vg,Virgin Islands (British Virgin Islands),The Virgin Islands,United Kingdom,British Virgin Islands,Road Town,British Virgin Islands,Road Town,English,+1 (284),−04:00,
+VG,VGB,92,.vg,Virgin Islands (British Virgin Islands),The Virgin Islands,United Kingdom,British Virgin Islands,Road Town,British Virgin Islands,Road Town,English,+1 (284),−04:00,
 VI,VIR,850,.vi,Virgin Islands (U.S.),The Virgin Islands of the United States,United States,United States Virgin Islands,Charlotte Amalie,United States Virgin Islands,Charlotte Amalie,English,+1 (340),−04:00,
 WF,WLF,876,.wf,Wallis and Futuna,The Territory of the Wallis and Futuna Islands,France,Wallis and Futuna,Mata Utu,"Wallis-et-Futuna, ʻUvea mo Futuna","Mata Utu, Matāʻutu","French, Wallisian, Futunan",681,+12:00,
-EH,ESH,732,.eh,Western Sahara (Sahrawi Arab Democratic Republic),The Sahrawi Arab Democratic Republic,Disputed,Sahrawi Arab Democratic Republic,Laayoune,Al-Jumhūrīyah al-‘Arabīyah aṣ-Ṣaḥrāwīyah ad-Dīmuqrāṭīyah,Al-ʿAyyūn,Arabic,212,NULL,
+EH,ESH,732,.eh,Western Sahara (Sahrawi Arab Democratic Republic),The Sahrawi Arab Democratic Republic,Disputed,Sahrawi Arab Democratic Republic,Laayoune,Al-Jumhūrīyah al-‘Arabīyah aṣ-Ṣaḥrāwīyah ad-Dīmuqrāṭīyah,Al-ʿAyyūn,Arabic,212,,
 YE,YEM,887,.ye,Yemen,The Republic of Yemen,UN member state,Yemen,Sana'a,"Al-Yaman, اليمن","Ṣan‘ā’, ﺻﻨﻌﺎﺀ","Arabic, (Arabic script)",967,+03:00,
 ZM,ZMB,894,.zm,Zambia,The Republic of Zambia,UN member state,Zambia,Lusaka,Zambia,Lusaka,"English, Bemba, Chewa",260,+02:00,
 ZW,ZWE,716,.zw,Zimbabwe,The Republic of Zimbabwe,UN member state,Zimbabwe,Harare,Zimbabwe,Harare,"English, Shona",263,+02:00,
-SP,SPR,NULL,NULL,Spratly Islands,The Spratly Islands,Disputed,Spratly Islands,NULL,"南沙群岛, Quần đảo Trường Sa, Kepulauan Spratly,Gugusan Semarang, Peninjau, Kapuluan ng Kalayaan",NULL,"Chinese, Vietnamese, Malay, Tagalog",NULL,NULL,
+SP,SPR,NA,NA,Spratly Islands,The Spratly Islands,Disputed,Spratly Islands,,"南沙群岛, Quần đảo Trường Sa, Kepulauan Spratly,Gugusan Semarang, Peninjau, Kapuluan ng Kalayaan",,"Chinese, Vietnamese, Malay, Tagalog",,,
